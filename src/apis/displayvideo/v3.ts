@@ -187,43 +187,43 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$AdGroup {
     /**
-     * The format of the ads in the ad group.
+     * Required. The format of the ads in the ad group.
      */
     adGroupFormat?: string | null;
     /**
-     * The unique ID of the ad group. Assigned by the system.
+     * Output only. The unique ID of the ad group. Assigned by the system.
      */
     adGroupId?: string | null;
     /**
-     * The unique ID of the advertiser the ad group belongs to.
+     * Output only. The unique ID of the advertiser the ad group belongs to.
      */
     advertiserId?: string | null;
     /**
-     * The bidding strategy used by the ad group. Only the youtubeAndPartnersBid field can be used in the bidding strategy.
+     * Optional. The bidding strategy used by the ad group. Only the youtubeAndPartnersBid and demandGenBid field can be used in the bidding strategy.
      */
     bidStrategy?: Schema$BiddingStrategy;
     /**
-     * The display name of the ad group. Must be UTF-8 encoded with a maximum size of 255 bytes.
+     * Required. The display name of the ad group. Must be UTF-8 encoded with a maximum size of 255 bytes.
      */
     displayName?: string | null;
     /**
-     * Controls whether or not the ad group can spend its budget and bid on inventory. If the ad group's parent line item is not active, the ad group can't spend its budget even if its own status is `ENTITY_STATUS_ACTIVE`.
+     * Required. Controls whether or not the ad group can spend its budget and bid on inventory. If the ad group's parent line item is not active, the ad group can't spend its budget even if its own status is `ENTITY_STATUS_ACTIVE`.
      */
     entityStatus?: string | null;
     /**
-     * The unique ID of the line item that the ad group belongs to.
+     * Required. The unique ID of the line item that the ad group belongs to.
      */
     lineItemId?: string | null;
     /**
-     * The resource name of the ad group.
+     * Output only. Identifier. The resource name of the ad group.
      */
     name?: string | null;
     /**
-     * The settings of the product feed in this ad group.
+     * Optional. The settings of the product feed in this ad group.
      */
     productFeedData?: Schema$ProductFeedData;
     /**
-     * The [optimized targeting](//support.google.com/displayvideo/answer/12060859) settings of the ad group.
+     * Optional. The [optimized targeting](//support.google.com/displayvideo/answer/12060859) settings of the ad group.
      */
     targetingExpansion?: Schema$TargetingExpansionConfig;
   }
@@ -236,7 +236,7 @@ export namespace displayvideo_v3 {
      */
     adGroupAdId?: string | null;
     /**
-     * The unique ID of the ad group that the ad belongs to. *Caution*: Parent ad groups for Demand Gen ads are not currently retrieveable using `advertisers.adGroups.list` or `advertisers.adGroups.get`. Demand Gen ads can be identified by the absence of the `ad_details` union field.
+     * Required. The unique ID of the ad group that the ad belongs to.
      */
     adGroupId?: string | null;
     /**
@@ -244,7 +244,7 @@ export namespace displayvideo_v3 {
      */
     adPolicy?: Schema$AdPolicy;
     /**
-     * List of URLs used by the ad.
+     * Output only. List of URLs used by the ad.
      */
     adUrls?: Schema$AdUrl[];
     /**
@@ -252,31 +252,31 @@ export namespace displayvideo_v3 {
      */
     advertiserId?: string | null;
     /**
-     * Details of an [audio ad](//support.google.com/displayvideo/answer/6274216) used for reach marketing objectives.
+     * Output only. Details of an [audio ad](//support.google.com/displayvideo/answer/6274216) used for reach marketing objectives.
      */
     audioAd?: Schema$AudioAd;
     /**
-     * Details of a [non-skippable short video ad](//support.google.com/displayvideo/answer/6274216), equal to or less than 6 seconds, used for reach.
+     * Output only. Details of a [non-skippable short video ad](//support.google.com/displayvideo/answer/6274216), equal to or less than 6 seconds, used for reach.
      */
     bumperAd?: Schema$BumperAd;
     /**
-     * The display name of the ad. Must be UTF-8 encoded with a maximum size of 255 bytes.
+     * Required. The display name of the ad. Must be UTF-8 encoded with a maximum size of 255 bytes.
      */
     displayName?: string | null;
     /**
-     * Details of an ad sourced from a Display & Video 360 creative.
+     * Output only. Details of an ad sourced from a Display & Video 360 creative.
      */
     displayVideoSourceAd?: Schema$DisplayVideoSourceAd;
     /**
-     * The entity status of the ad.
+     * Required. The entity status of the ad.
      */
     entityStatus?: string | null;
     /**
-     * Details of an [in-stream ad skippable after 5 seconds](//support.google.com/displayvideo/answer/6274216), used for brand awareness or reach marketing objectives.
+     * Output only. Details of an [in-stream ad skippable after 5 seconds](//support.google.com/displayvideo/answer/6274216), used for brand awareness or reach marketing objectives.
      */
     inStreamAd?: Schema$InStreamAd;
     /**
-     * Details of an [ad served on the YouTube Home feed](//support.google.com/google-ads/answer/9709826).
+     * Output only. Details of an [ad served on the YouTube Home feed](//support.google.com/google-ads/answer/9709826).
      */
     mastheadAd?: Schema$MastheadAd;
     /**
@@ -284,15 +284,15 @@ export namespace displayvideo_v3 {
      */
     name?: string | null;
     /**
-     * Details of a [non-skippable short in-stream video ad](//support.google.com/displayvideo/answer/6274216), between 6 and 15 seconds, used for reach marketing objectives.
+     * Output only. Details of a [non-skippable short in-stream video ad](//support.google.com/displayvideo/answer/6274216), between 6 and 15 seconds, used for reach marketing objectives.
      */
     nonSkippableAd?: Schema$NonSkippableAd;
     /**
-     * Details of an [ad promoting a video](//support.google.com/displayvideo/answer/6274216) that shows in places of discovery.
+     * Output only. Details of an [ad promoting a video](//support.google.com/displayvideo/answer/6274216) that shows in places of discovery.
      */
     videoDiscoverAd?: Schema$VideoDiscoveryAd;
     /**
-     * Details of an [ad used in a video action campaign](//support.google.com/google-ads/answer/10147229) to drive actions to the business, service or product.
+     * Output only. Details of an [ad used in a video action campaign](//support.google.com/google-ads/answer/10147229) to drive actions to the business, service or product.
      */
     videoPerformanceAd?: Schema$VideoPerformanceAd;
   }
@@ -1597,7 +1597,7 @@ export namespace displayvideo_v3 {
      */
     fixedBid?: Schema$FixedBidStrategy;
     /**
-     * * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA`, `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC`, and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` only allow for `LINE_ITEM_TYPE_DISPLAY_DEFAULT` or `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` only allow for `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_REACH` only allows for `LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP` line items.
+     * A strategy that automatically adjusts the bid to optimize to your performance goal while spending the full budget. At insertion order level, the markup_type of line items cannot be set to `PARTNER_REVENUE_MODEL_MARKUP_TYPE_CPM`. In addition, the performance_goal_type value assigned to an insertion order determines the possible line_item_type values available for line items under that insertion order: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA`, `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC`, and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` only allow for `LINE_ITEM_TYPE_DISPLAY_DEFAULT` or `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` only allow for `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_REACH` only allows for `LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP` line items.
      */
     maximizeSpendAutoBid?: Schema$MaximizeSpendBidStrategy;
     /**
@@ -3950,15 +3950,15 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$ImageAsset {
     /**
-     * File size of the image asset in bytes.
+     * Output only. File size of the image asset in bytes.
      */
     fileSize?: string | null;
     /**
-     * Metadata for this image at its original size.
+     * Output only. Metadata for this image at its original size.
      */
     fullSize?: Schema$Dimensions;
     /**
-     * MIME type of the image asset.
+     * Output only. MIME type of the image asset.
      */
     mimeType?: string | null;
   }
@@ -3971,7 +3971,7 @@ export namespace displayvideo_v3 {
      */
     advertiserId?: string | null;
     /**
-     * Optional. The bidding strategy of the insertion order. By default, fixed_bid is set.
+     * Optional. The bidding strategy of the insertion order. By default, fixed_bid is set. If the budget field automationType is set to `INSERTION_ORDER_AUTOMATION_TYPE_BUDGET` or `INSERTION_ORDER_AUTOMATION_TYPE_BID_BUDGET`, the insertion order will impose this bidding strategy on its line items. If an imposed bidding strategy is not compatible with a line item's enableOptimizedTargeting setting, the optimized targeting setting will be updated.
      */
     bidStrategy?: Schema$BiddingStrategy;
     /**
@@ -6105,7 +6105,7 @@ export namespace displayvideo_v3 {
      */
     audienceExpansionSeedListExcluded?: boolean | null;
     /**
-     * Required. Whether to enable Optimized Targeting for the line item. Optimized targeting is not compatible with all bid strategies. Attempting to set this field to `true` for a line item using the BiddingStrategy field fixed_bid or one of the following combinations of BiddingStrategy fields and BiddingStrategyPerformanceGoalType will result in an error: maximize_auto_spend_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` performance_goal_auto_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`
+     * Required. Whether to enable Optimized Targeting for the line item. Optimized targeting is not compatible with all bid strategies. Attempting to set this field to `true` for a line item using the BiddingStrategy field fixed_bid or one of the following combinations of BiddingStrategy fields and BiddingStrategyPerformanceGoalType will result in an error: maximize_auto_spend_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` performance_goal_auto_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM` This also applies if the line item inherits one of the above bid strategies from the parent insertion order. Bid strategies set at the insertion order-level will be inherited by their line items if the `InsertionOrder` budget field automationType is set to `INSERTION_ORDER_AUTOMATION_TYPE_BUDGET` or `INSERTION_ORDER_AUTOMATION_TYPE_BID_BUDGET`.
      */
     enableOptimizedTargeting?: boolean | null;
   }
@@ -6779,13 +6779,17 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$YoutubeVideoDetails {
     /**
-     * The YouTube video ID which can be searched on YouTube webpage.
+     * Output only. The YouTube video ID which can be searched on YouTube webpage.
      */
     id?: string | null;
     /**
      * The reason why the video data is not available.
      */
     unavailableReason?: string | null;
+    /**
+     * Required. The YouTube video asset id. This is ad_asset.ad_asset_id.
+     */
+    videoAssetId?: string | null;
   }
 
   export class Resource$Advertisers {

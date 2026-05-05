@@ -129,6 +129,10 @@ export namespace merchantapi_promotions_v1 {
    */
   export interface Schema$Attributes {
     /**
+     * Optional. This field defines the audience a promotion will be visible to.
+     */
+    audience?: string | null;
+    /**
      * Optional. Product filter by [brand exclusion](https://support.google.com/merchants/answer/13861679?ref_topic=13773355&sjid=17642868584668136159-NC) for the promotion. The product filter attributes only applies when the products eligible for promotion product applicability `product_applicability` attribute is set to [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
      */
     brandExclusion?: string[] | null;
@@ -140,6 +144,14 @@ export namespace merchantapi_promotions_v1 {
      * Required. The [coupon value type] (https://support.google.com/merchants/answer/13861986?ref_topic=13773355&sjid=17642868584668136159-NC) attribute to signal the type of promotion that you are running. Depending on type of the selected coupon value [some attributes are required](https://support.google.com/merchants/answer/6393006?ref_topic=7322920).
      */
     couponValueType?: string | null;
+    /**
+     * Optional. The custom redemption restriction for the promotion. If the `redemption_restriction` field is set to `CUSTOM`, this field must be set.
+     */
+    customRedemptionRestriction?: string | null;
+    /**
+     * Optional. Event applicability for this promotion. When present, this field indicates you are creating a [sales event](https://support.google.com/merchants/answer/15523289?hl=en&sjid=11099988466404504696-NC) and not a product promotion. Exactly one of `product_applicability` or `event_applicability` must be set.
+     */
+    eventApplicability?: string | null;
     /**
      * Optional. [Free gift description](https://support.google.com/merchants/answer/13847245?ref_topic=13773355&sjid=17642868584668136159-NC) for the promotion.
      */
@@ -160,6 +172,10 @@ export namespace merchantapi_promotions_v1 {
      * Optional. The number of items discounted in the promotion. The attribute is set when `couponValueType` is equal to `buy_m_get_n_money_off` or `buy_m_get_n_percent_off`.
      */
     getThisQuantityDiscounted?: string | null;
+    /**
+     * Optional. A list of Google product categories for this promotion. Set if `EventApplicability` is `SPECIFIC_CATEGORIES`. Up to 5 product categories can be specified. For more details on eligible values for product categories, checkout the `google_product_category` attribute in the [Promotion data specification](https://support.google.com/merchants/answer/2906014?hl=en).
+     */
+    googleProductCategories?: string[] | null;
     /**
      * Optional. Product filter by [item group ID](https://support.google.com/merchants/answer/13837298?ref_topic=13773355&sjid=17642868584668136159-NC). The product filter attributes only applies when the products eligible for promotion product applicability `product_applicability` attribute is set to [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC). exclusion for the promotion.
      */
@@ -189,6 +205,10 @@ export namespace merchantapi_promotions_v1 {
      */
     longTitle?: string | null;
     /**
+     * Optional. The maximum monetary discount a customer can receive for the promotion. This field is only supported with the `Percent off` coupon value type.
+     */
+    maxDiscountAmount?: Schema$Price;
+    /**
      * Optional. [Minimum purchase amount](https://support.google.com/merchants/answer/13837705?ref_topic=13773355&sjid=17642868584668136159-NC) for the promotion.
      */
     minimumPurchaseAmount?: Schema$Price;
@@ -206,7 +226,7 @@ export namespace merchantapi_promotions_v1 {
      */
     percentOff?: string | null;
     /**
-     * Required. Applicability of the promotion to either all products or [only specific products](https://support.google.com/merchants/answer/6396257?ref_topic=6396150&sjid=17642868584668136159-NC).
+     * Optional. Applicability of the promotion to either all products or [only specific products](https://support.google.com/merchants/answer/6396257?ref_topic=6396150&sjid=17642868584668136159-NC). Exactly one of `product_applicability` or `event_applicability` must be set.
      */
     productApplicability?: string | null;
     /**
@@ -233,6 +253,14 @@ export namespace merchantapi_promotions_v1 {
      * Optional. URL to the page on the merchant's site where the promotion shows. Local Inventory ads promotions throw an error if no `promotion_url` is included. URL is used to confirm that the promotion is valid and can be redeemed.
      */
     promotionUrl?: string | null;
+    /**
+     * Optional. A restriction customers must meet before they can redeem the promotion.
+     */
+    redemptionRestriction?: string | null;
+    /**
+     * Optional. A list of [regions](https://support.google.com/merchants/answer/15406457?hl=en&sjid=8815806704218720187-NC#howregionswork) where the promotion is applicable. Must be set if `audience` is set to `LOCATION`.
+     */
+    regionIdInclusion?: string[] | null;
     /**
      * Optional. Whether the promotion applies to [all stores, or only specified stores](https://support.google.com/merchants/answer/13857563?sjid=17642868584668136159-NC). Local Inventory ads promotions throw an error if no store applicability is included. An `INVALID_ARGUMENT` error is thrown if `store_applicability` is set to `ALL_STORES` and `store_codes_inclusion` or `score_code_exclusion` is set to a value.
      */

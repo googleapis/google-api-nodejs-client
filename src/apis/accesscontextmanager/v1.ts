@@ -115,6 +115,7 @@ export namespace accesscontextmanager_v1 {
     accessPolicies: Resource$Accesspolicies;
     operations: Resource$Operations;
     organizations: Resource$Organizations;
+    permissions: Resource$Permissions;
     services: Resource$Services;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -126,6 +127,7 @@ export namespace accesscontextmanager_v1 {
       this.accessPolicies = new Resource$Accesspolicies(this.context);
       this.operations = new Resource$Operations(this.context);
       this.organizations = new Resource$Organizations(this.context);
+      this.permissions = new Resource$Permissions(this.context);
       this.services = new Resource$Services(this.context);
     }
   }
@@ -712,6 +714,19 @@ export namespace accesscontextmanager_v1 {
      * List of the Service Perimeter instances.
      */
     servicePerimeters?: Schema$ServicePerimeter[];
+  }
+  /**
+   * A response to `ListSupportedPermissionsRequest`.
+   */
+  export interface Schema$ListSupportedPermissionsResponse {
+    /**
+     * The pagination token to retrieve the next page of results. If the value is empty, no further results remain.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of VPC-SC supported permissions.
+     */
+    supportedPermissions?: string[] | null;
   }
   /**
    * A response to `ListSupportedServicesRequest`.
@@ -7008,6 +7023,171 @@ export namespace accesscontextmanager_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GcpUserAccessBinding;
+  }
+
+  export class Resource$Permissions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all supported permissions in VPCSC Granular Controls.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accesscontextmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const accesscontextmanager = google.accesscontextmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accesscontextmanager.permissions.list({
+     *     // Optional. This flag specifies the maximum number of services to return per page. Default is 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Token to start on a later page. Default is the first page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "supportedPermissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Permissions$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Permissions$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListSupportedPermissionsResponse>
+    >;
+    list(
+      params: Params$Resource$Permissions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Permissions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSupportedPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$ListSupportedPermissionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Permissions$List,
+      callback: BodyResponseCallback<Schema$ListSupportedPermissionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListSupportedPermissionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Permissions$List
+        | BodyResponseCallback<Schema$ListSupportedPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSupportedPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSupportedPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListSupportedPermissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Permissions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Permissions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://accesscontextmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/permissions').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSupportedPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSupportedPermissionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Permissions$List extends StandardParameters {
+    /**
+     * Optional. This flag specifies the maximum number of services to return per page. Default is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token to start on a later page. Default is the first page.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Services {

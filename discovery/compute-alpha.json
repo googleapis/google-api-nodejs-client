@@ -3234,6 +3234,55 @@
             "https://www.googleapis.com/auth/compute"
           ]
         },
+        "convert": {
+          "description": "Converts a persistent disk to support Gen4+ VMs.",
+          "flatPath": "projects/{project}/zones/{zone}/disks/{disk}/convert",
+          "httpMethod": "POST",
+          "id": "compute.disks.convert",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "disk"
+          ],
+          "parameters": {
+            "disk": {
+              "description": "Name of the Disk resource, should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/disks/{disk}/convert",
+          "request": {
+            "$ref": "DisksConvertRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
         "createSnapshot": {
           "description": "Creates a snapshot of a specified persistent disk. For regular snapshot\ncreation, consider using snapshots.insert\ninstead, as that method supports more features, such as creating snapshots\nin a project different from the source disk project.",
           "flatPath": "projects/{project}/zones/{zone}/disks/{disk}/createSnapshot",
@@ -3961,7 +4010,7 @@
           ]
         },
         "update": {
-          "description": "Updates the specified disk with the data included in the request.\nThe update is performed only on selected fields included as part\nof update-mask. Only the following fields can be modified: user_license.",
+          "description": "Updates the specified disk with the data included in the request.\nThe update is performed only on selected fields included as part\nof update-mask.",
           "flatPath": "projects/{project}/zones/{zone}/disks/{disk}",
           "httpMethod": "PATCH",
           "id": "compute.disks.update",
@@ -7181,7 +7230,7 @@
           ]
         },
         "insert": {
-          "description": "Creates a network endpoint group in the specified project using the\nparameters that are included in the request.",
+          "description": "Creates a network endpoint group in the specified project using the\nparameters that are included in the request.\n\nNote: Use the following APIs to manage network endpoint groups:\n   \n   - \n   To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity\n   NEGs): zonal\n   API\n   - \n   To manage NEGs with regional scope (such as regional internet NEGs,\n   serverless NEGs, Private Service Connect NEGs): regional\n   API\n   - \n   To manage NEGs with global scope (such as global internet NEGs):global\n   API",
           "flatPath": "projects/{project}/global/networkEndpointGroups",
           "httpMethod": "POST",
           "id": "compute.globalNetworkEndpointGroups.insert",
@@ -10469,6 +10518,54 @@
           "path": "projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/applyUpdatesToInstances",
           "request": {
             "$ref": "InstanceGroupManagersApplyUpdatesRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "configureAcceleratorTopologies": {
+          "description": "Updates the accelerator topologies configuration.",
+          "flatPath": "projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/configureAcceleratorTopologies",
+          "httpMethod": "POST",
+          "id": "compute.instanceGroupManagers.configureAcceleratorTopologies",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "instanceGroupManager"
+          ],
+          "parameters": {
+            "instanceGroupManager": {
+              "description": "The name of the managed instance group.\nIt should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of thezone\nwhere the managed instance group is located.\nIt should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/configureAcceleratorTopologies",
+          "request": {
+            "$ref": "InstanceGroupManagersConfigureAcceleratorTopologiesRequest"
           },
           "response": {
             "$ref": "Operation"
@@ -20530,7 +20627,7 @@
           ]
         },
         "insert": {
-          "description": "Creates a network endpoint group in the specified project using the\nparameters that are included in the request.",
+          "description": "Creates a network endpoint group in the specified project using the\nparameters that are included in the request.\n\nNote: Use the following APIs to manage network endpoint groups:\n   \n   - \n   To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity\n   NEGs): zonal\n   API\n   - \n   To manage NEGs with regional scope (such as regional internet NEGs,\n   serverless NEGs, Private Service Connect NEGs): regional\n   API\n   - \n   To manage NEGs with global scope (such as global internet NEGs):global\n   API",
           "flatPath": "projects/{project}/zones/{zone}/networkEndpointGroups",
           "httpMethod": "POST",
           "id": "compute.networkEndpointGroups.insert",
@@ -28805,7 +28902,7 @@
           },
           "path": "projects/{project}/regions/{region}/compositeHealthChecks/{compositeHealthCheck}/getHealth",
           "response": {
-            "$ref": "CompositeHealthChecksGetHealthResponse"
+            "$ref": "CompositeHealthCheckHealth"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -30033,7 +30130,7 @@
           ]
         },
         "update": {
-          "description": "Update the specified disk with the data included in the request. Update is\nperformed only on selected fields included as part of update-mask. Only the\nfollowing fields can be modified: user_license.",
+          "description": "Update the specified disk with the data included in the request. Update is\nperformed only on selected fields included as part of update-mask.",
           "flatPath": "projects/{project}/regions/{region}/disks/{disk}",
           "httpMethod": "PATCH",
           "id": "compute.regionDisks.update",
@@ -31404,6 +31501,49 @@
           "path": "projects/{project}/regions/{region}/healthSources/{healthSource}",
           "response": {
             "$ref": "HealthSource"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "getHealth": {
+          "description": "Gets the most recent health check results for this\nregional HealthSource.",
+          "flatPath": "projects/{project}/regions/{region}/healthSources/{healthSource}/getHealth",
+          "httpMethod": "GET",
+          "id": "compute.regionHealthSources.getHealth",
+          "parameterOrder": [
+            "project",
+            "region",
+            "healthSource"
+          ],
+          "parameters": {
+            "healthSource": {
+              "description": "Name of the HealthSource resource to get health for.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Name of the project scoping this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region scoping this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/healthSources/{healthSource}/getHealth",
+          "response": {
+            "$ref": "HealthSourceHealth"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -35077,7 +35217,7 @@
           ]
         },
         "insert": {
-          "description": "Creates a network endpoint group in the specified project using the\nparameters that are included in the request.",
+          "description": "Creates a network endpoint group in the specified project using the\nparameters that are included in the request.\n\nNote: Use the following APIs to manage network endpoint groups:\n   \n   - \n   To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity\n   NEGs): zonal\n   API\n   - \n   To manage NEGs with regional scope (such as regional internet NEGs,\n   serverless NEGs, Private Service Connect NEGs): regional\n   API\n   - \n   To manage NEGs with global scope (such as global internet NEGs):global\n   API",
           "flatPath": "projects/{project}/regions/{region}/networkEndpointGroups",
           "httpMethod": "POST",
           "id": "compute.regionNetworkEndpointGroups.insert",
@@ -41204,6 +41344,61 @@
             "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
+        "getVersion": {
+          "description": "Allows customers to get SBOM versions of a reservation slot.",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks/{reservationSubBlocksId}/reservationSlots/{reservationSlot}/getVersion",
+          "httpMethod": "POST",
+          "id": "compute.reservationSlots.getVersion",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "parentName",
+            "reservationSlot"
+          ],
+          "parameters": {
+            "parentName": {
+              "description": "The name of the parent reservation and parent block. In the format of\nreservations/{reservation_name}/reservationBlocks/{reservation_block_name}/reservationSubBlocks/{reservation_sub_block_name}",
+              "location": "path",
+              "pattern": "reservations/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationSubBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "reservationSlot": {
+              "description": "The name of the reservation slot.\nName should conform to RFC1035 or be a resource ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "Name of the zone for this request. Zone name should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}/getVersion",
+          "request": {
+            "$ref": "ReservationSlotsGetVersionRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
         "list": {
           "description": "Retrieves a list of reservation slots under a single reservation.",
           "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks/{reservationSubBlocksId}/reservationSlots",
@@ -41272,6 +41467,62 @@
             "https://www.googleapis.com/auth/compute",
             "https://www.googleapis.com/auth/compute.readonly"
           ]
+        },
+        "update": {
+          "description": "Update a reservation slot in the specified sub-block.",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks/{reservationSubBlocksId}/reservationSlots/{reservationSlot}",
+          "httpMethod": "POST",
+          "id": "compute.reservationSlots.update",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "parentName",
+            "reservationSlot"
+          ],
+          "parameters": {
+            "parentName": {
+              "description": "The name of the sub-block resource.",
+              "location": "path",
+              "pattern": "reservations/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationSubBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "The project ID for this request.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "reservationSlot": {
+              "description": "The name of the slot resource.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "The fields to be updated as part of this request.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request, formatted as RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}",
+          "request": {
+            "$ref": "ReservationSlot"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
         }
       }
     },
@@ -41279,7 +41530,7 @@
       "methods": {
         "get": {
           "description": "Retrieves information about the specified reservation subBlock.",
-          "flatPath": "projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks/{reservationSubBlock}",
           "httpMethod": "GET",
           "id": "compute.reservationSubBlocks.get",
           "parameterOrder": [
@@ -41292,6 +41543,7 @@
             "parentName": {
               "description": "The name of the parent reservation and parent block. In the format of\nreservations/{reservation_name}/reservationBlocks/{reservation_block_name}",
               "location": "path",
+              "pattern": "^reservations/[^/]+/reservationBlocks/[^/]+$",
               "required": true,
               "type": "string"
             },
@@ -41329,7 +41581,7 @@
               "type": "string"
             }
           },
-          "path": "projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}",
+          "path": "projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}",
           "response": {
             "$ref": "ReservationSubBlocksGetResponse"
           },
@@ -41339,9 +41591,64 @@
             "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
+        "getVersion": {
+          "description": "Allows customers to get SBOM versions of a reservation subBlock.",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks/{reservationSubBlock}/getVersion",
+          "httpMethod": "POST",
+          "id": "compute.reservationSubBlocks.getVersion",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "parentName",
+            "reservationSubBlock"
+          ],
+          "parameters": {
+            "parentName": {
+              "description": "The name of the parent reservation and parent block. In the format of\nreservations/{reservation_name}/reservationBlocks/{reservation_block_name}",
+              "location": "path",
+              "pattern": "^reservations/[^/]+/reservationBlocks/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "reservationSubBlock": {
+              "description": "The name of the reservation subBlock.\nName should conform to RFC1035 or be a resource ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "Name of the zone for this request. Zone name should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/getVersion",
+          "request": {
+            "$ref": "ReservationSubBlocksGetVersionRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
         "list": {
           "description": "Retrieves a list of reservation subBlocks under a single reservation.",
-          "flatPath": "projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks",
           "httpMethod": "GET",
           "id": "compute.reservationSubBlocks.list",
           "parameterOrder": [
@@ -41376,6 +41683,7 @@
             "parentName": {
               "description": "The name of the parent reservation and parent block. In the format of\nreservations/{reservation_name}/reservationBlocks/{reservation_block_name}",
               "location": "path",
+              "pattern": "^reservations/[^/]+/reservationBlocks/[^/]+$",
               "required": true,
               "type": "string"
             },
@@ -41397,7 +41705,7 @@
               "type": "string"
             }
           },
-          "path": "projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks",
+          "path": "projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks",
           "response": {
             "$ref": "ReservationSubBlocksListResponse"
           },
@@ -41409,7 +41717,7 @@
         },
         "performMaintenance": {
           "description": "Allows customers to perform maintenance on a reservation subBlock",
-          "flatPath": "projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}/performMaintenance",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks/{reservationSubBlock}/performMaintenance",
           "httpMethod": "POST",
           "id": "compute.reservationSubBlocks.performMaintenance",
           "parameterOrder": [
@@ -41422,6 +41730,7 @@
             "parentName": {
               "description": "The name of the parent reservation and parent block. In the format of\nreservations/{reservation_name}/reservationBlocks/{reservation_block_name}",
               "location": "path",
+              "pattern": "^reservations/[^/]+/reservationBlocks/[^/]+$",
               "required": true,
               "type": "string"
             },
@@ -41449,7 +41758,7 @@
               "type": "string"
             }
           },
-          "path": "projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}/performMaintenance",
+          "path": "projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/performMaintenance",
           "response": {
             "$ref": "Operation"
           },
@@ -41460,7 +41769,7 @@
         },
         "reportFaulty": {
           "description": "Allows customers to report a faulty subBlock.",
-          "flatPath": "projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}/reportFaulty",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks/{reservationSubBlock}/reportFaulty",
           "httpMethod": "POST",
           "id": "compute.reservationSubBlocks.reportFaulty",
           "parameterOrder": [
@@ -41473,6 +41782,7 @@
             "parentName": {
               "description": "The name of the parent reservation and parent block. In the format of\nreservations/{reservation_name}/reservationBlocks/{reservation_block_name}",
               "location": "path",
+              "pattern": "^reservations/[^/]+/reservationBlocks/[^/]+$",
               "required": true,
               "type": "string"
             },
@@ -41500,7 +41810,7 @@
               "type": "string"
             }
           },
-          "path": "projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}/reportFaulty",
+          "path": "projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/reportFaulty",
           "request": {
             "$ref": "ReservationSubBlocksReportFaultyRequest"
           },
@@ -42884,6 +43194,94 @@
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/compute",
             "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "pause": {
+          "description": "Pauses a Rollout.",
+          "flatPath": "projects/{project}/global/rollouts/{rollout}/pause",
+          "httpMethod": "POST",
+          "id": "compute.rollouts.pause",
+          "parameterOrder": [
+            "project",
+            "rollout"
+          ],
+          "parameters": {
+            "etag": {
+              "description": "The etag of the Rollout.\nIf this is provided, the request will only succeed if the etag matches\nthe current etag of the Rollout.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "rollout": {
+              "description": "Required. Name of the Rollout resource to pause.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/rollouts/{rollout}/pause",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "resume": {
+          "description": "Resumes a Rollout.",
+          "flatPath": "projects/{project}/global/rollouts/{rollout}/resume",
+          "httpMethod": "POST",
+          "id": "compute.rollouts.resume",
+          "parameterOrder": [
+            "project",
+            "rollout"
+          ],
+          "parameters": {
+            "etag": {
+              "description": "The etag of the Rollout.\nIf this is provided, the request will only succeed if the etag matches\nthe current etag of the Rollout.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "rollout": {
+              "description": "Required. Name of the Rollout resource to resume.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/rollouts/{rollout}/resume",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
           ]
         }
       }
@@ -54266,7 +54664,7 @@
       }
     }
   },
-  "revision": "20260122",
+  "revision": "20260213",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -55744,9 +56142,11 @@
             "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT3P",
             "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P",
             "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT5P",
+            "VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU7",
             "VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU7X"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -55939,7 +56339,7 @@
       "type": "object"
     },
     "AllocationSpecificSKUAllocationReservedInstanceProperties": {
-      "description": "Properties of the SKU instances being reserved.\nNext ID: 9",
+      "description": "Properties of the SKU instances being reserved.\nNext ID: 10",
       "id": "AllocationSpecificSKUAllocationReservedInstanceProperties",
       "properties": {
         "guestAccelerators": {
@@ -56175,14 +56575,6 @@
             ""
           ],
           "type": "string"
-        },
-        "userLicenses": {
-          "description": "Output only. [Output Only] A list of user provided licenses. It represents a list of\nURLs to the license resource. Unlike regular licenses, user provided\nlicenses can be modified after the disk is created.",
-          "items": {
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
         }
       },
       "type": "object"
@@ -56309,7 +56701,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Resource manager tags to be bound to the disk. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT & PATCH) when\nempty.",
+          "description": "Input only. Resource manager tags to be bound to the disk. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT & PATCH) when\nempty.",
           "type": "object"
         },
         "resourcePolicies": {
@@ -57372,6 +57764,10 @@
           "format": "float",
           "type": "number"
         },
+        "orchestrationInfo": {
+          "$ref": "BackendBackendOrchestrationInfo",
+          "description": "Information about the resource or system that manages the backend."
+        },
         "preference": {
           "description": "This field indicates whether this backend should be fully utilized before\nsending traffic to backends with default preference. The possible values\nare:\n   \n   - PREFERRED: Backends with this preference level will be\n   filled up to their capacity limits first, based on RTT.\n   - DEFAULT:  If preferred backends don't have enough\n   capacity, backends in this layer would be used and traffic would be\n   assigned based on the load balancing algorithm you use. This is the\n   default",
           "enum": [
@@ -57401,6 +57797,17 @@
             "Most requests are expected to finish with a sub-second latency.",
             "Traffic duration is unspecified."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BackendBackendOrchestrationInfo": {
+      "description": "A message containing information about the resource or system that manages\nthe backend.",
+      "id": "BackendBackendOrchestrationInfo",
+      "properties": {
+        "resourceUri": {
+          "description": "The URI of the resource or system that manages the backend.",
           "type": "string"
         }
       },
@@ -58539,6 +58946,10 @@
         "networkPassThroughLbTrafficPolicy": {
           "$ref": "BackendServiceNetworkPassThroughLbTrafficPolicy",
           "description": "Configures traffic steering properties of internal passthrough Network\nLoad Balancers.\n\nnetworkPassThroughLbTrafficPolicy cannot be specified with haPolicy."
+        },
+        "orchestrationInfo": {
+          "$ref": "BackendServiceOrchestrationInfo",
+          "description": "Information about the resource or system that manages the backend service."
         },
         "outlierDetection": {
           "$ref": "OutlierDetection",
@@ -59689,6 +60100,17 @@
           "description": "The value of the field must be in [0, 1]. When the ratio of the count\nof healthy backend endpoints in a zone to the count of backend\nendpoints in that same zone is equal to or above this threshold, the\nload balancer distributes new connections to all healthy endpoints in\nthe local zone only. When the ratio of the count of healthy backend\nendpoints in a zone to the count of backend endpoints in that same\nzone is below this threshold, the load balancer distributes all new\nconnections to all healthy endpoints across all zones.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "BackendServiceOrchestrationInfo": {
+      "description": "A message containing information about the resource or system that manages\nthe backend service.",
+      "id": "BackendServiceOrchestrationInfo",
+      "properties": {
+        "resourceUri": {
+          "description": "The resource URI of the resource or system that manages the backend\nservice.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -60848,6 +61270,11 @@
       "description": "Defines the instance scheduling options.",
       "id": "CapacityAdviceRequestInstancePropertiesScheduling",
       "properties": {
+        "maxRunDuration": {
+          "description": "The maximum time that instances can run before Compute Engine\nterminates them.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "provisioningModel": {
           "description": "Specifies the provisioning model of the instance.",
           "enum": [
@@ -60903,6 +61330,12 @@
         "estimatedUptime": {
           "description": "The estimated run time of the majority of Spot VMs in the request\nbefore preemption. The estimate is best-effort only. It is based on\nhistory data and current conditions.",
           "format": "google-duration",
+          "type": "string"
+        },
+        "estimatedWaitDuration": {
+          "description": "Output only. The likely maximum time that you will have to wait until\nCompute Engine provisions your instances.",
+          "format": "google-duration",
+          "readOnly": true,
           "type": "string"
         },
         "obtainability": {
@@ -62048,6 +62481,40 @@
       },
       "type": "object"
     },
+    "CompositeHealthCheckHealth": {
+      "description": "Response message for RegionCompositeHealthChecks.GetHealth",
+      "id": "CompositeHealthCheckHealth",
+      "properties": {
+        "healthSources": {
+          "description": "Health sources and their corresponding health states.",
+          "items": {
+            "$ref": "CompositeHealthChecksGetHealthResponseHealthSourceHealth"
+          },
+          "type": "array"
+        },
+        "healthState": {
+          "description": "Health state of the CompositeHealthCheck.",
+          "enum": [
+            "HEALTHY",
+            "UNHEALTHY",
+            "UNKNOWN"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "kind": {
+          "default": "compute#compositeHealthCheckHealth",
+          "description": "Output only. [Output Only] Type of resource. Alwayscompute#compositeHealthCheckHealth for the health of\ncomposite health checks.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CompositeHealthCheckList": {
       "id": "CompositeHealthCheckList",
       "properties": {
@@ -62203,34 +62670,6 @@
       },
       "type": "object"
     },
-    "CompositeHealthChecksGetHealthResponse": {
-      "description": "Response message for RegionCompositeHealthChecks.GetHealth",
-      "id": "CompositeHealthChecksGetHealthResponse",
-      "properties": {
-        "healthSources": {
-          "description": "Health sources and their corresponding health states.",
-          "items": {
-            "$ref": "CompositeHealthChecksGetHealthResponseHealthSourceHealth"
-          },
-          "type": "array"
-        },
-        "healthState": {
-          "description": "Health state of the CompositeHealthCheck.",
-          "enum": [
-            "HEALTHY",
-            "UNHEALTHY",
-            "UNKNOWN"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "CompositeHealthChecksGetHealthResponseHealthSourceHealth": {
       "id": "CompositeHealthChecksGetHealthResponseHealthSourceHealth",
       "properties": {
@@ -62249,7 +62688,7 @@
           "type": "string"
         },
         "source": {
-          "description": "URL of the associated HealthSource resource.",
+          "description": "Fully qualified URL of the associated HealthSource resource.",
           "type": "string"
         }
       },
@@ -62875,6 +63314,57 @@
       },
       "type": "object"
     },
+    "DateTime": {
+      "description": "Represents civil time (or occasionally physical time).\n\nThis type can represent a civil time in one of a few possible ways:\n\n * When utc_offset is set and time_zone is unset: a civil time on a calendar\n   day with a particular offset from UTC.\n * When time_zone is set and utc_offset is unset: a civil time on a calendar\n   day in a particular time zone.\n * When neither time_zone nor utc_offset is set: a civil time on a calendar\n   day in local time.\n\nThe date is relative to the Proleptic Gregorian Calendar.\n\nIf year, month, or day are 0, the DateTime is considered not to have a\nspecific year, month, or day respectively.\n\nThis type may also be used to represent a physical time if all the date and\ntime fields are set and either case of the `time_offset` oneof is set.\nConsider using `Timestamp` message for physical time instead. If your use\ncase also would like to store the user's timezone, that can be done in\nanother field.\n\nThis type is more flexible than some applications may want. Make sure to\ndocument and validate your application's limitations.",
+      "id": "DateTime",
+      "properties": {
+        "day": {
+          "description": "Optional. Day of month. Must be from 1 to 31 and valid for the year and\nmonth, or 0 if specifying a datetime without a day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "hours": {
+          "description": "Optional. Hours of day in 24 hour format. Should be from 0 to 23, defaults\nto 0 (midnight). An API may choose to allow the value \"24:00:00\" for\nscenarios like business closing time.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minutes": {
+          "description": "Optional. Minutes of hour of day. Must be from 0 to 59, defaults to 0.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Optional. Month of year. Must be from 1 to 12, or 0 if specifying a\ndatetime without a month.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nanos": {
+          "description": "Optional. Fractions of seconds in nanoseconds. Must be from 0 to\n999,999,999, defaults to 0.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "seconds": {
+          "description": "Optional. Seconds of minutes of the time. Must normally be from 0 to 59,\ndefaults to 0. An API may allow the value 60 if it allows leap-seconds.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "timeZone": {
+          "$ref": "TimeZone",
+          "description": "Time zone."
+        },
+        "utcOffset": {
+          "description": "UTC offset. Must be whole seconds, between -18 hours and +18 hours.\nFor example, a UTC offset of -4:00 would be represented as\n{ seconds: -14400 }.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "year": {
+          "description": "Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a\ndatetime without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "DeprecationStatus": {
       "description": "Deprecation status for a public resource.",
       "id": "DeprecationStatus",
@@ -63265,13 +63755,6 @@
           "description": "URL of the disk type resource describing which disk type to use to create\nthe disk. Provide this when creating the disk. For example:projects/project/zones/zone/diskTypes/pd-ssd. See Persistent disk\ntypes.",
           "type": "string"
         },
-        "userLicenses": {
-          "description": "A list of publicly visible user-licenses. Unlike regular licenses, user\nprovided licenses can be modified after the disk is created. This includes\na list of URLs to the license resource. For example, to provide a debian\nlicense:\n\nhttps://www.googleapis.com/compute/v1/projects/debian-cloud/global/licenses/debian-9-stretch",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
         "users": {
           "description": "Output only. [Output Only] Links to the users of the disk (attached instances)\nin form:projects/project/zones/zone/instances/instance",
           "items": {
@@ -63483,6 +63966,32 @@
       "properties": {
         "asyncReplicationDisk": {
           "$ref": "DiskAsyncReplication"
+        }
+      },
+      "type": "object"
+    },
+    "DiskConvertParams": {
+      "id": "DiskConvertParams",
+      "properties": {
+        "forceStopInProgressSnapshot": {
+          "type": "boolean"
+        },
+        "provisionedIops": {
+          "format": "int64",
+          "type": "string"
+        },
+        "provisionedThroughput": {
+          "format": "int64",
+          "type": "string"
+        },
+        "quickConversionOnly": {
+          "type": "boolean"
+        },
+        "resetSupportedVmFamilies": {
+          "type": "boolean"
+        },
+        "targetDiskType": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -63744,7 +64253,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Resource manager tags to be bound to the disk. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
+          "description": "Input only. Resource manager tags to be bound to the disk. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
           "type": "object"
         }
       },
@@ -64400,6 +64909,15 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DisksConvertRequest": {
+      "id": "DisksConvertRequest",
+      "properties": {
+        "params": {
+          "$ref": "DiskConvertParams"
         }
       },
       "type": "object"
@@ -67377,6 +67895,10 @@
     "FutureReservation": {
       "id": "FutureReservation",
       "properties": {
+        "advancedDeploymentControl": {
+          "$ref": "ReservationAdvancedDeploymentControl",
+          "description": "Advanced control for cluster management, applicable only to DENSE\ndeployment type future reservations."
+        },
         "aggregateReservation": {
           "$ref": "AllocationAggregateReservation",
           "description": "Aggregate reservation details for the future reservation."
@@ -67396,6 +67918,17 @@
         "commitmentInfo": {
           "$ref": "FutureReservationCommitmentInfo",
           "description": "If not present, then FR will not deliver a new commitment or update an\nexisting commitment."
+        },
+        "confidentialComputeType": {
+          "enum": [
+            "CONFIDENTIAL_COMPUTE_TYPE_TDX",
+            "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "Intel Trust Domain Extensions.",
+            ""
+          ],
+          "type": "string"
         },
         "creationTimestamp": {
           "description": "Output only. [Output Only] The creation timestamp for this future reservation inRFC3339\ntext format.",
@@ -68427,9 +68960,11 @@
             "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT3P",
             "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P",
             "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT5P",
+            "VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU7",
             "VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU7X"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -68634,6 +69169,35 @@
         "instance": {
           "description": "Full instance resource URL.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GetVersionOperationMetadata": {
+      "id": "GetVersionOperationMetadata",
+      "properties": {
+        "inlineSbomInfo": {
+          "$ref": "GetVersionOperationMetadataSbomInfo"
+        }
+      },
+      "type": "object"
+    },
+    "GetVersionOperationMetadataSbomInfo": {
+      "id": "GetVersionOperationMetadataSbomInfo",
+      "properties": {
+        "currentComponentVersions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "SBOM versions currently applied to the resource. The key is the component\nname and the value is the version.",
+          "type": "object"
+        },
+        "targetComponentVersions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "SBOM versions scheduled for the next maintenance. The key is the\ncomponent name and the value is the version.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -69719,7 +70283,7 @@
       "id": "HaController",
       "properties": {
         "backendServices": {
-          "description": "Advanced configuration option. If specified, these Backend Services need to\nbe pre-created and configured as managed.",
+          "description": "Advanced configuration option. If specified, these Backend Services need to\nbe pre-created.\n\nCurrently, only one backend service can be specified, and it must be L4\nInternal Load Balancer (ILB).",
           "items": {
             "type": "string"
           },
@@ -72617,6 +73181,40 @@
       },
       "type": "object"
     },
+    "HealthSourceHealth": {
+      "description": "Response message for RegionHealthSources.GetHealth",
+      "id": "HealthSourceHealth",
+      "properties": {
+        "healthState": {
+          "description": "Health state of the HealthSource.",
+          "enum": [
+            "HEALTHY",
+            "UNHEALTHY",
+            "UNKNOWN"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "kind": {
+          "default": "compute#healthSourceHealth",
+          "description": "Output only. [Output Only] Type of resource. Alwayscompute#healthSourceHealth for the health of health sources.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sources": {
+          "description": "Health state details of the sources.",
+          "items": {
+            "$ref": "HealthSourcesGetHealthResponseSourceInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "HealthSourceList": {
       "id": "HealthSourceList",
       "properties": {
@@ -72768,6 +73366,47 @@
             }
           },
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "HealthSourcesGetHealthResponseSourceInfo": {
+      "id": "HealthSourcesGetHealthResponseSourceInfo",
+      "properties": {
+        "backends": {
+          "description": "Represents an instance group or network endpoint group behind the source\nbackend service. Only used if the sourceType of the regionHealthSource\nis BACKEND_SERVICE.",
+          "items": {
+            "$ref": "HealthSourcesGetHealthResponseSourceInfoBackendInfo"
+          },
+          "type": "array"
+        },
+        "forwardingRule": {
+          "description": "Fully qualified URL of the forwarding rule associated with the source\nresource if it is a L4ILB backend service.",
+          "type": "string"
+        },
+        "source": {
+          "description": "Fully qualified URL of the associated source resource. This is always a\nbackend service URL.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "HealthSourcesGetHealthResponseSourceInfoBackendInfo": {
+      "id": "HealthSourcesGetHealthResponseSourceInfoBackendInfo",
+      "properties": {
+        "endpointCount": {
+          "description": "Total number of endpoints when determining the health of the\nregionHealthSource.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "group": {
+          "description": "Fully qualified URL of an instance group or network endpoint group\nbehind the source backend service.",
+          "type": "string"
+        },
+        "healthyEndpointCount": {
+          "description": "Number of endpoints considered healthy when determining health of the\nregionHealthSource.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -74200,13 +74839,6 @@
             "type": "string"
           },
           "type": "array"
-        },
-        "userLicenses": {
-          "description": "A list of publicly visible user-licenses. Unlike regular licenses, user\nprovided licenses can be modified after the disk is created. This includes\na list of URLs to the license resource. For example, to provide a debian\nlicense:\n\nhttps://www.googleapis.com/compute/v1/projects/debian-cloud/global/licenses/debian-9-stretch",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -74386,7 +75018,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Resource manager tags to be bound to the image. Tag keys and values have\nthe same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
+          "description": "Input only. Resource manager tags to be bound to the image. Tag keys and values have\nthe same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
           "type": "object"
         }
       },
@@ -75741,6 +76373,12 @@
           "readOnly": true,
           "type": "integer"
         },
+        "restartingInPlace": {
+          "description": "Output only. [Output Only] The number of instances in the managed instance group that\nare scheduled to be restarted or are currently being restarted.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "resuming": {
           "description": "Output only. [Output Only] The number of instances in the managed instance group that\nare scheduled to be resumed or are currently being resumed.",
           "format": "int32",
@@ -76316,7 +76954,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Resource manager tags to bind to the managed instance group. The tags are\nkey-value pairs. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. For more information, seeManage tags\nfor resources.",
+          "description": "Input only. Resource manager tags to bind to the managed instance group. The tags are\nkey-value pairs. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. For more information, seeManage tags\nfor resources.",
           "type": "object"
         }
       },
@@ -77156,6 +77794,18 @@
     "InstanceGroupManagerUpdatePolicy": {
       "id": "InstanceGroupManagerUpdatePolicy",
       "properties": {
+        "disruptionMode": {
+          "description": "Whether the boot disk is allowed to be updated with restart.",
+          "enum": [
+            "LEGACY",
+            "OPTIMIZED"
+          ],
+          "enumDescriptions": [
+            "Default option: boot disk will not be updated with restart.",
+            "Boot disk will be updated with restart."
+          ],
+          "type": "string"
+        },
         "instanceRedistributionType": {
           "description": "The \ninstance redistribution policy for regional managed instance groups.\nValid values are: \n   \n   - PROACTIVE (default): The group attempts to maintain an\n   even distribution of VM instances across zones in the region.\n   - NONE: For non-autoscaled groups, proactive\n   redistribution is disabled.",
           "enum": [
@@ -77187,13 +77837,15 @@
             "NONE",
             "REFRESH",
             "REPLACE",
-            "RESTART"
+            "RESTART",
+            "RESTART_IN_PLACE"
           ],
           "enumDescriptions": [
             "Do not perform any action.",
             "Do not stop the instance.",
             "(Default.) Replace the instance according to the replacement method\noption.",
-            "Stop the instance and start it again."
+            "Stop the instance and start it again.",
+            "Restart the instance using the same capacity and preserving local SSDs."
           ],
           "type": "string"
         },
@@ -77203,13 +77855,15 @@
             "NONE",
             "REFRESH",
             "REPLACE",
-            "RESTART"
+            "RESTART",
+            "RESTART_IN_PLACE"
           ],
           "enumDescriptions": [
             "Do not perform any action.",
             "Do not stop the instance.",
             "(Default.) Replace the instance according to the replacement method\noption.",
-            "Stop the instance and start it again."
+            "Stop the instance and start it again.",
+            "Restart the instance using the same capacity and preserving local SSDs."
           ],
           "type": "string"
         },
@@ -77283,6 +77937,18 @@
           "description": "Flag to update all instances instead of specified list of “instances”.\nIf the flag is set to true then the instances may not be specified\nin the request.",
           "type": "boolean"
         },
+        "disruptionMode": {
+          "description": "Whether the boot disk is allowed to be updated with restart.",
+          "enum": [
+            "LEGACY",
+            "OPTIMIZED"
+          ],
+          "enumDescriptions": [
+            "Default option: boot disk will not be updated with restart.",
+            "Boot disk will be updated with restart."
+          ],
+          "type": "string"
+        },
         "instances": {
           "description": "The list of URLs of one or more instances for which you want to apply\nupdates. Each URL can be a full URL or a partial URL, such aszones/[ZONE]/instances/[INSTANCE_NAME].",
           "items": {
@@ -77296,13 +77962,15 @@
             "NONE",
             "REFRESH",
             "REPLACE",
-            "RESTART"
+            "RESTART",
+            "RESTART_IN_PLACE"
           ],
           "enumDescriptions": [
             "Do not perform any action.",
             "Do not stop the instance.",
             "(Default.) Replace the instance according to the replacement method\noption.",
-            "Stop the instance and start it again."
+            "Stop the instance and start it again.",
+            "Restart the instance using the same capacity and preserving local SSDs."
           ],
           "type": "string"
         },
@@ -77312,13 +77980,15 @@
             "NONE",
             "REFRESH",
             "REPLACE",
-            "RESTART"
+            "RESTART",
+            "RESTART_IN_PLACE"
           ],
           "enumDescriptions": [
             "Do not perform any action.",
             "Do not stop the instance.",
             "(Default.) Replace the instance according to the replacement method\noption.",
-            "Stop the instance and start it again."
+            "Stop the instance and start it again.",
+            "Restart the instance using the same capacity and preserving local SSDs."
           ],
           "type": "string"
         },
@@ -77328,15 +77998,41 @@
             "NONE",
             "REFRESH",
             "REPLACE",
-            "RESTART"
+            "RESTART",
+            "RESTART_IN_PLACE"
           ],
           "enumDescriptions": [
             "Do not perform any action.",
             "Do not stop the instance.",
             "(Default.) Replace the instance according to the replacement method\noption.",
-            "Stop the instance and start it again."
+            "Stop the instance and start it again.",
+            "Restart the instance using the same capacity and preserving local SSDs."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceGroupManagersConfigureAcceleratorTopologiesRequest": {
+      "description": "InstanceGroupManagers.ConfigureAcceleratorTopologies",
+      "id": "InstanceGroupManagersConfigureAcceleratorTopologiesRequest",
+      "properties": {
+        "acceleratorTopologyActions": {
+          "additionalProperties": {
+            "enum": [
+              "ACCELERATOR_TOPOLOGY_ACTION_UNSPECIFIED",
+              "ACTIVATE",
+              "DEACTIVATE"
+            ],
+            "enumDescriptions": [
+              "Default value. Should not be used.",
+              "The accelerator topology is to be activated.",
+              "The accelerator topology is to be deactivated."
+            ],
+            "type": "string"
+          },
+          "description": "Map of accelerator topologies that should have their state changed to\nthe specified value. The key is the hashed topology locus id. It can be\nobtained from the GetAvailableAcceleratorTopologies rpc.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -77402,6 +78098,10 @@
           },
           "description": "The accelerator topology information returned per id of the topology\nlocation.",
           "type": "object"
+        },
+        "multiMig": {
+          "description": "URL to MMIG this MIG belongs to.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -77417,13 +78117,114 @@
           "enum": [
             "DEGRADED",
             "HEALTHY",
-            "UNHEALTHY"
+            "UNHEALTHY",
+            "UNKNOWN"
           ],
           "enumDescriptions": [
             "All VM are in RUNNING state, but there is an issue with\nthe inter-chip connectivity that makes this part\nof the infrastructure ready to use as a working\ninter-chip connected group only in a degraded mode.\nThis is allowed only for Instances configured with ICI\nresiliency",
             "All VM are in RUNNING state, there are no issues with the\ninter-chip connectivity.",
-            "Some VMs may not be in RUNNING state, or there is an\nissue with the inter-chip connectivity that makes this\npart of the infrastructure unsuitable for forming a\nworking inter-chip connected group."
+            "Some VMs may not be in RUNNING state, or there is an\nissue with the inter-chip connectivity that makes this\npart of the infrastructure unsuitable for forming a\nworking inter-chip connected group.",
+            "No signal available"
           ],
+          "type": "string"
+        },
+        "acceleratorTopologyState": {
+          "$ref": "InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAcceleratorTopologyState"
+        },
+        "instancesHealth": {
+          "enum": [
+            "ALL_HEALTHY",
+            "UNHEALTHY_OR_MISSING"
+          ],
+          "enumDescriptions": [
+            "Infrastructure is healthy",
+            "Some VMs are in another state than RUNNING or they are missing."
+          ],
+          "type": "string"
+        },
+        "parent": {
+          "description": "Identified by the topology Id in the accelerator_topology_info map. Empty\nfor the top-level topology",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAcceleratorTopologyState": {
+      "description": "Specifies the topology state",
+      "id": "InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAcceleratorTopologyState",
+      "properties": {
+        "currentState": {
+          "enum": [
+            "ACTIVATING",
+            "ACTIVE",
+            "ACTIVE_DEGRADED",
+            "DEACTIVATING",
+            "FAILED",
+            "INACTIVE",
+            "INCOMPLETE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "The topology is active but with potential performance degradation.",
+            "",
+            "Critical non-retriable error that the user has to act manually",
+            "",
+            "Not all VMs have been provisioned"
+          ],
+          "type": "string"
+        },
+        "error": {
+          "description": "Reason why the topology state change failed",
+          "properties": {
+            "errors": {
+              "description": "[Output Only] The array of errors encountered while processing this\noperation.",
+              "items": {
+                "properties": {
+                  "code": {
+                    "description": "[Output Only] The error type identifier for this error.",
+                    "type": "string"
+                  },
+                  "errorDetails": {
+                    "description": "[Output Only] An optional list of messages that contain the error\ndetails. There is a set of defined message types to use for providing\ndetails.The syntax depends on the error code. For example,\nQuotaExceededInfo will have details when the error code is\nQUOTA_EXCEEDED.",
+                    "items": {
+                      "properties": {
+                        "errorInfo": {
+                          "$ref": "ErrorInfo"
+                        },
+                        "help": {
+                          "$ref": "Help"
+                        },
+                        "localizedMessage": {
+                          "$ref": "LocalizedMessage"
+                        },
+                        "quotaInfo": {
+                          "$ref": "QuotaExceededInfo"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "location": {
+                    "description": "[Output Only] Indicates the field in the request that caused the error.\nThis property is optional.",
+                    "type": "string"
+                  },
+                  "message": {
+                    "description": "[Output Only] An optional, human-readable error message.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "errorTimestamp": {
+          "description": "Timestamp when the last error happened",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -78700,7 +79501,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Resource manager tags to be bound to the instance. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
+          "description": "Input only. Resource manager tags to be bound to the instance. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
           "type": "object"
         }
       },
@@ -78843,7 +79644,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Resource manager tags to be bound to the instance. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and\nvalues are in the format `tagValues/456`. The field is ignored (both PUT &\nPATCH) when empty.",
+          "description": "Input only. Resource manager tags to be bound to the instance. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and\nvalues are in the format `tagValues/456`. The field is ignored (both PUT &\nPATCH) when empty.",
           "type": "object"
         },
         "resourcePolicies": {
@@ -81055,7 +81856,7 @@
           "type": "string"
         },
         "subzone": {
-          "description": "Specific subzone in the InterconnectLocation that represents where\nthis connection is to be provisioned.",
+          "description": "To be deprecated.",
           "enum": [
             "SUBZONE_A",
             "SUBZONE_B"
@@ -86548,7 +87349,7 @@
           "additionalProperties": {
             "$ref": "LocationPolicyLocation"
           },
-          "description": "Location configurations mapped by location name.\nCurrently only zone names are supported and must be represented as valid\ninternal URLs, such as zones/us-central1-a.",
+          "description": "Location configurations mapped by location name.\nCurrently only zone names are supported and must be represented as valid\ninternal URLs, such as zones/us-central1-a.\nThe bulkInsert operation doesn't create instances in an AI zone, even if\nan AI zone is available in the specified region. For example, if you set a\nDENY preference for us-central1-a, Compute Engine will consider\nus-central1-b and us-central1-c for instance creation, but not\nus-central1-ai1a. Also, you can't use the locations[] configuration to\nallow instance creation in an AI zone. To include an AI zone in bulkInsert\noperations, use the locationPolicy.zones[] field.",
           "type": "object"
         },
         "targetShape": {
@@ -86566,7 +87367,7 @@
           "type": "string"
         },
         "zones": {
-          "description": "List with zones where bulk will create instances.",
+          "description": "The bulkInsert operation applies any preferences set in the locations\nfield to the specific zones listed in the zones field if the same zones\nare specified in both fields.",
           "items": {
             "$ref": "LocationPolicyZoneConfiguration"
           },
@@ -86622,7 +87423,7 @@
       "id": "LocationPolicyZoneConfiguration",
       "properties": {
         "zone": {
-          "description": "The URL of thezone.\nThe zone must exist in the region where the request is called.\nZones must be represented as valid internal URLs,\nsuch as zones/us-central1-a.",
+          "description": "The URL of the zone.\nThe zone must exist in the region where the request is called.\nZones must be represented as valid partial URLs,\nsuch as zones/us-central1-a.",
           "type": "string"
         }
       },
@@ -89928,7 +90729,7 @@
       "type": "object"
     },
     "NetworkEndpointGroup": {
-      "description": "Represents a collection of network endpoints.\n\nA network endpoint group (NEG) defines how a set of endpoints should be\nreached, whether they are reachable, and where they are located.\nFor more information about using NEGs for different use cases, seeNetwork endpoint groups overview.",
+      "description": "Represents a collection of network endpoints.\n\nA network endpoint group (NEG) defines how a set of endpoints should be\nreached, whether they are reachable, and where they are located.\nFor more information about using NEGs for different use cases, seeNetwork endpoint groups overview.\n\nNote: Use the following APIs to manage network endpoint groups:\n   \n   - \n   To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity\n   NEGs): zonal\n   API\n   - \n   To manage NEGs with regional scope (such as regional internet NEGs,\n   serverless NEGs, Private Service Connect NEGs): regional\n   API\n   - \n   To manage NEGs with global scope (such as global internet NEGs):global\n   API",
       "id": "NetworkEndpointGroup",
       "properties": {
         "annotations": {
@@ -96147,6 +96948,9 @@
           },
           "type": "object"
         },
+        "getVersionOperationMetadata": {
+          "$ref": "GetVersionOperationMetadata"
+        },
         "httpErrorMessage": {
           "description": "[Output Only] If the operation fails, this field contains the HTTP error\nmessage that was returned, such as `NOT FOUND`.",
           "type": "string"
@@ -97799,6 +98603,54 @@
             "The per-instance configuration has been deleted, but the deletion is not\nyet applied."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PeriodicPartialMaintenanceSchedule": {
+      "description": "The periodic partial maintenance schedule includes 52 weeks worth of\nmaintenance windows.\nLINT.IfChange(PeriodicPartialMaintenanceSchedule)",
+      "id": "PeriodicPartialMaintenanceSchedule",
+      "properties": {
+        "subType": {
+          "description": "The maintenance type in which the zone is during the given window.",
+          "enum": [
+            "MAINTENANCE_SUBTYPE_UNSPECIFIED",
+            "MAINTENANCE_TYPE_CUSTOMER_MAINTENANCE",
+            "MAINTENANCE_TYPE_DISRUPTIVE_UPGRADE",
+            "MAINTENANCE_TYPE_STABLE",
+            "MAINTENANCE_TYPE_TRANSITION"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "A dedicated window for customers to perform their own maintenance. This\noften runs concurrently with a DISRUPTIVE_UPGRADE. This corresponds to\nthe Customer Maintenance Window for CME.",
+            "For disruptive updates, including host machine kernel or firmware\nupgrades. This corresponds to the Critical Services Maintenance Window\nfor CME.",
+            "A post-maintenance window for customers to conduct final testing and\nperformance validation before resuming full business operations. This\ncorresponds to Performance Stress Testing for CME.",
+            "For preliminary, non-disruptive tasks such as key rotations. This\ncorresponds to the Zone Swap Window for CME."
+          ],
+          "type": "string"
+        },
+        "targetResource": {
+          "description": "The target resource that the maintenance window is for.\nFor example, \"projects/my-project/zones/us-central1-a\".",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "MAINTENANCE_TYPE_UNSPECIFIED",
+            "PRIVATE_ZONE_MAINTENANCE"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The zone is in a private maintenance window."
+          ],
+          "type": "string"
+        },
+        "windowEndTime": {
+          "$ref": "DateTime",
+          "description": "The end civil timestamp of the window (not inclusive).\nThis contains a time zone."
+        },
+        "windowStartTime": {
+          "$ref": "DateTime",
+          "description": "The start civil timestamp of the window.\nThis contains a time zone."
         }
       },
       "type": "object"
@@ -101479,13 +102331,6 @@
             "type": "string"
           },
           "type": "array"
-        },
-        "userLicenses": {
-          "description": "[Output Only] A list of user provided licenses represented by a list of\nURLs to the license resource.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -102804,6 +103649,18 @@
           "description": "Flag to update all instances instead of specified list of “instances”.\nIf the flag is set to true then the instances may not be specified\nin the request.",
           "type": "boolean"
         },
+        "disruptionMode": {
+          "description": "Whether the boot disk is allowed to be updated with restart.",
+          "enum": [
+            "LEGACY",
+            "OPTIMIZED"
+          ],
+          "enumDescriptions": [
+            "Default option: boot disk will not be updated with restart.",
+            "Boot disk will be updated with restart."
+          ],
+          "type": "string"
+        },
         "instances": {
           "description": "The list of URLs of one or more instances for which you want to apply\nupdates. Each URL can be a full URL or a partial URL, such aszones/[ZONE]/instances/[INSTANCE_NAME].",
           "items": {
@@ -102817,13 +103674,15 @@
             "NONE",
             "REFRESH",
             "REPLACE",
-            "RESTART"
+            "RESTART",
+            "RESTART_IN_PLACE"
           ],
           "enumDescriptions": [
             "Do not perform any action.",
             "Do not stop the instance.",
             "(Default.) Replace the instance according to the replacement method\noption.",
-            "Stop the instance and start it again."
+            "Stop the instance and start it again.",
+            "Restart the instance using the same capacity and preserving local SSDs."
           ],
           "type": "string"
         },
@@ -102833,13 +103692,15 @@
             "NONE",
             "REFRESH",
             "REPLACE",
-            "RESTART"
+            "RESTART",
+            "RESTART_IN_PLACE"
           ],
           "enumDescriptions": [
             "Do not perform any action.",
             "Do not stop the instance.",
             "(Default.) Replace the instance according to the replacement method\noption.",
-            "Stop the instance and start it again."
+            "Stop the instance and start it again.",
+            "Restart the instance using the same capacity and preserving local SSDs."
           ],
           "type": "string"
         },
@@ -102849,13 +103710,15 @@
             "NONE",
             "REFRESH",
             "REPLACE",
-            "RESTART"
+            "RESTART",
+            "RESTART_IN_PLACE"
           ],
           "enumDescriptions": [
             "Do not perform any action.",
             "Do not stop the instance.",
             "(Default.) Replace the instance according to the replacement method\noption.",
-            "Stop the instance and start it again."
+            "Stop the instance and start it again.",
+            "Restart the instance using the same capacity and preserving local SSDs."
           ],
           "type": "string"
         }
@@ -104015,6 +104878,17 @@
           "readOnly": true,
           "type": "string"
         },
+        "confidentialComputeType": {
+          "enum": [
+            "CONFIDENTIAL_COMPUTE_TYPE_TDX",
+            "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "Intel Trust Domain Extensions.",
+            ""
+          ],
+          "type": "string"
+        },
         "creationTimestamp": {
           "description": "Output only. [Output Only] Creation timestamp inRFC3339\ntext format.",
           "readOnly": true,
@@ -104044,6 +104918,20 @@
         },
         "description": {
           "description": "An optional description of this resource. Provide this property when you\ncreate the resource.",
+          "type": "string"
+        },
+        "earlyAccessMaintenance": {
+          "description": "Indicates the early access maintenance for the reservation.\nIf this field is absent or set to NO_EARLY_ACCESS, the reservation is not\nenrolled in early access maintenance and the standard notice applies.",
+          "enum": [
+            "NO_EARLY_ACCESS",
+            "WAVE1",
+            "WAVE2"
+          ],
+          "enumDescriptions": [
+            "No early access.",
+            "Wave 1: Fastest notification period",
+            "Wave 2: Medium notification period"
+          ],
           "type": "string"
         },
         "enableEmergentMaintenance": {
@@ -105093,6 +105981,29 @@
       },
       "type": "object"
     },
+    "ReservationSlotsGetVersionRequest": {
+      "id": "ReservationSlotsGetVersionRequest",
+      "properties": {
+        "sbomSelections": {
+          "description": "The SBOM selection to return. Duplicate values in the list will be ignored.",
+          "items": {
+            "enum": [
+              "SBOM_SELECTION_CURRENT",
+              "SBOM_SELECTION_TARGET",
+              "SBOM_SELECTION_UNSPECIFIED"
+            ],
+            "enumDescriptions": [
+              "",
+              "",
+              ""
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ReservationSlotsListResponse": {
       "description": "A list of reservation slots within a single reservation.",
       "id": "ReservationSlotsListResponse",
@@ -105411,6 +106322,29 @@
       "properties": {
         "resource": {
           "$ref": "ReservationSubBlock"
+        }
+      },
+      "type": "object"
+    },
+    "ReservationSubBlocksGetVersionRequest": {
+      "id": "ReservationSubBlocksGetVersionRequest",
+      "properties": {
+        "sbomSelections": {
+          "description": "The SBOM selection to return.",
+          "items": {
+            "enum": [
+              "SBOM_SELECTION_CURRENT",
+              "SBOM_SELECTION_TARGET",
+              "SBOM_SELECTION_UNSPECIFIED"
+            ],
+            "enumDescriptions": [
+              "",
+              "",
+              ""
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -107030,6 +107964,10 @@
           "description": "Effective enable-oslogin value at Instance level.",
           "type": "boolean"
         },
+        "gceContainerDeclarationMetadataValue": {
+          "description": "Effective gce-container-declaration value at Instance level.",
+          "type": "boolean"
+        },
         "serialPortEnableMetadataValue": {
           "description": "Effective serial-port-enable value at Instance level.",
           "type": "boolean"
@@ -108281,12 +109219,16 @@
             "ACTIVE",
             "DROPPED",
             "INACTIVE",
+            "OVERRIDDEN_BY_HUB",
+            "OVERRIDDEN_BY_PEERING",
             "PENDING"
           ],
           "enumDescriptions": [
             "This route is processed and active.",
             "The route is dropped due to the VPC exceeding the dynamic route limit.\n For dynamic route limit, please refer to the\nLearned route example",
             "This route is processed but inactive due to failure from the backend. The\nbackend may have rejected the route",
+            "For an Arcus VPC Peering route, this state indicates that the route is\ninactive because a corresponding Network Connectivity Center (NCC) route\nhas taken precedence.",
+            "For a Network Connectivity Center (NCC) route, this state indicates that\nthe route is inactive because a corresponding Arcus VPC Peering route\nhas taken precedence.",
             "This route is being processed internally. The status will change once\nprocessed."
           ],
           "type": "string"
@@ -114409,13 +115351,6 @@
             "type": "string"
           },
           "type": "array"
-        },
-        "userLicenses": {
-          "description": "[Output Only] A list of user provided licenses represented by a list of\nURLs to the license resource.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -114882,7 +115817,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Resource manager tags to be bound to the snapshot. Tag keys and values have\nthe same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
+          "description": "Input only. Resource manager tags to be bound to the snapshot. Tag keys and values have\nthe same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
           "type": "object"
         }
       },
@@ -116470,6 +117405,20 @@
         "name": {
           "description": "Name of the resource. The name must be 1-63 characters long, and comply\nwith RFC1035. Specifically, the name must be 1-63 characters\nlong and match the regular expression\n`[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character\nmust be a lowercase letter, and all following characters must be a dash,\nlowercase letter, or digit, except the last character, which cannot be a\ndash.",
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+          "type": "string"
+        },
+        "postQuantumKeyExchange": {
+          "description": "One of DEFAULT, ENABLED, orDEFERRED. Controls whether the load balancer allows\nnegotiating X25519MLKEM768 key exchange when clients advertise support for\nit. When set to DEFAULT, or if no SSL Policy is\nattached to the target proxy, the load balancer disallows X25519MLKEM768\nkey exchange until it is enabled by default on LBs. When set toENABLED, the load balancer will negotiate X25519MLKEM768 key\nexchange. Customers can set this to DEFERRED to temporarily\nopt-out the LB from negotiating post-quantum key exchange by default.",
+          "enum": [
+            "DEFAULT",
+            "DEFERRED",
+            "ENABLED"
+          ],
+          "enumDescriptions": [
+            "Post-quantum key exchange is disabled until it becomes enabled by\ndefault on LBs.",
+            "Post-quantum key exchange with clients is temporarily disabled.",
+            "Post-quantum key exchange is enabled."
+          ],
           "type": "string"
         },
         "profile": {
@@ -123545,6 +124494,21 @@
       },
       "type": "object"
     },
+    "TimeZone": {
+      "description": "Represents a time zone from the\n[IANA Time Zone Database](https://www.iana.org/time-zones).",
+      "id": "TimeZone",
+      "properties": {
+        "id": {
+          "description": "IANA Time Zone Database time zone. For example \"America/New_York\".",
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. IANA Time Zone Database version number. For example \"2019a\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TlsCertificateContext": {
       "description": "[Deprecated] Defines the mechanism to obtain the client or server\ncertificate.\nDefines the mechanism to obtain the client or server certificate.",
       "id": "TlsCertificateContext",
@@ -125243,7 +126207,7 @@
           "additionalProperties": {
             "$ref": "VmExtensionPolicyExtensionPolicy"
           },
-          "description": "Required. A map of extension names (e.g., \"cloudops\") to their corresponding policy\nconfigurations.",
+          "description": "Required. A map of extension names (for example, \"ops-agent\") to their corresponding\npolicy configurations.",
           "type": "object"
         },
         "globalResourceLink": {
@@ -125286,7 +126250,7 @@
           "type": "string"
         },
         "priority": {
-          "description": "Optional. Priority of this policy. Used to resolve conflicts when multiple policies\napply to the same extension.\nThe policy priority is an integer from 0 to 65535, inclusive. Lower\nintegers indicate higher priorities. If you do not specify a priority when\ncreating a rule, it is assigned a priority of 1000. If priorities are\nequal, the policy with the more recent creation timestamp takes precedence.",
+          "description": "Optional. Priority of this policy. Used to resolve conflicts when multiple policies\napply to the same extension.\nThe policy priority is an integer from 0 to 65535, inclusive. Lower\nintegers indicate higher priorities. If you do not specify a priority when\ncreating a rule, it is assigned a priority of 1000. If priorities are\nequal, the policy with the most recent creation timestamp takes precedence.",
           "format": "int32",
           "type": "integer"
         },
@@ -125743,6 +126707,10 @@
           ],
           "type": "string"
         },
+        "healthMsg": {
+          "description": "The health status message of the extension.",
+          "type": "string"
+        },
         "healthStatus": {
           "description": "The health status of the extension.",
           "enum": [
@@ -125769,10 +126737,6 @@
         },
         "policyId": {
           "description": "The id of the policy that is enforced on the extension.",
-          "type": "string"
-        },
-        "unhealthyMsg": {
-          "description": "The status message of the extension if the extension is in unhealthy\nstate.",
           "type": "string"
         },
         "version": {
@@ -127989,6 +128953,10 @@
           "description": "[Output Only] Full URL reference to the region which hosts the zone.",
           "type": "string"
         },
+        "resourceStatus": {
+          "$ref": "ZoneResourceStatus",
+          "readOnly": true
+        },
         "selfLink": {
           "description": "[Output Only] Server-defined URL for the resource.",
           "type": "string"
@@ -128166,6 +129134,20 @@
             }
           },
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ZoneResourceStatus": {
+      "id": "ZoneResourceStatus",
+      "properties": {
+        "upcomingMaintenances": {
+          "description": "Output only. [Output Only] The upcoming maintenance schedule.",
+          "items": {
+            "$ref": "PeriodicPartialMaintenanceSchedule"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"

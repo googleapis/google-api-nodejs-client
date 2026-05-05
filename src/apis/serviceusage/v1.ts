@@ -265,9 +265,26 @@ export namespace serviceusage_v1 {
      */
     kind?: string | null;
     /**
+     * Optional. Rules of the Configuration.
+     */
+    rules?: Schema$AspectRule[];
+    /**
      * Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.
      */
     spec?: {[key: string]: any} | null;
+  }
+  /**
+   * Rule-based configuration for an aspect.
+   */
+  export interface Schema$AspectRule {
+    /**
+     * Required. Rules of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.
+     */
+    config?: {[key: string]: any} | null;
+    /**
+     * Required. Selects the RPC methods to which this rule applies. Refer to selector for syntax details.
+     */
+    selector?: string | null;
   }
   /**
    * `Authentication` defines the authentication configuration for API methods provided by an API service. Example: name: calendar.googleapis.com authentication: providers: - id: google_calendar_auth jwks_uri: https://www.googleapis.com/oauth2/v1/certs issuer: https://securetoken.google.com rules: - selector: "*" requirements: provider_id: google_calendar_auth - selector: google.calendar.Delegate oauth: canonical_scopes: https://www.googleapis.com/auth/calendar.read

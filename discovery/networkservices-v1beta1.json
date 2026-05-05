@@ -135,7 +135,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1beta1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "networkservices.projects.locations.list",
@@ -3100,7 +3100,7 @@
       }
     }
   },
-  "revision": "20251203",
+  "revision": "20260218",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AuthzExtension": {
@@ -3140,7 +3140,7 @@
           "type": "object"
         },
         "loadBalancingScheme": {
-          "description": "Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).",
+          "description": "Optional. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. Can be omitted for AuthzExtensions that do not reference a backend service. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).",
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
@@ -5877,6 +5877,13 @@
           "description": "Output only. Server-defined URL of this resource",
           "readOnly": true,
           "type": "string"
+        },
+        "targetProxies": {
+          "description": "Optional. TargetProxies defines a list of TargetTcpProxies this TlsRoute is attached to, as one of the routing rules to route the requests served by the TargetTcpProxy. Each TargetTcpProxy reference should match the pattern: `projects/*/locations/*/targetTcpProxies/`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "updateTime": {
           "description": "Output only. The timestamp when the resource was updated.",

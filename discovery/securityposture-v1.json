@@ -903,7 +903,7 @@
       }
     }
   },
-  "revision": "20260130",
+  "revision": "20260205",
   "rootUrl": "https://securityposture.googleapis.com/",
   "schemas": {
     "AssetDetails": {
@@ -1234,6 +1234,40 @@
             "$ref": "Violation"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "IacValidationFailureCriteria": {
+      "description": "Represents the criteria for considering an IaC validation as a failure.",
+      "id": "IacValidationFailureCriteria",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time at which the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. The etag for optimistic concurrency.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the IacValidationFailureCriteria. Format: organizations/{organization}/locations/{location}/iacValidationFailureCriteria",
+          "type": "string"
+        },
+        "severityCountThresholds": {
+          "description": "Optional. A list of severity thresholds. An IaC validation fails if any threshold is exceeded.",
+          "items": {
+            "$ref": "SeverityCountThreshold"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. The time at which the resource was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2066,6 +2100,36 @@
         "moduleName": {
           "description": "Required. The name of the detector. For example, `BIGQUERY_TABLE_CMEK_DISABLED`. This field is also used as the finding category for all the asset violation findings that the detector returns.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SeverityCountThreshold": {
+      "description": "Represents a threshold for a specific severity.",
+      "id": "SeverityCountThreshold",
+      "properties": {
+        "severity": {
+          "description": "Optional. The severity level, reusing the existing Violation.Severity.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Critical severity.",
+            "High severity.",
+            "Medium severity.",
+            "Low severity."
+          ],
+          "type": "string"
+        },
+        "thresholdCount": {
+          "description": "Optional. If violation count meets or exceeds this threshold, validation fails.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"

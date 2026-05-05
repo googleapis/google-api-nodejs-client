@@ -3436,7 +3436,7 @@
       }
     }
   },
-  "revision": "20260122",
+  "revision": "20260213",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "Ack": {
@@ -3957,7 +3957,7 @@
       "id": "BatchWriteResponse",
       "properties": {
         "commitTimestamp": {
-          "description": "The commit timestamp of the transaction that applied this batch. Present if `status` is `OK`, absent otherwise.",
+          "description": "The commit timestamp of the transaction that applied this batch. Present if status is OK and the mutation groups were applied, absent otherwise. For mutation groups with conditions, a status=OK and missing commit_timestamp means that the mutation groups were not applied due to the condition not being satisfied after evaluation.",
           "format": "google-datetime",
           "type": "string"
         },

@@ -1452,7 +1452,7 @@
       }
     }
   },
-  "revision": "20260123",
+  "revision": "20260220",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AnalysisCompleted": {
@@ -1604,6 +1604,10 @@
         },
         "name": {
           "description": "The name of the base image.",
+          "type": "string"
+        },
+        "registry": {
+          "description": "The registry of the base image.",
           "type": "string"
         },
         "repository": {
@@ -7551,6 +7555,11 @@
       "description": "VulnerabilityType provides metadata about a security vulnerability.",
       "id": "VulnerabilityType",
       "properties": {
+        "advisoryPublishTime": {
+          "description": "Time this advisory was published by the source.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "cvssScore": {
           "description": "The CVSS score for this Vulnerability.",
           "format": "float",

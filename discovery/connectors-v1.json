@@ -185,7 +185,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "connectors.projects.locations.list",
@@ -327,6 +327,34 @@
                   "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "generateToolspecOverride": {
+                  "description": "Generates Toolspec Override for a connection for the given list of entityTypes and operations. Returns results from the db if the entityType and operation are already present.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:generateToolspecOverride",
+                  "httpMethod": "POST",
+                  "id": "connectors.projects.locations.connections.generateToolspecOverride",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name format: projects/{project}/locations/{location}/connections/{connection}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:generateToolspecOverride",
+                  "request": {
+                    "$ref": "GenerateConnectionToolspecOverrideRequest"
+                  },
+                  "response": {
+                    "$ref": "GenerateConnectionToolspecOverrideResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -517,6 +545,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "modifyToolspecOverride": {
+                  "description": "Updates Toolspec Override for a connection with the admin provided descriptions.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:modifyToolspecOverride",
+                  "httpMethod": "POST",
+                  "id": "connectors.projects.locations.connections.modifyToolspecOverride",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name format: projects/{project}/locations/{location}/connections/{connection}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:modifyToolspecOverride",
+                  "request": {
+                    "$ref": "ModifyConnectionToolspecOverrideRequest"
+                  },
+                  "response": {
+                    "$ref": "ModifyConnectionToolspecOverrideResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "patch": {
                   "description": "Updates the parameters of a single Connection.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}",
@@ -546,6 +602,34 @@
                   },
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "removeToolspecOverride": {
+                  "description": "Deletes all Toolspec Override for a connection.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:removeToolspecOverride",
+                  "httpMethod": "POST",
+                  "id": "connectors.projects.locations.connections.removeToolspecOverride",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name format: projects/{project}/locations/{location}/connections/{connection}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:removeToolspecOverride",
+                  "request": {
+                    "$ref": "RemoveConnectionToolspecOverrideRequest"
+                  },
+                  "response": {
+                    "$ref": "Empty"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2762,7 +2846,7 @@
       }
     }
   },
-  "revision": "20251216",
+  "revision": "20260128",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -5936,6 +6020,31 @@
       },
       "type": "object"
     },
+    "GenerateConnectionToolspecOverrideRequest": {
+      "description": "Request message for GenerateConnectionToolspecOverride API.",
+      "id": "GenerateConnectionToolspecOverrideRequest",
+      "properties": {
+        "toolNames": {
+          "description": "Required. List of tools for which the tool spec override is to be generated.",
+          "items": {
+            "$ref": "ToolName"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateConnectionToolspecOverrideResponse": {
+      "description": "Response message for GenerateConnectionToolspecOverride API.",
+      "id": "GenerateConnectionToolspecOverrideResponse",
+      "properties": {
+        "toolspecOverride": {
+          "$ref": "ToolspecOverride",
+          "description": "Toolspec overrides for the connection."
+        }
+      },
+      "type": "object"
+    },
     "HPAConfig": {
       "description": "Autoscaling config for connector deployment system metrics.",
       "id": "HPAConfig",
@@ -7211,6 +7320,28 @@
       },
       "type": "object"
     },
+    "ModifyConnectionToolspecOverrideRequest": {
+      "description": "Request message for ModifyConnectionToolspecOverride API.",
+      "id": "ModifyConnectionToolspecOverrideRequest",
+      "properties": {
+        "toolspecOverride": {
+          "$ref": "ToolspecOverride",
+          "description": "Required. Toolspec overrides to be modified."
+        }
+      },
+      "type": "object"
+    },
+    "ModifyConnectionToolspecOverrideResponse": {
+      "description": "Response message for ModifyConnectionToolspecOverride API.",
+      "id": "ModifyConnectionToolspecOverrideResponse",
+      "properties": {
+        "toolspecOverrides": {
+          "$ref": "ToolspecOverride",
+          "description": "Toolspec overrides for the connection."
+        }
+      },
+      "type": "object"
+    },
     "MultipleSelectConfig": {
       "description": "MultipleSelectConfig represents the multiple options for a config variable.",
       "id": "MultipleSelectConfig",
@@ -7888,6 +8019,12 @@
           "type": "boolean"
         }
       },
+      "type": "object"
+    },
+    "RemoveConnectionToolspecOverrideRequest": {
+      "description": "Request message for RemoveConnectionToolspecOverride API.",
+      "id": "RemoveConnectionToolspecOverrideRequest",
+      "properties": {},
       "type": "object"
     },
     "RepairEventingRequest": {
@@ -8872,6 +9009,71 @@
           "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ToolName": {
+      "description": "Tool name for which the tool spec override is to be generated.",
+      "id": "ToolName",
+      "properties": {
+        "entityType": {
+          "description": "Optional. Entity type name for which the tool was generated.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Tool name that was generated in the list tools call.",
+          "type": "string"
+        },
+        "operation": {
+          "description": "Optional. Operation for which the tool was generated.",
+          "enum": [
+            "OPERATION_UNSPECIFIED",
+            "LIST",
+            "GET",
+            "CREATE",
+            "UPDATE",
+            "DELETE"
+          ],
+          "enumDescriptions": [
+            "Operation unspecified.",
+            "LIST entities.",
+            "GET entity.",
+            "CREATE entity.",
+            "UPDATE entity.",
+            "DELETE entity."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ToolspecOverride": {
+      "description": "Toolspec overrides for a connection only holds the information that is to be displayed in the UI for admins.",
+      "id": "ToolspecOverride",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Created time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tools": {
+          "description": "Required. List of tools defined in the tool spec. Marking this field as required as this is the only field that is editable by the user in modify API so we should have at least one tool in the list.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. Updated time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

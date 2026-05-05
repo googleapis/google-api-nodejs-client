@@ -1408,7 +1408,7 @@ export namespace dataform_v1 {
      */
     clusterExpressions?: string[] | null;
     /**
-     * Optional. The connection specifying the credentials to be used to read and write to external storage, such as Cloud Storage. The connection can have the form `{project\}.{location\}.{connection_id\}` or `projects/{project\}/locations/{location\}/connections/{connection_id\}", or be set to DEFAULT.
+     * Optional. The connection specifying the credentials to be used to read and write to external storage, such as Cloud Storage. The connection can have the form `{project\}.{location\}.{connection_id\}` or `projects/{project\}/locations/{location\}/connections/{connection_id\}`, or be set to DEFAULT.
      */
     connection?: string | null;
     /**
@@ -2304,7 +2304,7 @@ export namespace dataform_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:

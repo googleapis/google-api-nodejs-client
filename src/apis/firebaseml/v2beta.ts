@@ -626,6 +626,10 @@ export namespace firebaseml_v2beta {
      * Required. The function response in JSON object format. Use "output" key to specify function output and "error" key to specify error details (if any). If "output" and "error" keys are not specified, then whole "response" is treated as function output.
      */
     response?: {[key: string]: any} | null;
+    /**
+     * Optional. Specifies how the response should be scheduled in the conversation. Only applicable to NON_BLOCKING function calls, is ignored otherwise. Defaults to WHEN_IDLE.
+     */
+    scheduling?: string | null;
   }
   /**
    * Raw media bytes for function response. Text should not be sent as raw bytes, use the 'text' field.
@@ -987,6 +991,10 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GroundingChunk {
     /**
+     * A grounding chunk from an image search result. See the `Image` message for details.
+     */
+    image?: Schema$GoogleCloudAiplatformV1beta1GroundingChunkImage;
+    /**
      * A grounding chunk from Google Maps. See the `Maps` message for details.
      */
     maps?: Schema$GoogleCloudAiplatformV1beta1GroundingChunkMaps;
@@ -1000,7 +1008,28 @@ export namespace firebaseml_v2beta {
     web?: Schema$GoogleCloudAiplatformV1beta1GroundingChunkWeb;
   }
   /**
-   * A `Maps` chunk is a piece of evidence that comes from Google Maps. It contains information about a place, such as its name, address, and reviews. This is used to provide the user with rich, location-based information.
+   * An `Image` chunk is a piece of evidence that comes from an image search result. It contains the URI of the image search result and the URI of the image. This is used to provide the user with a link to the source of the information.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GroundingChunkImage {
+    /**
+     * The domain of the image search result page.
+     */
+    domain?: string | null;
+    /**
+     * The URI of the image.
+     */
+    imageUri?: string | null;
+    /**
+     * The URI of the image search result page.
+     */
+    sourceUri?: string | null;
+    /**
+     * The title of the image search result page.
+     */
+    title?: string | null;
+  }
+  /**
+   * A `Maps` chunk is a piece of evidence that comes from Google Maps, containing information about places or routes. This is used to provide the user with rich, location-based information.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GroundingChunkMaps {
     /**
@@ -1011,6 +1040,10 @@ export namespace firebaseml_v2beta {
      * This Place's resource name, in `places/{place_id\}` format. This can be used to look up the place in the Google Maps API.
      */
     placeId?: string | null;
+    /**
+     * Output only. Route information.
+     */
+    route?: Schema$GoogleCloudAiplatformV1beta1GroundingChunkMapsRoute;
     /**
      * The text of the place answer.
      */
@@ -1049,6 +1082,23 @@ export namespace firebaseml_v2beta {
      * The title of the review.
      */
     title?: string | null;
+  }
+  /**
+   * Route information from Google Maps.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GroundingChunkMapsRoute {
+    /**
+     * The total distance of the route, in meters.
+     */
+    distanceMeters?: number | null;
+    /**
+     * The total duration of the route.
+     */
+    duration?: string | null;
+    /**
+     * An encoded polyline of the route. See https://developers.google.com/maps/documentation/utilities/polylinealgorithm
+     */
+    encodedPolyline?: string | null;
   }
   /**
    * Context retrieved from a data source to ground the model's response. This is used when a retrieval tool fetches information from a user-provided corpus or a public dataset.
@@ -1109,6 +1159,10 @@ export namespace firebaseml_v2beta {
      */
     groundingSupports?: Schema$GoogleCloudAiplatformV1beta1GroundingSupport[];
     /**
+     * Optional. The image search queries that were used to generate the content. This field is populated only when the grounding source is Google Search with the Image Search search_type enabled.
+     */
+    imageSearchQueries?: string[] | null;
+    /**
      * Optional. Output only. Metadata related to the retrieval grounding source.
      */
     retrievalMetadata?: Schema$GoogleCloudAiplatformV1beta1RetrievalMetadata;
@@ -1143,7 +1197,7 @@ export namespace firebaseml_v2beta {
     sourceId?: string | null;
   }
   /**
-   * A collection of supporting references for a segment of the model's response.
+   * A collection of supporting references for a segment or part of the model's response.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GroundingSupport {
     /**
@@ -1154,6 +1208,10 @@ export namespace firebaseml_v2beta {
      * A list of indices into the `grounding_chunks` field of the `GroundingMetadata` message. These indices specify which grounding chunks support the claim made in the content segment. For example, if this field has the values `[1, 3]`, it means that `grounding_chunks[1]` and `grounding_chunks[3]` are the sources for the claim in the content segment.
      */
     groundingChunkIndices?: number[] | null;
+    /**
+     * Indices into the `rendered_parts` field of the `GroundingMetadata` message. These indices specify which rendered parts are associated with this support message.
+     */
+    renderedParts?: number[] | null;
     /**
      * The content segment that this support message applies to.
      */
@@ -1594,7 +1652,7 @@ export namespace firebaseml_v2beta {
      */
     defs?: {[key: string]: Schema$GoogleCloudAiplatformV1beta1Schema} | null;
     /**
-     * Optional. Description of the schema.
+     * Optional. Describes the data. The model uses this field to understand the purpose of the schema and how to use it. It is a best practice to provide a clear and descriptive explanation for the schema and its properties here, rather than in the prompt.
      */
     description?: string | null;
     /**
@@ -1831,7 +1889,32 @@ export namespace firebaseml_v2beta {
      * Optional. List of domains to be excluded from the search results. The default limit is 2000 domains. Example: ["amazon.com", "facebook.com"].
      */
     excludeDomains?: string[] | null;
+    /**
+     * Optional. The set of search types to enable. If not set, web search is enabled by default.
+     */
+    searchTypes?: Schema$GoogleCloudAiplatformV1beta1ToolGoogleSearchSearchTypes;
   }
+  /**
+   * Image search for grounding and related configurations.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ToolGoogleSearchImageSearch {}
+  /**
+   * Different types of search that can be enabled on the GoogleSearch tool.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ToolGoogleSearchSearchTypes {
+    /**
+     * Optional. Setting this field enables image search. Image bytes are returned.
+     */
+    imageSearch?: Schema$GoogleCloudAiplatformV1beta1ToolGoogleSearchImageSearch;
+    /**
+     * Optional. Setting this field enables web search. Only text results are returned.
+     */
+    webSearch?: Schema$GoogleCloudAiplatformV1beta1ToolGoogleSearchWebSearch;
+  }
+  /**
+   * Standard web search for grounding and related configurations. Only text results are returned.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ToolGoogleSearchWebSearch {}
   /**
    * ParallelAiSearch tool type. A tool that uses the Parallel.ai search engine for grounding.
    */

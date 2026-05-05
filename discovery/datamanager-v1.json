@@ -105,6 +105,627 @@
   },
   "protocol": "rest",
   "resources": {
+    "accountTypes": {
+      "resources": {
+        "accounts": {
+          "resources": {
+            "insights": {
+              "methods": {
+                "retrieve": {
+                  "description": "Retrieves marketing data insights for a given user list. This feature is only available to data partners. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType}/accounts/{loginAccountId}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType}/accounts/{linkedAccountId}`",
+                  "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/insights:retrieve",
+                  "httpMethod": "POST",
+                  "id": "datamanager.accountTypes.accounts.insights.retrieve",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent account that owns the user list. Format: `accountTypes/{account_type}/accounts/{account}`",
+                      "location": "path",
+                      "pattern": "^accountTypes/[^/]+/accounts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/insights:retrieve",
+                  "request": {
+                    "$ref": "RetrieveInsightsRequest"
+                  },
+                  "response": {
+                    "$ref": "RetrieveInsightsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/datamanager"
+                  ]
+                }
+              }
+            },
+            "partnerLinks": {
+              "methods": {
+                "create": {
+                  "description": "Creates a partner link for the given account. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType}/accounts/{loginAccountId}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType}/accounts/{linkedAccountId}`",
+                  "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/partnerLinks",
+                  "httpMethod": "POST",
+                  "id": "datamanager.accountTypes.accounts.partnerLinks.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent, which owns this collection of partner links. Format: accountTypes/{account_type}/accounts/{account}",
+                      "location": "path",
+                      "pattern": "^accountTypes/[^/]+/accounts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/partnerLinks",
+                  "request": {
+                    "$ref": "PartnerLink"
+                  },
+                  "response": {
+                    "$ref": "PartnerLink"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/datamanager"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a partner link for the given account. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType}/accounts/{loginAccountId}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType}/accounts/{linkedAccountId}`",
+                  "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/partnerLinks/{partnerLinksId}",
+                  "httpMethod": "DELETE",
+                  "id": "datamanager.accountTypes.accounts.partnerLinks.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the partner link to delete. Format: accountTypes/{account_type}/accounts/{account}/partnerLinks/{partner_link}",
+                      "location": "path",
+                      "pattern": "^accountTypes/[^/]+/accounts/[^/]+/partnerLinks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/datamanager"
+                  ]
+                },
+                "search": {
+                  "description": "Searches for all partner links to and from a given account. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType}/accounts/{loginAccountId}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType}/accounts/{linkedAccountId}`",
+                  "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/partnerLinks:search",
+                  "httpMethod": "GET",
+                  "id": "datamanager.accountTypes.accounts.partnerLinks.search",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A [filter string](//google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `partner_link_id = 123456789`). Supported operations: - `AND` - `=` - `!=` Supported fields: - `partner_link_id` - `owning_account.account_type` - `owning_account.account_id` - `partner_account.account_type` - `partner_account.account_id` Example: `owning_account.account_type = \"GOOGLE_ADS\" AND partner_account.account_id = 987654321`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of partner links to return. The service may return fewer than this value. If unspecified, at most 10 partner links will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `SearchPartnerLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchPartnerLinks` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Account to search for partner links. If no `filter` is specified, all partner links where this account is either the `owning_account` or `partner_account` are returned. Format: `accountTypes/{account_type}/accounts/{account}`",
+                      "location": "path",
+                      "pattern": "^accountTypes/[^/]+/accounts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/partnerLinks:search",
+                  "response": {
+                    "$ref": "SearchPartnerLinksResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/datamanager"
+                  ]
+                }
+              }
+            },
+            "userListDirectLicenses": {
+              "methods": {
+                "create": {
+                  "description": "Creates a user list direct license. This feature is only available to data partners.",
+                  "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/userListDirectLicenses",
+                  "httpMethod": "POST",
+                  "id": "datamanager.accountTypes.accounts.userListDirectLicenses.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The account that owns the user list being licensed. Should be in the format accountTypes/{ACCOUNT_TYPE}/accounts/{ACCOUNT_ID}",
+                      "location": "path",
+                      "pattern": "^accountTypes/[^/]+/accounts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/userListDirectLicenses",
+                  "request": {
+                    "$ref": "UserListDirectLicense"
+                  },
+                  "response": {
+                    "$ref": "UserListDirectLicense"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/datamanager"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieves a user list direct license. This feature is only available to data partners.",
+                  "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/userListDirectLicenses/{userListDirectLicensesId}",
+                  "httpMethod": "GET",
+                  "id": "datamanager.accountTypes.accounts.userListDirectLicenses.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the user list direct license.",
+                      "location": "path",
+                      "pattern": "^accountTypes/[^/]+/accounts/[^/]+/userListDirectLicenses/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "UserListDirectLicense"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/datamanager"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all user list direct licenses owned by the parent account. This feature is only available to data partners.",
+                  "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/userListDirectLicenses",
+                  "httpMethod": "GET",
+                  "id": "datamanager.accountTypes.accounts.userListDirectLicenses.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filters to apply to the list request. All fields need to be on the left hand side of each condition (for example: user_list_id = 123). **Supported Operations:** - `AND` - `=` - `!=` - `>` - `>=` - `<` - `<=` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of licenses to return per page. The service may return fewer than this value. If unspecified, at most 50 licenses will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListUserListDirectLicense` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserListDirectLicense` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The account whose licenses are being queried. Should be in the format accountTypes/{ACCOUNT_TYPE}/accounts/{ACCOUNT_ID}",
+                      "location": "path",
+                      "pattern": "^accountTypes/[^/]+/accounts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/userListDirectLicenses",
+                  "response": {
+                    "$ref": "ListUserListDirectLicensesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/datamanager"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a user list direct license. This feature is only available to data partners.",
+                  "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/userListDirectLicenses/{userListDirectLicensesId}",
+                  "httpMethod": "PATCH",
+                  "id": "datamanager.accountTypes.accounts.userListDirectLicenses.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the user list direct license.",
+                      "location": "path",
+                      "pattern": "^accountTypes/[^/]+/accounts/[^/]+/userListDirectLicenses/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update. The special character `*` is not supported and an `INVALID_UPDATE_MASK` error will be thrown if used.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "UserListDirectLicense"
+                  },
+                  "response": {
+                    "$ref": "UserListDirectLicense"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/datamanager"
+                  ]
+                }
+              }
+            },
+            "userListGlobalLicenses": {
+              "methods": {
+                "create": {
+                  "description": "Creates a user list global license. This feature is only available to data partners.",
+                  "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/userListGlobalLicenses",
+                  "httpMethod": "POST",
+                  "id": "datamanager.accountTypes.accounts.userListGlobalLicenses.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The account that owns the user list being licensed. Should be in the format accountTypes/{ACCOUNT_TYPE}/accounts/{ACCOUNT_ID}",
+                      "location": "path",
+                      "pattern": "^accountTypes/[^/]+/accounts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/userListGlobalLicenses",
+                  "request": {
+                    "$ref": "UserListGlobalLicense"
+                  },
+                  "response": {
+                    "$ref": "UserListGlobalLicense"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/datamanager"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieves a user list global license. This feature is only available to data partners.",
+                  "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/userListGlobalLicenses/{userListGlobalLicensesId}",
+                  "httpMethod": "GET",
+                  "id": "datamanager.accountTypes.accounts.userListGlobalLicenses.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the user list global license.",
+                      "location": "path",
+                      "pattern": "^accountTypes/[^/]+/accounts/[^/]+/userListGlobalLicenses/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "UserListGlobalLicense"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/datamanager"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all user list global licenses owned by the parent account. This feature is only available to data partners.",
+                  "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/userListGlobalLicenses",
+                  "httpMethod": "GET",
+                  "id": "datamanager.accountTypes.accounts.userListGlobalLicenses.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filters to apply to the list request. All fields need to be on the left hand side of each condition (for example: user_list_id = 123). **Supported Operations:** - `AND` - `=` - `!=` - `>` - `>=` - `<` - `<=` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of licenses to return. The service may return fewer than this value. If unspecified, at most 50 licenses will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListUserListGlobalLicense` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserListDirectLicense` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The account whose licenses are being queried. Should be in the format accountTypes/{ACCOUNT_TYPE}/accounts/{ACCOUNT_ID}",
+                      "location": "path",
+                      "pattern": "^accountTypes/[^/]+/accounts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/userListGlobalLicenses",
+                  "response": {
+                    "$ref": "ListUserListGlobalLicensesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/datamanager"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a user list global license. This feature is only available to data partners.",
+                  "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/userListGlobalLicenses/{userListGlobalLicensesId}",
+                  "httpMethod": "PATCH",
+                  "id": "datamanager.accountTypes.accounts.userListGlobalLicenses.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the user list global license.",
+                      "location": "path",
+                      "pattern": "^accountTypes/[^/]+/accounts/[^/]+/userListGlobalLicenses/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update. The special character `*` is not supported and an `INVALID_UPDATE_MASK` error will be thrown if used.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "UserListGlobalLicense"
+                  },
+                  "response": {
+                    "$ref": "UserListGlobalLicense"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/datamanager"
+                  ]
+                }
+              },
+              "resources": {
+                "userListGlobalLicenseCustomerInfos": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists all customer info for a user list global license. This feature is only available to data partners.",
+                      "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/userListGlobalLicenses/{userListGlobalLicensesId}/userListGlobalLicenseCustomerInfos",
+                      "httpMethod": "GET",
+                      "id": "datamanager.accountTypes.accounts.userListGlobalLicenses.userListGlobalLicenseCustomerInfos.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filters to apply to the list request. All fields need to be on the left hand side of each condition (for example: user_list_id = 123). **Supported Operations:** - `AND` - `=` - `!=` - `>` - `>=` - `<` - `<=` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of licenses to return. The service may return fewer than this value. If unspecified, at most 50 licenses will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListUserListDirectLicense` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserListDirectLicense` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The global license whose customer info are being queried. Should be in the format `accountTypes/{ACCOUNT_TYPE}/accounts/{ACCOUNT_ID}/userListGlobalLicenses/{USER_LIST_GLOBAL_LICENSE_ID}`. To list all global license customer info under an account, replace the user list global license id with a '-' (for example, `accountTypes/DATA_PARTNER/accounts/123/userListGlobalLicenses/-`)",
+                          "location": "path",
+                          "pattern": "^accountTypes/[^/]+/accounts/[^/]+/userListGlobalLicenses/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/userListGlobalLicenseCustomerInfos",
+                      "response": {
+                        "$ref": "ListUserListGlobalLicenseCustomerInfosResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/datamanager"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "userLists": {
+              "methods": {
+                "create": {
+                  "description": "Creates a UserList. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType}/accounts/{loginAccountId}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType}/accounts/{linkedAccountId}`",
+                  "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/userLists",
+                  "httpMethod": "POST",
+                  "id": "datamanager.accountTypes.accounts.userLists.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent account where this user list will be created. Format: accountTypes/{account_type}/accounts/{account}",
+                      "location": "path",
+                      "pattern": "^accountTypes/[^/]+/accounts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If true, the request is validated but not executed.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+parent}/userLists",
+                  "request": {
+                    "$ref": "UserList"
+                  },
+                  "response": {
+                    "$ref": "UserList"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/datamanager"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a UserList. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType}/accounts/{loginAccountId}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType}/accounts/{linkedAccountId}`",
+                  "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/userLists/{userListsId}",
+                  "httpMethod": "DELETE",
+                  "id": "datamanager.accountTypes.accounts.userLists.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the user list to delete. Format: accountTypes/{account_type}/accounts/{account}/userLists/{user_list}",
+                      "location": "path",
+                      "pattern": "^accountTypes/[^/]+/accounts/[^/]+/userLists/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If true, the request is validated but not executed.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/datamanager"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a UserList. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType}/accounts/{loginAccountId}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType}/accounts/{linkedAccountId}`",
+                  "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/userLists/{userListsId}",
+                  "httpMethod": "GET",
+                  "id": "datamanager.accountTypes.accounts.userLists.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the UserList to retrieve. Format: accountTypes/{account_type}/accounts/{account}/userLists/{user_list}",
+                      "location": "path",
+                      "pattern": "^accountTypes/[^/]+/accounts/[^/]+/userLists/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "UserList"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/datamanager"
+                  ]
+                },
+                "list": {
+                  "description": "Lists UserLists. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType}/accounts/{loginAccountId}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType}/accounts/{linkedAccountId}`",
+                  "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/userLists",
+                  "httpMethod": "GET",
+                  "id": "datamanager.accountTypes.accounts.userLists.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A [filter string](//google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `display_name = \"list 1\"`). Supported operations: - `AND` - `=` - `!=` - `>` - `>=` - `<` - `<=` - `:` (has) Supported fields: - `id` - `display_name` - `description` - `membership_status` - `integration_code` - `access_reason` - `ingested_user_list_info.upload_key_types`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of user lists to return. The service may return fewer than this value. If unspecified, at most 50 user lists will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListUserLists` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLists` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent account which owns this collection of user lists. Format: accountTypes/{account_type}/accounts/{account}",
+                      "location": "path",
+                      "pattern": "^accountTypes/[^/]+/accounts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/userLists",
+                  "response": {
+                    "$ref": "ListUserListsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/datamanager"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a UserList. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType}/accounts/{loginAccountId}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType}/accounts/{linkedAccountId}`",
+                  "flatPath": "v1/accountTypes/{accountTypesId}/accounts/{accountsId}/userLists/{userListsId}",
+                  "httpMethod": "PATCH",
+                  "id": "datamanager.accountTypes.accounts.userLists.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the user list. Format: accountTypes/{account_type}/accounts/{account}/userLists/{user_list}",
+                      "location": "path",
+                      "pattern": "^accountTypes/[^/]+/accounts/[^/]+/userLists/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If true, the request is validated but not executed.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "UserList"
+                  },
+                  "response": {
+                    "$ref": "UserList"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/datamanager"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "audienceMembers": {
       "methods": {
         "ingest": {
@@ -193,7 +814,7 @@
       }
     }
   },
-  "revision": "20260102",
+  "revision": "20260225",
   "rootUrl": "https://datamanager.googleapis.com/",
   "schemas": {
     "AdIdentifiers": {
@@ -267,11 +888,19 @@
         },
         "pairData": {
           "$ref": "PairData",
-          "description": "[Publisher Advertiser Identity Reconciliation (PAIR) IDs](//support.google.com/admanager/answer/15067908)."
+          "description": "[Publisher Advertiser Identity Reconciliation (PAIR) IDs](//support.google.com/admanager/answer/15067908). This feature is only available to data partners."
+        },
+        "ppidData": {
+          "$ref": "PpidData",
+          "description": "Data related to publisher provided identifiers. This feature is only available to data partners."
         },
         "userData": {
           "$ref": "UserData",
           "description": "User-provided data that identifies the user."
+        },
+        "userIdData": {
+          "$ref": "UserIdData",
+          "description": "Data related to unique identifiers for a user, as defined by the advertiser."
         }
       },
       "type": "object"
@@ -303,6 +932,21 @@
         "roleArn": {
           "description": "Required. The Amazon Resource Name of the IAM Role to assume for KMS decryption access. Should be in the format of `arn:{partition}:iam::{account_id}:role/{role_name}`",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Baseline": {
+      "description": "Baseline criteria against which insights are compared.",
+      "id": "Baseline",
+      "properties": {
+        "baselineLocation": {
+          "$ref": "Location",
+          "description": "The baseline location of the request. Baseline location is an OR-list of the requested regions."
+        },
+        "locationAutoDetectionEnabled": {
+          "description": "If set to true, the service will try to automatically detect the baseline location for insights.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -373,6 +1017,37 @@
       },
       "type": "object"
     },
+    "ContactIdInfo": {
+      "description": "Additional information when `CONTACT_ID` is one of the `upload_key_types`.",
+      "id": "ContactIdInfo",
+      "properties": {
+        "dataSourceType": {
+          "description": "Optional. Immutable. Source of the upload data",
+          "enum": [
+            "DATA_SOURCE_TYPE_UNSPECIFIED",
+            "DATA_SOURCE_TYPE_FIRST_PARTY",
+            "DATA_SOURCE_TYPE_THIRD_PARTY_CREDIT_BUREAU",
+            "DATA_SOURCE_TYPE_THIRD_PARTY_VOTER_FILE",
+            "DATA_SOURCE_TYPE_THIRD_PARTY_PARTNER_DATA"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The uploaded data is first-party data.",
+            "The uploaded data is from a third-party credit bureau.",
+            "The uploaded data is from a third-party voter file.",
+            "The uploaded data is third party partner data."
+          ],
+          "type": "string"
+        },
+        "matchRatePercentage": {
+          "description": "Output only. Match rate for customer match user lists.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "CustomVariable": {
       "description": "Custom variable for ads conversions.",
       "id": "CustomVariable",
@@ -435,6 +1110,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
+      "id": "Empty",
+      "properties": {},
       "type": "object"
     },
     "EncryptionInfo": {
@@ -791,9 +1472,17 @@
           "$ref": "IngestPairDataStatus",
           "description": "The status of the pair data ingestion to the destination."
         },
+        "ppidDataIngestionStatus": {
+          "$ref": "IngestPpidDataStatus",
+          "description": "The status of the ppid data ingestion to the destination."
+        },
         "userDataIngestionStatus": {
           "$ref": "IngestUserDataStatus",
           "description": "The status of the user data ingestion to the destination."
+        },
+        "userIdDataIngestionStatus": {
+          "$ref": "IngestUserIdDataStatus",
+          "description": "The status of the user id data ingestion to the destination."
         }
       },
       "type": "object"
@@ -902,6 +1591,23 @@
       },
       "type": "object"
     },
+    "IngestPpidDataStatus": {
+      "description": "The status of the ppid data ingestion to the destination containing stats related to the ingestion.",
+      "id": "IngestPpidDataStatus",
+      "properties": {
+        "ppidCount": {
+          "description": "The total count of ppids sent in the upload request for the destination. Includes all ppids in the request, regardless of whether they were successfully ingested or not.",
+          "format": "int64",
+          "type": "string"
+        },
+        "recordCount": {
+          "description": "The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "IngestUserDataStatus": {
       "description": "The status of the user data ingestion to the destination containing stats related to the ingestion.",
       "id": "IngestUserDataStatus",
@@ -945,6 +1651,77 @@
           "description": "The total count of user identifiers sent in the upload request for the destination. Includes all user identifiers in the request, regardless of whether they were successfully ingested or not.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IngestUserIdDataStatus": {
+      "description": "The status of the user id data ingestion to the destination containing stats related to the ingestion.",
+      "id": "IngestUserIdDataStatus",
+      "properties": {
+        "recordCount": {
+          "description": "The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.",
+          "format": "int64",
+          "type": "string"
+        },
+        "userIdCount": {
+          "description": "The total count of user ids sent in the upload request for the destination. Includes all user ids in the request, regardless of whether they were successfully ingested or not.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IngestedUserListInfo": {
+      "description": "Represents a user list that is populated by user provided data.",
+      "id": "IngestedUserListInfo",
+      "properties": {
+        "contactIdInfo": {
+          "$ref": "ContactIdInfo",
+          "description": "Optional. Additional information when `CONTACT_ID` is one of the `upload_key_types`."
+        },
+        "mobileIdInfo": {
+          "$ref": "MobileIdInfo",
+          "description": "Optional. Additional information when `MOBILE_ID` is one of the `upload_key_types`."
+        },
+        "pairIdInfo": {
+          "$ref": "PairIdInfo",
+          "description": "Optional. Additional information when `PAIR_ID` is one of the `upload_key_types`. This feature is only available to data partners."
+        },
+        "partnerAudienceInfo": {
+          "$ref": "PartnerAudienceInfo",
+          "description": "Optional. Additional information for partner audiences. This feature is only available to data partners."
+        },
+        "pseudonymousIdInfo": {
+          "$ref": "PseudonymousIdInfo",
+          "description": "Optional. Additional information for `PSEUDONYMOUS_ID` is one of the `upload_key_types`."
+        },
+        "uploadKeyTypes": {
+          "description": "Required. Immutable. Upload key types of this user list.",
+          "items": {
+            "enum": [
+              "UPLOAD_KEY_TYPE_UNSPECIFIED",
+              "CONTACT_ID",
+              "MOBILE_ID",
+              "USER_ID",
+              "PAIR_ID",
+              "PSEUDONYMOUS_ID"
+            ],
+            "enumDescriptions": [
+              "Not specified.",
+              "Customer info such as email address, phone number or physical address.",
+              "Mobile advertising ids.",
+              "Third party provided user ids.",
+              "Publisher advertiser identity reconciliation ids.",
+              "Data Management Platform IDs: - Google User ID - Partner Provided ID - Publisher Provided ID - iOS IDFA - Android advertising ID - Roku ID - Amazon Fire TV ID - Xbox or Microsoft ID"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "userIdInfo": {
+          "$ref": "UserIdInfo",
+          "description": "Optional. Additional information when `USER_ID` is one of the `upload_key_types`."
         }
       },
       "type": "object"
@@ -996,6 +1773,183 @@
       },
       "type": "object"
     },
+    "ListUserListDirectLicensesResponse": {
+      "description": "Response from the ListUserListDirectLicensesRequest.",
+      "id": "ListUserListDirectLicensesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "userListDirectLicenses": {
+          "description": "The licenses for the given user list in the request.",
+          "items": {
+            "$ref": "UserListDirectLicense"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListUserListGlobalLicenseCustomerInfosResponse": {
+      "description": "Response from the ListUserListGlobalLicensesCustomerInfoRequest.",
+      "id": "ListUserListGlobalLicenseCustomerInfosResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "userListGlobalLicenseCustomerInfos": {
+          "description": "The customer information for the given license in the request.",
+          "items": {
+            "$ref": "UserListGlobalLicenseCustomerInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListUserListGlobalLicensesResponse": {
+      "description": "Response from the ListUserListGlobalLicensesRequest.",
+      "id": "ListUserListGlobalLicensesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "userListGlobalLicenses": {
+          "description": "The licenses for the given user list in the request.",
+          "items": {
+            "$ref": "UserListGlobalLicense"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListUserListsResponse": {
+      "description": "Response message for ListUserLists.",
+      "id": "ListUserListsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "userLists": {
+          "description": "The user lists from the specified account.",
+          "items": {
+            "$ref": "UserList"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Location": {
+      "description": "The baseline location of the request. Baseline location is on OR-list of ISO 3166-1 alpha-2 region codes of the requested regions.",
+      "id": "Location",
+      "properties": {
+        "regionCodes": {
+          "description": "List of ISO 3166-1 alpha-2 region codes.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MarketingDataInsight": {
+      "description": "Insights for marketing data. This feature is only available to data partners.",
+      "id": "MarketingDataInsight",
+      "properties": {
+        "attributes": {
+          "description": "Insights for values of a given dimension.",
+          "items": {
+            "$ref": "MarketingDataInsightsAttribute"
+          },
+          "type": "array"
+        },
+        "dimension": {
+          "description": "The dimension to which the insight belongs.",
+          "enum": [
+            "AUDIENCE_INSIGHTS_DIMENSION_UNSPECIFIED",
+            "AUDIENCE_INSIGHTS_DIMENSION_UNKNOWN",
+            "AFFINITY_USER_INTEREST",
+            "IN_MARKET_USER_INTEREST",
+            "AGE_RANGE",
+            "GENDER"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The value is unknown in this version.",
+            "An Affinity UserInterest.",
+            "An In-Market UserInterest.",
+            "An age range.",
+            "A gender."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MarketingDataInsightsAttribute": {
+      "description": "Insights for a collection of related attributes of the same dimension.",
+      "id": "MarketingDataInsightsAttribute",
+      "properties": {
+        "ageRange": {
+          "description": "Age range of the audience for which the lift is provided.",
+          "enum": [
+            "AGE_RANGE_UNSPECIFIED",
+            "AGE_RANGE_UNKNOWN",
+            "AGE_RANGE_18_24",
+            "AGE_RANGE_25_34",
+            "AGE_RANGE_35_44",
+            "AGE_RANGE_45_54",
+            "AGE_RANGE_55_64",
+            "AGE_RANGE_65_UP"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Unknown.",
+            "Between 18 and 24 years old.",
+            "Between 25 and 34 years old.",
+            "Between 35 and 44 years old.",
+            "Between 45 and 54 years old.",
+            "Between 55 and 64 years old.",
+            "65 years old and beyond."
+          ],
+          "type": "string"
+        },
+        "gender": {
+          "description": "Gender of the audience for which the lift is provided.",
+          "enum": [
+            "GENDER_UNSPECIFIED",
+            "GENDER_UNKNOWN",
+            "GENDER_MALE",
+            "GENDER_FEMALE"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Unknown.",
+            "Male.",
+            "Female."
+          ],
+          "type": "string"
+        },
+        "lift": {
+          "description": "Measure of lift that the audience has for the attribute value as compared to the baseline. Range [0-1].",
+          "format": "float",
+          "type": "number"
+        },
+        "userInterestId": {
+          "description": "The user interest ID.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MobileData": {
       "description": "Mobile IDs for the audience. At least one mobile ID is required.",
       "id": "MobileData",
@@ -1010,12 +1964,150 @@
       },
       "type": "object"
     },
+    "MobileIdInfo": {
+      "description": "Additional information when `MOBILE_ID` is one of the `upload_key_types`.",
+      "id": "MobileIdInfo",
+      "properties": {
+        "appId": {
+          "description": "Required. Immutable. A string that uniquely identifies a mobile application from which the data was collected.",
+          "type": "string"
+        },
+        "dataSourceType": {
+          "description": "Optional. Immutable. Source of the upload data.",
+          "enum": [
+            "DATA_SOURCE_TYPE_UNSPECIFIED",
+            "DATA_SOURCE_TYPE_FIRST_PARTY",
+            "DATA_SOURCE_TYPE_THIRD_PARTY_CREDIT_BUREAU",
+            "DATA_SOURCE_TYPE_THIRD_PARTY_VOTER_FILE",
+            "DATA_SOURCE_TYPE_THIRD_PARTY_PARTNER_DATA"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The uploaded data is first-party data.",
+            "The uploaded data is from a third-party credit bureau.",
+            "The uploaded data is from a third-party voter file.",
+            "The uploaded data is third party partner data."
+          ],
+          "type": "string"
+        },
+        "keySpace": {
+          "description": "Required. Immutable. The key space of mobile IDs.",
+          "enum": [
+            "KEY_SPACE_UNSPECIFIED",
+            "IOS",
+            "ANDROID"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The iOS keyspace.",
+            "The Android keyspace."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PairData": {
-      "description": "[PAIR](//support.google.com/admanager/answer/15067908) IDs for the audience. At least one PAIR ID is required.",
+      "description": "[PAIR](//support.google.com/admanager/answer/15067908) IDs for the audience. At least one PAIR ID is required. This feature is only available to data partners.",
       "id": "PairData",
       "properties": {
         "pairIds": {
           "description": "Required. Cleanroom-provided PII data, hashed with SHA256, and encrypted with an EC commutative cipher using publisher key for the [PAIR]((//support.google.com/admanager/answer/15067908)) user list. At most 10 `pairIds` can be provided in a single AudienceMember.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PairIdInfo": {
+      "description": "Additional information when `PAIR_ID` is one of the `upload_key_types`. This feature is only available to data partners.",
+      "id": "PairIdInfo",
+      "properties": {
+        "advertiserIdentifierCount": {
+          "description": "Optional. The count of the advertiser's first party data records that have been uploaded to a clean room provider. This does not signify the size of a PAIR user list.",
+          "format": "int64",
+          "type": "string"
+        },
+        "cleanRoomIdentifier": {
+          "description": "Required. Immutable. Identifies a unique advertiser to publisher relationship with one clean room provider or across multiple clean room providers.",
+          "type": "string"
+        },
+        "matchRatePercentage": {
+          "description": "Optional. This field denotes the percentage of membership match of this user list with the corresponding publisher's first party data. Must be between 0 and 100 inclusive.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "publisherId": {
+          "description": "Required. Immutable. Identifies the publisher that the Publisher Advertiser Identity Reconciliation user list is reconciled with. This field is provided by the cleanroom provider and is only unique in the scope of that cleanroom. This cannot be used as a global identifier across multiple cleanrooms.",
+          "format": "int64",
+          "type": "string"
+        },
+        "publisherName": {
+          "description": "Required. Descriptive name of the publisher to be displayed in the UI for a better targeting experience.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PartnerAudienceInfo": {
+      "description": "Additional information for partner audiences. This feature is only available to data partners.",
+      "id": "PartnerAudienceInfo",
+      "properties": {
+        "commercePartner": {
+          "description": "Optional. The commerce partner name. Only allowed if `partner_audience_source` is `COMMERCE_AUDIENCE`.",
+          "type": "string"
+        },
+        "partnerAudienceSource": {
+          "description": "Required. Immutable. The source of the partner audience.",
+          "enum": [
+            "PARTNER_AUDIENCE_SOURCE_UNSPECIFIED",
+            "COMMERCE_AUDIENCE",
+            "LINEAR_TV_AUDIENCE",
+            "AGENCY_PROVIDER_AUDIENCE"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Partner Audience source is commerce audience.",
+            "Partner Audience source is linear TV audience.",
+            "Partner Audience source is agency/provider audience."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PartnerLink": {
+      "description": "A partner link between an owning account and a partner account.",
+      "id": "PartnerLink",
+      "properties": {
+        "name": {
+          "description": "Identifier. The name of the partner link. Format: accountTypes/{account_type}/accounts/{account}/partnerLinks/{partner_link}",
+          "type": "string"
+        },
+        "owningAccount": {
+          "$ref": "ProductAccount",
+          "description": "Required. The owning account granting access to the partner account."
+        },
+        "partnerAccount": {
+          "$ref": "ProductAccount",
+          "description": "Required. The partner account granted access by the owning account."
+        },
+        "partnerLinkId": {
+          "description": "Output only. The partner link ID.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PpidData": {
+      "description": "Publisher provided identifiers data holding the ppids. At least one ppid is required. This feature is only available to data partners.",
+      "id": "PpidData",
+      "properties": {
+        "ppids": {
+          "description": "Required. The list of publisher provided identifiers for a user.",
           "items": {
             "type": "string"
           },
@@ -1040,7 +2132,8 @@
             "DISPLAY_VIDEO_PARTNER",
             "DISPLAY_VIDEO_ADVERTISER",
             "DATA_PARTNER",
-            "GOOGLE_ANALYTICS_PROPERTY"
+            "GOOGLE_ANALYTICS_PROPERTY",
+            "GOOGLE_AD_MANAGER_AUDIENCE_LINK"
           ],
           "enumDescriptions": [
             "Unspecified product. Should never be used.",
@@ -1048,7 +2141,8 @@
             "Display & Video 360 partner.",
             "Display & Video 360 advertiser.",
             "Data Partner.",
-            "Google Analytics."
+            "Google Analytics.",
+            "Google Ad Manager audience link."
           ],
           "type": "string"
         },
@@ -1069,6 +2163,35 @@
             "Display & Video 360 advertiser.",
             "Data Partner."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PseudonymousIdInfo": {
+      "description": "Additional information when `PSEUDONYMOUS_ID` is one of the `upload_key_types`.",
+      "id": "PseudonymousIdInfo",
+      "properties": {
+        "billableRecordCount": {
+          "description": "Optional. Immutable. The number of billable records (e.g. uploaded or matched).",
+          "format": "int64",
+          "type": "string"
+        },
+        "syncStatus": {
+          "description": "Output only. Sync status of the user list.",
+          "enum": [
+            "SYNC_STATUS_UNSPECIFIED",
+            "CREATED",
+            "READY_FOR_USE",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The user list has been created as a placeholder. List contents and/or metadata are still being synced. The user list is not ready for use.",
+            "The user list is ready for use. Contents and cookies have been synced correctly.",
+            "An error has occurred syncing user list contents and/or metadata. The user list cannot be used."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1140,9 +2263,17 @@
           "$ref": "RemovePairDataStatus",
           "description": "The status of the pair data removal from the destination."
         },
+        "ppidDataRemovalStatus": {
+          "$ref": "RemovePpidDataStatus",
+          "description": "The status of the ppid data removal from the destination."
+        },
         "userDataRemovalStatus": {
           "$ref": "RemoveUserDataStatus",
           "description": "The status of the user data removal from the destination."
+        },
+        "userIdDataRemovalStatus": {
+          "$ref": "RemoveUserIdDataStatus",
+          "description": "The status of the user id data removal from the destination."
         }
       },
       "type": "object"
@@ -1181,6 +2312,23 @@
       },
       "type": "object"
     },
+    "RemovePpidDataStatus": {
+      "description": "The status of the ppid data removal from the destination.",
+      "id": "RemovePpidDataStatus",
+      "properties": {
+        "ppidCount": {
+          "description": "The total count of ppids sent in the removal request. Includes all ppids in the request, regardless of whether they were successfully removed or not.",
+          "format": "int64",
+          "type": "string"
+        },
+        "recordCount": {
+          "description": "The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RemoveUserDataStatus": {
       "description": "The status of the user data removal from the destination.",
       "id": "RemoveUserDataStatus",
@@ -1192,6 +2340,23 @@
         },
         "userIdentifierCount": {
           "description": "The total count of user identifiers sent in the removal request. Includes all user identifiers in the request, regardless of whether they were successfully removed or not.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RemoveUserIdDataStatus": {
+      "description": "The status of the user id data removal from the destination.",
+      "id": "RemoveUserIdDataStatus",
+      "properties": {
+        "recordCount": {
+          "description": "The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.",
+          "format": "int64",
+          "type": "string"
+        },
+        "userIdCount": {
+          "description": "The total count of user ids sent in the removal request. Includes all user ids in the request, regardless of whether they were successfully removed or not.",
           "format": "int64",
           "type": "string"
         }
@@ -1247,6 +2412,35 @@
       },
       "type": "object"
     },
+    "RetrieveInsightsRequest": {
+      "description": "Request message for DM API MarketingDataInsightsService.RetrieveInsights",
+      "id": "RetrieveInsightsRequest",
+      "properties": {
+        "baseline": {
+          "$ref": "Baseline",
+          "description": "Required. Baseline for the insights requested."
+        },
+        "userListId": {
+          "description": "Required. The user list ID for which insights are requested.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RetrieveInsightsResponse": {
+      "description": "Response message for DM API MarketingDataInsightsService.RetrieveInsights",
+      "id": "RetrieveInsightsResponse",
+      "properties": {
+        "marketingDataInsights": {
+          "description": "Contains the insights for the marketing data.",
+          "items": {
+            "$ref": "MarketingDataInsight"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "RetrieveRequestStatusResponse": {
       "description": "Response from the RetrieveRequestStatusRequest.",
       "id": "RetrieveRequestStatusResponse",
@@ -1257,6 +2451,43 @@
             "$ref": "RequestStatusPerDestination"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SearchPartnerLinksResponse": {
+      "description": "Response from the SearchPartnerLinksRequest.",
+      "id": "SearchPartnerLinksResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "partnerLinks": {
+          "description": "The partner links for the given account.",
+          "items": {
+            "$ref": "PartnerLink"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SizeInfo": {
+      "description": "Estimated number of members in this user list in different target networks.",
+      "id": "SizeInfo",
+      "properties": {
+        "displayNetworkMembersCount": {
+          "description": "Output only. Estimated number of members in this user list, on the Google Display Network.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "searchNetworkMembersCount": {
+          "description": "Output only. Estimated number of members in this user list in the google.com domain. These are the members available for targeting in Search campaigns.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1284,6 +2515,22 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TargetNetworkInfo": {
+      "description": "Eligibility information for different target networks.",
+      "id": "TargetNetworkInfo",
+      "properties": {
+        "eligibleForDisplay": {
+          "description": "Output only. Indicates this user list is eligible for Google Display Network.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "eligibleForSearch": {
+          "description": "Optional. Indicates if this user list is eligible for Google Search Network.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1323,6 +2570,42 @@
       },
       "type": "object"
     },
+    "UserIdData": {
+      "description": "User id data holding the user id.",
+      "id": "UserIdData",
+      "properties": {
+        "userId": {
+          "description": "Required. A unique identifier for a user, as defined by the advertiser.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserIdInfo": {
+      "description": "Additional information when `USER_ID` is one of the `upload_key_types`.",
+      "id": "UserIdInfo",
+      "properties": {
+        "dataSourceType": {
+          "description": "Optional. Immutable. Source of the upload data.",
+          "enum": [
+            "DATA_SOURCE_TYPE_UNSPECIFIED",
+            "DATA_SOURCE_TYPE_FIRST_PARTY",
+            "DATA_SOURCE_TYPE_THIRD_PARTY_CREDIT_BUREAU",
+            "DATA_SOURCE_TYPE_THIRD_PARTY_VOTER_FILE",
+            "DATA_SOURCE_TYPE_THIRD_PARTY_PARTNER_DATA"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The uploaded data is first-party data.",
+            "The uploaded data is from a third-party credit bureau.",
+            "The uploaded data is from a third-party voter file.",
+            "The uploaded data is third party partner data."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "UserIdentifier": {
       "description": "A single identifier for the user.",
       "id": "UserIdentifier",
@@ -1337,6 +2620,483 @@
         },
         "phoneNumber": {
           "description": "Hashed phone number using SHA-256 hash function after normalization (E164 standard).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserList": {
+      "description": "A user list resource.",
+      "id": "UserList",
+      "properties": {
+        "accessReason": {
+          "description": "Output only. The reason this account has been granted access to the list.",
+          "enum": [
+            "ACCESS_REASON_UNSPECIFIED",
+            "OWNED",
+            "SHARED",
+            "LICENSED",
+            "SUBSCRIBED",
+            "AFFILIATED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The resource is owned by the user.",
+            "The resource is shared to the user.",
+            "The resource is licensed to the user.",
+            "The user subscribed to the resource.",
+            "The resource is accessible to the user."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "accountAccessStatus": {
+          "description": "Optional. Indicates if this share is still enabled. When a user list is shared with the account this field is set to `ENABLED`. Later the user list owner can decide to revoke the share and make it `DISABLED`.",
+          "enum": [
+            "ACCESS_STATUS_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The access is enabled.",
+            "The access is disabled."
+          ],
+          "type": "string"
+        },
+        "closingReason": {
+          "description": "Output only. The reason why this user list membership status is closed.",
+          "enum": [
+            "CLOSING_REASON_UNSPECIFIED",
+            "UNUSED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The user list was closed because it has not been used in targeting recently. See https://support.google.com/google-ads/answer/2472738 for details."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. A description of the user list.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the user list.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. The unique ID of the user list.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ingestedUserListInfo": {
+          "$ref": "IngestedUserListInfo",
+          "description": "Optional. Represents a user list that is populated by user ingested data."
+        },
+        "integrationCode": {
+          "description": "Optional. An ID from external system. It is used by user list sellers to correlate IDs on their systems.",
+          "type": "string"
+        },
+        "membershipDuration": {
+          "description": "Optional. The duration a user remains in the user list. Valid durations are exact multiples of 24 hours (86400 seconds). Providing a value that is not an exact multiple of 24 hours will result in an INVALID_ARGUMENT error.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "membershipStatus": {
+          "description": "Optional. Membership status of this user list.",
+          "enum": [
+            "MEMBERSHIP_STATUS_UNSPECIFIED",
+            "OPEN",
+            "CLOSED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Open status - User list is accruing members and can be targeted to.",
+            "Closed status - No new members being added."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the user list. Format: accountTypes/{account_type}/accounts/{account}/userLists/{user_list}",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "Output only. An option that indicates if a user may edit a list.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "sizeInfo": {
+          "$ref": "SizeInfo",
+          "description": "Output only. Estimated number of members in this user list in different target networks.",
+          "readOnly": true
+        },
+        "targetNetworkInfo": {
+          "$ref": "TargetNetworkInfo",
+          "description": "Optional. Eligibility information for different target networks."
+        }
+      },
+      "type": "object"
+    },
+    "UserListDirectLicense": {
+      "description": "A user list direct license. This feature is only available to data partners.",
+      "id": "UserListDirectLicense",
+      "properties": {
+        "clientAccountDisplayName": {
+          "description": "Output only. Name of client customer which the user list is being licensed to. This field is read-only.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "clientAccountId": {
+          "description": "Immutable. ID of client customer which the user list is being licensed to.",
+          "format": "int64",
+          "type": "string"
+        },
+        "clientAccountType": {
+          "description": "Immutable. Account type of client customer which the user list is being licensed to.",
+          "enum": [
+            "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_UNKNOWN",
+            "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_GOOGLE_ADS",
+            "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_DISPLAY_VIDEO_PARTNER",
+            "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_DISPLAY_VIDEO_ADVERTISER",
+            "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_GOOGLE_AD_MANAGER_AUDIENCE_LINK"
+          ],
+          "enumDescriptions": [
+            "Unknown.",
+            "Google Ads customer.",
+            "Display & Video 360 partner.",
+            "Display & Video 360 advertiser.",
+            "Google Ad Manager audience link."
+          ],
+          "type": "string"
+        },
+        "historicalPricings": {
+          "description": "Output only. Pricing history of this user list license. This field is read-only.",
+          "items": {
+            "$ref": "UserListLicensePricing"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "metrics": {
+          "$ref": "UserListLicenseMetrics",
+          "description": "Output only. Metrics related to this license This field is read-only and only populated if the start and end dates are set in the ListUserListDirectLicenses call",
+          "readOnly": true
+        },
+        "name": {
+          "description": "Identifier. The resource name of the user list direct license.",
+          "type": "string"
+        },
+        "pricing": {
+          "$ref": "UserListLicensePricing",
+          "description": "Optional. UserListDirectLicense pricing."
+        },
+        "status": {
+          "description": "Optional. Status of UserListDirectLicense - ENABLED or DISABLED.",
+          "enum": [
+            "USER_LIST_LICENSE_STATUS_UNSPECIFIED",
+            "USER_LIST_LICENSE_STATUS_ENABLED",
+            "USER_LIST_LICENSE_STATUS_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Unknown.",
+            "Active status - user list is still being licensed.",
+            "Inactive status - user list is no longer being licensed."
+          ],
+          "type": "string"
+        },
+        "userListDisplayName": {
+          "description": "Output only. Name of the user list being licensed. This field is read-only.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "userListId": {
+          "description": "Immutable. ID of the user list being licensed.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserListGlobalLicense": {
+      "description": "A user list global license. This feature is only available to data partners.",
+      "id": "UserListGlobalLicense",
+      "properties": {
+        "historicalPricings": {
+          "description": "Output only. Pricing history of this user list license. This field is read-only.",
+          "items": {
+            "$ref": "UserListLicensePricing"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "licenseType": {
+          "description": "Immutable. Product type of client customer which the user list is being licensed to.",
+          "enum": [
+            "USER_LIST_GLOBAL_LICENSE_TYPE_UNSPECIFIED",
+            "USER_LIST_GLOBAL_LICENSE_TYPE_RESELLER",
+            "USER_LIST_GLOBAL_LICENSE_TYPE_DATA_MART_SELL_SIDE",
+            "USER_LIST_GLOBAL_LICENSE_TYPE_DATA_MART_BUY_SIDE"
+          ],
+          "enumDescriptions": [
+            "UNSPECIFIED.",
+            "Reseller license.",
+            "DataMart Sell Side license.",
+            "DataMart Buy Side license."
+          ],
+          "type": "string"
+        },
+        "metrics": {
+          "$ref": "UserListLicenseMetrics",
+          "description": "Output only. Metrics related to this license This field is read-only and only populated if the start and end dates are set in the ListUserListGlobalLicenses call",
+          "readOnly": true
+        },
+        "name": {
+          "description": "Identifier. The resource name of the user list global license.",
+          "type": "string"
+        },
+        "pricing": {
+          "$ref": "UserListLicensePricing",
+          "description": "Optional. UserListGlobalLicense pricing."
+        },
+        "status": {
+          "description": "Optional. Status of UserListGlobalLicense - ENABLED or DISABLED.",
+          "enum": [
+            "USER_LIST_LICENSE_STATUS_UNSPECIFIED",
+            "USER_LIST_LICENSE_STATUS_ENABLED",
+            "USER_LIST_LICENSE_STATUS_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Unknown.",
+            "Active status - user list is still being licensed.",
+            "Inactive status - user list is no longer being licensed."
+          ],
+          "type": "string"
+        },
+        "userListDisplayName": {
+          "description": "Output only. Name of the user list being licensed. This field is read-only.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "userListId": {
+          "description": "Immutable. ID of the user list being licensed.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserListGlobalLicenseCustomerInfo": {
+      "description": "Information about a customer of a user list global license. This will automatically be created by the system when a customer purchases a global license.",
+      "id": "UserListGlobalLicenseCustomerInfo",
+      "properties": {
+        "clientAccountDisplayName": {
+          "description": "Output only. Name of client customer which the user list is being licensed to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "clientAccountId": {
+          "description": "Output only. ID of client customer which the user list is being licensed to.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "clientAccountType": {
+          "description": "Output only. Product type of client customer which the user list is being licensed to.",
+          "enum": [
+            "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_UNKNOWN",
+            "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_GOOGLE_ADS",
+            "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_DISPLAY_VIDEO_PARTNER",
+            "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_DISPLAY_VIDEO_ADVERTISER",
+            "USER_LIST_LICENSE_CLIENT_ACCOUNT_TYPE_GOOGLE_AD_MANAGER_AUDIENCE_LINK"
+          ],
+          "enumDescriptions": [
+            "Unknown.",
+            "Google Ads customer.",
+            "Display & Video 360 partner.",
+            "Display & Video 360 advertiser.",
+            "Google Ad Manager audience link."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "historicalPricings": {
+          "description": "Output only. Pricing history of this user list license.",
+          "items": {
+            "$ref": "UserListLicensePricing"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "licenseType": {
+          "description": "Output only. Product type of client customer which the user list is being licensed to.",
+          "enum": [
+            "USER_LIST_GLOBAL_LICENSE_TYPE_UNSPECIFIED",
+            "USER_LIST_GLOBAL_LICENSE_TYPE_RESELLER",
+            "USER_LIST_GLOBAL_LICENSE_TYPE_DATA_MART_SELL_SIDE",
+            "USER_LIST_GLOBAL_LICENSE_TYPE_DATA_MART_BUY_SIDE"
+          ],
+          "enumDescriptions": [
+            "UNSPECIFIED.",
+            "Reseller license.",
+            "DataMart Sell Side license.",
+            "DataMart Buy Side license."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "metrics": {
+          "$ref": "UserListLicenseMetrics",
+          "description": "Output only. Metrics related to this license This field is only populated if the start and end dates are set in the ListUserListGlobalLicenseCustomerInfos call.",
+          "readOnly": true
+        },
+        "name": {
+          "description": "Identifier. The resource name of the user list global license customer.",
+          "type": "string"
+        },
+        "pricing": {
+          "$ref": "UserListLicensePricing",
+          "description": "Output only. UserListDirectLicense pricing.",
+          "readOnly": true
+        },
+        "status": {
+          "description": "Output only. Status of UserListDirectLicense - ENABLED or DISABLED.",
+          "enum": [
+            "USER_LIST_LICENSE_STATUS_UNSPECIFIED",
+            "USER_LIST_LICENSE_STATUS_ENABLED",
+            "USER_LIST_LICENSE_STATUS_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Unknown.",
+            "Active status - user list is still being licensed.",
+            "Inactive status - user list is no longer being licensed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "userListDisplayName": {
+          "description": "Output only. Name of the user list being licensed.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "userListId": {
+          "description": "Output only. ID of the user list being licensed.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserListLicenseMetrics": {
+      "description": "Metrics related to a user list license.",
+      "id": "UserListLicenseMetrics",
+      "properties": {
+        "clickCount": {
+          "description": "Output only. The number of clicks for the user list license.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endDate": {
+          "description": "Output only. The end date (inclusive) of the metrics in the format YYYYMMDD. For example, 20260102 represents January 2, 2026. If `start_date` is used in the filter, `end_date` is also required. If neither `start_date` nor `end_date` are included in the filter, the UserListLicenseMetrics fields will not be populated in the response.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "impressionCount": {
+          "description": "Output only. The number of impressions for the user list license.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "revenueUsdMicros": {
+          "description": "Output only. The revenue for the user list license in USD micros.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "startDate": {
+          "description": "Output only. The start date (inclusive) of the metrics in the format YYYYMMDD. For example, 20260102 represents January 2, 2026. If `end_date` is used in the filter, `start_date` is also required. If neither `start_date` nor `end_date` are included in the filter, the UserListLicenseMetrics fields will not be populated in the response.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserListLicensePricing": {
+      "description": "A user list license pricing.",
+      "id": "UserListLicensePricing",
+      "properties": {
+        "buyerApprovalState": {
+          "description": "Output only. The buyer approval state of this pricing. This field is read-only.",
+          "enum": [
+            "USER_LIST_PRICING_BUYER_APPROVAL_STATE_UNSPECIFIED",
+            "PENDING",
+            "APPROVED",
+            "REJECTED"
+          ],
+          "enumDescriptions": [
+            "UNSPECIFIED.",
+            "User list client has not yet accepted the pricing terms set by the user list owner.",
+            "User list client has accepted the pricing terms set by the user list owner.",
+            "User list client has rejected the pricing terms set by the user list owner."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "costMicros": {
+          "description": "Optional. The cost associated with the model, in micro units (10^-6), in the currency specified by the currency_code field. For example, 2000000 means $2 if `currency_code` is `USD`.",
+          "format": "int64",
+          "type": "string"
+        },
+        "costType": {
+          "description": "Immutable. The cost type of this pricing. Can be set only in the `create` operation. Can't be updated for an existing license.",
+          "enum": [
+            "USER_LIST_PRICING_COST_TYPE_UNSPECIFIED",
+            "CPC",
+            "CPM",
+            "MEDIA_SHARE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Cost per click.",
+            "Cost per mille (thousand impressions).",
+            "Media share."
+          ],
+          "type": "string"
+        },
+        "currencyCode": {
+          "description": "Optional. The currency in which cost and max_cost is specified. Must be a three-letter currency code defined in ISO 4217.",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Optional. End time of the pricing.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "maxCostMicros": {
+          "description": "Optional. The maximum CPM a commerce audience can be charged when the MEDIA_SHARE cost type is used. The value is in micro units (10^-6) and in the currency specified by the currency_code field. For example, 2000000 means $2 if `currency_code` is `USD`. This is only relevant when cost_type is MEDIA_SHARE. When cost_type is not MEDIA_SHARE, and this field is set, a MAX_COST_NOT_ALLOWED error will be returned. If not set or set to`0`, there is no cap.",
+          "format": "int64",
+          "type": "string"
+        },
+        "pricingActive": {
+          "description": "Output only. Whether this pricing is active.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "pricingId": {
+          "description": "Output only. The ID of this pricing.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. Start time of the pricing.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },

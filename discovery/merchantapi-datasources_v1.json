@@ -321,7 +321,7 @@
       }
     }
   },
-  "revision": "20251102",
+  "revision": "20260223",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "DataSource": {
@@ -823,6 +823,7 @@
             "LOCAL_INVENTORY_ADS",
             "VEHICLE_INVENTORY_ADS",
             "FREE_LISTINGS",
+            "FREE_LISTINGS_UCP_CHECKOUT",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
             "YOUTUBE_AFFILIATE",
@@ -852,6 +853,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -865,6 +867,7 @@
             "[Local inventory ads](https://support.google.com/merchants/answer/3271956).",
             "[Vehicle inventory ads](https://support.google.com/merchants/answer/11544533).",
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
+            "[Free product listings on UCP checkout](https://developers.google.com/merchant/ucp).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
             "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",

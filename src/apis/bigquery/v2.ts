@@ -911,7 +911,7 @@ export namespace bigquery_v2 {
     dataMaskingApplied?: boolean | null;
   }
   /**
-   * Data policy option. For more information, see [Mask data by applying data policies to a column](https://cloud.google.com/bigquery/docs/column-data-masking#data-policies-on-column/).
+   * Data policy option. For more information, see [Mask data by applying data policies to a column](https://docs.cloud.google.com/bigquery/docs/column-data-masking#data-policies-on-column).
    */
   export interface Schema$DataPolicyOption {
     /**
@@ -2059,6 +2059,22 @@ export namespace bigquery_v2 {
      * Output only. Reason why incremental query results are/were not written by the query.
      */
     disabledReason?: string | null;
+    /**
+     * Output only. Additional human-readable clarification, if available, for DisabledReason.
+     */
+    disabledReasonDetails?: string | null;
+    /**
+     * Output only. The time at which the first incremental result was written. If the query needed to restart internally, this only describes the final attempt.
+     */
+    firstIncrementalRowTime?: string | null;
+    /**
+     * Output only. Number of rows that were in the latest result set before query completion.
+     */
+    incrementalRowCount?: string | null;
+    /**
+     * Output only. The time at which the last incremental result was written. Does not include the final result written after query completion.
+     */
+    lastIncrementalRowTime?: string | null;
     /**
      * Output only. The time at which the result table's contents were modified. May be absent if no results have been written or the query has completed.
      */

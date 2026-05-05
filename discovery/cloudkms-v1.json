@@ -61,11 +61,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudkms.us-east7.rep.googleapis.com/",
-      "location": "us-east7"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.us-central1.rep.googleapis.com/",
       "location": "us-central1"
     },
@@ -98,6 +93,21 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.us-south1.rep.googleapis.com/",
       "location": "us-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.northamerica-northeast1.rep.googleapis.com/",
+      "location": "northamerica-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.northamerica-northeast2.rep.googleapis.com/",
+      "location": "northamerica-northeast2"
     },
     {
       "description": "Regional Endpoint",
@@ -269,7 +279,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`",
+              "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or `projects/{PROJECT_NUMBER}/autokeyConfig`.",
               "location": "path",
               "pattern": "^folders/[^/]+/autokeyConfig$",
               "required": true,
@@ -538,7 +548,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`",
+              "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or `projects/{PROJECT_NUMBER}/autokeyConfig`.",
               "location": "path",
               "pattern": "^projects/[^/]+/autokeyConfig$",
               "required": true,
@@ -684,7 +694,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "cloudkms.projects.locations.list",
@@ -1501,6 +1511,32 @@
                         "https://www.googleapis.com/auth/cloudkms"
                       ]
                     },
+                    "delete": {
+                      "description": "Permanently deletes the given CryptoKey. All child CryptoKeyVersions must have been previously deleted using KeyManagementService.DeleteCryptoKeyVersion. The specified crypto key will be immediately and permanently deleted upon calling this method. This action cannot be undone.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}",
+                      "httpMethod": "DELETE",
+                      "id": "cloudkms.projects.locations.keyRings.cryptoKeys.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the CryptoKey to delete.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloudkms"
+                      ]
+                    },
                     "encrypt": {
                       "description": "Encrypts data, so that it can only be recovered by a call to Decrypt. The CryptoKey.purpose must be ENCRYPT_DECRYPT.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}:encrypt",
@@ -1884,6 +1920,32 @@
                           },
                           "response": {
                             "$ref": "DecapsulateResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/cloudkms"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Permanently deletes the given CryptoKeyVersion. Only possible if the version has not been previously imported and if its state is one of DESTROYED, IMPORT_FAILED, or GENERATION_FAILED. Successfully imported CryptoKeyVersions cannot be deleted at this time. The specified version will be immediately and permanently deleted upon calling this method. This action cannot be undone.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions/{cryptoKeyVersionsId}",
+                          "httpMethod": "DELETE",
+                          "id": "cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the CryptoKeyVersion to delete.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+/cryptoKeyVersions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "Operation"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform",
@@ -2496,6 +2558,73 @@
                 }
               }
             },
+            "retiredResources": {
+              "methods": {
+                "get": {
+                  "description": "Retrieves a specific RetiredResource resource, which represents the record of a deleted CryptoKey.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/retiredResources/{retiredResourcesId}",
+                  "httpMethod": "GET",
+                  "id": "cloudkms.projects.locations.retiredResources.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the RetiredResource to get.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/retiredResources/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "RetiredResource"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudkms"
+                  ]
+                },
+                "list": {
+                  "description": "Lists the RetiredResources which are the records of deleted CryptoKeys. RetiredResources prevent the reuse of these resource names after deletion.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/retiredResources",
+                  "httpMethod": "GET",
+                  "id": "cloudkms.projects.locations.retiredResources.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Optional limit on the number of RetiredResources to be included in the response. Further RetiredResources can subsequently be obtained by including the ListRetiredResourcesResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Optional pagination token, returned earlier via ListRetiredResourcesResponse.next_page_token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project-specific location holding the RetiredResources, in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/retiredResources",
+                  "response": {
+                    "$ref": "ListRetiredResourcesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudkms"
+                  ]
+                }
+              }
+            },
             "singleTenantHsmInstances": {
               "methods": {
                 "create": {
@@ -2819,7 +2948,7 @@
       }
     }
   },
-  "revision": "20260123",
+  "revision": "20260219",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AddQuorumMember": {
@@ -3058,13 +3187,13 @@
           "enumDescriptions": [
             "Default value. KeyProjectResolutionMode when not specified will act as `DEDICATED_KEY_PROJECT`.",
             "Keys are created in a dedicated project specified by `key_project`.",
-            "Keys are created in the same project as the resource requesting the key. `key_project` must not be set when this mode is used.",
+            "Keys are created in the same project as the resource requesting the key. The `key_project` must not be set when this mode is used.",
             "Disables the AutokeyConfig. When this mode is set, any AutokeyConfig from higher levels in the resource hierarchy are ignored for this resource and its descendants. This setting can be overridden by a more specific configuration at a lower level. For example, if Autokey is disabled on a folder, it can be re-enabled on a sub-folder or project within that folder by setting a different mode (e.g., DEDICATED_KEY_PROJECT or RESOURCE_PROJECT)."
           ],
           "type": "string"
         },
         "name": {
-          "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`",
+          "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or `projects/{PROJECT_NUMBER}/autokeyConfig`.",
           "type": "string"
         },
         "state": {
@@ -3833,6 +3962,11 @@
       "description": "A Digest holds a cryptographic message digest.",
       "id": "Digest",
       "properties": {
+        "externalMu": {
+          "description": "A message digest produced with SHAKE-256, to be used with ML-DSA external-μ algorithms only. See \"message representative\" note in section 6.2, algorithm 7 of the FIPS-204 standard: https://doi.org/10.6028/nist.fips.204",
+          "format": "byte",
+          "type": "string"
+        },
         "sha256": {
           "description": "A message digest produced with the SHA-256 algorithm.",
           "format": "byte",
@@ -4640,6 +4774,29 @@
         },
         "nextPageToken": {
           "description": "The standard List next-page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListRetiredResourcesResponse": {
+      "description": "Response message for KeyManagementService.ListRetiredResources.",
+      "id": "ListRetiredResourcesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass this value in ListRetiredResourcesRequest.page_token to retrieve the next page of results.",
+          "type": "string"
+        },
+        "retiredResources": {
+          "description": "The list of RetiredResources.",
+          "items": {
+            "$ref": "RetiredResource"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "The total number of RetiredResources that matched the query.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -5473,6 +5630,34 @@
       "description": "Request message for KeyManagementService.RestoreCryptoKeyVersion.",
       "id": "RestoreCryptoKeyVersionRequest",
       "properties": {},
+      "type": "object"
+    },
+    "RetiredResource": {
+      "description": "A RetiredResource resource represents the record of a deleted CryptoKey. Its purpose is to provide visibility into retained user data and to prevent reuse of these names for new CryptoKeys.",
+      "id": "RetiredResource",
+      "properties": {
+        "deleteTime": {
+          "description": "Output only. The time at which the original resource was deleted and this RetiredResource record was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Identifier. The resource name for this RetiredResource in the format `projects/*/locations/*/retiredResources/*`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "originalResource": {
+          "description": "Output only. The full resource name of the original CryptoKey that was deleted in the format `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceType": {
+          "description": "Output only. The resource type of the original deleted resource.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ServiceResolver": {

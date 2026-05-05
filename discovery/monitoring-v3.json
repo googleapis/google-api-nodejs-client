@@ -2799,7 +2799,7 @@
       }
     }
   },
-  "revision": "20251006",
+  "revision": "20260129",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -5305,7 +5305,7 @@
           "type": "array"
         },
         "renotifyInterval": {
-          "description": "The frequency at which to send reminder notifications for open incidents.",
+          "description": "The frequency at which to send reminder notifications for open incidents. The value must be between 30 minutes and 24 hours.",
           "format": "google-duration",
           "type": "string"
         }

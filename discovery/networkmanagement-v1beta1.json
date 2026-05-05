@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20260130",
+  "revision": "20260211",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -3326,6 +3326,17 @@
       },
       "type": "object"
     },
+    "NgfwPacketInspectionInfo": {
+      "description": "For display only. Metadata associated with a layer 7 packet inspection by the firewall.",
+      "id": "NgfwPacketInspectionInfo",
+      "properties": {
+        "securityProfileGroupUri": {
+          "description": "URI of the security profile group associated with this firewall packet inspection.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
@@ -4124,6 +4135,10 @@
           "$ref": "NetworkInfo",
           "description": "Display information of a Google Cloud network."
         },
+        "ngfwPacketInspection": {
+          "$ref": "NgfwPacketInspectionInfo",
+          "description": "Display information of a layer 7 packet inspection by the firewall."
+        },
         "projectId": {
           "description": "Project ID that contains the configuration this step is validating.",
           "type": "string"
@@ -4187,6 +4202,7 @@
             "ARRIVE_AT_VPC_CONNECTOR",
             "DIRECT_VPC_EGRESS_CONNECTION",
             "SERVERLESS_EXTERNAL_CONNECTION",
+            "NGFW_PACKET_INSPECTION",
             "NAT",
             "SKIP_GKE_POD_IP_MASQUERADING",
             "PROXY_CONNECTION",
@@ -4236,6 +4252,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -4271,6 +4288,7 @@
             "Forwarding state: arriving at a VPC connector.",
             "Forwarding state: for packets originating from a serverless endpoint forwarded through Direct VPC egress.",
             "Forwarding state: for packets originating from a serverless endpoint forwarded through public (external) connectivity.",
+            "Forwarding state: Layer 7 packet inspection by the firewall endpoint based on the configured security profile group.",
             "Transition state: packet header translated. The `nat` field is populated with the translation information.",
             "Transition state: GKE Pod IP masquerading is skipped. The `ip_masquerading_skipped` field is populated with the reason.",
             "Transition state: original connection is terminated and a new proxied connection is initiated.",

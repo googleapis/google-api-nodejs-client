@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20260201",
+  "revision": "20260225",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -978,6 +978,22 @@
           },
           "description": "Required. The function response in JSON object format. Use \"output\" key to specify function output and \"error\" key to specify error details (if any). If \"output\" and \"error\" keys are not specified, then whole \"response\" is treated as function output.",
           "type": "object"
+        },
+        "scheduling": {
+          "description": "Optional. Specifies how the response should be scheduled in the conversation. Only applicable to NON_BLOCKING function calls, is ignored otherwise. Defaults to WHEN_IDLE.",
+          "enum": [
+            "SCHEDULING_UNSPECIFIED",
+            "SILENT",
+            "WHEN_IDLE",
+            "INTERRUPT"
+          ],
+          "enumDescriptions": [
+            "This value is unused.",
+            "Only add the result to the conversation context, do not interrupt or trigger generation.",
+            "Add the result to the conversation context, and prompt to generate output without interrupting ongoing generation.",
+            "Add the result to the conversation context, interrupt ongoing generation and prompt to generate output."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1538,6 +1554,10 @@
       "description": "A piece of evidence that supports a claim made by the model. This is used to show a citation for a claim made by the model. When grounding is enabled, the model returns a `GroundingChunk` that contains a reference to the source of the information.",
       "id": "GoogleCloudAiplatformV1beta1GroundingChunk",
       "properties": {
+        "image": {
+          "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkImage",
+          "description": "A grounding chunk from an image search result. See the `Image` message for details."
+        },
         "maps": {
           "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkMaps",
           "description": "A grounding chunk from Google Maps. See the `Maps` message for details."
@@ -1553,8 +1573,31 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1GroundingChunkImage": {
+      "description": "An `Image` chunk is a piece of evidence that comes from an image search result. It contains the URI of the image search result and the URI of the image. This is used to provide the user with a link to the source of the information.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingChunkImage",
+      "properties": {
+        "domain": {
+          "description": "The domain of the image search result page.",
+          "type": "string"
+        },
+        "imageUri": {
+          "description": "The URI of the image.",
+          "type": "string"
+        },
+        "sourceUri": {
+          "description": "The URI of the image search result page.",
+          "type": "string"
+        },
+        "title": {
+          "description": "The title of the image search result page.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1GroundingChunkMaps": {
-      "description": "A `Maps` chunk is a piece of evidence that comes from Google Maps. It contains information about a place, such as its name, address, and reviews. This is used to provide the user with rich, location-based information.",
+      "description": "A `Maps` chunk is a piece of evidence that comes from Google Maps, containing information about places or routes. This is used to provide the user with rich, location-based information.",
       "id": "GoogleCloudAiplatformV1beta1GroundingChunkMaps",
       "properties": {
         "placeAnswerSources": {
@@ -1564,6 +1607,11 @@
         "placeId": {
           "description": "This Place's resource name, in `places/{place_id}` format. This can be used to look up the place in the Google Maps API.",
           "type": "string"
+        },
+        "route": {
+          "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkMapsRoute",
+          "description": "Output only. Route information.",
+          "readOnly": true
         },
         "text": {
           "description": "The text of the place answer.",
@@ -1608,6 +1656,27 @@
         },
         "title": {
           "description": "The title of the review.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingChunkMapsRoute": {
+      "description": "Route information from Google Maps.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingChunkMapsRoute",
+      "properties": {
+        "distanceMeters": {
+          "description": "The total distance of the route, in meters.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "duration": {
+          "description": "The total duration of the route.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "encodedPolyline": {
+          "description": "An encoded polyline of the route. See https://developers.google.com/maps/documentation/utilities/polylinealgorithm",
           "type": "string"
         }
       },
@@ -1683,6 +1752,13 @@
           },
           "type": "array"
         },
+        "imageSearchQueries": {
+          "description": "Optional. The image search queries that were used to generate the content. This field is populated only when the grounding source is Google Search with the Image Search search_type enabled.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "retrievalMetadata": {
           "$ref": "GoogleCloudAiplatformV1beta1RetrievalMetadata",
           "description": "Optional. Output only. Metadata related to the retrieval grounding source.",
@@ -1733,7 +1809,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1GroundingSupport": {
-      "description": "A collection of supporting references for a segment of the model's response.",
+      "description": "A collection of supporting references for a segment or part of the model's response.",
       "id": "GoogleCloudAiplatformV1beta1GroundingSupport",
       "properties": {
         "confidenceScores": {
@@ -1746,6 +1822,14 @@
         },
         "groundingChunkIndices": {
           "description": "A list of indices into the `grounding_chunks` field of the `GroundingMetadata` message. These indices specify which grounding chunks support the claim made in the content segment. For example, if this field has the values `[1, 3]`, it means that `grounding_chunks[1]` and `grounding_chunks[3]` are the sources for the claim in the content segment.",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "renderedParts": {
+          "description": "Indices into the `rendered_parts` field of the `GroundingMetadata` message. These indices specify which rendered parts are associated with this support message.",
           "items": {
             "format": "int32",
             "type": "integer"
@@ -2484,7 +2568,7 @@
           "type": "object"
         },
         "description": {
-          "description": "Optional. Description of the schema.",
+          "description": "Optional. Describes the data. The model uses this field to understand the purpose of the schema and how to use it. It is a best practice to provide a clear and descriptive explanation for the schema and its properties here, rather than in the prompt.",
           "type": "string"
         },
         "enum": {
@@ -2820,8 +2904,39 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "searchTypes": {
+          "$ref": "GoogleCloudAiplatformV1beta1ToolGoogleSearchSearchTypes",
+          "description": "Optional. The set of search types to enable. If not set, web search is enabled by default."
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ToolGoogleSearchImageSearch": {
+      "description": "Image search for grounding and related configurations.",
+      "id": "GoogleCloudAiplatformV1beta1ToolGoogleSearchImageSearch",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ToolGoogleSearchSearchTypes": {
+      "description": "Different types of search that can be enabled on the GoogleSearch tool.",
+      "id": "GoogleCloudAiplatformV1beta1ToolGoogleSearchSearchTypes",
+      "properties": {
+        "imageSearch": {
+          "$ref": "GoogleCloudAiplatformV1beta1ToolGoogleSearchImageSearch",
+          "description": "Optional. Setting this field enables image search. Image bytes are returned."
+        },
+        "webSearch": {
+          "$ref": "GoogleCloudAiplatformV1beta1ToolGoogleSearchWebSearch",
+          "description": "Optional. Setting this field enables web search. Only text results are returned."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ToolGoogleSearchWebSearch": {
+      "description": "Standard web search for grounding and related configurations. Only text results are returned.",
+      "id": "GoogleCloudAiplatformV1beta1ToolGoogleSearchWebSearch",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1ToolParallelAiSearch": {

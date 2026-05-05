@@ -3555,7 +3555,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name` * `root_container`",
+                      "description": "Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name` * `root_container` * `description`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -6101,7 +6101,7 @@
       }
     }
   },
-  "revision": "20260202",
+  "revision": "20260219",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {

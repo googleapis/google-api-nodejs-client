@@ -783,7 +783,7 @@
       }
     }
   },
-  "revision": "20260129",
+  "revision": "20260212",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AbortFunctionUpgradeRequest": {
@@ -990,6 +990,28 @@
       "description": "Request for the `DetachFunction` method.",
       "id": "DetachFunctionRequest",
       "properties": {},
+      "type": "object"
+    },
+    "DirectVpcNetworkInterface": {
+      "description": "The Direct VPC network interface. This is mutually exclusive with VPC Connector.",
+      "id": "DirectVpcNetworkInterface",
+      "properties": {
+        "network": {
+          "description": "Optional. The name of the VPC network to which the function will be connected. Specify either a VPC network or a subnet, or both. If you specify only a network, the subnet uses the same name as the network.",
+          "type": "string"
+        },
+        "subnetwork": {
+          "description": "Optional. The name of the VPC subnetwork that the Cloud Function resource will get IPs from. Specify either a VPC network or a subnet, or both. If both network and subnetwork are specified, the given VPC subnetwork must belong to the given VPC network. If subnetwork is not specified, the subnetwork with the same name with the network will be used.",
+          "type": "string"
+        },
+        "tags": {
+          "description": "Optional. Network tags applied to this Cloud Function resource.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "EventFilter": {
@@ -1923,6 +1945,27 @@
           "description": "Optional. The binary authorization policy to be checked when deploying the Cloud Run service.",
           "type": "string"
         },
+        "directVpcEgress": {
+          "description": "Optional. Egress settings for direct VPC. If not provided, it defaults to VPC_EGRESS_PRIVATE_RANGES_ONLY.",
+          "enum": [
+            "DIRECT_VPC_EGRESS_UNSPECIFIED",
+            "VPC_EGRESS_PRIVATE_RANGES_ONLY",
+            "VPC_EGRESS_ALL_TRAFFIC"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Sends only traffic to internal addresses through the VPC network.",
+            "Sends all outbound traffic through the VPC network."
+          ],
+          "type": "string"
+        },
+        "directVpcNetworkInterface": {
+          "description": "Optional. The Direct VPC network interface for the Cloud Function. Currently only a single Direct VPC is supported.",
+          "items": {
+            "$ref": "DirectVpcNetworkInterface"
+          },
+          "type": "array"
+        },
         "environmentVariables": {
           "additionalProperties": {
             "type": "string"
@@ -2232,6 +2275,22 @@
             "COMMIT_FUNCTION_UPGRADE_AS_GEN2_SUCCESSFUL",
             "COMMIT_FUNCTION_UPGRADE_AS_GEN2_ERROR"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false
+          ],
           "enumDescriptions": [
             "Unspecified state. Most functions are in this upgrade state.",
             "Functions in this state are eligible for 1st Gen upgrade.",
@@ -2245,7 +2304,7 @@
             "RollbackFunctionUpgradeTraffic API was un-successful.",
             "CommitFunctionUpgrade API was un-successful and 1st gen function might have broken.",
             "CommitFunctionUpgrade API was un-successful but safe to rollback traffic or abort.",
-            "Indicates that the `CommitFunctionUpgradeAsGen2` API call succeeded and the function was successfully migrated to the 2nd Gen stack.",
+            "Deprecated: This state is no longer returned by the backend. Clients should not rely on polling for this specific state. A successful upgrade is now indicated by the long-running operation completing successfully with a Function resource in the response.",
             "CommitFunctionUpgradeAsGen2 API was un-successful and 1st gen function might have broken."
           ],
           "type": "string"

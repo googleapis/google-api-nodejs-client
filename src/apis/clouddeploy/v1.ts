@@ -677,6 +677,10 @@ export namespace clouddeploy_v1 {
      * Output only. The Cloud Run Service urls that are associated with a `Rollout`.
      */
     serviceUrls?: string[] | null;
+    /**
+     * Output only. The Cloud Run worker pool associated with a `Rollout`. Format is `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`.
+     */
+    workerPool?: string | null;
   }
   /**
    * CloudRunRenderMetadata contains Cloud Run information associated with a `Release` render.
@@ -686,6 +690,10 @@ export namespace clouddeploy_v1 {
      * Output only. The name of the Cloud Run Service in the rendered manifest. Format is `projects/{project\}/locations/{location\}/services/{service\}`.
      */
     service?: string | null;
+    /**
+     * Output only. The name of the Cloud Run Worker Pool in the rendered manifest. Format is `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`.
+     */
+    workerPool?: string | null;
   }
   /**
    * Service-wide configuration.
@@ -3712,7 +3720,7 @@ export namespace clouddeploy_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:

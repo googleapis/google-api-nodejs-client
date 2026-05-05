@@ -625,6 +625,10 @@ export namespace discoveryengine_v1beta {
      * Optional. The language code used for notifications
      */
     languageCode?: string | null;
+    /**
+     * Optional. The region code used of the user that subscribed to the alert policy.
+     */
+    regionCode?: string | null;
   }
   /**
    * The alert enrollment status.
@@ -1933,6 +1937,10 @@ export namespace discoveryengine_v1beta {
      */
     createTime?: string | null;
     /**
+     * Optional. Specifies the data protection policy for the connector.
+     */
+    dataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1alphaDataProtectionPolicy;
+    /**
      * Required. The name of the data source. Supported values: `salesforce`, `jira`, `confluence`, `bigquery`.
      */
     dataSource?: string | null;
@@ -1940,6 +1948,10 @@ export namespace discoveryengine_v1beta {
      * Optional. Any target destinations used to connect to third-party services.
      */
     destinationConfigs?: Schema$GoogleCloudDiscoveryengineV1alphaDestinationConfig[];
+    /**
+     * Output only. The list of FQDNs of the data connector can egress to. This includes both FQDN derived from the customer provided instance URL and default per connector type FQDNs. Note: This field is derived from both the DataConnector.params, and connector source spec. It should only be used for CAIS and Org Policy evaluation purposes.
+     */
+    egressFqdns?: string[] | null;
     /**
      * Optional. Any params and credentials used specifically for EUA connectors.
      */
@@ -2044,6 +2056,10 @@ export namespace discoveryengine_v1beta {
      * Output only. Timestamp the DataConnector was last updated.
      */
     updateTime?: string | null;
+    /**
+     * Output only. Whether the connector is created with VPC-SC enabled. This is only used for CuOP evaluation purpose.
+     */
+    vpcscEnabled?: boolean | null;
   }
   /**
    * Any params and credentials used specifically for EUA connectors.
@@ -2145,6 +2161,24 @@ export namespace discoveryengine_v1beta {
      * Optional. The start schema to use for the DataStore created from this SourceEntity. If unset, a default vertical specialized schema will be used. This field is only used by SetUpDataConnector API, and will be ignored if used in other APIs. This field will be omitted from all API responses including GetDataConnector API. To retrieve a schema of a DataStore, use SchemaService.GetSchema API instead. The provided schema will be validated against certain rules on schema. Learn more from [this doc](https://cloud.google.com/generative-ai-app-builder/docs/provide-schema).
      */
     startingSchema?: Schema$GoogleCloudDiscoveryengineV1alphaSchema;
+  }
+  /**
+   * Data protection policy config for a connector.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDataProtectionPolicy {
+    /**
+     * Optional. The sensitive data protection policy for the connector source.
+     */
+    sensitiveDataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1alphaDataProtectionPolicySensitiveDataProtectionPolicy;
+  }
+  /**
+   * Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDataProtectionPolicySensitiveDataProtectionPolicy {
+    /**
+     * Optional. The Sensitive Data Protection content policy resource name.
+     */
+    policy?: string | null;
   }
   /**
    * DataStore captures global settings and configs at the DataStore level.
@@ -2669,6 +2703,10 @@ export namespace discoveryengine_v1beta {
      */
     configurableBillingApproach?: string | null;
     /**
+     * Optional. Maps a connector ID (e.g., "hybrid-github", "shopify") to tenant-specific information required for that connector. The structure of the tenant information string is connector-dependent.
+     */
+    connectorTenantInfo?: {[key: string]: string} | null;
+    /**
      * Output only. Timestamp the Recommendation Engine was created at.
      */
     createTime?: string | null;
@@ -2697,6 +2735,10 @@ export namespace discoveryengine_v1beta {
      */
     knowledgeGraphConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfig;
     /**
+     * Optional. The visibility of marketplace agents in the agent gallery.
+     */
+    marketplaceAgentVisibility?: string | null;
+    /**
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig;
@@ -2712,6 +2754,10 @@ export namespace discoveryengine_v1beta {
      * Optional. Observability config for the engine.
      */
     observabilityConfig?: Schema$GoogleCloudDiscoveryengineV1alphaObservabilityConfig;
+    /**
+     * Optional. The email of the procurement contact.
+     */
+    procurementContactEmail?: string | null;
     /**
      * Output only. Additional information of a recommendation engine. Only applicable if solution_type is SOLUTION_TYPE_RECOMMENDATION.
      */
@@ -3447,6 +3493,14 @@ export namespace discoveryengine_v1beta {
      */
     autoRenew?: boolean | null;
     /**
+     * Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.
+     */
+    earlyTerminated?: boolean | null;
+    /**
+     * Output only. The date when the subscription is terminated earlier than the expiration date.
+     */
+    earlyTerminationDate?: Schema$GoogleTypeDate;
+    /**
      * Optional. The planed end date.
      */
     endDate?: Schema$GoogleTypeDate;
@@ -3488,7 +3542,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaListSessionsRequest {
     /**
-     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"` * `collaborative_project = "projects/123/locations/global/collections/default_collection/engines/" "default_engine/collaborative_projects/cp1"`
      */
     filter?: string | null;
     /**
@@ -3674,6 +3728,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfig {
     /**
+     * Optional. Specifies the data protection policy for NotebookLM.
+     */
+    dataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy;
+    /**
      * Model Armor configuration to be used for sanitizing user prompts and LLM responses.
      */
     modelArmorConfig?: Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig;
@@ -3685,6 +3743,24 @@ export namespace discoveryengine_v1beta {
      * Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.
      */
     optOutNotebookSharing?: boolean | null;
+  }
+  /**
+   * Data protection policy config for NotebookLM.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy {
+    /**
+     * Optional. The sensitive data protection policy.
+     */
+    sensitiveDataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy;
+  }
+  /**
+   * Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy {
+    /**
+     * Optional. The Sensitive Data Protection policy resource name.
+     */
+    policy?: string | null;
   }
   /**
    * Configuration for customer defined Model Armor templates to be used for sanitizing user prompts and LLM responses.
@@ -3899,6 +3975,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaQuery {
     /**
+     * Query content parts.
+     */
+    parts?: Schema$GoogleCloudDiscoveryengineV1alphaQueryPart[];
+    /**
      * Output only. Unique Id for the query.
      */
     queryId?: string | null;
@@ -3906,6 +3986,126 @@ export namespace discoveryengine_v1beta {
      * Plain text.
      */
     text?: string | null;
+  }
+  /**
+   * Represents a part or the whole of a content, used to represent a query. A query can be made up of multiple parts.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaQueryPart {
+    /**
+     * Other VAIS Document references.
+     */
+    documentReference?: Schema$GoogleCloudDiscoveryengineV1alphaQueryPartDocumentReference;
+    /**
+     * Reference to a Google Drive document.
+     */
+    driveDocumentReference?: Schema$GoogleCloudDiscoveryengineV1alphaQueryPartDriveDocumentReference;
+    /**
+     * Optional. The IANA standard MIME type of the data. See https://www.iana.org/assignments/media-types/media-types.xhtml. This field is optional. If not set, the default assumed MIME type is "text/plain" for the "data" field.
+     */
+    mimeType?: string | null;
+    /**
+     * Reference to a person.
+     */
+    personReference?: Schema$GoogleCloudDiscoveryengineV1alphaQueryPartPersonReference;
+    /**
+     * Text content.
+     */
+    text?: string | null;
+    /**
+     * This field is expected to be a ui message in JSON format. As of Q1 2026, ui_json_payload is only supported for A2UI messages.
+     */
+    uiJsonPayload?: string | null;
+  }
+  /**
+   * Represents a document reference.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaQueryPartDocumentReference {
+    /**
+     * The destination uri of the reference.
+     */
+    destinationUri?: string | null;
+    /**
+     * The display title of the reference.
+     */
+    displayTitle?: string | null;
+    /**
+     * The full resource name of the document. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document_id\}`.
+     */
+    documentName?: string | null;
+    /**
+     * Output only. The file id of the document data stored in the session context files.
+     */
+    fileId?: string | null;
+    /**
+     * The icon uri of the reference.
+     */
+    iconUri?: string | null;
+    /**
+     * Input only. The url_for_connector of the document returned by Federated Search.
+     */
+    urlForConnector?: string | null;
+  }
+  /**
+   * Represents a Google Drive document reference.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaQueryPartDriveDocumentReference {
+    /**
+     * The destination uri of the reference.
+     */
+    destinationUri?: string | null;
+    /**
+     * The display title of the reference.
+     */
+    displayTitle?: string | null;
+    /**
+     * The full resource name of the document. Format: `projects/x/locations/x/collections/x/dataStores/x/branches/x/documents/x`.
+     */
+    documentName?: string | null;
+    /**
+     * The Drive id of the document.
+     */
+    driveId?: string | null;
+    /**
+     * Output only. The file id of the Drive document data stored in the session context files.
+     */
+    fileId?: string | null;
+    /**
+     * The icon uri of the Drive document reference.
+     */
+    iconUri?: string | null;
+  }
+  /**
+   * Represents a person reference.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaQueryPartPersonReference {
+    /**
+     * The destination uri of the person.
+     */
+    destinationUri?: string | null;
+    /**
+     * The display name of the person.
+     */
+    displayName?: string | null;
+    /**
+     * The display photo url of the person.
+     */
+    displayPhotoUri?: string | null;
+    /**
+     * The full resource name of the person. Format: `projects/x/locations/x/collections/x/dataStores/x/branches/x/documents/x`.
+     */
+    documentName?: string | null;
+    /**
+     * The email of the person.
+     */
+    email?: string | null;
+    /**
+     * Output only. The file id of the person data stored in the session context files.
+     */
+    fileId?: string | null;
+    /**
+     * The person id of the person.
+     */
+    personId?: string | null;
   }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.RecrawlUris operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -4190,6 +4390,10 @@ export namespace discoveryengine_v1beta {
      * Optional. Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
      */
     naturalLanguageQueryUnderstandingSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec;
+    /**
+     * Optional. The maximum number of results to retrieve from each data store. If not specified, it will use the SearchRequest.DataStoreSpec.num_results if provided, otherwise there is no limit.
+     */
+    numResultsPerDataStore?: number | null;
     /**
      * A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned. A large offset may be capped to a reasonable threshold.
      */
@@ -4552,6 +4756,10 @@ export namespace discoveryengine_v1beta {
      * Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
      */
     filter?: string | null;
+    /**
+     * Optional. The maximum number of results to retrieve from this data store. If not specified, it will use the SearchRequest.num_results_per_data_store if provided, otherwise there is no limit. If both this field and SearchRequest.num_results_per_data_store are specified, this field will be used.
+     */
+    numResults?: number | null;
   }
   /**
    * Specifies features for display, like match highlighting.
@@ -8682,6 +8890,10 @@ export namespace discoveryengine_v1beta {
      */
     configurableBillingApproach?: string | null;
     /**
+     * Optional. Maps a connector ID (e.g., "hybrid-github", "shopify") to tenant-specific information required for that connector. The structure of the tenant information string is connector-dependent.
+     */
+    connectorTenantInfo?: {[key: string]: string} | null;
+    /**
      * Output only. Timestamp the Recommendation Engine was created at.
      */
     createTime?: string | null;
@@ -8710,6 +8922,10 @@ export namespace discoveryengine_v1beta {
      */
     knowledgeGraphConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfig;
     /**
+     * Optional. The visibility of marketplace agents in the agent gallery.
+     */
+    marketplaceAgentVisibility?: string | null;
+    /**
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig;
@@ -8725,6 +8941,10 @@ export namespace discoveryengine_v1beta {
      * Optional. Observability config for the engine.
      */
     observabilityConfig?: Schema$GoogleCloudDiscoveryengineV1betaObservabilityConfig;
+    /**
+     * Optional. The email of the procurement contact.
+     */
+    procurementContactEmail?: string | null;
     /**
      * Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH.
      */
@@ -9670,6 +9890,14 @@ export namespace discoveryengine_v1beta {
      */
     autoRenew?: boolean | null;
     /**
+     * Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.
+     */
+    earlyTerminated?: boolean | null;
+    /**
+     * Output only. The date when the subscription is terminated earlier than the expiration date.
+     */
+    earlyTerminationDate?: Schema$GoogleTypeDate;
+    /**
      * Optional. The planed end date.
      */
     endDate?: Schema$GoogleTypeDate;
@@ -10203,6 +10431,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfig {
     /**
+     * Optional. Specifies the data protection policy for NotebookLM.
+     */
+    dataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy;
+    /**
      * Model Armor configuration to be used for sanitizing user prompts and LLM responses.
      */
     modelArmorConfig?: Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig;
@@ -10214,6 +10446,24 @@ export namespace discoveryengine_v1beta {
      * Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.
      */
     optOutNotebookSharing?: boolean | null;
+  }
+  /**
+   * Data protection policy config for NotebookLM.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy {
+    /**
+     * Optional. The sensitive data protection policy.
+     */
+    sensitiveDataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy;
+  }
+  /**
+   * Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy {
+    /**
+     * Optional. The Sensitive Data Protection policy resource name.
+     */
+    policy?: string | null;
   }
   /**
    * Configuration for customer defined Model Armor templates to be used for sanitizing user prompts and LLM responses.
@@ -10962,6 +11212,10 @@ export namespace discoveryengine_v1beta {
      */
     naturalLanguageQueryUnderstandingSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec;
     /**
+     * Optional. The maximum number of results to retrieve from each data store. If not specified, it will use the SearchRequest.DataStoreSpec.num_results if provided, otherwise there is no limit.
+     */
+    numResultsPerDataStore?: number | null;
+    /**
      * A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned. A large offset may be capped to a reasonable threshold.
      */
     offset?: number | null;
@@ -11319,6 +11573,10 @@ export namespace discoveryengine_v1beta {
      * Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
      */
     filter?: string | null;
+    /**
+     * Optional. The maximum number of results to retrieve from this data store. If not specified, it will use the SearchRequest.num_results_per_data_store if provided, otherwise there is no limit. If both this field and SearchRequest.num_results_per_data_store are specified, this field will be used.
+     */
+    numResults?: number | null;
   }
   /**
    * Specifies features for display, like match highlighting.
@@ -13323,6 +13581,10 @@ export namespace discoveryengine_v1beta {
      */
     destinationConfigs?: Schema$GoogleCloudDiscoveryengineV1DestinationConfig[];
     /**
+     * Output only. The list of FQDNs of the data connector can egress to. This includes both FQDN derived from the customer provided instance URL and default per connector type FQDNs. Note: This field is derived from both the DataConnector.params, and connector source spec. It should only be used for CAIS and Org Policy evaluation purposes.
+     */
+    egressFqdns?: string[] | null;
+    /**
      * Optional. Any params and credentials used specifically for EUA connectors.
      */
     endUserConfig?: Schema$GoogleCloudDiscoveryengineV1DataConnectorEndUserConfig;
@@ -13426,6 +13688,10 @@ export namespace discoveryengine_v1beta {
      * Output only. Timestamp the DataConnector was last updated.
      */
     updateTime?: string | null;
+    /**
+     * Output only. Whether the connector is created with VPC-SC enabled. This is only used for CuOP evaluation purpose.
+     */
+    vpcscEnabled?: boolean | null;
   }
   /**
    * Any params and credentials used specifically for EUA connectors.
@@ -13978,6 +14244,10 @@ export namespace discoveryengine_v1beta {
      */
     configurableBillingApproach?: string | null;
     /**
+     * Optional. Maps a connector ID (e.g., "hybrid-github", "shopify") to tenant-specific information required for that connector. The structure of the tenant information string is connector-dependent.
+     */
+    connectorTenantInfo?: {[key: string]: string} | null;
+    /**
      * Output only. Timestamp the Recommendation Engine was created at.
      */
     createTime?: string | null;
@@ -14006,6 +14276,10 @@ export namespace discoveryengine_v1beta {
      */
     knowledgeGraphConfig?: Schema$GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfig;
     /**
+     * Optional. The visibility of marketplace agents in the agent gallery.
+     */
+    marketplaceAgentVisibility?: string | null;
+    /**
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig;
@@ -14021,6 +14295,10 @@ export namespace discoveryengine_v1beta {
      * Optional. Observability config for the engine.
      */
     observabilityConfig?: Schema$GoogleCloudDiscoveryengineV1ObservabilityConfig;
+    /**
+     * Optional. The email of the procurement contact.
+     */
+    procurementContactEmail?: string | null;
     /**
      * Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH.
      */
@@ -14462,6 +14740,14 @@ export namespace discoveryengine_v1beta {
      */
     autoRenew?: boolean | null;
     /**
+     * Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.
+     */
+    earlyTerminated?: boolean | null;
+    /**
+     * Output only. The date when the subscription is terminated earlier than the expiration date.
+     */
+    earlyTerminationDate?: Schema$GoogleTypeDate;
+    /**
      * Optional. The planed end date.
      */
     endDate?: Schema$GoogleTypeDate;
@@ -14594,6 +14880,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfig {
     /**
+     * Optional. Specifies the data protection policy for NotebookLM.
+     */
+    dataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy;
+    /**
      * Model Armor configuration to be used for sanitizing user prompts and LLM responses.
      */
     modelArmorConfig?: Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig;
@@ -14605,6 +14895,24 @@ export namespace discoveryengine_v1beta {
      * Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.
      */
     optOutNotebookSharing?: boolean | null;
+  }
+  /**
+   * Data protection policy config for NotebookLM.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy {
+    /**
+     * Optional. The sensitive data protection policy.
+     */
+    sensitiveDataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy;
+  }
+  /**
+   * Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy {
+    /**
+     * Optional. The Sensitive Data Protection policy resource name.
+     */
+    policy?: string | null;
   }
   /**
    * Configuration for customer defined Model Armor templates to be used for sanitizing user prompts and LLM responses.
@@ -15326,6 +15634,49 @@ export namespace discoveryengine_v1beta {
     type?: string | null;
   }
   /**
+   * Associates `members`, or principals, with a `role`.
+   */
+  export interface Schema$GoogleIamV1Binding {
+    /**
+     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    condition?: Schema$GoogleTypeExpr;
+    /**
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/group/{group_id\}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/x`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/group/{group_id\}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/x`: All identities in a workload identity pool. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`.
+     */
+    members?: string[] | null;
+    /**
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
+     */
+    role?: string | null;
+  }
+  /**
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   */
+  export interface Schema$GoogleIamV1Policy {
+    /**
+     * Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`.
+     */
+    bindings?: Schema$GoogleIamV1Binding[];
+    /**
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
+     */
+    etag?: string | null;
+    /**
+     * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    version?: number | null;
+  }
+  /**
+   * Request message for `SetIamPolicy` method.
+   */
+  export interface Schema$GoogleIamV1SetIamPolicyRequest {
+    /**
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
+     */
+    policy?: Schema$GoogleIamV1Policy;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$GoogleLongrunningCancelOperationRequest {}
@@ -15537,6 +15888,27 @@ export namespace discoveryengine_v1beta {
      * Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a datetime without a year.
      */
     year?: number | null;
+  }
+  /**
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   */
+  export interface Schema$GoogleTypeExpr {
+    /**
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string | null;
+    /**
+     * Textual representation of an expression in Common Expression Language syntax.
+     */
+    expression?: string | null;
+    /**
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     */
+    location?: string | null;
+    /**
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     */
+    title?: string | null;
   }
   /**
    * Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones).
@@ -27436,6 +27808,7 @@ export namespace discoveryengine_v1beta {
      *           //   "imageQuery": {},
      *           //   "languageCode": "my_languageCode",
      *           //   "naturalLanguageQueryUnderstandingSpec": {},
+     *           //   "numResultsPerDataStore": 0,
      *           //   "offset": 0,
      *           //   "oneBoxPageSize": 0,
      *           //   "orderBy": "my_orderBy",
@@ -27656,6 +28029,7 @@ export namespace discoveryengine_v1beta {
      *           //   "imageQuery": {},
      *           //   "languageCode": "my_languageCode",
      *           //   "naturalLanguageQueryUnderstandingSpec": {},
+     *           //   "numResultsPerDataStore": 0,
      *           //   "offset": 0,
      *           //   "oneBoxPageSize": 0,
      *           //   "orderBy": "my_orderBy",
@@ -28641,7 +29015,7 @@ export namespace discoveryengine_v1beta {
      *   const res =
      *     await discoveryengine.projects.locations.collections.dataStores.sessions.list(
      *       {
-     *         // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
+     *         // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"` * `collaborative_project = "projects/123/locations/global/collections/default_collection/engines/" "default_engine/collaborative_projects/cp1"`
      *         filter: 'placeholder-value',
      *         // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *         orderBy: 'placeholder-value',
@@ -28979,7 +29353,7 @@ export namespace discoveryengine_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$List extends StandardParameters {
     /**
-     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"` * `collaborative_project = "projects/123/locations/global/collections/default_collection/engines/" "default_engine/collaborative_projects/cp1"`
      */
     filter?: string;
     /**
@@ -33484,7 +33858,7 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
-     * Creates a Engine.
+     * Creates an Engine.
      * @example
      * ```js
      * // Before running the sample:
@@ -33534,6 +33908,7 @@ export namespace discoveryengine_v1beta {
      *         //   "cmekConfig": {},
      *         //   "commonConfig": {},
      *         //   "configurableBillingApproach": "my_configurableBillingApproach",
+     *         //   "connectorTenantInfo": {},
      *         //   "createTime": "my_createTime",
      *         //   "dataStoreIds": [],
      *         //   "disableAnalytics": false,
@@ -33541,10 +33916,12 @@ export namespace discoveryengine_v1beta {
      *         //   "features": {},
      *         //   "industryVertical": "my_industryVertical",
      *         //   "knowledgeGraphConfig": {},
+     *         //   "marketplaceAgentVisibility": "my_marketplaceAgentVisibility",
      *         //   "mediaRecommendationEngineConfig": {},
      *         //   "modelConfigs": {},
      *         //   "name": "my_name",
      *         //   "observabilityConfig": {},
+     *         //   "procurementContactEmail": "my_procurementContactEmail",
      *         //   "searchEngineConfig": {},
      *         //   "solutionType": "my_solutionType",
      *         //   "updateTime": "my_updateTime"
@@ -33665,7 +34042,7 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
-     * Deletes a Engine.
+     * Deletes an Engine.
      * @example
      * ```js
      * // Before running the sample:
@@ -33813,7 +34190,7 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
-     * Gets a Engine.
+     * Gets an Engine.
      * @example
      * ```js
      * // Before running the sample:
@@ -33859,6 +34236,7 @@ export namespace discoveryengine_v1beta {
      *   //   "cmekConfig": {},
      *   //   "commonConfig": {},
      *   //   "configurableBillingApproach": "my_configurableBillingApproach",
+     *   //   "connectorTenantInfo": {},
      *   //   "createTime": "my_createTime",
      *   //   "dataStoreIds": [],
      *   //   "disableAnalytics": false,
@@ -33866,10 +34244,12 @@ export namespace discoveryengine_v1beta {
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
      *   //   "knowledgeGraphConfig": {},
+     *   //   "marketplaceAgentVisibility": "my_marketplaceAgentVisibility",
      *   //   "mediaRecommendationEngineConfig": {},
      *   //   "modelConfigs": {},
      *   //   "name": "my_name",
      *   //   "observabilityConfig": {},
+     *   //   "procurementContactEmail": "my_procurementContactEmail",
      *   //   "searchEngineConfig": {},
      *   //   "solutionType": "my_solutionType",
      *   //   "updateTime": "my_updateTime"
@@ -33977,6 +34357,156 @@ export namespace discoveryengine_v1beta {
         return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaEngine>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Gets the IAM access control policy for an Engine. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.getIamPolicy({
+     *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Getiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Getiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Getiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Getiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
       }
     }
 
@@ -34192,6 +34722,7 @@ export namespace discoveryengine_v1beta {
      *         //   "cmekConfig": {},
      *         //   "commonConfig": {},
      *         //   "configurableBillingApproach": "my_configurableBillingApproach",
+     *         //   "connectorTenantInfo": {},
      *         //   "createTime": "my_createTime",
      *         //   "dataStoreIds": [],
      *         //   "disableAnalytics": false,
@@ -34199,10 +34730,12 @@ export namespace discoveryengine_v1beta {
      *         //   "features": {},
      *         //   "industryVertical": "my_industryVertical",
      *         //   "knowledgeGraphConfig": {},
+     *         //   "marketplaceAgentVisibility": "my_marketplaceAgentVisibility",
      *         //   "mediaRecommendationEngineConfig": {},
      *         //   "modelConfigs": {},
      *         //   "name": "my_name",
      *         //   "observabilityConfig": {},
+     *         //   "procurementContactEmail": "my_procurementContactEmail",
      *         //   "searchEngineConfig": {},
      *         //   "solutionType": "my_solutionType",
      *         //   "updateTime": "my_updateTime"
@@ -34219,6 +34752,7 @@ export namespace discoveryengine_v1beta {
      *   //   "cmekConfig": {},
      *   //   "commonConfig": {},
      *   //   "configurableBillingApproach": "my_configurableBillingApproach",
+     *   //   "connectorTenantInfo": {},
      *   //   "createTime": "my_createTime",
      *   //   "dataStoreIds": [],
      *   //   "disableAnalytics": false,
@@ -34226,10 +34760,12 @@ export namespace discoveryengine_v1beta {
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
      *   //   "knowledgeGraphConfig": {},
+     *   //   "marketplaceAgentVisibility": "my_marketplaceAgentVisibility",
      *   //   "mediaRecommendationEngineConfig": {},
      *   //   "modelConfigs": {},
      *   //   "name": "my_name",
      *   //   "observabilityConfig": {},
+     *   //   "procurementContactEmail": "my_procurementContactEmail",
      *   //   "searchEngineConfig": {},
      *   //   "solutionType": "my_solutionType",
      *   //   "updateTime": "my_updateTime"
@@ -34341,7 +34877,7 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
-     * Pauses the training of an existing engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
+     * Pauses the training of an existing Engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
      * @example
      * ```js
      * // Before running the sample:
@@ -34394,6 +34930,7 @@ export namespace discoveryengine_v1beta {
      *   //   "cmekConfig": {},
      *   //   "commonConfig": {},
      *   //   "configurableBillingApproach": "my_configurableBillingApproach",
+     *   //   "connectorTenantInfo": {},
      *   //   "createTime": "my_createTime",
      *   //   "dataStoreIds": [],
      *   //   "disableAnalytics": false,
@@ -34401,10 +34938,12 @@ export namespace discoveryengine_v1beta {
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
      *   //   "knowledgeGraphConfig": {},
+     *   //   "marketplaceAgentVisibility": "my_marketplaceAgentVisibility",
      *   //   "mediaRecommendationEngineConfig": {},
      *   //   "modelConfigs": {},
      *   //   "name": "my_name",
      *   //   "observabilityConfig": {},
+     *   //   "procurementContactEmail": "my_procurementContactEmail",
      *   //   "searchEngineConfig": {},
      *   //   "solutionType": "my_solutionType",
      *   //   "updateTime": "my_updateTime"
@@ -34519,7 +35058,7 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
-     * Resumes the training of an existing engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
+     * Resumes the training of an existing Engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
      * @example
      * ```js
      * // Before running the sample:
@@ -34572,6 +35111,7 @@ export namespace discoveryengine_v1beta {
      *   //   "cmekConfig": {},
      *   //   "commonConfig": {},
      *   //   "configurableBillingApproach": "my_configurableBillingApproach",
+     *   //   "connectorTenantInfo": {},
      *   //   "createTime": "my_createTime",
      *   //   "dataStoreIds": [],
      *   //   "disableAnalytics": false,
@@ -34579,10 +35119,12 @@ export namespace discoveryengine_v1beta {
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
      *   //   "knowledgeGraphConfig": {},
+     *   //   "marketplaceAgentVisibility": "my_marketplaceAgentVisibility",
      *   //   "mediaRecommendationEngineConfig": {},
      *   //   "modelConfigs": {},
      *   //   "name": "my_name",
      *   //   "observabilityConfig": {},
+     *   //   "procurementContactEmail": "my_procurementContactEmail",
      *   //   "searchEngineConfig": {},
      *   //   "solutionType": "my_solutionType",
      *   //   "updateTime": "my_updateTime"
@@ -34697,7 +35239,163 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
-     * Tunes an existing engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
+     * Sets the IAM access control policy for an Engine. A `NOT_FOUND` error is returned if the resource does not exist. **Important:** When setting a policy directly on an Engine resource, the only recommended roles in the bindings are: `roles/discoveryengine.user` and `roles/discoveryengine.agentspaceUser`. Attempting to grant any other role will result in a warning in logging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.setIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Setiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Setiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Setiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Setiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Tunes an existing Engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
      * @example
      * ```js
      * // Before running the sample:
@@ -34882,6 +35580,16 @@ export namespace discoveryengine_v1beta {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Getiampolicy extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
   export interface Params$Resource$Projects$Locations$Collections$Engines$List extends StandardParameters {
     /**
      * Optional. Filter by solution type. For example: solution_type=SOLUTION_TYPE_SEARCH
@@ -34936,6 +35644,17 @@ export namespace discoveryengine_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaResumeEngineRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Setiampolicy extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Collections$Engines$Tune extends StandardParameters {
     /**
@@ -40177,6 +40896,7 @@ export namespace discoveryengine_v1beta {
      *           //   "imageQuery": {},
      *           //   "languageCode": "my_languageCode",
      *           //   "naturalLanguageQueryUnderstandingSpec": {},
+     *           //   "numResultsPerDataStore": 0,
      *           //   "offset": 0,
      *           //   "oneBoxPageSize": 0,
      *           //   "orderBy": "my_orderBy",
@@ -40397,6 +41117,7 @@ export namespace discoveryengine_v1beta {
      *           //   "imageQuery": {},
      *           //   "languageCode": "my_languageCode",
      *           //   "naturalLanguageQueryUnderstandingSpec": {},
+     *           //   "numResultsPerDataStore": 0,
      *           //   "offset": 0,
      *           //   "oneBoxPageSize": 0,
      *           //   "orderBy": "my_orderBy",
@@ -41379,7 +42100,7 @@ export namespace discoveryengine_v1beta {
      *   // Do the magic
      *   const res =
      *     await discoveryengine.projects.locations.collections.engines.sessions.list({
-     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
+     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"` * `collaborative_project = "projects/123/locations/global/collections/default_collection/engines/" "default_engine/collaborative_projects/cp1"`
      *       filter: 'placeholder-value',
      *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
@@ -41716,7 +42437,7 @@ export namespace discoveryengine_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$List extends StandardParameters {
     /**
-     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"` * `collaborative_project = "projects/123/locations/global/collections/default_collection/engines/" "default_engine/collaborative_projects/cp1"`
      */
     filter?: string;
     /**
@@ -50917,6 +51638,7 @@ export namespace discoveryengine_v1beta {
      *         //   "imageQuery": {},
      *         //   "languageCode": "my_languageCode",
      *         //   "naturalLanguageQueryUnderstandingSpec": {},
+     *         //   "numResultsPerDataStore": 0,
      *         //   "offset": 0,
      *         //   "oneBoxPageSize": 0,
      *         //   "orderBy": "my_orderBy",
@@ -51136,6 +51858,7 @@ export namespace discoveryengine_v1beta {
      *           //   "imageQuery": {},
      *           //   "languageCode": "my_languageCode",
      *           //   "naturalLanguageQueryUnderstandingSpec": {},
+     *           //   "numResultsPerDataStore": 0,
      *           //   "offset": 0,
      *           //   "oneBoxPageSize": 0,
      *           //   "orderBy": "my_orderBy",
@@ -52113,7 +52836,7 @@ export namespace discoveryengine_v1beta {
      *   // Do the magic
      *   const res = await discoveryengine.projects.locations.dataStores.sessions.list(
      *     {
-     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
+     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"` * `collaborative_project = "projects/123/locations/global/collections/default_collection/engines/" "default_engine/collaborative_projects/cp1"`
      *       filter: 'placeholder-value',
      *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
@@ -52449,7 +53172,7 @@ export namespace discoveryengine_v1beta {
   }
   export interface Params$Resource$Projects$Locations$Datastores$Sessions$List extends StandardParameters {
     /**
-     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"` * `collaborative_project = "projects/123/locations/global/collections/default_collection/engines/" "default_engine/collaborative_projects/cp1"`
      */
     filter?: string;
     /**
@@ -58450,7 +59173,7 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
-     * Creates a LicenseConfig
+     * Creates a LicenseConfig This method should only be used for creating NotebookLm licenses or Gemini Enterprise free trial licenses.
      * @example
      * ```js
      * // Before running the sample:
@@ -58493,6 +59216,8 @@ export namespace discoveryengine_v1beta {
      *       // request body parameters
      *       // {
      *       //   "autoRenew": false,
+     *       //   "earlyTerminated": false,
+     *       //   "earlyTerminationDate": {},
      *       //   "endDate": {},
      *       //   "freeTrial": false,
      *       //   "geminiBundle": false,
@@ -58510,6 +59235,8 @@ export namespace discoveryengine_v1beta {
      *   // Example response
      *   // {
      *   //   "autoRenew": false,
+     *   //   "earlyTerminated": false,
+     *   //   "earlyTerminationDate": {},
      *   //   "endDate": {},
      *   //   "freeTrial": false,
      *   //   "geminiBundle": false,
@@ -58670,6 +59397,8 @@ export namespace discoveryengine_v1beta {
      *   // Example response
      *   // {
      *   //   "autoRenew": false,
+     *   //   "earlyTerminated": false,
+     *   //   "earlyTerminationDate": {},
      *   //   "endDate": {},
      *   //   "freeTrial": false,
      *   //   "geminiBundle": false,
@@ -58829,6 +59558,8 @@ export namespace discoveryengine_v1beta {
      *       // request body parameters
      *       // {
      *       //   "autoRenew": false,
+     *       //   "earlyTerminated": false,
+     *       //   "earlyTerminationDate": {},
      *       //   "endDate": {},
      *       //   "freeTrial": false,
      *       //   "geminiBundle": false,
@@ -58846,6 +59577,8 @@ export namespace discoveryengine_v1beta {
      *   // Example response
      *   // {
      *   //   "autoRenew": false,
+     *   //   "earlyTerminated": false,
+     *   //   "earlyTerminationDate": {},
      *   //   "endDate": {},
      *   //   "freeTrial": false,
      *   //   "geminiBundle": false,

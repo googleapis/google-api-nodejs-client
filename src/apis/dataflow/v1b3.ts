@@ -1216,6 +1216,10 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$GetWorkerStacktracesRequest {
     /**
+     * The end time for the stacktrace query. The returned stacktraces will be a recent stack trace at or shortly before this time.
+     */
+    endTime?: string | null;
+    /**
      * The worker for which to get stacktraces. The returned stacktraces will be for the SDK harness running on this worker.
      */
     workerId?: string | null;
@@ -1436,6 +1440,10 @@ export namespace dataflow_v1b3 {
      * Optional. The user-specified Dataflow job name. Only one active job with a given name can exist in a project within one region at any given time. Jobs in different regions can have the same name. If a caller attempts to create a job with the same name as an active job that already exists, the attempt returns the existing job. The name must match the regular expression `[a-z]([-a-z0-9]{0,1022\}[a-z0-9])?`
      */
     name?: string | null;
+    /**
+     * Output only. Indicates whether the job can be paused.
+     */
+    pausable?: boolean | null;
     /**
      * Preliminary field: The format of this data may change at any time. A description of the user pipeline and stages through which it is executed. Created by Cloud Dataflow service. Only retrieved with JOB_VIEW_DESCRIPTION or JOB_VIEW_ALL.
      */
@@ -2610,9 +2618,13 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$RuntimeUpdatableParams {
     /**
-     * Optional. The backlog threshold duration in seconds for autoscaling. Value must be non-negative.
+     * Optional. Deprecated: Use `autoscaling_tier` instead. The backlog threshold duration in seconds for autoscaling. Value must be non-negative.
      */
     acceptableBacklogDuration?: string | null;
+    /**
+     * Optional. The backlog threshold tier for autoscaling. Value must be one of "low-latency", "medium-latency", or "high-latency".
+     */
+    autoscalingTier?: string | null;
     /**
      * The maximum number of workers to cap autoscaling at. This field is currently only supported for Streaming Engine jobs.
      */
@@ -3984,6 +3996,14 @@ export namespace dataflow_v1b3 {
      */
     defaultPackageSet?: string | null;
     /**
+     * Optional. IOPS provisioned for the root disk for VMs.
+     */
+    diskProvisionedIops?: string | null;
+    /**
+     * Optional. Throughput provisioned for the root disk for VMs.
+     */
+    diskProvisionedThroughputMibps?: string | null;
+    /**
      * Size of root disk for VMs, in GB. If zero or unspecified, the service will attempt to choose a reasonable default.
      */
     diskSizeGb?: number | null;
@@ -4905,6 +4925,7 @@ export namespace dataflow_v1b3 {
      *       //   "labels": {},
      *       //   "location": "my_location",
      *       //   "name": "my_name",
+     *       //   "pausable": false,
      *       //   "pipelineDescription": {},
      *       //   "projectId": "my_projectId",
      *       //   "replaceJobId": "my_replaceJobId",
@@ -4940,6 +4961,7 @@ export namespace dataflow_v1b3 {
      *   //   "labels": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
+     *   //   "pausable": false,
      *   //   "pipelineDescription": {},
      *   //   "projectId": "my_projectId",
      *   //   "replaceJobId": "my_replaceJobId",
@@ -5113,6 +5135,7 @@ export namespace dataflow_v1b3 {
      *   //   "labels": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
+     *   //   "pausable": false,
      *   //   "pipelineDescription": {},
      *   //   "projectId": "my_projectId",
      *   //   "replaceJobId": "my_replaceJobId",
@@ -5747,6 +5770,7 @@ export namespace dataflow_v1b3 {
      *       //   "labels": {},
      *       //   "location": "my_location",
      *       //   "name": "my_name",
+     *       //   "pausable": false,
      *       //   "pipelineDescription": {},
      *       //   "projectId": "my_projectId",
      *       //   "replaceJobId": "my_replaceJobId",
@@ -5782,6 +5806,7 @@ export namespace dataflow_v1b3 {
      *   //   "labels": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
+     *   //   "pausable": false,
      *   //   "pipelineDescription": {},
      *   //   "projectId": "my_projectId",
      *   //   "replaceJobId": "my_replaceJobId",
@@ -7411,6 +7436,7 @@ export namespace dataflow_v1b3 {
      *       //   "labels": {},
      *       //   "location": "my_location",
      *       //   "name": "my_name",
+     *       //   "pausable": false,
      *       //   "pipelineDescription": {},
      *       //   "projectId": "my_projectId",
      *       //   "replaceJobId": "my_replaceJobId",
@@ -7446,6 +7472,7 @@ export namespace dataflow_v1b3 {
      *   //   "labels": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
+     *   //   "pausable": false,
      *   //   "pipelineDescription": {},
      *   //   "projectId": "my_projectId",
      *   //   "replaceJobId": "my_replaceJobId",
@@ -7618,6 +7645,7 @@ export namespace dataflow_v1b3 {
      *   //   "labels": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
+     *   //   "pausable": false,
      *   //   "pipelineDescription": {},
      *   //   "projectId": "my_projectId",
      *   //   "replaceJobId": "my_replaceJobId",
@@ -8407,6 +8435,7 @@ export namespace dataflow_v1b3 {
      *       //   "labels": {},
      *       //   "location": "my_location",
      *       //   "name": "my_name",
+     *       //   "pausable": false,
      *       //   "pipelineDescription": {},
      *       //   "projectId": "my_projectId",
      *       //   "replaceJobId": "my_replaceJobId",
@@ -8442,6 +8471,7 @@ export namespace dataflow_v1b3 {
      *   //   "labels": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
+     *   //   "pausable": false,
      *   //   "pipelineDescription": {},
      *   //   "projectId": "my_projectId",
      *   //   "replaceJobId": "my_replaceJobId",
@@ -8921,6 +8951,7 @@ export namespace dataflow_v1b3 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "endTime": "my_endTime",
      *         //   "workerId": "my_workerId"
      *         // }
      *       },
@@ -10765,6 +10796,7 @@ export namespace dataflow_v1b3 {
      *   //   "labels": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
+     *   //   "pausable": false,
      *   //   "pipelineDescription": {},
      *   //   "projectId": "my_projectId",
      *   //   "replaceJobId": "my_replaceJobId",
@@ -11663,6 +11695,7 @@ export namespace dataflow_v1b3 {
      *   //   "labels": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
+     *   //   "pausable": false,
      *   //   "pipelineDescription": {},
      *   //   "projectId": "my_projectId",
      *   //   "replaceJobId": "my_replaceJobId",

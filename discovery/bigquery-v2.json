@@ -2390,7 +2390,7 @@
       }
     }
   },
-  "revision": "20260118",
+  "revision": "20260211",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -3608,7 +3608,7 @@
       "type": "object"
     },
     "DataPolicyOption": {
-      "description": "Data policy option. For more information, see [Mask data by applying data policies to a column](https://cloud.google.com/bigquery/docs/column-data-masking#data-policies-on-column/).",
+      "description": "Data policy option. For more information, see [Mask data by applying data policies to a column](https://docs.cloud.google.com/bigquery/docs/column-data-masking#data-policies-on-column).",
       "id": "DataPolicyOption",
       "properties": {
         "name": {
@@ -5202,6 +5202,29 @@
             "Incremental results are/were disabled for reasons not covered by the other enum values, e.g. runtime issues.",
             "Query includes an operation that is not supported."
           ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "disabledReasonDetails": {
+          "description": "Output only. Additional human-readable clarification, if available, for DisabledReason.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "firstIncrementalRowTime": {
+          "description": "Output only. The time at which the first incremental result was written. If the query needed to restart internally, this only describes the final attempt.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "incrementalRowCount": {
+          "description": "Output only. Number of rows that were in the latest result set before query completion.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastIncrementalRowTime": {
+          "description": "Output only. The time at which the last incremental result was written. Does not include the final result written after query completion.",
+          "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },

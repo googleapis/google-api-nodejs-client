@@ -102,7 +102,7 @@ export namespace hypercomputecluster_v1 {
   /**
    * Cluster Director API
    *
-   *
+   * The Cluster Director API allows you to deploy, manage, and monitor clusters that run AI, ML, or HPC workloads.
    *
    * @example
    * ```js
@@ -723,7 +723,7 @@ export namespace hypercomputecluster_v1 {
      */
     machineType?: string | null;
     /**
-     * Optional. Specifies the termination action of the instance
+     * Optional. Termination action for the instance. If not specified, Compute Engine sets the termination action to DELETE.
      */
     terminationAction?: string | null;
     /**
@@ -790,7 +790,7 @@ export namespace hypercomputecluster_v1 {
     verb?: string | null;
   }
   /**
-   * Message describing the progress of a cluster mutation long-running operation. operation.
+   * Message describing the progress of a cluster mutation long-running operation.
    */
   export interface Schema$OperationProgress {
     /**
@@ -958,7 +958,7 @@ export namespace hypercomputecluster_v1 {
    */
   export interface Schema$SlurmNodeSet {
     /**
-     * Optional. ID of the compute resource on which this nodeset will run. Must match a key in the cluster's [compute_resources](Cluster.compute_resources).
+     * Optional. ID of the compute resource on which this nodeset will run. Must match a key in the cluster's compute_resources.
      */
     computeId?: string | null;
     /**
@@ -999,11 +999,11 @@ export namespace hypercomputecluster_v1 {
      */
     loginNodes?: Schema$SlurmLoginNodes;
     /**
-     * Required. Configuration of Slurm nodesets, which define groups of compute resources that can be used by Slurm. At least one compute node is required.
+     * Optional. Compute resource configuration for the Slurm nodesets in your cluster. If not specified, the cluster won't create any nodes.
      */
     nodeSets?: Schema$SlurmNodeSet[];
     /**
-     * Required. Configuration of Slurm partitions, which group one or more nodesets. Acts as a queue against which jobs can be submitted. At least one partition is required.
+     * Optional. Configuration for the Slurm partitions in your cluster. Each partition can contain one or more nodesets, and you can submit separate jobs on each partition. If you don't specify at least one partition in your cluster, you can't submit jobs to the cluster.
      */
     partitions?: Schema$SlurmPartition[];
     /**
@@ -1046,7 +1046,7 @@ export namespace hypercomputecluster_v1 {
    */
   export interface Schema$StorageConfig {
     /**
-     * Required. ID of the storage resource to mount, which must match a key in the cluster's [storage_resources](Cluster.storage_resources).
+     * Required. ID of the storage resource to mount, which must match a key in the cluster's storage_resources.
      */
     id?: string | null;
     /**
@@ -1292,7 +1292,7 @@ export namespace hypercomputecluster_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:

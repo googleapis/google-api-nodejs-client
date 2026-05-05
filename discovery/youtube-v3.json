@@ -4172,7 +4172,7 @@
       }
     }
   },
-  "revision": "20260112",
+  "revision": "20260205",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -8802,6 +8802,48 @@
       },
       "type": "object"
     },
+    "LiveChatGiftDetails": {
+      "description": "Details about the gift event, this is only set if the type is 'giftEvent'.",
+      "id": "LiveChatGiftDetails",
+      "properties": {
+        "altText": {
+          "description": "The alternative text to be used for accessibility.",
+          "type": "string"
+        },
+        "comboCount": {
+          "description": "The number of times the gift has been sent in a row.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "giftDuration": {
+          "description": "The duration of the gift.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "giftName": {
+          "description": "The name of the gift.",
+          "type": "string"
+        },
+        "giftUrl": {
+          "description": "The URL of the gift image.",
+          "type": "string"
+        },
+        "hasVisualEffect": {
+          "description": "Whether the gift involves a visual effect.",
+          "type": "boolean"
+        },
+        "jewelsCount": {
+          "description": "The cost of the gift in jewels.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "language": {
+          "description": "The BCP-47 language code of the gift.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "LiveChatGiftMembershipReceivedDetails": {
       "id": "LiveChatGiftMembershipReceivedDetails",
       "properties": {
@@ -8995,7 +9037,7 @@
       "type": "object"
     },
     "LiveChatMessageSnippet": {
-      "description": "Next ID: 34",
+      "description": "Next ID: 35",
       "id": "LiveChatMessageSnippet",
       "properties": {
         "authorChannelId": {
@@ -9010,6 +9052,10 @@
           "$ref": "LiveChatFanFundingEventDetails",
           "deprecated": true,
           "description": "Details about the funding event, this is only set if the type is 'fanFundingEvent'."
+        },
+        "giftDetails": {
+          "$ref": "LiveChatGiftDetails",
+          "description": "Details about the gift event, this is only set if the type is 'giftEvent'."
         },
         "giftMembershipReceivedDetails": {
           "$ref": "LiveChatGiftMembershipReceivedDetails",
@@ -9080,7 +9126,8 @@
             "userBannedEvent",
             "superChatEvent",
             "superStickerEvent",
-            "pollEvent"
+            "pollEvent",
+            "giftEvent"
           ],
           "enumDescriptions": [
             "",
@@ -9099,7 +9146,8 @@
             "",
             "",
             "",
-            ""
+            "",
+            "A virtual gift sent by a viewer to support a creator."
           ],
           "type": "string"
         },

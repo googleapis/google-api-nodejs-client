@@ -1809,6 +1809,118 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
+              },
+              "resources": {
+                "ontap": {
+                  "methods": {
+                    "executeOntapDelete": {
+                      "description": "`ExecuteOntapDelete` dispatches the ONTAP `DELETE` request to the `StoragePool` cluster.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/storagePools/{storagePoolsId}/ontap/{ontapId}",
+                      "httpMethod": "DELETE",
+                      "id": "netapp.projects.locations.storagePools.ontap.executeOntapDelete",
+                      "parameterOrder": [
+                        "ontapPath"
+                      ],
+                      "parameters": {
+                        "ontapPath": {
+                          "description": "Required. The resource path of the ONTAP resource. Format: `projects/{project_number}/locations/{location_id}/storagePools/{storage_pool_id}/ontap/{ontap_resource_path}`. For example: `projects/123456789/locations/us-central1/storagePools/my-storage-pool/ontap/api/storage/volumes`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/storagePools/[^/]+/ontap/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+ontapPath}",
+                      "response": {
+                        "$ref": "ExecuteOntapDeleteResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "executeOntapGet": {
+                      "description": "`ExecuteOntapGet` dispatches the ONTAP `GET` request to the `StoragePool` cluster.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/storagePools/{storagePoolsId}/ontap/{ontapId}",
+                      "httpMethod": "GET",
+                      "id": "netapp.projects.locations.storagePools.ontap.executeOntapGet",
+                      "parameterOrder": [
+                        "ontapPath"
+                      ],
+                      "parameters": {
+                        "ontapPath": {
+                          "description": "Required. The resource path of the ONTAP resource. Format: `projects/{project_number}/locations/{location_id}/storagePools/{storage_pool_id}/ontap/{ontap_resource_path}`. For example: `projects/123456789/locations/us-central1/storagePools/my-storage-pool/ontap/api/storage/volumes`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/storagePools/[^/]+/ontap/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+ontapPath}",
+                      "response": {
+                        "$ref": "ExecuteOntapGetResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "executeOntapPatch": {
+                      "description": "`ExecuteOntapPatch` dispatches the ONTAP `PATCH` request to the `StoragePool` cluster.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/storagePools/{storagePoolsId}/ontap/{ontapId}",
+                      "httpMethod": "PATCH",
+                      "id": "netapp.projects.locations.storagePools.ontap.executeOntapPatch",
+                      "parameterOrder": [
+                        "ontapPath"
+                      ],
+                      "parameters": {
+                        "ontapPath": {
+                          "description": "Required. The resource path of the ONTAP resource. Format: `projects/{project_number}/locations/{location_id}/storagePools/{storage_pool_id}/ontap/{ontap_resource_path}`. For example: `projects/123456789/locations/us-central1/storagePools/my-storage-pool/ontap/api/storage/volumes`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/storagePools/[^/]+/ontap/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+ontapPath}",
+                      "request": {
+                        "$ref": "ExecuteOntapPatchRequest"
+                      },
+                      "response": {
+                        "$ref": "ExecuteOntapPatchResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "executeOntapPost": {
+                      "description": "`ExecuteOntapPost` dispatches the ONTAP `POST` request to the `StoragePool` cluster.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/storagePools/{storagePoolsId}/ontap/{ontapId}",
+                      "httpMethod": "POST",
+                      "id": "netapp.projects.locations.storagePools.ontap.executeOntapPost",
+                      "parameterOrder": [
+                        "ontapPath"
+                      ],
+                      "parameters": {
+                        "ontapPath": {
+                          "description": "Required. The resource path of the ONTAP resource. Format: `projects/{project_number}/locations/{location_id}/storagePools/{storage_pool_id}/ontap/{ontap_resource_path}`. For example: `projects/123456789/locations/us-central1/storagePools/my-storage-pool/ontap/api/storage/volumes`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/storagePools/[^/]+/ontap/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+ontapPath}",
+                      "request": {
+                        "$ref": "ExecuteOntapPostRequest"
+                      },
+                      "response": {
+                        "$ref": "ExecuteOntapPostResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
               }
             },
             "volumes": {
@@ -2715,7 +2827,7 @@
       }
     }
   },
-  "revision": "20260125",
+  "revision": "20260218",
   "rootUrl": "https://netapp.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
@@ -3391,6 +3503,29 @@
       "properties": {},
       "type": "object"
     },
+    "CloneDetails": {
+      "description": "Details about a clone volume.",
+      "id": "CloneDetails",
+      "properties": {
+        "sharedSpaceGib": {
+          "description": "Output only. Shared space in GiB. Determined at volume creation time based on size of source snapshot.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceSnapshot": {
+          "description": "Output only. Specifies the full resource name of the source snapshot from which this volume was cloned. Format: projects/{project}/locations/{location}/volumes/{volume}/snapshots/{snapshot}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceVolume": {
+          "description": "Output only. Full name of the source volume resource. Format: projects/{project}/locations/{location}/volumes/{volume}",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DailySchedule": {
       "description": "Make a snapshot every day e.g. at 04:00, 05:20, 23:50",
       "id": "DailySchedule",
@@ -3494,6 +3629,96 @@
         "peerVolumeName": {
           "description": "Required. Name of the user's local source volume to be peered with the destination volume.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExecuteOntapDeleteResponse": {
+      "description": "Response message for `ExecuteOntapDelete` API.",
+      "id": "ExecuteOntapDeleteResponse",
+      "properties": {
+        "body": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The raw `JSON` body of the response.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ExecuteOntapGetResponse": {
+      "description": "Response message for `ExecuteOntapGet` API.",
+      "id": "ExecuteOntapGetResponse",
+      "properties": {
+        "body": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The raw `JSON` body of the response.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ExecuteOntapPatchRequest": {
+      "description": "Request message for `ExecuteOntapPatch` API.",
+      "id": "ExecuteOntapPatchRequest",
+      "properties": {
+        "body": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Required. The raw `JSON` body of the request. The body should be in the format of the ONTAP resource. For example: ``` { \"body\": { \"field1\": \"value1\", \"field2\": \"value2\", } } ```",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ExecuteOntapPatchResponse": {
+      "description": "Response message for `ExecuteOntapPatch` API.",
+      "id": "ExecuteOntapPatchResponse",
+      "properties": {
+        "body": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The raw `JSON` body of the response.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ExecuteOntapPostRequest": {
+      "description": "Request message for `ExecuteOntapPost` API.",
+      "id": "ExecuteOntapPostRequest",
+      "properties": {
+        "body": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Required. The raw `JSON` body of the request. The body should be in the format of the ONTAP resource. For example: ``` { \"body\": { \"field1\": \"value1\", \"field2\": \"value2\", } } ```",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ExecuteOntapPostResponse": {
+      "description": "Response message for `ExecuteOntapPost` API.",
+      "id": "ExecuteOntapPostResponse",
+      "properties": {
+        "body": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The raw `JSON` body of the response.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -3822,6 +4047,18 @@
           "description": "Output only. State details of the KmsConfig.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LargeCapacityConfig": {
+      "description": "Configuration for a Large Capacity Volume. A Large Capacity Volume supports sizes ranging from 12 TiB to 20 PiB, it is composed of multiple internal constituents, and must be created in a large capacity pool.",
+      "id": "LargeCapacityConfig",
+      "properties": {
+        "constituentCount": {
+          "description": "Optional. The number of internal constituents (e.g., FlexVols) for this large volume. The minimum number of constituents is 2.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -5004,6 +5241,20 @@
           "description": "Optional. Flag indicating if the pool is NFS LDAP enabled or not.",
           "type": "boolean"
         },
+        "mode": {
+          "description": "Optional. Mode of the storage pool. This field is used to control whether the user can perform the ONTAP operations on the storage pool using the GCNV ONTAP Mode APIs. If not specified during creation, it defaults to `DEFAULT`.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DEFAULT",
+            "ONTAP"
+          ],
+          "enumDescriptions": [
+            "The `StoragePool` `Mode` is not specified.",
+            "The `StoragePool` and its resources are managed by the GCNV APIs.",
+            "The `StoragePool` and its resources are managed by the GCNV ONTAP Mode APIs."
+          ],
+          "type": "string"
+        },
         "name": {
           "description": "Identifier. Name of the storage pool",
           "type": "string"
@@ -5043,6 +5294,20 @@
           "description": "Output only. Reserved for future use",
           "readOnly": true,
           "type": "boolean"
+        },
+        "scaleTier": {
+          "description": "Optional. The effective scale tier of the storage pool. If `scale_tier` is not specified during creation, this defaults to `SCALE_TIER_STANDARD`.",
+          "enum": [
+            "SCALE_TIER_UNSPECIFIED",
+            "SCALE_TIER_STANDARD",
+            "SCALE_TIER_ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is unused.",
+            "The standard capacity and performance tier. Suitable for general purpose workloads.",
+            "A higher capacity and performance tier. Suitable for more demanding workloads."
+          ],
+          "type": "string"
         },
         "serviceLevel": {
           "description": "Required. Service level of the storage pool",
@@ -5322,6 +5587,11 @@
           "format": "int64",
           "type": "string"
         },
+        "cloneDetails": {
+          "$ref": "CloneDetails",
+          "description": "Output only. If this volume is a clone, this field contains details about the clone.",
+          "readOnly": true
+        },
         "coldTierSizeGib": {
           "description": "Output only. Size of the volume cold tier data rounded down to the nearest GiB.",
           "format": "int64",
@@ -5391,6 +5661,10 @@
         "largeCapacity": {
           "description": "Optional. Flag indicating if the volume will be a large capacity volume or a regular volume.",
           "type": "boolean"
+        },
+        "largeCapacityConfig": {
+          "$ref": "LargeCapacityConfig",
+          "description": "Optional. Large capacity config for the volume."
         },
         "ldapEnabled": {
           "description": "Output only. Flag indicating if the volume is NFS LDAP enabled or not.",

@@ -8156,7 +8156,7 @@
       }
     }
   },
-  "revision": "20260127",
+  "revision": "20260224",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -8279,7 +8279,7 @@
       "id": "AdGroup",
       "properties": {
         "adGroupFormat": {
-          "description": "The format of the ads in the ad group.",
+          "description": "Required. The format of the ads in the ad group.",
           "enum": [
             "AD_GROUP_FORMAT_UNSPECIFIED",
             "AD_GROUP_FORMAT_IN_STREAM",
@@ -8305,25 +8305,27 @@
           "type": "string"
         },
         "adGroupId": {
-          "description": "The unique ID of the ad group. Assigned by the system.",
+          "description": "Output only. The unique ID of the ad group. Assigned by the system.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "advertiserId": {
-          "description": "The unique ID of the advertiser the ad group belongs to.",
+          "description": "Output only. The unique ID of the advertiser the ad group belongs to.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "bidStrategy": {
           "$ref": "BiddingStrategy",
-          "description": "The bidding strategy used by the ad group. Only the youtubeAndPartnersBid field can be used in the bidding strategy."
+          "description": "Optional. The bidding strategy used by the ad group. Only the youtubeAndPartnersBid and demandGenBid field can be used in the bidding strategy."
         },
         "displayName": {
-          "description": "The display name of the ad group. Must be UTF-8 encoded with a maximum size of 255 bytes.",
+          "description": "Required. The display name of the ad group. Must be UTF-8 encoded with a maximum size of 255 bytes.",
           "type": "string"
         },
         "entityStatus": {
-          "description": "Controls whether or not the ad group can spend its budget and bid on inventory. If the ad group's parent line item is not active, the ad group can't spend its budget even if its own status is `ENTITY_STATUS_ACTIVE`.",
+          "description": "Required. Controls whether or not the ad group can spend its budget and bid on inventory. If the ad group's parent line item is not active, the ad group can't spend its budget even if its own status is `ENTITY_STATUS_ACTIVE`.",
           "enum": [
             "ENTITY_STATUS_UNSPECIFIED",
             "ENTITY_STATUS_ACTIVE",
@@ -8343,21 +8345,22 @@
           "type": "string"
         },
         "lineItemId": {
-          "description": "The unique ID of the line item that the ad group belongs to.",
+          "description": "Required. The unique ID of the line item that the ad group belongs to.",
           "format": "int64",
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the ad group.",
+          "description": "Output only. Identifier. The resource name of the ad group.",
+          "readOnly": true,
           "type": "string"
         },
         "productFeedData": {
           "$ref": "ProductFeedData",
-          "description": "The settings of the product feed in this ad group."
+          "description": "Optional. The settings of the product feed in this ad group."
         },
         "targetingExpansion": {
           "$ref": "TargetingExpansionConfig",
-          "description": "The [optimized targeting](//support.google.com/displayvideo/answer/12060859) settings of the ad group."
+          "description": "Optional. The [optimized targeting](//support.google.com/displayvideo/answer/12060859) settings of the ad group."
         }
       },
       "type": "object"
@@ -8373,7 +8376,7 @@
           "type": "string"
         },
         "adGroupId": {
-          "description": "The unique ID of the ad group that the ad belongs to. *Caution*: Parent ad groups for Demand Gen ads are not currently retrieveable using `advertisers.adGroups.list` or `advertisers.adGroups.get`. Demand Gen ads can be identified by the absence of the `ad_details` union field.",
+          "description": "Required. The unique ID of the ad group that the ad belongs to.",
           "format": "int64",
           "type": "string"
         },
@@ -8383,10 +8386,11 @@
           "readOnly": true
         },
         "adUrls": {
-          "description": "List of URLs used by the ad.",
+          "description": "Output only. List of URLs used by the ad.",
           "items": {
             "$ref": "AdUrl"
           },
+          "readOnly": true,
           "type": "array"
         },
         "advertiserId": {
@@ -8397,22 +8401,25 @@
         },
         "audioAd": {
           "$ref": "AudioAd",
-          "description": "Details of an [audio ad](//support.google.com/displayvideo/answer/6274216) used for reach marketing objectives."
+          "description": "Output only. Details of an [audio ad](//support.google.com/displayvideo/answer/6274216) used for reach marketing objectives.",
+          "readOnly": true
         },
         "bumperAd": {
           "$ref": "BumperAd",
-          "description": "Details of a [non-skippable short video ad](//support.google.com/displayvideo/answer/6274216), equal to or less than 6 seconds, used for reach."
+          "description": "Output only. Details of a [non-skippable short video ad](//support.google.com/displayvideo/answer/6274216), equal to or less than 6 seconds, used for reach.",
+          "readOnly": true
         },
         "displayName": {
-          "description": "The display name of the ad. Must be UTF-8 encoded with a maximum size of 255 bytes.",
+          "description": "Required. The display name of the ad. Must be UTF-8 encoded with a maximum size of 255 bytes.",
           "type": "string"
         },
         "displayVideoSourceAd": {
           "$ref": "DisplayVideoSourceAd",
-          "description": "Details of an ad sourced from a Display & Video 360 creative."
+          "description": "Output only. Details of an ad sourced from a Display & Video 360 creative.",
+          "readOnly": true
         },
         "entityStatus": {
-          "description": "The entity status of the ad.",
+          "description": "Required. The entity status of the ad.",
           "enum": [
             "ENTITY_STATUS_UNSPECIFIED",
             "ENTITY_STATUS_ACTIVE",
@@ -8433,11 +8440,13 @@
         },
         "inStreamAd": {
           "$ref": "InStreamAd",
-          "description": "Details of an [in-stream ad skippable after 5 seconds](//support.google.com/displayvideo/answer/6274216), used for brand awareness or reach marketing objectives."
+          "description": "Output only. Details of an [in-stream ad skippable after 5 seconds](//support.google.com/displayvideo/answer/6274216), used for brand awareness or reach marketing objectives.",
+          "readOnly": true
         },
         "mastheadAd": {
           "$ref": "MastheadAd",
-          "description": "Details of an [ad served on the YouTube Home feed](//support.google.com/google-ads/answer/9709826)."
+          "description": "Output only. Details of an [ad served on the YouTube Home feed](//support.google.com/google-ads/answer/9709826).",
+          "readOnly": true
         },
         "name": {
           "description": "Output only. The resource name of the ad.",
@@ -8446,15 +8455,18 @@
         },
         "nonSkippableAd": {
           "$ref": "NonSkippableAd",
-          "description": "Details of a [non-skippable short in-stream video ad](//support.google.com/displayvideo/answer/6274216), between 6 and 15 seconds, used for reach marketing objectives."
+          "description": "Output only. Details of a [non-skippable short in-stream video ad](//support.google.com/displayvideo/answer/6274216), between 6 and 15 seconds, used for reach marketing objectives.",
+          "readOnly": true
         },
         "videoDiscoverAd": {
           "$ref": "VideoDiscoveryAd",
-          "description": "Details of an [ad promoting a video](//support.google.com/displayvideo/answer/6274216) that shows in places of discovery."
+          "description": "Output only. Details of an [ad promoting a video](//support.google.com/displayvideo/answer/6274216) that shows in places of discovery.",
+          "readOnly": true
         },
         "videoPerformanceAd": {
           "$ref": "VideoPerformanceAd",
-          "description": "Details of an [ad used in a video action campaign](//support.google.com/google-ads/answer/10147229) to drive actions to the business, service or product."
+          "description": "Output only. Details of an [ad used in a video action campaign](//support.google.com/google-ads/answer/10147229) to drive actions to the business, service or product.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -11144,7 +11156,7 @@
         },
         "maximizeSpendAutoBid": {
           "$ref": "MaximizeSpendBidStrategy",
-          "description": "* `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA`, `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC`, and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` only allow for `LINE_ITEM_TYPE_DISPLAY_DEFAULT` or `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` only allow for `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_REACH` only allows for `LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP` line items."
+          "description": "A strategy that automatically adjusts the bid to optimize to your performance goal while spending the full budget. At insertion order level, the markup_type of line items cannot be set to `PARTNER_REVENUE_MODEL_MARKUP_TYPE_CPM`. In addition, the performance_goal_type value assigned to an insertion order determines the possible line_item_type values available for line items under that insertion order: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA`, `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC`, and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` only allow for `LINE_ITEM_TYPE_DISPLAY_DEFAULT` or `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` only allow for `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_REACH` only allows for `LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP` line items."
         },
         "performanceGoalAutoBid": {
           "$ref": "PerformanceGoalBidStrategy",
@@ -16955,16 +16967,19 @@
       "id": "ImageAsset",
       "properties": {
         "fileSize": {
-          "description": "File size of the image asset in bytes.",
+          "description": "Output only. File size of the image asset in bytes.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "fullSize": {
           "$ref": "Dimensions",
-          "description": "Metadata for this image at its original size."
+          "description": "Output only. Metadata for this image at its original size.",
+          "readOnly": true
         },
         "mimeType": {
-          "description": "MIME type of the image asset.",
+          "description": "Output only. MIME type of the image asset.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -17000,7 +17015,7 @@
         },
         "bidStrategy": {
           "$ref": "BiddingStrategy",
-          "description": "Optional. The bidding strategy of the insertion order. By default, fixed_bid is set."
+          "description": "Optional. The bidding strategy of the insertion order. By default, fixed_bid is set. If the budget field automationType is set to `INSERTION_ORDER_AUTOMATION_TYPE_BUDGET` or `INSERTION_ORDER_AUTOMATION_TYPE_BID_BUDGET`, the insertion order will impose this bidding strategy on its line items. If an imposed bidding strategy is not compatible with a line item's enableOptimizedTargeting setting, the optimized targeting setting will be updated."
         },
         "budget": {
           "$ref": "InsertionOrderBudget",
@@ -21294,7 +21309,7 @@
           "type": "boolean"
         },
         "enableOptimizedTargeting": {
-          "description": "Required. Whether to enable Optimized Targeting for the line item. Optimized targeting is not compatible with all bid strategies. Attempting to set this field to `true` for a line item using the BiddingStrategy field fixed_bid or one of the following combinations of BiddingStrategy fields and BiddingStrategyPerformanceGoalType will result in an error: maximize_auto_spend_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` performance_goal_auto_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`",
+          "description": "Required. Whether to enable Optimized Targeting for the line item. Optimized targeting is not compatible with all bid strategies. Attempting to set this field to `true` for a line item using the BiddingStrategy field fixed_bid or one of the following combinations of BiddingStrategy fields and BiddingStrategyPerformanceGoalType will result in an error: maximize_auto_spend_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` performance_goal_auto_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM` This also applies if the line item inherits one of the above bid strategies from the parent insertion order. Bid strategies set at the insertion order-level will be inherited by their line items if the `InsertionOrder` budget field automationType is set to `INSERTION_ORDER_AUTOMATION_TYPE_BUDGET` or `INSERTION_ORDER_AUTOMATION_TYPE_BID_BUDGET`.",
           "type": "boolean"
         }
       },
@@ -22481,7 +22496,8 @@
       "id": "YoutubeVideoDetails",
       "properties": {
         "id": {
-          "description": "The YouTube video ID which can be searched on YouTube webpage.",
+          "description": "Output only. The YouTube video ID which can be searched on YouTube webpage.",
+          "readOnly": true,
           "type": "string"
         },
         "unavailableReason": {
@@ -22496,6 +22512,11 @@
             "The video is private.",
             "The video is deleted."
           ],
+          "type": "string"
+        },
+        "videoAssetId": {
+          "description": "Required. The YouTube video asset id. This is ad_asset.ad_asset_id.",
+          "format": "int64",
           "type": "string"
         }
       },

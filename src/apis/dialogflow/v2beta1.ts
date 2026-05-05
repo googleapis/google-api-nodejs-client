@@ -1568,6 +1568,7 @@ export namespace dialogflow_v2beta1 {
     timeZone?: string | null;
     ttsConfig?: Schema$GoogleCloudDialogflowV2beta1SynthesizeSpeechConfig;
     updateTime?: string | null;
+    useBidiStreaming?: boolean | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1ConversationTelephonyConnectionInfo {
     dialedNumber?: string | null;
@@ -17133,7 +17134,8 @@ export namespace dialogflow_v2beta1 {
      *       //   "sttConfig": {},
      *       //   "timeZone": "my_timeZone",
      *       //   "ttsConfig": {},
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "useBidiStreaming": false
      *       // }
      *     },
      *   });
@@ -17156,7 +17158,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
      *   //   "ttsConfig": {},
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "useBidiStreaming": false
      *   // }
      * }
      *
@@ -17452,7 +17455,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
      *   //   "ttsConfig": {},
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "useBidiStreaming": false
      *   // }
      * }
      *
@@ -17767,7 +17771,8 @@ export namespace dialogflow_v2beta1 {
      *       //   "sttConfig": {},
      *       //   "timeZone": "my_timeZone",
      *       //   "ttsConfig": {},
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "useBidiStreaming": false
      *       // }
      *     },
      *   });
@@ -17790,7 +17795,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
      *   //   "ttsConfig": {},
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "useBidiStreaming": false
      *   // }
      * }
      *
@@ -36210,7 +36216,8 @@ export namespace dialogflow_v2beta1 {
      *       //   "sttConfig": {},
      *       //   "timeZone": "my_timeZone",
      *       //   "ttsConfig": {},
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "useBidiStreaming": false
      *       // }
      *     },
      *   });
@@ -36233,7 +36240,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
      *   //   "ttsConfig": {},
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "useBidiStreaming": false
      *   // }
      * }
      *
@@ -36531,7 +36539,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
      *   //   "ttsConfig": {},
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "useBidiStreaming": false
      *   // }
      * }
      *
@@ -36848,7 +36857,8 @@ export namespace dialogflow_v2beta1 {
      *       //   "sttConfig": {},
      *       //   "timeZone": "my_timeZone",
      *       //   "ttsConfig": {},
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "useBidiStreaming": false
      *       // }
      *     },
      *   });
@@ -36871,7 +36881,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
      *   //   "ttsConfig": {},
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "useBidiStreaming": false
      *   // }
      * }
      *

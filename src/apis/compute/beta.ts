@@ -224,6 +224,7 @@ export namespace compute_beta {
     routes: Resource$Routes;
     securityPolicies: Resource$Securitypolicies;
     serviceAttachments: Resource$Serviceattachments;
+    snapshotGroups: Resource$Snapshotgroups;
     snapshots: Resource$Snapshots;
     snapshotSettings: Resource$Snapshotsettings;
     sslCertificates: Resource$Sslcertificates;
@@ -427,6 +428,7 @@ export namespace compute_beta {
       this.routes = new Resource$Routes(this.context);
       this.securityPolicies = new Resource$Securitypolicies(this.context);
       this.serviceAttachments = new Resource$Serviceattachments(this.context);
+      this.snapshotGroups = new Resource$Snapshotgroups(this.context);
       this.snapshots = new Resource$Snapshots(this.context);
       this.snapshotSettings = new Resource$Snapshotsettings(this.context);
       this.sslCertificates = new Resource$Sslcertificates(this.context);
@@ -1179,7 +1181,7 @@ export namespace compute_beta {
   }
   /**
    * Properties of the SKU instances being reserved.
-   * Next ID: 9
+   * Next ID: 10
    */
   export interface Schema$AllocationSpecificSKUAllocationReservedInstanceProperties {
     /**
@@ -1402,12 +1404,6 @@ export namespace compute_beta {
      * Specifies the type of the disk, either SCRATCH orPERSISTENT. If not specified, the default isPERSISTENT.
      */
     type?: string | null;
-    /**
-     * Output only. [Output Only] A list of user provided licenses. It represents a list of
-     * URLs to the license resource. Unlike regular licenses, user provided
-     * licenses can be modified after the disk is created.
-     */
-    userLicenses?: string[] | null;
   }
   /**
    * [Input Only] Specifies the parameters for a new disk that will be created
@@ -1522,7 +1518,7 @@ export namespace compute_beta {
      */
     replicaZones?: string[] | null;
     /**
-     * Resource manager tags to be bound to the disk. Tag keys and values
+     * Input only. Resource manager tags to be bound to the disk. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -2461,6 +2457,10 @@ export namespace compute_beta {
      */
     maxUtilization?: number | null;
     /**
+     * Information about the resource or system that manages the backend.
+     */
+    orchestrationInfo?: Schema$BackendBackendOrchestrationInfo;
+    /**
      * This field indicates whether this backend should be fully utilized before
      * sending traffic to backends with default preference. The possible values
      * are:
@@ -2474,6 +2474,16 @@ export namespace compute_beta {
      */
     preference?: string | null;
     trafficDuration?: string | null;
+  }
+  /**
+   * A message containing information about the resource or system that manages
+   * the backend.
+   */
+  export interface Schema$BackendBackendOrchestrationInfo {
+    /**
+     * The URI of the resource or system that manages the backend.
+     */
+    resourceUri?: string | null;
   }
   /**
    * Represents a Cloud Storage Bucket resource.
@@ -3327,6 +3337,10 @@ export namespace compute_beta {
      * networkPassThroughLbTrafficPolicy cannot be specified with haPolicy.
      */
     networkPassThroughLbTrafficPolicy?: Schema$BackendServiceNetworkPassThroughLbTrafficPolicy;
+    /**
+     * Information about the resource or system that manages the backend service.
+     */
+    orchestrationInfo?: Schema$BackendServiceOrchestrationInfo;
     /**
      * Settings controlling the ejection of unhealthy backend endpoints from the
      * load balancing pool of each individual proxy instance that processes the
@@ -4253,6 +4267,17 @@ export namespace compute_beta {
     spilloverRatio?: number | null;
   }
   /**
+   * A message containing information about the resource or system that manages
+   * the backend service.
+   */
+  export interface Schema$BackendServiceOrchestrationInfo {
+    /**
+     * The resource URI of the resource or system that manages the backend
+     * service.
+     */
+    resourceUri?: string | null;
+  }
+  /**
    * Additional Backend Service parameters.
    */
   export interface Schema$BackendServiceParams {
@@ -4725,6 +4750,10 @@ export namespace compute_beta {
      */
     instantSnapshotGroupParameters?: Schema$InstantSnapshotGroupParameters;
     /**
+     * The parameters for the snapshot group.
+     */
+    snapshotGroupParameters?: Schema$SnapshotGroupParameters;
+    /**
      * The URL of the DiskConsistencyGroupPolicy for the group of disks to clone.
      * This may be a full or partial URL, such as:
      *
@@ -4945,6 +4974,208 @@ export namespace compute_beta {
      * not treated as delimiters.
      */
     queryStringWhitelist?: string[] | null;
+  }
+  /**
+   * Message containing CachePolicy configuration for URL Map's Route Action.
+   */
+  export interface Schema$CachePolicy {
+    /**
+     * Bypass the cache when the specified request headers are matched by name,
+     * e.g. Pragma or Authorization headers. Values are case-insensitive. Up to 5
+     * header names can be specified. The cache is bypassed for all
+     * cachePolicy.cacheMode settings.
+     */
+    cacheBypassRequestHeaderNames?: string[] | null;
+    /**
+     * The CacheKeyPolicy for this CachePolicy.
+     */
+    cacheKeyPolicy?: Schema$CachePolicyCacheKeyPolicy;
+    /**
+     * Specifies the cache setting for all responses from this route.
+     * If not specified, the default value is CACHE_ALL_STATIC.
+     */
+    cacheMode?: string | null;
+    /**
+     * Specifies a separate client (e.g. browser client) maximum TTL. This is
+     * used to clamp the max-age (or Expires) value sent to the client.  With
+     * FORCE_CACHE_ALL, the lesser of client_ttl and default_ttl is used for the
+     * response max-age directive, along with a "public" directive.  For
+     * cacheable content in CACHE_ALL_STATIC mode, client_ttl clamps the max-age
+     * from the origin (if specified), or else sets the response max-age
+     * directive to the lesser of the client_ttl and default_ttl, and also
+     * ensures a "public" cache-control directive is present.
+     * If a client TTL is not specified, a default value (1 hour) will be used.
+     * The maximum allowed value is 31,622,400s (1 year).
+     */
+    clientTtl?: Schema$Duration;
+    /**
+     * Specifies the default TTL for cached content served by this origin for
+     * responses that do not have an existing valid TTL (max-age or s-maxage).
+     * Setting a TTL of "0" means "always revalidate".
+     * The value of defaultTTL cannot be set to a value greater than that of
+     * maxTTL.
+     * When the cacheMode is set to FORCE_CACHE_ALL, the defaultTTL
+     * will overwrite the TTL set in all responses. The maximum allowed value is
+     * 31,622,400s (1 year). Infrequently accessed objects may be evicted from
+     * the cache before the defined TTL.
+     */
+    defaultTtl?: Schema$Duration;
+    /**
+     * Specifies the maximum allowed TTL for cached content served by this
+     * origin.
+     * Cache directives that attempt to set a max-age or s-maxage higher than
+     * this, or an Expires header more than maxTTL seconds in the future will
+     * be capped at the value of maxTTL, as if it were the value of an
+     * s-maxage Cache-Control directive.
+     * Headers sent to the client will not be modified.
+     * Setting a TTL of "0" means "always revalidate".
+     * The maximum allowed value is 31,622,400s (1 year). Infrequently accessed
+     * objects may be evicted from the cache before the defined TTL.
+     */
+    maxTtl?: Schema$Duration;
+    /**
+     * Negative caching allows per-status code TTLs to be set, in order
+     * to apply fine-grained caching for common errors or redirects.
+     * This can reduce the load on your origin and improve end-user
+     * experience by reducing response latency.
+     * When the cache mode is set to CACHE_ALL_STATIC or USE_ORIGIN_HEADERS,
+     * negative caching applies to responses with the specified response code
+     * that lack any Cache-Control, Expires, or Pragma: no-cache directives.
+     * When the cache mode is set to FORCE_CACHE_ALL, negative caching applies
+     * to all responses with the specified response code, and override any
+     * caching headers.
+     * By default, Cloud CDN will apply the following default TTLs to these
+     * status codes:
+     * HTTP 300 (Multiple Choice), 301, 308 (Permanent Redirects): 10m
+     * HTTP 404 (Not Found), 410 (Gone),
+     * 451 (Unavailable For Legal Reasons): 120s
+     * HTTP 405 (Method Not Found), 501 (Not Implemented): 60s.
+     * These defaults can be overridden in negative_caching_policy.
+     */
+    negativeCaching?: boolean | null;
+    /**
+     * Sets a cache TTL for the specified HTTP status code.
+     * negative_caching must be enabled to configure negative_caching_policy.
+     * Omitting the policy and leaving negative_caching enabled will use
+     * Cloud CDN's default cache TTLs.
+     * Note that when specifying an explicit negative_caching_policy, you
+     * should take care to specify a cache TTL for all response codes
+     * that you wish to cache. Cloud CDN will not apply any default
+     * negative caching when a policy exists.
+     */
+    negativeCachingPolicy?: Schema$CachePolicyNegativeCachingPolicy[];
+    /**
+     * If true then Cloud CDN will combine multiple concurrent cache fill
+     * requests into a small number of requests to the origin.
+     */
+    requestCoalescing?: boolean | null;
+    /**
+     * Serve existing content from the cache (if available) when revalidating
+     * content with the origin, or when an error is encountered when refreshing
+     * the cache.
+     * This setting defines the default "max-stale" duration for any cached
+     * responses that do not specify a max-stale directive. Stale responses that
+     * exceed the TTL configured here will not be served. The default limit
+     * (max-stale) is 86400s (1 day), which will allow stale content to be
+     * served up to this limit beyond the max-age (or s-maxage) of a cached
+     * response.
+     * The maximum allowed value is 604800 (1 week).
+     * Set this to zero (0) to disable serve-while-stale.
+     */
+    serveWhileStale?: Schema$Duration;
+  }
+  /**
+   * Message containing what to include in the cache key for a request for Cache
+   * Policy defined on Route Action.
+   */
+  export interface Schema$CachePolicyCacheKeyPolicy {
+    /**
+     * Names of query string parameters to exclude in cache keys. All other
+     * parameters will be included. Either specify excluded_query_parameters or
+     * included_query_parameters, not both. '&' and '=' will be percent encoded
+     * and not treated as delimiters.
+     *
+     * Note: This field applies to routes that use backend services. Attempting
+     * to set it on a route that points exclusively to Backend Buckets will
+     * result in a configuration error. For routes that point to a Backend
+     * Bucket, use includedQueryParameters to define which parameters should
+     * be a part of the cache key.
+     */
+    excludedQueryParameters?: string[] | null;
+    /**
+     * Allows HTTP cookies (by name) to be used in the cache key.
+     * The name=value pair will be used in the cache key Cloud CDN generates.
+     *
+     * Note: This setting is only applicable to routes that use a Backend
+     * Service. It does not affect requests served by a Backend Bucket.
+     * Attempting to set it on a route that points exclusively to Backend
+     * Buckets will result in a configuration error. Up to 5 cookie names can be
+     * specified.
+     */
+    includedCookieNames?: string[] | null;
+    /**
+     * Allows HTTP request headers (by name) to be used in the cache key.
+     */
+    includedHeaderNames?: string[] | null;
+    /**
+     * Names of query string parameters to include in cache keys. All other
+     * parameters will be excluded. Either specify included_query_parameters or
+     * excluded_query_parameters, not both. '&' and '=' will be percent encoded
+     * and not treated as delimiters.
+     */
+    includedQueryParameters?: string[] | null;
+    /**
+     * If true, requests to different hosts will be cached separately.
+     *
+     * Note: This setting is only applicable to routes that use a Backend
+     * Service. It does not affect requests served by a Backend Bucket, as the
+     * host is never included in a Backend Bucket's cache key. Attempting to set
+     * it on a route that points exclusively to Backend Buckets will result in a
+     * configuration error.
+     */
+    includeHost?: boolean | null;
+    /**
+     * If true, http and https requests will be cached separately.
+     *
+     * Note: This setting is only applicable to routes that use a Backend
+     * Service. It does not affect requests served by a Backend Bucket, as the
+     * protocol is never included in a Backend Bucket's cache key. Attempting to
+     * set on a route that points exclusively to Backend Buckets will result in
+     * a configuration error.
+     */
+    includeProtocol?: boolean | null;
+    /**
+     * If true, include query string parameters in the cache key according to
+     * included_query_parameters and excluded_query_parameters. If neither is
+     * set, the entire query string will be included. If false, the query string
+     * will be excluded from the cache key entirely.
+     *
+     * Note: This field applies to routes that use backend services. Attempting
+     * to set it on a route that points exclusively to Backend Buckets will
+     * result in a configuration error.  For routes that point to a Backend
+     * Bucket, use includedQueryParameters to define which parameters should
+     * be a part of the cache key.
+     */
+    includeQueryString?: boolean | null;
+  }
+  /**
+   * Specify CDN TTLs for response error codes.
+   */
+  export interface Schema$CachePolicyNegativeCachingPolicy {
+    /**
+     * The HTTP status code to define a TTL against. Only HTTP status codes
+     * 300, 301, 302, 307, 308, 404, 405, 410, 421, 451 and 501 can be
+     * specified as values, and you cannot specify a status code more than
+     * once.
+     */
+    code?: number | null;
+    /**
+     * The TTL (in seconds) for which to cache responses with the
+     * corresponding status code.
+     * The maximum allowed value is 1800s (30 minutes). Infrequently accessed
+     * objects may be evicted from the cache before the defined TTL.
+     */
+    ttl?: Schema$Duration;
   }
   /**
    * A request to recommend the best way to consume the specified resources in the
@@ -6371,15 +6602,6 @@ export namespace compute_beta {
      */
     type?: string | null;
     /**
-     * A list of publicly visible user-licenses. Unlike regular licenses, user
-     * provided licenses can be modified after the disk is created. This includes
-     * a list of URLs to the license resource. For example, to provide a debian
-     * license:
-     *
-     * https://www.googleapis.com/compute/v1/projects/debian-cloud/global/licenses/debian-9-stretch
-     */
-    userLicenses?: string[] | null;
-    /**
      * Output only. [Output Only] Links to the users of the disk (attached instances)
      * in form:projects/project/zones/zone/instances/instance
      */
@@ -6569,7 +6791,7 @@ export namespace compute_beta {
    */
   export interface Schema$DiskParams {
     /**
-     * Resource manager tags to be bound to the disk. Tag keys and values
+     * Input only. Resource manager tags to be bound to the disk. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -8625,6 +8847,11 @@ export namespace compute_beta {
     } | null;
   }
   export interface Schema$FutureReservation {
+    /**
+     * Advanced control for cluster management, applicable only to DENSE
+     * deployment type future reservations.
+     */
+    advancedDeploymentControl?: Schema$ReservationAdvancedDeploymentControl;
     /**
      * Aggregate reservation details for the future reservation.
      */
@@ -11237,6 +11464,11 @@ export namespace compute_beta {
   }
   export interface Schema$HttpRouteAction {
     /**
+     * Cache policy for this URL Map’s route. Available only for Global
+     * EXTERNAL_MANAGED load balancer schemes.
+     */
+    cachePolicy?: Schema$CachePolicy;
+    /**
      * The specification for allowing client-side cross-origin requests. For more
      * information about the W3C recommendation for cross-origin resource sharing
      * (CORS), see Fetch API Living
@@ -12076,15 +12308,6 @@ export namespace compute_beta {
      * multi-regional).
      */
     storageLocations?: string[] | null;
-    /**
-     * A list of publicly visible user-licenses. Unlike regular licenses, user
-     * provided licenses can be modified after the disk is created. This includes
-     * a list of URLs to the license resource. For example, to provide a debian
-     * license:
-     *
-     * https://www.googleapis.com/compute/v1/projects/debian-cloud/global/licenses/debian-9-stretch
-     */
-    userLicenses?: string[] | null;
   }
   export interface Schema$ImageFamilyView {
     /**
@@ -12135,7 +12358,7 @@ export namespace compute_beta {
    */
   export interface Schema$ImageParams {
     /**
-     * Resource manager tags to be bound to the image. Tag keys and values have
+     * Input only. Resource manager tags to be bound to the image. Tag keys and values have
      * the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -12453,6 +12676,7 @@ export namespace compute_beta {
      * Multiple tags can be specified via the 'tags.items' field.
      */
     tags?: Schema$Tags;
+    workloadIdentityConfig?: Schema$WorkloadIdentityConfig;
     /**
      * Output only. [Output Only] URL of the zone where the instance resides.
      * You must specify this field as part of the HTTP request URL. It is
@@ -13286,7 +13510,7 @@ export namespace compute_beta {
    */
   export interface Schema$InstanceGroupManagerParams {
     /**
-     * Resource manager tags to bind to the managed instance group. The tags are
+     * Input only. Resource manager tags to bind to the managed instance group. The tags are
      * key-value pairs. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
      * format such as `{org_id|project_id\}/{tag_key_short_name\}` and
@@ -13545,6 +13769,17 @@ export namespace compute_beta {
     mostDisruptiveAllowedAction?: string | null;
   }
   /**
+   * InstanceGroupManagers.ConfigureAcceleratorTopologies
+   */
+  export interface Schema$InstanceGroupManagersConfigureAcceleratorTopologiesRequest {
+    /**
+     * Map of accelerator topologies that should have their state changed to
+     * the specified value. The key is the hashed topology locus id. It can be
+     * obtained from the GetAvailableAcceleratorTopologies rpc.
+     */
+    acceleratorTopologyActions?: {[key: string]: string} | null;
+  }
+  /**
    * InstanceGroupManagers.createInstances
    */
   export interface Schema$InstanceGroupManagersCreateInstancesRequest {
@@ -13592,6 +13827,10 @@ export namespace compute_beta {
         key: string
       ]: Schema$InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAcceleratorTopologyInfo;
     } | null;
+    /**
+     * URL to MMIG this MIG belongs to.
+     */
+    multiMig?: string | null;
   }
   export interface Schema$InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAcceleratorTopologyInfo {
     /**
@@ -13599,6 +13838,39 @@ export namespace compute_beta {
      */
     acceleratorTopology?: string | null;
     acceleratorTopologyHealth?: string | null;
+    acceleratorTopologyState?: Schema$InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAcceleratorTopologyState;
+    instancesHealth?: string | null;
+    /**
+     * Identified by the topology Id in the accelerator_topology_info map. Empty
+     * for the top-level topology
+     */
+    parent?: string | null;
+  }
+  /**
+   * Specifies the topology state
+   */
+  export interface Schema$InstanceGroupManagersGetAvailableAcceleratorTopologiesResponseAcceleratorTopologyState {
+    currentState?: string | null;
+    /**
+     * Reason why the topology state change failed
+     */
+    error?: {
+      errors?: Array<{
+        code?: string;
+        errorDetails?: Array<{
+          errorInfo?: Schema$ErrorInfo;
+          help?: Schema$Help;
+          localizedMessage?: Schema$LocalizedMessage;
+          quotaInfo?: Schema$QuotaExceededInfo;
+        }>;
+        location?: string;
+        message?: string;
+      }>;
+    } | null;
+    /**
+     * Timestamp when the last error happened
+     */
+    errorTimestamp?: string | null;
   }
   export interface Schema$InstanceGroupManagersListErrorsResponse {
     /**
@@ -13811,6 +14083,12 @@ export namespace compute_beta {
      */
     bulkInstanceOperation?: Schema$InstanceGroupManagerStatusBulkInstanceOperation;
     /**
+     * Output only. [Output Only] The list of instance statuses and the number of instances
+     * in this managed instance group that have the status. Currently only shown
+     * for TPU MIGs
+     */
+    currentInstanceStatuses?: Schema$InstanceGroupManagerStatusInstanceStatusSummary;
+    /**
      * Output only. [Output Only] A bit indicating whether the managed instance group is in a
      * stable state. A stable state means that: none of the instances in the
      * managed instance group is currently undergoing any type of change (for
@@ -13879,6 +14157,85 @@ export namespace compute_beta {
      * operation. Timestamp is in RFC3339 text format.
      */
     timestamp?: string | null;
+  }
+  /**
+   * The list of instance statuses and the number of instances in this managed
+   * instance group that have the status. For more information about how to
+   * interpret each status check the instance lifecycle documentation.
+   * Currently only shown for TPU MIGs.
+   */
+  export interface Schema$InstanceGroupManagerStatusInstanceStatusSummary {
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have DEPROVISIONING status.
+     */
+    deprovisioning?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances that have not been created yet or
+     * have been deleted. Includes only instances that would be shown in the
+     * listManagedInstances method and not all instances that have been
+     * deleted in the lifetime of the MIG.
+     * Does not include FlexStart instances that are waiting for the resources
+     * availability, they are considered as 'pending'.
+     */
+    nonExistent?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have PENDING status, that is FlexStart instances that are waiting
+     * for resources. Instances that do not exist because of the other reasons
+     * are counted as 'non_existent'.
+     */
+    pending?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have PENDING_STOP status.
+     */
+    pendingStop?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have PROVISIONING status.
+     */
+    provisioning?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have REPAIRING status.
+     */
+    repairing?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have RUNNING status.
+     */
+    running?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have STAGING status.
+     */
+    staging?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have STOPPED status.
+     */
+    stopped?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have STOPPING status.
+     */
+    stopping?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have SUSPENDED status.
+     */
+    suspended?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have SUSPENDING status.
+     */
+    suspending?: number | null;
+    /**
+     * Output only. [Output Only] The number of instances in the managed instance group
+     * that have TERMINATED status.
+     */
+    terminated?: number | null;
   }
   export interface Schema$InstanceGroupManagerStatusStateful {
     /**
@@ -14300,7 +14657,7 @@ export namespace compute_beta {
      */
     requestValidForDuration?: Schema$Duration;
     /**
-     * Resource manager tags to be bound to the instance. Tag keys and values
+     * Input only. Resource manager tags to be bound to the instance. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -14414,7 +14771,7 @@ export namespace compute_beta {
      */
     reservationAffinity?: Schema$ReservationAffinity;
     /**
-     * Resource manager tags to be bound to the instance. Tag keys and values
+     * Input only. Resource manager tags to be bound to the instance. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys must be in the format `tagKeys/{tag_key_id\}`, and
      * values are in the format `tagValues/456`. The field is ignored (both PUT &
@@ -14455,6 +14812,7 @@ export namespace compute_beta {
      * the list must comply with RFC1035.
      */
     tags?: Schema$Tags;
+    workloadIdentityConfig?: Schema$WorkloadIdentityConfig;
   }
   /**
    * Represents the change that you want to make to the instance properties.
@@ -14978,6 +15336,11 @@ export namespace compute_beta {
      */
     name?: string | null;
     /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$InstantSnapshotParams;
+    /**
      * Output only. [Output Only] URL of the region where the instant snapshot resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -15225,6 +15588,21 @@ export namespace compute_beta {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  /**
+   * Additional instant snapshot params.
+   */
+  export interface Schema$InstantSnapshotParams {
+    /**
+     * Input only. Resource manager tags to be bound to the instant snapshot. Tag keys and
+     * values have the same definition as resource
+     * manager tags. Keys and values can be either in numeric format,
+     * such as `tagKeys/{tag_key_id\}` and `tagValues/{tag_value_id\}` or in
+     * namespaced format such as `{org_id|project_id\}/{tag_key_short_name\}` and
+     * `{tag_value_short_name\}`. The field is ignored (both PUT &
+     * PATCH) when empty.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   export interface Schema$InstantSnapshotResourceStatus {
     /**
@@ -15503,8 +15881,7 @@ export namespace compute_beta {
      */
     state?: string | null;
     /**
-     * Specific subzone in the InterconnectLocation that represents where
-     * this connection is to be provisioned.
+     * To be deprecated.
      */
     subzone?: string | null;
     /**
@@ -18002,6 +18379,49 @@ export namespace compute_beta {
       message?: string;
     } | null;
   }
+  /**
+   * Contains a list of SnapshotGroup resources.
+   */
+  export interface Schema$ListSnapshotGroups {
+    etag?: string | null;
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of SnapshotGroup resources.
+     */
+    items?: Schema$SnapshotGroup[];
+    /**
+     * Output only. Type of resource.
+     */
+    kind?: string | null;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Unreachable resources.
+     * end_interface: MixerListResponseWithEtagBuilder
+     */
+    unreachables?: string[] | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
   export interface Schema$LocalDisk {
     /**
      * Specifies the number of such disks.
@@ -18044,12 +18464,25 @@ export namespace compute_beta {
      * Location configurations mapped by location name.
      * Currently only zone names are supported and must be represented as valid
      * internal URLs, such as zones/us-central1-a.
+     * The bulkInsert operation doesn't create instances in an AI zone, even if
+     * an AI zone is available in the specified region. For example, if you set a
+     * DENY preference for us-central1-a, Compute Engine will consider
+     * us-central1-b and us-central1-c for instance creation, but not
+     * us-central1-ai1a. Also, you can't use the locations[] configuration to
+     * allow instance creation in an AI zone. To include an AI zone in bulkInsert
+     * operations, use the locationPolicy.zones[] field.
      */
     locations?: {[key: string]: Schema$LocationPolicyLocation} | null;
     /**
      * Strategy for distributing VMs across zones in a region.
      */
     targetShape?: string | null;
+    /**
+     * The bulkInsert operation applies any preferences set in the locations
+     * field to the specific zones listed in the zones field if the same zones
+     * are specified in both fields.
+     */
+    zones?: Schema$LocationPolicyZoneConfiguration[];
   }
   export interface Schema$LocationPolicyLocation {
     /**
@@ -18071,6 +18504,15 @@ export namespace compute_beta {
      * The value must be non-negative.
      */
     maxCount?: number | null;
+  }
+  export interface Schema$LocationPolicyZoneConfiguration {
+    /**
+     * The URL of the zone.
+     * The zone must exist in the region where the request is called.
+     * Zones must be represented as valid partial URLs,
+     * such as zones/us-central1-a.
+     */
+    zone?: string | null;
   }
   /**
    * Represents a machine image resource.
@@ -18932,6 +19374,38 @@ export namespace compute_beta {
      */
     port?: number | null;
   }
+  export interface Schema$NamedSet {
+    /**
+     * An optional description of named set.
+     */
+    description?: string | null;
+    /**
+     * CEL expressions that are comparable to constructs of this set's type
+     * (see Policy Language).
+     */
+    elements?: Schema$Expr[];
+    /**
+     * A fingerprint for the Named Set being applied to this Router, which is
+     * essentially a hash of the Named Set used for optimistic locking.
+     * The fingerprint is initially generated by Compute Engine and changes
+     * after every request to modify or update the Named Set. You must always
+     * provide an up-to-date fingerprint hash in order to update or change
+     * labels.
+     *
+     * To see the latest fingerprint, make a getNamedSet() request
+     * to retrieve a Named Set.
+     */
+    fingerprint?: string | null;
+    /**
+     * This set's name, which must be a resource ID segment and unique within all
+     * named sets owned by the Router. Name should conform to RFC1035.
+     */
+    name?: string | null;
+    /**
+     * This named set's type
+     */
+    type?: string | null;
+  }
   /**
    * Contains NAT IP information of a NAT config (i.e. usage status, mode).
    */
@@ -19493,6 +19967,20 @@ export namespace compute_beta {
    * A network endpoint group (NEG) defines how a set of endpoints should be
    * reached, whether they are reachable, and where they are located.
    * For more information about using NEGs for different use cases, seeNetwork endpoint groups overview.
+   *
+   * Note: Use the following APIs to manage network endpoint groups:
+   *
+   *    -
+   *    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+   *    NEGs): zonal
+   *    API
+   *    -
+   *    To manage NEGs with regional scope (such as regional internet NEGs,
+   *    serverless NEGs, Private Service Connect NEGs): regional
+   *    API
+   *    -
+   *    To manage NEGs with global scope (such as global internet NEGs):global
+   *    API
    */
   export interface Schema$NetworkEndpointGroup {
     /**
@@ -20056,6 +20544,11 @@ export namespace compute_beta {
      * You can only specify this field for network interfaces in VPC networks.
      */
     aliasIpRanges?: Schema$AliasIpRange[];
+    /**
+     * Optional. If true, DNS resolution will be enabled over this interface. Only valid
+     * with network_attachment.
+     */
+    enableVpcScopedDns?: boolean | null;
     /**
      * Fingerprint hash of contents stored in this network interface.
      * This field will be ignored when inserting an Instance or
@@ -24752,6 +25245,12 @@ export namespace compute_beta {
      */
     description?: string | null;
     /**
+     * Indicates the early access maintenance for the reservation.
+     * If this field is absent or set to NO_EARLY_ACCESS, the reservation is not
+     * enrolled in early access maintenance and the standard notice applies.
+     */
+    earlyAccessMaintenance?: string | null;
+    /**
      * Indicates whether Compute Engine allows unplanned maintenance for your VMs;
      * for example, to fix hardware errors.
      */
@@ -24781,6 +25280,11 @@ export namespace compute_beta {
      * be a dash.
      */
     name?: string | null;
+    /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$ReservationParams;
     /**
      * Protection tier for the workload which specifies the workload expectations
      * in the event of infrastructure failures at data center (e.g. power
@@ -25141,6 +25645,21 @@ export namespace compute_beta {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  /**
+   * Additional reservation params.
+   */
+  export interface Schema$ReservationParams {
+    /**
+     * Input only. Resource manager tags to be bound to the reservation. Tag keys and
+     * values have the same definition as resource
+     * manager tags. Keys and values can be either in numeric format,
+     * such as `tagKeys/{tag_key_id\}` and `tagValues/{tag_value_id\}` or in
+     * namespaced format such as `{org_id|project_id\}/{tag_key_short_name\}` and
+     * `{tag_value_short_name\}`. The field is ignored (both PUT &
+     * PATCH) when empty.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   export interface Schema$ReservationsBlocksPerformMaintenanceRequest {
     /**
@@ -26021,6 +26540,10 @@ export namespace compute_beta {
      * Effective enable-oslogin value at Instance level.
      */
     enableOsloginMetadataValue?: boolean | null;
+    /**
+     * Effective gce-container-declaration value at Instance level.
+     */
+    gceContainerDeclarationMetadataValue?: boolean | null;
     /**
      * Effective serial-port-enable value at Instance level.
      */
@@ -27762,6 +28285,13 @@ export namespace compute_beta {
      */
     resourceManagerTags?: {[key: string]: string} | null;
   }
+  export interface Schema$RoutersGetNamedSetResponse {
+    /**
+     * end_interface: MixerGetResponseWithEtagBuilder
+     */
+    etag?: string | null;
+    resource?: Schema$NamedSet;
+  }
   export interface Schema$RoutersGetRoutePolicyResponse {
     resource?: Schema$RoutePolicy;
   }
@@ -27788,6 +28318,46 @@ export namespace compute_beta {
      * [Output Only] A list of bgp routes.
      */
     result?: Schema$BgpRoute[];
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Unreachable resources.
+     */
+    unreachables?: string[] | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  export interface Schema$RoutersListNamedSets {
+    etag?: string | null;
+    /**
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string | null;
+    /**
+     * Output only. [Output Only] Type of resource. Alwayscompute#routersListNamedSets for lists of named sets.
+     */
+    kind?: string | null;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * [Output Only] A list of named sets.
+     */
+    result?: Schema$NamedSet[];
     /**
      * Output only. [Output Only] Server-defined URL for this resource.
      */
@@ -28295,6 +28865,13 @@ export namespace compute_beta {
      * Cycle for more information on the possible instance states.
      */
     preemptible?: boolean | null;
+    /**
+     * Specifies the Metadata Service preemption notice duration before the  GCE ACPI G2 Soft
+     *  Off signal is triggered for Spot
+     *  VMs only. If not specified, there will be no wait before the G2 Soft
+     *  Off signal is triggered.
+     */
+    preemptionNoticeDuration?: Schema$Duration;
     /**
      * Specifies the provisioning model of the instance.
      */
@@ -30226,6 +30803,15 @@ export namespace compute_beta {
      */
     snapshotEncryptionKey?: Schema$CustomerEncryptionKey;
     /**
+     * Output only. [Output Only] The unique ID of the snapshot group that this snapshot
+     * belongs to.
+     */
+    snapshotGroupId?: string | null;
+    /**
+     * Output only. [Output only] The snapshot group that this snapshot belongs to.
+     */
+    snapshotGroupName?: string | null;
+    /**
      * Indicates the type of the snapshot.
      */
     snapshotType?: string | null;
@@ -30308,11 +30894,6 @@ export namespace compute_beta {
      * multi-regional).
      */
     storageLocations?: string[] | null;
-    /**
-     * [Output Only] A list of user provided licenses represented by a list of
-     * URLs to the license resource.
-     */
-    userLicenses?: string[] | null;
   }
   export interface Schema$SnapshotAggregatedList {
     etag?: string | null;
@@ -30353,6 +30934,100 @@ export namespace compute_beta {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  /**
+   * Represents a SnapshotGroup resource.
+   *
+   * A snapshot group is a set of snapshots that represents a point in time state
+   * of a consistency group.
+   */
+  export interface Schema$SnapshotGroup {
+    /**
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
+     */
+    creationTimestamp?: string | null;
+    /**
+     * Optional. An optional description of this resource. Provide this property when you
+     * create the resource.
+     */
+    description?: string | null;
+    /**
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string | null;
+    /**
+     * Output only. [Output Only] Type of the resource. Alwayscompute#snapshotGroup for SnapshotGroup
+     * resources.
+     */
+    kind?: string | null;
+    /**
+     * Identifier. Name of the resource; provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must be
+     * a dash, lowercase letter, or digit, except the last character, which cannot
+     * be a dash.
+     */
+    name?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource's resource id.
+     */
+    selfLinkWithId?: string | null;
+    /**
+     * Output only. [Output Only]
+     */
+    sourceInfo?: Schema$SnapshotGroupSourceInfo;
+    /**
+     * Input field for the source instant snapshot group.
+     */
+    sourceInstantSnapshotGroup?: string | null;
+    /**
+     * Output only. [Output Only]
+     */
+    sourceInstantSnapshotGroupInfo?: Schema$SnapshotGroupSourceInstantSnapshotGroupInfo;
+    /**
+     * Output only. [Output Only]
+     */
+    status?: string | null;
+  }
+  export interface Schema$SnapshotGroupParameters {
+    /**
+     * URLs of the zones where disks should be replicated to. Only applicable
+     * for regional resources.
+     */
+    replicaZones?: string[] | null;
+    /**
+     * The source snapshot group used to create disks. You can provide this as a
+     * partial or full URL to the resource. For example, the following are valid
+     * values:
+     *
+     *
+     *      - https://www.googleapis.com/compute/v1/projects/project/global/snapshotGroups/snapshotGroup
+     *    - projects/project/global/snapshotGroups/snapshotGroup
+     *      - global/snapshotGroups/snapshotGroup
+     */
+    sourceSnapshotGroup?: string | null;
+    /**
+     * URL of the disk type resource describing which disk type to use to create
+     * disks. Provide this when creating the disk. For example:projects/project/zones/zone/diskTypes/pd-ssd. See Persistent disk
+     * types.
+     */
+    type?: string | null;
+  }
+  export interface Schema$SnapshotGroupSourceInfo {
+    consistencyGroup?: string | null;
+    consistencyGroupId?: string | null;
+  }
+  export interface Schema$SnapshotGroupSourceInstantSnapshotGroupInfo {
+    instantSnapshotGroup?: string | null;
+    instantSnapshotGroupId?: string | null;
   }
   /**
    * Contains a list of Snapshot resources.
@@ -30396,7 +31071,7 @@ export namespace compute_beta {
    */
   export interface Schema$SnapshotParams {
     /**
-     * Resource manager tags to be bound to the snapshot. Tag keys and values have
+     * Input only. Resource manager tags to be bound to the snapshot. Tag keys and values have
      * the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -34821,8 +35496,8 @@ export namespace compute_beta {
      */
     description?: string | null;
     /**
-     * Required. A map of extension names (e.g., "cloudops") to their corresponding policy
-     * configurations.
+     * Required. A map of extension names (for example, "ops-agent") to their corresponding
+     * policy configurations.
      */
     extensionPolicies?: {
       [key: string]: Schema$VmExtensionPolicyExtensionPolicy;
@@ -34867,7 +35542,7 @@ export namespace compute_beta {
      * The policy priority is an integer from 0 to 65535, inclusive. Lower
      * integers indicate higher priorities. If you do not specify a priority when
      * creating a rule, it is assigned a priority of 1000. If priorities are
-     * equal, the policy with the more recent creation timestamp takes precedence.
+     * equal, the policy with the most recent creation timestamp takes precedence.
      */
     priority?: number | null;
     /**
@@ -36033,6 +36708,10 @@ export namespace compute_beta {
      *    pseudowires.
      */
     faultResponse?: string | null;
+  }
+  export interface Schema$WorkloadIdentityConfig {
+    identity?: string | null;
+    identityCertificateEnabled?: boolean | null;
   }
   export interface Schema$XpnHostList {
     /**
@@ -45530,6 +46209,7 @@ export namespace compute_beta {
      *   //   "name": "my_name",
      *   //   "network": "my_network",
      *   //   "networkPassThroughLbTrafficPolicy": {},
+     *   //   "orchestrationInfo": {},
      *   //   "outlierDetection": {},
      *   //   "params": {},
      *   //   "port": 0,
@@ -46208,6 +46888,7 @@ export namespace compute_beta {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -46928,6 +47609,7 @@ export namespace compute_beta {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -47870,6 +48552,7 @@ export namespace compute_beta {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -50370,6 +51053,7 @@ export namespace compute_beta {
      *       // request body parameters
      *       // {
      *       //   "instantSnapshotGroupParameters": {},
+     *       //   "snapshotGroupParameters": {},
      *       //   "sourceConsistencyGroupPolicy": "my_sourceConsistencyGroupPolicy"
      *       // }
      *     },
@@ -50785,6 +51469,8 @@ export namespace compute_beta {
      *       //   "satisfiesPzs": false,
      *       //   "selfLink": "my_selfLink",
      *       //   "snapshotEncryptionKey": {},
+     *       //   "snapshotGroupId": "my_snapshotGroupId",
+     *       //   "snapshotGroupName": "my_snapshotGroupName",
      *       //   "snapshotType": "my_snapshotType",
      *       //   "sourceDisk": "my_sourceDisk",
      *       //   "sourceDiskEncryptionKey": {},
@@ -50798,8 +51484,7 @@ export namespace compute_beta {
      *       //   "status": "my_status",
      *       //   "storageBytes": "my_storageBytes",
      *       //   "storageBytesStatus": "my_storageBytesStatus",
-     *       //   "storageLocations": [],
-     *       //   "userLicenses": []
+     *       //   "storageLocations": []
      *       // }
      *     },
      *   });
@@ -51218,7 +51903,6 @@ export namespace compute_beta {
      *   //   "storagePool": "my_storagePool",
      *   //   "storageType": "my_storageType",
      *   //   "type": "my_type",
-     *   //   "userLicenses": [],
      *   //   "users": [],
      *   //   "zone": "my_zone"
      *   // }
@@ -51587,7 +52271,6 @@ export namespace compute_beta {
      *       //   "storagePool": "my_storagePool",
      *       //   "storageType": "my_storageType",
      *       //   "type": "my_type",
-     *       //   "userLicenses": [],
      *       //   "users": [],
      *       //   "zone": "my_zone"
      *       // }
@@ -53430,7 +54113,7 @@ export namespace compute_beta {
     /**
      * Updates the specified disk with the data included in the request.
      * The update is performed only on selected fields included as part
-     * of update-mask. Only the following fields can be modified: user_license.
+     * of update-mask.
      * @example
      * ```js
      * // Before running the sample:
@@ -53546,7 +54229,6 @@ export namespace compute_beta {
      *       //   "storagePool": "my_storagePool",
      *       //   "storageType": "my_storageType",
      *       //   "type": "my_type",
-     *       //   "userLicenses": [],
      *       //   "users": [],
      *       //   "zone": "my_zone"
      *       // }
@@ -66173,6 +66855,7 @@ export namespace compute_beta {
      *
      *   // Example response
      *   // {
+     *   //   "advancedDeploymentControl": {},
      *   //   "aggregateReservation": {},
      *   //   "autoCreatedReservationsDeleteTime": "my_autoCreatedReservationsDeleteTime",
      *   //   "autoCreatedReservationsDuration": {},
@@ -66355,6 +67038,7 @@ export namespace compute_beta {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "advancedDeploymentControl": {},
      *       //   "aggregateReservation": {},
      *       //   "autoCreatedReservationsDeleteTime": "my_autoCreatedReservationsDeleteTime",
      *       //   "autoCreatedReservationsDuration": {},
@@ -66820,6 +67504,7 @@ export namespace compute_beta {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "advancedDeploymentControl": {},
      *       //   "aggregateReservation": {},
      *       //   "autoCreatedReservationsDeleteTime": "my_autoCreatedReservationsDeleteTime",
      *       //   "autoCreatedReservationsDuration": {},
@@ -71496,6 +72181,20 @@ export namespace compute_beta {
     /**
      * Creates a network endpoint group in the specified project using the
      * parameters that are included in the request.
+     *
+     * Note: Use the following APIs to manage network endpoint groups:
+     *
+     *    -
+     *    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+     *    NEGs): zonal
+     *    API
+     *    -
+     *    To manage NEGs with regional scope (such as regional internet NEGs,
+     *    serverless NEGs, Private Service Connect NEGs): regional
+     *    API
+     *    -
+     *    To manage NEGs with global scope (such as global internet NEGs):global
+     *    API
      * @example
      * ```js
      * // Before running the sample:
@@ -83055,8 +83754,7 @@ export namespace compute_beta {
      *   //   "sourceSnapshotId": "my_sourceSnapshotId",
      *   //   "sourceType": "my_sourceType",
      *   //   "status": "my_status",
-     *   //   "storageLocations": [],
-     *   //   "userLicenses": []
+     *   //   "storageLocations": []
      *   // }
      * }
      *
@@ -83237,8 +83935,7 @@ export namespace compute_beta {
      *   //   "sourceSnapshotId": "my_sourceSnapshotId",
      *   //   "sourceType": "my_sourceType",
      *   //   "status": "my_status",
-     *   //   "storageLocations": [],
-     *   //   "userLicenses": []
+     *   //   "storageLocations": []
      *   // }
      * }
      *
@@ -83582,8 +84279,7 @@ export namespace compute_beta {
      *       //   "sourceSnapshotId": "my_sourceSnapshotId",
      *       //   "sourceType": "my_sourceType",
      *       //   "status": "my_status",
-     *       //   "storageLocations": [],
-     *       //   "userLicenses": []
+     *       //   "storageLocations": []
      *       // }
      *     },
      *   });
@@ -84050,8 +84746,7 @@ export namespace compute_beta {
      *       //   "sourceSnapshotId": "my_sourceSnapshotId",
      *       //   "sourceType": "my_sourceType",
      *       //   "status": "my_status",
-     *       //   "storageLocations": [],
-     *       //   "userLicenses": []
+     *       //   "storageLocations": []
      *       // }
      *     },
      *   });
@@ -86948,6 +87643,204 @@ export namespace compute_beta {
     }
 
     /**
+     * Updates the accelerator topologies configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await compute.instanceGroupManagers.configureAcceleratorTopologies({
+     *       // The name of the managed instance group.
+     *       // It should conform to RFC1035.
+     *       instanceGroupManager: 'placeholder-value',
+     *       // Project ID for this request.
+     *       project:
+     *         '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *       // An optional request ID to identify requests. Specify a unique request ID so
+     *       // that if you must retry your request, the server will know to ignore the
+     *       // request if it has already been completed.
+     *       //
+     *       // For example, consider a situation where you make an initial request and
+     *       // the request times out. If you make the request again with the same
+     *       // request ID, the server can check if original operation with the same
+     *       // request ID was received, and if so, will ignore the second request.
+     *       //
+     *       // The request ID must be
+     *       // a valid UUID with the exception that zero UUID is not supported
+     *       // (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *       // The name of thezone
+     *       // where the managed instance group is located.
+     *       // It should conform to RFC1035.
+     *       zone: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "acceleratorTopologyActions": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    configureAcceleratorTopologies(
+      params: Params$Resource$Instancegroupmanagers$Configureacceleratortopologies,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    configureAcceleratorTopologies(
+      params?: Params$Resource$Instancegroupmanagers$Configureacceleratortopologies,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    configureAcceleratorTopologies(
+      params: Params$Resource$Instancegroupmanagers$Configureacceleratortopologies,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    configureAcceleratorTopologies(
+      params: Params$Resource$Instancegroupmanagers$Configureacceleratortopologies,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    configureAcceleratorTopologies(
+      params: Params$Resource$Instancegroupmanagers$Configureacceleratortopologies,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    configureAcceleratorTopologies(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    configureAcceleratorTopologies(
+      paramsOrCallback?:
+        | Params$Resource$Instancegroupmanagers$Configureacceleratortopologies
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instancegroupmanagers$Configureacceleratortopologies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Instancegroupmanagers$Configureacceleratortopologies;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/configureAcceleratorTopologies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'zone', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'zone'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Creates instances with per-instance configurations in this managed instance
      * group. Instances are created using the current instance template. Thecreate instances operation is marked DONE if thecreateInstances request is successful. The underlying actions
      * take additional time. You must separately verify the status of thecreating or actions with the listmanagedinstances
@@ -87962,7 +88855,8 @@ export namespace compute_beta {
      *
      *   // Example response
      *   // {
-     *   //   "acceleratorTopologiesInfo": {}
+     *   //   "acceleratorTopologiesInfo": {},
+     *   //   "multiMig": "my_multiMig"
      *   // }
      * }
      *
@@ -92594,6 +93488,43 @@ export namespace compute_beta {
      */
     requestBody?: Schema$InstanceGroupManagersApplyUpdatesRequest;
   }
+  export interface Params$Resource$Instancegroupmanagers$Configureacceleratortopologies extends StandardParameters {
+    /**
+     * The name of the managed instance group.
+     * It should conform to RFC1035.
+     */
+    instanceGroupManager?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * The name of thezone
+     * where the managed instance group is located.
+     * It should conform to RFC1035.
+     */
+    zone?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstanceGroupManagersConfigureAcceleratorTopologiesRequest;
+  }
   export interface Params$Resource$Instancegroupmanagers$Createinstances extends StandardParameters {
     /**
      * The name of the managed instance group.
@@ -96657,6 +97588,7 @@ export namespace compute_beta {
      *       // {
      *       //   "accessConfigs": [],
      *       //   "aliasIpRanges": [],
+     *       //   "enableVpcScopedDns": false,
      *       //   "fingerprint": "my_fingerprint",
      *       //   "igmpQuery": "my_igmpQuery",
      *       //   "internalIpv6PrefixLength": 0,
@@ -97342,8 +98274,7 @@ export namespace compute_beta {
      *       //   "savedState": "my_savedState",
      *       //   "shieldedInstanceInitialState": {},
      *       //   "source": "my_source",
-     *       //   "type": "my_type",
-     *       //   "userLicenses": []
+     *       //   "type": "my_type"
      *       // }
      *     },
      *   });
@@ -98533,6 +99464,7 @@ export namespace compute_beta {
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
      *   //   "tags": {},
+     *   //   "workloadIdentityConfig": {},
      *   //   "zone": "my_zone"
      *   // }
      * }
@@ -100003,6 +100935,7 @@ export namespace compute_beta {
      *       //   "status": "my_status",
      *       //   "statusMessage": "my_statusMessage",
      *       //   "tags": {},
+     *       //   "workloadIdentityConfig": {},
      *       //   "zone": "my_zone"
      *       // }
      *     },
@@ -103687,6 +104620,7 @@ export namespace compute_beta {
      *       //   "onHostMaintenance": "my_onHostMaintenance",
      *       //   "onInstanceStopAction": {},
      *       //   "preemptible": false,
+     *       //   "preemptionNoticeDuration": {},
      *       //   "provisioningModel": "my_provisioningModel",
      *       //   "skipGuestOsShutdown": false,
      *       //   "terminationTime": "my_terminationTime"
@@ -106043,6 +106977,7 @@ export namespace compute_beta {
      *       //   "status": "my_status",
      *       //   "statusMessage": "my_statusMessage",
      *       //   "tags": {},
+     *       //   "workloadIdentityConfig": {},
      *       //   "zone": "my_zone"
      *       // }
      *     },
@@ -106644,6 +107579,7 @@ export namespace compute_beta {
      *       // {
      *       //   "accessConfigs": [],
      *       //   "aliasIpRanges": [],
+     *       //   "enableVpcScopedDns": false,
      *       //   "fingerprint": "my_fingerprint",
      *       //   "igmpQuery": "my_igmpQuery",
      *       //   "internalIpv6PrefixLength": 0,
@@ -113506,6 +114442,7 @@ export namespace compute_beta {
      *   //   "labelFingerprint": "my_labelFingerprint",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "region": "my_region",
      *   //   "resourceStatus": {},
      *   //   "satisfiesPzi": false,
@@ -113835,6 +114772,7 @@ export namespace compute_beta {
      *       //   "labelFingerprint": "my_labelFingerprint",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "region": "my_region",
      *       //   "resourceStatus": {},
      *       //   "satisfiesPzi": false,
@@ -133301,6 +134239,20 @@ export namespace compute_beta {
     /**
      * Creates a network endpoint group in the specified project using the
      * parameters that are included in the request.
+     *
+     * Note: Use the following APIs to manage network endpoint groups:
+     *
+     *    -
+     *    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+     *    NEGs): zonal
+     *    API
+     *    -
+     *    To manage NEGs with regional scope (such as regional internet NEGs,
+     *    serverless NEGs, Private Service Connect NEGs): regional
+     *    API
+     *    -
+     *    To manage NEGs with global scope (such as global internet NEGs):global
+     *    API
      * @example
      * ```js
      * // Before running the sample:
@@ -166781,6 +167733,7 @@ export namespace compute_beta {
      *   //   "name": "my_name",
      *   //   "network": "my_network",
      *   //   "networkPassThroughLbTrafficPolicy": {},
+     *   //   "orchestrationInfo": {},
      *   //   "outlierDetection": {},
      *   //   "params": {},
      *   //   "port": 0,
@@ -167304,6 +168257,7 @@ export namespace compute_beta {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -168032,6 +168986,7 @@ export namespace compute_beta {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -168790,6 +169745,7 @@ export namespace compute_beta {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -173267,6 +174223,7 @@ export namespace compute_beta {
      *       // request body parameters
      *       // {
      *       //   "instantSnapshotGroupParameters": {},
+     *       //   "snapshotGroupParameters": {},
      *       //   "sourceConsistencyGroupPolicy": "my_sourceConsistencyGroupPolicy"
      *       // }
      *     },
@@ -173487,6 +174444,8 @@ export namespace compute_beta {
      *       //   "satisfiesPzs": false,
      *       //   "selfLink": "my_selfLink",
      *       //   "snapshotEncryptionKey": {},
+     *       //   "snapshotGroupId": "my_snapshotGroupId",
+     *       //   "snapshotGroupName": "my_snapshotGroupName",
      *       //   "snapshotType": "my_snapshotType",
      *       //   "sourceDisk": "my_sourceDisk",
      *       //   "sourceDiskEncryptionKey": {},
@@ -173500,8 +174459,7 @@ export namespace compute_beta {
      *       //   "status": "my_status",
      *       //   "storageBytes": "my_storageBytes",
      *       //   "storageBytesStatus": "my_storageBytesStatus",
-     *       //   "storageLocations": [],
-     *       //   "userLicenses": []
+     *       //   "storageLocations": []
      *       // }
      *     },
      *   });
@@ -173921,7 +174879,6 @@ export namespace compute_beta {
      *   //   "storagePool": "my_storagePool",
      *   //   "storageType": "my_storageType",
      *   //   "type": "my_type",
-     *   //   "userLicenses": [],
      *   //   "users": [],
      *   //   "zone": "my_zone"
      *   // }
@@ -174287,7 +175244,6 @@ export namespace compute_beta {
      *       //   "storagePool": "my_storagePool",
      *       //   "storageType": "my_storageType",
      *       //   "type": "my_type",
-     *       //   "userLicenses": [],
      *       //   "users": [],
      *       //   "zone": "my_zone"
      *       // }
@@ -176132,8 +177088,7 @@ export namespace compute_beta {
 
     /**
      * Update the specified disk with the data included in the request. Update is
-     * performed only on selected fields included as part of update-mask. Only the
-     * following fields can be modified: user_license.
+     * performed only on selected fields included as part of update-mask.
      * @example
      * ```js
      * // Before running the sample:
@@ -176249,7 +177204,6 @@ export namespace compute_beta {
      *       //   "storagePool": "my_storagePool",
      *       //   "storageType": "my_storageType",
      *       //   "type": "my_type",
-     *       //   "userLicenses": [],
      *       //   "users": [],
      *       //   "zone": "my_zone"
      *       // }
@@ -197203,6 +198157,7 @@ export namespace compute_beta {
      *   //   "labelFingerprint": "my_labelFingerprint",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "region": "my_region",
      *   //   "resourceStatus": {},
      *   //   "satisfiesPzi": false,
@@ -197532,6 +198487,7 @@ export namespace compute_beta {
      *       //   "labelFingerprint": "my_labelFingerprint",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "region": "my_region",
      *       //   "resourceStatus": {},
      *       //   "satisfiesPzi": false,
@@ -200964,6 +201920,20 @@ export namespace compute_beta {
     /**
      * Creates a network endpoint group in the specified project using the
      * parameters that are included in the request.
+     *
+     * Note: Use the following APIs to manage network endpoint groups:
+     *
+     *    -
+     *    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+     *    NEGs): zonal
+     *    API
+     *    -
+     *    To manage NEGs with regional scope (such as regional internet NEGs,
+     *    serverless NEGs, Private Service Connect NEGs): regional
+     *    API
+     *    -
+     *    To manage NEGs with global scope (such as global internet NEGs):global
+     *    API
      * @example
      * ```js
      * // Before running the sample:
@@ -214252,6 +215222,8 @@ export namespace compute_beta {
      *   //   "satisfiesPzs": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "snapshotEncryptionKey": {},
+     *   //   "snapshotGroupId": "my_snapshotGroupId",
+     *   //   "snapshotGroupName": "my_snapshotGroupName",
      *   //   "snapshotType": "my_snapshotType",
      *   //   "sourceDisk": "my_sourceDisk",
      *   //   "sourceDiskEncryptionKey": {},
@@ -214265,8 +215237,7 @@ export namespace compute_beta {
      *   //   "status": "my_status",
      *   //   "storageBytes": "my_storageBytes",
      *   //   "storageBytesStatus": "my_storageBytesStatus",
-     *   //   "storageLocations": [],
-     *   //   "userLicenses": []
+     *   //   "storageLocations": []
      *   // }
      * }
      *
@@ -214601,6 +215572,8 @@ export namespace compute_beta {
      *       //   "satisfiesPzs": false,
      *       //   "selfLink": "my_selfLink",
      *       //   "snapshotEncryptionKey": {},
+     *       //   "snapshotGroupId": "my_snapshotGroupId",
+     *       //   "snapshotGroupName": "my_snapshotGroupName",
      *       //   "snapshotType": "my_snapshotType",
      *       //   "sourceDisk": "my_sourceDisk",
      *       //   "sourceDiskEncryptionKey": {},
@@ -214614,8 +215587,7 @@ export namespace compute_beta {
      *       //   "status": "my_status",
      *       //   "storageBytes": "my_storageBytes",
      *       //   "storageBytesStatus": "my_storageBytesStatus",
-     *       //   "storageLocations": [],
-     *       //   "userLicenses": []
+     *       //   "storageLocations": []
      *       // }
      *     },
      *   });
@@ -227594,11 +228566,13 @@ export namespace compute_beta {
      *   //   "deleteAtTime": "my_deleteAtTime",
      *   //   "deploymentType": "my_deploymentType",
      *   //   "description": "my_description",
+     *   //   "earlyAccessMaintenance": "my_earlyAccessMaintenance",
      *   //   "enableEmergentMaintenance": false,
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "linkedCommitments": [],
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "protectionTier": "my_protectionTier",
      *   //   "reservationMode": "my_reservationMode",
      *   //   "reservationSharingPolicy": {},
@@ -227928,11 +228902,13 @@ export namespace compute_beta {
      *       //   "deleteAtTime": "my_deleteAtTime",
      *       //   "deploymentType": "my_deploymentType",
      *       //   "description": "my_description",
+     *       //   "earlyAccessMaintenance": "my_earlyAccessMaintenance",
      *       //   "enableEmergentMaintenance": false,
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "linkedCommitments": [],
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "protectionTier": "my_protectionTier",
      *       //   "reservationMode": "my_reservationMode",
      *       //   "reservationSharingPolicy": {},
@@ -229089,11 +230065,13 @@ export namespace compute_beta {
      *       //   "deleteAtTime": "my_deleteAtTime",
      *       //   "deploymentType": "my_deploymentType",
      *       //   "description": "my_description",
+     *       //   "earlyAccessMaintenance": "my_earlyAccessMaintenance",
      *       //   "enableEmergentMaintenance": false,
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "linkedCommitments": [],
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "protectionTier": "my_protectionTier",
      *       //   "reservationMode": "my_reservationMode",
      *       //   "reservationSharingPolicy": {},
@@ -230515,7 +231493,8 @@ export namespace compute_beta {
      *   const res = await compute.reservationSubBlocks.get({
      *     // The name of the parent reservation and parent block. In the format of
      *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
-     *     parentName: 'placeholder-value',
+     *     parentName:
+     *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
      *     // Project ID for this request.
      *     project: 'placeholder-value',
      *     // The name of the reservation subBlock.
@@ -230611,7 +231590,7 @@ export namespace compute_beta {
           {
             url: (
               rootUrl +
-              '/compute/beta/projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}'
+              '/compute/beta/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -230772,7 +231751,7 @@ export namespace compute_beta {
           {
             url: (
               rootUrl +
-              '/compute/beta/projects/{project}/zones/{zone}/{parentResource}/reservationSubBlocks/{resource}/getIamPolicy'
+              '/compute/beta/projects/{project}/zones/{zone}/{+parentResource}/reservationSubBlocks/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -230912,7 +231891,8 @@ export namespace compute_beta {
      *     pageToken: 'placeholder-value',
      *     // The name of the parent reservation and parent block. In the format of
      *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
-     *     parentName: 'placeholder-value',
+     *     parentName:
+     *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
      *     // Project ID for this request.
      *     project: 'placeholder-value',
      *     // Opt-in for partial success behavior which provides partial results in case
@@ -231019,7 +231999,7 @@ export namespace compute_beta {
           {
             url: (
               rootUrl +
-              '/compute/beta/projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks'
+              '/compute/beta/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -231079,7 +232059,8 @@ export namespace compute_beta {
      *   const res = await compute.reservationSubBlocks.performMaintenance({
      *     // The name of the parent reservation and parent block. In the format of
      *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
-     *     parentName: 'placeholder-value',
+     *     parentName:
+     *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
      *     // Project ID for this request.
      *     project: 'placeholder-value',
      *     // An optional request ID to identify requests. Specify a unique request ID so
@@ -231208,7 +232189,7 @@ export namespace compute_beta {
           {
             url: (
               rootUrl +
-              '/compute/beta/projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}/performMaintenance'
+              '/compute/beta/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/performMaintenance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -231271,7 +232252,8 @@ export namespace compute_beta {
      *   const res = await compute.reservationSubBlocks.reportFaulty({
      *     // The name of the parent reservation and parent block. In the format of
      *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
-     *     parentName: 'placeholder-value',
+     *     parentName:
+     *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
      *     // Project ID for this request.
      *     project: 'placeholder-value',
      *     // An optional request ID to identify requests. Specify a unique request ID so
@@ -231410,7 +232392,7 @@ export namespace compute_beta {
           {
             url: (
               rootUrl +
-              '/compute/beta/projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}/reportFaulty'
+              '/compute/beta/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/reportFaulty'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -231576,7 +232558,7 @@ export namespace compute_beta {
           {
             url: (
               rootUrl +
-              '/compute/beta/projects/{project}/zones/{zone}/{parentResource}/reservationSubBlocks/{resource}/setIamPolicy'
+              '/compute/beta/projects/{project}/zones/{zone}/{+parentResource}/reservationSubBlocks/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -231736,7 +232718,7 @@ export namespace compute_beta {
           {
             url: (
               rootUrl +
-              '/compute/beta/projects/{project}/zones/{zone}/{parentResource}/reservationSubBlocks/{resource}/testIamPermissions'
+              '/compute/beta/projects/{project}/zones/{zone}/{+parentResource}/reservationSubBlocks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -236489,6 +237471,192 @@ export namespace compute_beta {
     }
 
     /**
+     * Deletes Named Set
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.routers.deleteNamedSet({
+     *     // The Named Set name for this request. Name must conform to RFC1035
+     *     namedSet: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Name of the Router resource where Named Set is defined.
+     *     router: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deleteNamedSet(
+      params: Params$Resource$Routers$Deletenamedset,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    deleteNamedSet(
+      params?: Params$Resource$Routers$Deletenamedset,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    deleteNamedSet(
+      params: Params$Resource$Routers$Deletenamedset,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteNamedSet(
+      params: Params$Resource$Routers$Deletenamedset,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    deleteNamedSet(
+      params: Params$Resource$Routers$Deletenamedset,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    deleteNamedSet(callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteNamedSet(
+      paramsOrCallback?:
+        | Params$Resource$Routers$Deletenamedset
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Routers$Deletenamedset;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Routers$Deletenamedset;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/routers/{router}/deleteNamedSet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'router'],
+        pathParams: ['project', 'region', 'router'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Deletes Route Policy
      * @example
      * ```js
@@ -236831,6 +237999,160 @@ export namespace compute_beta {
         );
       } else {
         return createAPIRequest<Schema$Router>(parameters);
+      }
+    }
+
+    /**
+     * Returns specified Named Set
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.routers.getNamedSet({
+     *     // The Named Set name for this request. Name must conform to RFC1035
+     *     namedSet: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Name of the Router resource to query for the named set. The name should
+     *     // conform to RFC1035.
+     *     router: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "resource": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getNamedSet(
+      params: Params$Resource$Routers$Getnamedset,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getNamedSet(
+      params?: Params$Resource$Routers$Getnamedset,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RoutersGetNamedSetResponse>>;
+    getNamedSet(
+      params: Params$Resource$Routers$Getnamedset,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getNamedSet(
+      params: Params$Resource$Routers$Getnamedset,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RoutersGetNamedSetResponse>,
+      callback: BodyResponseCallback<Schema$RoutersGetNamedSetResponse>
+    ): void;
+    getNamedSet(
+      params: Params$Resource$Routers$Getnamedset,
+      callback: BodyResponseCallback<Schema$RoutersGetNamedSetResponse>
+    ): void;
+    getNamedSet(
+      callback: BodyResponseCallback<Schema$RoutersGetNamedSetResponse>
+    ): void;
+    getNamedSet(
+      paramsOrCallback?:
+        | Params$Resource$Routers$Getnamedset
+        | BodyResponseCallback<Schema$RoutersGetNamedSetResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RoutersGetNamedSetResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RoutersGetNamedSetResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RoutersGetNamedSetResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Routers$Getnamedset;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Routers$Getnamedset;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/routers/{router}/getNamedSet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'router'],
+        pathParams: ['project', 'region', 'router'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RoutersGetNamedSetResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RoutersGetNamedSetResponse>(parameters);
       }
     }
 
@@ -238242,6 +239564,253 @@ export namespace compute_beta {
     }
 
     /**
+     * Retrieves a list of router named set subresources available to the
+     * specified project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.routers.listNamedSets({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *     // Name or id of the resource for this request.
+     *     // Name should conform to RFC1035.
+     *     router: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "result": [],
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listNamedSets(
+      params: Params$Resource$Routers$Listnamedsets,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    listNamedSets(
+      params?: Params$Resource$Routers$Listnamedsets,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RoutersListNamedSets>>;
+    listNamedSets(
+      params: Params$Resource$Routers$Listnamedsets,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listNamedSets(
+      params: Params$Resource$Routers$Listnamedsets,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RoutersListNamedSets>,
+      callback: BodyResponseCallback<Schema$RoutersListNamedSets>
+    ): void;
+    listNamedSets(
+      params: Params$Resource$Routers$Listnamedsets,
+      callback: BodyResponseCallback<Schema$RoutersListNamedSets>
+    ): void;
+    listNamedSets(
+      callback: BodyResponseCallback<Schema$RoutersListNamedSets>
+    ): void;
+    listNamedSets(
+      paramsOrCallback?:
+        | Params$Resource$Routers$Listnamedsets
+        | BodyResponseCallback<Schema$RoutersListNamedSets>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RoutersListNamedSets>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RoutersListNamedSets>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RoutersListNamedSets>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Routers$Listnamedsets;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Routers$Listnamedsets;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/routers/{router}/listNamedSets'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'router'],
+        pathParams: ['project', 'region', 'router'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RoutersListNamedSets>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RoutersListNamedSets>(parameters);
+      }
+    }
+
+    /**
      * Retrieves a list of router route policy subresources available to the
      * specified project.
      * @example
@@ -238678,6 +240247,202 @@ export namespace compute_beta {
               '/compute/beta/projects/{project}/regions/{region}/routers/{router}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'router'],
+        pathParams: ['project', 'region', 'router'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Patches Named Set
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.routers.patchNamedSet({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Name of the Router resource where Named Set is defined.
+     *     router: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "elements": [],
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patchNamedSet(
+      params: Params$Resource$Routers$Patchnamedset,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patchNamedSet(
+      params?: Params$Resource$Routers$Patchnamedset,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patchNamedSet(
+      params: Params$Resource$Routers$Patchnamedset,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patchNamedSet(
+      params: Params$Resource$Routers$Patchnamedset,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patchNamedSet(
+      params: Params$Resource$Routers$Patchnamedset,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patchNamedSet(callback: BodyResponseCallback<Schema$Operation>): void;
+    patchNamedSet(
+      paramsOrCallback?:
+        | Params$Resource$Routers$Patchnamedset
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Routers$Patchnamedset;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Routers$Patchnamedset;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/routers/{router}/patchNamedSet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
             apiVersion: '',
           },
           options
@@ -239434,6 +241199,202 @@ export namespace compute_beta {
     }
 
     /**
+     * Updates or creates new Named Set
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.routers.updateNamedSet({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Name of the Router resource where Named Set is defined.
+     *     router: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "elements": [],
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "name": "my_name",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateNamedSet(
+      params: Params$Resource$Routers$Updatenamedset,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    updateNamedSet(
+      params?: Params$Resource$Routers$Updatenamedset,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    updateNamedSet(
+      params: Params$Resource$Routers$Updatenamedset,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateNamedSet(
+      params: Params$Resource$Routers$Updatenamedset,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateNamedSet(
+      params: Params$Resource$Routers$Updatenamedset,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateNamedSet(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateNamedSet(
+      paramsOrCallback?:
+        | Params$Resource$Routers$Updatenamedset
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Routers$Updatenamedset;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Routers$Updatenamedset;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/regions/{region}/routers/{router}/updateNamedSet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'router'],
+        pathParams: ['project', 'region', 'router'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Updates or creates new Route Policy
      * @example
      * ```js
@@ -239779,6 +241740,40 @@ export namespace compute_beta {
      */
     router?: string;
   }
+  export interface Params$Resource$Routers$Deletenamedset extends StandardParameters {
+    /**
+     * The Named Set name for this request. Name must conform to RFC1035
+     */
+    namedSet?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the Router resource where Named Set is defined.
+     */
+    router?: string;
+  }
   export interface Params$Resource$Routers$Deleteroutepolicy extends StandardParameters {
     /**
      * The Policy name for this request. Name must conform to RFC1035
@@ -239824,6 +241819,25 @@ export namespace compute_beta {
     region?: string;
     /**
      * Name of the Router resource to return.
+     */
+    router?: string;
+  }
+  export interface Params$Resource$Routers$Getnamedset extends StandardParameters {
+    /**
+     * The Named Set name for this request. Name must conform to RFC1035
+     */
+    namedSet?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name of the Router resource to query for the named set. The name should
+     * conform to RFC1035.
      */
     router?: string;
   }
@@ -240275,6 +242289,119 @@ export namespace compute_beta {
      */
     routeType?: string;
   }
+  export interface Params$Resource$Routers$Listnamedsets extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+    /**
+     * Name or id of the resource for this request.
+     * Name should conform to RFC1035.
+     */
+    router?: string;
+  }
   export interface Params$Resource$Routers$Listroutepolicies extends StandardParameters {
     /**
      * A filter expression that filters resources listed in the response. Most
@@ -240423,6 +242550,41 @@ export namespace compute_beta {
      */
     requestBody?: Schema$Router;
   }
+  export interface Params$Resource$Routers$Patchnamedset extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the Router resource where Named Set is defined.
+     */
+    router?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NamedSet;
+  }
   export interface Params$Resource$Routers$Patchroutepolicy extends StandardParameters {
     /**
      * Project ID for this request.
@@ -240530,6 +242692,41 @@ export namespace compute_beta {
      * Request body metadata
      */
     requestBody?: Schema$Router;
+  }
+  export interface Params$Resource$Routers$Updatenamedset extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region for this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the Router resource where Named Set is defined.
+     */
+    router?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NamedSet;
   }
   export interface Params$Resource$Routers$Updateroutepolicy extends StandardParameters {
     /**
@@ -246974,6 +249171,1459 @@ export namespace compute_beta {
     requestBody?: Schema$TestPermissionsRequest;
   }
 
+  export class Resource$Snapshotgroups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes the specified SnapshotGroup resource
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.snapshotGroups.delete({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Name of the SnapshotGroup resource to delete.
+     *     snapshotGroup: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Snapshotgroups$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Snapshotgroups$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Snapshotgroups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Snapshotgroups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Snapshotgroups$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Snapshotgroups$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Snapshotgroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Snapshotgroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/global/snapshotGroups/{snapshotGroup}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'snapshotGroup'],
+        pathParams: ['project', 'snapshotGroup'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * returns the specified SnapshotGroup resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.snapshotGroups.get({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the SnapshotGroup resource to return.
+     *     snapshotGroup: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId",
+     *   //   "sourceInfo": {},
+     *   //   "sourceInstantSnapshotGroup": "my_sourceInstantSnapshotGroup",
+     *   //   "sourceInstantSnapshotGroupInfo": {},
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Snapshotgroups$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Snapshotgroups$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SnapshotGroup>>;
+    get(
+      params: Params$Resource$Snapshotgroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Snapshotgroups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$SnapshotGroup>,
+      callback: BodyResponseCallback<Schema$SnapshotGroup>
+    ): void;
+    get(
+      params: Params$Resource$Snapshotgroups$Get,
+      callback: BodyResponseCallback<Schema$SnapshotGroup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$SnapshotGroup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Snapshotgroups$Get
+        | BodyResponseCallback<Schema$SnapshotGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SnapshotGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SnapshotGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SnapshotGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Snapshotgroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Snapshotgroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/global/snapshotGroups/{snapshotGroup}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'snapshotGroup'],
+        pathParams: ['project', 'snapshotGroup'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SnapshotGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SnapshotGroup>(parameters);
+      }
+    }
+
+    /**
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.snapshotGroups.getIamPolicy({
+     *     // Requested IAM Policy version.
+     *     optionsRequestedPolicyVersion: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Snapshotgroups$Getiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getIamPolicy(
+      params?: Params$Resource$Snapshotgroups$Getiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
+    getIamPolicy(
+      params: Params$Resource$Snapshotgroups$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Snapshotgroups$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Snapshotgroups$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Snapshotgroups$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Snapshotgroups$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Snapshotgroups$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/global/snapshotGroups/{resource}/getIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Creates a snapshot group in the specified project using the data included
+     * in the request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.snapshotGroups.insert({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "selfLinkWithId": "my_selfLinkWithId",
+     *       //   "sourceInfo": {},
+     *       //   "sourceInstantSnapshotGroup": "my_sourceInstantSnapshotGroup",
+     *       //   "sourceInstantSnapshotGroupInfo": {},
+     *       //   "status": "my_status"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Snapshotgroups$Insert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    insert(
+      params?: Params$Resource$Snapshotgroups$Insert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    insert(
+      params: Params$Resource$Snapshotgroups$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Snapshotgroups$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Snapshotgroups$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Snapshotgroups$Insert
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Snapshotgroups$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Snapshotgroups$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/compute/beta/projects/{project}/global/snapshotGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * retrieves the list of SnapshotGroup resources contained within
+     * the specified project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.snapshotGroups.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Snapshotgroups$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Snapshotgroups$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSnapshotGroups>>;
+    list(
+      params: Params$Resource$Snapshotgroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Snapshotgroups$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListSnapshotGroups>,
+      callback: BodyResponseCallback<Schema$ListSnapshotGroups>
+    ): void;
+    list(
+      params: Params$Resource$Snapshotgroups$List,
+      callback: BodyResponseCallback<Schema$ListSnapshotGroups>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSnapshotGroups>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Snapshotgroups$List
+        | BodyResponseCallback<Schema$ListSnapshotGroups>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSnapshotGroups>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSnapshotGroups>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSnapshotGroups>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Snapshotgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Snapshotgroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/compute/beta/projects/{project}/global/snapshotGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSnapshotGroups>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSnapshotGroups>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.snapshotGroups.setIamPolicy({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bindings": [],
+     *       //   "etag": "my_etag",
+     *       //   "policy": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Snapshotgroups$Setiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setIamPolicy(
+      params?: Params$Resource$Snapshotgroups$Setiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Policy>>;
+    setIamPolicy(
+      params: Params$Resource$Snapshotgroups$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Snapshotgroups$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Snapshotgroups$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Snapshotgroups$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Snapshotgroups$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Snapshotgroups$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/global/snapshotGroups/{resource}/setIamPolicy'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.snapshotGroups.testIamPermissions({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Snapshotgroups$Testiampermissions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    testIamPermissions(
+      params?: Params$Resource$Snapshotgroups$Testiampermissions,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>;
+    testIamPermissions(
+      params: Params$Resource$Snapshotgroups$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Snapshotgroups$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Snapshotgroups$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Snapshotgroups$Testiampermissions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Snapshotgroups$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Snapshotgroups$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/global/snapshotGroups/{resource}/testIamPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Snapshotgroups$Delete extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Name of the SnapshotGroup resource to delete.
+     */
+    snapshotGroup?: string;
+  }
+  export interface Params$Resource$Snapshotgroups$Get extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the SnapshotGroup resource to return.
+     */
+    snapshotGroup?: string;
+  }
+  export interface Params$Resource$Snapshotgroups$Getiampolicy extends StandardParameters {
+    /**
+     * Requested IAM Policy version.
+     */
+    optionsRequestedPolicyVersion?: number;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Snapshotgroups$Insert extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SnapshotGroup;
+  }
+  export interface Params$Resource$Snapshotgroups$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+  }
+  export interface Params$Resource$Snapshotgroups$Setiampolicy extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GlobalSetPolicyRequest;
+  }
+  export interface Params$Resource$Snapshotgroups$Testiampermissions extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
+  }
+
   export class Resource$Snapshots {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -247493,6 +251143,8 @@ export namespace compute_beta {
      *   //   "satisfiesPzs": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "snapshotEncryptionKey": {},
+     *   //   "snapshotGroupId": "my_snapshotGroupId",
+     *   //   "snapshotGroupName": "my_snapshotGroupName",
      *   //   "snapshotType": "my_snapshotType",
      *   //   "sourceDisk": "my_sourceDisk",
      *   //   "sourceDiskEncryptionKey": {},
@@ -247506,8 +251158,7 @@ export namespace compute_beta {
      *   //   "status": "my_status",
      *   //   "storageBytes": "my_storageBytes",
      *   //   "storageBytesStatus": "my_storageBytesStatus",
-     *   //   "storageLocations": [],
-     *   //   "userLicenses": []
+     *   //   "storageLocations": []
      *   // }
      * }
      *
@@ -247840,6 +251491,8 @@ export namespace compute_beta {
      *       //   "satisfiesPzs": false,
      *       //   "selfLink": "my_selfLink",
      *       //   "snapshotEncryptionKey": {},
+     *       //   "snapshotGroupId": "my_snapshotGroupId",
+     *       //   "snapshotGroupName": "my_snapshotGroupName",
      *       //   "snapshotType": "my_snapshotType",
      *       //   "sourceDisk": "my_sourceDisk",
      *       //   "sourceDiskEncryptionKey": {},
@@ -247853,8 +251506,7 @@ export namespace compute_beta {
      *       //   "status": "my_status",
      *       //   "storageBytes": "my_storageBytes",
      *       //   "storageBytesStatus": "my_storageBytesStatus",
-     *       //   "storageLocations": [],
-     *       //   "userLicenses": []
+     *       //   "storageLocations": []
      *       // }
      *     },
      *   });

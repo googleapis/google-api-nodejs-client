@@ -1365,7 +1365,7 @@ export namespace dfareporting_v5 {
     totalAmountMicros?: string | null;
   }
   /**
-   *  *Beta:* This feature is currently in beta. Contains additional information about cart data. This field may only be used when calling batchinsert; it is not supported by batchupdate. Cart data reporting is only supported in SA360. [Learn more](https://support.google.com/sa360/topic/13425788)
+   * Contains additional information about cart data. This field may only be used when calling batchinsert; it is not supported by batchupdate. Cart data reporting is only supported in SA360. [Learn more](https://support.google.com/sa360/topic/13425788)
    */
   export interface Schema$CartData {
     /**
@@ -2018,6 +2018,10 @@ export namespace dfareporting_v5 {
      * Whether ad serving supports secure servers in this country.
      */
     sslEnabled?: boolean | null;
+    /**
+     * Output only. The TV data providers supported in this country.
+     */
+    tvDataProviders?: string[] | null;
   }
   /**
    * Contains properties of a Creative.
@@ -3348,7 +3352,7 @@ export namespace dfareporting_v5 {
     nextPageToken?: string | null;
   }
   /**
-   * Contains dynamic feed information.
+   *  *Beta:* This API resource is available only to a very limited number of customers. If you'd like to use this resource, please reach out to your Google sales representative. Contains dynamic feed information.
    */
   export interface Schema$DynamicFeed {
     /**
@@ -3397,7 +3401,7 @@ export namespace dfareporting_v5 {
     studioAdvertiserId?: string | null;
   }
   /**
-   * Dynamic profile ID is required for dynamic feed insert as the current GPA API only can create a dynamic feed under profile context,even though the dynnamic feed itself don't need the dynamic profile id. See
+   * Dynamic profile ID is required for dynamic feed insert as the current GPA API only can create a dynamic feed under profile context,even though the dynamic feed itself don't need the dynamic profile id.
    */
   export interface Schema$DynamicFeedsInsertRequest {
     /**
@@ -3410,7 +3414,7 @@ export namespace dfareporting_v5 {
     dynamicProfileId?: string | null;
   }
   /**
-   * Contains dynamic profile information.
+   *  *Beta:* This API resource is available only to a very limited number of customers. If you'd like to use this resource, please reach out to your Google sales representative. Contains dynamic profile information.
    */
   export interface Schema$DynamicProfile {
     /**
@@ -3480,7 +3484,7 @@ export namespace dfareporting_v5 {
    */
   export interface Schema$DynamicProfileGenerateCodeResponse {
     /**
-     * Generated code for the dynamic profile.
+     * Generated code for the dynamic profile. The code will need to be unescaped.
      */
     code?: string | null;
   }
@@ -6478,7 +6482,7 @@ export namespace dfareporting_v5 {
     sortOrder?: string | null;
   }
   /**
-   * Contains studio creative information.
+   *  *Beta:* This API resource is available only to a very limited number of customers. If you'd like to use this resource, please reach out to your Google sales representative. Contains studio creative information.
    */
   export interface Schema$StudioCreative {
     /**
@@ -6486,7 +6490,7 @@ export namespace dfareporting_v5 {
      */
     assetIds?: string[] | null;
     /**
-     * Backup image asset ID of this studio creative.
+     * Backup image asset ID of this studio creative. It is a required field on insertion.
      */
     backupImageAssetId?: string | null;
     /**
@@ -6535,7 +6539,7 @@ export namespace dfareporting_v5 {
     studioCampaignId?: string | null;
   }
   /**
-   * Contains studio creative asset information.
+   *  *Beta:* This API resource is available only to a very limited number of customers. If you'd like to use this resource, please reach out to your Google sales representative. Contains studio creative asset information.
    */
   export interface Schema$StudioCreativeAsset {
     /**
@@ -18866,7 +18870,8 @@ export namespace dfareporting_v5 {
      *   //   "dartId": "my_dartId",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "sslEnabled": false
+     *   //   "sslEnabled": false,
+     *   //   "tvDataProviders": []
      *   // }
      * }
      *
@@ -24567,7 +24572,7 @@ export namespace dfareporting_v5 {
     }
 
     /**
-     * Retransforms a dynamic feed.
+     * Retransforms a dynamic feed. Only draft feeds can be retransformed (i.e. the feed has not been published).
      * @example
      * ```js
      * // Before running the sample:
@@ -24714,7 +24719,7 @@ export namespace dfareporting_v5 {
     }
 
     /**
-     * Updates a new dynamic feed.
+     * Updates a new dynamic feed. For draft feeds, only Element can be updated. For published feeds, only FeedSchedule can be updated. Other fields will be ignored.
      * @example
      * ```js
      * // Before running the sample:
@@ -24908,7 +24913,7 @@ export namespace dfareporting_v5 {
     }
 
     /**
-     * Generates code for a dynamic profile.
+     * Generates code for a dynamic profile, which will need unescaping.
      * @example
      * ```js
      * // Before running the sample:
@@ -43660,10 +43665,14 @@ export namespace dfareporting_v5 {
      *   const res = await dfareporting.tvCampaignDetails.get({
      *     // Required. Account ID associated with this request.
      *     accountId: 'placeholder-value',
+     *     // Optional. Country Dart ID. If not specified, defaults to 256 (US).
+     *     countryDartId: 'placeholder-value',
      *     // Required. TV Campaign ID.
      *     id: '[^/]+',
      *     // Required. User profile ID associated with this request.
      *     profileId: '[^/]+',
+     *     // Optional. TV data provider. If not specified, defaults to `COMSCORE_NATIONAL_US`.
+     *     tvDataProvider: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -43777,6 +43786,10 @@ export namespace dfareporting_v5 {
      */
     accountId?: string;
     /**
+     * Optional. Country Dart ID. If not specified, defaults to 256 (US).
+     */
+    countryDartId?: string;
+    /**
      * Required. TV Campaign ID.
      */
     id?: string;
@@ -43784,6 +43797,10 @@ export namespace dfareporting_v5 {
      * Required. User profile ID associated with this request.
      */
     profileId?: string;
+    /**
+     * Optional. TV data provider. If not specified, defaults to `COMSCORE_NATIONAL_US`.
+     */
+    tvDataProvider?: string;
   }
 
   export class Resource$Tvcampaignsummaries {
@@ -43825,10 +43842,14 @@ export namespace dfareporting_v5 {
      *   const res = await dfareporting.tvCampaignSummaries.list({
      *     // Required. Account ID associated with this request.
      *     accountId: 'placeholder-value',
+     *     // Optional. Country Dart ID. If not specified, defaults to 256 (US).
+     *     countryDartId: 'placeholder-value',
      *     // Required. Search string to filter the list of TV campaign summaries. Matches any substring. Required field.
      *     name: 'placeholder-value',
      *     // Required. User profile ID associated with this request.
      *     profileId: '[^/]+',
+     *     // Optional. TV data provider. If not specified, defaults to `COMSCORE_NATIONAL_US`.
+     *     tvDataProvider: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -43947,6 +43968,10 @@ export namespace dfareporting_v5 {
      */
     accountId?: string;
     /**
+     * Optional. Country Dart ID. If not specified, defaults to 256 (US).
+     */
+    countryDartId?: string;
+    /**
      * Required. Search string to filter the list of TV campaign summaries. Matches any substring. Required field.
      */
     name?: string;
@@ -43954,6 +43979,10 @@ export namespace dfareporting_v5 {
      * Required. User profile ID associated with this request.
      */
     profileId?: string;
+    /**
+     * Optional. TV data provider. If not specified, defaults to `COMSCORE_NATIONAL_US`.
+     */
+    tvDataProvider?: string;
   }
 
   export class Resource$Userprofiles {

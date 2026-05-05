@@ -2715,7 +2715,7 @@
       }
     }
   },
-  "revision": "20260125",
+  "revision": "20260218",
   "rootUrl": "https://netapp.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
@@ -3389,6 +3389,29 @@
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "CloneDetails": {
+      "description": "Details about a clone volume.",
+      "id": "CloneDetails",
+      "properties": {
+        "sharedSpaceGib": {
+          "description": "Output only. Shared space in GiB. Determined at volume creation time based on size of source snapshot.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceSnapshot": {
+          "description": "Output only. Specifies the full resource name of the source snapshot from which this volume was cloned. Format: projects/{project}/locations/{location}/volumes/{volume}/snapshots/{snapshot}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceVolume": {
+          "description": "Output only. Full name of the source volume resource. Format: projects/{project}/locations/{location}/volumes/{volume}",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "DailySchedule": {
@@ -5321,6 +5344,11 @@
           "description": "Required. Capacity in GIB of the volume",
           "format": "int64",
           "type": "string"
+        },
+        "cloneDetails": {
+          "$ref": "CloneDetails",
+          "description": "Output only. If this volume is a clone, this field contains details about the clone.",
+          "readOnly": true
         },
         "coldTierSizeGib": {
           "description": "Output only. Size of the volume cold tier data rounded down to the nearest GiB.",

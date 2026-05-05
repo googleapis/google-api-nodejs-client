@@ -2354,7 +2354,7 @@
       }
     }
   },
-  "revision": "20260126",
+  "revision": "20260215",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -2874,7 +2874,8 @@
       "type": "object"
     },
     "CompliancePostureConfig": {
-      "description": "CompliancePostureConfig defines the settings needed to enable/disable features for the Compliance Posture.",
+      "deprecated": true,
+      "description": "Deprecated: Compliance Posture is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. CompliancePostureConfig defines the settings needed to enable/disable features for the Compliance Posture.",
       "id": "CompliancePostureConfig",
       "properties": {
         "complianceStandards": {
@@ -4040,11 +4041,12 @@
         },
         "compliancePostureConfig": {
           "$ref": "CompliancePostureConfig",
-          "description": "Optional. Enable/Disable Compliance Posture features for the cluster. Note that on UpdateFleet, only full replacement of this field is allowed. Users are not allowed for partial updates through field mask."
+          "deprecated": true,
+          "description": "Optional. Deprecated: Compliance Posture is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. Enable/Disable Compliance Posture features for the cluster. Note that on UpdateFleet, only full replacement of this field is allowed. Users are not allowed for partial updates through field mask."
         },
         "securityPostureConfig": {
           "$ref": "SecurityPostureConfig",
-          "description": "Enable/Disable Security Posture features for the cluster."
+          "description": "Optional. Enable/Disable Security Posture features for the cluster."
         }
       },
       "type": "object"
@@ -4064,35 +4066,6 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
-      "type": "object"
-    },
-    "ExcludedCluster": {
-      "description": "An excluded cluster from the rollout.",
-      "id": "ExcludedCluster",
-      "properties": {
-        "membership": {
-          "description": "Output only. The name of the fleet Membership resource associated to the excluded cluster.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "reason": {
-          "description": "Output only. The reason for excluding the cluster from the rollout.",
-          "enum": [
-            "REASON_UNSPECIFIED",
-            "EXCLUDED_BY_FILTER",
-            "ALREADY_UPGRADED",
-            "VERSION_TOO_OLD"
-          ],
-          "enumDescriptions": [
-            "Default value.",
-            "The cluster was excluded by the rollout filter.",
-            "The cluster was already upgraded.",
-            "The cluster version is too old."
-          ],
-          "readOnly": true,
-          "type": "string"
-        }
-      },
       "type": "object"
     },
     "Expr": {
@@ -4266,21 +4239,6 @@
           "description": "The time this status and any related Feature-specific details were updated.",
           "format": "google-datetime",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "FeatureUpdate": {
-      "description": "Feature config to use for Rollout.",
-      "id": "FeatureUpdate",
-      "properties": {
-        "binaryAuthorizationConfig": {
-          "$ref": "BinaryAuthorizationConfig",
-          "description": "Optional. Configuration for Binary Authorization."
-        },
-        "securityPostureConfig": {
-          "$ref": "SecurityPostureConfig",
-          "description": "Optional. Configuration for Security Posture."
         }
       },
       "type": "object"
@@ -6635,18 +6593,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "excludedClusters": {
-          "description": "Optional. Output only. The excluded clusters from the rollout.",
-          "items": {
-            "$ref": "ExcludedCluster"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "feature": {
-          "$ref": "FeatureUpdate",
-          "description": "Optional. Feature config to use for Rollout."
-        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -6670,11 +6616,6 @@
           "description": "Optional. Immutable. The full, unique resource name of the rollout sequence that initiatied this Rollout. In the format of `projects/{project}/locations/global/rolloutSequences/{rollout_sequence}`.",
           "type": "string"
         },
-        "schedule": {
-          "$ref": "Schedule",
-          "description": "Output only. The schedule of the Rollout.",
-          "readOnly": true
-        },
         "stages": {
           "description": "Output only. The stages of the Rollout.",
           "items": {
@@ -6690,16 +6631,14 @@
             "RUNNING",
             "PAUSED",
             "CANCELLED",
-            "COMPLETED",
-            "SCHEDULED"
+            "COMPLETED"
           ],
           "enumDescriptions": [
             "Unspecified state.",
             "The Rollout is running.",
             "The Rollout is paused.",
             "The Rollout is in a failure terminal state.",
-            "The Rollout is in a terminal state.",
-            "The Rollout is scheduled to start."
+            "The Rollout is in a terminal state."
           ],
           "readOnly": true,
           "type": "string"
@@ -6797,6 +6736,11 @@
           },
           "type": "array"
         },
+        "state": {
+          "$ref": "RolloutSequenceState",
+          "description": "Output only. State of the Rollout Sequence as a whole.",
+          "readOnly": true
+        },
         "uid": {
           "description": "Output only. Google-generated UUID for this resource. This is unique across all Rollout Sequence resources. If a Rollout Sequence resource is deleted and another resource with the same name is created, it gets a different uid.",
           "readOnly": true,
@@ -6807,6 +6751,54 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RolloutSequenceState": {
+      "description": "State and reasons of the Rollout Sequence.",
+      "id": "RolloutSequenceState",
+      "properties": {
+        "lifecycleState": {
+          "description": "Output only. Lifecycle state of the Rollout Sequence.",
+          "enum": [
+            "LIFECYCLE_STATE_UNSPECIFIED",
+            "LIFECYCLE_STATE_ACTIVE",
+            "LIFECYCLE_STATE_WARNING",
+            "LIFECYCLE_STATE_ERROR"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "The Rollout Sequence is active.",
+            "The Rollout Sequence has warnings.",
+            "The Rollout Sequence has errors."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateReasons": {
+          "description": "Output only. StateReason represents the reason for the Rollout Sequence state.",
+          "items": {
+            "enum": [
+              "STATE_REASON_UNSPECIFIED",
+              "FLEET_FEATURE_DELETED_ERROR",
+              "FLEET_DELETED_ERROR",
+              "EMPTY_STAGE_WARNING",
+              "MIXED_RELEASE_CHANNELS_WARNING",
+              "INTERNAL_ERROR"
+            ],
+            "enumDescriptions": [
+              "Default unspecified value.",
+              "A fleet feature is deleted.",
+              "A fleet is deleted.",
+              "A stage is empty.",
+              "Mixed release channels in the sequence.",
+              "Internal error, for example when host project is soft-deleted."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -6910,21 +6902,6 @@
           ],
           "readOnly": true,
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "Schedule": {
-      "description": "Schedule represents the schedule of the Rollout.",
-      "id": "Schedule",
-      "properties": {
-        "waves": {
-          "description": "Output only. The schedule of each wave in the Rollout.",
-          "items": {
-            "$ref": "WaveSchedule"
-          },
-          "readOnly": true,
-          "type": "array"
         }
       },
       "type": "object"
@@ -7038,11 +7015,17 @@
             "BASIC",
             "ENTERPRISE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "Default value not specified.",
             "Disables Security Posture features on the cluster.",
             "Applies Security Posture features on the cluster.",
-            "Applies the Security Posture off cluster Enterprise level features."
+            "Deprecated: Security Posture Enterprise features are no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. Applies the Security Posture off cluster Enterprise level features."
           ],
           "type": "string"
         },
@@ -7054,10 +7037,16 @@
             "VULNERABILITY_BASIC",
             "VULNERABILITY_ENTERPRISE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false
+          ],
           "enumDescriptions": [
             "Default value not specified.",
             "Disables vulnerability scanning on the cluster.",
-            "Applies basic vulnerability scanning on the cluster.",
+            "Deprecated: Basic vulnerability scanning is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. Applies basic vulnerability scanning on the cluster.",
             "Applies the Security Posture's vulnerability on cluster Enterprise level features."
           ],
           "type": "string"
@@ -7521,40 +7510,13 @@
           "enum": [
             "TYPE_UNSPECIFIED",
             "TYPE_CONTROL_PLANE",
-            "TYPE_NODE_POOL",
-            "TYPE_CONFIG_SYNC"
+            "TYPE_NODE_POOL"
           ],
           "enumDescriptions": [
             "Default value.",
             "Control plane upgrade.",
-            "Node pool upgrade.",
-            "Config Sync upgrade."
+            "Node pool upgrade."
           ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "WaveSchedule": {
-      "description": "WaveSchedule represents the schedule of a single rollout wave.",
-      "id": "WaveSchedule",
-      "properties": {
-        "waveEndTime": {
-          "description": "Output only. The time at which the wave ends.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "waveNumber": {
-          "description": "Output only. The wave number to which this schedule applies.",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "waveStartTime": {
-          "description": "Output only. The time at which the wave starts.",
-          "format": "google-datetime",
-          "readOnly": true,
           "type": "string"
         }
       },

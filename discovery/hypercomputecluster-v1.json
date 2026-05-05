@@ -12,7 +12,7 @@
   "baseUrl": "https://hypercomputecluster.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Hypercompute Cluster",
-  "description": "",
+  "description": "The Cluster Director API allows you to deploy, manage, and monitor clusters that run AI, ML, or HPC workloads.",
   "discoveryVersion": "v1",
   "documentationLink": "https://docs.cloud.google.com/cluster-director/docs",
   "fullyEncodeReservedExpansion": true,
@@ -135,7 +135,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "hypercomputecluster.projects.locations.list",
@@ -498,7 +498,7 @@
       }
     }
   },
-  "revision": "20260121",
+  "revision": "20260204",
   "rootUrl": "https://hypercomputecluster.googleapis.com/",
   "schemas": {
     "BootDisk": {
@@ -1321,16 +1321,16 @@
           "type": "string"
         },
         "terminationAction": {
-          "description": "Optional. Specifies the termination action of the instance",
+          "description": "Optional. Termination action for the instance. If not specified, Compute Engine sets the termination action to DELETE.",
           "enum": [
             "TERMINATION_ACTION_UNSPECIFIED",
             "STOP",
             "DELETE"
           ],
           "enumDescriptions": [
-            "Unspecified termination action",
-            "Stop the instance",
-            "Delete the instance"
+            "Not set.",
+            "Compute Engine stops the Spot VM on preemption.",
+            "Compute Engine deletes the Spot VM on preemption."
           ],
           "type": "string"
         },
@@ -1421,7 +1421,7 @@
       "type": "object"
     },
     "OperationProgress": {
-      "description": "Message describing the progress of a cluster mutation long-running operation. operation.",
+      "description": "Message describing the progress of a cluster mutation long-running operation.",
       "id": "OperationProgress",
       "properties": {
         "steps": {
@@ -1648,7 +1648,7 @@
       "id": "SlurmNodeSet",
       "properties": {
         "computeId": {
-          "description": "Optional. ID of the compute resource on which this nodeset will run. Must match a key in the cluster's [compute_resources](Cluster.compute_resources).",
+          "description": "Optional. ID of the compute resource on which this nodeset will run. Must match a key in the cluster's compute_resources.",
           "type": "string"
         },
         "computeInstance": {
@@ -1699,14 +1699,14 @@
           "description": "Required. Configuration for login nodes, which allow users to access the cluster over SSH."
         },
         "nodeSets": {
-          "description": "Required. Configuration of Slurm nodesets, which define groups of compute resources that can be used by Slurm. At least one compute node is required.",
+          "description": "Optional. Compute resource configuration for the Slurm nodesets in your cluster. If not specified, the cluster won't create any nodes.",
           "items": {
             "$ref": "SlurmNodeSet"
           },
           "type": "array"
         },
         "partitions": {
-          "description": "Required. Configuration of Slurm partitions, which group one or more nodesets. Acts as a queue against which jobs can be submitted. At least one partition is required.",
+          "description": "Optional. Configuration for the Slurm partitions in your cluster. Each partition can contain one or more nodesets, and you can submit separate jobs on each partition. If you don't specify at least one partition in your cluster, you can't submit jobs to the cluster.",
           "items": {
             "$ref": "SlurmPartition"
           },
@@ -1772,7 +1772,7 @@
       "id": "StorageConfig",
       "properties": {
         "id": {
-          "description": "Required. ID of the storage resource to mount, which must match a key in the cluster's [storage_resources](Cluster.storage_resources).",
+          "description": "Required. ID of the storage resource to mount, which must match a key in the cluster's storage_resources.",
           "type": "string"
         },
         "localMount": {

@@ -219,6 +219,59 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "generateConnectionToolspecOverride": {
+                  "description": "Generate toolspec override for the given list of toolNames.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:generateConnectionToolspecOverride",
+                  "httpMethod": "POST",
+                  "id": "connectors.projects.locations.connections.generateConnectionToolspecOverride",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the Connection. Format: projects/{project}/locations/{location}/connections/{connection}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:generateConnectionToolspecOverride",
+                  "request": {
+                    "$ref": "GenerateCustomToolspecRequest"
+                  },
+                  "response": {
+                    "$ref": "GenerateCustomToolspecResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "listCustomToolNames": {
+                  "description": "Lists custom tool names.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:listCustomToolNames",
+                  "httpMethod": "GET",
+                  "id": "connectors.projects.locations.connections.listCustomToolNames",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the Connection. Format: projects/{project}/locations/{location}/connections/{connection}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:listCustomToolNames",
+                  "response": {
+                    "$ref": "ListCustomToolNamesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "refreshAccessToken": {
                   "description": "RefreshAccessToken exchanges the OAuth refresh token (and other necessary data) for a new access token (and new associated credentials).",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}:refreshAccessToken",
@@ -965,7 +1018,7 @@
       }
     }
   },
-  "revision": "20251216",
+  "revision": "20260128",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AccessCredentials": {
@@ -1633,6 +1686,29 @@
       },
       "type": "object"
     },
+    "GenerateCustomToolspecRequest": {
+      "id": "GenerateCustomToolspecRequest",
+      "properties": {
+        "toolNames": {
+          "description": "list of tools to be generated.",
+          "items": {
+            "$ref": "ToolName"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateCustomToolspecResponse": {
+      "id": "GenerateCustomToolspecResponse",
+      "properties": {
+        "toolSpec": {
+          "$ref": "ToolSpec",
+          "description": "tool spec that has tool_defitions array containing the tools for all sted tool_names."
+        }
+      },
+      "type": "object"
+    },
     "GetResourcePostRequest": {
       "description": "Request message for ConnectorAgentService.GetResourcePost",
       "id": "GetResourcePostRequest",
@@ -2215,6 +2291,19 @@
           "description": "List of actions which contain unsupported Datatypes. Check datatype.proto for more information.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListCustomToolNamesResponse": {
+      "id": "ListCustomToolNamesResponse",
+      "properties": {
+        "toolNames": {
+          "description": "List of custom tools.",
+          "items": {
+            "$ref": "ToolName"
           },
           "type": "array"
         }
@@ -3160,6 +3249,40 @@
         },
         "title": {
           "description": "A human-readable title for the tool.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ToolName": {
+      "id": "ToolName",
+      "properties": {
+        "entityName": {
+          "description": "Entity name for which the tool was generated.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Tool name that was generated in the list tools call.",
+          "type": "string"
+        },
+        "operation": {
+          "description": "Operation for which the tool was generated.",
+          "enum": [
+            "OPERATION_UNSPECIFIED",
+            "LIST",
+            "GET",
+            "CREATE",
+            "UPDATE",
+            "DELETE"
+          ],
+          "enumDescriptions": [
+            "Operation unspecified.",
+            "LIST entities.",
+            "GET entity.",
+            "CREATE entity.",
+            "UPDATE entity.",
+            "DELETE entity."
+          ],
           "type": "string"
         }
       },

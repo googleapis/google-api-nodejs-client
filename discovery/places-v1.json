@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20260104",
+  "revision": "20260208",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -1133,6 +1133,10 @@
         "googleMapsLinks": {
           "$ref": "GoogleMapsPlacesV1PlaceGoogleMapsLinks",
           "description": "Links to trigger different Google Maps actions."
+        },
+        "googleMapsTypeLabel": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "The type label of the place on Google Maps, localized to the request language if applicable, for example, \"Restaurant\", \"Cafe\", \"Airport\", etc. The type label may be different from the primary type display name and may not be a supported type in [Places API Place Types table](https://developers.google.com/maps/documentation/places/web-service/place-types)."
         },
         "googleMapsUri": {
           "description": "A URL providing more information about this place.",

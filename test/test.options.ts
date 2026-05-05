@@ -307,7 +307,7 @@ describe('Options', () => {
   it('should allow using a GoogleAuth object for auth', async () => {
     const google = new GoogleApis();
     const auth = new GoogleAuth();
-    const stub = sandbox.stub(auth, 'request').resolves({} as GaxiosResponse);
+    const stub = sandbox.stub(auth, 'request').resolves({} as any);
     // global options
     google.options({auth: auth as GoogleAuth<AuthClient>});
     // per-API options

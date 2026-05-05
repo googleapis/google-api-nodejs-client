@@ -160,7 +160,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "clouddeploy.projects.locations.list",
@@ -2359,7 +2359,7 @@
       }
     }
   },
-  "revision": "20260109",
+  "revision": "20260128",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -3192,6 +3192,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "workerPool": {
+          "description": "Output only. The Cloud Run worker pool associated with a `Rollout`. Format is `projects/{project}/locations/{location}/workerPools/{worker_pool}`.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -3202,6 +3207,11 @@
       "properties": {
         "service": {
           "description": "Output only. The name of the Cloud Run Service in the rendered manifest. Format is `projects/{project}/locations/{location}/services/{service}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "workerPool": {
+          "description": "Output only. The name of the Cloud Run Worker Pool in the rendered manifest. Format is `projects/{project}/locations/{location}/workerPools/{worker_pool}`.",
           "readOnly": true,
           "type": "string"
         }

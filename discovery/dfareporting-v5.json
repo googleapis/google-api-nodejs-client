@@ -4677,7 +4677,7 @@
           ]
         },
         "retransform": {
-          "description": "Retransforms a dynamic feed.",
+          "description": "Retransforms a dynamic feed. Only draft feeds can be retransformed (i.e. the feed has not been published).",
           "flatPath": "studio/dynamicFeeds/{dynamicFeedsId}/retransform",
           "httpMethod": "POST",
           "id": "dfareporting.dynamicFeeds.retransform",
@@ -4703,7 +4703,7 @@
           ]
         },
         "update": {
-          "description": "Updates a new dynamic feed.",
+          "description": "Updates a new dynamic feed. For draft feeds, only Element can be updated. For published feeds, only FeedSchedule can be updated. Other fields will be ignored.",
           "flatPath": "studio/dynamicFeeds",
           "httpMethod": "PUT",
           "id": "dfareporting.dynamicFeeds.update",
@@ -4725,7 +4725,7 @@
     "dynamicProfiles": {
       "methods": {
         "generateCode": {
-          "description": "Generates code for a dynamic profile.",
+          "description": "Generates code for a dynamic profile, which will need unescaping.",
           "flatPath": "studio/dynamicProfiles/{dynamicProfilesId}/generateCode",
           "httpMethod": "GET",
           "id": "dfareporting.dynamicProfiles.generateCode",
@@ -9432,6 +9432,12 @@
               "location": "query",
               "type": "string"
             },
+            "countryDartId": {
+              "description": "Optional. Country Dart ID. If not specified, defaults to 256 (US).",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
             "id": {
               "description": "Required. TV Campaign ID.",
               "location": "path",
@@ -9445,6 +9451,33 @@
               "location": "path",
               "pattern": "^[^/]+$",
               "required": true,
+              "type": "string"
+            },
+            "tvDataProvider": {
+              "description": "Optional. TV data provider. If not specified, defaults to `COMSCORE_NATIONAL_US`.",
+              "enum": [
+                "INVALID_TV_DATA_PROVIDER",
+                "IBOPE_AR",
+                "IBOPE_BR",
+                "IBOPE_CL",
+                "IBOPE_CO",
+                "TNS_VN",
+                "COMSCORE_NATIONAL_US",
+                "COMSCORE_CA",
+                "SAMBA_AU"
+              ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ],
+              "location": "query",
               "type": "string"
             }
           },
@@ -9475,6 +9508,12 @@
               "location": "query",
               "type": "string"
             },
+            "countryDartId": {
+              "description": "Optional. Country Dart ID. If not specified, defaults to 256 (US).",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
             "name": {
               "description": "Required. Search string to filter the list of TV campaign summaries. Matches any substring. Required field.",
               "location": "query",
@@ -9486,6 +9525,33 @@
               "location": "path",
               "pattern": "^[^/]+$",
               "required": true,
+              "type": "string"
+            },
+            "tvDataProvider": {
+              "description": "Optional. TV data provider. If not specified, defaults to `COMSCORE_NATIONAL_US`.",
+              "enum": [
+                "INVALID_TV_DATA_PROVIDER",
+                "IBOPE_AR",
+                "IBOPE_BR",
+                "IBOPE_CL",
+                "IBOPE_CO",
+                "TNS_VN",
+                "COMSCORE_NATIONAL_US",
+                "COMSCORE_CA",
+                "SAMBA_AU"
+              ],
+              "enumDescriptions": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              ],
+              "location": "query",
               "type": "string"
             }
           },
@@ -10005,7 +10071,7 @@
       }
     }
   },
-  "revision": "20251023",
+  "revision": "20260213",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -11564,7 +11630,7 @@
       "type": "object"
     },
     "CartData": {
-      "description": " *Beta:* This feature is currently in beta. Contains additional information about cart data. This field may only be used when calling batchinsert; it is not supported by batchupdate. Cart data reporting is only supported in SA360. [Learn more](https://support.google.com/sa360/topic/13425788)",
+      "description": "Contains additional information about cart data. This field may only be used when calling batchinsert; it is not supported by batchupdate. Cart data reporting is only supported in SA360. [Learn more](https://support.google.com/sa360/topic/13425788)",
       "id": "CartData",
       "properties": {
         "items": {
@@ -12391,6 +12457,36 @@
         "sslEnabled": {
           "description": "Whether ad serving supports secure servers in this country.",
           "type": "boolean"
+        },
+        "tvDataProviders": {
+          "description": "Output only. The TV data providers supported in this country.",
+          "items": {
+            "enum": [
+              "INVALID_TV_DATA_PROVIDER",
+              "IBOPE_AR",
+              "IBOPE_BR",
+              "IBOPE_CL",
+              "IBOPE_CO",
+              "TNS_VN",
+              "COMSCORE_NATIONAL_US",
+              "COMSCORE_CA",
+              "SAMBA_AU"
+            ],
+            "enumDescriptions": [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -15181,7 +15277,7 @@
       "type": "object"
     },
     "DynamicFeed": {
-      "description": "Contains dynamic feed information.",
+      "description": " *Beta:* This API resource is available only to a very limited number of customers. If you'd like to use this resource, please reach out to your Google sales representative. Contains dynamic feed information.",
       "id": "DynamicFeed",
       "properties": {
         "contentSource": {
@@ -15252,7 +15348,7 @@
       "type": "object"
     },
     "DynamicFeedsInsertRequest": {
-      "description": "Dynamic profile ID is required for dynamic feed insert as the current GPA API only can create a dynamic feed under profile context,even though the dynnamic feed itself don't need the dynamic profile id. See",
+      "description": "Dynamic profile ID is required for dynamic feed insert as the current GPA API only can create a dynamic feed under profile context,even though the dynamic feed itself don't need the dynamic profile id.",
       "id": "DynamicFeedsInsertRequest",
       "properties": {
         "dynamicFeed": {
@@ -15268,7 +15364,7 @@
       "type": "object"
     },
     "DynamicProfile": {
-      "description": "Contains dynamic profile information.",
+      "description": " *Beta:* This API resource is available only to a very limited number of customers. If you'd like to use this resource, please reach out to your Google sales representative. Contains dynamic profile information.",
       "id": "DynamicProfile",
       "properties": {
         "active": {
@@ -15372,7 +15468,7 @@
       "id": "DynamicProfileGenerateCodeResponse",
       "properties": {
         "code": {
-          "description": "Generated code for the dynamic profile.",
+          "description": "Generated code for the dynamic profile. The code will need to be unescaped.",
           "type": "string"
         }
       },
@@ -20504,7 +20600,7 @@
       "type": "object"
     },
     "StudioCreative": {
-      "description": "Contains studio creative information.",
+      "description": " *Beta:* This API resource is available only to a very limited number of customers. If you'd like to use this resource, please reach out to your Google sales representative. Contains studio creative information.",
       "id": "StudioCreative",
       "properties": {
         "assetIds": {
@@ -20516,7 +20612,7 @@
           "type": "array"
         },
         "backupImageAssetId": {
-          "description": "Backup image asset ID of this studio creative.",
+          "description": "Backup image asset ID of this studio creative. It is a required field on insertion.",
           "format": "int64",
           "type": "string"
         },
@@ -20605,7 +20701,7 @@
       "type": "object"
     },
     "StudioCreativeAsset": {
-      "description": "Contains studio creative asset information.",
+      "description": " *Beta:* This API resource is available only to a very limited number of customers. If you'd like to use this resource, please reach out to your Google sales representative. Contains studio creative asset information.",
       "id": "StudioCreativeAsset",
       "properties": {
         "createInfo": {

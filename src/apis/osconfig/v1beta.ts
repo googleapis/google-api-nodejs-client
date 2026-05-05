@@ -813,7 +813,7 @@ export namespace osconfig_v1beta {
      */
     rebootConfig?: string | null;
     /**
-     * Optional. Enables enhanced reporting for the patch job: 1. Allows the patch job to skip unpatchable instances, reporting them as `SKIPPED`. An instance can be unpatchable for two reasons: 1. The instance runs Container-Optimized OS (COS), which cannot be patched. 2. The instance is part of a managed instance group (MIG), and patching MIG instances is disabled in the patch job's configuration (PatchConfig.migInstancesAllowed is `false`). 2. Reports the patch job as `SUCCEEDED` if it completes without errors, even if some instances were `SKIPPED`. 3. Reports the patch job as `COMPLETED_WITH_INACTIVE_VMS` if it completes without errors, but some instances were `INACTIVE` and were not patched.
+     * Optional. Enables enhanced reporting for the patch job: 1. The patch job skips instances that cannot be patched and reports them as `SKIPPED`. An instance cannot be patched for two reasons: 1. The instance runs Container-Optimized OS (COS), which cannot be patched. 2. The instance is part of a managed instance group (MIG), and patching MIG instances is disabled in the patch job's configuration (PatchConfig.migInstancesAllowed is `false`). 2. The patch job is reported as `SUCCEEDED` if it completes without errors, even if some instances are `SKIPPED`. 3. The patch job is reported as `COMPLETED_WITH_INACTIVE_VMS` if it completes without errors, but does not patch instances that are `INACTIVE`.
      */
     skipUnpatchableVms?: boolean | null;
     /**

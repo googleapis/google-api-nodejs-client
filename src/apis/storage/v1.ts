@@ -7635,6 +7635,163 @@ export namespace storage_v1 {
     }
 
     /**
+     * Deletes a folder recursively. Only applicable to buckets with hierarchical namespace enabled.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const storage = google.storage('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/devstorage.full_control',
+     *       'https://www.googleapis.com/auth/devstorage.read_write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storage.folders.deleteRecursive({
+     *     // Name of the bucket in which the folder resides.
+     *     bucket: 'placeholder-value',
+     *     // Name of a folder.
+     *     folder: 'placeholder-value',
+     *     // If set, only deletes the folder if its metageneration matches this value.
+     *     ifMetagenerationMatch: 'placeholder-value',
+     *     // If set, only deletes the folder if its metageneration does not match this value.
+     *     ifMetagenerationNotMatch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {},
+     *   //   "selfLink": "my_selfLink"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deleteRecursive(
+      params: Params$Resource$Folders$Deleterecursive,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    deleteRecursive(
+      params?: Params$Resource$Folders$Deleterecursive,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    deleteRecursive(
+      params: Params$Resource$Folders$Deleterecursive,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteRecursive(
+      params: Params$Resource$Folders$Deleterecursive,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deleteRecursive(
+      params: Params$Resource$Folders$Deleterecursive,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deleteRecursive(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deleteRecursive(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Deleterecursive
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Deleterecursive;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Deleterecursive;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/storage/v1/b/{bucket}/folders/{folder}/deleteRecursive'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'folder'],
+        pathParams: ['bucket', 'folder'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Returns metadata for the specified folder. Only applicable to buckets with hierarchical namespace enabled.
      * @example
      * ```js
@@ -8272,6 +8429,24 @@ export namespace storage_v1 {
   }
 
   export interface Params$Resource$Folders$Delete extends StandardParameters {
+    /**
+     * Name of the bucket in which the folder resides.
+     */
+    bucket?: string;
+    /**
+     * Name of a folder.
+     */
+    folder?: string;
+    /**
+     * If set, only deletes the folder if its metageneration matches this value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * If set, only deletes the folder if its metageneration does not match this value.
+     */
+    ifMetagenerationNotMatch?: string;
+  }
+  export interface Params$Resource$Folders$Deleterecursive extends StandardParameters {
     /**
      * Name of the bucket in which the folder resides.
      */

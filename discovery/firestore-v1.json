@@ -71,6 +71,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://firestore.asia-southeast3.rep.googleapis.com/",
+      "location": "asia-southeast3"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://firestore.australia-southeast1.rep.googleapis.com/",
       "location": "australia-southeast1"
     },
@@ -113,6 +118,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://firestore.europe-west12.rep.googleapis.com/",
       "location": "europe-west12"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://firestore.europe-west15.rep.googleapis.com/",
+      "location": "europe-west15"
     },
     {
       "description": "Regional Endpoint",
@@ -281,6 +291,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://batch-firestore.asia-southeast3.rep.googleapis.com/",
+      "location": "asia-southeast3"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://batch-firestore.australia-southeast1.rep.googleapis.com/",
       "location": "australia-southeast1"
     },
@@ -323,6 +338,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://batch-firestore.europe-west12.rep.googleapis.com/",
       "location": "europe-west12"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://batch-firestore.europe-west15.rep.googleapis.com/",
+      "location": "europe-west15"
     },
     {
       "description": "Regional Endpoint",
@@ -2284,7 +2304,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "firestore.projects.locations.list",
@@ -2425,7 +2445,7 @@
       }
     }
   },
-  "revision": "20260116",
+  "revision": "20260212",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -3265,7 +3285,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The unique resource name of the Backup. Format is `projects/{project}/locations/{location}/backups/{backup}`.",
+          "description": "Output only. The unique resource name of the Backup. Format is `projects/{project}/locations/{location}/backups/{backup}`. The location in the name will be the Standard Managed Multi-Region (SMMR) location (e.g. `us`) if the backup was created with an SMMR location, or the Google Managed Multi-Region (GMMR) location (e.g. `nam5`) if the backup was created with a GMMR location.",
           "readOnly": true,
           "type": "string"
         },
@@ -4455,15 +4475,7 @@
     "GoogleFirestoreAdminV1LocationMetadata": {
       "description": "The metadata message for google.cloud.location.Location.metadata.",
       "id": "GoogleFirestoreAdminV1LocationMetadata",
-      "properties": {
-        "availableStoragePlacements": {
-          "description": "The storage placements available in the location. When the location represents a Standard Managed Multi-Region (SMMR) like \"us\", this field lists the available Google-Managed Multi-Regions (GMMRs) within it, such as \"nam5\" or \"eur3\".",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "GoogleFirestoreAdminV1PitrSnapshot": {
@@ -4649,7 +4661,7 @@
       "type": "object"
     },
     "GoogleFirestoreAdminV1TtlConfig": {
-      "description": "The TTL (time-to-live) configuration for documents that have this `Field` set. Storing a timestamp value into a TTL-enabled field will be treated as the document's absolute expiration time. Timestamp values in the past indicate that the document is eligible for immediate expiration. Using any other data type or leaving the field absent will disable expiration for the individual document.",
+      "description": "The TTL (time-to-live) configuration for documents that have this `Field` set. Storing a timestamp value into a TTL-enabled field will be treated as the document's absolute expiration time. For Enterprise edition databases, the timestamp value may also be stored in an array value in the TTL-enabled field. Timestamp values in the past indicate that the document is eligible for immediate expiration. Using any other data type or leaving the field absent will disable expiration for the individual document.",
       "id": "GoogleFirestoreAdminV1TtlConfig",
       "properties": {
         "state": {

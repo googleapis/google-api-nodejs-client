@@ -1244,6 +1244,37 @@
         }
       }
     },
+    "permissions": {
+      "methods": {
+        "list": {
+          "description": "Lists all supported permissions in VPCSC Granular Controls.",
+          "flatPath": "v1/permissions",
+          "httpMethod": "GET",
+          "id": "accesscontextmanager.permissions.list",
+          "parameterOrder": [],
+          "parameters": {
+            "pageSize": {
+              "description": "Optional. This flag specifies the maximum number of services to return per page. Default is 100.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. Token to start on a later page. Default is the first page.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/permissions",
+          "response": {
+            "$ref": "ListSupportedPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
+    },
     "services": {
       "methods": {
         "get": {
@@ -1300,7 +1331,7 @@
       }
     }
   },
-  "revision": "20251112",
+  "revision": "20260215",
   "rootUrl": "https://accesscontextmanager.googleapis.com/",
   "schemas": {
     "AccessContextManagerOperationMetadata": {
@@ -2183,6 +2214,24 @@
           "description": "List of the Service Perimeter instances.",
           "items": {
             "$ref": "ServicePerimeter"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListSupportedPermissionsResponse": {
+      "description": "A response to `ListSupportedPermissionsRequest`.",
+      "id": "ListSupportedPermissionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The pagination token to retrieve the next page of results. If the value is empty, no further results remain.",
+          "type": "string"
+        },
+        "supportedPermissions": {
+          "description": "List of VPC-SC supported permissions.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }

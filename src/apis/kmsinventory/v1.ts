@@ -231,7 +231,7 @@ export namespace kmsinventory_v1 {
     protectedResources?: Schema$GoogleCloudKmsInventoryV1ProtectedResource[];
   }
   /**
-   * Warning message specifying various states of response data that might indicate incomplete or partial results.
+   * A warning message that indicates potential problems with the response data.
    */
   export interface Schema$GoogleCloudKmsInventoryV1Warning {
     /**
@@ -491,7 +491,7 @@ export namespace kmsinventory_v1 {
      *     pageToken: 'placeholder-value',
      *     // Optional. A list of resource types that this request searches for. If empty, it will search all the [trackable resource types](https://cloud.google.com/kms/docs/view-key-usage#tracked-resource-types). Regular expressions are also supported. For example: * `compute.googleapis.com.*` snapshots resources whose type starts with `compute.googleapis.com`. * `.*Image` snapshots resources whose type ends with `Image`. * `.*Image.*` snapshots resources whose type contains `Image`. See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported regular expression syntax. If the regular expression does not match any supported resource type, an INVALID_ARGUMENT error will be returned.
      *     resourceTypes: 'placeholder-value',
-     *     // Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The allowed values are: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
+     *     // Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The following values are allowed: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
      *     scope: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -627,7 +627,7 @@ export namespace kmsinventory_v1 {
      */
     resourceTypes?: string[];
     /**
-     * Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The allowed values are: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
+     * Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The following values are allowed: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
      */
     scope?: string;
   }
@@ -1063,7 +1063,7 @@ export namespace kmsinventory_v1 {
      *     pageToken: 'placeholder-value',
      *     // Optional. A list of resource types that this request searches for. If empty, it will search all the [trackable resource types](https://cloud.google.com/kms/docs/view-key-usage#tracked-resource-types). Regular expressions are also supported. For example: * `compute.googleapis.com.*` snapshots resources whose type starts with `compute.googleapis.com`. * `.*Image` snapshots resources whose type ends with `Image`. * `.*Image.*` snapshots resources whose type contains `Image`. See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported regular expression syntax. If the regular expression does not match any supported resource type, an INVALID_ARGUMENT error will be returned.
      *     resourceTypes: 'placeholder-value',
-     *     // Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The allowed values are: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
+     *     // Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The following values are allowed: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
      *     scope: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -1199,7 +1199,7 @@ export namespace kmsinventory_v1 {
      */
     resourceTypes?: string[];
     /**
-     * Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The allowed values are: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
+     * Required. A scope can be an organization or a project. Resources protected by the crypto key in provided scope will be returned. The following values are allowed: * organizations/{ORGANIZATION_NUMBER\} (e.g., "organizations/12345678") * projects/{PROJECT_ID\} (e.g., "projects/foo-bar") * projects/{PROJECT_NUMBER\} (e.g., "projects/12345678")
      */
     scope?: string;
   }

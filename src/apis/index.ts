@@ -172,6 +172,7 @@ import {
   VERSIONS as certificatemanagerVersions,
   certificatemanager,
 } from './certificatemanager';
+import {VERSIONS as cesVersions, ces} from './ces';
 import {VERSIONS as chatVersions, chat} from './chat';
 import {VERSIONS as checksVersions, checks} from './checks';
 import {
@@ -435,7 +436,6 @@ import {VERSIONS as kmsinventoryVersions, kmsinventory} from './kmsinventory';
 import {VERSIONS as languageVersions, language} from './language';
 import {VERSIONS as libraryagentVersions, libraryagent} from './libraryagent';
 import {VERSIONS as licensingVersions, licensing} from './licensing';
-import {VERSIONS as lifesciencesVersions, lifesciences} from './lifesciences';
 import {
   VERSIONS as localservicesVersions,
   localservices,
@@ -845,6 +845,7 @@ export const APIS: APIList = {
   businessprofileperformance: businessprofileperformanceVersions,
   calendar: calendarVersions,
   certificatemanager: certificatemanagerVersions,
+  ces: cesVersions,
   chat: chatVersions,
   checks: checksVersions,
   chromemanagement: chromemanagementVersions,
@@ -970,7 +971,6 @@ export const APIS: APIList = {
   language: languageVersions,
   libraryagent: libraryagentVersions,
   licensing: licensingVersions,
-  lifesciences: lifesciencesVersions,
   localservices: localservicesVersions,
   logging: loggingVersions,
   looker: lookerVersions,
@@ -1169,6 +1169,7 @@ export class GeneratedAPIs {
   businessprofileperformance = businessprofileperformance;
   calendar = calendar;
   certificatemanager = certificatemanager;
+  ces = ces;
   chat = chat;
   checks = checks;
   chromemanagement = chromemanagement;
@@ -1294,7 +1295,6 @@ export class GeneratedAPIs {
   language = language;
   libraryagent = libraryagent;
   licensing = licensing;
-  lifesciences = lifesciences;
   localservices = localservices;
   logging = logging;
   looker = looker;

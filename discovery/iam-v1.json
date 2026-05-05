@@ -4160,7 +4160,7 @@
       }
     }
   },
-  "revision": "20260123",
+  "revision": "20260213",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AccessRestrictions": {
@@ -4546,14 +4546,12 @@
           "enum": [
             "ATTRIBUTES_TYPE_UNSPECIFIED",
             "AZURE_AD_GROUPS_MAIL",
-            "AZURE_AD_GROUPS_ID",
-            "AZURE_AD_GROUPS_DISPLAY_NAME"
+            "AZURE_AD_GROUPS_ID"
           ],
           "enumDescriptions": [
             "No AttributesType specified.",
             "Used to get the user's group claims from the Microsoft Entra ID identity provider using the configuration provided in ExtraAttributesOAuth2Client. The `mail` property of the `microsoft.graph.group` object is used for claim mapping. See https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0#properties for more details on `microsoft.graph.group` properties. The group mail addresses of the user's groups that are returned from Microsoft Entra ID can be mapped by using the following attributes: * OIDC: `assertion.groups` * SAML: `assertion.attributes.groups`",
-            "Used to get the user's group claims from the Microsoft Entra ID identity provider using the configuration provided in ExtraAttributesOAuth2Client. The `id` property of the `microsoft.graph.group` object is used for claim mapping. See https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0#properties for more details on `microsoft.graph.group` properties. The group IDs of the user's groups that are returned from Microsoft Entra ID can be mapped by using the following attributes: * OIDC: `assertion.groups` * SAML: `assertion.attributes.groups`",
-            "Used to get the user's group claims from the Microsoft Entra ID identity provider using the configuration provided in ExtraAttributesOAuth2Client. The `displayName` property of the `microsoft.graph.group` object is used for claim mapping. See https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0#properties for more details on `microsoft.graph.group` properties. The display names of the user's groups that are returned from Microsoft Entra ID can be mapped by using the following attributes: * OIDC: `assertion.groups` * SAML: `assertion.attributes.groups`"
+            "Used to get the user's group claims from the Microsoft Entra ID identity provider using the configuration provided in ExtraAttributesOAuth2Client. The `id` property of the `microsoft.graph.group` object is used for claim mapping. See https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0#properties for more details on `microsoft.graph.group` properties. The group IDs of the user's groups that are returned from Microsoft Entra ID can be mapped by using the following attributes: * OIDC: `assertion.groups` * SAML: `assertion.attributes.groups`"
           ],
           "type": "string"
         },
@@ -6340,7 +6338,7 @@
         },
         "extraAttributesOauth2Client": {
           "$ref": "GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client",
-          "description": "Optional. The configuration for OAuth 2.0 client used to get the additional user attributes. This should be used when users can't get the desired claims in authentication credentials. Currently, this configuration is only supported with OIDC protocol."
+          "description": "Optional. Defines the configuration for the OAuth 2.0 client that is used to get the additional user attributes in a separate backchannel call to the identity provider. This should be used when users can't get the required claims in authentication credentials. Currently, the OAuth 2.0 protocol is the only supported authorization method for this backchannel call."
         },
         "name": {
           "description": "Identifier. The resource name of the provider. Format: `locations/{location}/workforcePools/{workforce_pool_id}/providers/{provider_id}`",
@@ -6559,12 +6557,14 @@
           "enum": [
             "MODE_UNSPECIFIED",
             "FEDERATION_ONLY",
-            "TRUST_DOMAIN"
+            "TRUST_DOMAIN",
+            "SYSTEM_TRUST_DOMAIN"
           ],
           "enumDescriptions": [
             "State unspecified. New pools should not use this mode. Pools with an unspecified mode will operate as if they are in federation-only mode.",
-            "Federation-only mode. Federation-only pools can only be used for federating external workload identities into Google Cloud. Unless otherwise noted, no structure or format constraints are applied to workload identities in a federation-only pool, and you cannot create any resources within the pool besides providers.",
-            "Trust-domain mode. Trust-domain pools can be used to assign identities to Google Cloud workloads. All identities within a trust-domain pool must consist of a single namespace and individual workload identifier. The subject identifier for all identities must conform to the following format: `ns//sa/` WorkloadIdentityPoolProviders cannot be created within trust-domain pools."
+            "Federation-only mode. FEDERATION_ONLY mode pools can only be used for federating external workload identities into Google Cloud. Unless otherwise noted, no structure or format constraints are applied to workload identities in a FEDERATION_ONLY mode pool, and you cannot create any resources within the pool besides providers.",
+            "Trust-domain mode. TRUST_DOMAIN mode pools can be used to assign identities to Google Cloud workloads. Identities within a TRUST_DOMAIN mode pool share the same root of trust. WorkloadIdentityPoolProviders cannot be created within trust-domain pools.",
+            "SYSTEM_TRUST_DOMAIN mode pools are managed by Google Cloud services. Neither WorkloadIdentityPoolNamespaces nor WorkloadIdentityPoolProviders can be created within SYSTEM_TRUST_DOMAIN mode pools. All identities within a SYSTEM_TRUST_DOMAIN mode pool are in one of the following formats: * `spiffe:///ns//sa/` * `spiffe:///resources//`"
           ],
           "type": "string"
         },

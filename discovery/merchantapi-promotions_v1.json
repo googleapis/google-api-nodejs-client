@@ -203,13 +203,27 @@
       }
     }
   },
-  "revision": "20250805",
+  "revision": "20260224",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {
       "description": "Attributes.",
       "id": "Attributes",
       "properties": {
+        "audience": {
+          "description": "Optional. This field defines the audience a promotion will be visible to.",
+          "enum": [
+            "AUDIENCE_UNSPECIFIED",
+            "NEW_CUSTOMERS",
+            "LOCATION"
+          ],
+          "enumDescriptions": [
+            "The promotion is not restricted to any audience and will be shown to all users. Default value.",
+            "The Promotion will be shown to new customers only. If this value is set, the `promotion_destinations` field in `Attributes` must include `SHOPPING_ADS`. Requests that do not satisfy this condition will be rejected. For more details, see [First order promotions](https://support.google.com/merchants/answer/16310477?hl=en-IE&sjid=513157547625651759-NC)",
+            "The Promotion will be shown to customer within a certain location. Applicable locations must be specified in the `region_id_inclusion` field and the `promotion_destinations` field must contain `FREE_LISTINGS`. For more details, see [Regional Promotions](https://support.google.com/merchants/answer/16700435?hl=en&sjid=8815806704218720187-NC)."
+          ],
+          "type": "string"
+        },
         "brandExclusion": {
           "description": "Optional. Product filter by [brand exclusion](https://support.google.com/merchants/answer/13861679?ref_topic=13773355&sjid=17642868584668136159-NC) for the promotion. The product filter attributes only applies when the products eligible for promotion product applicability `product_applicability` attribute is set to [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).",
           "items": {
@@ -258,6 +272,24 @@
           ],
           "type": "string"
         },
+        "customRedemptionRestriction": {
+          "description": "Optional. The custom redemption restriction for the promotion. If the `redemption_restriction` field is set to `CUSTOM`, this field must be set.",
+          "type": "string"
+        },
+        "eventApplicability": {
+          "description": "Optional. Event applicability for this promotion. When present, this field indicates you are creating a [sales event](https://support.google.com/merchants/answer/15523289?hl=en&sjid=11099988466404504696-NC) and not a product promotion. Exactly one of `product_applicability` or `event_applicability` must be set.",
+          "enum": [
+            "EVENT_APPLICABILITY_UNSPECIFIED",
+            "SITEWIDE",
+            "SPECIFIC_CATEGORIES"
+          ],
+          "enumDescriptions": [
+            "Indicates that the event applicability is unspecified.",
+            "Indicates that the promotion applies to the entire site.",
+            "Indicates that the promotion applies to specific categories. When this is set, the GoogleProductCategory field is required."
+          ],
+          "type": "string"
+        },
         "freeGiftDescription": {
           "description": "Optional. [Free gift description](https://support.google.com/merchants/answer/13847245?ref_topic=13773355&sjid=17642868584668136159-NC) for the promotion.",
           "type": "string"
@@ -278,6 +310,13 @@
           "description": "Optional. The number of items discounted in the promotion. The attribute is set when `couponValueType` is equal to `buy_m_get_n_money_off` or `buy_m_get_n_percent_off`.",
           "format": "int64",
           "type": "string"
+        },
+        "googleProductCategories": {
+          "description": "Optional. A list of Google product categories for this promotion. Set if `EventApplicability` is `SPECIFIC_CATEGORIES`. Up to 5 product categories can be specified. For more details on eligible values for product categories, checkout the `google_product_category` attribute in the [Promotion data specification](https://support.google.com/merchants/answer/2906014?hl=en).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "itemGroupIdExclusion": {
           "description": "Optional. Product filter by [item group ID](https://support.google.com/merchants/answer/13837298?ref_topic=13773355&sjid=17642868584668136159-NC). The product filter attributes only applies when the products eligible for promotion product applicability `product_applicability` attribute is set to [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC). exclusion for the promotion.",
@@ -320,6 +359,10 @@
           "description": "Required. [Long title](https://support.google.com/merchants/answer/13838102?ref_topic=13773355&sjid=17642868584668136159-NC) for the promotion.",
           "type": "string"
         },
+        "maxDiscountAmount": {
+          "$ref": "Price",
+          "description": "Optional. The maximum monetary discount a customer can receive for the promotion. This field is only supported with the `Percent off` coupon value type."
+        },
         "minimumPurchaseAmount": {
           "$ref": "Price",
           "description": "Optional. [Minimum purchase amount](https://support.google.com/merchants/answer/13837705?ref_topic=13773355&sjid=17642868584668136159-NC) for the promotion."
@@ -352,7 +395,7 @@
           "type": "string"
         },
         "productApplicability": {
-          "description": "Required. Applicability of the promotion to either all products or [only specific products](https://support.google.com/merchants/answer/6396257?ref_topic=6396150&sjid=17642868584668136159-NC).",
+          "description": "Optional. Applicability of the promotion to either all products or [only specific products](https://support.google.com/merchants/answer/6396257?ref_topic=6396150&sjid=17642868584668136159-NC). Exactly one of `product_applicability` or `event_applicability` must be set.",
           "enum": [
             "PRODUCT_APPLICABILITY_UNSPECIFIED",
             "ALL_PRODUCTS",
@@ -428,6 +471,33 @@
           "description": "Optional. URL to the page on the merchant's site where the promotion shows. Local Inventory ads promotions throw an error if no `promotion_url` is included. URL is used to confirm that the promotion is valid and can be redeemed.",
           "type": "string"
         },
+        "redemptionRestriction": {
+          "description": "Optional. A restriction customers must meet before they can redeem the promotion.",
+          "enum": [
+            "REDEMPTION_RESTRICTION_UNSPECIFIED",
+            "SUBSCRIBE",
+            "FIRST_ORDER",
+            "SIGNUP_FOR_EMAIL",
+            "SIGNUP_FOR_TEXT",
+            "CUSTOM"
+          ],
+          "enumDescriptions": [
+            "Indicates that the redemption restriction is unspecified.",
+            "The promotion can only be redeemed by signing up for a subscription.",
+            "The promotion can only be redeemed on the first order.",
+            "The promotion can only be redeemed by signing up for email.",
+            "The promotion can only be redeemed by signing up for text message alerts.",
+            "The promotion can only be redeemed with a custom redemption restriction. In this case, the `custom_redemption_restriction` field must be set."
+          ],
+          "type": "string"
+        },
+        "regionIdInclusion": {
+          "description": "Optional. A list of [regions](https://support.google.com/merchants/answer/15406457?hl=en&sjid=8815806704218720187-NC#howregionswork) where the promotion is applicable. Must be set if `audience` is set to `LOCATION`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "storeApplicability": {
           "description": "Optional. Whether the promotion applies to [all stores, or only specified stores](https://support.google.com/merchants/answer/13857563?sjid=17642868584668136159-NC). Local Inventory ads promotions throw an error if no store applicability is included. An `INVALID_ARGUMENT` error is thrown if `store_applicability` is set to `ALL_STORES` and `store_codes_inclusion` or `score_code_exclusion` is set to a value.",
           "enum": [
@@ -498,6 +568,7 @@
             "LOCAL_INVENTORY_ADS",
             "VEHICLE_INVENTORY_ADS",
             "FREE_LISTINGS",
+            "FREE_LISTINGS_UCP_CHECKOUT",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
             "YOUTUBE_AFFILIATE",
@@ -527,6 +598,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -540,6 +612,7 @@
             "[Local inventory ads](https://support.google.com/merchants/answer/3271956).",
             "[Vehicle inventory ads](https://support.google.com/merchants/answer/11544533).",
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
+            "[Free product listings on UCP checkout](https://developers.google.com/merchant/ucp).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
             "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
@@ -661,6 +734,7 @@
             "LOCAL_INVENTORY_ADS",
             "VEHICLE_INVENTORY_ADS",
             "FREE_LISTINGS",
+            "FREE_LISTINGS_UCP_CHECKOUT",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
             "YOUTUBE_AFFILIATE",
@@ -690,6 +764,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -703,6 +778,7 @@
             "[Local inventory ads](https://support.google.com/merchants/answer/3271956).",
             "[Vehicle inventory ads](https://support.google.com/merchants/answer/11544533).",
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
+            "[Free product listings on UCP checkout](https://developers.google.com/merchant/ucp).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
             "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
@@ -804,6 +880,7 @@
             "LOCAL_INVENTORY_ADS",
             "VEHICLE_INVENTORY_ADS",
             "FREE_LISTINGS",
+            "FREE_LISTINGS_UCP_CHECKOUT",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
             "YOUTUBE_AFFILIATE",
@@ -833,6 +910,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -846,6 +924,7 @@
             "[Local inventory ads](https://support.google.com/merchants/answer/3271956).",
             "[Vehicle inventory ads](https://support.google.com/merchants/answer/11544533).",
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
+            "[Free product listings on UCP checkout](https://developers.google.com/merchant/ucp).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
             "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",

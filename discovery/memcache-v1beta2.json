@@ -135,7 +135,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1beta2/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "memcache.projects.locations.list",
@@ -623,7 +623,7 @@
       }
     }
   },
-  "revision": "20260115",
+  "revision": "20260205",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -1166,6 +1166,14 @@
           "description": "The full name of the Google Compute Engine [network](https://cloud.google.com/vpc/docs/vpc) to which the instance is connected. If left unspecified, the `default` network will be used.",
           "type": "string"
         },
+        "availableMaintenanceVersions": {
+          "description": "Output only. The available maintenance versions that can be applied to the instance.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "createTime": {
           "description": "Output only. The time the instance was created.",
           "format": "google-datetime",
@@ -1179,6 +1187,11 @@
         },
         "displayName": {
           "description": "User provided name for the instance, which is only used for display purposes. Cannot be more than 80 characters.",
+          "type": "string"
+        },
+        "effectiveMaintenanceVersion": {
+          "description": "Output only. The effective maintenance version of the instance.",
+          "readOnly": true,
           "type": "string"
         },
         "instanceMessages": {
@@ -1203,6 +1216,10 @@
           "$ref": "MaintenanceSchedule",
           "description": "Output only. Published maintenance schedule.",
           "readOnly": true
+        },
+        "maintenanceVersion": {
+          "description": "Optional. Last self service update maintenance version triggered by the customer. If it is empty, it means that the maintenance version is not set by the user.",
+          "type": "string"
         },
         "memcacheFullVersion": {
           "description": "Output only. The full version of memcached server running on this instance. System automatically determines the full memcached version for an instance based on the input MemcacheVersion. The full version format will be \"memcached-1.5.16\".",

@@ -2122,7 +2122,7 @@
       }
     }
   },
-  "revision": "20260126",
+  "revision": "20260215",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -2631,7 +2631,8 @@
       "type": "object"
     },
     "CompliancePostureConfig": {
-      "description": "CompliancePostureConfig defines the settings needed to enable/disable features for the Compliance Posture.",
+      "deprecated": true,
+      "description": "Deprecated: Compliance Posture is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. CompliancePostureConfig defines the settings needed to enable/disable features for the Compliance Posture.",
       "id": "CompliancePostureConfig",
       "properties": {
         "complianceStandards": {
@@ -3736,11 +3737,12 @@
         },
         "compliancePostureConfig": {
           "$ref": "CompliancePostureConfig",
-          "description": "Optional. Enable/Disable Compliance Posture features for the cluster. Note that on UpdateFleet, only full replacement of this field is allowed. Users are not allowed for partial updates through field mask."
+          "deprecated": true,
+          "description": "Optional. Deprecated: Compliance Posture is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. Enable/Disable Compliance Posture features for the cluster. Note that on UpdateFleet, only full replacement of this field is allowed. Users are not allowed for partial updates through field mask."
         },
         "securityPostureConfig": {
           "$ref": "SecurityPostureConfig",
-          "description": "Enable/Disable Security Posture features for the cluster."
+          "description": "Optional. Enable/Disable Security Posture features for the cluster."
         }
       },
       "type": "object"
@@ -6264,11 +6266,17 @@
             "BASIC",
             "ENTERPRISE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "Default value not specified.",
             "Disables Security Posture features on the cluster.",
             "Applies Security Posture features on the cluster.",
-            "Applies the Security Posture off cluster Enterprise level features."
+            "Deprecated: Security Posture Enterprise features are no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. Applies the Security Posture off cluster Enterprise level features."
           ],
           "type": "string"
         },
@@ -6280,10 +6288,16 @@
             "VULNERABILITY_BASIC",
             "VULNERABILITY_ENTERPRISE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false
+          ],
           "enumDescriptions": [
             "Default value not specified.",
             "Disables vulnerability scanning on the cluster.",
-            "Applies basic vulnerability scanning on the cluster.",
+            "Deprecated: Basic vulnerability scanning is no longer supported. For more details, see https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation. Applies basic vulnerability scanning on the cluster.",
             "Applies the Security Posture's vulnerability on cluster Enterprise level features."
           ],
           "type": "string"

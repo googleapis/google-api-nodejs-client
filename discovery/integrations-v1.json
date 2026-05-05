@@ -4668,7 +4668,7 @@
       }
     }
   },
-  "revision": "20250922",
+  "revision": "20260225",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -9558,15 +9558,15 @@
       "id": "GoogleCloudConnectorsV1ConfigVariable",
       "properties": {
         "boolValue": {
-          "description": "Value is a bool.",
+          "description": "Optional. Value is a bool.",
           "type": "boolean"
         },
         "encryptionKeyValue": {
           "$ref": "GoogleCloudConnectorsV1EncryptionKey",
-          "description": "Value is a Encryption Key."
+          "description": "Optional. Value is a Encryption Key."
         },
         "intValue": {
-          "description": "Value is an integer",
+          "description": "Optional. Value is an integer",
           "format": "int64",
           "type": "string"
         },
@@ -9576,10 +9576,10 @@
         },
         "secretValue": {
           "$ref": "GoogleCloudConnectorsV1Secret",
-          "description": "Value is a secret."
+          "description": "Optional. Value is a secret."
         },
         "stringValue": {
-          "description": "Value is a string.",
+          "description": "Optional. Value is a string.",
           "type": "string"
         }
       },
@@ -9946,7 +9946,7 @@
           "type": "string"
         },
         "port": {
-          "description": "The port is the target port number that is accepted by the destination.",
+          "description": "Optional. The port is the target port number that is accepted by the destination.",
           "format": "int32",
           "type": "integer"
         },
@@ -9963,14 +9963,14 @@
       "id": "GoogleCloudConnectorsV1DestinationConfig",
       "properties": {
         "destinations": {
-          "description": "The destinations for the key.",
+          "description": "Optional. The destinations for the key.",
           "items": {
             "$ref": "GoogleCloudConnectorsV1Destination"
           },
           "type": "array"
         },
         "key": {
-          "description": "The key is the destination identifier that is supported by the Connector.",
+          "description": "Optional. The key is the destination identifier that is supported by the Connector.",
           "type": "string"
         }
       },
@@ -9985,7 +9985,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Type.",
+          "description": "Optional. Specifies the type of the encryption key.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "GOOGLE_MANAGED",
@@ -10013,13 +10013,20 @@
       "type": "object"
     },
     "GoogleCloudConnectorsV1EventingConfig": {
-      "description": "Eventing Configuration of a connection next: 19",
+      "description": "Eventing Configuration of a connection next: 20",
       "id": "GoogleCloudConnectorsV1EventingConfig",
       "properties": {
         "additionalVariables": {
           "description": "Optional. Additional eventing related field values",
           "items": {
             "$ref": "GoogleCloudConnectorsV1ConfigVariable"
+          },
+          "type": "array"
+        },
+        "allowedEventTypes": {
+          "description": "Optional. List of allowed event types for the connection.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         },
@@ -10040,7 +10047,8 @@
           "type": "boolean"
         },
         "eventsListenerIngressEndpoint": {
-          "description": "Optional. Ingress endpoint of the event listener. This is used only when private connectivity is enabled.",
+          "description": "Output only. Ingress endpoint of the event listener. This is used only when private connectivity is enabled.",
+          "readOnly": true,
           "type": "string"
         },
         "listenerAuthConfig": {
@@ -10421,7 +10429,7 @@
       "id": "GoogleCloudConnectorsV1TrafficShapingConfig",
       "properties": {
         "duration": {
-          "description": "Required. * The duration over which the API call quota limits are calculated. This duration is used to define the time window for evaluating if the number of API calls made by a user is within the allowed quota limits. For example: - To define a quota sampled over 16 seconds, set `seconds` to 16 - To define a quota sampled over 5 minutes, set `seconds` to 300 (5 * 60) - To define a quota sampled over 1 day, set `seconds` to 86400 (24 * 60 * 60) and so on. It is important to note that this duration is not the time the quota is valid for, but rather the time window over which the quota is evaluated. For example, if the quota is 100 calls per 10 seconds, then this duration field would be set to 10 seconds.",
+          "description": "Required. Specifies the duration over which the API call quota limits are calculated. This duration is used to define the time window for evaluating if the number of API calls made by a user is within the allowed quota limits. For example: - To define a quota sampled over 16 seconds, set `seconds` to 16 - To define a quota sampled over 5 minutes, set `seconds` to 300 (5 * 60) - To define a quota sampled over 1 day, set `seconds` to 86400 (24 * 60 * 60) and so on. It is important to note that this duration is not the time the quota is valid for, but rather the time window over which the quota is evaluated. For example, if the quota is 100 calls per 10 seconds, then this duration field would be set to 10 seconds.",
           "format": "google-duration",
           "type": "string"
         },

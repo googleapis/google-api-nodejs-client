@@ -928,7 +928,7 @@ export namespace walletobjects_v1 {
      */
     textModulesData?: Schema$TextModuleData[];
     /**
-     * Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.
+     * Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object.
      */
     valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
@@ -1106,7 +1106,7 @@ export namespace walletobjects_v1 {
      */
     validTimeInterval?: Schema$TimeInterval;
     /**
-     * Optional value added module data. Maximum of ten on the object.
+     * Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed.
      */
     valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
@@ -1366,7 +1366,7 @@ export namespace walletobjects_v1 {
      */
     textModulesData?: Schema$TextModuleData[];
     /**
-     * Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.
+     * Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object.
      */
     valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
@@ -1550,7 +1550,7 @@ export namespace walletobjects_v1 {
      */
     validTimeInterval?: Schema$TimeInterval;
     /**
-     * Optional value added module data. Maximum of ten on the object.
+     * Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed.
      */
     valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
@@ -1645,7 +1645,7 @@ export namespace walletobjects_v1 {
      */
     textModulesData?: Schema$TextModuleData[];
     /**
-     * Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.
+     * Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object.
      */
     valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
@@ -1784,7 +1784,7 @@ export namespace walletobjects_v1 {
      */
     validTimeInterval?: Schema$TimeInterval;
     /**
-     * Optional value added module data. Maximum of ten on the object.
+     * Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed.
      */
     valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
@@ -1960,7 +1960,7 @@ export namespace walletobjects_v1 {
      */
     textModulesData?: Schema$TextModuleData[];
     /**
-     * Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.
+     * Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object.
      */
     valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
@@ -2122,7 +2122,7 @@ export namespace walletobjects_v1 {
      */
     validTimeInterval?: Schema$TimeInterval;
     /**
-     * Optional value added module data. Maximum of ten on the object.
+     * Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed.
      */
     valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
@@ -2280,9 +2280,12 @@ export namespace walletobjects_v1 {
      */
     saveUri?: string | null;
   }
+  /**
+   * A JWT representation of a pass.
+   */
   export interface Schema$JwtResource {
     /**
-     * A string representing a JWT of the format described at https://developers.google.com/wallet/reference/rest/v1/Jwt
+     * Required. A string representing a JWT of the format described at https://developers.google.com/wallet/reference/rest/v1/Jwt
      */
     jwt?: string | null;
   }
@@ -2531,7 +2534,7 @@ export namespace walletobjects_v1 {
      */
     textModulesData?: Schema$TextModuleData[];
     /**
-     * Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.
+     * Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object.
      */
     valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
@@ -2693,7 +2696,7 @@ export namespace walletobjects_v1 {
      */
     validTimeInterval?: Schema$TimeInterval;
     /**
-     * Optional value added module data. Maximum of ten on the object.
+     * Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed.
      */
     valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
@@ -3196,7 +3199,7 @@ export namespace walletobjects_v1 {
      */
     titleImage?: Schema$Image;
     /**
-     * Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.
+     * Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object.
      */
     valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
@@ -3338,7 +3341,7 @@ export namespace walletobjects_v1 {
      */
     validTimeInterval?: Schema$TimeInterval;
     /**
-     * Optional value added module data. Maximum of ten on the object.
+     * Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed.
      */
     valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
@@ -4024,7 +4027,7 @@ export namespace walletobjects_v1 {
      */
     transitType?: string | null;
     /**
-     * Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.
+     * Optional value added module data. Maximum of fifteen on the class. For a pass only fifteen will be displayed, prioritizing those from the object.
      */
     valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
@@ -4230,7 +4233,7 @@ export namespace walletobjects_v1 {
      */
     validTimeInterval?: Schema$TimeInterval;
     /**
-     * Optional value added module data. Maximum of ten on the object.
+     * Optional value added module data. Maximum of fifteen on the object. For a pass only fifteen will be displayed.
      */
     valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
@@ -6320,7 +6323,7 @@ export namespace walletobjects_v1 {
     }
 
     /**
-     * Modifies linked offer objects for the event ticket object with the given ID.
+     * Deprecated: Use Auto Linked Passes instead. Modifies linked offer objects for the event ticket object with the given ID.
      * @example
      * ```js
      * // Before running the sample:
@@ -16788,7 +16791,7 @@ export namespace walletobjects_v1 {
     }
 
     /**
-     * Modifies linked offer objects for the loyalty object with the given ID.
+     * Deprecated: Use Auto Linked Passes instead. Modifies linked offer objects for the loyalty object with the given ID.
      * @example
      * ```js
      * // Before running the sample:

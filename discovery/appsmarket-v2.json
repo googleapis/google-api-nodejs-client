@@ -108,7 +108,7 @@
     "customerLicense": {
       "methods": {
         "get": {
-          "description": "Gets the status of a license for a customer to determine if they have access for a given app.",
+          "description": "Gets the customer's licensing status to determine if they have access to a given app. For more information, see [Getting app installation and licensing details](https://developers.google.com/workspace/marketplace/example-calls-marketplace-api).",
           "flatPath": "appsmarket/v2/customerLicense/{applicationId}/{customerId}",
           "httpMethod": "GET",
           "id": "appsmarket.customerLicense.get",
@@ -118,13 +118,13 @@
           ],
           "parameters": {
             "applicationId": {
-              "description": "Application Id",
+              "description": "The ID of the application.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "customerId": {
-              "description": "Customer Id",
+              "description": "The ID of the customer.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -143,7 +143,7 @@
     "userLicense": {
       "methods": {
         "get": {
-          "description": "Gets the user's licensing status for their permission to use a given app.",
+          "description": "Gets the user's licensing status to determine if they have permission to use a given app. For more information, see [Getting app installation and licensing details](https://developers.google.com/workspace/marketplace/example-calls-marketplace-api).",
           "flatPath": "appsmarket/v2/userLicense/{applicationId}/{userId}",
           "httpMethod": "GET",
           "id": "appsmarket.userLicense.get",
@@ -153,13 +153,13 @@
           ],
           "parameters": {
             "applicationId": {
-              "description": "Application Id",
+              "description": "The ID of the application.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "userId": {
-              "description": "User Id",
+              "description": "The ID of the user.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -176,7 +176,7 @@
       }
     }
   },
-  "revision": "20251217",
+  "revision": "20260209",
   "rootUrl": "https://appsmarket.googleapis.com/",
   "schemas": {
     "CustomerLicense": {
@@ -203,11 +203,11 @@
           "type": "string"
         },
         "kind": {
-          "description": "The type of API resource. This is always appsmarket#customerLicense.",
+          "description": "The type of API resource. This is always `appsmarket#customerLicense`.",
           "type": "string"
         },
         "state": {
-          "description": "The customer's license status. One of: - `ACTIVE`: The customer has a valid license. - `UNLICENSED`: There is no license: either this customer has never installed your application, or else has deleted it.",
+          "description": "The customer's license status. One of: - `ACTIVE`: The customer has a valid license. - `UNLICENSED`: There is no license. Either this customer has never installed your application or has deleted it.",
           "type": "string"
         }
       },
@@ -257,11 +257,11 @@
           "type": "boolean"
         },
         "id": {
-          "description": "The ID of user license.",
+          "description": "The ID of the user license.",
           "type": "string"
         },
         "kind": {
-          "description": "The type of API resource. This is always appsmarket#userLicense.",
+          "description": "The type of API resource. This is always `appsmarket#userLicense`.",
           "type": "string"
         },
         "state": {

@@ -663,7 +663,7 @@ export namespace firebaseappcheck_v1 {
    */
   export interface Schema$GoogleFirebaseAppcheckV1ResourcePolicy {
     /**
-     * Required. The App Check enforcement mode for this resource. This will override the EnforcementMode setting on the service.
+     * Required. The App Check enforcement mode for this resource. This will override the App Check overall EnforcementMode setting on the service.
      */
     enforcementMode?: string | null;
     /**

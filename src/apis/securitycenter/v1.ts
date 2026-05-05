@@ -1271,6 +1271,10 @@ export namespace securitycenter_v1 {
      * Maximum duration of retention allowed from the DRD control. This comes from the DRD control where users set a max TTL for their data. For example, suppose that a user sets the max TTL for a Cloud Storage bucket to 90 days. However, an object in that bucket is 100 days old. In this case, a DataRetentionDeletionEvent will be generated for that Cloud Storage bucket, and the max_retention_allowed is 90 days.
      */
     maxRetentionAllowed?: string | null;
+    /**
+     * Min duration of retention allowed from the DSPM retention control. This field is only populated when event type is set to EVENT_TYPE_MIN_TTL_FROM_CREATION.
+     */
+    minRetentionAllowed?: string | null;
   }
   /**
    * Vertex AI dataset associated with the finding.
@@ -1510,6 +1514,59 @@ export namespace securitycenter_v1 {
     title?: string | null;
   }
   /**
+   * Details about the externally exposed resource associated with the finding.
+   */
+  export interface Schema$ExternalExposure {
+    /**
+     * The full resource name of load balancer backend service, for example, "//compute.googleapis.com/projects/{project-id\}/global/backendServices/{name\}".
+     */
+    backendService?: string | null;
+    /**
+     * The resource which is running the exposed service, for example, "//compute.googleapis.com/projects/{project-id\}/zones/{zone\}/instances/{instance\}.”
+     */
+    exposedEndpoint?: string | null;
+    /**
+     * The name and version of the service, for example, "Jupyter Notebook 6.14.0".
+     */
+    exposedService?: string | null;
+    /**
+     * The full resource name of the forwarding rule, for example, "//compute.googleapis.com/projects/{project-id\}/global/forwardingRules/{forwarding-rule-name\}".
+     */
+    forwardingRule?: string | null;
+    /**
+     * The full resource name of the instance group, for example, "//compute.googleapis.com/projects/{project-id\}/global/instanceGroups/{name\}".
+     */
+    instanceGroup?: string | null;
+    /**
+     * The full resource name of the load balancer firewall policy, for example, "//compute.googleapis.com/projects/{project-id\}/global/firewallPolicies/{policy-name\}".
+     */
+    loadBalancerFirewallPolicy?: string | null;
+    /**
+     * The full resource name of the network endpoint group, for example, "//compute.googleapis.com/projects/{project-id\}/global/networkEndpointGroups/{name\}".
+     */
+    networkEndpointGroup?: string | null;
+    /**
+     * Private IP address of the exposed endpoint.
+     */
+    privateIpAddress?: string | null;
+    /**
+     * Port number associated with private IP address.
+     */
+    privatePort?: string | null;
+    /**
+     * Public IP address of the exposed endpoint.
+     */
+    publicIpAddress?: string | null;
+    /**
+     * Public port number of the exposed endpoint.
+     */
+    publicPort?: string | null;
+    /**
+     * The full resource name of the firewall policy of the exposed service, for example, "//compute.googleapis.com/projects/{project-id\}/global/firewallPolicies/{policy-name\}".
+     */
+    serviceFirewallPolicy?: string | null;
+  }
+  /**
    * File information about the related binary/library used by an executable, or the script used by a script interpreter
    */
   export interface Schema$File {
@@ -1671,6 +1728,10 @@ export namespace securitycenter_v1 {
      * Represents exfiltrations associated with the finding.
      */
     exfiltration?: Schema$Exfiltration;
+    /**
+     * External exposure associated with the finding.
+     */
+    externalExposure?: Schema$ExternalExposure;
     /**
      * Output only. Third party SIEM/SOAR fields within SCC, contains external system information and external system finding fields.
      */
@@ -3528,6 +3589,10 @@ export namespace securitycenter_v1 {
      * Maximum duration of retention allowed from the DRD control. This comes from the DRD control where users set a max TTL for their data. For example, suppose that a user sets the max TTL for a Cloud Storage bucket to 90 days. However, an object in that bucket is 100 days old. In this case, a DataRetentionDeletionEvent will be generated for that Cloud Storage bucket, and the max_retention_allowed is 90 days.
      */
     maxRetentionAllowed?: string | null;
+    /**
+     * Min duration of retention allowed from the DSPM retention control. This field is only populated when event type is set to EVENT_TYPE_MIN_TTL_FROM_CREATION.
+     */
+    minRetentionAllowed?: string | null;
   }
   /**
    * Vertex AI dataset associated with the finding.
@@ -3645,6 +3710,59 @@ export namespace securitycenter_v1 {
      * Total exfiltrated bytes processed for the entire job.
      */
     totalExfiltratedBytes?: string | null;
+  }
+  /**
+   * Details about the externally exposed resource associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ExternalExposure {
+    /**
+     * The full resource name of load balancer backend service, for example, "//compute.googleapis.com/projects/{project-id\}/global/backendServices/{name\}".
+     */
+    backendService?: string | null;
+    /**
+     * The resource which is running the exposed service, for example, "//compute.googleapis.com/projects/{project-id\}/zones/{zone\}/instances/{instance\}.”
+     */
+    exposedEndpoint?: string | null;
+    /**
+     * The name and version of the service, for example, "Jupyter Notebook 6.14.0".
+     */
+    exposedService?: string | null;
+    /**
+     * The full resource name of the forwarding rule, for example, "//compute.googleapis.com/projects/{project-id\}/global/forwardingRules/{forwarding-rule-name\}".
+     */
+    forwardingRule?: string | null;
+    /**
+     * The full resource name of the instance group, for example, "//compute.googleapis.com/projects/{project-id\}/global/instanceGroups/{name\}".
+     */
+    instanceGroup?: string | null;
+    /**
+     * The full resource name of the load balancer firewall policy, for example, "//compute.googleapis.com/projects/{project-id\}/global/firewallPolicies/{policy-name\}".
+     */
+    loadBalancerFirewallPolicy?: string | null;
+    /**
+     * The full resource name of the network endpoint group, for example, "//compute.googleapis.com/projects/{project-id\}/global/networkEndpointGroups/{name\}".
+     */
+    networkEndpointGroup?: string | null;
+    /**
+     * Private IP address of the exposed endpoint.
+     */
+    privateIpAddress?: string | null;
+    /**
+     * Port number associated with private IP address.
+     */
+    privatePort?: string | null;
+    /**
+     * Public IP address of the exposed endpoint.
+     */
+    publicIpAddress?: string | null;
+    /**
+     * Public port number of the exposed endpoint.
+     */
+    publicPort?: string | null;
+    /**
+     * The full resource name of the firewall policy of the exposed service, for example, "//compute.googleapis.com/projects/{project-id\}/global/firewallPolicies/{policy-name\}".
+     */
+    serviceFirewallPolicy?: string | null;
   }
   /**
    * Representation of third party SIEM/SOAR fields within SCC.
@@ -3863,6 +3981,10 @@ export namespace securitycenter_v1 {
      * Represents exfiltrations associated with the finding.
      */
     exfiltration?: Schema$GoogleCloudSecuritycenterV2Exfiltration;
+    /**
+     * External exposure associated with the finding.
+     */
+    externalExposure?: Schema$GoogleCloudSecuritycenterV2ExternalExposure;
     /**
      * Output only. Third party SIEM/SOAR fields within SCC, contains external system information and external system finding fields.
      */
@@ -14755,6 +14877,7 @@ export namespace securitycenter_v1 {
      *       //   "disk": {},
      *       //   "eventTime": "my_eventTime",
      *       //   "exfiltration": {},
+     *       //   "externalExposure": {},
      *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
      *       //   "files": [],
@@ -14826,6 +14949,7 @@ export namespace securitycenter_v1 {
      *   //   "disk": {},
      *   //   "eventTime": "my_eventTime",
      *   //   "exfiltration": {},
+     *   //   "externalExposure": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "files": [],
@@ -15032,6 +15156,7 @@ export namespace securitycenter_v1 {
      *   //   "disk": {},
      *   //   "eventTime": "my_eventTime",
      *   //   "exfiltration": {},
+     *   //   "externalExposure": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "files": [],
@@ -15242,6 +15367,7 @@ export namespace securitycenter_v1 {
      *   //   "disk": {},
      *   //   "eventTime": "my_eventTime",
      *   //   "exfiltration": {},
+     *   //   "externalExposure": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "files": [],
@@ -27203,6 +27329,7 @@ export namespace securitycenter_v1 {
      *       //   "disk": {},
      *       //   "eventTime": "my_eventTime",
      *       //   "exfiltration": {},
+     *       //   "externalExposure": {},
      *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
      *       //   "files": [],
@@ -27274,6 +27401,7 @@ export namespace securitycenter_v1 {
      *   //   "disk": {},
      *   //   "eventTime": "my_eventTime",
      *   //   "exfiltration": {},
+     *   //   "externalExposure": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "files": [],
@@ -27790,6 +27918,7 @@ export namespace securitycenter_v1 {
      *       //   "disk": {},
      *       //   "eventTime": "my_eventTime",
      *       //   "exfiltration": {},
+     *       //   "externalExposure": {},
      *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
      *       //   "files": [],
@@ -27861,6 +27990,7 @@ export namespace securitycenter_v1 {
      *   //   "disk": {},
      *   //   "eventTime": "my_eventTime",
      *   //   "exfiltration": {},
+     *   //   "externalExposure": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "files": [],
@@ -28067,6 +28197,7 @@ export namespace securitycenter_v1 {
      *   //   "disk": {},
      *   //   "eventTime": "my_eventTime",
      *   //   "exfiltration": {},
+     *   //   "externalExposure": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "files": [],
@@ -28277,6 +28408,7 @@ export namespace securitycenter_v1 {
      *   //   "disk": {},
      *   //   "eventTime": "my_eventTime",
      *   //   "exfiltration": {},
+     *   //   "externalExposure": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "files": [],
@@ -36455,6 +36587,7 @@ export namespace securitycenter_v1 {
      *       //   "disk": {},
      *       //   "eventTime": "my_eventTime",
      *       //   "exfiltration": {},
+     *       //   "externalExposure": {},
      *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
      *       //   "files": [],
@@ -36526,6 +36659,7 @@ export namespace securitycenter_v1 {
      *   //   "disk": {},
      *   //   "eventTime": "my_eventTime",
      *   //   "exfiltration": {},
+     *   //   "externalExposure": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "files": [],
@@ -36732,6 +36866,7 @@ export namespace securitycenter_v1 {
      *   //   "disk": {},
      *   //   "eventTime": "my_eventTime",
      *   //   "exfiltration": {},
+     *   //   "externalExposure": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "files": [],
@@ -36942,6 +37077,7 @@ export namespace securitycenter_v1 {
      *   //   "disk": {},
      *   //   "eventTime": "my_eventTime",
      *   //   "exfiltration": {},
+     *   //   "externalExposure": {},
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "files": [],

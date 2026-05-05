@@ -824,7 +824,7 @@
               ]
             },
             "lookupEntry": {
-              "description": "Looks up an entry by name using the permission on the source system. Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc Metastore metadata that is stored in Dataplex Universal Catalog is changing. For more information, see Changes to metadata stored in Dataplex Universal Catalog (https://cloud.google.com/dataplex/docs/metadata-changes).",
+              "description": "Looks up an entry by name using the permission on the source system.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:lookupEntry",
               "httpMethod": "GET",
               "id": "dataplex.projects.locations.lookupEntry",
@@ -879,6 +879,68 @@
               "path": "v1/{+name}:lookupEntry",
               "response": {
                 "$ref": "GoogleCloudDataplexV1Entry"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "lookupEntryLinks": {
+              "description": "Looks up Entry Links referencing the specified Entry.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:lookupEntryLinks",
+              "httpMethod": "GET",
+              "id": "dataplex.projects.locations.lookupEntryLinks",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "entry": {
+                  "description": "Required. The resource name of the referred Entry. Format: projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}/entries/{entry_id}. Entry Links which references this entry will be returned in the response.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "entryLinkTypes": {
+                  "description": "Entry link types to filter the response by. If empty, all entry link types will be returned. At most 10 entry link types can be specified.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
+                "entryMode": {
+                  "description": "Mode of entry reference.",
+                  "enum": [
+                    "ENTRY_MODE_UNSPECIFIED",
+                    "SOURCE",
+                    "TARGET"
+                  ],
+                  "enumDescriptions": [
+                    "Unspecified entry mode. Returns both directional and non-directional entry links which references the entry.",
+                    "Returns all directed entry links which references the entry as source.",
+                    "Return all directed entry links which references the entry as target."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Required. The project to which the request should be attributed to Format: projects/{project_id_or_number}/locations/{location_id}.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Maximum number of EntryLinks to return. The service may return fewer than this value. If unspecified, at most 10 EntryLinks will be returned. The maximum value is 10; values above 10 will be coerced to 10.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Page token received from a previous LookupEntryLinks call. Provide this to retrieve the subsequent page. When paginating, all other parameters that are provided to the LookupEntryLinks request must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:lookupEntryLinks",
+              "response": {
+                "$ref": "GoogleCloudDataplexV1LookupEntryLinksResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -3372,7 +3434,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets an Entry. Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc Metastore metadata that is stored in Dataplex Universal Catalog is changing. For more information, see Changes to metadata stored in Dataplex Universal Catalog (https://cloud.google.com/dataplex/docs/metadata-changes).",
+                      "description": "Gets an Entry.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}",
                       "httpMethod": "GET",
                       "id": "dataplex.projects.locations.entryGroups.entries.get",
@@ -3428,7 +3490,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists Entries within an EntryGroup. Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc Metastore metadata that is stored in Dataplex Universal Catalog is changing. For more information, see Changes to metadata stored in Dataplex Universal Catalog (https://cloud.google.com/dataplex/docs/metadata-changes).",
+                      "description": "Lists Entries within an EntryGroup.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries",
                       "httpMethod": "GET",
                       "id": "dataplex.projects.locations.entryGroups.entries.list",
@@ -7772,13 +7834,104 @@
                   ]
                 }
               }
+            },
+            "policyIntents": {
+              "methods": {
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/policyIntents/{policyIntentsId}:getIamPolicy",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.policyIntents.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/policyIntents/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/policyIntents/{policyIntentsId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.policyIntents.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/policyIntents/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "GoogleIamV1SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/policyIntents/{policyIntentsId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.policyIntents.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/policyIntents/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "GoogleIamV1TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20260127",
+  "revision": "20260213",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -10023,12 +10176,19 @@
           "description": "Optional. The unnested column which this rule is evaluated against.",
           "type": "string"
         },
+        "debugQueries": {
+          "description": "Optional. Specifies the debug queries for this rule. Currently, only one query is supported, but this may be expanded in the future.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataQualityRuleDebugQuery"
+          },
+          "type": "array"
+        },
         "description": {
           "description": "Optional. Description of the rule. The maximum length is 1,024 characters.",
           "type": "string"
         },
         "dimension": {
-          "description": "Required. The dimension a rule belongs to. Results are also aggregated at the dimension level. Custom dimension name is supported with all uppercase letters and maximum length of 30 characters.",
+          "description": "Optional. The dimension a rule belongs to. Results are also aggregated at the dimension level. Custom dimension name is supported with all uppercase letters and maximum length of 30 characters.",
           "type": "string"
         },
         "ignoreNull": {
@@ -10087,6 +10247,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1DataQualityRuleDebugQuery": {
+      "description": "Specifies a SQL statement that is evaluated to return up to 10 scalar values that are used to debug rules. If the rule fails, the values can help diagnose the cause of the failure.The SQL statement must use GoogleSQL syntax (https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax), and must not contain any semicolons.You can use the data reference parameter ${data()} to reference the source table with all of its precondition filters applied. Examples of precondition filters include row filters, incremental data filters, and sampling. For more information, see Data reference parameter (https://cloud.google.com/dataplex/docs/auto-data-quality-overview#data-reference-parameter).You can also name results with an explicit alias using [AS] alias. For more information, see BigQuery explicit aliases (https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#explicit_alias_syntax).Example: SELECT MIN(col1) AS min_col1, MAX(col1) AS max_col1 FROM ${data()}",
+      "id": "GoogleCloudDataplexV1DataQualityRuleDebugQuery",
+      "properties": {
+        "description": {
+          "description": "Optional. Specifies the description of the debug query. The maximum length is 1,024 characters.",
+          "type": "string"
+        },
+        "sqlStatement": {
+          "description": "Required. Specifies the SQL statement to be executed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1DataQualityRuleNonNullExpectation": {
       "description": "Evaluates whether each column value is null.",
       "id": "GoogleCloudDataplexV1DataQualityRuleNonNullExpectation",
@@ -10137,6 +10312,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "debugQueriesResultSets": {
+          "description": "Output only. Contains the results of all debug queries for this rule. The number of result sets will correspond to the number of debug_queries.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataQualityRuleResultDebugQueryResultSet"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "evaluatedCount": {
           "description": "Output only. The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.This field is not set for rule SqlAssertion.",
           "format": "int64",
@@ -10175,6 +10358,40 @@
           "$ref": "GoogleCloudDataplexV1DataQualityRule",
           "description": "Output only. The rule specified in the DataQualitySpec, as is.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualityRuleResultDebugQueryResult": {
+      "description": "Contains a single result from the debug query.",
+      "id": "GoogleCloudDataplexV1DataQualityRuleResultDebugQueryResult",
+      "properties": {
+        "name": {
+          "description": "Specifies the name of the result. Available if provided with an explicit alias using [AS] alias.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Indicates the data type of the result. For more information, see BigQuery data types (https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types).",
+          "type": "string"
+        },
+        "value": {
+          "description": "Represents the value of the result as a string.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataQualityRuleResultDebugQueryResultSet": {
+      "description": "Contains all results from a debug query.",
+      "id": "GoogleCloudDataplexV1DataQualityRuleResultDebugQueryResultSet",
+      "properties": {
+        "results": {
+          "description": "Output only. Contains all results. Up to 10 results can be returned.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataQualityRuleResultDebugQueryResult"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -13363,6 +13580,24 @@
             "$ref": "GoogleCloudDataplexV1Zone"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1LookupEntryLinksResponse": {
+      "description": "Response message for LookupEntryLinks.",
+      "id": "GoogleCloudDataplexV1LookupEntryLinksResponse",
+      "properties": {
+        "entryLinks": {
+          "description": "List of entry links that reference the specified entry.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1EntryLink"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
         }
       },
       "type": "object"

@@ -551,6 +551,23 @@ export namespace netapp_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Details about a clone volume.
+   */
+  export interface Schema$CloneDetails {
+    /**
+     * Output only. Shared space in GiB. Determined at volume creation time based on size of source snapshot.
+     */
+    sharedSpaceGib?: string | null;
+    /**
+     * Output only. Specifies the full resource name of the source snapshot from which this volume was cloned. Format: projects/{project\}/locations/{location\}/volumes/{volume\}/snapshots/{snapshot\}
+     */
+    sourceSnapshot?: string | null;
+    /**
+     * Output only. Full name of the source volume resource. Format: projects/{project\}/locations/{location\}/volumes/{volume\}
+     */
+    sourceVolume?: string | null;
+  }
+  /**
    * Make a snapshot every day e.g. at 04:00, 05:20, 23:50
    */
   export interface Schema$DailySchedule {
@@ -1755,6 +1772,10 @@ export namespace netapp_v1 {
      * Required. Capacity in GIB of the volume
      */
     capacityGib?: string | null;
+    /**
+     * Output only. If this volume is a clone, this field contains details about the clone.
+     */
+    cloneDetails?: Schema$CloneDetails;
     /**
      * Output only. Size of the volume cold tier data rounded down to the nearest GiB.
      */
@@ -9465,6 +9486,7 @@ export namespace netapp_v1 {
      *       //   "blockDevices": [],
      *       //   "cacheParameters": {},
      *       //   "capacityGib": "my_capacityGib",
+     *       //   "cloneDetails": {},
      *       //   "coldTierSizeGib": "my_coldTierSizeGib",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -9948,6 +9970,7 @@ export namespace netapp_v1 {
      *   //   "blockDevices": [],
      *   //   "cacheParameters": {},
      *   //   "capacityGib": "my_capacityGib",
+     *   //   "cloneDetails": {},
      *   //   "coldTierSizeGib": "my_coldTierSizeGib",
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -10272,6 +10295,7 @@ export namespace netapp_v1 {
      *       //   "blockDevices": [],
      *       //   "cacheParameters": {},
      *       //   "capacityGib": "my_capacityGib",
+     *       //   "cloneDetails": {},
      *       //   "coldTierSizeGib": "my_coldTierSizeGib",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",

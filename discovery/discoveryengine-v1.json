@@ -2617,7 +2617,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"`",
+                              "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"` * `collaborative_project = \"projects/123/locations/global/collections/default_collection/engines/\" \"default_engine/collaborative_projects/cp1\"`",
                               "location": "query",
                               "type": "string"
                             },
@@ -3599,7 +3599,7 @@
                 "engines": {
                   "methods": {
                     "create": {
-                      "description": "Creates a Engine.",
+                      "description": "Creates an Engine.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines",
                       "httpMethod": "POST",
                       "id": "discoveryengine.projects.locations.collections.engines.create",
@@ -3633,7 +3633,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes a Engine.",
+                      "description": "Deletes an Engine.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}",
                       "httpMethod": "DELETE",
                       "id": "discoveryengine.projects.locations.collections.engines.delete",
@@ -3659,7 +3659,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets a Engine.",
+                      "description": "Gets an Engine.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}",
                       "httpMethod": "GET",
                       "id": "discoveryengine.projects.locations.collections.engines.get",
@@ -3678,6 +3678,38 @@
                       "path": "v1/{+name}",
                       "response": {
                         "$ref": "GoogleCloudDiscoveryengineV1Engine"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    },
+                    "getIamPolicy": {
+                      "description": "Gets the IAM access control policy for an Engine. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}:getIamPolicy",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.collections.engines.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "options.requestedPolicyVersion": {
+                          "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:getIamPolicy",
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -3755,6 +3787,35 @@
                       },
                       "response": {
                         "$ref": "GoogleCloudDiscoveryengineV1Engine"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    },
+                    "setIamPolicy": {
+                      "description": "Sets the IAM access control policy for an Engine. A `NOT_FOUND` error is returned if the resource does not exist. **Important:** When setting a policy directly on an Engine resource, the only recommended roles in the bindings are: `roles/discoveryengine.user` and `roles/discoveryengine.agentspaceUser`. Attempting to grant any other role will result in a warning in logging.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.collections.engines.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "GoogleIamV1SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -3961,7 +4022,94 @@
                       },
                       "resources": {
                         "agents": {
+                          "methods": {
+                            "getCard": {
+                              "description": "GetAgentCard returns the agent card for the agent.",
+                              "flatPath": "projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}/card",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.getCard",
+                              "parameterOrder": [
+                                "tenant"
+                              ],
+                              "parameters": {
+                                "tenant": {
+                                  "description": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "{+tenant}/card",
+                              "response": {
+                                "$ref": "A2aV1AgentCard"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          },
                           "resources": {
+                            "message": {
+                              "methods": {
+                                "send": {
+                                  "description": "Send a message to the agent. This is a blocking call that will return the task once it is completed, or a LRO if requested.",
+                                  "flatPath": "projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}/message:send",
+                                  "httpMethod": "POST",
+                                  "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.message.send",
+                                  "parameterOrder": [
+                                    "tenant"
+                                  ],
+                                  "parameters": {
+                                    "tenant": {
+                                      "description": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "{+tenant}/message:send",
+                                  "request": {
+                                    "$ref": "A2aV1SendMessageRequest"
+                                  },
+                                  "response": {
+                                    "$ref": "A2aV1SendMessageResponse"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform"
+                                  ]
+                                },
+                                "stream": {
+                                  "description": "SendStreamingMessage is a streaming call that will return a stream of task update events until the Task is in an interrupted or terminal state.",
+                                  "flatPath": "projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}/message:stream",
+                                  "httpMethod": "POST",
+                                  "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.message.stream",
+                                  "parameterOrder": [
+                                    "tenant"
+                                  ],
+                                  "parameters": {
+                                    "tenant": {
+                                      "description": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "{+tenant}/message:stream",
+                                  "request": {
+                                    "$ref": "A2aV1SendMessageRequest"
+                                  },
+                                  "response": {
+                                    "$ref": "A2aV1StreamResponse"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform"
+                                  ]
+                                }
+                              }
+                            },
                             "operations": {
                               "methods": {
                                 "get": {
@@ -3989,6 +4137,275 @@
                                     "https://www.googleapis.com/auth/cloud-platform",
                                     "https://www.googleapis.com/auth/discoveryengine.readwrite"
                                   ]
+                                }
+                              }
+                            },
+                            "tasks": {
+                              "methods": {
+                                "cancel": {
+                                  "description": "Cancel a task from the agent. If supported one should expect no more task updates for the task.",
+                                  "flatPath": "projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}/tasks/{tasksId}:cancel",
+                                  "httpMethod": "POST",
+                                  "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.tasks.cancel",
+                                  "parameterOrder": [
+                                    "tenant",
+                                    "name"
+                                  ],
+                                  "parameters": {
+                                    "name": {
+                                      "description": "The resource name of the task to cancel. Format: tasks/{task_id}",
+                                      "location": "path",
+                                      "pattern": "^tasks/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    },
+                                    "tenant": {
+                                      "description": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "{+tenant}/{+name}:cancel",
+                                  "request": {
+                                    "$ref": "A2aV1CancelTaskRequest"
+                                  },
+                                  "response": {
+                                    "$ref": "A2aV1Task"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform"
+                                  ]
+                                },
+                                "get": {
+                                  "description": "Get the current state of a task from the agent.",
+                                  "flatPath": "projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}/tasks/{tasksId}",
+                                  "httpMethod": "GET",
+                                  "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.tasks.get",
+                                  "parameterOrder": [
+                                    "tenant",
+                                    "name"
+                                  ],
+                                  "parameters": {
+                                    "historyLength": {
+                                      "description": "The number of most recent messages from the task's history to retrieve.",
+                                      "format": "int32",
+                                      "location": "query",
+                                      "type": "integer"
+                                    },
+                                    "name": {
+                                      "description": "Required. The resource name of the task. Format: tasks/{task_id}",
+                                      "location": "path",
+                                      "pattern": "^tasks/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    },
+                                    "tenant": {
+                                      "description": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "{+tenant}/{+name}",
+                                  "response": {
+                                    "$ref": "A2aV1Task"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform"
+                                  ]
+                                },
+                                "subscribe": {
+                                  "description": "TaskSubscription is a streaming call that will return a stream of task update events. This attaches the stream to an existing in process task. If the task is complete the stream will return the completed task (like GetTask) and close the stream.",
+                                  "flatPath": "projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}/tasks/{tasksId}:subscribe",
+                                  "httpMethod": "GET",
+                                  "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.tasks.subscribe",
+                                  "parameterOrder": [
+                                    "tenant",
+                                    "name"
+                                  ],
+                                  "parameters": {
+                                    "name": {
+                                      "description": "The resource name of the task to subscribe to. Format: tasks/{task_id}",
+                                      "location": "path",
+                                      "pattern": "^tasks/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    },
+                                    "tenant": {
+                                      "description": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "{+tenant}/{+name}:subscribe",
+                                  "response": {
+                                    "$ref": "A2aV1StreamResponse"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform"
+                                  ]
+                                }
+                              },
+                              "resources": {
+                                "pushNotificationConfigs": {
+                                  "methods": {
+                                    "create": {
+                                      "description": "Set a push notification config for a task.",
+                                      "flatPath": "projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}/tasks/{tasksId}/pushNotificationConfigs",
+                                      "httpMethod": "POST",
+                                      "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.tasks.pushNotificationConfigs.create",
+                                      "parameterOrder": [
+                                        "tenant",
+                                        "parent"
+                                      ],
+                                      "parameters": {
+                                        "configId": {
+                                          "description": "Required. The ID for the new config.",
+                                          "location": "query",
+                                          "type": "string"
+                                        },
+                                        "parent": {
+                                          "description": "Required. The parent task resource for this config. Format: tasks/{task_id}",
+                                          "location": "path",
+                                          "pattern": "^tasks/[^/]+/pushNotificationConfigs$",
+                                          "required": true,
+                                          "type": "string"
+                                        },
+                                        "tenant": {
+                                          "description": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+                                          "location": "path",
+                                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                          "required": true,
+                                          "type": "string"
+                                        }
+                                      },
+                                      "path": "{+tenant}/{+parent}",
+                                      "request": {
+                                        "$ref": "A2aV1TaskPushNotificationConfig"
+                                      },
+                                      "response": {
+                                        "$ref": "A2aV1TaskPushNotificationConfig"
+                                      },
+                                      "scopes": [
+                                        "https://www.googleapis.com/auth/cloud-platform"
+                                      ]
+                                    },
+                                    "delete": {
+                                      "description": "Delete a push notification config for a task.",
+                                      "flatPath": "projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}/tasks/{tasksId}/pushNotificationConfigs/{pushNotificationConfigsId}",
+                                      "httpMethod": "DELETE",
+                                      "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.tasks.pushNotificationConfigs.delete",
+                                      "parameterOrder": [
+                                        "tenant",
+                                        "name"
+                                      ],
+                                      "parameters": {
+                                        "name": {
+                                          "description": "The resource name of the config to delete. Format: tasks/{task_id}/pushNotificationConfigs/{config_id}",
+                                          "location": "path",
+                                          "pattern": "^tasks/[^/]+/pushNotificationConfigs/[^/]+$",
+                                          "required": true,
+                                          "type": "string"
+                                        },
+                                        "tenant": {
+                                          "description": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+                                          "location": "path",
+                                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                          "required": true,
+                                          "type": "string"
+                                        }
+                                      },
+                                      "path": "{+tenant}/{+name}",
+                                      "response": {
+                                        "$ref": "GoogleProtobufEmpty"
+                                      },
+                                      "scopes": [
+                                        "https://www.googleapis.com/auth/cloud-platform"
+                                      ]
+                                    },
+                                    "get": {
+                                      "description": "Get a push notification config for a task.",
+                                      "flatPath": "projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}/tasks/{tasksId}/pushNotificationConfigs/{pushNotificationConfigsId}",
+                                      "httpMethod": "GET",
+                                      "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.tasks.pushNotificationConfigs.get",
+                                      "parameterOrder": [
+                                        "tenant",
+                                        "name"
+                                      ],
+                                      "parameters": {
+                                        "name": {
+                                          "description": "The resource name of the config to retrieve. Format: tasks/{task_id}/pushNotificationConfigs/{config_id}",
+                                          "location": "path",
+                                          "pattern": "^tasks/[^/]+/pushNotificationConfigs/[^/]+$",
+                                          "required": true,
+                                          "type": "string"
+                                        },
+                                        "tenant": {
+                                          "description": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+                                          "location": "path",
+                                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                          "required": true,
+                                          "type": "string"
+                                        }
+                                      },
+                                      "path": "{+tenant}/{+name}",
+                                      "response": {
+                                        "$ref": "A2aV1TaskPushNotificationConfig"
+                                      },
+                                      "scopes": [
+                                        "https://www.googleapis.com/auth/cloud-platform"
+                                      ]
+                                    },
+                                    "list": {
+                                      "description": "Get a list of push notifications configured for a task.",
+                                      "flatPath": "projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}/agents/{agentsId}/tasks/{tasksId}/pushNotificationConfigs",
+                                      "httpMethod": "GET",
+                                      "id": "discoveryengine.projects.locations.collections.engines.assistants.agents.tasks.pushNotificationConfigs.list",
+                                      "parameterOrder": [
+                                        "tenant",
+                                        "parent"
+                                      ],
+                                      "parameters": {
+                                        "pageSize": {
+                                          "description": "For AIP-158 these fields are present. Usually not used/needed. The maximum number of configurations to return. If unspecified, all configs will be returned.",
+                                          "format": "int32",
+                                          "location": "query",
+                                          "type": "integer"
+                                        },
+                                        "pageToken": {
+                                          "description": "A page token received from a previous ListTaskPushNotificationConfigRequest call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTaskPushNotificationConfigRequest` must match the call that provided the page token.",
+                                          "location": "query",
+                                          "type": "string"
+                                        },
+                                        "parent": {
+                                          "description": "The parent task resource. Format: tasks/{task_id}",
+                                          "location": "path",
+                                          "pattern": "^tasks/[^/]+$",
+                                          "required": true,
+                                          "type": "string"
+                                        },
+                                        "tenant": {
+                                          "description": "Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.",
+                                          "location": "path",
+                                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+$",
+                                          "required": true,
+                                          "type": "string"
+                                        }
+                                      },
+                                      "path": "{+tenant}/{+parent}/pushNotificationConfigs",
+                                      "response": {
+                                        "$ref": "A2aV1ListTaskPushNotificationConfigResponse"
+                                      },
+                                      "scopes": [
+                                        "https://www.googleapis.com/auth/cloud-platform"
+                                      ]
+                                    }
+                                  }
                                 }
                               }
                             }
@@ -4910,7 +5327,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"`",
+                              "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"` * `collaborative_project = \"projects/123/locations/global/collections/default_collection/engines/\" \"default_engine/collaborative_projects/cp1\"`",
                               "location": "query",
                               "type": "string"
                             },
@@ -7002,7 +7419,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"`",
+                          "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"` * `collaborative_project = \"projects/123/locations/global/collections/default_collection/engines/\" \"default_engine/collaborative_projects/cp1\"`",
                           "location": "query",
                           "type": "string"
                         },
@@ -8106,7 +8523,7 @@
             "licenseConfigs": {
               "methods": {
                 "create": {
-                  "description": "Creates a LicenseConfig",
+                  "description": "Creates a LicenseConfig This method should only be used for creating NotebookLm licenses or Gemini Enterprise free trial licenses.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/licenseConfigs",
                   "httpMethod": "POST",
                   "id": "discoveryengine.projects.locations.licenseConfigs.create",
@@ -8801,9 +9218,961 @@
       }
     }
   },
-  "revision": "20260130",
+  "revision": "20260226",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
+    "A2aV1APIKeySecurityScheme": {
+      "id": "A2aV1APIKeySecurityScheme",
+      "properties": {
+        "description": {
+          "description": "Description of this security scheme.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Location of the API key, valid values are \"query\", \"header\", or \"cookie\"",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the header, query or cookie parameter to be used.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1AgentCapabilities": {
+      "description": "Defines the A2A feature set supported by the agent",
+      "id": "A2aV1AgentCapabilities",
+      "properties": {
+        "extensions": {
+          "description": "Extensions supported by this agent.",
+          "items": {
+            "$ref": "A2aV1AgentExtension"
+          },
+          "type": "array"
+        },
+        "pushNotifications": {
+          "description": "If the agent can send push notifications to the clients webhook",
+          "type": "boolean"
+        },
+        "streaming": {
+          "description": "If the agent will support streaming responses",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1AgentCard": {
+      "description": "AgentCard conveys key information: - Overall details (version, name, description, uses) - Skills; a set of actions/solutions the agent can perform - Default modalities/content types supported by the agent. - Authentication requirements Next ID: 19",
+      "id": "A2aV1AgentCard",
+      "properties": {
+        "additionalInterfaces": {
+          "description": "Announcement of additional supported transports. Client can use any of the supported transports.",
+          "items": {
+            "$ref": "A2aV1AgentInterface"
+          },
+          "type": "array"
+        },
+        "capabilities": {
+          "$ref": "A2aV1AgentCapabilities",
+          "description": "A2A Capability set supported by the agent."
+        },
+        "defaultInputModes": {
+          "description": "protolint:enable REPEATED_FIELD_NAMES_PLURALIZED The set of interaction modes that the agent supports across all skills. This can be overridden per skill. Defined as mime types.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "defaultOutputModes": {
+          "description": "The mime types supported as outputs from this agent.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "A description of the agent's domain of action/solution space. Example: \"Agent that helps users with recipes and cooking.\"",
+          "type": "string"
+        },
+        "documentationUrl": {
+          "description": "A url to provide additional documentation about the agent.",
+          "type": "string"
+        },
+        "iconUrl": {
+          "description": "An optional URL to an icon for the agent.",
+          "type": "string"
+        },
+        "name": {
+          "description": "A human readable name for the agent. Example: \"Recipe Agent\"",
+          "type": "string"
+        },
+        "preferredTransport": {
+          "description": "The transport of the preferred endpoint. If empty, defaults to JSONRPC.",
+          "type": "string"
+        },
+        "protocolVersion": {
+          "description": "The version of the A2A protocol this agent supports.",
+          "type": "string"
+        },
+        "provider": {
+          "$ref": "A2aV1AgentProvider",
+          "description": "The service provider of the agent."
+        },
+        "security": {
+          "description": "protolint:disable REPEATED_FIELD_NAMES_PLURALIZED Security requirements for contacting the agent. This list can be seen as an OR of ANDs. Each object in the list describes one possible set of security requirements that must be present on a request. This allows specifying, for example, \"callers must either use OAuth OR an API Key AND mTLS.\" Example: security { schemes { key: \"oauth\" value { list: [\"read\"] } } } security { schemes { key: \"api-key\" } schemes { key: \"mtls\" } }",
+          "items": {
+            "$ref": "A2aV1Security"
+          },
+          "type": "array"
+        },
+        "securitySchemes": {
+          "additionalProperties": {
+            "$ref": "A2aV1SecurityScheme"
+          },
+          "description": "The security scheme details used for authenticating with this agent.",
+          "type": "object"
+        },
+        "signatures": {
+          "description": "JSON Web Signatures computed for this AgentCard.",
+          "items": {
+            "$ref": "A2aV1AgentCardSignature"
+          },
+          "type": "array"
+        },
+        "skills": {
+          "description": "Skills represent a unit of ability an agent can perform. This may somewhat abstract but represents a more focused set of actions that the agent is highly likely to succeed at.",
+          "items": {
+            "$ref": "A2aV1AgentSkill"
+          },
+          "type": "array"
+        },
+        "supportsAuthenticatedExtendedCard": {
+          "description": "Whether the agent supports providing an extended agent card when the user is authenticated, i.e. is the card from .well-known different than the card from GetAgentCard.",
+          "type": "boolean"
+        },
+        "url": {
+          "description": "A URL to the address the agent is hosted at. This represents the preferred endpoint as declared by the agent.",
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the agent. Example: \"1.0.0\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1AgentCardSignature": {
+      "description": "AgentCardSignature represents a JWS signature of an AgentCard. This follows the JSON format of an RFC 7515 JSON Web Signature (JWS).",
+      "id": "A2aV1AgentCardSignature",
+      "properties": {
+        "header": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The unprotected JWS header values.",
+          "type": "object"
+        },
+        "protected": {
+          "description": "Required. The protected JWS header for the signature. This is always a base64url-encoded JSON object. Required.",
+          "type": "string"
+        },
+        "signature": {
+          "description": "Required. The computed signature, base64url-encoded. Required.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1AgentExtension": {
+      "description": "A declaration of an extension supported by an Agent.",
+      "id": "A2aV1AgentExtension",
+      "properties": {
+        "description": {
+          "description": "A description of how this agent uses this extension. Example: \"Google OAuth 2.0 authentication\"",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional configuration for the extension.",
+          "type": "object"
+        },
+        "required": {
+          "description": "Whether the client must follow specific requirements of the extension. Example: false",
+          "type": "boolean"
+        },
+        "uri": {
+          "description": "The URI of the extension. Example: \"https://developers.google.com/identity/protocols/oauth2\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1AgentInterface": {
+      "description": "Defines additional transport information for the agent.",
+      "id": "A2aV1AgentInterface",
+      "properties": {
+        "tenant": {
+          "description": "Tenant to be set in the request when calling the agent. Experimental, might still change for 1.0 release.",
+          "type": "string"
+        },
+        "transport": {
+          "description": "The transport supported this url. This is an open form string, to be easily extended for many transport protocols. The core ones officially supported are JSONRPC, GRPC and HTTP+JSON.",
+          "type": "string"
+        },
+        "url": {
+          "description": "The url this interface is found at.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1AgentProvider": {
+      "description": "Represents information about the service provider of an agent.",
+      "id": "A2aV1AgentProvider",
+      "properties": {
+        "organization": {
+          "description": "The providers organization name Example: \"Google\"",
+          "type": "string"
+        },
+        "url": {
+          "description": "The providers reference url Example: \"https://ai.google.dev\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1AgentSkill": {
+      "description": "AgentSkill represents a unit of action/solution that the agent can perform. One can think of this as a type of highly reliable solution that an agent can be tasked to provide. Agents have the autonomy to choose how and when to use specific skills, but clients should have confidence that if the skill is defined that unit of action can be reliably performed.",
+      "id": "A2aV1AgentSkill",
+      "properties": {
+        "description": {
+          "description": "A human (or llm) readable description of the skill details and behaviors.",
+          "type": "string"
+        },
+        "examples": {
+          "description": "A set of example queries that this skill is designed to address. These examples should help the caller to understand how to craft requests to the agent to achieve specific goals. Example: [\"I need a recipe for bread\"]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Unique identifier of the skill within this agent.",
+          "type": "string"
+        },
+        "inputModes": {
+          "description": "Possible input modalities supported.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "A human readable name for the skill.",
+          "type": "string"
+        },
+        "outputModes": {
+          "description": "Possible output modalities produced",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "security": {
+          "description": "protolint:disable REPEATED_FIELD_NAMES_PLURALIZED Security schemes necessary for the agent to leverage this skill. As in the overall AgentCard.security, this list represents a logical OR of security requirement objects. Each object is a set of security schemes that must be used together (a logical AND). protolint:enable REPEATED_FIELD_NAMES_PLURALIZED",
+          "items": {
+            "$ref": "A2aV1Security"
+          },
+          "type": "array"
+        },
+        "tags": {
+          "description": "A set of tags for the skill to enhance categorization/utilization. Example: [\"cooking\", \"customer support\", \"billing\"]",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1Artifact": {
+      "description": "Artifacts are the container for task completed results. These are similar to Messages but are intended to be the product of a task, as opposed to point-to-point communication.",
+      "id": "A2aV1Artifact",
+      "properties": {
+        "artifactId": {
+          "description": "Unique identifier (e.g. UUID) for the artifact. It must be at least unique within a task.",
+          "type": "string"
+        },
+        "description": {
+          "description": "A human readable description of the artifact, optional.",
+          "type": "string"
+        },
+        "extensions": {
+          "description": "The URIs of extensions that are present or contributed to this Artifact.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional metadata included with the artifact.",
+          "type": "object"
+        },
+        "name": {
+          "description": "A human readable name for the artifact.",
+          "type": "string"
+        },
+        "parts": {
+          "description": "The content of the artifact.",
+          "items": {
+            "$ref": "A2aV1Part"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1AuthenticationInfo": {
+      "description": "Defines authentication details, used for push notifications.",
+      "id": "A2aV1AuthenticationInfo",
+      "properties": {
+        "credentials": {
+          "description": "Optional credentials",
+          "type": "string"
+        },
+        "schemes": {
+          "description": "Supported authentication schemes - e.g. Basic, Bearer, etc",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1AuthorizationCodeOAuthFlow": {
+      "id": "A2aV1AuthorizationCodeOAuthFlow",
+      "properties": {
+        "authorizationUrl": {
+          "description": "The authorization URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS",
+          "type": "string"
+        },
+        "refreshUrl": {
+          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
+          "type": "string"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.",
+          "type": "object"
+        },
+        "tokenUrl": {
+          "description": "The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1CancelTaskRequest": {
+      "id": "A2aV1CancelTaskRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "A2aV1ClientCredentialsOAuthFlow": {
+      "id": "A2aV1ClientCredentialsOAuthFlow",
+      "properties": {
+        "refreshUrl": {
+          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
+          "type": "string"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.",
+          "type": "object"
+        },
+        "tokenUrl": {
+          "description": "The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1DataPart": {
+      "description": "DataPart represents a structured blob. This is most commonly a JSON payload.",
+      "id": "A2aV1DataPart",
+      "properties": {
+        "data": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1FilePart": {
+      "description": "FilePart represents the different ways files can be provided. If files are small, directly feeding the bytes is supported via file_with_bytes. If the file is large, the agent should read the content as appropriate directly from the file_with_uri source.",
+      "id": "A2aV1FilePart",
+      "properties": {
+        "fileWithBytes": {
+          "format": "byte",
+          "type": "string"
+        },
+        "fileWithUri": {
+          "type": "string"
+        },
+        "mimeType": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1HTTPAuthSecurityScheme": {
+      "id": "A2aV1HTTPAuthSecurityScheme",
+      "properties": {
+        "bearerFormat": {
+          "description": "A hint to the client to identify how the bearer token is formatted. Bearer tokens are usually generated by an authorization server, so this information is primarily for documentation purposes.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of this security scheme.",
+          "type": "string"
+        },
+        "scheme": {
+          "description": "The name of the HTTP Authentication scheme to be used in the Authorization header as defined in RFC7235. The values used SHOULD be registered in the IANA Authentication Scheme registry. The value is case-insensitive, as defined in RFC7235.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1ImplicitOAuthFlow": {
+      "id": "A2aV1ImplicitOAuthFlow",
+      "properties": {
+        "authorizationUrl": {
+          "description": "The authorization URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS",
+          "type": "string"
+        },
+        "refreshUrl": {
+          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
+          "type": "string"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1ListTaskPushNotificationConfigResponse": {
+      "id": "A2aV1ListTaskPushNotificationConfigResponse",
+      "properties": {
+        "configs": {
+          "description": "The list of push notification configurations.",
+          "items": {
+            "$ref": "A2aV1TaskPushNotificationConfig"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1Message": {
+      "description": "Message is one unit of communication between client and server. It is associated with a context and optionally a task. Since the server is responsible for the context definition, it must always provide a context_id in its messages. The client can optionally provide the context_id if it knows the context to associate the message to. Similarly for task_id, except the server decides if a task is created and whether to include the task_id.",
+      "id": "A2aV1Message",
+      "properties": {
+        "content": {
+          "description": "protolint:disable REPEATED_FIELD_NAMES_PLURALIZED Content is the container of the message content.",
+          "items": {
+            "$ref": "A2aV1Part"
+          },
+          "type": "array"
+        },
+        "contextId": {
+          "description": "The context id of the message. This is optional and if set, the message will be associated with the given context.",
+          "type": "string"
+        },
+        "extensions": {
+          "description": "The URIs of extensions that are present or contributed to this Message.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "messageId": {
+          "description": "The unique identifier (e.g. UUID)of the message. This is required and created by the message creator.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "protolint:enable REPEATED_FIELD_NAMES_PLURALIZED Any optional metadata to provide along with the message.",
+          "type": "object"
+        },
+        "role": {
+          "description": "A role for the message.",
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "ROLE_USER",
+            "ROLE_AGENT"
+          ],
+          "enumDescriptions": [
+            "",
+            "USER role refers to communication from the client to the server.",
+            "AGENT role refers to communication from the server to the client."
+          ],
+          "type": "string"
+        },
+        "taskId": {
+          "description": "The task id of the message. This is optional and if set, the message will be associated with the given task.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1MutualTlsSecurityScheme": {
+      "id": "A2aV1MutualTlsSecurityScheme",
+      "properties": {
+        "description": {
+          "description": "Description of this security scheme.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1OAuth2SecurityScheme": {
+      "id": "A2aV1OAuth2SecurityScheme",
+      "properties": {
+        "description": {
+          "description": "Description of this security scheme.",
+          "type": "string"
+        },
+        "flows": {
+          "$ref": "A2aV1OAuthFlows",
+          "description": "An object containing configuration information for the flow types supported"
+        },
+        "oauth2MetadataUrl": {
+          "description": "URL to the oauth2 authorization server metadata [RFC8414](https://datatracker.ietf.org/doc/html/rfc8414). TLS is required.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1OAuthFlows": {
+      "id": "A2aV1OAuthFlows",
+      "properties": {
+        "authorizationCode": {
+          "$ref": "A2aV1AuthorizationCodeOAuthFlow"
+        },
+        "clientCredentials": {
+          "$ref": "A2aV1ClientCredentialsOAuthFlow"
+        },
+        "implicit": {
+          "$ref": "A2aV1ImplicitOAuthFlow"
+        },
+        "password": {
+          "$ref": "A2aV1PasswordOAuthFlow"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1OpenIdConnectSecurityScheme": {
+      "id": "A2aV1OpenIdConnectSecurityScheme",
+      "properties": {
+        "description": {
+          "description": "Description of this security scheme.",
+          "type": "string"
+        },
+        "openIdConnectUrl": {
+          "description": "Well-known URL to discover the [[OpenID-Connect-Discovery]] provider metadata.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1Part": {
+      "description": "Part represents a container for a section of communication content. Parts can be purely textual, some sort of file (image, video, etc) or a structured data blob (i.e. JSON).",
+      "id": "A2aV1Part",
+      "properties": {
+        "data": {
+          "$ref": "A2aV1DataPart"
+        },
+        "file": {
+          "$ref": "A2aV1FilePart"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional metadata associated with this part.",
+          "type": "object"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1PasswordOAuthFlow": {
+      "id": "A2aV1PasswordOAuthFlow",
+      "properties": {
+        "refreshUrl": {
+          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
+          "type": "string"
+        },
+        "scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.",
+          "type": "object"
+        },
+        "tokenUrl": {
+          "description": "The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1PushNotificationConfig": {
+      "description": "Configuration for setting up push notifications for task updates.",
+      "id": "A2aV1PushNotificationConfig",
+      "properties": {
+        "authentication": {
+          "$ref": "A2aV1AuthenticationInfo",
+          "description": "Information about the authentication to sent with the notification"
+        },
+        "id": {
+          "description": "A unique identifier (e.g. UUID) for this push notification.",
+          "type": "string"
+        },
+        "token": {
+          "description": "Token unique for this task/session",
+          "type": "string"
+        },
+        "url": {
+          "description": "Url to send the notification too",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1Security": {
+      "id": "A2aV1Security",
+      "properties": {
+        "schemes": {
+          "additionalProperties": {
+            "$ref": "A2aV1StringList"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1SecurityScheme": {
+      "id": "A2aV1SecurityScheme",
+      "properties": {
+        "apiKeySecurityScheme": {
+          "$ref": "A2aV1APIKeySecurityScheme"
+        },
+        "httpAuthSecurityScheme": {
+          "$ref": "A2aV1HTTPAuthSecurityScheme"
+        },
+        "mtlsSecurityScheme": {
+          "$ref": "A2aV1MutualTlsSecurityScheme"
+        },
+        "oauth2SecurityScheme": {
+          "$ref": "A2aV1OAuth2SecurityScheme"
+        },
+        "openIdConnectSecurityScheme": {
+          "$ref": "A2aV1OpenIdConnectSecurityScheme"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1SendMessageConfiguration": {
+      "description": "Configuration of a send message request.",
+      "id": "A2aV1SendMessageConfiguration",
+      "properties": {
+        "acceptedOutputModes": {
+          "description": "The output modes that the agent is expected to respond with.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "blocking": {
+          "description": "If true, the message will be blocking until the task is completed. If false, the message will be non-blocking and the task will be returned immediately. It is the caller's responsibility to check for any task updates.",
+          "type": "boolean"
+        },
+        "historyLength": {
+          "description": "The maximum number of messages to include in the history. if 0, the history will be unlimited.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pushNotification": {
+          "$ref": "A2aV1PushNotificationConfig",
+          "description": "A configuration of a webhook that can be used to receive updates"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1SendMessageRequest": {
+      "description": "/////////// Request Messages ///////////",
+      "id": "A2aV1SendMessageRequest",
+      "properties": {
+        "configuration": {
+          "$ref": "A2aV1SendMessageConfiguration",
+          "description": "Configuration for the send request."
+        },
+        "message": {
+          "$ref": "A2aV1Message",
+          "description": "Required. The message to send to the agent."
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional metadata for the request.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1SendMessageResponse": {
+      "description": "////// Response Messages ///////////",
+      "id": "A2aV1SendMessageResponse",
+      "properties": {
+        "message": {
+          "$ref": "A2aV1Message"
+        },
+        "task": {
+          "$ref": "A2aV1Task"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1StreamResponse": {
+      "description": "The stream response for a message. The stream should be one of the following sequences: If the response is a message, the stream should contain one, and only one, message and then close If the response is a task lifecycle, the first response should be a Task object followed by zero or more TaskStatusUpdateEvents and TaskArtifactUpdateEvents. The stream should complete when the Task if in an interrupted or terminal state. A stream that ends before these conditions are met are",
+      "id": "A2aV1StreamResponse",
+      "properties": {
+        "artifactUpdate": {
+          "$ref": "A2aV1TaskArtifactUpdateEvent"
+        },
+        "message": {
+          "$ref": "A2aV1Message"
+        },
+        "statusUpdate": {
+          "$ref": "A2aV1TaskStatusUpdateEvent"
+        },
+        "task": {
+          "$ref": "A2aV1Task"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1StringList": {
+      "description": "protolint:disable REPEATED_FIELD_NAMES_PLURALIZED",
+      "id": "A2aV1StringList",
+      "properties": {
+        "list": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1Task": {
+      "description": "Task is the core unit of action for A2A. It has a current status and when results are created for the task they are stored in the artifact. If there are multiple turns for a task, these are stored in history.",
+      "id": "A2aV1Task",
+      "properties": {
+        "artifacts": {
+          "description": "A set of output artifacts for a Task.",
+          "items": {
+            "$ref": "A2aV1Artifact"
+          },
+          "type": "array"
+        },
+        "contextId": {
+          "description": "Unique identifier (e.g. UUID) for the contextual collection of interactions (tasks and messages). Created by the A2A server.",
+          "type": "string"
+        },
+        "history": {
+          "description": "protolint:disable REPEATED_FIELD_NAMES_PLURALIZED The history of interactions from a task.",
+          "items": {
+            "$ref": "A2aV1Message"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Unique identifier (e.g. UUID) for the task, generated by the server for a new task.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "protolint:enable REPEATED_FIELD_NAMES_PLURALIZED A key/value object to store custom metadata about a task.",
+          "type": "object"
+        },
+        "status": {
+          "$ref": "A2aV1TaskStatus",
+          "description": "The current status of a Task, including state and a message."
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1TaskArtifactUpdateEvent": {
+      "description": "TaskArtifactUpdateEvent represents a task delta where an artifact has been generated.",
+      "id": "A2aV1TaskArtifactUpdateEvent",
+      "properties": {
+        "append": {
+          "description": "Whether this should be appended to a prior one produced",
+          "type": "boolean"
+        },
+        "artifact": {
+          "$ref": "A2aV1Artifact",
+          "description": "The artifact itself"
+        },
+        "contextId": {
+          "description": "The id of the context that this task belongs too",
+          "type": "string"
+        },
+        "lastChunk": {
+          "description": "Whether this represents the last part of an artifact",
+          "type": "boolean"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional metadata associated with the artifact update.",
+          "type": "object"
+        },
+        "taskId": {
+          "description": "The id of the task for this artifact",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1TaskPushNotificationConfig": {
+      "id": "A2aV1TaskPushNotificationConfig",
+      "properties": {
+        "name": {
+          "description": "The resource name of the config. Format: tasks/{task_id}/pushNotificationConfigs/{config_id}",
+          "type": "string"
+        },
+        "pushNotificationConfig": {
+          "$ref": "A2aV1PushNotificationConfig",
+          "description": "The push notification configuration details."
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1TaskStatus": {
+      "description": "A container for the status of a task",
+      "id": "A2aV1TaskStatus",
+      "properties": {
+        "message": {
+          "$ref": "A2aV1Message",
+          "description": "A message associated with the status."
+        },
+        "state": {
+          "description": "The current state of this task",
+          "enum": [
+            "TASK_STATE_UNSPECIFIED",
+            "TASK_STATE_SUBMITTED",
+            "TASK_STATE_WORKING",
+            "TASK_STATE_COMPLETED",
+            "TASK_STATE_FAILED",
+            "TASK_STATE_CANCELLED",
+            "TASK_STATE_INPUT_REQUIRED",
+            "TASK_STATE_REJECTED",
+            "TASK_STATE_AUTH_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "Represents the status that acknowledges a task is created",
+            "Represents the status that a task is actively being processed",
+            "Represents the status a task is finished. This is a terminal state",
+            "Represents the status a task is done but failed. This is a terminal state",
+            "Represents the status a task was cancelled before it finished. This is a terminal state.",
+            "Represents the status that the task requires information to complete. This is an interrupted state.",
+            "Represents the status that the agent has decided to not perform the task. This may be done during initial task creation or later once an agent has determined it can't or won't proceed. This is a terminal state.",
+            "Represents the state that some authentication is needed from the upstream client. Authentication is expected to come out-of-band thus this is not an interrupted or terminal state."
+          ],
+          "type": "string"
+        },
+        "timestamp": {
+          "description": "Timestamp when the status was recorded. Example: \"2023-10-27T10:00:00Z\"",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "A2aV1TaskStatusUpdateEvent": {
+      "description": "TaskStatusUpdateEvent is a delta even on a task indicating that a task has changed.",
+      "id": "A2aV1TaskStatusUpdateEvent",
+      "properties": {
+        "contextId": {
+          "description": "The id of the context that the task belongs to",
+          "type": "string"
+        },
+        "final": {
+          "description": "Whether this is the last status update expected for this task.",
+          "type": "boolean"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional metadata to associate with the task update.",
+          "type": "object"
+        },
+        "status": {
+          "$ref": "A2aV1TaskStatus",
+          "description": "The new status of the task."
+        },
+        "taskId": {
+          "description": "The id of the task that is changed",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleApiDistribution": {
       "description": "`Distribution` contains summary statistics for a population of values. It optionally contains a histogram representing the distribution of those values across a set of buckets. The summary statistics are the count, mean, sum of the squared deviation from the mean, the minimum, and the maximum of the set of population of values. The histogram is based on a sequence of buckets and gives a count of values that fall into each bucket. The boundaries of the buckets are given either explicitly or by formulas for buckets of fixed or exponentially increasing widths. Although it is not forbidden, it is generally a bad idea to include non-finite values (infinities or NaNs) in the population of values, as this will render the `mean` and `sum_of_squared_deviation` fields meaningless.",
       "id": "GoogleApiDistribution",
@@ -12550,14 +13919,16 @@
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
             "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT"
+            "SOLUTION_TYPE_GENERATIVE_CHAT",
+            "SOLUTION_TYPE_AI_MODE"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
             "Used for use cases related to the Generative AI agent.",
-            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+            "Used for AI Mode."
           ],
           "type": "string"
         },
@@ -13180,7 +14551,9 @@
             "THIRD_PARTY_FEDERATED",
             "THIRD_PARTY_EUA",
             "GCNV",
-            "GOOGLE_CHAT"
+            "GOOGLE_CHAT",
+            "GOOGLE_SITES",
+            "REMOTE_MCP"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -13195,7 +14568,9 @@
             "Federated connector, it is a third party connector that doesn't ingestion data, and search is powered by third party application's API.",
             "Connector utilized for End User Authentication features.",
             "Google Cloud NetApp Volumes connector.",
-            "Google Chat connector."
+            "Google Chat connector.",
+            "Google Sites connector.",
+            "Remote MCP based connector."
           ],
           "readOnly": true,
           "type": "string"
@@ -13219,6 +14594,14 @@
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1DestinationConfig"
           },
+          "type": "array"
+        },
+        "egressFqdns": {
+          "description": "Output only. The list of FQDNs of the data connector can egress to. This includes both FQDN derived from the customer provided instance URL and default per connector type FQDNs. Note: This field is derived from both the DataConnector.params, and connector source spec. It should only be used for CAIS and Org Policy evaluation purposes.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
           "type": "array"
         },
         "endUserConfig": {
@@ -13406,6 +14789,11 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "vpcscEnabled": {
+          "description": "Output only. Whether the connector is created with VPC-SC enabled. This is only used for CuOP evaluation purpose.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -13688,14 +15076,16 @@
               "SOLUTION_TYPE_RECOMMENDATION",
               "SOLUTION_TYPE_SEARCH",
               "SOLUTION_TYPE_CHAT",
-              "SOLUTION_TYPE_GENERATIVE_CHAT"
+              "SOLUTION_TYPE_GENERATIVE_CHAT",
+              "SOLUTION_TYPE_AI_MODE"
             ],
             "enumDescriptions": [
               "Default value.",
               "Used for Recommendations AI.",
               "Used for Discovery Search.",
               "Used for use cases related to the Generative AI agent.",
-              "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+              "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+              "Used for AI Mode."
             ],
             "type": "string"
           },
@@ -14388,6 +15778,13 @@
           ],
           "type": "string"
         },
+        "connectorTenantInfo": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Maps a connector ID (e.g., \"hybrid-github\", \"shopify\") to tenant-specific information required for that connector. The structure of the tenant information string is connector-dependent.",
+          "type": "object"
+        },
         "createTime": {
           "description": "Output only. Timestamp the Recommendation Engine was created at.",
           "format": "google-datetime",
@@ -14446,6 +15843,24 @@
           "$ref": "GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfig",
           "description": "Optional. Configurations for the Knowledge Graph. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
         },
+        "marketplaceAgentVisibility": {
+          "description": "Optional. The visibility of marketplace agents in the agent gallery.",
+          "enum": [
+            "MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED",
+            "SHOW_AVAILABLE_AGENTS_ONLY",
+            "SHOW_AGENTS_ALREADY_INTEGRATED",
+            "SHOW_AGENTS_ALREADY_PURCHASED",
+            "SHOW_ALL_AGENTS"
+          ],
+          "enumDescriptions": [
+            "Defaults to `MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED`.",
+            "Only agents that are currently available for use by the user are visible.",
+            "Show marketplace agents that the user does not yet have access to but are integrated into the engine. This level also includes all agents visible with `SHOW_AVAILABLE_AGENTS_ONLY`.",
+            "Show all agents visible with `SHOW_AGENTS_ALREADY_INTEGRATED`, plus agents that have already been purchased by the project/organization, even if they are not currently integrated into the engine.",
+            "All agents in the marketplace are visible, regardless of access or purchase status. This level encompasses all agents shown in the previous levels."
+          ],
+          "type": "string"
+        },
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig",
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
@@ -14475,6 +15890,10 @@
           "$ref": "GoogleCloudDiscoveryengineV1ObservabilityConfig",
           "description": "Optional. Observability config for the engine."
         },
+        "procurementContactEmail": {
+          "description": "Optional. The email of the procurement contact.",
+          "type": "string"
+        },
         "searchEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineSearchEngineConfig",
           "description": "Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
@@ -14486,14 +15905,16 @@
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
             "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT"
+            "SOLUTION_TYPE_GENERATIVE_CHAT",
+            "SOLUTION_TYPE_AI_MODE"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
             "Used for use cases related to the Generative AI agent.",
-            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+            "Used for AI Mode."
           ],
           "type": "string"
         },
@@ -14732,6 +16153,7 @@
             "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
             "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
             "SUBSCRIPTION_TIER_ENTERPRISE",
+            "SUBSCRIPTION_TIER_ENTERPRISE_EMERGING",
             "SUBSCRIPTION_TIER_EDU",
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
@@ -14740,18 +16162,19 @@
           ],
           "enumDescriptions": [
             "Default value.",
-            "Search tier. Search tier can access VAIS search features and NotebookLM features.",
-            "Search + assistant tier. Search + assistant tier can access VAIS search features, NotebookLM features and assistant features.",
+            "Search tier. Search tier can access Vertex AI Search features and NotebookLM features.",
+            "Gemini Enterprise Plus tier.",
             "NotebookLM tier. NotebookLM is a subscription tier can only access NotebookLM features.",
-            "Frontline worker tier.",
-            "Agentspace Starter tier.",
-            "Agentspace Business tier.",
-            "Enterprise tier.",
-            "EDU tier.",
-            "EDU Pro tier.",
-            "EDU emerging market tier.",
-            "EDU Pro emerging market tier.",
-            "Frontline starter tier."
+            "Gemini Frontline worker tier.",
+            "Gemini Business Starter tier.",
+            "Gemini Business tier.",
+            "Gemini Enterprise Standard tier.",
+            "Gemini Enterprise Standard tier for emerging markets.",
+            "Gemini Enterprise EDU tier.",
+            "Gemini Enterprise EDU Pro tier.",
+            "Gemini Enterprise EDU tier for emerging market only.",
+            "Gemini Enterprise EDU Pro tier for emerging market.",
+            "Gemini Frontline Starter tier."
           ],
           "type": "string"
         },
@@ -15569,6 +16992,16 @@
           "description": "Optional. Whether the license config should be auto renewed when it reaches the end date.",
           "type": "boolean"
         },
+        "earlyTerminated": {
+          "description": "Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "earlyTerminationDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Output only. The date when the subscription is terminated earlier than the expiration date.",
+          "readOnly": true
+        },
         "endDate": {
           "$ref": "GoogleTypeDate",
           "description": "Optional. The planed end date."
@@ -15601,13 +17034,17 @@
             "STATE_UNSPECIFIED",
             "ACTIVE",
             "EXPIRED",
-            "NOT_STARTED"
+            "NOT_STARTED",
+            "WITHDRAWN",
+            "DEACTIVATING"
           ],
           "enumDescriptions": [
             "Default value. The license config does not exist.",
             "The license config is effective and being used.",
             "The license config has expired.",
-            "The license config has not started yet, and its start date is in the future."
+            "The license config has not started yet, and its start date is in the future.",
+            "This is when a sub license config has returned all its seats back to BillingAccountLicenseConfig that it belongs to. Similar to EXPIRED.",
+            "The license config is terminated earlier than the expiration date and it is deactivating. The customer will still have access in this state. It will be converted to EXPIRED after the deactivating period ends (14 days) or when the end date is reached, whichever comes first."
           ],
           "readOnly": true,
           "type": "string"
@@ -15618,13 +17055,15 @@
             "SUBSCRIPTION_TERM_UNSPECIFIED",
             "SUBSCRIPTION_TERM_ONE_MONTH",
             "SUBSCRIPTION_TERM_ONE_YEAR",
-            "SUBSCRIPTION_TERM_THREE_YEARS"
+            "SUBSCRIPTION_TERM_THREE_YEARS",
+            "SUBSCRIPTION_TERM_CUSTOM"
           ],
           "enumDescriptions": [
             "Default value, do not use.",
             "1 month.",
             "1 year.",
-            "3 years."
+            "3 years.",
+            "Custom term. Must set the end_date."
           ],
           "type": "string"
         },
@@ -15639,6 +17078,7 @@
             "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
             "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
             "SUBSCRIPTION_TIER_ENTERPRISE",
+            "SUBSCRIPTION_TIER_ENTERPRISE_EMERGING",
             "SUBSCRIPTION_TIER_EDU",
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
@@ -15647,18 +17087,19 @@
           ],
           "enumDescriptions": [
             "Default value.",
-            "Search tier. Search tier can access VAIS search features and NotebookLM features.",
-            "Search + assistant tier. Search + assistant tier can access VAIS search features, NotebookLM features and assistant features.",
+            "Search tier. Search tier can access Vertex AI Search features and NotebookLM features.",
+            "Gemini Enterprise Plus tier.",
             "NotebookLM tier. NotebookLM is a subscription tier can only access NotebookLM features.",
-            "Frontline worker tier.",
-            "Agentspace Starter tier.",
-            "Agentspace Business tier.",
-            "Enterprise tier.",
-            "EDU tier.",
-            "EDU Pro tier.",
-            "EDU emerging market tier.",
-            "EDU Pro emerging market tier.",
-            "Frontline starter tier."
+            "Gemini Frontline worker tier.",
+            "Gemini Business Starter tier.",
+            "Gemini Business tier.",
+            "Gemini Enterprise Standard tier.",
+            "Gemini Enterprise Standard tier for emerging markets.",
+            "Gemini Enterprise EDU tier.",
+            "Gemini Enterprise EDU Pro tier.",
+            "Gemini Enterprise EDU tier for emerging market only.",
+            "Gemini Enterprise EDU Pro tier for emerging market.",
+            "Gemini Frontline Starter tier."
           ],
           "type": "string"
         }
@@ -16185,6 +17626,10 @@
       "description": "Configuration for NotebookLM.",
       "id": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfig",
       "properties": {
+        "dataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy",
+          "description": "Optional. Specifies the data protection policy for NotebookLM."
+        },
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
           "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
@@ -16196,6 +17641,28 @@
         "optOutNotebookSharing": {
           "description": "Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy": {
+      "description": "Data protection policy config for NotebookLM.",
+      "id": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy",
+      "properties": {
+        "sensitiveDataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy",
+          "description": "Optional. The sensitive data protection policy."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy": {
+      "description": "Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.",
+      "id": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy",
+      "properties": {
+        "policy": {
+          "description": "Optional. The Sensitive Data Protection policy resource name.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -18398,14 +19865,16 @@
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
             "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT"
+            "SOLUTION_TYPE_GENERATIVE_CHAT",
+            "SOLUTION_TYPE_AI_MODE"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
             "Used for use cases related to the Generative AI agent.",
-            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+            "Used for AI Mode."
           ],
           "type": "string"
         },
@@ -19607,14 +21076,16 @@
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
             "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT"
+            "SOLUTION_TYPE_GENERATIVE_CHAT",
+            "SOLUTION_TYPE_AI_MODE"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
             "Used for use cases related to the Generative AI agent.",
-            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+            "Used for AI Mode."
           ],
           "type": "string"
         },
@@ -20366,6 +21837,10 @@
         },
         "languageCode": {
           "description": "Optional. The language code used for notifications",
+          "type": "string"
+        },
+        "regionCode": {
+          "description": "Optional. The region code used of the user that subscribed to the alert policy.",
           "type": "string"
         }
       },
@@ -22014,14 +23489,16 @@
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
             "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT"
+            "SOLUTION_TYPE_GENERATIVE_CHAT",
+            "SOLUTION_TYPE_AI_MODE"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
             "Used for use cases related to the Generative AI agent.",
-            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+            "Used for AI Mode."
           ],
           "type": "string"
         },
@@ -22417,7 +23894,9 @@
             "THIRD_PARTY_FEDERATED",
             "THIRD_PARTY_EUA",
             "GCNV",
-            "GOOGLE_CHAT"
+            "GOOGLE_CHAT",
+            "GOOGLE_SITES",
+            "REMOTE_MCP"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -22432,7 +23911,9 @@
             "Federated connector, it is a third party connector that doesn't ingestion data, and search is powered by third party application's API.",
             "Connector utilized for End User Authentication features.",
             "Google Cloud NetApp Volumes connector.",
-            "Google Chat connector."
+            "Google Chat connector.",
+            "Google Sites connector.",
+            "Remote MCP based connector."
           ],
           "readOnly": true,
           "type": "string"
@@ -22447,6 +23928,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "dataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDataProtectionPolicy",
+          "description": "Optional. Specifies the data protection policy for the connector."
+        },
         "dataSource": {
           "description": "Required. The name of the data source. Supported values: `salesforce`, `jira`, `confluence`, `bigquery`.",
           "type": "string"
@@ -22456,6 +23941,14 @@
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaDestinationConfig"
           },
+          "type": "array"
+        },
+        "egressFqdns": {
+          "description": "Output only. The list of FQDNs of the data connector can egress to. This includes both FQDN derived from the customer provided instance URL and default per connector type FQDNs. Note: This field is derived from both the DataConnector.params, and connector source spec. It should only be used for CAIS and Org Policy evaluation purposes.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
           "type": "array"
         },
         "endUserConfig": {
@@ -22643,6 +24136,11 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "vpcscEnabled": {
+          "description": "Output only. Whether the connector is created with VPC-SC enabled. This is only used for CuOP evaluation purpose.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -22794,6 +24292,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaDataProtectionPolicy": {
+      "description": "Data protection policy config for a connector.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDataProtectionPolicy",
+      "properties": {
+        "sensitiveDataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDataProtectionPolicySensitiveDataProtectionPolicy",
+          "description": "Optional. The sensitive data protection policy for the connector source."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDataProtectionPolicySensitiveDataProtectionPolicy": {
+      "description": "Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDataProtectionPolicySensitiveDataProtectionPolicy",
+      "properties": {
+        "policy": {
+          "description": "Optional. The Sensitive Data Protection content policy resource name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaDataStore": {
       "description": "DataStore captures global settings and configs at the DataStore level.",
       "id": "GoogleCloudDiscoveryengineV1alphaDataStore",
@@ -22934,14 +24454,16 @@
               "SOLUTION_TYPE_RECOMMENDATION",
               "SOLUTION_TYPE_SEARCH",
               "SOLUTION_TYPE_CHAT",
-              "SOLUTION_TYPE_GENERATIVE_CHAT"
+              "SOLUTION_TYPE_GENERATIVE_CHAT",
+              "SOLUTION_TYPE_AI_MODE"
             ],
             "enumDescriptions": [
               "Default value.",
               "Used for Recommendations AI.",
               "Used for Discovery Search.",
               "Used for use cases related to the Generative AI agent.",
-              "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+              "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+              "Used for AI Mode."
             ],
             "type": "string"
           },
@@ -23507,6 +25029,13 @@
           ],
           "type": "string"
         },
+        "connectorTenantInfo": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Maps a connector ID (e.g., \"hybrid-github\", \"shopify\") to tenant-specific information required for that connector. The structure of the tenant information string is connector-dependent.",
+          "type": "object"
+        },
         "createTime": {
           "description": "Output only. Timestamp the Recommendation Engine was created at.",
           "format": "google-datetime",
@@ -23565,6 +25094,24 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfig",
           "description": "Optional. Configurations for the Knowledge Graph. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
         },
+        "marketplaceAgentVisibility": {
+          "description": "Optional. The visibility of marketplace agents in the agent gallery.",
+          "enum": [
+            "MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED",
+            "SHOW_AVAILABLE_AGENTS_ONLY",
+            "SHOW_AGENTS_ALREADY_INTEGRATED",
+            "SHOW_AGENTS_ALREADY_PURCHASED",
+            "SHOW_ALL_AGENTS"
+          ],
+          "enumDescriptions": [
+            "Defaults to `MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED`.",
+            "Only agents that are currently available for use by the user are visible.",
+            "Show marketplace agents that the user does not yet have access to but are integrated into the engine. This level also includes all agents visible with `SHOW_AVAILABLE_AGENTS_ONLY`.",
+            "Show all agents visible with `SHOW_AGENTS_ALREADY_INTEGRATED`, plus agents that have already been purchased by the project/organization, even if they are not currently integrated into the engine.",
+            "All agents in the marketplace are visible, regardless of access or purchase status. This level encompasses all agents shown in the previous levels."
+          ],
+          "type": "string"
+        },
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig",
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
@@ -23594,6 +25141,10 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaObservabilityConfig",
           "description": "Optional. Observability config for the engine."
         },
+        "procurementContactEmail": {
+          "description": "Optional. The email of the procurement contact.",
+          "type": "string"
+        },
         "recommendationMetadata": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineRecommendationMetadata",
           "description": "Output only. Additional information of a recommendation engine. Only applicable if solution_type is SOLUTION_TYPE_RECOMMENDATION.",
@@ -23614,14 +25165,16 @@
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
             "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT"
+            "SOLUTION_TYPE_GENERATIVE_CHAT",
+            "SOLUTION_TYPE_AI_MODE"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
             "Used for use cases related to the Generative AI agent.",
-            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+            "Used for AI Mode."
           ],
           "type": "string"
         },
@@ -23916,6 +25469,7 @@
             "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
             "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
             "SUBSCRIPTION_TIER_ENTERPRISE",
+            "SUBSCRIPTION_TIER_ENTERPRISE_EMERGING",
             "SUBSCRIPTION_TIER_EDU",
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
@@ -23924,18 +25478,19 @@
           ],
           "enumDescriptions": [
             "Default value.",
-            "Search tier. Search tier can access VAIS search features and NotebookLM features.",
-            "Search + assistant tier. Search + assistant tier can access VAIS search features, NotebookLM features and assistant features.",
+            "Search tier. Search tier can access Vertex AI Search features and NotebookLM features.",
+            "Gemini Enterprise Plus tier.",
             "NotebookLM tier. NotebookLM is a subscription tier can only access NotebookLM features.",
-            "Frontline worker tier.",
-            "Agentspace Starter tier.",
-            "Agentspace Business tier.",
-            "Enterprise tier.",
-            "EDU tier.",
-            "EDU Pro tier.",
-            "EDU emerging market tier.",
-            "EDU Pro emerging market tier.",
-            "Frontline starter tier."
+            "Gemini Frontline worker tier.",
+            "Gemini Business Starter tier.",
+            "Gemini Business tier.",
+            "Gemini Enterprise Standard tier.",
+            "Gemini Enterprise Standard tier for emerging markets.",
+            "Gemini Enterprise EDU tier.",
+            "Gemini Enterprise EDU Pro tier.",
+            "Gemini Enterprise EDU tier for emerging market only.",
+            "Gemini Enterprise EDU Pro tier for emerging market.",
+            "Gemini Frontline Starter tier."
           ],
           "type": "string"
         },
@@ -24736,6 +26291,16 @@
           "description": "Optional. Whether the license config should be auto renewed when it reaches the end date.",
           "type": "boolean"
         },
+        "earlyTerminated": {
+          "description": "Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "earlyTerminationDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Output only. The date when the subscription is terminated earlier than the expiration date.",
+          "readOnly": true
+        },
         "endDate": {
           "$ref": "GoogleTypeDate",
           "description": "Optional. The planed end date."
@@ -24768,13 +26333,17 @@
             "STATE_UNSPECIFIED",
             "ACTIVE",
             "EXPIRED",
-            "NOT_STARTED"
+            "NOT_STARTED",
+            "WITHDRAWN",
+            "DEACTIVATING"
           ],
           "enumDescriptions": [
             "Default value. The license config does not exist.",
             "The license config is effective and being used.",
             "The license config has expired.",
-            "The license config has not started yet, and its start date is in the future."
+            "The license config has not started yet, and its start date is in the future.",
+            "This is when a sub license config has returned all its seats back to BillingAccountLicenseConfig that it belongs to. Similar to EXPIRED.",
+            "The license config is terminated earlier than the expiration date and it is deactivating. The customer will still have access in this state. It will be converted to EXPIRED after the deactivating period ends (14 days) or when the end date is reached, whichever comes first."
           ],
           "readOnly": true,
           "type": "string"
@@ -24785,13 +26354,15 @@
             "SUBSCRIPTION_TERM_UNSPECIFIED",
             "SUBSCRIPTION_TERM_ONE_MONTH",
             "SUBSCRIPTION_TERM_ONE_YEAR",
-            "SUBSCRIPTION_TERM_THREE_YEARS"
+            "SUBSCRIPTION_TERM_THREE_YEARS",
+            "SUBSCRIPTION_TERM_CUSTOM"
           ],
           "enumDescriptions": [
             "Default value, do not use.",
             "1 month.",
             "1 year.",
-            "3 years."
+            "3 years.",
+            "Custom term. Must set the end_date."
           ],
           "type": "string"
         },
@@ -24806,6 +26377,7 @@
             "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
             "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
             "SUBSCRIPTION_TIER_ENTERPRISE",
+            "SUBSCRIPTION_TIER_ENTERPRISE_EMERGING",
             "SUBSCRIPTION_TIER_EDU",
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
@@ -24814,18 +26386,19 @@
           ],
           "enumDescriptions": [
             "Default value.",
-            "Search tier. Search tier can access VAIS search features and NotebookLM features.",
-            "Search + assistant tier. Search + assistant tier can access VAIS search features, NotebookLM features and assistant features.",
+            "Search tier. Search tier can access Vertex AI Search features and NotebookLM features.",
+            "Gemini Enterprise Plus tier.",
             "NotebookLM tier. NotebookLM is a subscription tier can only access NotebookLM features.",
-            "Frontline worker tier.",
-            "Agentspace Starter tier.",
-            "Agentspace Business tier.",
-            "Enterprise tier.",
-            "EDU tier.",
-            "EDU Pro tier.",
-            "EDU emerging market tier.",
-            "EDU Pro emerging market tier.",
-            "Frontline starter tier."
+            "Gemini Frontline worker tier.",
+            "Gemini Business Starter tier.",
+            "Gemini Business tier.",
+            "Gemini Enterprise Standard tier.",
+            "Gemini Enterprise Standard tier for emerging markets.",
+            "Gemini Enterprise EDU tier.",
+            "Gemini Enterprise EDU Pro tier.",
+            "Gemini Enterprise EDU tier for emerging market only.",
+            "Gemini Enterprise EDU Pro tier for emerging market.",
+            "Gemini Frontline Starter tier."
           ],
           "type": "string"
         }
@@ -24837,7 +26410,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaListSessionsRequest",
       "properties": {
         "filter": {
-          "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"`",
+          "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"` * `collaborative_project = \"projects/123/locations/global/collections/default_collection/engines/\" \"default_engine/collaborative_projects/cp1\"`",
           "type": "string"
         },
         "orderBy": {
@@ -25086,6 +26659,10 @@
       "description": "Configuration for NotebookLM.",
       "id": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfig",
       "properties": {
+        "dataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy",
+          "description": "Optional. Specifies the data protection policy for NotebookLM."
+        },
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
           "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
@@ -25097,6 +26674,28 @@
         "optOutNotebookSharing": {
           "description": "Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy": {
+      "description": "Data protection policy config for NotebookLM.",
+      "id": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy",
+      "properties": {
+        "sensitiveDataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy",
+          "description": "Optional. The sensitive data protection policy."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy": {
+      "description": "Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.",
+      "id": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy",
+      "properties": {
+        "policy": {
+          "description": "Optional. The Sensitive Data Protection policy resource name.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -25382,6 +26981,13 @@
       "description": "Defines a user inputed query.",
       "id": "GoogleCloudDiscoveryengineV1alphaQuery",
       "properties": {
+        "parts": {
+          "description": "Query content parts.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaQueryPart"
+          },
+          "type": "array"
+        },
         "queryId": {
           "description": "Output only. Unique Id for the query.",
           "readOnly": true,
@@ -25389,6 +26995,137 @@
         },
         "text": {
           "description": "Plain text.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaQueryPart": {
+      "description": "Represents a part or the whole of a content, used to represent a query. A query can be made up of multiple parts.",
+      "id": "GoogleCloudDiscoveryengineV1alphaQueryPart",
+      "properties": {
+        "documentReference": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaQueryPartDocumentReference",
+          "description": "Other VAIS Document references."
+        },
+        "driveDocumentReference": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaQueryPartDriveDocumentReference",
+          "description": "Reference to a Google Drive document."
+        },
+        "mimeType": {
+          "description": "Optional. The IANA standard MIME type of the data. See https://www.iana.org/assignments/media-types/media-types.xhtml. This field is optional. If not set, the default assumed MIME type is \"text/plain\" for the \"data\" field.",
+          "type": "string"
+        },
+        "personReference": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaQueryPartPersonReference",
+          "description": "Reference to a person."
+        },
+        "text": {
+          "description": "Text content.",
+          "type": "string"
+        },
+        "uiJsonPayload": {
+          "description": "This field is expected to be a ui message in JSON format. As of Q1 2026, ui_json_payload is only supported for A2UI messages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaQueryPartDocumentReference": {
+      "description": "Represents a document reference.",
+      "id": "GoogleCloudDiscoveryengineV1alphaQueryPartDocumentReference",
+      "properties": {
+        "destinationUri": {
+          "description": "The destination uri of the reference.",
+          "type": "string"
+        },
+        "displayTitle": {
+          "description": "The display title of the reference.",
+          "type": "string"
+        },
+        "documentName": {
+          "description": "The full resource name of the document. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document_id}`.",
+          "type": "string"
+        },
+        "fileId": {
+          "description": "Output only. The file id of the document data stored in the session context files.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "iconUri": {
+          "description": "The icon uri of the reference.",
+          "type": "string"
+        },
+        "urlForConnector": {
+          "description": "Input only. The url_for_connector of the document returned by Federated Search.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaQueryPartDriveDocumentReference": {
+      "description": "Represents a Google Drive document reference.",
+      "id": "GoogleCloudDiscoveryengineV1alphaQueryPartDriveDocumentReference",
+      "properties": {
+        "destinationUri": {
+          "description": "The destination uri of the reference.",
+          "type": "string"
+        },
+        "displayTitle": {
+          "description": "The display title of the reference.",
+          "type": "string"
+        },
+        "documentName": {
+          "description": "The full resource name of the document. Format: `projects/*/locations/*/collections/*/dataStores/*/branches/*/documents/*`.",
+          "type": "string"
+        },
+        "driveId": {
+          "description": "The Drive id of the document.",
+          "type": "string"
+        },
+        "fileId": {
+          "description": "Output only. The file id of the Drive document data stored in the session context files.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "iconUri": {
+          "description": "The icon uri of the Drive document reference.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaQueryPartPersonReference": {
+      "description": "Represents a person reference.",
+      "id": "GoogleCloudDiscoveryengineV1alphaQueryPartPersonReference",
+      "properties": {
+        "destinationUri": {
+          "description": "The destination uri of the person.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the person.",
+          "type": "string"
+        },
+        "displayPhotoUri": {
+          "description": "The display photo url of the person.",
+          "type": "string"
+        },
+        "documentName": {
+          "description": "The full resource name of the person. Format: `projects/*/locations/*/collections/*/dataStores/*/branches/*/documents/*`.",
+          "type": "string"
+        },
+        "email": {
+          "description": "The email of the person.",
+          "type": "string"
+        },
+        "fileId": {
+          "description": "Output only. The file id of the person data stored in the session context files.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "personId": {
+          "description": "The person id of the person.",
           "type": "string"
         }
       },
@@ -25823,6 +27560,11 @@
         "naturalLanguageQueryUnderstandingSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec",
           "description": "Optional. Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done."
+        },
+        "numResultsPerDataStore": {
+          "description": "Optional. The maximum number of results to retrieve from each data store. If not specified, it will use the SearchRequest.DataStoreSpec.num_results if provided, otherwise there is no limit.",
+          "format": "int32",
+          "type": "integer"
         },
         "offset": {
           "description": "A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned. A large offset may be capped to a reasonable threshold.",
@@ -26329,6 +28071,11 @@
         "filter": {
           "description": "Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)",
           "type": "string"
+        },
+        "numResults": {
+          "description": "Optional. The maximum number of results to retrieve from this data store. If not specified, it will use the SearchRequest.num_results_per_data_store if provided, otherwise there is no limit. If both this field and SearchRequest.num_results_per_data_store are specified, this field will be used.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -27627,14 +29374,16 @@
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
             "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT"
+            "SOLUTION_TYPE_GENERATIVE_CHAT",
+            "SOLUTION_TYPE_AI_MODE"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
             "Used for use cases related to the Generative AI agent.",
-            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+            "Used for AI Mode."
           ],
           "type": "string"
         },
@@ -28044,14 +29793,16 @@
               "SOLUTION_TYPE_RECOMMENDATION",
               "SOLUTION_TYPE_SEARCH",
               "SOLUTION_TYPE_CHAT",
-              "SOLUTION_TYPE_GENERATIVE_CHAT"
+              "SOLUTION_TYPE_GENERATIVE_CHAT",
+              "SOLUTION_TYPE_AI_MODE"
             ],
             "enumDescriptions": [
               "Default value.",
               "Used for Recommendations AI.",
               "Used for Discovery Search.",
               "Used for use cases related to the Generative AI agent.",
-              "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+              "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+              "Used for AI Mode."
             ],
             "type": "string"
           },
@@ -28481,6 +30232,13 @@
           ],
           "type": "string"
         },
+        "connectorTenantInfo": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Maps a connector ID (e.g., \"hybrid-github\", \"shopify\") to tenant-specific information required for that connector. The structure of the tenant information string is connector-dependent.",
+          "type": "object"
+        },
         "createTime": {
           "description": "Output only. Timestamp the Recommendation Engine was created at.",
           "format": "google-datetime",
@@ -28539,6 +30297,24 @@
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfig",
           "description": "Optional. Configurations for the Knowledge Graph. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
         },
+        "marketplaceAgentVisibility": {
+          "description": "Optional. The visibility of marketplace agents in the agent gallery.",
+          "enum": [
+            "MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED",
+            "SHOW_AVAILABLE_AGENTS_ONLY",
+            "SHOW_AGENTS_ALREADY_INTEGRATED",
+            "SHOW_AGENTS_ALREADY_PURCHASED",
+            "SHOW_ALL_AGENTS"
+          ],
+          "enumDescriptions": [
+            "Defaults to `MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED`.",
+            "Only agents that are currently available for use by the user are visible.",
+            "Show marketplace agents that the user does not yet have access to but are integrated into the engine. This level also includes all agents visible with `SHOW_AVAILABLE_AGENTS_ONLY`.",
+            "Show all agents visible with `SHOW_AGENTS_ALREADY_INTEGRATED`, plus agents that have already been purchased by the project/organization, even if they are not currently integrated into the engine.",
+            "All agents in the marketplace are visible, regardless of access or purchase status. This level encompasses all agents shown in the previous levels."
+          ],
+          "type": "string"
+        },
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig",
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
@@ -28568,6 +30344,10 @@
           "$ref": "GoogleCloudDiscoveryengineV1betaObservabilityConfig",
           "description": "Optional. Observability config for the engine."
         },
+        "procurementContactEmail": {
+          "description": "Optional. The email of the procurement contact.",
+          "type": "string"
+        },
         "searchEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig",
           "description": "Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
@@ -28579,14 +30359,16 @@
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
             "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT"
+            "SOLUTION_TYPE_GENERATIVE_CHAT",
+            "SOLUTION_TYPE_AI_MODE"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
             "Used for use cases related to the Generative AI agent.",
-            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+            "Used for AI Mode."
           ],
           "type": "string"
         },
@@ -28825,6 +30607,7 @@
             "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
             "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
             "SUBSCRIPTION_TIER_ENTERPRISE",
+            "SUBSCRIPTION_TIER_ENTERPRISE_EMERGING",
             "SUBSCRIPTION_TIER_EDU",
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
@@ -28833,18 +30616,19 @@
           ],
           "enumDescriptions": [
             "Default value.",
-            "Search tier. Search tier can access VAIS search features and NotebookLM features.",
-            "Search + assistant tier. Search + assistant tier can access VAIS search features, NotebookLM features and assistant features.",
+            "Search tier. Search tier can access Vertex AI Search features and NotebookLM features.",
+            "Gemini Enterprise Plus tier.",
             "NotebookLM tier. NotebookLM is a subscription tier can only access NotebookLM features.",
-            "Frontline worker tier.",
-            "Agentspace Starter tier.",
-            "Agentspace Business tier.",
-            "Enterprise tier.",
-            "EDU tier.",
-            "EDU Pro tier.",
-            "EDU emerging market tier.",
-            "EDU Pro emerging market tier.",
-            "Frontline starter tier."
+            "Gemini Frontline worker tier.",
+            "Gemini Business Starter tier.",
+            "Gemini Business tier.",
+            "Gemini Enterprise Standard tier.",
+            "Gemini Enterprise Standard tier for emerging markets.",
+            "Gemini Enterprise EDU tier.",
+            "Gemini Enterprise EDU Pro tier.",
+            "Gemini Enterprise EDU tier for emerging market only.",
+            "Gemini Enterprise EDU Pro tier for emerging market.",
+            "Gemini Frontline Starter tier."
           ],
           "type": "string"
         },
@@ -29377,6 +31161,16 @@
           "description": "Optional. Whether the license config should be auto renewed when it reaches the end date.",
           "type": "boolean"
         },
+        "earlyTerminated": {
+          "description": "Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "earlyTerminationDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Output only. The date when the subscription is terminated earlier than the expiration date.",
+          "readOnly": true
+        },
         "endDate": {
           "$ref": "GoogleTypeDate",
           "description": "Optional. The planed end date."
@@ -29409,13 +31203,17 @@
             "STATE_UNSPECIFIED",
             "ACTIVE",
             "EXPIRED",
-            "NOT_STARTED"
+            "NOT_STARTED",
+            "WITHDRAWN",
+            "DEACTIVATING"
           ],
           "enumDescriptions": [
             "Default value. The license config does not exist.",
             "The license config is effective and being used.",
             "The license config has expired.",
-            "The license config has not started yet, and its start date is in the future."
+            "The license config has not started yet, and its start date is in the future.",
+            "This is when a sub license config has returned all its seats back to BillingAccountLicenseConfig that it belongs to. Similar to EXPIRED.",
+            "The license config is terminated earlier than the expiration date and it is deactivating. The customer will still have access in this state. It will be converted to EXPIRED after the deactivating period ends (14 days) or when the end date is reached, whichever comes first."
           ],
           "readOnly": true,
           "type": "string"
@@ -29426,13 +31224,15 @@
             "SUBSCRIPTION_TERM_UNSPECIFIED",
             "SUBSCRIPTION_TERM_ONE_MONTH",
             "SUBSCRIPTION_TERM_ONE_YEAR",
-            "SUBSCRIPTION_TERM_THREE_YEARS"
+            "SUBSCRIPTION_TERM_THREE_YEARS",
+            "SUBSCRIPTION_TERM_CUSTOM"
           ],
           "enumDescriptions": [
             "Default value, do not use.",
             "1 month.",
             "1 year.",
-            "3 years."
+            "3 years.",
+            "Custom term. Must set the end_date."
           ],
           "type": "string"
         },
@@ -29447,6 +31247,7 @@
             "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
             "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
             "SUBSCRIPTION_TIER_ENTERPRISE",
+            "SUBSCRIPTION_TIER_ENTERPRISE_EMERGING",
             "SUBSCRIPTION_TIER_EDU",
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
@@ -29455,18 +31256,19 @@
           ],
           "enumDescriptions": [
             "Default value.",
-            "Search tier. Search tier can access VAIS search features and NotebookLM features.",
-            "Search + assistant tier. Search + assistant tier can access VAIS search features, NotebookLM features and assistant features.",
+            "Search tier. Search tier can access Vertex AI Search features and NotebookLM features.",
+            "Gemini Enterprise Plus tier.",
             "NotebookLM tier. NotebookLM is a subscription tier can only access NotebookLM features.",
-            "Frontline worker tier.",
-            "Agentspace Starter tier.",
-            "Agentspace Business tier.",
-            "Enterprise tier.",
-            "EDU tier.",
-            "EDU Pro tier.",
-            "EDU emerging market tier.",
-            "EDU Pro emerging market tier.",
-            "Frontline starter tier."
+            "Gemini Frontline worker tier.",
+            "Gemini Business Starter tier.",
+            "Gemini Business tier.",
+            "Gemini Enterprise Standard tier.",
+            "Gemini Enterprise Standard tier for emerging markets.",
+            "Gemini Enterprise EDU tier.",
+            "Gemini Enterprise EDU Pro tier.",
+            "Gemini Enterprise EDU tier for emerging market only.",
+            "Gemini Enterprise EDU Pro tier for emerging market.",
+            "Gemini Frontline Starter tier."
           ],
           "type": "string"
         }
@@ -29654,6 +31456,10 @@
       "description": "Configuration for NotebookLM.",
       "id": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfig",
       "properties": {
+        "dataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy",
+          "description": "Optional. Specifies the data protection policy for NotebookLM."
+        },
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
           "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
@@ -29665,6 +31471,28 @@
         "optOutNotebookSharing": {
           "description": "Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy": {
+      "description": "Data protection policy config for NotebookLM.",
+      "id": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy",
+      "properties": {
+        "sensitiveDataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy",
+          "description": "Optional. The sensitive data protection policy."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy": {
+      "description": "Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.",
+      "id": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy",
+      "properties": {
+        "policy": {
+          "description": "Optional. The Sensitive Data Protection policy resource name.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -30033,6 +31861,11 @@
         "naturalLanguageQueryUnderstandingSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec",
           "description": "Optional. Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done."
+        },
+        "numResultsPerDataStore": {
+          "description": "Optional. The maximum number of results to retrieve from each data store. If not specified, it will use the SearchRequest.DataStoreSpec.num_results if provided, otherwise there is no limit.",
+          "format": "int32",
+          "type": "integer"
         },
         "offset": {
           "description": "A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned. A large offset may be capped to a reasonable threshold.",
@@ -30535,6 +32368,11 @@
         "filter": {
           "description": "Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)",
           "type": "string"
+        },
+        "numResults": {
+          "description": "Optional. The maximum number of results to retrieve from this data store. If not specified, it will use the SearchRequest.num_results_per_data_store if provided, otherwise there is no limit. If both this field and SearchRequest.num_results_per_data_store are specified, this field will be used.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -31369,6 +33207,63 @@
       },
       "type": "object"
     },
+    "GoogleIamV1Binding": {
+      "description": "Associates `members`, or principals, with a `role`.",
+      "id": "GoogleIamV1Binding",
+      "properties": {
+        "condition": {
+          "$ref": "GoogleTypeExpr",
+          "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+        },
+        "members": {
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "role": {
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleIamV1Policy": {
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "id": "GoogleIamV1Policy",
+      "properties": {
+        "bindings": {
+          "description": "Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`.",
+          "items": {
+            "$ref": "GoogleIamV1Binding"
+          },
+          "type": "array"
+        },
+        "etag": {
+          "description": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.",
+          "format": "byte",
+          "type": "string"
+        },
+        "version": {
+          "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleIamV1SetIamPolicyRequest": {
+      "description": "Request message for `SetIamPolicy` method.",
+      "id": "GoogleIamV1SetIamPolicyRequest",
+      "properties": {
+        "policy": {
+          "$ref": "GoogleIamV1Policy",
+          "description": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
+        }
+      },
+      "type": "object"
+    },
     "GoogleLongrunningCancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "GoogleLongrunningCancelOperationRequest",
@@ -31670,6 +33565,29 @@
           "description": "Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a datetime without a year.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleTypeExpr": {
+      "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
+      "id": "GoogleTypeExpr",
+      "properties": {
+        "description": {
+          "description": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.",
+          "type": "string"
+        },
+        "expression": {
+          "description": "Textual representation of an expression in Common Expression Language syntax.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
+          "type": "string"
         }
       },
       "type": "object"

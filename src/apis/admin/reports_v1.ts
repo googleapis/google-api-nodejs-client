@@ -193,6 +193,7 @@ export namespace admin_reports_v1 {
         value?: string;
       }>;
       resourceIds?: string[];
+      status?: Schema$ActivityEventsStatus;
       type?: string;
     }> | null;
     /**
@@ -224,6 +225,27 @@ export namespace admin_reports_v1 {
      * Details of the resource on which the action was performed.
      */
     resourceDetails?: Schema$ResourceDetails[];
+  }
+  /**
+   * Status of the event. Note: Not all events have status.
+   */
+  export interface Schema$ActivityEventsStatus {
+    /**
+     * Error code of the event. Note: Field can be empty.
+     */
+    errorCode?: string | null;
+    /**
+     * Error message of the event. Note: Field can be empty.
+     */
+    errorMessage?: string | null;
+    /**
+     * Status of the event. Possible values if not empty: - UNKNOWN_EVENT_STATUS - SUCCEEDED - SUCCEEDED_WITH_WARNINGS - FAILED - SKIPPED
+     */
+    eventStatus?: string | null;
+    /**
+     * Status code of the event. Note: Field can be empty.
+     */
+    httpStatusCode?: number | null;
   }
   /**
    * Network information of the user doing the action.
@@ -610,6 +632,8 @@ export namespace admin_reports_v1 {
      *   const res = await reports.activities.list({
      *     // The Internet Protocol (IP) Address of host where the event was performed. This is an additional way to filter a report's summary using the IP address of the user whose activity is being reported. This IP address may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. This parameter supports both IPv4 and IPv6 address versions.
      *     actorIpAddress: 'placeholder-value',
+     *     // Optional. Used to filter on the `oAuthClientId` field present in [`ApplicationInfo`](#applicationinfo) message. **Usage** ``` GET...&applicationInfoFilter=oAuthClientId="clientId" GET...&applicationInfoFilter=oAuthClientId=%22clientId%22 ```
+     *     applicationInfoFilter: 'placeholder-value',
      *     // Application name for which the events are to be retrieved.
      *     applicationName:
      *       '(access_evaluation)|(access_transparency)|(admin)|(admin_data_action)|(assignments)|(calendar)|(chat)|(chrome)|(classroom)|(cloud_search)|(contacts)|(context_aware_access)|(data_studio)|(data_migration)|(directory_sync)|(drive)|(gcp)|(gmail)|(gplus)|(graduation)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(ldap)|(login)|(meet)|(meet_hardware)|(mobile)|(profile)|(rules)|(saml)|(token)|(user_accounts)|(vault)|(gemini_in_workspace_apps)|(tasks)|(takeout)',
@@ -627,6 +651,8 @@ export namespace admin_reports_v1 {
      *     groupIdFilter: '(id:[a-z0-9]+(,id:[a-z0-9]+)*)',
      *     // Determines how many activity records are shown on each response page. For example, if the request sets `maxResults=1` and the report has two activities, the report has two pages. The response's `nextPageToken` property has the token to the second page. The `maxResults` query string is optional in the request. The default value is 1000.
      *     maxResults: 'placeholder-value',
+     *     // Optional. Used to filter on the `regionCode` field present in [`NetworkInfo`](#networkinfo) message. **Usage** ``` GET...&networkInfoFilter=regionCode="IN" GET...&networkInfoFilter=regionCode=%22IN%22 ```
+     *     networkInfoFilter: 'placeholder-value',
      *     // ID of the organizational unit to report on. Activity records will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results.
      *     orgUnitID: '(id:[a-z0-9]+)',
      *     // The token to specify next page. A report with multiple pages has a `nextPageToken` property in the response. In your follow-on request getting the next page of the report, enter the `nextPageToken` value in the `pageToken` query string.
@@ -636,6 +662,8 @@ export namespace admin_reports_v1 {
      *     // Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from `startTime` until `endTime`. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error. For Gmail requests, `startTime` and `endTime` must be provided and the difference must not be greater than 30 days.
      *     startTime:
      *       '(&#92;d&#92;d&#92;d&#92;d)-(&#92;d&#92;d)-(&#92;d&#92;d)T(&#92;d&#92;d):(&#92;d&#92;d):(&#92;d&#92;d)(?:&#92;.(&#92;d+))?(?:(Z)|([-+])(&#92;d&#92;d):(&#92;d&#92;d))',
+     *     // Optional. Used to filter on the `statusCode` field present in [`Status`](#status) message. **Usage** ``` GET...&statusFilter=statusCode="200" GET...&statusFilter=statusCode=%22200%22 ```
+     *     statusFilter: 'placeholder-value',
      *     // Represents the profile ID or the user email for which the data should be filtered. Can be `all` for all information, or `userKey` for a user's unique Google Workspace profile ID or their primary email address. Must not be a deleted user. For a deleted user, call `users.list` in Directory API with `showDeleted=true`, then use the returned `ID` as the `userKey`.
      *     userKey: 'placeholder-value',
      *   });
@@ -939,6 +967,10 @@ export namespace admin_reports_v1 {
      */
     actorIpAddress?: string;
     /**
+     * Optional. Used to filter on the `oAuthClientId` field present in [`ApplicationInfo`](#applicationinfo) message. **Usage** ``` GET...&applicationInfoFilter=oAuthClientId="clientId" GET...&applicationInfoFilter=oAuthClientId=%22clientId%22 ```
+     */
+    applicationInfoFilter?: string;
+    /**
      * Application name for which the events are to be retrieved.
      */
     applicationName?: string;
@@ -967,6 +999,10 @@ export namespace admin_reports_v1 {
      */
     maxResults?: number;
     /**
+     * Optional. Used to filter on the `regionCode` field present in [`NetworkInfo`](#networkinfo) message. **Usage** ``` GET...&networkInfoFilter=regionCode="IN" GET...&networkInfoFilter=regionCode=%22IN%22 ```
+     */
+    networkInfoFilter?: string;
+    /**
      * ID of the organizational unit to report on. Activity records will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results.
      */
     orgUnitID?: string;
@@ -982,6 +1018,10 @@ export namespace admin_reports_v1 {
      * Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from `startTime` until `endTime`. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error. For Gmail requests, `startTime` and `endTime` must be provided and the difference must not be greater than 30 days.
      */
     startTime?: string;
+    /**
+     * Optional. Used to filter on the `statusCode` field present in [`Status`](#status) message. **Usage** ``` GET...&statusFilter=statusCode="200" GET...&statusFilter=statusCode=%22200%22 ```
+     */
+    statusFilter?: string;
     /**
      * Represents the profile ID or the user email for which the data should be filtered. Can be `all` for all information, or `userKey` for a user's unique Google Workspace profile ID or their primary email address. Must not be a deleted user. For a deleted user, call `users.list` in Directory API with `showDeleted=true`, then use the returned `ID` as the `userKey`.
      */

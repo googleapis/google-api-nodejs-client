@@ -240,6 +240,10 @@ export namespace containeranalysis_v1 {
      */
     name?: string | null;
     /**
+     * The registry in which the base image is from.
+     */
+    registry?: string | null;
+    /**
      * The repository name in which the base image is from.
      */
     repository?: string | null;
@@ -2453,10 +2457,6 @@ export namespace containeranalysis_v1 {
    */
   export interface Schema$Note {
     /**
-     * The timestamp when the advisory was first published by the source feed.
-     */
-    advisoryPublishTime?: string | null;
-    /**
      * A note describing an attestation role.
      */
     attestation?: Schema$AttestationNote;
@@ -3460,6 +3460,10 @@ export namespace containeranalysis_v1 {
    */
   export interface Schema$VulnerabilityNote {
     /**
+     * The time this advisory was published by the source.
+     */
+    advisoryPublishTime?: string | null;
+    /**
      * The CVSS score of this vulnerability. CVSS score is on a scale of 0 - 10 where 0 indicates low severity and 10 indicates high severity.
      */
     cvssScore?: number | null;
@@ -3849,7 +3853,6 @@ export namespace containeranalysis_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "advisoryPublishTime": "my_advisoryPublishTime",
      *       //   "attestation": {},
      *       //   "build": {},
      *       //   "compliance": {},
@@ -3879,7 +3882,6 @@ export namespace containeranalysis_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestation": {},
      *   //   "build": {},
      *   //   "compliance": {},
@@ -4172,7 +4174,6 @@ export namespace containeranalysis_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestation": {},
      *   //   "build": {},
      *   //   "compliance": {},
@@ -4627,7 +4628,6 @@ export namespace containeranalysis_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "advisoryPublishTime": "my_advisoryPublishTime",
      *       //   "attestation": {},
      *       //   "build": {},
      *       //   "compliance": {},
@@ -4657,7 +4657,6 @@ export namespace containeranalysis_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestation": {},
      *   //   "build": {},
      *   //   "compliance": {},
@@ -6184,7 +6183,6 @@ export namespace containeranalysis_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestation": {},
      *   //   "build": {},
      *   //   "compliance": {},
@@ -7581,7 +7579,6 @@ export namespace containeranalysis_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "advisoryPublishTime": "my_advisoryPublishTime",
      *       //   "attestation": {},
      *       //   "build": {},
      *       //   "compliance": {},
@@ -7611,7 +7608,6 @@ export namespace containeranalysis_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestation": {},
      *   //   "build": {},
      *   //   "compliance": {},
@@ -7904,7 +7900,6 @@ export namespace containeranalysis_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestation": {},
      *   //   "build": {},
      *   //   "compliance": {},
@@ -8359,7 +8354,6 @@ export namespace containeranalysis_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "advisoryPublishTime": "my_advisoryPublishTime",
      *       //   "attestation": {},
      *       //   "build": {},
      *       //   "compliance": {},
@@ -8389,7 +8383,6 @@ export namespace containeranalysis_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestation": {},
      *   //   "build": {},
      *   //   "compliance": {},
@@ -9906,7 +9899,6 @@ export namespace containeranalysis_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "advisoryPublishTime": "my_advisoryPublishTime",
      *   //   "attestation": {},
      *   //   "build": {},
      *   //   "compliance": {},

@@ -409,7 +409,7 @@
             "firewallEndpoints": {
               "methods": {
                 "create": {
-                  "description": "Creates a new FirewallEndpoint in a given project and location.",
+                  "description": "Creates a new FirewallEndpoint in a given organization and location.",
                   "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/firewallEndpoints",
                   "httpMethod": "POST",
                   "id": "networksecurity.organizations.locations.firewallEndpoints.create",
@@ -447,7 +447,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single Endpoint.",
+                  "description": "Deletes a single org Endpoint.",
                   "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.organizations.locations.firewallEndpoints.delete",
@@ -477,7 +477,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single Endpoint.",
+                  "description": "Gets details of a single org Endpoint.",
                   "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.organizations.locations.firewallEndpoints.get",
@@ -502,7 +502,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists FirewallEndpoints in a given project and location.",
+                  "description": "Lists FirewallEndpoints in a given organization and location.",
                   "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/firewallEndpoints",
                   "httpMethod": "GET",
                   "id": "networksecurity.organizations.locations.firewallEndpoints.list",
@@ -548,7 +548,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Update a single Endpoint.",
+                  "description": "Update a single org Endpoint.",
                   "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.organizations.locations.firewallEndpoints.patch",
@@ -2805,7 +2805,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single Endpoint.",
+                  "description": "Deletes a single project Endpoint.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.projects.locations.firewallEndpoints.delete",
@@ -2835,7 +2835,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single Endpoint.",
+                  "description": "Gets details of a single project Endpoint.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.firewallEndpoints.get",
@@ -2906,7 +2906,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Update a single Endpoint.",
+                  "description": "Update a single project Endpoint.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.projects.locations.firewallEndpoints.patch",
@@ -5705,7 +5705,7 @@
       }
     }
   },
-  "revision": "20260125",
+  "revision": "20260131",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {

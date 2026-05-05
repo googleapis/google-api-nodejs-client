@@ -281,7 +281,7 @@ export namespace cloudkms_v1 {
      */
     keyProjectResolutionMode?: string | null;
     /**
-     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`
+     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
      */
     name?: string | null;
     /**
@@ -630,6 +630,10 @@ export namespace cloudkms_v1 {
    * A Digest holds a cryptographic message digest.
    */
   export interface Schema$Digest {
+    /**
+     * A message digest produced with SHAKE-256, to be used with ML-DSA external-μ algorithms only. See "message representative" note in section 6.2, algorithm 7 of the FIPS-204 standard: https://doi.org/10.6028/nist.fips.204
+     */
+    externalMu?: string | null;
     /**
      * A message digest produced with the SHA-256 algorithm.
      */
@@ -1077,6 +1081,23 @@ export namespace cloudkms_v1 {
      * The standard List next-page token.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response message for KeyManagementService.ListRetiredResources.
+   */
+  export interface Schema$ListRetiredResourcesResponse {
+    /**
+     * A token to retrieve the next page of results. Pass this value in ListRetiredResourcesRequest.page_token to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of RetiredResources.
+     */
+    retiredResources?: Schema$RetiredResource[];
+    /**
+     * The total number of RetiredResources that matched the query.
+     */
+    totalSize?: string | null;
   }
   /**
    * Response message for HsmManagement.ListSingleTenantHsmInstanceProposals.
@@ -1564,6 +1585,27 @@ export namespace cloudkms_v1 {
    * Request message for KeyManagementService.RestoreCryptoKeyVersion.
    */
   export interface Schema$RestoreCryptoKeyVersionRequest {}
+  /**
+   * A RetiredResource resource represents the record of a deleted CryptoKey. Its purpose is to provide visibility into retained user data and to prevent reuse of these names for new CryptoKeys.
+   */
+  export interface Schema$RetiredResource {
+    /**
+     * Output only. The time at which the original resource was deleted and this RetiredResource record was created.
+     */
+    deleteTime?: string | null;
+    /**
+     * Output only. Identifier. The resource name for this RetiredResource in the format `projects/x/locations/x/retiredResources/x`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The full resource name of the original CryptoKey that was deleted in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     */
+    originalResource?: string | null;
+    /**
+     * Output only. The resource type of the original deleted resource.
+     */
+    resourceType?: string | null;
+  }
   /**
    * A ServiceResolver represents an EKM replica that can be reached within an EkmConnection.
    */
@@ -2128,7 +2170,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.folders.updateAutokeyConfig({
-     *     // Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`
+     *     // Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
      *     name: 'folders/my-folder/autokeyConfig',
      *     // Required. Masks which fields of the AutokeyConfig to update, e.g. `keyProject`.
      *     updateMask: 'placeholder-value',
@@ -2425,7 +2467,7 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Folders$Updateautokeyconfig extends StandardParameters {
     /**
-     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`
+     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
      */
     name?: string;
     /**
@@ -3581,7 +3623,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.updateAutokeyConfig({
-     *     // Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`
+     *     // Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
      *     name: 'projects/my-project/autokeyConfig',
      *     // Required. Masks which fields of the AutokeyConfig to update, e.g. `keyProject`.
      *     updateMask: 'placeholder-value',
@@ -3896,7 +3938,7 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Updateautokeyconfig extends StandardParameters {
     /**
-     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`
+     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
      */
     name?: string;
     /**
@@ -3932,6 +3974,7 @@ export namespace cloudkms_v1 {
     keyHandles: Resource$Projects$Locations$Keyhandles;
     keyRings: Resource$Projects$Locations$Keyrings;
     operations: Resource$Projects$Locations$Operations;
+    retiredResources: Resource$Projects$Locations$Retiredresources;
     singleTenantHsmInstances: Resource$Projects$Locations$Singletenanthsminstances;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -3944,6 +3987,9 @@ export namespace cloudkms_v1 {
       );
       this.keyRings = new Resource$Projects$Locations$Keyrings(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+      this.retiredResources = new Resource$Projects$Locations$Retiredresources(
         this.context
       );
       this.singleTenantHsmInstances =
@@ -4384,7 +4430,7 @@ export namespace cloudkms_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -8370,6 +8416,148 @@ export namespace cloudkms_v1 {
     }
 
     /**
+     * Permanently deletes the given CryptoKey. All child CryptoKeyVersions must have been previously deleted using KeyManagementService.DeleteCryptoKeyVersion. The specified crypto key will be immediately and permanently deleted upon calling this method. This action cannot be undone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.delete({
+     *     // Required. The name of the CryptoKey to delete.
+     *     name: 'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Encrypts data, so that it can only be recovered by a call to Decrypt. The CryptoKey.purpose must be ENCRYPT_DECRYPT.
      * @example
      * ```js
@@ -9652,6 +9840,12 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$DecryptRequest;
   }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Delete extends StandardParameters {
+    /**
+     * Required. The name of the CryptoKey to delete.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt extends StandardParameters {
     /**
      * Required. The resource name of the CryptoKey or CryptoKeyVersion to use for encryption. If a CryptoKey is specified, the server will use its primary version.
@@ -10423,6 +10617,151 @@ export namespace cloudkms_v1 {
         );
       } else {
         return createAPIRequest<Schema$DecapsulateResponse>(parameters);
+      }
+    }
+
+    /**
+     * Permanently deletes the given CryptoKeyVersion. Only possible if the version has not been previously imported and if its state is one of DESTROYED, IMPORT_FAILED, or GENERATION_FAILED. Successfully imported CryptoKeyVersions cannot be deleted at this time. The specified version will be immediately and permanently deleted upon calling this method. This action cannot be undone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.delete(
+     *       {
+     *         // Required. The name of the CryptoKeyVersion to delete.
+     *         name: 'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -12271,6 +12610,12 @@ export namespace cloudkms_v1 {
      */
     requestBody?: Schema$DecapsulateRequest;
   }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Delete extends StandardParameters {
+    /**
+     * Required. The name of the CryptoKeyVersion to delete.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy extends StandardParameters {
     /**
      * Required. The resource name of the CryptoKeyVersion to destroy.
@@ -13572,6 +13917,326 @@ export namespace cloudkms_v1 {
      * The name of the operation resource.
      */
     name?: string;
+  }
+
+  export class Resource$Projects$Locations$Retiredresources {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves a specific RetiredResource resource, which represents the record of a deleted CryptoKey.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.retiredResources.get({
+     *     // Required. The name of the RetiredResource to get.
+     *     name: 'projects/my-project/locations/my-location/retiredResources/my-retiredResource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "name": "my_name",
+     *   //   "originalResource": "my_originalResource",
+     *   //   "resourceType": "my_resourceType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Retiredresources$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Retiredresources$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RetiredResource>>;
+    get(
+      params: Params$Resource$Projects$Locations$Retiredresources$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Retiredresources$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$RetiredResource>,
+      callback: BodyResponseCallback<Schema$RetiredResource>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Retiredresources$Get,
+      callback: BodyResponseCallback<Schema$RetiredResource>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$RetiredResource>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Retiredresources$Get
+        | BodyResponseCallback<Schema$RetiredResource>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RetiredResource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RetiredResource>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RetiredResource>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Retiredresources$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Retiredresources$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RetiredResource>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RetiredResource>(parameters);
+      }
+    }
+
+    /**
+     * Lists the RetiredResources which are the records of deleted CryptoKeys. RetiredResources prevent the reuse of these resource names after deletion.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.retiredResources.list({
+     *     // Optional. Optional limit on the number of RetiredResources to be included in the response. Further RetiredResources can subsequently be obtained by including the ListRetiredResourcesResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Optional pagination token, returned earlier via ListRetiredResourcesResponse.next_page_token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project-specific location holding the RetiredResources, in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "retiredResources": [],
+     *   //   "totalSize": "my_totalSize"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Retiredresources$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Retiredresources$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListRetiredResourcesResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Retiredresources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Retiredresources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRetiredResourcesResponse>,
+      callback: BodyResponseCallback<Schema$ListRetiredResourcesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Retiredresources$List,
+      callback: BodyResponseCallback<Schema$ListRetiredResourcesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRetiredResourcesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Retiredresources$List
+        | BodyResponseCallback<Schema$ListRetiredResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRetiredResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRetiredResourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListRetiredResourcesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Retiredresources$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Retiredresources$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/retiredResources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRetiredResourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRetiredResourcesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Retiredresources$Get extends StandardParameters {
+    /**
+     * Required. The name of the RetiredResource to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Retiredresources$List extends StandardParameters {
+    /**
+     * Optional. Optional limit on the number of RetiredResources to be included in the response. Further RetiredResources can subsequently be obtained by including the ListRetiredResourcesResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Optional pagination token, returned earlier via ListRetiredResourcesResponse.next_page_token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project-specific location holding the RetiredResources, in the format `projects/x/locations/x`.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Singletenanthsminstances {

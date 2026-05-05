@@ -404,11 +404,11 @@ export namespace vmwareengine_v1 {
    */
   export interface Schema$DatastoreMountConfig {
     /**
-     * Optional. NFS is accessed by hosts in read mode Optional. Default value used will be READ_WRITE
+     * Optional. The access mode of the NFS volume. Optional. Default value used will be READ_WRITE
      */
     accessMode?: string | null;
     /**
-     * Required. The resource name of the datastore to unmount. The datastore requested to be mounted should be in same region/zone as the cluster. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastores/my-datastore`
+     * Required. The resource name of the datastore to mount. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastores/my-datastore`
      */
     datastore?: string | null;
     /**
@@ -424,10 +424,6 @@ export namespace vmwareengine_v1 {
      */
     nfsVersion?: string | null;
     /**
-     * Optional. ONLY required when NFS 4.1 version is used
-     */
-    securityType?: string | null;
-    /**
      * Output only. Server IP addresses of the NFS volume. For NFS 3, you can only provide a single server IP address or DNS names.
      */
     servers?: string[] | null;
@@ -437,11 +433,11 @@ export namespace vmwareengine_v1 {
    */
   export interface Schema$DatastoreNetwork {
     /**
-     * Optional. The number of connections of the NFS volume. Spported from vsphere 8.0u1
+     * Optional. connection_count is used to set multiple connections from NFS client on ESXi host to NFS server. A higher number of connections results in better performance on datastores. In MountDatastore API by default max 4 connections are configured. User can set value of connection_count between 1 to 4. Connection_count is supported from vsphere 8.0u1 for earlier version 1 connection count is set on the ESXi hosts.
      */
     connectionCount?: number | null;
     /**
-     * Optional. The Maximal Transmission Unit (MTU) of the datastore. System sets default MTU size. It prefers the VPC peering MTU, falling back to the VEN MTU if no peering MTU is found. when detected, and falling back to the VEN MTU otherwise.
+     * Optional. MTU value is set on the VMKernel adapter for the NFS traffic. By default standard 1500 MTU size is set in MountDatastore API which is good for typical setups. However google VPC networks supports jumbo MTU 8896. We recommend to tune this value based on the NFS traffic performance. Performance can be determined using benchmarking I/O tools like fio (Flexible I/O Tester) utility.
      */
     mtu?: number | null;
     /**
@@ -1378,7 +1374,7 @@ export namespace vmwareengine_v1 {
    */
   export interface Schema$NfsDatastore {
     /**
-     * Google service file service configuration
+     * Google file service configuration
      */
     googleFileService?: Schema$GoogleFileService;
     /**
@@ -2495,7 +2491,7 @@ export namespace vmwareengine_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -3016,7 +3012,7 @@ export namespace vmwareengine_v1 {
     }
 
     /**
-     * Creates a new `Datastore` resource in a given project and location. Datastores are regional resources
+     * Creates a new `Datastore` resource in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -3612,7 +3608,7 @@ export namespace vmwareengine_v1 {
     }
 
     /**
-     * Modifies a Datastore resource. Only the following fields can be updated: `description`. Only fields specified in `updateMask` are applied.
+     * Modifies a Datastore resource. Only fields specified in `updateMask` are applied.
      * @example
      * ```js
      * // Before running the sample:
@@ -3646,7 +3642,7 @@ export namespace vmwareengine_v1 {
      *     name: 'projects/my-project/locations/my-location/datastores/my-datastore',
      *     // Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
-     *     // Optional. Field mask is used to specify the fields to be overwritten in the Datastore resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten. Only the following fields can be updated: `description`.
+     *     // Optional. Field mask is used to specify the fields to be overwritten in the Datastore resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3845,7 +3841,7 @@ export namespace vmwareengine_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Field mask is used to specify the fields to be overwritten in the Datastore resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten. Only the following fields can be updated: `description`.
+     * Optional. Field mask is used to specify the fields to be overwritten in the Datastore resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      */
     updateMask?: string;
 
@@ -11318,7 +11314,7 @@ export namespace vmwareengine_v1 {
     }
 
     /**
-     * Mounts a `Datastore` on a cluster resource Datastores are zonal resources
+     * Mounts a `Datastore` on a cluster resource
      * @example
      * ```js
      * // Before running the sample:
@@ -11942,7 +11938,7 @@ export namespace vmwareengine_v1 {
     }
 
     /**
-     * Mounts a `Datastore` on a cluster resource Datastores are zonal resources
+     * Unmounts a `Datastore` on a cluster resource
      * @example
      * ```js
      * // Before running the sample:

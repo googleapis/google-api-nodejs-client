@@ -953,6 +953,15 @@ export namespace admin_directory_v1 {
     deviceIds?: string[] | null;
   }
   /**
+   * A response for counting ChromeOS devices.
+   */
+  export interface Schema$CountChromeOsDevicesResponse {
+    /**
+     * The total number of devices matching the request.
+     */
+    count?: string | null;
+  }
+  /**
    * Request for adding a new printer.
    */
   export interface Schema$CreatePrinterRequest {
@@ -5035,6 +5044,159 @@ export namespace admin_directory_v1 {
     }
 
     /**
+     * Counts ChromeOS devices matching the request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const admin = google.admin('directory_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admin.directory.device.chromeos',
+     *       'https://www.googleapis.com/auth/admin.directory.device.chromeos.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await admin.customer.devices.chromeos.countChromeOsDevices({
+     *     // Required. Immutable ID of the Google Workspace account.
+     *     customerId: 'placeholder-value',
+     *     // Optional. Search string in the format given at https://developers.google.com/workspace/admin/directory/v1/list-query-operators
+     *     filter: 'placeholder-value',
+     *     // Optional. Return devices from all child orgunits, as well as the specified org unit. If this is set to true, 'orgUnitPath' must be provided.
+     *     includeChildOrgunits: 'placeholder-value',
+     *     // Optional. The full path of the organizational unit (minus the leading `/`) or its unique ID.
+     *     orgUnitPath: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "count": "my_count"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    countChromeOsDevices(
+      params: Params$Resource$Customer$Devices$Chromeos$Countchromeosdevices,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    countChromeOsDevices(
+      params?: Params$Resource$Customer$Devices$Chromeos$Countchromeosdevices,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CountChromeOsDevicesResponse>>;
+    countChromeOsDevices(
+      params: Params$Resource$Customer$Devices$Chromeos$Countchromeosdevices,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    countChromeOsDevices(
+      params: Params$Resource$Customer$Devices$Chromeos$Countchromeosdevices,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CountChromeOsDevicesResponse>,
+      callback: BodyResponseCallback<Schema$CountChromeOsDevicesResponse>
+    ): void;
+    countChromeOsDevices(
+      params: Params$Resource$Customer$Devices$Chromeos$Countchromeosdevices,
+      callback: BodyResponseCallback<Schema$CountChromeOsDevicesResponse>
+    ): void;
+    countChromeOsDevices(
+      callback: BodyResponseCallback<Schema$CountChromeOsDevicesResponse>
+    ): void;
+    countChromeOsDevices(
+      paramsOrCallback?:
+        | Params$Resource$Customer$Devices$Chromeos$Countchromeosdevices
+        | BodyResponseCallback<Schema$CountChromeOsDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CountChromeOsDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CountChromeOsDevicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CountChromeOsDevicesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customer$Devices$Chromeos$Countchromeosdevices;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customer$Devices$Chromeos$Countchromeosdevices;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/admin/directory/v1/customer/{customerId}/devices/chromeos:countChromeOsDevices'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customerId'],
+        pathParams: ['customerId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CountChromeOsDevicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CountChromeOsDevicesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Issues a command for the device to execute.
      * @example
      * ```js
@@ -5203,6 +5365,24 @@ export namespace admin_directory_v1 {
      * Request body metadata
      */
     requestBody?: Schema$BatchChangeChromeOsDeviceStatusRequest;
+  }
+  export interface Params$Resource$Customer$Devices$Chromeos$Countchromeosdevices extends StandardParameters {
+    /**
+     * Required. Immutable ID of the Google Workspace account.
+     */
+    customerId?: string;
+    /**
+     * Optional. Search string in the format given at https://developers.google.com/workspace/admin/directory/v1/list-query-operators
+     */
+    filter?: string;
+    /**
+     * Optional. Return devices from all child orgunits, as well as the specified org unit. If this is set to true, 'orgUnitPath' must be provided.
+     */
+    includeChildOrgunits?: boolean;
+    /**
+     * Optional. The full path of the organizational unit (minus the leading `/`) or its unique ID.
+     */
+    orgUnitPath?: string;
   }
   export interface Params$Resource$Customer$Devices$Chromeos$Issuecommand extends StandardParameters {
     /**

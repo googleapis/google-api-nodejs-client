@@ -2360,7 +2360,7 @@
       }
     }
   },
-  "revision": "20251120",
+  "revision": "20260223",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "About": {
@@ -2434,7 +2434,7 @@
           "type": "string"
         },
         "accountName": {
-          "description": "Required. A human-readable name of the account. See [store name](https://support.google.com/merchants/answer/160556) and [business name](https://support.google.com/merchants/answer/12159159) for more information.",
+          "description": "Required. A human-readable name of the account. Don't use punctuation, capitalization, or non-alphanumeric symbols such as the \"/\" or \"_\" symbols. See [Adding a business name](https://support.google.com/merchants/answer/12159159) for more information.",
           "type": "string"
         },
         "adultContent": {
@@ -3003,7 +3003,7 @@
           "readOnly": true
         },
         "eligibleDestinations": {
-          "description": "Optional. The destinations (also known as [Marketing methods](https://support.google.com/merchants/answer/15130232)) to which the checkout program applies, valid destination values are `SHOPPING_ADS`, `FREE_LISTINGS`",
+          "description": "Optional. Required for the create operation. The destinations (also known as [Marketing methods](https://support.google.com/merchants/answer/15130232)) to which the checkout program applies. Valid destination values are `SHOPPING_ADS` and `FREE_LISTINGS`.",
           "items": {
             "enum": [
               "DESTINATION_ENUM_UNSPECIFIED",
@@ -3110,7 +3110,7 @@
           "description": "Required. The account to be created."
         },
         "service": {
-          "description": "Required. An account service between the account to be created and the provider account is initialized as part of the creation. At least one such service needs to be provided. Currently exactly one of these needs to be `account_aggregation` and `accounts.createAndConfigure` method can be used to create a sub-account under an existing advanced account through this method. Additional `account_management` or `product_management` services may be provided.",
+          "description": "Required. An account service between the account to be created and the provider account is initialized as part of the creation. At least one such service needs to be provided. Currently exactly one of these needs to be `account_aggregation` and `accounts.createAndConfigure` method can be used to create a sub-account under an existing advanced account through this method. Additional `account_management` or `products_management` services may be provided.",
           "items": {
             "$ref": "AddAccountService"
           },
@@ -3648,6 +3648,7 @@
             "LOCAL_INVENTORY_ADS",
             "VEHICLE_INVENTORY_ADS",
             "FREE_LISTINGS",
+            "FREE_LISTINGS_UCP_CHECKOUT",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
             "YOUTUBE_AFFILIATE",
@@ -3677,6 +3678,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -3690,6 +3692,7 @@
             "[Local inventory ads](https://support.google.com/merchants/answer/3271956).",
             "[Vehicle inventory ads](https://support.google.com/merchants/answer/11544533).",
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
+            "[Free product listings on UCP checkout](https://developers.google.com/merchant/ucp).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
             "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
@@ -4620,6 +4623,7 @@
             "LOCAL_INVENTORY_ADS",
             "VEHICLE_INVENTORY_ADS",
             "FREE_LISTINGS",
+            "FREE_LISTINGS_UCP_CHECKOUT",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
             "YOUTUBE_AFFILIATE",
@@ -4649,6 +4653,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -4662,6 +4667,7 @@
             "[Local inventory ads](https://support.google.com/merchants/answer/3271956).",
             "[Vehicle inventory ads](https://support.google.com/merchants/answer/11544533).",
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
+            "[Free product listings on UCP checkout](https://developers.google.com/merchant/ucp).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
             "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
@@ -4748,7 +4754,7 @@
       "type": "object"
     },
     "Program": {
-      "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `checkout` * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`",
+      "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `checkout` * `free-listings` * `product-ratings` * `shopping-ads` * `youtube-shopping-checkout`",
       "id": "Program",
       "properties": {
         "activeRegionCodes": {
@@ -4886,7 +4892,7 @@
       "type": "object"
     },
     "Region": {
-      "description": "Represents a geographic region that you can use as a target with both the `RegionalInventory` and `ShippingSettings` services. You can define regions as collections of either postal codes or, in some countries, using predefined geotargets. For more information, see [Set up regions ](https://support.google.com/merchants/answer/7410946#zippy=%2Ccreate-a-new-region) for more information.",
+      "description": "Represents a geographic region that you can use as a target with both the `RegionalInventory` and `ShippingSettings` services. You can define regions as collections of either postal codes, radius areas or, in some countries, using predefined geotargets. A region must be defined by specifying exactly one of `postal_code_area`, `geotarget_area`, or `radius_area`. For more information, see [Set up regions ](https://support.google.com/merchants/answer/7410946#zippy=%2Ccreate-a-new-region) for more information.",
       "id": "Region",
       "properties": {
         "displayName": {

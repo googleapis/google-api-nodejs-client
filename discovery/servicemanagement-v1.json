@@ -835,7 +835,7 @@
       }
     }
   },
-  "revision": "20251208",
+  "revision": "20260219",
   "rootUrl": "https://servicemanagement.googleapis.com/",
   "schemas": {
     "Advice": {
@@ -915,6 +915,13 @@
           "description": "The type of this aspect configuration.",
           "type": "string"
         },
+        "rules": {
+          "description": "Optional. Rules of the Configuration.",
+          "items": {
+            "$ref": "AspectRule"
+          },
+          "type": "array"
+        },
         "spec": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -922,6 +929,25 @@
           },
           "description": "Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "AspectRule": {
+      "description": "Rule-based configuration for an aspect.",
+      "id": "AspectRule",
+      "properties": {
+        "config": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Required. Rules of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.",
+          "type": "object"
+        },
+        "selector": {
+          "description": "Required. Selects the RPC methods to which this rule applies. Refer to selector for syntax details.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3417,7 +3443,7 @@
           "description": "Additional API documentation."
         },
         "endpoints": {
-          "description": "Configuration for network endpoints. If this is empty, then an endpoint with the same name as the service is automatically generated to service all defined APIs.",
+          "description": "Configuration for network endpoints. If this is empty, then an endpoint with the same name as the service is automatically generated to service all defined APIs. WARNING: Defining any entries in the `endpoints` list disables the automatic generation of default endpoint variations (e.g., `{service}.clients6.google.com`, `content-{service}.googleapis.com`, and mTLS variants like `{service}.mtls.googleapis.com`). To retain these default variations, you are required to explicitly include your main service endpoint (e.g., `myservice.googleapis.com`) in this list alongside any other custom endpoints (like REP, GFE, etc.).",
           "items": {
             "$ref": "Endpoint"
           },
@@ -3457,7 +3483,7 @@
           "type": "array"
         },
         "monitoredResources": {
-          "description": "Defines the monitored resources used by this service. This is required by the Service.monitoring and Service.logging configurations.",
+          "description": "Defines the monitored resources used by this service. This is required by the `Service.monitoring` and `Service.logging` configurations.",
           "items": {
             "$ref": "MonitoredResourceDescriptor"
           },

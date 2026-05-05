@@ -409,7 +409,7 @@
             "firewallEndpoints": {
               "methods": {
                 "create": {
-                  "description": "Creates a new FirewallEndpoint in a given project and location.",
+                  "description": "Creates a new FirewallEndpoint in a given organization and location.",
                   "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/firewallEndpoints",
                   "httpMethod": "POST",
                   "id": "networksecurity.organizations.locations.firewallEndpoints.create",
@@ -447,7 +447,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single Endpoint.",
+                  "description": "Deletes a single org Endpoint.",
                   "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.organizations.locations.firewallEndpoints.delete",
@@ -477,7 +477,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single Endpoint.",
+                  "description": "Gets details of a single org Endpoint.",
                   "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.organizations.locations.firewallEndpoints.get",
@@ -502,7 +502,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists FirewallEndpoints in a given project and location.",
+                  "description": "Lists FirewallEndpoints in a given organization and location.",
                   "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/firewallEndpoints",
                   "httpMethod": "GET",
                   "id": "networksecurity.organizations.locations.firewallEndpoints.list",
@@ -548,7 +548,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Update a single Endpoint.",
+                  "description": "Update a single org Endpoint.",
                   "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.organizations.locations.firewallEndpoints.patch",
@@ -2805,7 +2805,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single Endpoint.",
+                  "description": "Deletes a single project Endpoint.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.projects.locations.firewallEndpoints.delete",
@@ -2835,7 +2835,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single Endpoint.",
+                  "description": "Gets details of a single project Endpoint.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.firewallEndpoints.get",
@@ -2906,7 +2906,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Update a single Endpoint.",
+                  "description": "Update a single project Endpoint.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.projects.locations.firewallEndpoints.patch",
@@ -5419,7 +5419,7 @@
       }
     }
   },
-  "revision": "20260125",
+  "revision": "20260204",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -8536,13 +8536,15 @@
             "PROFILE_TYPE_UNSPECIFIED",
             "THREAT_PREVENTION",
             "CUSTOM_MIRRORING",
-            "CUSTOM_INTERCEPT"
+            "CUSTOM_INTERCEPT",
+            "URL_FILTERING"
           ],
           "enumDescriptions": [
             "Profile type not specified.",
             "Profile type for threat prevention.",
             "Profile type for packet mirroring v2",
-            "Profile type for TPPI."
+            "Profile type for TPPI.",
+            "Profile type for URL filtering."
           ],
           "type": "string"
         },
@@ -8551,6 +8553,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "urlFilteringProfile": {
+          "$ref": "UrlFilteringProfile",
+          "description": "The URL filtering configuration for the SecurityProfile."
         }
       },
       "type": "object"
@@ -8607,6 +8613,10 @@
           "description": "Output only. Last resource update timestamp.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "urlFilteringProfile": {
+          "description": "Optional. Reference to a SecurityProfile with the UrlFiltering configuration.",
           "type": "string"
         }
       },
@@ -8907,6 +8917,53 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UrlFilter": {
+      "description": "A URL filter defines an action to take for some URL match.",
+      "id": "UrlFilter",
+      "properties": {
+        "filteringAction": {
+          "description": "Required. The action taken when this filter is applied.",
+          "enum": [
+            "URL_FILTERING_ACTION_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "Filtering action not specified.",
+            "The connection matching this filter will be allowed to transmit.",
+            "The connection matching this filter will be dropped."
+          ],
+          "type": "string"
+        },
+        "priority": {
+          "description": "Required. The priority of this filter within the URL Filtering Profile. Lower integers indicate higher priorities. The priority of a filter must be unique within a URL Filtering Profile.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "urls": {
+          "description": "Required. The list of strings that a URL must match with for this filter to be applied.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UrlFilteringProfile": {
+      "description": "UrlFilteringProfile defines filters based on URL.",
+      "id": "UrlFilteringProfile",
+      "properties": {
+        "urlFilters": {
+          "description": "Optional. The list of filtering configs in which each config defines an action to take for some URL match.",
+          "items": {
+            "$ref": "UrlFilter"
+          },
+          "type": "array"
         }
       },
       "type": "object"

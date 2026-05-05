@@ -1797,41 +1797,6 @@
             "https://www.googleapis.com/auth/sqlservice.admin"
           ]
         },
-        "restoreBackupMcp": {
-          "description": "Restores a backup of a Cloud SQL instance for Model Context Protocol (MCP) server.",
-          "flatPath": "v1/projects/{targetProject}/instances/{targetInstance}:restoreBackupMcp",
-          "httpMethod": "POST",
-          "id": "sql.instances.restoreBackupMcp",
-          "parameterOrder": [
-            "targetProject",
-            "targetInstance"
-          ],
-          "parameters": {
-            "targetInstance": {
-              "description": "Required. Cloud SQL instance ID of the target. This does not include the project ID.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "targetProject": {
-              "description": "Required. Project ID of the target project.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1/projects/{targetProject}/instances/{targetInstance}:restoreBackupMcp",
-          "request": {
-            "$ref": "SqlInstancesRestoreBackupMcpRequest"
-          },
-          "response": {
-            "$ref": "Operation"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/sqlservice.admin"
-          ]
-        },
         "rotateServerCa": {
           "description": "Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method. For instances that have enabled Certificate Authority Service (CAS) based server CA, use RotateServerCertificate to rotate the server certificate.",
           "flatPath": "v1/projects/{project}/instances/{instance}/rotateServerCa",
@@ -2808,6 +2773,11 @@
               "location": "path",
               "required": true,
               "type": "string"
+            },
+            "revokeExistingRoles": {
+              "description": "Optional. Specifies whether to revoke existing roles that are not present in the `database_roles` field. If `false` or unset, the database roles specified in `database_roles` are added to the user's existing roles.",
+              "location": "query",
+              "type": "boolean"
             }
           },
           "path": "v1/projects/{project}/instances/{instance}/users",
@@ -2825,7 +2795,7 @@
       }
     }
   },
-  "revision": "20260119",
+  "revision": "20260222",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -3022,7 +2992,10 @@
             "SQLSERVER_2022_STANDARD",
             "SQLSERVER_2022_ENTERPRISE",
             "SQLSERVER_2022_EXPRESS",
-            "SQLSERVER_2022_WEB"
+            "SQLSERVER_2022_WEB",
+            "SQLSERVER_2025_STANDARD",
+            "SQLSERVER_2025_ENTERPRISE",
+            "SQLSERVER_2025_EXPRESS"
           ],
           "enumDeprecated": [
             false,
@@ -3036,6 +3009,9 @@
             false,
             false,
             true,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -3128,7 +3104,10 @@
             "The database version is SQL Server 2022 Standard.",
             "The database version is SQL Server 2022 Enterprise.",
             "The database version is SQL Server 2022 Express.",
-            "The database version is SQL Server 2022 Web."
+            "The database version is SQL Server 2022 Web.",
+            "The database version is SQL Server 2025 Standard.",
+            "The database version is SQL Server 2025 Enterprise.",
+            "The database version is SQL Server 2025 Express."
           ],
           "readOnly": true,
           "type": "string"
@@ -3487,7 +3466,10 @@
             "SQLSERVER_2022_STANDARD",
             "SQLSERVER_2022_ENTERPRISE",
             "SQLSERVER_2022_EXPRESS",
-            "SQLSERVER_2022_WEB"
+            "SQLSERVER_2022_WEB",
+            "SQLSERVER_2025_STANDARD",
+            "SQLSERVER_2025_ENTERPRISE",
+            "SQLSERVER_2025_EXPRESS"
           ],
           "enumDeprecated": [
             false,
@@ -3501,6 +3483,9 @@
             false,
             false,
             true,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -3593,7 +3578,10 @@
             "The database version is SQL Server 2022 Standard.",
             "The database version is SQL Server 2022 Enterprise.",
             "The database version is SQL Server 2022 Express.",
-            "The database version is SQL Server 2022 Web."
+            "The database version is SQL Server 2022 Web.",
+            "The database version is SQL Server 2025 Standard.",
+            "The database version is SQL Server 2025 Enterprise.",
+            "The database version is SQL Server 2025 Express."
           ],
           "readOnly": true,
           "type": "string"
@@ -3775,6 +3763,14 @@
           "description": "Required. Name of the Cloud SQL instance to be created as a clone.",
           "type": "string"
         },
+        "destinationNetwork": {
+          "description": "Optional. The fully qualified URI of the VPC network to which the cloned instance will be connected via Private Services Access for private IP. For example:`projects/my-network-project/global/networks/my-network`. This field is only required for cross-project cloning.",
+          "type": "string"
+        },
+        "destinationProject": {
+          "description": "Optional. The project ID of the destination project where the cloned instance will be created. To perform a cross-project clone, this field is required. If not specified, the clone is created in the same project as the source instance.",
+          "type": "string"
+        },
         "kind": {
           "description": "This is always `sql#cloneContext`.",
           "type": "string"
@@ -3939,7 +3935,10 @@
             "SQLSERVER_2022_STANDARD",
             "SQLSERVER_2022_ENTERPRISE",
             "SQLSERVER_2022_EXPRESS",
-            "SQLSERVER_2022_WEB"
+            "SQLSERVER_2022_WEB",
+            "SQLSERVER_2025_STANDARD",
+            "SQLSERVER_2025_ENTERPRISE",
+            "SQLSERVER_2025_EXPRESS"
           ],
           "enumDeprecated": [
             false,
@@ -3953,6 +3952,9 @@
             false,
             false,
             true,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -4045,7 +4047,10 @@
             "The database version is SQL Server 2022 Standard.",
             "The database version is SQL Server 2022 Enterprise.",
             "The database version is SQL Server 2022 Express.",
-            "The database version is SQL Server 2022 Web."
+            "The database version is SQL Server 2022 Web.",
+            "The database version is SQL Server 2025 Standard.",
+            "The database version is SQL Server 2025 Enterprise.",
+            "The database version is SQL Server 2025 Express."
           ],
           "type": "string"
         },
@@ -4347,7 +4352,10 @@
             "SQLSERVER_2022_STANDARD",
             "SQLSERVER_2022_ENTERPRISE",
             "SQLSERVER_2022_EXPRESS",
-            "SQLSERVER_2022_WEB"
+            "SQLSERVER_2022_WEB",
+            "SQLSERVER_2025_STANDARD",
+            "SQLSERVER_2025_ENTERPRISE",
+            "SQLSERVER_2025_EXPRESS"
           ],
           "enumDeprecated": [
             false,
@@ -4361,6 +4369,9 @@
             false,
             false,
             true,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -4453,7 +4464,10 @@
             "The database version is SQL Server 2022 Standard.",
             "The database version is SQL Server 2022 Enterprise.",
             "The database version is SQL Server 2022 Express.",
-            "The database version is SQL Server 2022 Web."
+            "The database version is SQL Server 2022 Web.",
+            "The database version is SQL Server 2025 Standard.",
+            "The database version is SQL Server 2025 Enterprise.",
+            "The database version is SQL Server 2025 Express."
           ],
           "type": "string"
         },
@@ -5325,7 +5339,10 @@
               "SQLSERVER_2022_STANDARD",
               "SQLSERVER_2022_ENTERPRISE",
               "SQLSERVER_2022_EXPRESS",
-              "SQLSERVER_2022_WEB"
+              "SQLSERVER_2022_WEB",
+              "SQLSERVER_2025_STANDARD",
+              "SQLSERVER_2025_ENTERPRISE",
+              "SQLSERVER_2025_EXPRESS"
             ],
             "enumDeprecated": [
               false,
@@ -5339,6 +5356,9 @@
               false,
               false,
               true,
+              false,
+              false,
+              false,
               false,
               false,
               false,
@@ -5431,7 +5451,10 @@
               "The database version is SQL Server 2022 Standard.",
               "The database version is SQL Server 2022 Enterprise.",
               "The database version is SQL Server 2022 Express.",
-              "The database version is SQL Server 2022 Web."
+              "The database version is SQL Server 2022 Web.",
+              "The database version is SQL Server 2025 Standard.",
+              "The database version is SQL Server 2025 Enterprise.",
+              "The database version is SQL Server 2025 Express."
             ],
             "type": "string"
           },
@@ -7182,7 +7205,10 @@
             "SQLSERVER_2022_STANDARD",
             "SQLSERVER_2022_ENTERPRISE",
             "SQLSERVER_2022_EXPRESS",
-            "SQLSERVER_2022_WEB"
+            "SQLSERVER_2022_WEB",
+            "SQLSERVER_2025_STANDARD",
+            "SQLSERVER_2025_ENTERPRISE",
+            "SQLSERVER_2025_EXPRESS"
           ],
           "enumDeprecated": [
             false,
@@ -7196,6 +7222,9 @@
             false,
             false,
             true,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -7288,7 +7317,10 @@
             "The database version is SQL Server 2022 Standard.",
             "The database version is SQL Server 2022 Enterprise.",
             "The database version is SQL Server 2022 Express.",
-            "The database version is SQL Server 2022 Web."
+            "The database version is SQL Server 2022 Web.",
+            "The database version is SQL Server 2025 Standard.",
+            "The database version is SQL Server 2025 Enterprise.",
+            "The database version is SQL Server 2025 Express."
           ],
           "type": "string"
         }
@@ -7629,6 +7661,10 @@
       "description": "Database instance settings.",
       "id": "Settings",
       "properties": {
+        "acceleratedReplicaMode": {
+          "description": "Optional. Whether the replica is in accelerated mode. This feature is in private preview and requires allowlisting to take effect.",
+          "type": "boolean"
+        },
         "activationPolicy": {
           "description": "The activation policy specifies when the instance is activated; it is applicable only when the instance state is RUNNABLE. Valid values: * `ALWAYS`: The instance is on, and remains so even in the absence of connection requests. * `NEVER`: The instance is off; it is not activated, even if a connection request arrives.",
           "enum": [
@@ -8232,25 +8268,6 @@
       "description": "Instance reset replica size request.",
       "id": "SqlInstancesResetReplicaSizeRequest",
       "properties": {},
-      "type": "object"
-    },
-    "SqlInstancesRestoreBackupMcpRequest": {
-      "description": "Instance restore backup request for MCP.",
-      "id": "SqlInstancesRestoreBackupMcpRequest",
-      "properties": {
-        "backupId": {
-          "description": "Required. The identifier of the backup to restore. This will be one of the following: 1. An int64 containing a backup_run_id. 2. A backup name of the format 'projects/{project}/backups/{backup-uid}'. 3. A backupDR name of the format 'projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}/backups/{backup-uid}'.",
-          "type": "string"
-        },
-        "sourceInstance": {
-          "description": "Optional. The Cloud SQL instance ID of the source instance containing the backup. Only necessary if the backup_id is a backup_run_id.",
-          "type": "string"
-        },
-        "sourceProject": {
-          "description": "Required. The project ID of the source instance containing the backup.",
-          "type": "string"
-        }
-      },
       "type": "object"
     },
     "SqlInstancesStartExternalSyncRequest": {

@@ -135,7 +135,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1beta/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "firebasedataconnect.projects.locations.list",
@@ -1165,13 +1165,28 @@
       }
     }
   },
-  "revision": "20260111",
+  "revision": "20260201",
   "rootUrl": "https://firebasedataconnect.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "ClientCache": {
+      "description": "Client caching settings of a connector.",
+      "id": "ClientCache",
+      "properties": {
+        "entityIdIncluded": {
+          "description": "Optional. A field that, if true, means that responses served by this connector will include entityIds in GraphQL response extensions. This helps the client SDK cache responses in an improved way, known as \"normalized caching\", if caching is enabled on the client. Each entityId is a stable key based on primary key values. Therefore, this field should only be set to true if the primary keys of accessed tables do not contain sensitive information.",
+          "type": "boolean"
+        },
+        "strictValidationEnabled": {
+          "description": "Optional. A field that, if true, enables stricter validation on the connector source code to make sure the operation response shapes are suitable for client-side caching. This can include additional errors and warnings. For example, using the same alias for different fields is disallowed, as it may cause conflicts or confusion with normalized caching. (This field is off by default for compatibility, but enabling it is highly recommended to catch common caching pitfalls.)",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "CloudSqlInstance": {
@@ -1195,6 +1210,10 @@
           },
           "description": "Optional. Stores small amounts of arbitrary data.",
           "type": "object"
+        },
+        "clientCache": {
+          "$ref": "ClientCache",
+          "description": "Optional. The client cache settings of the connector."
         },
         "createTime": {
           "description": "Output only. [Output only] Create time stamp.",
@@ -1241,6 +1260,36 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataConnectProperties": {
+      "description": "Data Connect specific properties for a path under response.data.",
+      "id": "DataConnectProperties",
+      "properties": {
+        "entityId": {
+          "description": "A single Entity ID. Set if the path points to a single entity.",
+          "type": "string"
+        },
+        "entityIds": {
+          "description": "A list of Entity IDs. Set if the path points to an array of entities. An ID is present for each element of the array at the corresponding index.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "maxAge": {
+          "description": "The server-suggested duration before data under path is considered stale.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "path": {
+          "description": "The path under response.data where the rest of the fields apply. Each element may be a string (field name) or number (array index). The root of response.data is denoted by the empty list `[]`.",
+          "items": {
+            "type": "any"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1303,6 +1352,10 @@
             "$ref": "GraphqlError"
           },
           "type": "array"
+        },
+        "extensions": {
+          "$ref": "GraphqlResponseExtensions",
+          "description": "Additional response information."
         }
       },
       "type": "object"
@@ -1344,6 +1397,10 @@
             "$ref": "GraphqlError"
           },
           "type": "array"
+        },
+        "extensions": {
+          "$ref": "GraphqlResponseExtensions",
+          "description": "Additional response information."
         }
       },
       "type": "object"
@@ -1525,9 +1582,27 @@
           "type": "object"
         },
         "errors": {
-          "description": "Errors of this response. If the data entry in the response is not present, the errors entry must be present. It conforms to https://spec.graphql.org/draft/#sec-Errors.",
+          "description": "Errors of this response. If the data entry in the response is not present, the errors entry must be present. It conforms to https://spec.graphql.org/draft/#sec-Errors .",
           "items": {
             "$ref": "GraphqlError"
+          },
+          "type": "array"
+        },
+        "extensions": {
+          "$ref": "GraphqlResponseExtensions",
+          "description": "Additional response information. It conforms to https://spec.graphql.org/draft/#sec-Extensions ."
+        }
+      },
+      "type": "object"
+    },
+    "GraphqlResponseExtensions": {
+      "description": "GraphqlResponseExtensions contains additional information of `GraphqlResponse` or `ExecuteQueryResponse`.",
+      "id": "GraphqlResponseExtensions",
+      "properties": {
+        "dataConnect": {
+          "description": "Data Connect specific GraphQL extension, a list of paths and properties.",
+          "items": {
+            "$ref": "DataConnectProperties"
           },
           "type": "array"
         }

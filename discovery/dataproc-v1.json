@@ -478,7 +478,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. A unique ID used to identify the request. If the service receives two CreateBatchRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateBatchRequest)s with the same request_id, the second request is ignored and the Operation that corresponds to the first Batch created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The value must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+                      "description": "Optional. A unique ID used to identify the request. If the service receives two CreateBatchRequests with the same request_id, the second request is ignored and the operation that corresponds to the first Batch created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The value must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
                       "location": "query",
                       "type": "string"
                     }
@@ -4291,7 +4291,7 @@
                       "type": "string"
                     },
                     "filter": {
-                      "description": "Optional. A filter constraining the jobs to list. Filters are case-sensitive and have the following syntax:field = value AND field = value ...where field is status.state or labels.[KEY], and [KEY] is a label key. value can be * to match all values. status.state can be either ACTIVE or NON_ACTIVE. Only the logical AND operator is supported; space-separated items are treated as having an implicit AND operator.Example filter:status.state = ACTIVE AND labels.env = staging AND labels.starred = *",
+                      "description": "Optional. A filter constraining the jobs to list. Filters are case-sensitive and have the following syntax:field = value AND field = value ...where field is status.state or insertTime, or labels.[KEY], and [KEY] is a label key. value can be * to match all values. status.state can be either ACTIVE or NON_ACTIVE. Allows insertTime to be a timestamp in RFC 3339 format in double quotes, such as 2025-01-01T00:00:00Z. Only the logical AND operator is supported; space-separated items are treated as having an implicit AND operator.Example filter:status.state = ACTIVE AND labels.env = staging AND labels.starred = * AND insertTime <= \"2025-01-01T00:00:00Z\"",
                       "location": "query",
                       "type": "string"
                     },
@@ -5032,7 +5032,7 @@
       }
     }
   },
-  "revision": "20260122",
+  "revision": "20260219",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -5458,6 +5458,46 @@
             "",
             ""
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AttachedDiskConfig": {
+      "description": "Specifies the config of attached disk options for single VM instance.",
+      "id": "AttachedDiskConfig",
+      "properties": {
+        "diskSizeGb": {
+          "description": "Optional. Disk size in GB.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "diskType": {
+          "description": "Optional. Disk type.",
+          "enum": [
+            "DISK_TYPE_UNSPECIFIED",
+            "HYPERDISK_BALANCED",
+            "HYPERDISK_EXTREME",
+            "HYPERDISK_ML",
+            "HYPERDISK_THROUGHPUT"
+          ],
+          "enumDescriptions": [
+            "Required unspecified disk type.",
+            "Hyperdisk Balanced disk type.",
+            "Hyperdisk Extreme disk type.",
+            "Hyperdisk ML disk type.",
+            "Hyperdisk Throughput disk type."
+          ],
+          "type": "string"
+        },
+        "provisionedIops": {
+          "description": "Optional. Indicates how many IOPS to provision for the attached disk. This sets the number of I/O operations per second that the disk can handle. See https://cloud.google.com/compute/docs/disks/hyperdisks#hyperdisk-features",
+          "format": "int64",
+          "type": "string"
+        },
+        "provisionedThroughput": {
+          "description": "Optional. Indicates how much throughput to provision for the attached disk. This sets the number of throughput mb per second that the disk can handle. See https://cloud.google.com/compute/docs/disks/hyperdisks#hyperdisk-features",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -6453,6 +6493,13 @@
       "description": "Specifies the config of boot disk and attached disk options for a group of VM instances.",
       "id": "DiskConfig",
       "properties": {
+        "attachedDiskConfigs": {
+          "description": "Optional. A list of attached disk configs for a group of VM instances.",
+          "items": {
+            "$ref": "AttachedDiskConfig"
+          },
+          "type": "array"
+        },
         "bootDiskProvisionedIops": {
           "description": "Optional. Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. This field is supported only if boot_disk_type is hyperdisk-balanced.",
           "format": "int64",

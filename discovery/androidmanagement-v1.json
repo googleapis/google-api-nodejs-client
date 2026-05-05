@@ -1265,7 +1265,7 @@
       }
     }
   },
-  "revision": "20260127",
+  "revision": "20260225",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -2432,7 +2432,7 @@
       "id": "ApplicationSigningKeyCert",
       "properties": {
         "signingKeyCertFingerprintSha256": {
-          "description": "Required. The SHA-256 hash value of the signing key certificate of the app. This must be a valid SHA-256 hash value, i.e. 32 bytes. Otherwise, the policy is rejected.",
+          "description": "Required. The SHA-256 hash value of the signing key certificate of the app. This must be a valid SHA-256 hash value, i.e. 32 bytes.",
           "format": "byte",
           "type": "string"
         }
@@ -3523,6 +3523,10 @@
           "$ref": "PreferentialNetworkServiceSettings",
           "description": "Optional. Preferential network service configuration. Setting this field will override preferentialNetworkService. This can be set on both work profiles and fully managed devices on Android 13 and above. See 5G network slicing (https://developers.google.com/android/management/5g-network-slicing) guide for more details."
         },
+        "privateDnsSettings": {
+          "$ref": "PrivateDnsSettings",
+          "description": "Optional. The global private DNS settings."
+        },
         "tetheringSettings": {
           "description": "Controls tethering settings. Based on the value set, the user is partially or fully disallowed from using different forms of tethering.",
           "enum": [
@@ -4276,7 +4280,7 @@
       "id": "GoogleAuthenticationSettings",
       "properties": {
         "googleAuthenticationRequired": {
-          "description": "Output only. Whether users need to be authenticated by Google during the enrollment process. IT admin can specify if Google authentication is enabled for the enterprise for knowledge worker devices. This value can be set only via the Google Admin Console. Google authentication can be used with signin_url In the case where Google authentication is required and a signin_url is specified, Google authentication will be launched before signin_url.",
+          "description": "Output only. Whether users need to be authenticated by Google during the enrollment process. IT admin can specify if Google authentication is enabled for the enterprise for knowledge worker devices. This value can be set only via the Google Admin Console. Google authentication can be used with signin_url In the case where Google authentication is required and a signin_url is specified, Google authentication will be launched before signin_url. This value is overridden by EnrollmentToken.googleAuthenticationOptions and SigninDetail.googleAuthenticationOptions, if they are set.",
           "enum": [
             "GOOGLE_AUTHENTICATION_REQUIRED_UNSPECIFIED",
             "NOT_REQUIRED",
@@ -5336,7 +5340,7 @@
           "type": "string"
         },
         "telephonyInfos": {
-          "description": "Provides telephony information associated with each SIM card on the device. Only supported on fully managed devices starting from Android API level 23.",
+          "description": "Provides telephony information associated with each SIM card on the device. Only supported on fully managed devices starting from Android 6.",
           "items": {
             "$ref": "TelephonyInfo"
           },
@@ -6114,7 +6118,7 @@
         },
         "blockApplicationsEnabled": {
           "deprecated": true,
-          "description": "Whether applications other than the ones configured in applications are blocked from being installed. When set, applications that were installed under a previous policy but no longer appear in the policy are automatically uninstalled.",
+          "description": "This field has no effect.",
           "type": "boolean"
         },
         "bluetoothConfigDisabled": {
@@ -6881,6 +6885,33 @@
       },
       "type": "object"
     },
+    "PrivateDnsSettings": {
+      "description": "Controls the device's private DNS settings.",
+      "id": "PrivateDnsSettings",
+      "properties": {
+        "privateDnsHost": {
+          "description": "Optional. The hostname of the DNS server. This must be set if and only if private_dns_mode is set to PRIVATE_DNS_SPECIFIED_HOST. Supported on Android 10 and above on fully managed devices. A NonComplianceDetail with MANAGEMENT_MODE is reported on other management modes. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 10. A NonComplianceDetail with PENDING is reported if the device is not connected to a network. A NonComplianceDetail with nonComplianceReason INVALID_VALUE and specificNonComplianceReason PRIVATE_DNS_HOST_NOT_SERVING is reported if the specified host is not a DNS server or not supported on Android. A NonComplianceReason with nonComplianceReason INVALID_VALUE is reported if applying this setting fails for any other reason.",
+          "type": "string"
+        },
+        "privateDnsMode": {
+          "description": "Optional. The configuration mode for device's global private DNS settings. If this is set to PRIVATE_DNS_SPECIFIED_HOST, then private_dns_host must be set.",
+          "enum": [
+            "PRIVATE_DNS_MODE_UNSPECIFIED",
+            "PRIVATE_DNS_USER_CHOICE",
+            "PRIVATE_DNS_AUTOMATIC",
+            "PRIVATE_DNS_SPECIFIED_HOST"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to PRIVATE_DNS_USER_CHOICE.",
+            "The user is allowed to configure private DNS.",
+            "Automatic private DNS mode. The device tries to use the network-provided DNS server over an encrypted connection before resorting to cleartext. The user is not allowed to modify this setting. Supported on Android 10 and above on fully managed devices and work profiles on company-owned devices. A NonComplianceDetail with MANAGEMENT_MODE is reported on other management modes. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 10. A NonComplianceReason with INVALID_VALUE is reported if setting this fails for any other reason.Note: For work profiles on company-owned devices, setting this mode prevents the user from changing the setting, but the active private DNS setting is not modified. A NonComplianceDetail with MANAGEMENT_MODE is reported in this case.",
+            "The device only uses the DNS server specified in private_dns_host. The user is not allowed to modify this setting. If this is set, then private_dns_host must be set. Supported on Android 10 and above on fully managed devices. A NonComplianceDetail with MANAGEMENT_MODE is reported on other management modes. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 10."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ProvisioningInfo": {
       "description": "Information about a device that is available during setup.",
       "id": "ProvisioningInfo",
@@ -7613,11 +7644,11 @@
       "type": "object"
     },
     "TelephonyInfo": {
-      "description": "Telephony information associated with a given SIM card on the device. Only supported on fully managed devices starting from Android API level 23.",
+      "description": "Telephony information associated with a given SIM card on the device. This is supported for all SIM cards on fully managed devices on Android 6 and above. In addition, this is supported for admin-added eSIMs on all devices for Android 15 and above.",
       "id": "TelephonyInfo",
       "properties": {
         "activationState": {
-          "description": "Output only. Activation state of the SIM card on the device. This is applicable for eSIMs only. This is supported on all devices for API level 35 and above. This is always ACTIVATION_STATE_UNSPECIFIED for physical SIMs and for devices below API level 35.",
+          "description": "Output only. Activation state of the SIM card on the device. This is applicable for eSIMs only. This is supported on all devices for Android 15 and above. This is always ACTIVATION_STATE_UNSPECIFIED for physical SIMs and for devices below Android 15.",
           "enum": [
             "ACTIVATION_STATE_UNSPECIFIED",
             "ACTIVATED",
@@ -7636,7 +7667,7 @@
           "type": "string"
         },
         "configMode": {
-          "description": "Output only. The configuration mode of the SIM card on the device. This is applicable for eSIMs only. This is supported on all devices for API level 35 and above. This is always CONFIG_MODE_UNSPECIFIED for physical SIMs and for devices below API level 35.",
+          "description": "Output only. The configuration mode of the SIM card on the device. This is applicable for eSIMs only. This is supported on all devices for Android 15 and above. This is always CONFIG_MODE_UNSPECIFIED for physical SIMs and for devices below Android 15.",
           "enum": [
             "CONFIG_MODE_UNSPECIFIED",
             "ADMIN_CONFIGURED",

@@ -5740,6 +5740,8 @@ export namespace dns_v1beta2 {
      *
      *   // Do the magic
      *   const res = await dns.resourceRecordSets.list({
+     *     // Specify a filter expression to view records that exactly match the specified domain. Both the name and type parameters are not supported when you use filter and must be omitted. Your filter expression must conform to AIP-160 and you must specify a domain in the name field. Optionally, you can include the type field to filter records by type. You can also include the has_suffix function to view records that match by domain suffix. Examples: - name="example.com." - name="example.com." AND type="A" - name=has_suffix("example.com.") - name=has_suffix("example.com.") AND type="A"
+     *     filter: 'placeholder-value',
      *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Optional. Maximum number of results to be returned. If unspecified, the server decides how many results to return.
@@ -6097,6 +6099,10 @@ export namespace dns_v1beta2 {
     type?: string;
   }
   export interface Params$Resource$Resourcerecordsets$List extends StandardParameters {
+    /**
+     * Specify a filter expression to view records that exactly match the specified domain. Both the name and type parameters are not supported when you use filter and must be omitted. Your filter expression must conform to AIP-160 and you must specify a domain in the name field. Optionally, you can include the type field to filter records by type. You can also include the has_suffix function to view records that match by domain suffix. Examples: - name="example.com." - name="example.com." AND type="A" - name=has_suffix("example.com.") - name=has_suffix("example.com.") AND type="A"
+     */
+    filter?: string;
     /**
      * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */

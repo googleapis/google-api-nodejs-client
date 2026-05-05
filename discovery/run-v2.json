@@ -4,6 +4,12 @@
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
+        },
+        "https://www.googleapis.com/auth/run": {
+          "description": "See, edit, configure, and delete your Google Cloud Run data and see the email address for your Google Account"
+        },
+        "https://www.googleapis.com/auth/run.readonly": {
+          "description": "See your Google Cloud Run data and the email address of your Google Account"
         }
       }
     }
@@ -65,6 +71,11 @@
       "description": "Locational Endpoint",
       "endpointUrl": "https://asia-southeast2-run.googleapis.com/",
       "location": "asia-southeast2"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-southeast3-run.googleapis.com/",
+      "location": "asia-southeast3"
     },
     {
       "description": "Locational Endpoint",
@@ -295,6 +306,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://run.asia-southeast2.rep.googleapis.com/",
       "location": "asia-southeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://run.asia-southeast3.rep.googleapis.com/",
+      "location": "asia-southeast3"
     },
     {
       "description": "Regional Endpoint",
@@ -596,7 +612,8 @@
                 "$ref": "GoogleCloudRunV2ExportImageResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             },
             "exportImageMetadata": {
@@ -621,7 +638,8 @@
                 "$ref": "GoogleCloudRunV2Metadata"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             },
             "exportMetadata": {
@@ -646,7 +664,8 @@
                 "$ref": "GoogleCloudRunV2Metadata"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             },
             "exportProjectMetadata": {
@@ -671,7 +690,8 @@
                 "$ref": "GoogleCloudRunV2Metadata"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             }
           },
@@ -703,7 +723,8 @@
                     "$ref": "GoogleCloudRunV2SubmitBuildResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 }
               }
@@ -720,7 +741,7 @@
                   ],
                   "parameters": {
                     "instanceId": {
-                      "description": "Required. The unique identifier for the Instance. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the instance becomes {parent}/instances/{instance_id}.",
+                      "description": "Optional. The unique identifier for the Instance. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the instance becomes {parent}/instances/{instance_id}. If not provided, the server will generate a unique `instance_id`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -744,7 +765,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "delete": {
@@ -778,7 +800,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "get": {
@@ -802,7 +825,9 @@
                     "$ref": "GoogleCloudRunV2Instance"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "list": {
@@ -843,7 +868,9 @@
                     "$ref": "GoogleCloudRunV2ListInstancesResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "start": {
@@ -871,7 +898,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "stop": {
@@ -899,7 +927,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 }
               }
@@ -916,7 +945,7 @@
                   ],
                   "parameters": {
                     "jobId": {
-                      "description": "Required. The unique identifier for the Job. The name of the job becomes {parent}/jobs/{job_id}.",
+                      "description": "Optional. The unique identifier for the Job. The name of the job becomes {parent}/jobs/{job_id}. If not provided, the server will generate a unique `job_id`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -941,7 +970,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "delete": {
@@ -976,7 +1006,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "get": {
@@ -1001,7 +1032,9 @@
                     "$ref": "GoogleCloudRunV2Job"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "getIamPolicy": {
@@ -1032,7 +1065,9 @@
                     "$ref": "GoogleIamV1Policy"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "list": {
@@ -1073,7 +1108,9 @@
                     "$ref": "GoogleCloudRunV2ListJobsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "patch": {
@@ -1111,7 +1148,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "run": {
@@ -1139,7 +1177,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "setIamPolicy": {
@@ -1167,7 +1206,8 @@
                     "$ref": "GoogleIamV1Policy"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "testIamPermissions": {
@@ -1195,7 +1235,9 @@
                     "$ref": "GoogleIamV1TestIamPermissionsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 }
               },
@@ -1227,7 +1269,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/run"
                       ]
                     },
                     "delete": {
@@ -1262,7 +1305,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/run"
                       ]
                     },
                     "exportStatus": {
@@ -1295,7 +1339,8 @@
                         "$ref": "GoogleCloudRunV2ExportStatusResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/run"
                       ]
                     },
                     "get": {
@@ -1320,7 +1365,9 @@
                         "$ref": "GoogleCloudRunV2Execution"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/run",
+                        "https://www.googleapis.com/auth/run.readonly"
                       ]
                     },
                     "list": {
@@ -1361,7 +1408,9 @@
                         "$ref": "GoogleCloudRunV2ListExecutionsResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/run",
+                        "https://www.googleapis.com/auth/run.readonly"
                       ]
                     }
                   },
@@ -1390,7 +1439,9 @@
                             "$ref": "GoogleCloudRunV2Task"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/run",
+                            "https://www.googleapis.com/auth/run.readonly"
                           ]
                         },
                         "list": {
@@ -1431,7 +1482,9 @@
                             "$ref": "GoogleCloudRunV2ListTasksResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/run",
+                            "https://www.googleapis.com/auth/run.readonly"
                           ]
                         }
                       }
@@ -1464,7 +1517,8 @@
                     "$ref": "GoogleProtobufEmpty"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "get": {
@@ -1489,7 +1543,9 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "list": {
@@ -1535,7 +1591,9 @@
                     "$ref": "GoogleLongrunningListOperationsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "wait": {
@@ -1563,7 +1621,9 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 }
               }
@@ -1587,7 +1647,7 @@
                       "type": "string"
                     },
                     "serviceId": {
-                      "description": "Required. The unique identifier for the Service. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the service becomes {parent}/services/{service_id}.",
+                      "description": "Optional. The unique identifier for the Service. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the service becomes {parent}/services/{service_id}. If not provided, the server will generate a unique `service_id`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1605,7 +1665,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "delete": {
@@ -1640,7 +1701,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "get": {
@@ -1665,7 +1727,9 @@
                     "$ref": "GoogleCloudRunV2Service"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "getIamPolicy": {
@@ -1696,7 +1760,9 @@
                     "$ref": "GoogleIamV1Policy"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "list": {
@@ -1737,7 +1803,9 @@
                     "$ref": "GoogleCloudRunV2ListServicesResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "patch": {
@@ -1751,6 +1819,11 @@
                   "parameters": {
                     "allowMissing": {
                       "description": "Optional. If set to true, and if the Service does not exist, it will create a new one. The caller must have 'run.services.create' permissions if this is set to true and the Service does not exist.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "forceNewRevision": {
+                      "description": "Optional. If set to true, a new revision will be created from the template even if the system doesn't detect any changes from the previously deployed revision. This may be useful for cases where the underlying resources need to be recreated or reinitialized. For example if the image is specified by label, but the underlying image digest has changed) or if the container performs deployment initialization work that needs to be performed again.",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -1781,7 +1854,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "setIamPolicy": {
@@ -1809,7 +1883,8 @@
                     "$ref": "GoogleIamV1Policy"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "testIamPermissions": {
@@ -1837,7 +1912,9 @@
                     "$ref": "GoogleIamV1TestIamPermissionsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 }
               },
@@ -1876,7 +1953,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/run"
                       ]
                     },
                     "exportStatus": {
@@ -1909,7 +1987,8 @@
                         "$ref": "GoogleCloudRunV2ExportStatusResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/run"
                       ]
                     },
                     "get": {
@@ -1934,7 +2013,9 @@
                         "$ref": "GoogleCloudRunV2Revision"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/run",
+                        "https://www.googleapis.com/auth/run.readonly"
                       ]
                     },
                     "list": {
@@ -1975,7 +2056,9 @@
                         "$ref": "GoogleCloudRunV2ListRevisionsResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/run",
+                        "https://www.googleapis.com/auth/run.readonly"
                       ]
                     }
                   }
@@ -2006,7 +2089,7 @@
                       "type": "boolean"
                     },
                     "workerPoolId": {
-                      "description": "Required. The unique identifier for the WorkerPool. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the worker pool becomes `{parent}/workerPools/{worker_pool_id}`.",
+                      "description": "Optional. The unique identifier for the WorkerPool. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the worker pool becomes `{parent}/workerPools/{worker_pool_id}`. If not provided, the server will generate a unique `worker_pool_id`.",
                       "location": "query",
                       "type": "string"
                     }
@@ -2019,7 +2102,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "delete": {
@@ -2054,7 +2138,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "get": {
@@ -2079,7 +2164,9 @@
                     "$ref": "GoogleCloudRunV2WorkerPool"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "getIamPolicy": {
@@ -2110,7 +2197,9 @@
                     "$ref": "GoogleIamV1Policy"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "list": {
@@ -2151,7 +2240,9 @@
                     "$ref": "GoogleCloudRunV2ListWorkerPoolsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "patch": {
@@ -2200,7 +2291,8 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "setIamPolicy": {
@@ -2228,7 +2320,8 @@
                     "$ref": "GoogleIamV1Policy"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "testIamPermissions": {
@@ -2256,7 +2349,9 @@
                     "$ref": "GoogleIamV1TestIamPermissionsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 }
               },
@@ -2295,7 +2390,8 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/run"
                       ]
                     },
                     "get": {
@@ -2320,7 +2416,9 @@
                         "$ref": "GoogleCloudRunV2Revision"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/run",
+                        "https://www.googleapis.com/auth/run.readonly"
                       ]
                     },
                     "list": {
@@ -2361,7 +2459,9 @@
                         "$ref": "GoogleCloudRunV2ListRevisionsResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/run",
+                        "https://www.googleapis.com/auth/run.readonly"
                       ]
                     }
                   }
@@ -2373,7 +2473,7 @@
       }
     }
   },
-  "revision": "20260123",
+  "revision": "20260220",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2518,7 +2618,7 @@
       "id": "GoogleCloudRunV2CloudSqlInstance",
       "properties": {
         "instances": {
-          "description": "The Cloud SQL instance connection names, as can be found in https://console.cloud.google.com/sql/instances. Visit https://cloud.google.com/sql/docs/mysql/connect-run for more information on how to connect Cloud SQL and Cloud Run. Format: {project}:{location}:{instance}",
+          "description": "A list of Cloud SQL instance connection names. Cloud Run uses these to establish connections to the specified Cloud SQL instances. While the SQL instance name itself is unique within a project, the full connection name requires the location for proper routing. Format: `{project}:{location}:{instance}` Example: `my-project:us-central1:my-instance` You can find this value on the instance's **Overview** page in the Google Cloud console or by using the following `gcloud` command: ```sh gcloud sql instances describe INSTANCE_NAME \\ --format='value(connectionName)' ``` Visit https://cloud.google.com/sql/docs/mysql/connect-run for more information on how to connect Cloud SQL and Cloud Run.",
           "items": {
             "type": "string"
           },
@@ -3570,6 +3670,11 @@
           "description": "Output only. The Condition of this Instance, containing its readiness status, and detailed error information in case it did not reach a serving state. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.",
           "readOnly": true
         },
+        "timeout": {
+          "description": "Optional. Duration the instance may be active before the system will shut it down.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "uid": {
           "description": "Output only. Server assigned unique identifier for the trigger. The value is a UUID4 string and guaranteed to remain unchanged until the resource is deleted.",
           "readOnly": true,
@@ -4156,7 +4261,7 @@
           "type": "array"
         },
         "containers": {
-          "description": "Holds the single container that defines the unit of execution for this Revision.",
+          "description": "Holds the list which define the units of execution for this Revision.",
           "items": {
             "$ref": "GoogleCloudRunV2Container"
           },
@@ -4365,6 +4470,16 @@
       "description": "Settings for revision-level scaling settings.",
       "id": "GoogleCloudRunV2RevisionScaling",
       "properties": {
+        "concurrencyUtilization": {
+          "description": "Optional. Determines a threshold for concurrency utilization before scaling begins. Accepted values are between `0.1` and `0.95` (inclusive) or `0.0` to disable concurrency utilization as threshold for scaling.",
+          "format": "float",
+          "type": "number"
+        },
+        "cpuUtilization": {
+          "description": "Optional. Determines a threshold for CPU utilization before scaling begins. Accepted values are between `0.1` and `0.95` (inclusive) or `0.0` to disable CPU utilization as threshold for scaling.",
+          "format": "float",
+          "type": "number"
+        },
         "maxInstanceCount": {
           "description": "Optional. Maximum number of serving instances that this resource should have. When unspecified, the field is set to the server default value of 100. For more information see https://cloud.google.com/run/docs/configuring/max-instances",
           "format": "int32",
@@ -4410,7 +4525,7 @@
           "type": "string"
         },
         "containers": {
-          "description": "Holds the single container that defines the unit of execution for this Revision.",
+          "description": "Holds the list which define the units of execution for this Revision.",
           "items": {
             "$ref": "GoogleCloudRunV2Container"
           },

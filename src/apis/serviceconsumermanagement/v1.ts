@@ -198,9 +198,26 @@ export namespace serviceconsumermanagement_v1 {
      */
     kind?: string | null;
     /**
+     * Optional. Rules of the Configuration.
+     */
+    rules?: Schema$AspectRule[];
+    /**
      * Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.
      */
     spec?: {[key: string]: any} | null;
+  }
+  /**
+   * Rule-based configuration for an aspect.
+   */
+  export interface Schema$AspectRule {
+    /**
+     * Required. Rules of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.
+     */
+    config?: {[key: string]: any} | null;
+    /**
+     * Required. Selects the RPC methods to which this rule applies. Refer to selector for syntax details.
+     */
+    selector?: string | null;
   }
   /**
    * Request to attach an existing project to the tenancy unit as a new tenant resource.
@@ -2830,7 +2847,7 @@ export namespace serviceconsumermanagement_v1 {
      *
      *   // Do the magic
      *   const res = await serviceconsumermanagement.services.search({
-     *     // Optional. The maximum number of results returned by this request. Currently, the default maximum is set to 1000. If `page_size` isn't provided or the size provided is a number larger than 1000, it's automatically set to 1000.
+     *     // Optional. The maximum number of results returned by this request. Currently, the default maximum is set to 256. If `page_size` <= 256, the request proceeds. Else, the request fails with an `TU_INVALID_PAGE_SIZE` error.
      *     pageSize: 'placeholder-value',
      *     // Optional. The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
      *     pageToken: 'placeholder-value',
@@ -2950,7 +2967,7 @@ export namespace serviceconsumermanagement_v1 {
 
   export interface Params$Resource$Services$Search extends StandardParameters {
     /**
-     * Optional. The maximum number of results returned by this request. Currently, the default maximum is set to 1000. If `page_size` isn't provided or the size provided is a number larger than 1000, it's automatically set to 1000.
+     * Optional. The maximum number of results returned by this request. Currently, the default maximum is set to 256. If `page_size` <= 256, the request proceeds. Else, the request fails with an `TU_INVALID_PAGE_SIZE` error.
      */
     pageSize?: number;
     /**

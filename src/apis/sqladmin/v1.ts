@@ -554,6 +554,14 @@ export namespace sqladmin_v1 {
      */
     destinationInstanceName?: string | null;
     /**
+     * Optional. The fully qualified URI of the VPC network to which the cloned instance will be connected via Private Services Access for private IP. For example:`projects/my-network-project/global/networks/my-network`. This field is only required for cross-project cloning.
+     */
+    destinationNetwork?: string | null;
+    /**
+     * Optional. The project ID of the destination project where the cloned instance will be created. To perform a cross-project clone, this field is required. If not specified, the clone is created in the same project as the source instance.
+     */
+    destinationProject?: string | null;
+    /**
      * This is always `sql#cloneContext`.
      */
     kind?: string | null;
@@ -2581,6 +2589,10 @@ export namespace sqladmin_v1 {
    */
   export interface Schema$Settings {
     /**
+     * Optional. Whether the replica is in accelerated mode. This feature is in private preview and requires allowlisting to take effect.
+     */
+    acceleratedReplicaMode?: boolean | null;
+    /**
      * The activation policy specifies when the instance is activated; it is applicable only when the instance state is RUNNABLE. Valid values: * `ALWAYS`: The instance is on, and remains so even in the absence of connection requests. * `NEVER`: The instance is off; it is not activated, even if a connection request arrives.
      */
     activationPolicy?: string | null;
@@ -2893,23 +2905,6 @@ export namespace sqladmin_v1 {
    * Instance reset replica size request.
    */
   export interface Schema$SqlInstancesResetReplicaSizeRequest {}
-  /**
-   * Instance restore backup request for MCP.
-   */
-  export interface Schema$SqlInstancesRestoreBackupMcpRequest {
-    /**
-     * Required. The identifier of the backup to restore. This will be one of the following: 1. An int64 containing a backup_run_id. 2. A backup name of the format 'projects/{project\}/backups/{backup-uid\}'. 3. A backupDR name of the format 'projects/{project\}/locations/{location\}/backupVaults/{backupvault\}/dataSources/{datasource\}/backups/{backup-uid\}'.
-     */
-    backupId?: string | null;
-    /**
-     * Optional. The Cloud SQL instance ID of the source instance containing the backup. Only necessary if the backup_id is a backup_run_id.
-     */
-    sourceInstance?: string | null;
-    /**
-     * Required. The project ID of the source instance containing the backup.
-     */
-    sourceProject?: string | null;
-  }
   /**
    * Instance start external sync request.
    */
@@ -11178,177 +11173,6 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * Restores a backup of a Cloud SQL instance for Model Context Protocol (MCP) server.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const sqladmin = google.sqladmin('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/sqlservice.admin',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await sql.instances.restoreBackupMcp({
-     *     // Required. Cloud SQL instance ID of the target. This does not include the project ID.
-     *     targetInstance: 'placeholder-value',
-     *     // Required. Project ID of the target project.
-     *     targetProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "backupId": "my_backupId",
-     *       //   "sourceInstance": "my_sourceInstance",
-     *       //   "sourceProject": "my_sourceProject"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acquireSsrsLeaseContext": {},
-     *   //   "apiWarning": {},
-     *   //   "backupContext": {},
-     *   //   "endTime": "my_endTime",
-     *   //   "error": {},
-     *   //   "exportContext": {},
-     *   //   "importContext": {},
-     *   //   "insertTime": "my_insertTime",
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "operationType": "my_operationType",
-     *   //   "preCheckMajorVersionUpgradeContext": {},
-     *   //   "selfLink": "my_selfLink",
-     *   //   "startTime": "my_startTime",
-     *   //   "status": "my_status",
-     *   //   "subOperationType": {},
-     *   //   "targetId": "my_targetId",
-     *   //   "targetLink": "my_targetLink",
-     *   //   "targetProject": "my_targetProject",
-     *   //   "user": "my_user"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    restoreBackupMcp(
-      params: Params$Resource$Instances$Restorebackupmcp,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    restoreBackupMcp(
-      params?: Params$Resource$Instances$Restorebackupmcp,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
-    restoreBackupMcp(
-      params: Params$Resource$Instances$Restorebackupmcp,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    restoreBackupMcp(
-      params: Params$Resource$Instances$Restorebackupmcp,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    restoreBackupMcp(
-      params: Params$Resource$Instances$Restorebackupmcp,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    restoreBackupMcp(callback: BodyResponseCallback<Schema$Operation>): void;
-    restoreBackupMcp(
-      paramsOrCallback?:
-        | Params$Resource$Instances$Restorebackupmcp
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Instances$Restorebackupmcp;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Instances$Restorebackupmcp;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1/projects/{targetProject}/instances/{targetInstance}:restoreBackupMcp'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['targetProject', 'targetInstance'],
-        pathParams: ['targetInstance', 'targetProject'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
      * Rotates the server certificate version to one previously added with the addEntraIdCertificate method.
      * @example
      * ```js
@@ -13093,21 +12917,6 @@ export namespace sqladmin_v1 {
      * Request body metadata
      */
     requestBody?: Schema$InstancesRestoreBackupRequest;
-  }
-  export interface Params$Resource$Instances$Restorebackupmcp extends StandardParameters {
-    /**
-     * Required. Cloud SQL instance ID of the target. This does not include the project ID.
-     */
-    targetInstance?: string;
-    /**
-     * Required. Project ID of the target project.
-     */
-    targetProject?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SqlInstancesRestoreBackupMcpRequest;
   }
   export interface Params$Resource$Instances$Rotateentraidcertificate extends StandardParameters {
     /**
@@ -16679,6 +16488,8 @@ export namespace sqladmin_v1 {
      *     name: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
+     *     // Optional. Specifies whether to revoke existing roles that are not present in the `database_roles` field. If `false` or unset, the database roles specified in `database_roles` are added to the user's existing roles.
+     *     revokeExistingRoles: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -16904,6 +16715,10 @@ export namespace sqladmin_v1 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+    /**
+     * Optional. Specifies whether to revoke existing roles that are not present in the `database_roles` field. If `false` or unset, the database roles specified in `database_roles` are added to the user's existing roles.
+     */
+    revokeExistingRoles?: boolean;
 
     /**
      * Request body metadata

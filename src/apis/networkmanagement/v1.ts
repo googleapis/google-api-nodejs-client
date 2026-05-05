@@ -1261,6 +1261,15 @@ export namespace networkmanagement_v1 {
     uri?: string | null;
   }
   /**
+   * For display only. Metadata associated with a layer 7 packet inspection by the firewall.
+   */
+  export interface Schema$NgfwPacketInspectionInfo {
+    /**
+     * URI of the security profile group associated with this firewall packet inspection.
+     */
+    securityProfileGroupUri?: string | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -1836,6 +1845,10 @@ export namespace networkmanagement_v1 {
      * Display information of a Google Cloud network.
      */
     network?: Schema$NetworkInfo;
+    /**
+     * Display information of a layer 7 packet inspection by the firewall.
+     */
+    ngfwPacketInspection?: Schema$NgfwPacketInspectionInfo;
     /**
      * Project ID that contains the configuration this step is validating.
      */

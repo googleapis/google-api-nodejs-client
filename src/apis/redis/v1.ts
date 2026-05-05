@@ -522,6 +522,10 @@ export namespace redis_v1 {
      */
     replicaCount?: number | null;
     /**
+     * Optional. Input only. Rotate the server certificates.
+     */
+    rotateServerCertificate?: boolean | null;
+    /**
      * Optional. Output only. Reserved for future use.
      */
     satisfiesPzi?: boolean | null;
@@ -529,6 +533,14 @@ export namespace redis_v1 {
      * Optional. Output only. Reserved for future use.
      */
     satisfiesPzs?: boolean | null;
+    /**
+     * Optional. Server CA mode for the cluster.
+     */
+    serverCaMode?: string | null;
+    /**
+     * Optional. Customer-managed CA pool for the cluster. Only applicable for BYOCA i.e. if server_ca_mode is SERVER_CA_MODE_CUSTOMER_MANAGED_CAS_CA. Format: "projects/{project\}/locations/{region\}/caPools/{ca_pool\}".
+     */
+    serverCaPool?: string | null;
     /**
      * Optional. Number of shards for the Redis cluster.
      */
@@ -837,7 +849,7 @@ export namespace redis_v1 {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 30
+   * Common model for database resource instance metadata. Next ID: 31
    */
   export interface Schema$DatabaseResourceMetadata {
     /**
@@ -924,6 +936,10 @@ export namespace redis_v1 {
      * Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of "/", such as "projects/123". For GCP provided resources, number should be project number.
      */
     resourceContainer?: string | null;
+    /**
+     * Optional. List of resource flags for the database resource.
+     */
+    resourceFlags?: Schema$ResourceFlags[];
     /**
      * Required. Different from DatabaseResourceId.unique_id, a resource name can be reused over time. That is, after a resource named "ABC" is deleted, the name "ABC" can be used to to create a new resource within the same source. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
      */
@@ -1918,6 +1934,24 @@ export namespace redis_v1 {
     exclusiveAction?: string | null;
   }
   /**
+   * The certificates that form the CA chain, from leaf to root order.
+   */
+  export interface Schema$RegionalCertChain {
+    /**
+     * The certificates that form the CA chain, from leaf to root order.
+     */
+    certificates?: string[] | null;
+  }
+  /**
+   * CA certificate chains for redis managed server authentication.
+   */
+  export interface Schema$RegionalManagedCertificateAuthority {
+    /**
+     * The PEM encoded CA certificate chains for redis managed server authentication
+     */
+    caCerts?: Schema$RegionalCertChain[];
+  }
+  /**
    * Details of the remote cluster associated with this cluster in a cross cluster replication setup.
    */
   export interface Schema$RemoteCluster {
@@ -1957,6 +1991,19 @@ export namespace redis_v1 {
     scheduleTime?: string | null;
   }
   /**
+   * Message type for storing resource flags.
+   */
+  export interface Schema$ResourceFlags {
+    /**
+     * Optional. Key of the resource flag.
+     */
+    key?: string | null;
+    /**
+     * Optional. Value of the resource flag.
+     */
+    value?: string | null;
+  }
+  /**
    * Deny maintenance period for the database resource. It specifies the time range during which the maintenance cannot start. This is configured by the customer.
    */
   export interface Schema$ResourceMaintenanceDenySchedule {
@@ -1978,17 +2025,33 @@ export namespace redis_v1 {
    */
   export interface Schema$ResourceMaintenanceInfo {
     /**
+     * Optional. The date when the current maintenance version was released.
+     */
+    currentVersionReleaseDate?: Schema$Date;
+    /**
      * Optional. List of Deny maintenance period for the database resource.
      */
     denyMaintenanceSchedules?: Schema$ResourceMaintenanceDenySchedule[];
+    /**
+     * Optional. Whether the instance is in stopped state. This information is temporarily being captured in maintenanceInfo, till STOPPED state is supported by DB Center.
+     */
+    isInstanceStopped?: boolean | null;
     /**
      * Optional. Maintenance window for the database resource.
      */
     maintenanceSchedule?: Schema$ResourceMaintenanceSchedule;
     /**
+     * Output only. Current state of maintenance on the database resource.
+     */
+    maintenanceState?: string | null;
+    /**
      * Optional. Current Maintenance version of the database resource. Example: "MYSQL_8_0_41.R20250531.01_15"
      */
     maintenanceVersion?: string | null;
+    /**
+     * Optional. Upcoming maintenance for the database resource. This field is populated once SLM generates and publishes upcoming maintenance window.
+     */
+    upcomingMaintenance?: Schema$UpcomingMaintenance;
   }
   /**
    * Maintenance window for the database resource. It specifies preferred time and day of the week and phase in some cases, when the maintenance can start. This is configured by the customer.
@@ -2022,6 +2085,19 @@ export namespace redis_v1 {
      * Timestamp based retention period i.e. 2024-05-01T00:00:00Z
      */
     timestampBasedRetentionTime?: string | null;
+  }
+  /**
+   * Shared regional certificate authority
+   */
+  export interface Schema$SharedRegionalCertificateAuthority {
+    /**
+     * CA certificate chains for redis managed server authentication.
+     */
+    managedServerCa?: Schema$RegionalManagedCertificateAuthority;
+    /**
+     * Identifier. Unique name of the resource in this scope including project and location using the form: `projects/{project\}/locations/{location\}/sharedRegionalCertificateAuthority`
+     */
+    name?: string | null;
   }
   /**
    * Represents additional information about the state of the cluster.
@@ -2124,6 +2200,19 @@ export namespace redis_v1 {
      * For string value
      */
     stringValue?: string | null;
+  }
+  /**
+   * Upcoming maintenance for the database resource. This is generated by SLM once the upcoming maintenance schedule is published.
+   */
+  export interface Schema$UpcomingMaintenance {
+    /**
+     * Optional. The end time of the upcoming maintenance.
+     */
+    endTime?: string | null;
+    /**
+     * Optional. The start time of the upcoming maintenance.
+     */
+    startTime?: string | null;
   }
   /**
    * Represents information about an updating cluster.
@@ -2353,7 +2442,154 @@ export namespace redis_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Gets the details of regional certificate authority information for Redis cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/redis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const redis = google.redis('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await redis.projects.locations.getSharedRegionalCertificateAuthority({
+     *       // Required. Regional certificate authority resource name using the form: `projects/{project_id\}/locations/{location_id\}/sharedRegionalCertificateAuthority` where `location_id` refers to a Google Cloud region.
+     *       name: 'projects/my-project/locations/my-location/sharedRegionalCertificateAuthority',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "managedServerCa": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getSharedRegionalCertificateAuthority(
+      params: Params$Resource$Projects$Locations$Getsharedregionalcertificateauthority,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getSharedRegionalCertificateAuthority(
+      params?: Params$Resource$Projects$Locations$Getsharedregionalcertificateauthority,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$SharedRegionalCertificateAuthority>
+    >;
+    getSharedRegionalCertificateAuthority(
+      params: Params$Resource$Projects$Locations$Getsharedregionalcertificateauthority,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getSharedRegionalCertificateAuthority(
+      params: Params$Resource$Projects$Locations$Getsharedregionalcertificateauthority,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SharedRegionalCertificateAuthority>,
+      callback: BodyResponseCallback<Schema$SharedRegionalCertificateAuthority>
+    ): void;
+    getSharedRegionalCertificateAuthority(
+      params: Params$Resource$Projects$Locations$Getsharedregionalcertificateauthority,
+      callback: BodyResponseCallback<Schema$SharedRegionalCertificateAuthority>
+    ): void;
+    getSharedRegionalCertificateAuthority(
+      callback: BodyResponseCallback<Schema$SharedRegionalCertificateAuthority>
+    ): void;
+    getSharedRegionalCertificateAuthority(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getsharedregionalcertificateauthority
+        | BodyResponseCallback<Schema$SharedRegionalCertificateAuthority>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SharedRegionalCertificateAuthority>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SharedRegionalCertificateAuthority>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$SharedRegionalCertificateAuthority>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getsharedregionalcertificateauthority;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Getsharedregionalcertificateauthority;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SharedRegionalCertificateAuthority>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SharedRegionalCertificateAuthority>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -2504,6 +2740,12 @@ export namespace redis_v1 {
   export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Getsharedregionalcertificateauthority extends StandardParameters {
+    /**
+     * Required. Regional certificate authority resource name using the form: `projects/{project_id\}/locations/{location_id\}/sharedRegionalCertificateAuthority` where `location_id` refers to a Google Cloud region.
      */
     name?: string;
   }
@@ -3710,8 +3952,11 @@ export namespace redis_v1 {
      *       //   "pscServiceAttachments": [],
      *       //   "redisConfigs": {},
      *       //   "replicaCount": 0,
+     *       //   "rotateServerCertificate": false,
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
+     *       //   "serverCaMode": "my_serverCaMode",
+     *       //   "serverCaPool": "my_serverCaPool",
      *       //   "shardCount": 0,
      *       //   "simulateMaintenanceEvent": false,
      *       //   "sizeGb": 0,
@@ -4038,8 +4283,11 @@ export namespace redis_v1 {
      *   //   "pscServiceAttachments": [],
      *   //   "redisConfigs": {},
      *   //   "replicaCount": 0,
+     *   //   "rotateServerCertificate": false,
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
+     *   //   "serverCaMode": "my_serverCaMode",
+     *   //   "serverCaPool": "my_serverCaPool",
      *   //   "shardCount": 0,
      *   //   "simulateMaintenanceEvent": false,
      *   //   "sizeGb": 0,
@@ -4500,8 +4748,11 @@ export namespace redis_v1 {
      *       //   "pscServiceAttachments": [],
      *       //   "redisConfigs": {},
      *       //   "replicaCount": 0,
+     *       //   "rotateServerCertificate": false,
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
+     *       //   "serverCaMode": "my_serverCaMode",
+     *       //   "serverCaPool": "my_serverCaPool",
      *       //   "shardCount": 0,
      *       //   "simulateMaintenanceEvent": false,
      *       //   "sizeGb": 0,

@@ -125,6 +125,643 @@ export namespace discoveryengine_v1 {
   }
 
   /**
+   * Defines the A2A feature set supported by the agent
+   */
+  export interface Schema$A2aV1AgentCapabilities {
+    /**
+     * Extensions supported by this agent.
+     */
+    extensions?: Schema$A2aV1AgentExtension[];
+    /**
+     * If the agent can send push notifications to the clients webhook
+     */
+    pushNotifications?: boolean | null;
+    /**
+     * If the agent will support streaming responses
+     */
+    streaming?: boolean | null;
+  }
+  /**
+   * AgentCard conveys key information: - Overall details (version, name, description, uses) - Skills; a set of actions/solutions the agent can perform - Default modalities/content types supported by the agent. - Authentication requirements Next ID: 19
+   */
+  export interface Schema$A2aV1AgentCard {
+    /**
+     * Announcement of additional supported transports. Client can use any of the supported transports.
+     */
+    additionalInterfaces?: Schema$A2aV1AgentInterface[];
+    /**
+     * A2A Capability set supported by the agent.
+     */
+    capabilities?: Schema$A2aV1AgentCapabilities;
+    /**
+     * protolint:enable REPEATED_FIELD_NAMES_PLURALIZED The set of interaction modes that the agent supports across all skills. This can be overridden per skill. Defined as mime types.
+     */
+    defaultInputModes?: string[] | null;
+    /**
+     * The mime types supported as outputs from this agent.
+     */
+    defaultOutputModes?: string[] | null;
+    /**
+     * A description of the agent's domain of action/solution space. Example: "Agent that helps users with recipes and cooking."
+     */
+    description?: string | null;
+    /**
+     * A url to provide additional documentation about the agent.
+     */
+    documentationUrl?: string | null;
+    /**
+     * An optional URL to an icon for the agent.
+     */
+    iconUrl?: string | null;
+    /**
+     * A human readable name for the agent. Example: "Recipe Agent"
+     */
+    name?: string | null;
+    /**
+     * The transport of the preferred endpoint. If empty, defaults to JSONRPC.
+     */
+    preferredTransport?: string | null;
+    /**
+     * The version of the A2A protocol this agent supports.
+     */
+    protocolVersion?: string | null;
+    /**
+     * The service provider of the agent.
+     */
+    provider?: Schema$A2aV1AgentProvider;
+    /**
+     * protolint:disable REPEATED_FIELD_NAMES_PLURALIZED Security requirements for contacting the agent. This list can be seen as an OR of ANDs. Each object in the list describes one possible set of security requirements that must be present on a request. This allows specifying, for example, "callers must either use OAuth OR an API Key AND mTLS." Example: security { schemes { key: "oauth" value { list: ["read"] \} \} \} security { schemes { key: "api-key" \} schemes { key: "mtls" \} \}
+     */
+    security?: Schema$A2aV1Security[];
+    /**
+     * The security scheme details used for authenticating with this agent.
+     */
+    securitySchemes?: {[key: string]: Schema$A2aV1SecurityScheme} | null;
+    /**
+     * JSON Web Signatures computed for this AgentCard.
+     */
+    signatures?: Schema$A2aV1AgentCardSignature[];
+    /**
+     * Skills represent a unit of ability an agent can perform. This may somewhat abstract but represents a more focused set of actions that the agent is highly likely to succeed at.
+     */
+    skills?: Schema$A2aV1AgentSkill[];
+    /**
+     * Whether the agent supports providing an extended agent card when the user is authenticated, i.e. is the card from .well-known different than the card from GetAgentCard.
+     */
+    supportsAuthenticatedExtendedCard?: boolean | null;
+    /**
+     * A URL to the address the agent is hosted at. This represents the preferred endpoint as declared by the agent.
+     */
+    url?: string | null;
+    /**
+     * The version of the agent. Example: "1.0.0"
+     */
+    version?: string | null;
+  }
+  /**
+   * AgentCardSignature represents a JWS signature of an AgentCard. This follows the JSON format of an RFC 7515 JSON Web Signature (JWS).
+   */
+  export interface Schema$A2aV1AgentCardSignature {
+    /**
+     * The unprotected JWS header values.
+     */
+    header?: {[key: string]: any} | null;
+    /**
+     * Required. The protected JWS header for the signature. This is always a base64url-encoded JSON object. Required.
+     */
+    protected?: string | null;
+    /**
+     * Required. The computed signature, base64url-encoded. Required.
+     */
+    signature?: string | null;
+  }
+  /**
+   * A declaration of an extension supported by an Agent.
+   */
+  export interface Schema$A2aV1AgentExtension {
+    /**
+     * A description of how this agent uses this extension. Example: "Google OAuth 2.0 authentication"
+     */
+    description?: string | null;
+    /**
+     * Optional configuration for the extension.
+     */
+    params?: {[key: string]: any} | null;
+    /**
+     * Whether the client must follow specific requirements of the extension. Example: false
+     */
+    required?: boolean | null;
+    /**
+     * The URI of the extension. Example: "https://developers.google.com/identity/protocols/oauth2"
+     */
+    uri?: string | null;
+  }
+  /**
+   * Defines additional transport information for the agent.
+   */
+  export interface Schema$A2aV1AgentInterface {
+    /**
+     * Tenant to be set in the request when calling the agent. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string | null;
+    /**
+     * The transport supported this url. This is an open form string, to be easily extended for many transport protocols. The core ones officially supported are JSONRPC, GRPC and HTTP+JSON.
+     */
+    transport?: string | null;
+    /**
+     * The url this interface is found at.
+     */
+    url?: string | null;
+  }
+  /**
+   * Represents information about the service provider of an agent.
+   */
+  export interface Schema$A2aV1AgentProvider {
+    /**
+     * The providers organization name Example: "Google"
+     */
+    organization?: string | null;
+    /**
+     * The providers reference url Example: "https://ai.google.dev"
+     */
+    url?: string | null;
+  }
+  /**
+   * AgentSkill represents a unit of action/solution that the agent can perform. One can think of this as a type of highly reliable solution that an agent can be tasked to provide. Agents have the autonomy to choose how and when to use specific skills, but clients should have confidence that if the skill is defined that unit of action can be reliably performed.
+   */
+  export interface Schema$A2aV1AgentSkill {
+    /**
+     * A human (or llm) readable description of the skill details and behaviors.
+     */
+    description?: string | null;
+    /**
+     * A set of example queries that this skill is designed to address. These examples should help the caller to understand how to craft requests to the agent to achieve specific goals. Example: ["I need a recipe for bread"]
+     */
+    examples?: string[] | null;
+    /**
+     * Unique identifier of the skill within this agent.
+     */
+    id?: string | null;
+    /**
+     * Possible input modalities supported.
+     */
+    inputModes?: string[] | null;
+    /**
+     * A human readable name for the skill.
+     */
+    name?: string | null;
+    /**
+     * Possible output modalities produced
+     */
+    outputModes?: string[] | null;
+    /**
+     * protolint:disable REPEATED_FIELD_NAMES_PLURALIZED Security schemes necessary for the agent to leverage this skill. As in the overall AgentCard.security, this list represents a logical OR of security requirement objects. Each object is a set of security schemes that must be used together (a logical AND). protolint:enable REPEATED_FIELD_NAMES_PLURALIZED
+     */
+    security?: Schema$A2aV1Security[];
+    /**
+     * A set of tags for the skill to enhance categorization/utilization. Example: ["cooking", "customer support", "billing"]
+     */
+    tags?: string[] | null;
+  }
+  export interface Schema$A2aV1APIKeySecurityScheme {
+    /**
+     * Description of this security scheme.
+     */
+    description?: string | null;
+    /**
+     * Location of the API key, valid values are "query", "header", or "cookie"
+     */
+    location?: string | null;
+    /**
+     * Name of the header, query or cookie parameter to be used.
+     */
+    name?: string | null;
+  }
+  /**
+   * Artifacts are the container for task completed results. These are similar to Messages but are intended to be the product of a task, as opposed to point-to-point communication.
+   */
+  export interface Schema$A2aV1Artifact {
+    /**
+     * Unique identifier (e.g. UUID) for the artifact. It must be at least unique within a task.
+     */
+    artifactId?: string | null;
+    /**
+     * A human readable description of the artifact, optional.
+     */
+    description?: string | null;
+    /**
+     * The URIs of extensions that are present or contributed to this Artifact.
+     */
+    extensions?: string[] | null;
+    /**
+     * Optional metadata included with the artifact.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * A human readable name for the artifact.
+     */
+    name?: string | null;
+    /**
+     * The content of the artifact.
+     */
+    parts?: Schema$A2aV1Part[];
+  }
+  /**
+   * Defines authentication details, used for push notifications.
+   */
+  export interface Schema$A2aV1AuthenticationInfo {
+    /**
+     * Optional credentials
+     */
+    credentials?: string | null;
+    /**
+     * Supported authentication schemes - e.g. Basic, Bearer, etc
+     */
+    schemes?: string[] | null;
+  }
+  export interface Schema$A2aV1AuthorizationCodeOAuthFlow {
+    /**
+     * The authorization URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS
+     */
+    authorizationUrl?: string | null;
+    /**
+     * The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
+     */
+    refreshUrl?: string | null;
+    /**
+     * The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.
+     */
+    scopes?: {[key: string]: string} | null;
+    /**
+     * The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
+     */
+    tokenUrl?: string | null;
+  }
+  export interface Schema$A2aV1CancelTaskRequest {}
+  export interface Schema$A2aV1ClientCredentialsOAuthFlow {
+    /**
+     * The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
+     */
+    refreshUrl?: string | null;
+    /**
+     * The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.
+     */
+    scopes?: {[key: string]: string} | null;
+    /**
+     * The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
+     */
+    tokenUrl?: string | null;
+  }
+  /**
+   * DataPart represents a structured blob. This is most commonly a JSON payload.
+   */
+  export interface Schema$A2aV1DataPart {
+    data?: {[key: string]: any} | null;
+  }
+  /**
+   * FilePart represents the different ways files can be provided. If files are small, directly feeding the bytes is supported via file_with_bytes. If the file is large, the agent should read the content as appropriate directly from the file_with_uri source.
+   */
+  export interface Schema$A2aV1FilePart {
+    fileWithBytes?: string | null;
+    fileWithUri?: string | null;
+    mimeType?: string | null;
+    name?: string | null;
+  }
+  export interface Schema$A2aV1HTTPAuthSecurityScheme {
+    /**
+     * A hint to the client to identify how the bearer token is formatted. Bearer tokens are usually generated by an authorization server, so this information is primarily for documentation purposes.
+     */
+    bearerFormat?: string | null;
+    /**
+     * Description of this security scheme.
+     */
+    description?: string | null;
+    /**
+     * The name of the HTTP Authentication scheme to be used in the Authorization header as defined in RFC7235. The values used SHOULD be registered in the IANA Authentication Scheme registry. The value is case-insensitive, as defined in RFC7235.
+     */
+    scheme?: string | null;
+  }
+  export interface Schema$A2aV1ImplicitOAuthFlow {
+    /**
+     * The authorization URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS
+     */
+    authorizationUrl?: string | null;
+    /**
+     * The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
+     */
+    refreshUrl?: string | null;
+    /**
+     * The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.
+     */
+    scopes?: {[key: string]: string} | null;
+  }
+  export interface Schema$A2aV1ListTaskPushNotificationConfigResponse {
+    /**
+     * The list of push notification configurations.
+     */
+    configs?: Schema$A2aV1TaskPushNotificationConfig[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Message is one unit of communication between client and server. It is associated with a context and optionally a task. Since the server is responsible for the context definition, it must always provide a context_id in its messages. The client can optionally provide the context_id if it knows the context to associate the message to. Similarly for task_id, except the server decides if a task is created and whether to include the task_id.
+   */
+  export interface Schema$A2aV1Message {
+    /**
+     * protolint:disable REPEATED_FIELD_NAMES_PLURALIZED Content is the container of the message content.
+     */
+    content?: Schema$A2aV1Part[];
+    /**
+     * The context id of the message. This is optional and if set, the message will be associated with the given context.
+     */
+    contextId?: string | null;
+    /**
+     * The URIs of extensions that are present or contributed to this Message.
+     */
+    extensions?: string[] | null;
+    /**
+     * The unique identifier (e.g. UUID)of the message. This is required and created by the message creator.
+     */
+    messageId?: string | null;
+    /**
+     * protolint:enable REPEATED_FIELD_NAMES_PLURALIZED Any optional metadata to provide along with the message.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * A role for the message.
+     */
+    role?: string | null;
+    /**
+     * The task id of the message. This is optional and if set, the message will be associated with the given task.
+     */
+    taskId?: string | null;
+  }
+  export interface Schema$A2aV1MutualTlsSecurityScheme {
+    /**
+     * Description of this security scheme.
+     */
+    description?: string | null;
+  }
+  export interface Schema$A2aV1OAuth2SecurityScheme {
+    /**
+     * Description of this security scheme.
+     */
+    description?: string | null;
+    /**
+     * An object containing configuration information for the flow types supported
+     */
+    flows?: Schema$A2aV1OAuthFlows;
+    /**
+     * URL to the oauth2 authorization server metadata [RFC8414](https://datatracker.ietf.org/doc/html/rfc8414). TLS is required.
+     */
+    oauth2MetadataUrl?: string | null;
+  }
+  export interface Schema$A2aV1OAuthFlows {
+    authorizationCode?: Schema$A2aV1AuthorizationCodeOAuthFlow;
+    clientCredentials?: Schema$A2aV1ClientCredentialsOAuthFlow;
+    implicit?: Schema$A2aV1ImplicitOAuthFlow;
+    password?: Schema$A2aV1PasswordOAuthFlow;
+  }
+  export interface Schema$A2aV1OpenIdConnectSecurityScheme {
+    /**
+     * Description of this security scheme.
+     */
+    description?: string | null;
+    /**
+     * Well-known URL to discover the [[OpenID-Connect-Discovery]] provider metadata.
+     */
+    openIdConnectUrl?: string | null;
+  }
+  /**
+   * Part represents a container for a section of communication content. Parts can be purely textual, some sort of file (image, video, etc) or a structured data blob (i.e. JSON).
+   */
+  export interface Schema$A2aV1Part {
+    data?: Schema$A2aV1DataPart;
+    file?: Schema$A2aV1FilePart;
+    /**
+     * Optional metadata associated with this part.
+     */
+    metadata?: {[key: string]: any} | null;
+    text?: string | null;
+  }
+  export interface Schema$A2aV1PasswordOAuthFlow {
+    /**
+     * The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
+     */
+    refreshUrl?: string | null;
+    /**
+     * The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it. The map MAY be empty.
+     */
+    scopes?: {[key: string]: string} | null;
+    /**
+     * The token URL to be used for this flow. This MUST be in the form of a URL. The OAuth2 standard requires the use of TLS.
+     */
+    tokenUrl?: string | null;
+  }
+  /**
+   * Configuration for setting up push notifications for task updates.
+   */
+  export interface Schema$A2aV1PushNotificationConfig {
+    /**
+     * Information about the authentication to sent with the notification
+     */
+    authentication?: Schema$A2aV1AuthenticationInfo;
+    /**
+     * A unique identifier (e.g. UUID) for this push notification.
+     */
+    id?: string | null;
+    /**
+     * Token unique for this task/session
+     */
+    token?: string | null;
+    /**
+     * Url to send the notification too
+     */
+    url?: string | null;
+  }
+  export interface Schema$A2aV1Security {
+    schemes?: {[key: string]: Schema$A2aV1StringList} | null;
+  }
+  export interface Schema$A2aV1SecurityScheme {
+    apiKeySecurityScheme?: Schema$A2aV1APIKeySecurityScheme;
+    httpAuthSecurityScheme?: Schema$A2aV1HTTPAuthSecurityScheme;
+    mtlsSecurityScheme?: Schema$A2aV1MutualTlsSecurityScheme;
+    oauth2SecurityScheme?: Schema$A2aV1OAuth2SecurityScheme;
+    openIdConnectSecurityScheme?: Schema$A2aV1OpenIdConnectSecurityScheme;
+  }
+  /**
+   * Configuration of a send message request.
+   */
+  export interface Schema$A2aV1SendMessageConfiguration {
+    /**
+     * The output modes that the agent is expected to respond with.
+     */
+    acceptedOutputModes?: string[] | null;
+    /**
+     * If true, the message will be blocking until the task is completed. If false, the message will be non-blocking and the task will be returned immediately. It is the caller's responsibility to check for any task updates.
+     */
+    blocking?: boolean | null;
+    /**
+     * The maximum number of messages to include in the history. if 0, the history will be unlimited.
+     */
+    historyLength?: number | null;
+    /**
+     * A configuration of a webhook that can be used to receive updates
+     */
+    pushNotification?: Schema$A2aV1PushNotificationConfig;
+  }
+  /**
+   * /////////// Request Messages ///////////
+   */
+  export interface Schema$A2aV1SendMessageRequest {
+    /**
+     * Configuration for the send request.
+     */
+    configuration?: Schema$A2aV1SendMessageConfiguration;
+    /**
+     * Required. The message to send to the agent.
+     */
+    message?: Schema$A2aV1Message;
+    /**
+     * Optional metadata for the request.
+     */
+    metadata?: {[key: string]: any} | null;
+  }
+  /**
+   * ////// Response Messages ///////////
+   */
+  export interface Schema$A2aV1SendMessageResponse {
+    message?: Schema$A2aV1Message;
+    task?: Schema$A2aV1Task;
+  }
+  /**
+   * The stream response for a message. The stream should be one of the following sequences: If the response is a message, the stream should contain one, and only one, message and then close If the response is a task lifecycle, the first response should be a Task object followed by zero or more TaskStatusUpdateEvents and TaskArtifactUpdateEvents. The stream should complete when the Task if in an interrupted or terminal state. A stream that ends before these conditions are met are
+   */
+  export interface Schema$A2aV1StreamResponse {
+    artifactUpdate?: Schema$A2aV1TaskArtifactUpdateEvent;
+    message?: Schema$A2aV1Message;
+    statusUpdate?: Schema$A2aV1TaskStatusUpdateEvent;
+    task?: Schema$A2aV1Task;
+  }
+  /**
+   * protolint:disable REPEATED_FIELD_NAMES_PLURALIZED
+   */
+  export interface Schema$A2aV1StringList {
+    list?: string[] | null;
+  }
+  /**
+   * Task is the core unit of action for A2A. It has a current status and when results are created for the task they are stored in the artifact. If there are multiple turns for a task, these are stored in history.
+   */
+  export interface Schema$A2aV1Task {
+    /**
+     * A set of output artifacts for a Task.
+     */
+    artifacts?: Schema$A2aV1Artifact[];
+    /**
+     * Unique identifier (e.g. UUID) for the contextual collection of interactions (tasks and messages). Created by the A2A server.
+     */
+    contextId?: string | null;
+    /**
+     * protolint:disable REPEATED_FIELD_NAMES_PLURALIZED The history of interactions from a task.
+     */
+    history?: Schema$A2aV1Message[];
+    /**
+     * Unique identifier (e.g. UUID) for the task, generated by the server for a new task.
+     */
+    id?: string | null;
+    /**
+     * protolint:enable REPEATED_FIELD_NAMES_PLURALIZED A key/value object to store custom metadata about a task.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * The current status of a Task, including state and a message.
+     */
+    status?: Schema$A2aV1TaskStatus;
+  }
+  /**
+   * TaskArtifactUpdateEvent represents a task delta where an artifact has been generated.
+   */
+  export interface Schema$A2aV1TaskArtifactUpdateEvent {
+    /**
+     * Whether this should be appended to a prior one produced
+     */
+    append?: boolean | null;
+    /**
+     * The artifact itself
+     */
+    artifact?: Schema$A2aV1Artifact;
+    /**
+     * The id of the context that this task belongs too
+     */
+    contextId?: string | null;
+    /**
+     * Whether this represents the last part of an artifact
+     */
+    lastChunk?: boolean | null;
+    /**
+     * Optional metadata associated with the artifact update.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * The id of the task for this artifact
+     */
+    taskId?: string | null;
+  }
+  export interface Schema$A2aV1TaskPushNotificationConfig {
+    /**
+     * The resource name of the config. Format: tasks/{task_id\}/pushNotificationConfigs/{config_id\}
+     */
+    name?: string | null;
+    /**
+     * The push notification configuration details.
+     */
+    pushNotificationConfig?: Schema$A2aV1PushNotificationConfig;
+  }
+  /**
+   * A container for the status of a task
+   */
+  export interface Schema$A2aV1TaskStatus {
+    /**
+     * A message associated with the status.
+     */
+    message?: Schema$A2aV1Message;
+    /**
+     * The current state of this task
+     */
+    state?: string | null;
+    /**
+     * Timestamp when the status was recorded. Example: "2023-10-27T10:00:00Z"
+     */
+    timestamp?: string | null;
+  }
+  /**
+   * TaskStatusUpdateEvent is a delta even on a task indicating that a task has changed.
+   */
+  export interface Schema$A2aV1TaskStatusUpdateEvent {
+    /**
+     * The id of the context that the task belongs to
+     */
+    contextId?: string | null;
+    /**
+     * Whether this is the last status update expected for this task.
+     */
+    final?: boolean | null;
+    /**
+     * Optional metadata to associate with the task update.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * The new status of the task.
+     */
+    status?: Schema$A2aV1TaskStatus;
+    /**
+     * The id of the task that is changed
+     */
+    taskId?: string | null;
+  }
+  /**
    * `Distribution` contains summary statistics for a population of values. It optionally contains a histogram representing the distribution of those values across a set of buckets. The summary statistics are the count, mean, sum of the squared deviation from the mean, the minimum, and the maximum of the set of population of values. The histogram is based on a sequence of buckets and gives a count of values that fall into each bucket. The boundaries of the buckets are given either explicitly or by formulas for buckets of fixed or exponentially increasing widths. Although it is not forbidden, it is generally a bad idea to include non-finite values (infinities or NaNs) in the population of values, as this will render the `mean` and `sum_of_squared_deviation` fields meaningless.
    */
   export interface Schema$GoogleApiDistribution {
@@ -859,6 +1496,10 @@ export namespace discoveryengine_v1 {
      * Optional. The language code used for notifications
      */
     languageCode?: string | null;
+    /**
+     * Optional. The region code used of the user that subscribed to the alert policy.
+     */
+    regionCode?: string | null;
   }
   /**
    * The alert enrollment status.
@@ -2167,6 +2808,10 @@ export namespace discoveryengine_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. Specifies the data protection policy for the connector.
+     */
+    dataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1alphaDataProtectionPolicy;
+    /**
      * Required. The name of the data source. Supported values: `salesforce`, `jira`, `confluence`, `bigquery`.
      */
     dataSource?: string | null;
@@ -2174,6 +2819,10 @@ export namespace discoveryengine_v1 {
      * Optional. Any target destinations used to connect to third-party services.
      */
     destinationConfigs?: Schema$GoogleCloudDiscoveryengineV1alphaDestinationConfig[];
+    /**
+     * Output only. The list of FQDNs of the data connector can egress to. This includes both FQDN derived from the customer provided instance URL and default per connector type FQDNs. Note: This field is derived from both the DataConnector.params, and connector source spec. It should only be used for CAIS and Org Policy evaluation purposes.
+     */
+    egressFqdns?: string[] | null;
     /**
      * Optional. Any params and credentials used specifically for EUA connectors.
      */
@@ -2278,6 +2927,10 @@ export namespace discoveryengine_v1 {
      * Output only. Timestamp the DataConnector was last updated.
      */
     updateTime?: string | null;
+    /**
+     * Output only. Whether the connector is created with VPC-SC enabled. This is only used for CuOP evaluation purpose.
+     */
+    vpcscEnabled?: boolean | null;
   }
   /**
    * Any params and credentials used specifically for EUA connectors.
@@ -2379,6 +3032,24 @@ export namespace discoveryengine_v1 {
      * Optional. The start schema to use for the DataStore created from this SourceEntity. If unset, a default vertical specialized schema will be used. This field is only used by SetUpDataConnector API, and will be ignored if used in other APIs. This field will be omitted from all API responses including GetDataConnector API. To retrieve a schema of a DataStore, use SchemaService.GetSchema API instead. The provided schema will be validated against certain rules on schema. Learn more from [this doc](https://cloud.google.com/generative-ai-app-builder/docs/provide-schema).
      */
     startingSchema?: Schema$GoogleCloudDiscoveryengineV1alphaSchema;
+  }
+  /**
+   * Data protection policy config for a connector.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDataProtectionPolicy {
+    /**
+     * Optional. The sensitive data protection policy for the connector source.
+     */
+    sensitiveDataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1alphaDataProtectionPolicySensitiveDataProtectionPolicy;
+  }
+  /**
+   * Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDataProtectionPolicySensitiveDataProtectionPolicy {
+    /**
+     * Optional. The Sensitive Data Protection content policy resource name.
+     */
+    policy?: string | null;
   }
   /**
    * DataStore captures global settings and configs at the DataStore level.
@@ -2903,6 +3574,10 @@ export namespace discoveryengine_v1 {
      */
     configurableBillingApproach?: string | null;
     /**
+     * Optional. Maps a connector ID (e.g., "hybrid-github", "shopify") to tenant-specific information required for that connector. The structure of the tenant information string is connector-dependent.
+     */
+    connectorTenantInfo?: {[key: string]: string} | null;
+    /**
      * Output only. Timestamp the Recommendation Engine was created at.
      */
     createTime?: string | null;
@@ -2931,6 +3606,10 @@ export namespace discoveryengine_v1 {
      */
     knowledgeGraphConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfig;
     /**
+     * Optional. The visibility of marketplace agents in the agent gallery.
+     */
+    marketplaceAgentVisibility?: string | null;
+    /**
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig;
@@ -2946,6 +3625,10 @@ export namespace discoveryengine_v1 {
      * Optional. Observability config for the engine.
      */
     observabilityConfig?: Schema$GoogleCloudDiscoveryengineV1alphaObservabilityConfig;
+    /**
+     * Optional. The email of the procurement contact.
+     */
+    procurementContactEmail?: string | null;
     /**
      * Output only. Additional information of a recommendation engine. Only applicable if solution_type is SOLUTION_TYPE_RECOMMENDATION.
      */
@@ -3681,6 +4364,14 @@ export namespace discoveryengine_v1 {
      */
     autoRenew?: boolean | null;
     /**
+     * Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.
+     */
+    earlyTerminated?: boolean | null;
+    /**
+     * Output only. The date when the subscription is terminated earlier than the expiration date.
+     */
+    earlyTerminationDate?: Schema$GoogleTypeDate;
+    /**
      * Optional. The planed end date.
      */
     endDate?: Schema$GoogleTypeDate;
@@ -3722,7 +4413,7 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaListSessionsRequest {
     /**
-     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"` * `collaborative_project = "projects/123/locations/global/collections/default_collection/engines/" "default_engine/collaborative_projects/cp1"`
      */
     filter?: string | null;
     /**
@@ -3908,6 +4599,10 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfig {
     /**
+     * Optional. Specifies the data protection policy for NotebookLM.
+     */
+    dataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy;
+    /**
      * Model Armor configuration to be used for sanitizing user prompts and LLM responses.
      */
     modelArmorConfig?: Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig;
@@ -3919,6 +4614,24 @@ export namespace discoveryengine_v1 {
      * Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.
      */
     optOutNotebookSharing?: boolean | null;
+  }
+  /**
+   * Data protection policy config for NotebookLM.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy {
+    /**
+     * Optional. The sensitive data protection policy.
+     */
+    sensitiveDataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy;
+  }
+  /**
+   * Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy {
+    /**
+     * Optional. The Sensitive Data Protection policy resource name.
+     */
+    policy?: string | null;
   }
   /**
    * Configuration for customer defined Model Armor templates to be used for sanitizing user prompts and LLM responses.
@@ -4133,6 +4846,10 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaQuery {
     /**
+     * Query content parts.
+     */
+    parts?: Schema$GoogleCloudDiscoveryengineV1alphaQueryPart[];
+    /**
      * Output only. Unique Id for the query.
      */
     queryId?: string | null;
@@ -4140,6 +4857,126 @@ export namespace discoveryengine_v1 {
      * Plain text.
      */
     text?: string | null;
+  }
+  /**
+   * Represents a part or the whole of a content, used to represent a query. A query can be made up of multiple parts.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaQueryPart {
+    /**
+     * Other VAIS Document references.
+     */
+    documentReference?: Schema$GoogleCloudDiscoveryengineV1alphaQueryPartDocumentReference;
+    /**
+     * Reference to a Google Drive document.
+     */
+    driveDocumentReference?: Schema$GoogleCloudDiscoveryengineV1alphaQueryPartDriveDocumentReference;
+    /**
+     * Optional. The IANA standard MIME type of the data. See https://www.iana.org/assignments/media-types/media-types.xhtml. This field is optional. If not set, the default assumed MIME type is "text/plain" for the "data" field.
+     */
+    mimeType?: string | null;
+    /**
+     * Reference to a person.
+     */
+    personReference?: Schema$GoogleCloudDiscoveryengineV1alphaQueryPartPersonReference;
+    /**
+     * Text content.
+     */
+    text?: string | null;
+    /**
+     * This field is expected to be a ui message in JSON format. As of Q1 2026, ui_json_payload is only supported for A2UI messages.
+     */
+    uiJsonPayload?: string | null;
+  }
+  /**
+   * Represents a document reference.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaQueryPartDocumentReference {
+    /**
+     * The destination uri of the reference.
+     */
+    destinationUri?: string | null;
+    /**
+     * The display title of the reference.
+     */
+    displayTitle?: string | null;
+    /**
+     * The full resource name of the document. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document_id\}`.
+     */
+    documentName?: string | null;
+    /**
+     * Output only. The file id of the document data stored in the session context files.
+     */
+    fileId?: string | null;
+    /**
+     * The icon uri of the reference.
+     */
+    iconUri?: string | null;
+    /**
+     * Input only. The url_for_connector of the document returned by Federated Search.
+     */
+    urlForConnector?: string | null;
+  }
+  /**
+   * Represents a Google Drive document reference.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaQueryPartDriveDocumentReference {
+    /**
+     * The destination uri of the reference.
+     */
+    destinationUri?: string | null;
+    /**
+     * The display title of the reference.
+     */
+    displayTitle?: string | null;
+    /**
+     * The full resource name of the document. Format: `projects/x/locations/x/collections/x/dataStores/x/branches/x/documents/x`.
+     */
+    documentName?: string | null;
+    /**
+     * The Drive id of the document.
+     */
+    driveId?: string | null;
+    /**
+     * Output only. The file id of the Drive document data stored in the session context files.
+     */
+    fileId?: string | null;
+    /**
+     * The icon uri of the Drive document reference.
+     */
+    iconUri?: string | null;
+  }
+  /**
+   * Represents a person reference.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaQueryPartPersonReference {
+    /**
+     * The destination uri of the person.
+     */
+    destinationUri?: string | null;
+    /**
+     * The display name of the person.
+     */
+    displayName?: string | null;
+    /**
+     * The display photo url of the person.
+     */
+    displayPhotoUri?: string | null;
+    /**
+     * The full resource name of the person. Format: `projects/x/locations/x/collections/x/dataStores/x/branches/x/documents/x`.
+     */
+    documentName?: string | null;
+    /**
+     * The email of the person.
+     */
+    email?: string | null;
+    /**
+     * Output only. The file id of the person data stored in the session context files.
+     */
+    fileId?: string | null;
+    /**
+     * The person id of the person.
+     */
+    personId?: string | null;
   }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.RecrawlUris operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -4424,6 +5261,10 @@ export namespace discoveryengine_v1 {
      * Optional. Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
      */
     naturalLanguageQueryUnderstandingSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec;
+    /**
+     * Optional. The maximum number of results to retrieve from each data store. If not specified, it will use the SearchRequest.DataStoreSpec.num_results if provided, otherwise there is no limit.
+     */
+    numResultsPerDataStore?: number | null;
     /**
      * A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned. A large offset may be capped to a reasonable threshold.
      */
@@ -4786,6 +5627,10 @@ export namespace discoveryengine_v1 {
      * Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
      */
     filter?: string | null;
+    /**
+     * Optional. The maximum number of results to retrieve from this data store. If not specified, it will use the SearchRequest.num_results_per_data_store if provided, otherwise there is no limit. If both this field and SearchRequest.num_results_per_data_store are specified, this field will be used.
+     */
+    numResults?: number | null;
   }
   /**
    * Specifies features for display, like match highlighting.
@@ -7636,6 +8481,10 @@ export namespace discoveryengine_v1 {
      */
     configurableBillingApproach?: string | null;
     /**
+     * Optional. Maps a connector ID (e.g., "hybrid-github", "shopify") to tenant-specific information required for that connector. The structure of the tenant information string is connector-dependent.
+     */
+    connectorTenantInfo?: {[key: string]: string} | null;
+    /**
      * Output only. Timestamp the Recommendation Engine was created at.
      */
     createTime?: string | null;
@@ -7664,6 +8513,10 @@ export namespace discoveryengine_v1 {
      */
     knowledgeGraphConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfig;
     /**
+     * Optional. The visibility of marketplace agents in the agent gallery.
+     */
+    marketplaceAgentVisibility?: string | null;
+    /**
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig;
@@ -7679,6 +8532,10 @@ export namespace discoveryengine_v1 {
      * Optional. Observability config for the engine.
      */
     observabilityConfig?: Schema$GoogleCloudDiscoveryengineV1betaObservabilityConfig;
+    /**
+     * Optional. The email of the procurement contact.
+     */
+    procurementContactEmail?: string | null;
     /**
      * Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH.
      */
@@ -8246,6 +9103,14 @@ export namespace discoveryengine_v1 {
      */
     autoRenew?: boolean | null;
     /**
+     * Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.
+     */
+    earlyTerminated?: boolean | null;
+    /**
+     * Output only. The date when the subscription is terminated earlier than the expiration date.
+     */
+    earlyTerminationDate?: Schema$GoogleTypeDate;
+    /**
      * Optional. The planed end date.
      */
     endDate?: Schema$GoogleTypeDate;
@@ -8412,6 +9277,10 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfig {
     /**
+     * Optional. Specifies the data protection policy for NotebookLM.
+     */
+    dataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy;
+    /**
      * Model Armor configuration to be used for sanitizing user prompts and LLM responses.
      */
     modelArmorConfig?: Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig;
@@ -8423,6 +9292,24 @@ export namespace discoveryengine_v1 {
      * Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.
      */
     optOutNotebookSharing?: boolean | null;
+  }
+  /**
+   * Data protection policy config for NotebookLM.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy {
+    /**
+     * Optional. The sensitive data protection policy.
+     */
+    sensitiveDataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy;
+  }
+  /**
+   * Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy {
+    /**
+     * Optional. The Sensitive Data Protection policy resource name.
+     */
+    policy?: string | null;
   }
   /**
    * Configuration for customer defined Model Armor templates to be used for sanitizing user prompts and LLM responses.
@@ -8704,6 +9591,10 @@ export namespace discoveryengine_v1 {
      * Optional. Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
      */
     naturalLanguageQueryUnderstandingSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec;
+    /**
+     * Optional. The maximum number of results to retrieve from each data store. If not specified, it will use the SearchRequest.DataStoreSpec.num_results if provided, otherwise there is no limit.
+     */
+    numResultsPerDataStore?: number | null;
     /**
      * A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned. A large offset may be capped to a reasonable threshold.
      */
@@ -9062,6 +9953,10 @@ export namespace discoveryengine_v1 {
      * Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
      */
     filter?: string | null;
+    /**
+     * Optional. The maximum number of results to retrieve from this data store. If not specified, it will use the SearchRequest.num_results_per_data_store if provided, otherwise there is no limit. If both this field and SearchRequest.num_results_per_data_store are specified, this field will be used.
+     */
+    numResults?: number | null;
   }
   /**
    * Specifies features for display, like match highlighting.
@@ -10594,6 +11489,10 @@ export namespace discoveryengine_v1 {
      */
     destinationConfigs?: Schema$GoogleCloudDiscoveryengineV1DestinationConfig[];
     /**
+     * Output only. The list of FQDNs of the data connector can egress to. This includes both FQDN derived from the customer provided instance URL and default per connector type FQDNs. Note: This field is derived from both the DataConnector.params, and connector source spec. It should only be used for CAIS and Org Policy evaluation purposes.
+     */
+    egressFqdns?: string[] | null;
+    /**
      * Optional. Any params and credentials used specifically for EUA connectors.
      */
     endUserConfig?: Schema$GoogleCloudDiscoveryengineV1DataConnectorEndUserConfig;
@@ -10697,6 +11596,10 @@ export namespace discoveryengine_v1 {
      * Output only. Timestamp the DataConnector was last updated.
      */
     updateTime?: string | null;
+    /**
+     * Output only. Whether the connector is created with VPC-SC enabled. This is only used for CuOP evaluation purpose.
+     */
+    vpcscEnabled?: boolean | null;
   }
   /**
    * Any params and credentials used specifically for EUA connectors.
@@ -11404,6 +12307,10 @@ export namespace discoveryengine_v1 {
      */
     configurableBillingApproach?: string | null;
     /**
+     * Optional. Maps a connector ID (e.g., "hybrid-github", "shopify") to tenant-specific information required for that connector. The structure of the tenant information string is connector-dependent.
+     */
+    connectorTenantInfo?: {[key: string]: string} | null;
+    /**
      * Output only. Timestamp the Recommendation Engine was created at.
      */
     createTime?: string | null;
@@ -11432,6 +12339,10 @@ export namespace discoveryengine_v1 {
      */
     knowledgeGraphConfig?: Schema$GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfig;
     /**
+     * Optional. The visibility of marketplace agents in the agent gallery.
+     */
+    marketplaceAgentVisibility?: string | null;
+    /**
      * Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical.
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig;
@@ -11447,6 +12358,10 @@ export namespace discoveryengine_v1 {
      * Optional. Observability config for the engine.
      */
     observabilityConfig?: Schema$GoogleCloudDiscoveryengineV1ObservabilityConfig;
+    /**
+     * Optional. The email of the procurement contact.
+     */
+    procurementContactEmail?: string | null;
     /**
      * Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH.
      */
@@ -12257,6 +13172,14 @@ export namespace discoveryengine_v1 {
      */
     autoRenew?: boolean | null;
     /**
+     * Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.
+     */
+    earlyTerminated?: boolean | null;
+    /**
+     * Output only. The date when the subscription is terminated earlier than the expiration date.
+     */
+    earlyTerminationDate?: Schema$GoogleTypeDate;
+    /**
      * Optional. The planed end date.
      */
     endDate?: Schema$GoogleTypeDate;
@@ -12678,6 +13601,10 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfig {
     /**
+     * Optional. Specifies the data protection policy for NotebookLM.
+     */
+    dataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy;
+    /**
      * Model Armor configuration to be used for sanitizing user prompts and LLM responses.
      */
     modelArmorConfig?: Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig;
@@ -12689,6 +13616,24 @@ export namespace discoveryengine_v1 {
      * Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.
      */
     optOutNotebookSharing?: boolean | null;
+  }
+  /**
+   * Data protection policy config for NotebookLM.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy {
+    /**
+     * Optional. The sensitive data protection policy.
+     */
+    sensitiveDataProtectionPolicy?: Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy;
+  }
+  /**
+   * Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy {
+    /**
+     * Optional. The Sensitive Data Protection policy resource name.
+     */
+    policy?: string | null;
   }
   /**
    * Configuration for customer defined Model Armor templates to be used for sanitizing user prompts and LLM responses.
@@ -15516,6 +16461,49 @@ export namespace discoveryengine_v1 {
     type?: string | null;
   }
   /**
+   * Associates `members`, or principals, with a `role`.
+   */
+  export interface Schema$GoogleIamV1Binding {
+    /**
+     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    condition?: Schema$GoogleTypeExpr;
+    /**
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/group/{group_id\}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/x`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/subject/{subject_attribute_value\}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/group/{group_id\}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/attribute.{attribute_name\}/{attribute_value\}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number\}/locations/global/workloadIdentityPools/{pool_id\}/x`: All identities in a workload identity pool. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id\}/subject/{subject_attribute_value\}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`.
+     */
+    members?: string[] | null;
+    /**
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
+     */
+    role?: string | null;
+  }
+  /**
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   */
+  export interface Schema$GoogleIamV1Policy {
+    /**
+     * Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`.
+     */
+    bindings?: Schema$GoogleIamV1Binding[];
+    /**
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
+     */
+    etag?: string | null;
+    /**
+     * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    version?: number | null;
+  }
+  /**
+   * Request message for `SetIamPolicy` method.
+   */
+  export interface Schema$GoogleIamV1SetIamPolicyRequest {
+    /**
+     * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
+     */
+    policy?: Schema$GoogleIamV1Policy;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$GoogleLongrunningCancelOperationRequest {}
@@ -15727,6 +16715,27 @@ export namespace discoveryengine_v1 {
      * Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a datetime without a year.
      */
     year?: number | null;
+  }
+  /**
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   */
+  export interface Schema$GoogleTypeExpr {
+    /**
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string | null;
+    /**
+     * Textual representation of an expression in Common Expression Language syntax.
+     */
+    expression?: string | null;
+    /**
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     */
+    location?: string | null;
+    /**
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     */
+    title?: string | null;
   }
   /**
    * Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones).
@@ -16494,6 +17503,7 @@ export namespace discoveryengine_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "dataSource": "my_dataSource",
      *       //   "destinationConfigs": [],
+     *       //   "egressFqdns": [],
      *       //   "endUserConfig": {},
      *       //   "entities": [],
      *       //   "errors": [],
@@ -16519,7 +17529,8 @@ export namespace discoveryengine_v1 {
      *       //   "staticIpAddresses": [],
      *       //   "staticIpEnabled": false,
      *       //   "syncMode": "my_syncMode",
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "vpcscEnabled": false
      *       // }
      *     },
      *   });
@@ -17905,6 +18916,7 @@ export namespace discoveryengine_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "dataSource": "my_dataSource",
      *   //   "destinationConfigs": [],
+     *   //   "egressFqdns": [],
      *   //   "endUserConfig": {},
      *   //   "entities": [],
      *   //   "errors": [],
@@ -17930,7 +18942,8 @@ export namespace discoveryengine_v1 {
      *   //   "staticIpAddresses": [],
      *   //   "staticIpEnabled": false,
      *   //   "syncMode": "my_syncMode",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "vpcscEnabled": false
      *   // }
      * }
      *
@@ -18096,6 +19109,7 @@ export namespace discoveryengine_v1 {
      *         //   "createTime": "my_createTime",
      *         //   "dataSource": "my_dataSource",
      *         //   "destinationConfigs": [],
+     *         //   "egressFqdns": [],
      *         //   "endUserConfig": {},
      *         //   "entities": [],
      *         //   "errors": [],
@@ -18121,7 +19135,8 @@ export namespace discoveryengine_v1 {
      *         //   "staticIpAddresses": [],
      *         //   "staticIpEnabled": false,
      *         //   "syncMode": "my_syncMode",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "vpcscEnabled": false
      *         // }
      *       },
      *     });
@@ -18142,6 +19157,7 @@ export namespace discoveryengine_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "dataSource": "my_dataSource",
      *   //   "destinationConfigs": [],
+     *   //   "egressFqdns": [],
      *   //   "endUserConfig": {},
      *   //   "entities": [],
      *   //   "errors": [],
@@ -18167,7 +19183,8 @@ export namespace discoveryengine_v1 {
      *   //   "staticIpAddresses": [],
      *   //   "staticIpEnabled": false,
      *   //   "syncMode": "my_syncMode",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "vpcscEnabled": false
      *   // }
      * }
      *
@@ -29267,7 +30284,7 @@ export namespace discoveryengine_v1 {
      *   const res =
      *     await discoveryengine.projects.locations.collections.dataStores.sessions.list(
      *       {
-     *         // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
+     *         // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"` * `collaborative_project = "projects/123/locations/global/collections/default_collection/engines/" "default_engine/collaborative_projects/cp1"`
      *         filter: 'placeholder-value',
      *         // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *         orderBy: 'placeholder-value',
@@ -29605,7 +30622,7 @@ export namespace discoveryengine_v1 {
   }
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$List extends StandardParameters {
     /**
-     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"` * `collaborative_project = "projects/123/locations/global/collections/default_collection/engines/" "default_engine/collaborative_projects/cp1"`
      */
     filter?: string;
     /**
@@ -34580,7 +35597,7 @@ export namespace discoveryengine_v1 {
     }
 
     /**
-     * Creates a Engine.
+     * Creates an Engine.
      * @example
      * ```js
      * // Before running the sample:
@@ -34630,6 +35647,7 @@ export namespace discoveryengine_v1 {
      *         //   "cmekConfig": {},
      *         //   "commonConfig": {},
      *         //   "configurableBillingApproach": "my_configurableBillingApproach",
+     *         //   "connectorTenantInfo": {},
      *         //   "createTime": "my_createTime",
      *         //   "dataStoreIds": [],
      *         //   "disableAnalytics": false,
@@ -34637,10 +35655,12 @@ export namespace discoveryengine_v1 {
      *         //   "features": {},
      *         //   "industryVertical": "my_industryVertical",
      *         //   "knowledgeGraphConfig": {},
+     *         //   "marketplaceAgentVisibility": "my_marketplaceAgentVisibility",
      *         //   "mediaRecommendationEngineConfig": {},
      *         //   "modelConfigs": {},
      *         //   "name": "my_name",
      *         //   "observabilityConfig": {},
+     *         //   "procurementContactEmail": "my_procurementContactEmail",
      *         //   "searchEngineConfig": {},
      *         //   "solutionType": "my_solutionType",
      *         //   "updateTime": "my_updateTime"
@@ -34761,7 +35781,7 @@ export namespace discoveryengine_v1 {
     }
 
     /**
-     * Deletes a Engine.
+     * Deletes an Engine.
      * @example
      * ```js
      * // Before running the sample:
@@ -34909,7 +35929,7 @@ export namespace discoveryengine_v1 {
     }
 
     /**
-     * Gets a Engine.
+     * Gets an Engine.
      * @example
      * ```js
      * // Before running the sample:
@@ -34955,6 +35975,7 @@ export namespace discoveryengine_v1 {
      *   //   "cmekConfig": {},
      *   //   "commonConfig": {},
      *   //   "configurableBillingApproach": "my_configurableBillingApproach",
+     *   //   "connectorTenantInfo": {},
      *   //   "createTime": "my_createTime",
      *   //   "dataStoreIds": [],
      *   //   "disableAnalytics": false,
@@ -34962,10 +35983,12 @@ export namespace discoveryengine_v1 {
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
      *   //   "knowledgeGraphConfig": {},
+     *   //   "marketplaceAgentVisibility": "my_marketplaceAgentVisibility",
      *   //   "mediaRecommendationEngineConfig": {},
      *   //   "modelConfigs": {},
      *   //   "name": "my_name",
      *   //   "observabilityConfig": {},
+     *   //   "procurementContactEmail": "my_procurementContactEmail",
      *   //   "searchEngineConfig": {},
      *   //   "solutionType": "my_solutionType",
      *   //   "updateTime": "my_updateTime"
@@ -35073,6 +36096,156 @@ export namespace discoveryengine_v1 {
         return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1Engine>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Gets the IAM access control policy for an Engine. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.getIamPolicy({
+     *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Getiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Getiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Getiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Getiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
       }
     }
 
@@ -35288,6 +36461,7 @@ export namespace discoveryengine_v1 {
      *         //   "cmekConfig": {},
      *         //   "commonConfig": {},
      *         //   "configurableBillingApproach": "my_configurableBillingApproach",
+     *         //   "connectorTenantInfo": {},
      *         //   "createTime": "my_createTime",
      *         //   "dataStoreIds": [],
      *         //   "disableAnalytics": false,
@@ -35295,10 +36469,12 @@ export namespace discoveryengine_v1 {
      *         //   "features": {},
      *         //   "industryVertical": "my_industryVertical",
      *         //   "knowledgeGraphConfig": {},
+     *         //   "marketplaceAgentVisibility": "my_marketplaceAgentVisibility",
      *         //   "mediaRecommendationEngineConfig": {},
      *         //   "modelConfigs": {},
      *         //   "name": "my_name",
      *         //   "observabilityConfig": {},
+     *         //   "procurementContactEmail": "my_procurementContactEmail",
      *         //   "searchEngineConfig": {},
      *         //   "solutionType": "my_solutionType",
      *         //   "updateTime": "my_updateTime"
@@ -35315,6 +36491,7 @@ export namespace discoveryengine_v1 {
      *   //   "cmekConfig": {},
      *   //   "commonConfig": {},
      *   //   "configurableBillingApproach": "my_configurableBillingApproach",
+     *   //   "connectorTenantInfo": {},
      *   //   "createTime": "my_createTime",
      *   //   "dataStoreIds": [],
      *   //   "disableAnalytics": false,
@@ -35322,10 +36499,12 @@ export namespace discoveryengine_v1 {
      *   //   "features": {},
      *   //   "industryVertical": "my_industryVertical",
      *   //   "knowledgeGraphConfig": {},
+     *   //   "marketplaceAgentVisibility": "my_marketplaceAgentVisibility",
      *   //   "mediaRecommendationEngineConfig": {},
      *   //   "modelConfigs": {},
      *   //   "name": "my_name",
      *   //   "observabilityConfig": {},
+     *   //   "procurementContactEmail": "my_procurementContactEmail",
      *   //   "searchEngineConfig": {},
      *   //   "solutionType": "my_solutionType",
      *   //   "updateTime": "my_updateTime"
@@ -35435,6 +36614,162 @@ export namespace discoveryengine_v1 {
         );
       }
     }
+
+    /**
+     * Sets the IAM access control policy for an Engine. A `NOT_FOUND` error is returned if the resource does not exist. **Important:** When setting a policy directly on an Engine resource, the only recommended roles in the bindings are: `roles/discoveryengine.user` and `roles/discoveryengine.agentspaceUser`. Attempting to grant any other role will result in a warning in logging.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.setIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Setiampolicy,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Setiampolicy,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Setiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Setiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleIamV1Policy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Collections$Engines$Create extends StandardParameters {
@@ -35463,6 +36798,16 @@ export namespace discoveryengine_v1 {
      * Required. Full resource name of Engine, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Getiampolicy extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
   }
   export interface Params$Resource$Projects$Locations$Collections$Engines$List extends StandardParameters {
     /**
@@ -35496,6 +36841,17 @@ export namespace discoveryengine_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1Engine;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Setiampolicy extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
 
   export class Resource$Projects$Locations$Collections$Engines$Assistants {
@@ -36572,14 +37928,530 @@ export namespace discoveryengine_v1 {
 
   export class Resource$Projects$Locations$Collections$Engines$Assistants$Agents {
     context: APIRequestContext;
+    message: Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message;
     operations: Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations;
+    tasks: Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.message =
+        new Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message(
+          this.context
+        );
       this.operations =
         new Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations(
           this.context
         );
+      this.tasks =
+        new Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks(
+          this.context
+        );
     }
+
+    /**
+     * GetAgentCard returns the agent card for the agent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.getCard(
+     *       {
+     *         // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *         tenant:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalInterfaces": [],
+     *   //   "capabilities": {},
+     *   //   "defaultInputModes": [],
+     *   //   "defaultOutputModes": [],
+     *   //   "description": "my_description",
+     *   //   "documentationUrl": "my_documentationUrl",
+     *   //   "iconUrl": "my_iconUrl",
+     *   //   "name": "my_name",
+     *   //   "preferredTransport": "my_preferredTransport",
+     *   //   "protocolVersion": "my_protocolVersion",
+     *   //   "provider": {},
+     *   //   "security": [],
+     *   //   "securitySchemes": {},
+     *   //   "signatures": [],
+     *   //   "skills": [],
+     *   //   "supportsAuthenticatedExtendedCard": false,
+     *   //   "url": "my_url",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getCard(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getcard,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getCard(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getcard,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$A2aV1AgentCard>>;
+    getCard(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getcard,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getCard(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getcard,
+      options: MethodOptions | BodyResponseCallback<Schema$A2aV1AgentCard>,
+      callback: BodyResponseCallback<Schema$A2aV1AgentCard>
+    ): void;
+    getCard(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getcard,
+      callback: BodyResponseCallback<Schema$A2aV1AgentCard>
+    ): void;
+    getCard(callback: BodyResponseCallback<Schema$A2aV1AgentCard>): void;
+    getCard(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getcard
+        | BodyResponseCallback<Schema$A2aV1AgentCard>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$A2aV1AgentCard>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$A2aV1AgentCard>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$A2aV1AgentCard>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getcard;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getcard;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/{+tenant}/card').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['tenant'],
+        pathParams: ['tenant'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$A2aV1AgentCard>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$A2aV1AgentCard>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Getcard extends StandardParameters {
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
+  }
+
+  export class Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Send a message to the agent. This is a blocking call that will return the task once it is completed, or a LRO if requested.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.message.send(
+     *       {
+     *         // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *         tenant:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "configuration": {},
+     *           //   "message": {},
+     *           //   "metadata": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "message": {},
+     *   //   "task": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    send(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message$Send,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    send(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message$Send,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$A2aV1SendMessageResponse>>;
+    send(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message$Send,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    send(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message$Send,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$A2aV1SendMessageResponse>,
+      callback: BodyResponseCallback<Schema$A2aV1SendMessageResponse>
+    ): void;
+    send(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message$Send,
+      callback: BodyResponseCallback<Schema$A2aV1SendMessageResponse>
+    ): void;
+    send(callback: BodyResponseCallback<Schema$A2aV1SendMessageResponse>): void;
+    send(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message$Send
+        | BodyResponseCallback<Schema$A2aV1SendMessageResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$A2aV1SendMessageResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$A2aV1SendMessageResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$A2aV1SendMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message$Send;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message$Send;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/{+tenant}/message:send').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['tenant'],
+        pathParams: ['tenant'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$A2aV1SendMessageResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$A2aV1SendMessageResponse>(parameters);
+      }
+    }
+
+    /**
+     * SendStreamingMessage is a streaming call that will return a stream of task update events until the Task is in an interrupted or terminal state.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.message.stream(
+     *       {
+     *         // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *         tenant:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "configuration": {},
+     *           //   "message": {},
+     *           //   "metadata": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifactUpdate": {},
+     *   //   "message": {},
+     *   //   "statusUpdate": {},
+     *   //   "task": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    stream(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message$Stream,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    stream(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message$Stream,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$A2aV1StreamResponse>>;
+    stream(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message$Stream,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    stream(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message$Stream,
+      options: MethodOptions | BodyResponseCallback<Schema$A2aV1StreamResponse>,
+      callback: BodyResponseCallback<Schema$A2aV1StreamResponse>
+    ): void;
+    stream(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message$Stream,
+      callback: BodyResponseCallback<Schema$A2aV1StreamResponse>
+    ): void;
+    stream(callback: BodyResponseCallback<Schema$A2aV1StreamResponse>): void;
+    stream(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message$Stream
+        | BodyResponseCallback<Schema$A2aV1StreamResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$A2aV1StreamResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$A2aV1StreamResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$A2aV1StreamResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message$Stream;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message$Stream;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/{+tenant}/message:stream').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['tenant'],
+        pathParams: ['tenant'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$A2aV1StreamResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$A2aV1StreamResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message$Send extends StandardParameters {
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$A2aV1SendMessageRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Message$Stream extends StandardParameters {
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$A2aV1SendMessageRequest;
   }
 
   export class Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Operations {
@@ -36744,6 +38616,1187 @@ export namespace discoveryengine_v1 {
      * The name of the operation resource.
      */
     name?: string;
+  }
+
+  export class Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks {
+    context: APIRequestContext;
+    pushNotificationConfigs: Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.pushNotificationConfigs =
+        new Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs(
+          this.context
+        );
+    }
+
+    /**
+     * Cancel a task from the agent. If supported one should expect no more task updates for the task.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.tasks.cancel(
+     *       {
+     *         // The resource name of the task to cancel. Format: tasks/{task_id\}
+     *         name: 'tasks/my-task',
+     *         // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *         tenant:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifacts": [],
+     *   //   "contextId": "my_contextId",
+     *   //   "history": [],
+     *   //   "id": "my_id",
+     *   //   "metadata": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Cancel,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    cancel(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Cancel,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$A2aV1Task>>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$A2aV1Task>,
+      callback: BodyResponseCallback<Schema$A2aV1Task>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Cancel,
+      callback: BodyResponseCallback<Schema$A2aV1Task>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$A2aV1Task>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Cancel
+        | BodyResponseCallback<Schema$A2aV1Task>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$A2aV1Task>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$A2aV1Task>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$A2aV1Task>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/{+tenant}/{+name}:cancel').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['tenant', 'name'],
+        pathParams: ['name', 'tenant'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$A2aV1Task>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$A2aV1Task>(parameters);
+      }
+    }
+
+    /**
+     * Get the current state of a task from the agent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.tasks.get(
+     *       {
+     *         // The number of most recent messages from the task's history to retrieve.
+     *         historyLength: 'placeholder-value',
+     *         // Required. The resource name of the task. Format: tasks/{task_id\}
+     *         name: 'tasks/my-task',
+     *         // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *         tenant:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifacts": [],
+     *   //   "contextId": "my_contextId",
+     *   //   "history": [],
+     *   //   "id": "my_id",
+     *   //   "metadata": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$A2aV1Task>>;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$A2aV1Task>,
+      callback: BodyResponseCallback<Schema$A2aV1Task>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Get,
+      callback: BodyResponseCallback<Schema$A2aV1Task>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$A2aV1Task>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Get
+        | BodyResponseCallback<Schema$A2aV1Task>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$A2aV1Task>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$A2aV1Task>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$A2aV1Task>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/{+tenant}/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['tenant', 'name'],
+        pathParams: ['name', 'tenant'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$A2aV1Task>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$A2aV1Task>(parameters);
+      }
+    }
+
+    /**
+     * TaskSubscription is a streaming call that will return a stream of task update events. This attaches the stream to an existing in process task. If the task is complete the stream will return the completed task (like GetTask) and close the stream.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.tasks.subscribe(
+     *       {
+     *         // The resource name of the task to subscribe to. Format: tasks/{task_id\}
+     *         name: 'tasks/my-task',
+     *         // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *         tenant:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "artifactUpdate": {},
+     *   //   "message": {},
+     *   //   "statusUpdate": {},
+     *   //   "task": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    subscribe(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Subscribe,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    subscribe(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Subscribe,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$A2aV1StreamResponse>>;
+    subscribe(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Subscribe,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    subscribe(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Subscribe,
+      options: MethodOptions | BodyResponseCallback<Schema$A2aV1StreamResponse>,
+      callback: BodyResponseCallback<Schema$A2aV1StreamResponse>
+    ): void;
+    subscribe(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Subscribe,
+      callback: BodyResponseCallback<Schema$A2aV1StreamResponse>
+    ): void;
+    subscribe(callback: BodyResponseCallback<Schema$A2aV1StreamResponse>): void;
+    subscribe(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Subscribe
+        | BodyResponseCallback<Schema$A2aV1StreamResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$A2aV1StreamResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$A2aV1StreamResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$A2aV1StreamResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Subscribe;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Subscribe;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/{+tenant}/{+name}:subscribe').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['tenant', 'name'],
+        pathParams: ['name', 'tenant'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$A2aV1StreamResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$A2aV1StreamResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Cancel extends StandardParameters {
+    /**
+     * The resource name of the task to cancel. Format: tasks/{task_id\}
+     */
+    name?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$A2aV1CancelTaskRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Get extends StandardParameters {
+    /**
+     * The number of most recent messages from the task's history to retrieve.
+     */
+    historyLength?: number;
+    /**
+     * Required. The resource name of the task. Format: tasks/{task_id\}
+     */
+    name?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Subscribe extends StandardParameters {
+    /**
+     * The resource name of the task to subscribe to. Format: tasks/{task_id\}
+     */
+    name?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
+  }
+
+  export class Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Set a push notification config for a task.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.tasks.pushNotificationConfigs.create(
+     *       {
+     *         // Required. The ID for the new config.
+     *         configId: 'placeholder-value',
+     *         // Required. The parent task resource for this config. Format: tasks/{task_id\}
+     *         parent: 'tasks/my-task/pushNotificationConfigs',
+     *         // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *         tenant:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "name": "my_name",
+     *           //   "pushNotificationConfig": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "pushNotificationConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$A2aV1TaskPushNotificationConfig>>;
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$A2aV1TaskPushNotificationConfig>,
+      callback: BodyResponseCallback<Schema$A2aV1TaskPushNotificationConfig>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Create,
+      callback: BodyResponseCallback<Schema$A2aV1TaskPushNotificationConfig>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$A2aV1TaskPushNotificationConfig>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Create
+        | BodyResponseCallback<Schema$A2aV1TaskPushNotificationConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$A2aV1TaskPushNotificationConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$A2aV1TaskPushNotificationConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$A2aV1TaskPushNotificationConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/{+tenant}/{+parent}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['tenant', 'parent'],
+        pathParams: ['parent', 'tenant'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$A2aV1TaskPushNotificationConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$A2aV1TaskPushNotificationConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Delete a push notification config for a task.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.tasks.pushNotificationConfigs.delete(
+     *       {
+     *         // The resource name of the config to delete. Format: tasks/{task_id\}/pushNotificationConfigs/{config_id\}
+     *         name: 'tasks/my-task/pushNotificationConfigs/my-pushNotificationConfig',
+     *         // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *         tenant:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/{+tenant}/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['tenant', 'name'],
+        pathParams: ['name', 'tenant'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Get a push notification config for a task.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.tasks.pushNotificationConfigs.get(
+     *       {
+     *         // The resource name of the config to retrieve. Format: tasks/{task_id\}/pushNotificationConfigs/{config_id\}
+     *         name: 'tasks/my-task/pushNotificationConfigs/my-pushNotificationConfig',
+     *         // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *         tenant:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "pushNotificationConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$A2aV1TaskPushNotificationConfig>>;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$A2aV1TaskPushNotificationConfig>,
+      callback: BodyResponseCallback<Schema$A2aV1TaskPushNotificationConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Get,
+      callback: BodyResponseCallback<Schema$A2aV1TaskPushNotificationConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$A2aV1TaskPushNotificationConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Get
+        | BodyResponseCallback<Schema$A2aV1TaskPushNotificationConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$A2aV1TaskPushNotificationConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$A2aV1TaskPushNotificationConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$A2aV1TaskPushNotificationConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/{+tenant}/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['tenant', 'name'],
+        pathParams: ['name', 'tenant'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$A2aV1TaskPushNotificationConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$A2aV1TaskPushNotificationConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Get a list of push notifications configured for a task.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.agents.tasks.pushNotificationConfigs.list(
+     *       {
+     *         // For AIP-158 these fields are present. Usually not used/needed. The maximum number of configurations to return. If unspecified, all configs will be returned.
+     *         pageSize: 'placeholder-value',
+     *         // A page token received from a previous ListTaskPushNotificationConfigRequest call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTaskPushNotificationConfigRequest` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // The parent task resource. Format: tasks/{task_id\}
+     *         parent: 'tasks/my-task',
+     *         // Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     *         tenant:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant/agents/my-agent',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$A2aV1ListTaskPushNotificationConfigResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$A2aV1ListTaskPushNotificationConfigResponse>,
+      callback: BodyResponseCallback<Schema$A2aV1ListTaskPushNotificationConfigResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$List,
+      callback: BodyResponseCallback<Schema$A2aV1ListTaskPushNotificationConfigResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$A2aV1ListTaskPushNotificationConfigResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$List
+        | BodyResponseCallback<Schema$A2aV1ListTaskPushNotificationConfigResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$A2aV1ListTaskPushNotificationConfigResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$A2aV1ListTaskPushNotificationConfigResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$A2aV1ListTaskPushNotificationConfigResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/{+tenant}/{+parent}/pushNotificationConfigs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['tenant', 'parent'],
+        pathParams: ['parent', 'tenant'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$A2aV1ListTaskPushNotificationConfigResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$A2aV1ListTaskPushNotificationConfigResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Create extends StandardParameters {
+    /**
+     * Required. The ID for the new config.
+     */
+    configId?: string;
+    /**
+     * Required. The parent task resource for this config. Format: tasks/{task_id\}
+     */
+    parent?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$A2aV1TaskPushNotificationConfig;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Delete extends StandardParameters {
+    /**
+     * The resource name of the config to delete. Format: tasks/{task_id\}/pushNotificationConfigs/{config_id\}
+     */
+    name?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$Get extends StandardParameters {
+    /**
+     * The resource name of the config to retrieve. Format: tasks/{task_id\}/pushNotificationConfigs/{config_id\}
+     */
+    name?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Agents$Tasks$Pushnotificationconfigs$List extends StandardParameters {
+    /**
+     * For AIP-158 these fields are present. Usually not used/needed. The maximum number of configurations to return. If unspecified, all configs will be returned.
+     */
+    pageSize?: number;
+    /**
+     * A page token received from a previous ListTaskPushNotificationConfigRequest call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTaskPushNotificationConfigRequest` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * The parent task resource. Format: tasks/{task_id\}
+     */
+    parent?: string;
+    /**
+     * Optional tenant, provided as a path parameter. Experimental, might still change for 1.0 release.
+     */
+    tenant?: string;
   }
 
   export class Resource$Projects$Locations$Collections$Engines$Completionconfig {
@@ -41876,7 +44929,7 @@ export namespace discoveryengine_v1 {
      *   // Do the magic
      *   const res =
      *     await discoveryengine.projects.locations.collections.engines.sessions.list({
-     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
+     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"` * `collaborative_project = "projects/123/locations/global/collections/default_collection/engines/" "default_engine/collaborative_projects/cp1"`
      *       filter: 'placeholder-value',
      *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
@@ -42213,7 +45266,7 @@ export namespace discoveryengine_v1 {
   }
   export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$List extends StandardParameters {
     /**
-     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"` * `collaborative_project = "projects/123/locations/global/collections/default_collection/engines/" "default_engine/collaborative_projects/cp1"`
      */
     filter?: string;
     /**
@@ -53040,7 +56093,7 @@ export namespace discoveryengine_v1 {
      *   // Do the magic
      *   const res = await discoveryengine.projects.locations.dataStores.sessions.list(
      *     {
-     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
+     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"` * `collaborative_project = "projects/123/locations/global/collections/default_collection/engines/" "default_engine/collaborative_projects/cp1"`
      *       filter: 'placeholder-value',
      *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
@@ -53376,7 +56429,7 @@ export namespace discoveryengine_v1 {
   }
   export interface Params$Resource$Projects$Locations$Datastores$Sessions$List extends StandardParameters {
     /**
-     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"` * `collaborative_project = "projects/123/locations/global/collections/default_collection/engines/" "default_engine/collaborative_projects/cp1"`
      */
     filter?: string;
     /**
@@ -58986,7 +62039,7 @@ export namespace discoveryengine_v1 {
     }
 
     /**
-     * Creates a LicenseConfig
+     * Creates a LicenseConfig This method should only be used for creating NotebookLm licenses or Gemini Enterprise free trial licenses.
      * @example
      * ```js
      * // Before running the sample:
@@ -59029,6 +62082,8 @@ export namespace discoveryengine_v1 {
      *       // request body parameters
      *       // {
      *       //   "autoRenew": false,
+     *       //   "earlyTerminated": false,
+     *       //   "earlyTerminationDate": {},
      *       //   "endDate": {},
      *       //   "freeTrial": false,
      *       //   "geminiBundle": false,
@@ -59046,6 +62101,8 @@ export namespace discoveryengine_v1 {
      *   // Example response
      *   // {
      *   //   "autoRenew": false,
+     *   //   "earlyTerminated": false,
+     *   //   "earlyTerminationDate": {},
      *   //   "endDate": {},
      *   //   "freeTrial": false,
      *   //   "geminiBundle": false,
@@ -59206,6 +62263,8 @@ export namespace discoveryengine_v1 {
      *   // Example response
      *   // {
      *   //   "autoRenew": false,
+     *   //   "earlyTerminated": false,
+     *   //   "earlyTerminationDate": {},
      *   //   "endDate": {},
      *   //   "freeTrial": false,
      *   //   "geminiBundle": false,
@@ -59365,6 +62424,8 @@ export namespace discoveryengine_v1 {
      *       // request body parameters
      *       // {
      *       //   "autoRenew": false,
+     *       //   "earlyTerminated": false,
+     *       //   "earlyTerminationDate": {},
      *       //   "endDate": {},
      *       //   "freeTrial": false,
      *       //   "geminiBundle": false,
@@ -59382,6 +62443,8 @@ export namespace discoveryengine_v1 {
      *   // Example response
      *   // {
      *   //   "autoRenew": false,
+     *   //   "earlyTerminated": false,
+     *   //   "earlyTerminationDate": {},
      *   //   "endDate": {},
      *   //   "freeTrial": false,
      *   //   "geminiBundle": false,

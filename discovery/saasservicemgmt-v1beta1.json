@@ -135,7 +135,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1beta1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "saasservicemgmt.projects.locations.list",
@@ -1804,7 +1804,7 @@
       }
     }
   },
-  "revision": "20251207",
+  "revision": "20260214",
   "rootUrl": "https://saasservicemgmt.googleapis.com/",
   "schemas": {
     "Aggregate": {
@@ -2313,6 +2313,12 @@
           "readOnly": true,
           "type": "string"
         },
+        "deleteTime": {
+          "description": "Output only. The timestamp when the resource was marked for deletion (deletion is an asynchronous operation).",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "effectiveUnitFilter": {
           "description": "Optional. Output only. Output only snapshot of the effective unit filter at Rollout start time. Contains a CEL(https://github.com/google/cel-spec) expression consisting of a conjunction of Rollout.unit_filter and RolloutKind.unit_filter. This field captures the filter applied by the Rollout to determine the Unit population. If the associated RolloutKind's unit_filter is modified after the rollout is started, it will not be updated here.",
           "readOnly": true,
@@ -2556,7 +2562,7 @@
       "id": "RolloutStats",
       "properties": {
         "operationsByState": {
-          "description": "Output only. A breakdown of the progress of operations triggered by the rollout. Provides a count of Operations by their state. This can be used to determine the number of units which have been updated, or are scheduled to be updated. There will be at most one entry per group. Possible values for operation groups are: - \"SCHEDULED\" - \"PENDING\" - \"RUNNING\" - \"SUCCEEDED\" - \"FAILED\" - \"CANCELLED\"",
+          "description": "Optional. Output only. Unordered list. A breakdown of the progress of operations triggered by the rollout. Provides a count of Operations by their state. This can be used to determine the number of units which have been updated, or are scheduled to be updated. There will be at most one entry per group. Possible values for operation groups are: - \"SCHEDULED\" - \"PENDING\" - \"RUNNING\" - \"SUCCEEDED\" - \"FAILED\" - \"CANCELLED\"",
           "items": {
             "$ref": "Aggregate"
           },
@@ -3053,7 +3059,7 @@
       "type": "object"
     },
     "UnitOperation": {
-      "description": "UnitOperation encapsulates the intent of changing/interacting with the service component represented by the specific Unit. Multiple UnitOperations can be created (requested) and scheduled in the future, however only one will be allowed to execute at a time (that can change in the future for non-mutating operations). UnitOperations allow different actors interacting with the same unit to focus only on the change they have requested. This is a base object that contains the common fields in all unit operations. Next: 19",
+      "description": "UnitOperation encapsulates the intent of changing/interacting with the service component represented by the specific Unit. Multiple UnitOperations can be created (requested) and scheduled in the future, however only one will be allowed to execute at a time (that can change in the future for non-mutating operations). UnitOperations allow different actors interacting with the same unit to focus only on the change they have requested. This is a base object that contains the common fields in all unit operations. Next: 22",
       "id": "UnitOperation",
       "properties": {
         "annotations": {
@@ -3077,6 +3083,12 @@
         },
         "createTime": {
           "description": "Output only. The timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. The timestamp when the resource was marked for deletion (deletion is an asynchronous operation).",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -3225,14 +3237,18 @@
             "TYPE_SCHEDULED",
             "TYPE_RUNNING",
             "TYPE_SUCCEEDED",
-            "TYPE_CANCELLED"
+            "TYPE_CANCELLED",
+            "TYPE_APP_CREATED",
+            "TYPE_APP_COMPONENTS_REGISTERED"
           ],
           "enumDescriptions": [
             "Condition type is unspecified.",
             "Condition type is scheduled.",
             "Condition type is running.",
             "Condition type is succeeded.",
-            "Condition type is cancelled."
+            "Condition type is cancelled.",
+            "Indicates if AppHub app has been created.",
+            "Indicates if services and workloads have been registered with AppHub."
           ],
           "type": "string"
         }

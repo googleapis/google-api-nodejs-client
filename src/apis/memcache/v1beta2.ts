@@ -524,6 +524,10 @@ export namespace memcache_v1beta2 {
      */
     authorizedNetwork?: string | null;
     /**
+     * Output only. The available maintenance versions that can be applied to the instance.
+     */
+    availableMaintenanceVersions?: string[] | null;
+    /**
      * Output only. The time the instance was created.
      */
     createTime?: string | null;
@@ -535,6 +539,10 @@ export namespace memcache_v1beta2 {
      * User provided name for the instance, which is only used for display purposes. Cannot be more than 80 characters.
      */
     displayName?: string | null;
+    /**
+     * Output only. The effective maintenance version of the instance.
+     */
+    effectiveMaintenanceVersion?: string | null;
     /**
      * List of messages that describe the current state of the Memcached instance.
      */
@@ -551,6 +559,10 @@ export namespace memcache_v1beta2 {
      * Output only. Published maintenance schedule.
      */
     maintenanceSchedule?: Schema$MaintenanceSchedule;
+    /**
+     * Optional. Last self service update maintenance version triggered by the customer. If it is empty, it means that the maintenance version is not set by the user.
+     */
+    maintenanceVersion?: string | null;
     /**
      * Output only. The full version of memcached server running on this instance. System automatically determines the full memcached version for an instance based on the input MemcacheVersion. The full version format will be "memcached-1.5.16".
      */
@@ -1205,7 +1217,7 @@ export namespace memcache_v1beta2 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -1731,13 +1743,16 @@ export namespace memcache_v1beta2 {
      *       // request body parameters
      *       // {
      *       //   "authorizedNetwork": "my_authorizedNetwork",
+     *       //   "availableMaintenanceVersions": [],
      *       //   "createTime": "my_createTime",
      *       //   "discoveryEndpoint": "my_discoveryEndpoint",
      *       //   "displayName": "my_displayName",
+     *       //   "effectiveMaintenanceVersion": "my_effectiveMaintenanceVersion",
      *       //   "instanceMessages": [],
      *       //   "labels": {},
      *       //   "maintenancePolicy": {},
      *       //   "maintenanceSchedule": {},
+     *       //   "maintenanceVersion": "my_maintenanceVersion",
      *       //   "memcacheFullVersion": "my_memcacheFullVersion",
      *       //   "memcacheNodes": [],
      *       //   "memcacheVersion": "my_memcacheVersion",
@@ -2039,13 +2054,16 @@ export namespace memcache_v1beta2 {
      *   // Example response
      *   // {
      *   //   "authorizedNetwork": "my_authorizedNetwork",
+     *   //   "availableMaintenanceVersions": [],
      *   //   "createTime": "my_createTime",
      *   //   "discoveryEndpoint": "my_discoveryEndpoint",
      *   //   "displayName": "my_displayName",
+     *   //   "effectiveMaintenanceVersion": "my_effectiveMaintenanceVersion",
      *   //   "instanceMessages": [],
      *   //   "labels": {},
      *   //   "maintenancePolicy": {},
      *   //   "maintenanceSchedule": {},
+     *   //   "maintenanceVersion": "my_maintenanceVersion",
      *   //   "memcacheFullVersion": "my_memcacheFullVersion",
      *   //   "memcacheNodes": [],
      *   //   "memcacheVersion": "my_memcacheVersion",
@@ -2345,13 +2363,16 @@ export namespace memcache_v1beta2 {
      *       // request body parameters
      *       // {
      *       //   "authorizedNetwork": "my_authorizedNetwork",
+     *       //   "availableMaintenanceVersions": [],
      *       //   "createTime": "my_createTime",
      *       //   "discoveryEndpoint": "my_discoveryEndpoint",
      *       //   "displayName": "my_displayName",
+     *       //   "effectiveMaintenanceVersion": "my_effectiveMaintenanceVersion",
      *       //   "instanceMessages": [],
      *       //   "labels": {},
      *       //   "maintenancePolicy": {},
      *       //   "maintenanceSchedule": {},
+     *       //   "maintenanceVersion": "my_maintenanceVersion",
      *       //   "memcacheFullVersion": "my_memcacheFullVersion",
      *       //   "memcacheNodes": [],
      *       //   "memcacheVersion": "my_memcacheVersion",

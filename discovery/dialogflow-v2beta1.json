@@ -8431,7 +8431,7 @@
       }
     }
   },
-  "revision": "20260119",
+  "revision": "20260216",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -16463,6 +16463,9 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "useBidiStreaming": {
+          "type": "boolean"
         }
       },
       "type": "object"

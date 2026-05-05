@@ -554,6 +554,14 @@ export namespace sqladmin_v1beta4 {
      */
     destinationInstanceName?: string | null;
     /**
+     * Optional. The fully qualified URI of the VPC network to which the cloned instance will be connected via Private Services Access for private IP. For example:`projects/my-network-project/global/networks/my-network`. This field is only required for cross-project cloning.
+     */
+    destinationNetwork?: string | null;
+    /**
+     * Optional. The project ID of the destination project where the cloned instance will be created. To perform a cross-project clone, this field is required. If not specified, the clone is created in the same project as the source instance.
+     */
+    destinationProject?: string | null;
+    /**
      * This is always `sql#cloneContext`.
      */
     kind?: string | null;
@@ -2583,6 +2591,10 @@ export namespace sqladmin_v1beta4 {
    * Database instance settings.
    */
   export interface Schema$Settings {
+    /**
+     * Optional. Configures whether the replica is in accelerated mode. This feature is in private preview and requires allowlisting to take effect.
+     */
+    acceleratedReplicaMode?: boolean | null;
     /**
      * The activation policy specifies when the instance is activated; it is applicable only when the instance state is RUNNABLE. Valid values: * `ALWAYS`: The instance is on, and remains so even in the absence of connection requests. * `NEVER`: The instance is off; it is not activated, even if a connection request arrives.
      */
@@ -16497,7 +16509,7 @@ export namespace sqladmin_v1beta4 {
      *     name: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
-     *     // Optional. revoke the existing roles granted to the user.
+     *     // Optional. Specifies whether to revoke existing roles that are not present in the `database_roles` field. If `false` or unset, the database roles specified in `database_roles` are added to the user's existing roles.
      *     revokeExistingRoles: 'placeholder-value',
      *
      *     // Request body metadata
@@ -16726,7 +16738,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
     /**
-     * Optional. revoke the existing roles granted to the user.
+     * Optional. Specifies whether to revoke existing roles that are not present in the `database_roles` field. If `false` or unset, the database roles specified in `database_roles` are added to the user's existing roles.
      */
     revokeExistingRoles?: boolean;
 

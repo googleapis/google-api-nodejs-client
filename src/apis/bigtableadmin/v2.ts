@@ -1049,6 +1049,10 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$GoogleBigtableAdminV2TypeFloat64 {}
   /**
+   * A geography type, representing a point or region on Earth. The value is stored in `Value.bytes_value` as Well-Known Binary (WKB) bytes.
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeGeography {}
+  /**
    * Int64 Values of type `Int64` are stored in `Value.int_value`.
    */
   export interface Schema$GoogleBigtableAdminV2TypeInt64 {
@@ -2019,6 +2023,10 @@ export namespace bigtableadmin_v2 {
      * Float64
      */
     float64Type?: Schema$GoogleBigtableAdminV2TypeFloat64;
+    /**
+     * Geography
+     */
+    geographyType?: Schema$GoogleBigtableAdminV2TypeGeography;
     /**
      * Int64
      */
@@ -15520,7 +15528,7 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:

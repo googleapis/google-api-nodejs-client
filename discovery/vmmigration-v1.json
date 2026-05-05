@@ -2548,7 +2548,7 @@
       }
     }
   },
-  "revision": "20260129",
+  "revision": "20260222",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -3311,14 +3311,16 @@
             "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
             "COMPUTE_ENGINE_DISK_TYPE_SSD",
             "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
-            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "SSD hard disk type.",
             "An alternative to SSD persistent disks that balance performance and cost.",
-            "Hyperdisk balanced disk type."
+            "Hyperdisk balanced disk type.",
+            "Hyperdisk balanced high availability disk type."
           ],
           "type": "string"
         },
@@ -3504,14 +3506,16 @@
             "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
             "COMPUTE_ENGINE_DISK_TYPE_SSD",
             "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
-            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "SSD hard disk type.",
             "An alternative to SSD persistent disks that balance performance and cost.",
-            "Hyperdisk balanced disk type."
+            "Hyperdisk balanced disk type.",
+            "Hyperdisk balanced high availability disk type."
           ],
           "type": "string"
         },
@@ -3651,14 +3655,16 @@
             "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
             "COMPUTE_ENGINE_DISK_TYPE_SSD",
             "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
-            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "SSD hard disk type.",
             "An alternative to SSD persistent disks that balance performance and cost.",
-            "Hyperdisk balanced disk type."
+            "Hyperdisk balanced disk type.",
+            "Hyperdisk balanced high availability disk type."
           ],
           "type": "string"
         },
@@ -3823,14 +3829,16 @@
             "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
             "COMPUTE_ENGINE_DISK_TYPE_SSD",
             "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
-            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "SSD hard disk type.",
             "An alternative to SSD persistent disks that balance performance and cost.",
-            "Hyperdisk balanced disk type."
+            "Hyperdisk balanced disk type.",
+            "Hyperdisk balanced high availability disk type."
           ],
           "type": "string"
         },
@@ -5985,14 +5993,16 @@
             "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
             "COMPUTE_ENGINE_DISK_TYPE_SSD",
             "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
-            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED_HIGH_AVAILABILITY"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "SSD hard disk type.",
             "An alternative to SSD persistent disks that balance performance and cost.",
-            "Hyperdisk balanced disk type."
+            "Hyperdisk balanced disk type.",
+            "Hyperdisk balanced high availability disk type."
           ],
           "type": "string"
         },

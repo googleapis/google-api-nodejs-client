@@ -1535,7 +1535,7 @@
       }
     }
   },
-  "revision": "20260120",
+  "revision": "20260205",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessSettings": {
@@ -3007,6 +3007,11 @@
       "description": "A configuration object that helps configure the data sources for a widget. Available for Google Chat apps and Google Workspace add-ons that extend Google Workspace Studio.",
       "id": "GoogleAppsCardV1DataSourceConfig",
       "properties": {
+        "minCharactersTrigger": {
+          "description": "The minimum number of characters the user must enter before this data provider is triggered (i.e., before it starts returning results).",
+          "format": "int32",
+          "type": "integer"
+        },
         "platformDataSource": {
           "$ref": "GoogleAppsCardV1PlatformDataSource",
           "description": "The data is from a Google Workspace application."
@@ -3600,7 +3605,7 @@
       "id": "GoogleAppsCardV1SelectionInput",
       "properties": {
         "dataSourceConfigs": {
-          "description": "Optional. The data source configs for the selection control. This field provides more fine-grained control over the data source. If specified, the `multi_select_max_selected_items` field, `multi_select_min_query_length` field, `external_data_source` field and `platform_data_source` field are ignored. Available for Google Workspace add-ons that extend Google Workspace Studio. Available for the `Dropdown widget` in Google Chat apps as part of the [Developer Preview Program](https://developers.google.com/workspace/preview). For the `Dropdown` widget in Google Chat apps, only one `DataSourceConfig` is supported. If multiple `DataSourceConfig`s are set, only the first one is used.",
+          "description": "Optional. The data source configs for the selection control. This field provides more fine-grained control over the data source. If specified, the `multi_select_max_selected_items` field, `multi_select_min_query_length` field, `external_data_source` field and `platform_data_source` field are ignored. Available for Google Workspace add-ons that extend Google Workspace Studio. Available for the `Dropdown widget` in Google Chat apps. For the `Dropdown` widget in Google Chat apps, only one `DataSourceConfig` is supported. If multiple `DataSourceConfig`s are set, only the first one is used.",
           "items": {
             "$ref": "GoogleAppsCardV1DataSourceConfig"
           },
@@ -3660,7 +3665,7 @@
             "A set of checkboxes. Users can select one or more checkboxes.",
             "A set of radio buttons. Users can select one radio button.",
             "A set of switches. Users can turn on one or more switches.",
-            "A dropdown menu. Users can select one item from the menu. For Google Chat apps, as part of the [Developer Preview Program](https://developers.google.com/workspace/preview), you can populate items using a dynamic data source and autosuggest items as users type in the menu. For example, users can start typing the name of a Google Chat space and the widget autosuggests the space. To dynamically populate items for a dropdown menu, use one of the following types of data sources: * Google Workspace data: Items are populated using data from Google Workspace, such as Google Workspace users or Google Chat spaces. * External data: Items are populated from an external data source outside of Google Workspace. For examples of how to implement dropdown menus for Chat apps, see [Add a dropdown menu](https://developers.google.com/workspace/chat/design-interactive-card-dialog#dropdown-menu) and [Dynamically populate drop-down menus](https://developers.google.com/workspace/chat/design-interactive-card-dialog#dynamic-dropdown-menu). [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend):",
+            "A dropdown menu. Users can select one item from the menu. For Google Chat apps, you can populate items using a dynamic data source and autosuggest items as users type in the menu. For example, users can start typing the name of a Google Chat space and the widget autosuggests the space. To dynamically populate items for a dropdown menu, use one of the following types of data sources: * Google Workspace data: Items are populated using data from Google Workspace, such as Google Workspace users or Google Chat spaces. * External data: Items are populated from an external data source outside of Google Workspace. For examples of how to implement dropdown menus for Chat apps, see [Add a dropdown menu](https://developers.google.com/workspace/chat/design-interactive-card-dialog#dropdown-menu) and [Dynamically populate drop-down menus](https://developers.google.com/workspace/chat/design-interactive-card-dialog#dynamic-dropdown-menu). [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend):",
             "A menu with a text box. Users can type and select one or more items. For Google Workspace add-ons, you must populate items using a static array of `SelectionItem` objects. For Google Chat apps, you can also populate items using a dynamic data source and autosuggest items as users type in the menu. For example, users can start typing the name of a Google Chat space and the widget autosuggests the space. To dynamically populate items for a multiselect menu, use one of the following types of data sources: * Google Workspace data: Items are populated using data from Google Workspace, such as Google Workspace users or Google Chat spaces. * External data: Items are populated from an external data source outside of Google Workspace. For examples of how to implement multiselect menus for Chat apps, see [Add a multiselect menu](https://developers.google.com/workspace/chat/design-interactive-card-dialog#multiselect-menu). [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend):"
           ],
           "type": "string"

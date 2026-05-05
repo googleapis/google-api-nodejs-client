@@ -1242,7 +1242,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2CustomInfoType {
     /**
-     * Set of detection rules to apply to all findings of this CustomInfoType. Rules are applied in order that they are specified. Not supported for the `surrogate_type` CustomInfoType.
+     * Set of detection rules to apply to all findings of this CustomInfoType. Rules are applied in order that they are specified. Not supported for the `surrogate_type`, `metadata_key_value_expression`, and `prompt` CustomInfoType.
      */
     detectionRules?: Schema$GooglePrivacyDlpV2DetectionRule[];
     /**
@@ -1250,7 +1250,7 @@ export namespace dlp_v2 {
      */
     dictionary?: Schema$GooglePrivacyDlpV2Dictionary;
     /**
-     * If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding to be returned. It still can be used for rules matching.
+     * If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding to be returned. It still can be used for rules matching. Not supported for the `metadata_key_value_expression` and `prompt` CustomInfoType.
      */
     exclusionType?: string | null;
     /**

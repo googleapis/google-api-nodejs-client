@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20260108",
+  "revision": "20260212",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1083,6 +1083,21 @@
             "The highest-valued entries are selected first."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CoordinatedWidget": {
+      "description": "A widget that contains two widget visualizations that are coordinated in display. Currently, we only support the primary widget of TimeSeriesTable with the secondary widget of XyChart.",
+      "id": "CoordinatedWidget",
+      "properties": {
+        "primary": {
+          "$ref": "Widget",
+          "description": "Required. The primary visualization. Must be set. Must contain a data source."
+        },
+        "secondary": {
+          "$ref": "Widget",
+          "description": "Required. The secondary visualization. Must be set. Must contain a data source."
         }
       },
       "type": "object"
@@ -3005,6 +3020,10 @@
         "collapsibleGroup": {
           "$ref": "CollapsibleGroup",
           "description": "A widget that groups the other widgets. All widgets that are within the area spanned by the grouping widget are considered member widgets."
+        },
+        "coordinatedWidget": {
+          "$ref": "CoordinatedWidget",
+          "description": "A widget that contains two widget visualizations that are coordinated in display."
         },
         "errorReportingPanel": {
           "$ref": "ErrorReportingPanel",

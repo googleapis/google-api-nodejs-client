@@ -160,7 +160,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "vmwareengine.projects.locations.list",
@@ -286,7 +286,7 @@
             "datastores": {
               "methods": {
                 "create": {
-                  "description": "Creates a new `Datastore` resource in a given project and location. Datastores are regional resources",
+                  "description": "Creates a new `Datastore` resource in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datastores",
                   "httpMethod": "POST",
                   "id": "vmwareengine.projects.locations.datastores.create",
@@ -435,7 +435,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Modifies a Datastore resource. Only the following fields can be updated: `description`. Only fields specified in `updateMask` are applied.",
+                  "description": "Modifies a Datastore resource. Only fields specified in `updateMask` are applied.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datastores/{datastoresId}",
                   "httpMethod": "PATCH",
                   "id": "vmwareengine.projects.locations.datastores.patch",
@@ -456,7 +456,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the Datastore resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten. Only the following fields can be updated: `description`.",
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the Datastore resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -2030,7 +2030,7 @@
                       ]
                     },
                     "mountDatastore": {
-                      "description": "Mounts a `Datastore` on a cluster resource Datastores are zonal resources",
+                      "description": "Mounts a `Datastore` on a cluster resource",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateClouds/{privateCloudsId}/clusters/{clustersId}:mountDatastore",
                       "httpMethod": "POST",
                       "id": "vmwareengine.projects.locations.privateClouds.clusters.mountDatastore",
@@ -2158,7 +2158,7 @@
                       ]
                     },
                     "unmountDatastore": {
-                      "description": "Mounts a `Datastore` on a cluster resource Datastores are zonal resources",
+                      "description": "Unmounts a `Datastore` on a cluster resource",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateClouds/{privateCloudsId}/clusters/{clustersId}:unmountDatastore",
                       "httpMethod": "POST",
                       "id": "vmwareengine.projects.locations.privateClouds.clusters.unmountDatastore",
@@ -3649,7 +3649,7 @@
       }
     }
   },
-  "revision": "20251113",
+  "revision": "20260217",
   "rootUrl": "https://vmwareengine.googleapis.com/",
   "schemas": {
     "AcceleratePrivateCloudDeletionRequest": {
@@ -4073,7 +4073,7 @@
       "id": "DatastoreMountConfig",
       "properties": {
         "accessMode": {
-          "description": "Optional. NFS is accessed by hosts in read mode Optional. Default value used will be READ_WRITE",
+          "description": "Optional. The access mode of the NFS volume. Optional. Default value used will be READ_WRITE",
           "enum": [
             "ACCESS_MODE_UNSPECIFIED",
             "READ_ONLY",
@@ -4087,7 +4087,7 @@
           "type": "string"
         },
         "datastore": {
-          "description": "Required. The resource name of the datastore to unmount. The datastore requested to be mounted should be in same region/zone as the cluster. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastores/my-datastore`",
+          "description": "Required. The resource name of the datastore to mount. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/datastores/my-datastore`",
           "type": "string"
         },
         "datastoreNetwork": {
@@ -4111,16 +4111,6 @@
           ],
           "type": "string"
         },
-        "securityType": {
-          "description": "Optional. ONLY required when NFS 4.1 version is used",
-          "enum": [
-            "SECURITY_TYPE_UNSPECIFIED"
-          ],
-          "enumDescriptions": [
-            "The default value. This value should never be used."
-          ],
-          "type": "string"
-        },
         "servers": {
           "description": "Output only. Server IP addresses of the NFS volume. For NFS 3, you can only provide a single server IP address or DNS names.",
           "items": {
@@ -4137,12 +4127,12 @@
       "id": "DatastoreNetwork",
       "properties": {
         "connectionCount": {
-          "description": "Optional. The number of connections of the NFS volume. Spported from vsphere 8.0u1",
+          "description": "Optional. connection_count is used to set multiple connections from NFS client on ESXi host to NFS server. A higher number of connections results in better performance on datastores. In MountDatastore API by default max 4 connections are configured. User can set value of connection_count between 1 to 4. Connection_count is supported from vsphere 8.0u1 for earlier version 1 connection count is set on the ESXi hosts.",
           "format": "int32",
           "type": "integer"
         },
         "mtu": {
-          "description": "Optional. The Maximal Transmission Unit (MTU) of the datastore. System sets default MTU size. It prefers the VPC peering MTU, falling back to the VEN MTU if no peering MTU is found. when detected, and falling back to the VEN MTU otherwise.",
+          "description": "Optional. MTU value is set on the VMKernel adapter for the NFS traffic. By default standard 1500 MTU size is set in MountDatastore API which is good for typical setups. However google VPC networks supports jumbo MTU 8896. We recommend to tune this value based on the NFS traffic performance. Performance can be determined using benchmarking I/O tools like fio (Flexible I/O Tester) utility.",
           "format": "int32",
           "type": "integer"
         },
@@ -5555,7 +5545,7 @@
       "properties": {
         "googleFileService": {
           "$ref": "GoogleFileService",
-          "description": "Google service file service configuration"
+          "description": "Google file service configuration"
         },
         "googleVmwareFileService": {
           "$ref": "GoogleVmwareFileService",
@@ -6810,7 +6800,8 @@
             "KMS_VM",
             "WITNESS_VM",
             "NSXT",
-            "CLUSTER"
+            "CLUSTER",
+            "VM_TOOLS"
           ],
           "enumDescriptions": [
             "The default value. This value should never be used.",
@@ -6826,7 +6817,8 @@
             "KMS VM used for vsan encryption",
             "witness VM in case of stretch PC",
             "nsxt",
-            "Cluster is used in case of BM"
+            "Cluster is used in case of BM",
+            "VMware Tools."
           ],
           "readOnly": true,
           "type": "string"

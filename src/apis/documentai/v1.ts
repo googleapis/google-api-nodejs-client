@@ -138,7 +138,7 @@ export namespace documentai_v1 {
   export interface Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRule {
     childAlignmentRule?: Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleChildAlignmentRule;
     /**
-     * Description of the validation rule. This has no use but for documentation
+     * Description of the validation rule. This has no use but for documentation.
      */
     description?: string | null;
     entityAlignmentRule?: Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleEntityAlignmentRule;
@@ -517,7 +517,7 @@ export namespace documentai_v1 {
      */
     description?: string | null;
     /**
-     * Display name to show to users.
+     * Display name to show users.
      */
     displayName?: string | null;
     /**
@@ -554,11 +554,11 @@ export namespace documentai_v1 {
      */
     entityTypeMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3EntityTypeMetadata;
     /**
-     * If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is \>10 or could change frequently use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file.
+     * If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is \>10 or could change frequently, use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file.
      */
     enumValues?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityTypeEnumValues;
     /**
-     * Name of the type. It must be unique within the schema file and cannot be a "Common Type". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility internal infrastructure and tooling can handle any ascii character.) - The `/` is sometimes used to denote a property of a type. For example `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.
+     * Name of the type. It must be unique within the schema file and cannot be a "Common Type". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility, internal infrastructure and tooling can handle any ASCII character.) - The `/` is sometimes used to denote a property of a type. For example `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.
      */
     name?: string | null;
     /**
@@ -625,7 +625,7 @@ export namespace documentai_v1 {
      */
     prefixedNamingOnProperties?: boolean | null;
     /**
-     * If set, we will skip the naming format validation in the schema. So the string values in `DocumentSchema.EntityType.name` and `DocumentSchema.EntityType.Property.name` will not be checked.
+     * If set, this will skip the naming format validation in the schema. So the string values in `DocumentSchema.EntityType.name` and `DocumentSchema.EntityType.Property.name` will not be checked.
      */
     skipNamingValidation?: boolean | null;
   }
@@ -694,7 +694,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3EvaluationMetrics {
     /**
-     * The calculated f1 score.
+     * The calculated F1 score.
      */
     f1Score?: number | null;
     /**
@@ -1137,11 +1137,11 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo {
     /**
-     * Whether finetuning is allowed for this base processor version.
+     * Whether fine tuning is allowed for this base processor version.
      */
     finetuningAllowed?: boolean | null;
     /**
-     * The minimum number of labeled documents in the training dataset required for finetuning.
+     * The minimum number of labeled documents in the training dataset required for fine tuning.
      */
     minTrainLabeledDocuments?: number | null;
   }
@@ -1287,7 +1287,7 @@ export namespace documentai_v1 {
      */
     description?: string | null;
     /**
-     * Display name to show to users.
+     * Display name to show users.
      */
     displayName?: string | null;
     /**
@@ -1718,10 +1718,6 @@ export namespace documentai_v1 {
      */
     satisfiesPzs?: boolean | null;
     /**
-     * Optional. A lightweight indexing source with low latency and high reliability, but lacking advanced features like CMEK and content-based search.
-     */
-    spannerIndexingConfig?: Schema$GoogleCloudDocumentaiV1beta3DatasetSpannerIndexingConfig;
-    /**
      * Required. State of the dataset. Ignored when updating dataset.
      */
     state?: string | null;
@@ -1752,10 +1748,6 @@ export namespace documentai_v1 {
      */
     gcsPrefix?: Schema$GoogleCloudDocumentaiV1beta3GcsPrefix;
   }
-  /**
-   * Configuration specific to spanner-based indexing.
-   */
-  export interface Schema$GoogleCloudDocumentaiV1beta3DatasetSpannerIndexingConfig {}
   /**
    * Configuration specific to an unmanaged dataset.
    */
@@ -1852,7 +1844,7 @@ export namespace documentai_v1 {
      */
     description?: string | null;
     /**
-     * Display name to show to users.
+     * Display name to show users.
      */
     displayName?: string | null;
     /**
@@ -1889,11 +1881,11 @@ export namespace documentai_v1 {
      */
     entityTypeMetadata?: Schema$GoogleCloudDocumentaiV1beta3EntityTypeMetadata;
     /**
-     * If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is \>10 or could change frequently use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file.
+     * If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is \>10 or could change frequently, use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file.
      */
     enumValues?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeEnumValues;
     /**
-     * Name of the type. It must be unique within the schema file and cannot be a "Common Type". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility internal infrastructure and tooling can handle any ascii character.) - The `/` is sometimes used to denote a property of a type. For example `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.
+     * Name of the type. It must be unique within the schema file and cannot be a "Common Type". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility, internal infrastructure and tooling can handle any ASCII character.) - The `/` is sometimes used to denote a property of a type. For example `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.
      */
     name?: string | null;
     /**
@@ -1960,7 +1952,7 @@ export namespace documentai_v1 {
      */
     prefixedNamingOnProperties?: boolean | null;
     /**
-     * If set, we will skip the naming format validation in the schema. So the string values in `DocumentSchema.EntityType.name` and `DocumentSchema.EntityType.Property.name` will not be checked.
+     * If set, this will skip the naming format validation in the schema. So the string values in `DocumentSchema.EntityType.name` and `DocumentSchema.EntityType.Property.name` will not be checked.
      */
     skipNamingValidation?: boolean | null;
   }
@@ -2009,7 +2001,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3EvaluationMetrics {
     /**
-     * The calculated f1 score.
+     * The calculated F1 score.
      */
     f1Score?: number | null;
     /**
@@ -2353,11 +2345,11 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo {
     /**
-     * Whether finetuning is allowed for this base processor version.
+     * Whether fine tuning is allowed for this base processor version.
      */
     finetuningAllowed?: boolean | null;
     /**
-     * The minimum number of labeled documents in the training dataset required for finetuning.
+     * The minimum number of labeled documents in the training dataset required for fine tuning.
      */
     minTrainLabeledDocuments?: number | null;
   }
@@ -2653,7 +2645,7 @@ export namespace documentai_v1 {
      */
     entities?: Schema$GoogleCloudDocumentaiV1DocumentEntity[];
     /**
-     * The entity revision id that `document.entities` field is based on. If this field is set and `entities_revisions` is not empty, the entities in `document.entities` field are the entities in the entity revision with this id and `document.entity_validation_output` field is the `entity_validation_output` field in this entity revision.
+     * The entity revision ID that `document.entities` field is based on. If this field is set and `entities_revisions` is not empty, the entities in `document.entities` field are the entities in the entity revision with this id and `document.entity_validation_output` field is the `entity_validation_output` field in this entity revision.
      */
     entitiesRevisionId?: string | null;
     /**
@@ -2953,7 +2945,7 @@ export namespace documentai_v1 {
      */
     mentionId?: string | null;
     /**
-     * Optional. Text value of the entity e.g. `1600 Amphitheatre Pkwy`.
+     * Optional. Text value of the entity, for example, `1600 Amphitheatre Pkwy`.
      */
     mentionText?: string | null;
     /**
@@ -2961,7 +2953,7 @@ export namespace documentai_v1 {
      */
     method?: string | null;
     /**
-     * Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types.
+     * Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (for example, address) is not supported for certain parsers. This field is also only populated for certain supported document types.
      */
     normalizedValue?: Schema$GoogleCloudDocumentaiV1DocumentEntityNormalizedValue;
     /**
@@ -2985,7 +2977,7 @@ export namespace documentai_v1 {
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1DocumentTextAnchor;
     /**
-     * Required. Entity type from a schema e.g. `Address`.
+     * Required. Entity type from a schema, for example, `Address`.
      */
     type?: string | null;
   }
@@ -3193,7 +3185,7 @@ export namespace documentai_v1 {
      */
     transforms?: Schema$GoogleCloudDocumentaiV1DocumentPageMatrix[];
     /**
-     * A list of detected non-text visual elements e.g. checkbox, signature etc. on the page.
+     * A list of detected non-text visual elements, for example, checkbox, signature etc. on the page.
      */
     visualElements?: Schema$GoogleCloudDocumentaiV1DocumentPageVisualElement[];
   }
@@ -3304,7 +3296,7 @@ export namespace documentai_v1 {
      */
     correctedValueText?: string | null;
     /**
-     * Layout for the FormField name. e.g. `Address`, `Email`, `Grand total`, `Phone number`, etc.
+     * Layout for the FormField name. For example, `Address`, `Email`, `Grand total`, `Phone number`, etc.
      */
     fieldName?: Schema$GoogleCloudDocumentaiV1DocumentPageLayout;
     /**
@@ -3384,7 +3376,7 @@ export namespace documentai_v1 {
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1BoundingPoly;
     /**
-     * Confidence of the current Layout within context of the object this layout is for. e.g. confidence can be for a single token, a table, a visual element, etc. depending on context. Range `[0, 1]`.
+     * Confidence of the current Layout within context of the object this layout is for. For example, confidence can be for a single token, a table, a visual element, etc. depending on context. Range `[0, 1]`.
      */
     confidence?: number | null;
     /**
@@ -3619,7 +3611,7 @@ export namespace documentai_v1 {
     underlined?: boolean | null;
   }
   /**
-   * Detected non-text visual elements e.g. checkbox, signature etc. on the page.
+   * Detected non-text visual elements, for example, checkbox, signature etc. on the page.
    */
   export interface Schema$GoogleCloudDocumentaiV1DocumentPageVisualElement {
     /**
@@ -3711,7 +3703,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1DocumentRevisionHumanReview {
     /**
-     * Human review state. e.g. `requested`, `succeeded`, `rejected`.
+     * Human review state. For example, `requested`, `succeeded`, `rejected`.
      */
     state?: string | null;
     /**
@@ -3737,7 +3729,7 @@ export namespace documentai_v1 {
      */
     description?: string | null;
     /**
-     * Display name to show to users.
+     * Display name to show users.
      */
     displayName?: string | null;
     /**
@@ -3766,11 +3758,11 @@ export namespace documentai_v1 {
      */
     displayName?: string | null;
     /**
-     * If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is \>10 or could change frequently use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file.
+     * If specified, lists all the possible values for this entity. This should not be more than a handful of values. If the number of values is \>10 or could change frequently, use the `EntityType.value_ontology` field and specify a list of all possible values in a value ontology file.
      */
     enumValues?: Schema$GoogleCloudDocumentaiV1DocumentSchemaEntityTypeEnumValues;
     /**
-     * Name of the type. It must be unique within the schema file and cannot be a "Common Type". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility internal infrastructure and tooling can handle any ascii character.) - The `/` is sometimes used to denote a property of a type. For example `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.
+     * Name of the type. It must be unique within the schema file and cannot be a "Common Type". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility, internal infrastructure and tooling can handle any ASCII character.) - The `/` is sometimes used to denote a property of a type. For example `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.
      */
     name?: string | null;
     /**
@@ -3829,7 +3821,7 @@ export namespace documentai_v1 {
      */
     prefixedNamingOnProperties?: boolean | null;
     /**
-     * If set, we will skip the naming format validation in the schema. So the string values in `DocumentSchema.EntityType.name` and `DocumentSchema.EntityType.Property.name` will not be checked.
+     * If set, this will skip the naming format validation in the schema. So the string values in `DocumentSchema.EntityType.name` and `DocumentSchema.EntityType.Property.name` will not be checked.
      */
     skipNamingValidation?: boolean | null;
   }
@@ -3837,6 +3829,10 @@ export namespace documentai_v1 {
    * For a large document, sharding may be performed to produce several document shards. Each document shard contains this field to detail which shard it is.
    */
   export interface Schema$GoogleCloudDocumentaiV1DocumentShardInfo {
+    /**
+     * The index of the first page in Document.pages in the overall document global pages. Available for document shards created by the document splitter.
+     */
+    pageOffset?: number | null;
     /**
      * Total number of shards.
      */
@@ -4023,6 +4019,10 @@ export namespace documentai_v1 {
      * The resource name of the evaluation. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processor_version\}/evaluations/{evaluation\}`
      */
     name?: string | null;
+    /**
+     * Contains all revisions of the evaluation, excluding the latest one.
+     */
+    revisions?: Schema$GoogleCloudDocumentaiV1EvaluationEvaluationRevision[];
   }
   /**
    * Evaluations metrics, at a specific confidence level.
@@ -4059,11 +4059,36 @@ export namespace documentai_v1 {
     invalidDocumentsCount?: number | null;
   }
   /**
+   * A revision of the evaluation.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1EvaluationEvaluationRevision {
+    /**
+     * Output only. Metrics for all the entities in aggregate.
+     */
+    allEntitiesMetrics?: Schema$GoogleCloudDocumentaiV1EvaluationMultiConfidenceMetrics;
+    /**
+     * Output only. Counters for the documents used in the evaluation.
+     */
+    documentCounters?: Schema$GoogleCloudDocumentaiV1EvaluationCounters;
+    /**
+     * Output only. Metrics across confidence levels, for different entities.
+     */
+    entityMetrics?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDocumentaiV1EvaluationMultiConfidenceMetrics;
+    } | null;
+    /**
+     * Output only. The revision ID of the evaluation.
+     */
+    revisionId?: string | null;
+  }
+  /**
    * Evaluation metrics, either in aggregate or about a specific entity.
    */
   export interface Schema$GoogleCloudDocumentaiV1EvaluationMetrics {
     /**
-     * The calculated f1 score.
+     * The calculated F1 score.
      */
     f1Score?: number | null;
     /**
@@ -4360,7 +4385,7 @@ export namespace documentai_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. The GCP labels for the Schema.
+     * Optional. The {{gcp_name_short\}\} labels for the Schema.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -4737,11 +4762,11 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo {
     /**
-     * Whether finetuning is allowed for this base processor version.
+     * Whether fine tuning is allowed for this base processor version.
      */
     finetuningAllowed?: boolean | null;
     /**
-     * The minimum number of labeled documents in the training dataset required for finetuning.
+     * The minimum number of labeled documents in the training dataset required for fine tuning.
      */
     minTrainLabeledDocuments?: number | null;
   }
@@ -4911,7 +4936,7 @@ export namespace documentai_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. The GCP labels for the SchemaVersion.
+     * Optional. The {{gcp_name_short\}\} labels for the SchemaVersion.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -5813,7 +5838,7 @@ export namespace documentai_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -9728,7 +9753,8 @@ export namespace documentai_v1 {
      *   //   "entityMetrics": {},
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "revisions": []
      *   // }
      * }
      *
@@ -10841,7 +10867,7 @@ export namespace documentai_v1 {
      *   const res = await documentai.projects.locations.schemas.list({
      *     // Optional. The maximum number of schema groups to return. If unspecified, at most `10` Schema will be returned. The maximum value is `20`. Values above `20` will be coerced to `20`.
      *     pageSize: 'placeholder-value',
-     *     // Optional. We will return the schema groups sorted by creation time. The page token will point to the next Schema.
+     *     // Optional. Returns the schema groups sorted by creation time. The page token will point to the next Schema.
      *     pageToken: 'placeholder-value',
      *     // Required. Format: `projects/{project\}/locations/{location\}`
      *     parent: 'projects/my-project/locations/my-location',
@@ -10993,7 +11019,7 @@ export namespace documentai_v1 {
      *   const res = await documentai.projects.locations.schemas.patch({
      *     // Identifier. The resource name of the Schema. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
      *     name: 'projects/my-project/locations/my-location/schemas/my-schema',
-     *     // Optional. The update mask to apply to the resource. **Note:** Only the following fields can be updated: - display_name. - labels.
+     *     // Optional. The update mask to apply to the resource. **Note:** Only the following fields can be updated: - `display_name` - `labels`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -11156,7 +11182,7 @@ export namespace documentai_v1 {
      */
     pageSize?: number;
     /**
-     * Optional. We will return the schema groups sorted by creation time. The page token will point to the next Schema.
+     * Optional. Returns the schema groups sorted by creation time. The page token will point to the next Schema.
      */
     pageToken?: string;
     /**
@@ -11170,7 +11196,7 @@ export namespace documentai_v1 {
      */
     name?: string;
     /**
-     * Optional. The update mask to apply to the resource. **Note:** Only the following fields can be updated: - display_name. - labels.
+     * Optional. The update mask to apply to the resource. **Note:** Only the following fields can be updated: - `display_name` - `labels`
      */
     updateMask?: string;
 
@@ -11841,7 +11867,7 @@ export namespace documentai_v1 {
      *   const res = await documentai.projects.locations.schemas.schemaVersions.list({
      *     // Optional. The maximum number of SchemaVersion to return. If unspecified, at most `10` SchemaVersion will be returned. The maximum value is `20`. Values above `20` will be coerced to `20`.
      *     pageSize: 'placeholder-value',
-     *     // Optional. We will return the SchemaVersion sorted by creation time. The page token will point to the next SchemaVersion.
+     *     // Optional. Returns the SchemaVersion sorted by creation time. The page token will point to the next SchemaVersion.
      *     pageToken: 'placeholder-value',
      *     // Required. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}`
      *     parent: 'projects/my-project/locations/my-location/schemas/my-schema',
@@ -11994,7 +12020,7 @@ export namespace documentai_v1 {
      *   const res = await documentai.projects.locations.schemas.schemaVersions.patch({
      *     // Identifier. The resource name of the SchemaVersion. Format: `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}`
      *     name: 'projects/my-project/locations/my-location/schemas/my-schema/schemaVersions/my-schemaVersion',
-     *     // Optional. The update mask to apply to the resource. **Note:** Only the following fields can be updated: - display_name. - labels.
+     *     // Optional. The update mask to apply to the resource. **Note:** Only the following fields can be updated: - `display_name` - `labels`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -12165,7 +12191,7 @@ export namespace documentai_v1 {
      */
     pageSize?: number;
     /**
-     * Optional. We will return the SchemaVersion sorted by creation time. The page token will point to the next SchemaVersion.
+     * Optional. Returns the SchemaVersion sorted by creation time. The page token will point to the next SchemaVersion.
      */
     pageToken?: string;
     /**
@@ -12179,7 +12205,7 @@ export namespace documentai_v1 {
      */
     name?: string;
     /**
-     * Optional. The update mask to apply to the resource. **Note:** Only the following fields can be updated: - display_name. - labels.
+     * Optional. The update mask to apply to the resource. **Note:** Only the following fields can be updated: - `display_name` - `labels`
      */
     updateMask?: string;
 

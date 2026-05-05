@@ -2108,6 +2108,10 @@ export namespace networksecurity_v1 {
      * Output only. Last resource update timestamp.
      */
     updateTime?: string | null;
+    /**
+     * The URL filtering configuration for the SecurityProfile.
+     */
+    urlFilteringProfile?: Schema$UrlFilteringProfile;
   }
   /**
    * SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes.
@@ -2153,6 +2157,10 @@ export namespace networksecurity_v1 {
      * Output only. Last resource update timestamp.
      */
     updateTime?: string | null;
+    /**
+     * Optional. Reference to a SecurityProfile with the UrlFiltering configuration.
+     */
+    urlFilteringProfile?: string | null;
   }
   /**
    * ServerTlsPolicy is a resource that specifies how a server should authenticate incoming requests. This resource itself does not affect configuration unless it is attached to a target HTTPS proxy or endpoint config selector resource. ServerTlsPolicy in the form accepted by Application Load Balancers can be attached only to TargetHttpsProxy with an `EXTERNAL`, `EXTERNAL_MANAGED` or `INTERNAL_MANAGED` load balancing scheme. Traffic Director compatible ServerTlsPolicies can be attached to EndpointPolicy and TargetHttpsProxy with Traffic Director `INTERNAL_SELF_MANAGED` load balancing scheme.
@@ -2312,6 +2320,32 @@ export namespace networksecurity_v1 {
      * Output only. The timestamp when the resource was updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * A URL filter defines an action to take for some URL match.
+   */
+  export interface Schema$UrlFilter {
+    /**
+     * Required. The action taken when this filter is applied.
+     */
+    filteringAction?: string | null;
+    /**
+     * Required. The priority of this filter within the URL Filtering Profile. Lower integers indicate higher priorities. The priority of a filter must be unique within a URL Filtering Profile.
+     */
+    priority?: number | null;
+    /**
+     * Required. The list of strings that a URL must match with for this filter to be applied.
+     */
+    urls?: string[] | null;
+  }
+  /**
+   * UrlFilteringProfile defines filters based on URL.
+   */
+  export interface Schema$UrlFilteringProfile {
+    /**
+     * Optional. The list of filtering configs in which each config defines an action to take for some URL match.
+     */
+    urlFilters?: Schema$UrlFilter[];
   }
   /**
    * UrlList proto helps users to set reusable, independently manageable lists of hosts, host patterns, URLs, URL patterns.
@@ -3906,7 +3940,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Creates a new FirewallEndpoint in a given project and location.
+     * Creates a new FirewallEndpoint in a given organization and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -4074,7 +4108,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Deletes a single Endpoint.
+     * Deletes a single org Endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -4217,7 +4251,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Gets details of a single Endpoint.
+     * Gets details of a single org Endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -4366,7 +4400,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Lists FirewallEndpoints in a given project and location.
+     * Lists FirewallEndpoints in a given organization and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -4522,7 +4556,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Update a single Endpoint.
+     * Update a single org Endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -5436,7 +5470,8 @@ export namespace networksecurity_v1 {
      *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "threatPreventionProfile": "my_threatPreventionProfile",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "urlFilteringProfile": "my_urlFilteringProfile"
      *         // }
      *       },
      *     });
@@ -5740,7 +5775,8 @@ export namespace networksecurity_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "threatPreventionProfile": "my_threatPreventionProfile",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "urlFilteringProfile": "my_urlFilteringProfile"
      *   // }
      * }
      *
@@ -6045,7 +6081,8 @@ export namespace networksecurity_v1 {
      *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "threatPreventionProfile": "my_threatPreventionProfile",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "urlFilteringProfile": "my_urlFilteringProfile"
      *         // }
      *       },
      *     });
@@ -6273,7 +6310,8 @@ export namespace networksecurity_v1 {
      *         //   "name": "my_name",
      *         //   "threatPreventionProfile": {},
      *         //   "type": "my_type",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "urlFilteringProfile": {}
      *         // }
      *       },
      *     });
@@ -6577,7 +6615,8 @@ export namespace networksecurity_v1 {
      *   //   "name": "my_name",
      *   //   "threatPreventionProfile": {},
      *   //   "type": "my_type",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "urlFilteringProfile": {}
      *   // }
      * }
      *
@@ -6876,7 +6915,8 @@ export namespace networksecurity_v1 {
      *         //   "name": "my_name",
      *         //   "threatPreventionProfile": {},
      *         //   "type": "my_type",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "urlFilteringProfile": {}
      *         // }
      *       },
      *     });
@@ -16113,7 +16153,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Deletes a single Endpoint.
+     * Deletes a single project Endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -16257,7 +16297,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Gets details of a single Endpoint.
+     * Gets details of a single project Endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -16559,7 +16599,7 @@ export namespace networksecurity_v1 {
     }
 
     /**
-     * Update a single Endpoint.
+     * Update a single project Endpoint.
      * @example
      * ```js
      * // Before running the sample:

@@ -411,7 +411,7 @@ export namespace drive_v3 {
      */
     approvalId?: string | null;
     /**
-     * Output only. The time time the approval was completed.
+     * Output only. The time the approval was completed.
      */
     completeTime?: string | null;
     /**

@@ -125,6 +125,105 @@ export namespace workloadmanager_v1 {
   }
 
   /**
+   * Active directory details
+   */
+  export interface Schema$ActiveDirectory {
+    /**
+     * Optional. DNS IP address
+     */
+    dnsAddress?: string | null;
+    /**
+     * Optional. human readable form of a domain such as “google.com”.
+     */
+    domain?: string | null;
+    /**
+     * Optional. domain username
+     */
+    domainUsername?: string | null;
+    /**
+     * Required. secret_manager_secret
+     */
+    secretManagerSecret?: string | null;
+    /**
+     * Required. active directory type
+     */
+    type?: string | null;
+  }
+  /**
+   * The Actuation object represents the bootstrap state and output results of deployed infrastructure and software.
+   */
+  export interface Schema$Actuation {
+    /**
+     * Output only. [Output only] Actuation output
+     */
+    actuationOutput?: Schema$ActuationOutput;
+    /**
+     * Output only. [Output only] Deployment output
+     */
+    deploymentOutput?: Schema$DeploymentOutput[];
+    /**
+     * Output only. [Output only] End time stamp
+     */
+    endTime?: string | null;
+    /**
+     * The name of actuation resource. The format is projects/{project\}/locations/{location\}/deployments/{deployment\}/actuations/{actuation\}
+     */
+    name?: string | null;
+    /**
+     * Output only. [Output only] Start time stamp
+     */
+    startTime?: string | null;
+    /**
+     * Output only. [Output only] Actuation state
+     */
+    state?: string | null;
+  }
+  /**
+   * Message for output of Actuation
+   */
+  export interface Schema$ActuationOutput {
+    /**
+     * A link to gcs file that store build logs
+     */
+    actuateLogs?: string | null;
+    /**
+     * Output only. error message return from ansible.
+     */
+    ansibleError?: string | null;
+    /**
+     * Output only. failed task name return from ansible.
+     */
+    ansibleFailedTask?: string[] | null;
+    /**
+     * reference to Blueprint Controller deployment and revision resource
+     */
+    blueprintId?: string | null;
+    /**
+     * Cloud Build instance UUID associated with this revision, without any suffix or prefix
+     */
+    cloudbuildId?: string | null;
+    /**
+     * Output only. Code describing any errors that may have occurred. If not specified, there is no error in actuation.
+     */
+    errorCode?: string | null;
+    /**
+     * A link to actuation cloud build log.
+     */
+    errorLogs?: string | null;
+    /**
+     * Output only. whether the error message is user facing. If true, the error message will be shown in the UI.
+     */
+    hasUserFacingErrorMsg?: boolean | null;
+    /**
+     * Output only. error message return from terraform.
+     */
+    terraformError?: string | null;
+    /**
+     * reference to terraform template used
+     */
+    terraformTemplate?: string | null;
+  }
+  /**
    * * An AgentCommand specifies a one-time executable program for the agent to run.
    */
   export interface Schema$AgentCommand {
@@ -300,6 +399,75 @@ export namespace workloadmanager_v1 {
     unspecifiedStateMessage?: string | null;
   }
   /**
+   * Message for sap instant details
+   */
+  export interface Schema$AppDetails {
+    /**
+     * Optional. instance id for app
+     */
+    appInstanceId?: string | null;
+    /**
+     * Application service account - let custoemrs bring their own SA for application
+     */
+    appServiceAccount?: string | null;
+    /**
+     * Optional. Customized vm names
+     */
+    appVmNames?: string[] | null;
+    /**
+     * Required. image for ascs server
+     */
+    ascsImage?: string | null;
+    /**
+     * Optional. instance id for ascs
+     */
+    ascsInstanceId?: string | null;
+    /**
+     * Required. ascs_machine_type
+     */
+    ascsMachineType?: string | null;
+    /**
+     * ASCS service account - let custoemrs bring their own SA for ASCS
+     */
+    ascsServiceAccount?: string | null;
+    /**
+     * Optional. ASCS vm name
+     */
+    ascsVm?: string | null;
+    /**
+     * Optional. instance id for ers
+     */
+    ersInstanceId?: string | null;
+    /**
+     * Optional. ERS vm name
+     */
+    ersVm?: string | null;
+    /**
+     * Required. image for app server and ascs server
+     */
+    image?: string | null;
+    /**
+     * Required. machine type
+     */
+    machineType?: string | null;
+    /**
+     * Required. secret_manager_secret
+     */
+    secretManagerSecret?: string | null;
+    /**
+     * Optional. Storage location
+     */
+    sharedStorage?: string | null;
+    /**
+     * Required. The SAP SID is a three-digit server-specific unique identification code.
+     */
+    sid?: string | null;
+    /**
+     * Required. vms_multiplier
+     */
+    vmsMultiplier?: number | null;
+  }
+  /**
    * Backup properties.
    */
   export interface Schema$BackupProperties {
@@ -385,6 +553,96 @@ export namespace workloadmanager_v1 {
     subComponentsHealth?: Schema$ComponentHealth[];
   }
   /**
+   * Database details
+   */
+  export interface Schema$Database {
+    /**
+     * Required. disk_type
+     */
+    diskType?: string | null;
+    /**
+     * Optional. only useful for Linux High Availability setup
+     */
+    floatingIpAddress?: string | null;
+    /**
+     * Required. machine type
+     */
+    machineType?: string | null;
+    /**
+     * Optional. the name of a secondary-sole-tenant node/node group
+     */
+    secondarySoleTenantNode?: string | null;
+    /**
+     * Optional. the type of a secondary-sole-tenant node/node group e.g. compute.googleapis.com/node-name
+     */
+    secondarySoleTenantNodeType?: string | null;
+    /**
+     * Required. secret_manager_secret
+     */
+    secretManagerSecret?: string | null;
+    /**
+     * Required. whether simultaneous multithreading is enabled or not
+     */
+    smt?: boolean | null;
+    /**
+     * Optional. the name of a primary sole-tenant node/node group
+     */
+    soleTenantNode?: string | null;
+    /**
+     * Optional. the type of a primary sole-tenant node/node group e.g. compute.googleapis.com/node-name
+     */
+    soleTenantNodeType?: string | null;
+    /**
+     * Required. whether to have TempDB on local SSD
+     */
+    tempdbOnSsd?: boolean | null;
+    /**
+     * Required. SHARED or SOLE_TENANT
+     */
+    tenancyModel?: string | null;
+  }
+  /**
+   * Message for sap instant details
+   */
+  export interface Schema$DatabaseDetails {
+    /**
+     * Database service account - let custoemrs bring their own SA for database
+     */
+    databaseServiceAccount?: string | null;
+    /**
+     * Required. disk_type
+     */
+    diskType?: string | null;
+    /**
+     * Required. image for database server
+     */
+    image?: string | null;
+    /**
+     * Optional. instance id
+     */
+    instanceId?: string | null;
+    /**
+     * Required. machine type
+     */
+    machineType?: string | null;
+    /**
+     * Optional. primary db vm name
+     */
+    primaryDbVm?: string | null;
+    /**
+     * Optional. secondary db vm name
+     */
+    secondaryDbVm?: string | null;
+    /**
+     * Required. secret_manager_secret
+     */
+    secretManagerSecret?: string | null;
+    /**
+     * Required. The SID is a three-digit server-specific unique identification code.
+     */
+    sid?: string | null;
+  }
+  /**
    * Database Properties.
    */
   export interface Schema$DatabaseProperties {
@@ -396,6 +654,68 @@ export namespace workloadmanager_v1 {
      * Output only. Type of the database. `HANA`, `DB2`, etc.
      */
     databaseType?: string | null;
+  }
+  /**
+   * The Deployment object represents user intent for deploying a specific type of workload.
+   */
+  export interface Schema$Deployment {
+    /**
+     * Output only. [Output only] Create time stamp
+     */
+    createTime?: string | null;
+    /**
+     * Description of the Deployment
+     */
+    description?: string | null;
+    /**
+     * The name of deployment resource. The format will be 'projects/{project_id\}/locations/{location_id\}/deployments/{deployment_id\}'
+     */
+    name?: string | null;
+    /**
+     * SAP system workload input
+     */
+    sapSystemS4Config?: Schema$SapSystemS4Config;
+    /**
+     * User-specified Service Account (SA) credentials to be used for cloud build Format: `projects/{projectID\}/serviceAccounts/{serviceAccount\}` The default Cloud Build SA will be used initially if this field is not set during deployment creation
+     */
+    serviceAccount?: string | null;
+    /**
+     * MS SQL workload input
+     */
+    sqlServerWorkload?: Schema$SqlServerWorkload;
+    /**
+     * Output only. Current state of the deployment.
+     */
+    state?: string | null;
+    /**
+     * Optional. terraform_variables represents all the Terraform variables for the deployment workload. The key is the name of the Terraform variable, and the value is the TerraformVariable. For example: { "project_id": { "input_value": { "string_value": "my-project-id" \} \}, "zone": { "input_value": { "string_value": "us-central1-a" \} \} \}
+     */
+    terraformVariables?: {[key: string]: Schema$TerraformVariable} | null;
+    /**
+     * Output only. [Output only] Update time stamp
+     */
+    updateTime?: string | null;
+    /**
+     * Optional. The user-specified Cloud Build worker pool resource in which the Cloud Build job will execute. Format: `projects/{project\}/locations/{location\}/workerPools/{workerPoolId\}`. If this field is unspecified, the default Cloud Build worker pool will be used.
+     */
+    workerPool?: string | null;
+    /**
+     * Optional. Workload type of the deployment
+     */
+    workloadType?: string | null;
+  }
+  /**
+   * Message for output of deployment resource
+   */
+  export interface Schema$DeploymentOutput {
+    /**
+     * name of the resource
+     */
+    name?: string | null;
+    /**
+     * type of the resource
+     */
+    type?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -721,6 +1041,40 @@ export namespace workloadmanager_v1 {
     invalidRules?: Schema$InvalidRule[];
   }
   /**
+   * The response object from `ListActuations`.
+   */
+  export interface Schema$ListActuationsResponse {
+    /**
+     * The list of Actuation
+     */
+    actuations?: Schema$Actuation[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unordered list. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Message for response to listing Deployments
+   */
+  export interface Schema$ListDeploymentsResponse {
+    /**
+     * The list of Deployment
+     */
+    deployments?: Schema$Deployment[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unordered list. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * List discovered profile Response returns discovered profiles from agents
    */
   export interface Schema$ListDiscoveredProfilesResponse {
@@ -866,6 +1220,56 @@ export namespace workloadmanager_v1 {
     name?: string | null;
   }
   /**
+   * Message for sap instant details
+   */
+  export interface Schema$LocationDetails {
+    /**
+     * Optional. create firewall, if true, create firewall for the deployment. This field provides an option to not always create firewall for the deployment.
+     */
+    createCommsFirewall?: boolean | null;
+    /**
+     * Optional. network tags
+     */
+    customTags?: string[] | null;
+    /**
+     * Optional. when user skip DNS configuration from UI, deployment_dns_enabled=false otherwise deployment_dns_enabled=true
+     */
+    deploymentDnsEnabled?: boolean | null;
+    /**
+     * Optional. dns zone name
+     */
+    dnsZone?: string | null;
+    /**
+     * Optional. dns_zone_name_suffix
+     */
+    dnsZoneNameSuffix?: string | null;
+    internetAccess?: string | null;
+    /**
+     * Optional. network project
+     */
+    networkProject?: string | null;
+    /**
+     * Required. region_name
+     */
+    regionName?: string | null;
+    /**
+     * Required. subnet_name
+     */
+    subnetName?: string | null;
+    /**
+     * Required. vpc_name
+     */
+    vpcName?: string | null;
+    /**
+     * Required. zone1_name
+     */
+    zone1Name?: string | null;
+    /**
+     * Optional. zone2_name
+     */
+    zone2Name?: string | null;
+  }
+  /**
    * Message for additional information generated by the execution
    */
   export interface Schema$Notice {
@@ -944,6 +1348,35 @@ export namespace workloadmanager_v1 {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * pacemaker configuration
+   */
+  export interface Schema$Pacemaker {
+    /**
+     * Required. bucket location for node certificates
+     */
+    bucketNameNodeCertificates?: string | null;
+    /**
+     * Required. pacemaker cluster name
+     */
+    pacemakerCluster?: string | null;
+    /**
+     * Required. pacemaker cluster secret name
+     */
+    pacemakerClusterSecret?: string | null;
+    /**
+     * Required. pacemaker cluster username
+     */
+    pacemakerClusterUsername?: string | null;
+    /**
+     * Required. sql pacemaker secret name
+     */
+    sqlPacemakerSecret?: string | null;
+    /**
+     * Required. sql pacemaker username
+     */
+    sqlPacemakerUsername?: string | null;
   }
   /**
    * Contains the details of a product.
@@ -1527,6 +1960,60 @@ export namespace workloadmanager_v1 {
     numbers?: string[] | null;
   }
   /**
+   * Message for sap system workload
+   */
+  export interface Schema$SapSystemS4Config {
+    allowStoppingForUpdate?: boolean | null;
+    /**
+     * Ansible runner service account - let custoemrs bring their own SA for Ansible runner
+     */
+    ansibleRunnerServiceAccount?: string | null;
+    /**
+     * instance details
+     */
+    app?: Schema$AppDetails;
+    /**
+     * database details
+     */
+    database?: Schema$DatabaseDetails;
+    /**
+     * Required. two model non-HA and HA supported
+     */
+    deploymentModel?: string | null;
+    /**
+     * Required. deployment environment
+     */
+    environmentType?: string | null;
+    /**
+     * the project that infrastructure deployed, current only support the same project where the deployment resource exist.
+     */
+    gcpProjectId?: string | null;
+    /**
+     * database details
+     */
+    location?: Schema$LocationDetails;
+    /**
+     * Required. media_bucket_name
+     */
+    mediaBucketName?: string | null;
+    /**
+     * Optional. sap_boot_disk_image
+     */
+    sapBootDiskImage?: string | null;
+    /**
+     * Required. support scale up and scale out
+     */
+    scalingMethod?: string | null;
+    /**
+     * Required. sap hana version
+     */
+    version?: string | null;
+    /**
+     * vm_prefix
+     */
+    vmPrefix?: string | null;
+  }
+  /**
    * A presentation of SAP workload insight. The schema of SAP workloads validation related data.
    */
   export interface Schema$SapValidation {
@@ -1629,6 +2116,47 @@ export namespace workloadmanager_v1 {
     timeoutSeconds?: number | null;
   }
   /**
+   * Location and networking details for configuring SQL server workload
+   */
+  export interface Schema$SqlLocationDetails {
+    /**
+     * Optional. create a new DNS Zone when the field is empty, Only show for `Using an existing DNS` List of existing DNS Zones tf variable name: existing_dns_zone_name
+     */
+    dnsZone?: string | null;
+    /**
+     * Required. the project that infrastructure deployed, currently only supports the same project where the deployment resource exists.
+     */
+    gcpProjectId?: string | null;
+    /**
+     * Required. Internet Access
+     */
+    internetAccess?: string | null;
+    /**
+     * Required. network name
+     */
+    network?: string | null;
+    /**
+     * Required. primary zone
+     */
+    primaryZone?: string | null;
+    /**
+     * Required. region name
+     */
+    region?: string | null;
+    /**
+     * Optional. secondary zone can't be same as primary_zone and is only for High Availability deployment mode
+     */
+    secondaryZone?: string | null;
+    /**
+     * Required. subnetwork name
+     */
+    subnetwork?: string | null;
+    /**
+     * Optional. teriary zone can't be same as primary_zone and secondary zone, and it is only for High Availability deployment mode
+     */
+    tertiaryZone?: string | null;
+  }
+  /**
    * A presentation of SQLServer workload insight. The schema of SqlServer workloads validation related data.
    */
   export interface Schema$SqlserverValidation {
@@ -1672,6 +2200,79 @@ export namespace workloadmanager_v1 {
     type?: string | null;
   }
   /**
+   * Message for MS SQL workload
+   */
+  export interface Schema$SqlServerWorkload {
+    /**
+     * Required. active directory details
+     */
+    activeDirectory?: Schema$ActiveDirectory;
+    /**
+     * Compute engine service account - let customers bring their own SA for Compute engine
+     */
+    computeEngineServiceAccount?: string | null;
+    /**
+     * Required. database details
+     */
+    database?: Schema$Database;
+    /**
+     * Required. HIGH_AVAILABILITY or SINGLE_INSTANCE
+     */
+    deploymentModel?: string | null;
+    /**
+     * Required. deployment environment
+     */
+    environmentType?: string | null;
+    /**
+     * Optional. SHARED_DISK or S2D
+     */
+    fciType?: string | null;
+    /**
+     * Optional. AOAG or FCI, it is only needed for High Availability deployment mode
+     */
+    haType?: string | null;
+    /**
+     * Required. SQL licensing type
+     */
+    isSqlPayg?: boolean | null;
+    /**
+     * Required. location details
+     */
+    location?: Schema$SqlLocationDetails;
+    /**
+     * Required. name of the media storing SQL server installation files
+     */
+    mediaBucket?: string | null;
+    /**
+     * Required. type of the operating system the SQL server is going to run on top of
+     */
+    operatingSystemType?: string | null;
+    /**
+     * Required. the image of the operating system
+     */
+    osImage?: string | null;
+    /**
+     * Optional. OS image type, it's used to create boot disks for VM instances When either Windows licensing type or SQL licensing type is BYOL, this option is disabled and default to custom image
+     */
+    osImageType?: string | null;
+    /**
+     * Optional. pacemaker configuration, only applicable for Linux HA deployments
+     */
+    pacemaker?: Schema$Pacemaker;
+    /**
+     * Optional. SQL Server Edition type, only applicable when Operating System is Linux
+     */
+    sqlServerEdition?: string | null;
+    /**
+     * Optional. 2017 or 2019 or 2022
+     */
+    sqlServerVersion?: string | null;
+    /**
+     * Required. should be unique in the project
+     */
+    vmPrefix?: string | null;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1704,6 +2305,15 @@ export namespace workloadmanager_v1 {
      * Output only. Number of new fixes compared to the previous execution
      */
     newFixes?: string | null;
+  }
+  /**
+   * In order to align with Infra Manager dependency, we create the same TerraformVariable message to represent a Terraform input variable, by following Infra Manager's API documentation: https://cloud.google.com/infrastructure-manager/docs/reference/rest A Terraform input variable.
+   */
+  export interface Schema$TerraformVariable {
+    /**
+     * Optional. Input variable value.
+     */
+    inputValue?: any | null;
   }
   /**
    * The schema of torso workload validation data.
@@ -1851,6 +2461,7 @@ export namespace workloadmanager_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    deployments: Resource$Projects$Locations$Deployments;
     discoveredprofiles: Resource$Projects$Locations$Discoveredprofiles;
     evaluations: Resource$Projects$Locations$Evaluations;
     insights: Resource$Projects$Locations$Insights;
@@ -1858,6 +2469,9 @@ export namespace workloadmanager_v1 {
     rules: Resource$Projects$Locations$Rules;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.deployments = new Resource$Projects$Locations$Deployments(
+        this.context
+      );
       this.discoveredprofiles =
         new Resource$Projects$Locations$Discoveredprofiles(this.context);
       this.evaluations = new Resource$Projects$Locations$Evaluations(
@@ -2010,7 +2624,7 @@ export namespace workloadmanager_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -2186,6 +2800,1328 @@ export namespace workloadmanager_v1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Deployments {
+    context: APIRequestContext;
+    actuations: Resource$Projects$Locations$Deployments$Actuations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.actuations = new Resource$Projects$Locations$Deployments$Actuations(
+        this.context
+      );
+    }
+
+    /**
+     * Creates a new Deployment in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.deployments.create({
+     *     // Required. Id of the deployment
+     *     deploymentId: 'placeholder-value',
+     *     // Required. The resource prefix of the Deployment using the form: `projects/{project_id\}/locations/{location_id\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "name": "my_name",
+     *       //   "sapSystemS4Config": {},
+     *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "sqlServerWorkload": {},
+     *       //   "state": "my_state",
+     *       //   "terraformVariables": {},
+     *       //   "updateTime": "my_updateTime",
+     *       //   "workerPool": "my_workerPool",
+     *       //   "workloadType": "my_workloadType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Deployments$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Deployments$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Deployments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Deployments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Deployments$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deployments$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deployments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Deployments$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workloadmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/deployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single Deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.deployments.delete({
+     *     // Optional. If set to true, any actuation will also be deleted. Followed the best practice from https://aip.dev/135#cascading-delete
+     *     force: 'placeholder-value',
+     *     // Required. Name of the resource
+     *     name: 'projects/my-project/locations/my-location/deployments/my-deployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Deployments$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Deployments$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Deployments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Deployments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Deployments$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deployments$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deployments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Deployments$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workloadmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single Deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.deployments.get({
+     *     // Required. Name of the resource. The format will be 'projects/{project_id\}/locations/{location_id\}/deployments/{deployment_id\}'
+     *     name: 'projects/my-project/locations/my-location/deployments/my-deployment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "sapSystemS4Config": {},
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "sqlServerWorkload": {},
+     *   //   "state": "my_state",
+     *   //   "terraformVariables": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "workerPool": "my_workerPool",
+     *   //   "workloadType": "my_workloadType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Deployments$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Deployments$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Deployment>>;
+    get(
+      params: Params$Resource$Projects$Locations$Deployments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Deployments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Deployment>,
+      callback: BodyResponseCallback<Schema$Deployment>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Deployments$Get,
+      callback: BodyResponseCallback<Schema$Deployment>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Deployment>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deployments$Get
+        | BodyResponseCallback<Schema$Deployment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Deployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Deployment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Deployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deployments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Deployments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workloadmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Deployment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Deployment>(parameters);
+      }
+    }
+
+    /**
+     * Lists Deployments in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await workloadmanager.projects.locations.deployments.list({
+     *     // Optional. Filter resource follow https://google.aip.dev/160
+     *     filter: 'placeholder-value',
+     *     // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Requested page size. Server may return fewer items than requested. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource prefix of the Deployment using the form: `projects/{project_id\}/locations/{location_id\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployments": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Deployments$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Deployments$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDeploymentsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Deployments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Deployments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDeploymentsResponse>,
+      callback: BodyResponseCallback<Schema$ListDeploymentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Deployments$List,
+      callback: BodyResponseCallback<Schema$ListDeploymentsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListDeploymentsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deployments$List
+        | BodyResponseCallback<Schema$ListDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDeploymentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDeploymentsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deployments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Deployments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workloadmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/deployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDeploymentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDeploymentsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Deployments$Create extends StandardParameters {
+    /**
+     * Required. Id of the deployment
+     */
+    deploymentId?: string;
+    /**
+     * Required. The resource prefix of the Deployment using the form: `projects/{project_id\}/locations/{location_id\}`
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Deployment;
+  }
+  export interface Params$Resource$Projects$Locations$Deployments$Delete extends StandardParameters {
+    /**
+     * Optional. If set to true, any actuation will also be deleted. Followed the best practice from https://aip.dev/135#cascading-delete
+     */
+    force?: boolean;
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Deployments$Get extends StandardParameters {
+    /**
+     * Required. Name of the resource. The format will be 'projects/{project_id\}/locations/{location_id\}/deployments/{deployment_id\}'
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Deployments$List extends StandardParameters {
+    /**
+     * Optional. Filter resource follow https://google.aip.dev/160
+     */
+    filter?: string;
+    /**
+     * Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource prefix of the Deployment using the form: `projects/{project_id\}/locations/{location_id\}`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Deployments$Actuations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new actuation for an existing Deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await workloadmanager.projects.locations.deployments.actuations.create({
+     *       // Required. The resource name of the Actuation location using the form: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'
+     *       parent:
+     *         'projects/my-project/locations/my-location/deployments/my-deployment',
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "actuationOutput": {},
+     *         //   "deploymentOutput": [],
+     *         //   "endTime": "my_endTime",
+     *         //   "name": "my_name",
+     *         //   "startTime": "my_startTime",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Deployments$Actuations$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Deployments$Actuations$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Deployments$Actuations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Deployments$Actuations$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Deployments$Actuations$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deployments$Actuations$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deployments$Actuations$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deployments$Actuations$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workloadmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/actuations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single Actuation
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await workloadmanager.projects.locations.deployments.actuations.delete({
+     *       // Required. The name of the book to delete. project/{project_id\}/locations/{location_id\}/deployments/{deployment_id\}/actuations/{actuation_id\}
+     *       name: 'projects/my-project/locations/my-location/deployments/my-deployment/actuations/my-actuation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Deployments$Actuations$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Deployments$Actuations$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Deployments$Actuations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Deployments$Actuations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Deployments$Actuations$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deployments$Actuations$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deployments$Actuations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deployments$Actuations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workloadmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single Actuation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await workloadmanager.projects.locations.deployments.actuations.get({
+     *       // Required. Name of the resource
+     *       name: 'projects/my-project/locations/my-location/deployments/my-deployment/actuations/my-actuation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actuationOutput": {},
+     *   //   "deploymentOutput": [],
+     *   //   "endTime": "my_endTime",
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Deployments$Actuations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Deployments$Actuations$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Actuation>>;
+    get(
+      params: Params$Resource$Projects$Locations$Deployments$Actuations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Deployments$Actuations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Actuation>,
+      callback: BodyResponseCallback<Schema$Actuation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Deployments$Actuations$Get,
+      callback: BodyResponseCallback<Schema$Actuation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Actuation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deployments$Actuations$Get
+        | BodyResponseCallback<Schema$Actuation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Actuation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Actuation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Actuation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deployments$Actuations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deployments$Actuations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workloadmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Actuation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Actuation>(parameters);
+      }
+    }
+
+    /**
+     * Lists Actuations in a given project, location and deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const workloadmanager = google.workloadmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await workloadmanager.projects.locations.deployments.actuations.list({
+     *       // Optional. Filtering results
+     *       filter: 'placeholder-value',
+     *       // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *       orderBy: 'placeholder-value',
+     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A token identifying a page of results the server should return.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The resource prefix of the Actuation using the form: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'
+     *       parent:
+     *         'projects/my-project/locations/my-location/deployments/my-deployment',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actuations": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Deployments$Actuations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Deployments$Actuations$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListActuationsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Deployments$Actuations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Deployments$Actuations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListActuationsResponse>,
+      callback: BodyResponseCallback<Schema$ListActuationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Deployments$Actuations$List,
+      callback: BodyResponseCallback<Schema$ListActuationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListActuationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deployments$Actuations$List
+        | BodyResponseCallback<Schema$ListActuationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListActuationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListActuationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListActuationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deployments$Actuations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deployments$Actuations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workloadmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/actuations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListActuationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListActuationsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Deployments$Actuations$Create extends StandardParameters {
+    /**
+     * Required. The resource name of the Actuation location using the form: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Actuation;
+  }
+  export interface Params$Resource$Projects$Locations$Deployments$Actuations$Delete extends StandardParameters {
+    /**
+     * Required. The name of the book to delete. project/{project_id\}/locations/{location_id\}/deployments/{deployment_id\}/actuations/{actuation_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Deployments$Actuations$Get extends StandardParameters {
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Deployments$Actuations$List extends StandardParameters {
+    /**
+     * Optional. Filtering results
+     */
+    filter?: string;
+    /**
+     * Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource prefix of the Actuation using the form: 'projects/{project_id\}/locations/{location\}/deployments/{deployment\}'
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Discoveredprofiles {

@@ -134,8 +134,33 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "getSharedRegionalCertificateAuthority": {
+              "description": "Gets the details of regional certificate authority information for Redis cluster.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sharedRegionalCertificateAuthority",
+              "httpMethod": "GET",
+              "id": "redis.projects.locations.getSharedRegionalCertificateAuthority",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Regional certificate authority resource name using the form: `projects/{project_id}/locations/{location_id}/sharedRegionalCertificateAuthority` where `location_id` refers to a Google Cloud region.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/sharedRegionalCertificateAuthority$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "SharedRegionalCertificateAuthority"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "redis.projects.locations.list",
@@ -1078,7 +1103,7 @@
       }
     }
   },
-  "revision": "20260107",
+  "revision": "20260210",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -1706,6 +1731,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "rotateServerCertificate": {
+          "description": "Optional. Input only. Rotate the server certificates.",
+          "type": "boolean"
+        },
         "satisfiesPzi": {
           "description": "Optional. Output only. Reserved for future use.",
           "readOnly": true,
@@ -1715,6 +1744,26 @@
           "description": "Optional. Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "serverCaMode": {
+          "description": "Optional. Server CA mode for the cluster.",
+          "enum": [
+            "SERVER_CA_MODE_UNSPECIFIED",
+            "SERVER_CA_MODE_GOOGLE_MANAGED_PER_INSTANCE_CA",
+            "SERVER_CA_MODE_GOOGLE_MANAGED_SHARED_CA",
+            "SERVER_CA_MODE_CUSTOMER_MANAGED_CAS_CA"
+          ],
+          "enumDescriptions": [
+            "Server CA mode not specified.",
+            "Each cluster has its own Google managed CA.",
+            "The cluster uses Google managed shared CA in the region.",
+            "The cluster uses customer managed CA from CAS."
+          ],
+          "type": "string"
+        },
+        "serverCaPool": {
+          "description": "Optional. Customer-managed CA pool for the cluster. Only applicable for BYOCA i.e. if server_ca_mode is SERVER_CA_MODE_CUSTOMER_MANAGED_CAS_CA. Format: \"projects/{project}/locations/{region}/caPools/{ca_pool}\".",
+          "type": "string"
         },
         "shardCount": {
           "description": "Optional. Number of shards for the Redis cluster.",
@@ -2613,7 +2662,7 @@
       "type": "object"
     },
     "DatabaseResourceMetadata": {
-      "description": "Common model for database resource instance metadata. Next ID: 30",
+      "description": "Common model for database resource instance metadata. Next ID: 31",
       "id": "DatabaseResourceMetadata",
       "properties": {
         "availabilityConfiguration": {
@@ -2645,7 +2694,8 @@
             "UNHEALTHY",
             "SUSPENDED",
             "DELETED",
-            "STATE_OTHER"
+            "STATE_OTHER",
+            "STOPPED"
           ],
           "enumDescriptions": [
             "",
@@ -2653,7 +2703,8 @@
             "Instance being created, updated, deleted or under maintenance",
             "When instance is suspended",
             "Instance is deleted.",
-            "For rest of the other category"
+            "For rest of the other category",
+            "Instance is in STOPPED state."
           ],
           "type": "string"
         },
@@ -2692,7 +2743,8 @@
             "UNHEALTHY",
             "SUSPENDED",
             "DELETED",
-            "STATE_OTHER"
+            "STATE_OTHER",
+            "STOPPED"
           ],
           "enumDescriptions": [
             "",
@@ -2700,7 +2752,8 @@
             "Instance being created, updated, deleted or under maintenance",
             "When instance is suspended",
             "Instance is deleted.",
-            "For rest of the other category"
+            "For rest of the other category",
+            "Instance is in STOPPED state."
           ],
           "type": "string"
         },
@@ -2787,6 +2840,13 @@
         "resourceContainer": {
           "description": "Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of \"/\", such as \"projects/123\". For GCP provided resources, number should be project number.",
           "type": "string"
+        },
+        "resourceFlags": {
+          "description": "Optional. List of resource flags for the database resource.",
+          "items": {
+            "$ref": "ResourceFlags"
+          },
+          "type": "array"
         },
         "resourceName": {
           "description": "Required. Different from DatabaseResourceId.unique_id, a resource name can be reused over time. That is, after a resource named \"ABC\" is deleted, the name \"ABC\" can be used to to create a new resource within the same source. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
@@ -4878,6 +4938,34 @@
       },
       "type": "object"
     },
+    "RegionalCertChain": {
+      "description": "The certificates that form the CA chain, from leaf to root order.",
+      "id": "RegionalCertChain",
+      "properties": {
+        "certificates": {
+          "description": "The certificates that form the CA chain, from leaf to root order.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RegionalManagedCertificateAuthority": {
+      "description": "CA certificate chains for redis managed server authentication.",
+      "id": "RegionalManagedCertificateAuthority",
+      "properties": {
+        "caCerts": {
+          "description": "The PEM encoded CA certificate chains for redis managed server authentication",
+          "items": {
+            "$ref": "RegionalCertChain"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "RemoteCluster": {
       "description": "Details of the remote cluster associated with this cluster in a cross cluster replication setup.",
       "id": "RemoteCluster",
@@ -4949,6 +5037,21 @@
       },
       "type": "object"
     },
+    "ResourceFlags": {
+      "description": "Message type for storing resource flags.",
+      "id": "ResourceFlags",
+      "properties": {
+        "key": {
+          "description": "Optional. Key of the resource flag.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Optional. Value of the resource flag.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ResourceMaintenanceDenySchedule": {
       "description": "Deny maintenance period for the database resource. It specifies the time range during which the maintenance cannot start. This is configured by the customer.",
       "id": "ResourceMaintenanceDenySchedule",
@@ -4972,6 +5075,10 @@
       "description": "MaintenanceInfo to capture the maintenance details of database resource.",
       "id": "ResourceMaintenanceInfo",
       "properties": {
+        "currentVersionReleaseDate": {
+          "$ref": "Date",
+          "description": "Optional. The date when the current maintenance version was released."
+        },
         "denyMaintenanceSchedules": {
           "description": "Optional. List of Deny maintenance period for the database resource.",
           "items": {
@@ -4979,13 +5086,44 @@
           },
           "type": "array"
         },
+        "isInstanceStopped": {
+          "description": "Optional. Whether the instance is in stopped state. This information is temporarily being captured in maintenanceInfo, till STOPPED state is supported by DB Center.",
+          "type": "boolean"
+        },
         "maintenanceSchedule": {
           "$ref": "ResourceMaintenanceSchedule",
           "description": "Optional. Maintenance window for the database resource."
         },
+        "maintenanceState": {
+          "description": "Output only. Current state of maintenance on the database resource.",
+          "enum": [
+            "MAINTENANCE_STATE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "UPDATING",
+            "REPAIRING",
+            "DELETING",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "Database resource is being created.",
+            "Database resource has been created and is ready to use.",
+            "Database resource is being updated.",
+            "Database resource is unheathy and under repair.",
+            "Database resource is being deleted.",
+            "Database resource encountered an error and is in indeterministic state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "maintenanceVersion": {
           "description": "Optional. Current Maintenance version of the database resource. Example: \"MYSQL_8_0_41.R20250531.01_15\"",
           "type": "string"
+        },
+        "upcomingMaintenance": {
+          "$ref": "UpcomingMaintenance",
+          "description": "Optional. Upcoming maintenance for the database resource. This field is populated once SLM generates and publishes upcoming maintenance window."
         }
       },
       "type": "object"
@@ -5082,6 +5220,21 @@
         "timestampBasedRetentionTime": {
           "description": "Timestamp based retention period i.e. 2024-05-01T00:00:00Z",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SharedRegionalCertificateAuthority": {
+      "description": "Shared regional certificate authority",
+      "id": "SharedRegionalCertificateAuthority",
+      "properties": {
+        "managedServerCa": {
+          "$ref": "RegionalManagedCertificateAuthority",
+          "description": "CA certificate chains for redis managed server authentication."
+        },
+        "name": {
+          "description": "Identifier. Unique name of the resource in this scope including project and location using the form: `projects/{project}/locations/{location}/sharedRegionalCertificateAuthority`",
           "type": "string"
         }
       },
@@ -5217,6 +5370,23 @@
         },
         "stringValue": {
           "description": "For string value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpcomingMaintenance": {
+      "description": "Upcoming maintenance for the database resource. This is generated by SLM once the upcoming maintenance schedule is published.",
+      "id": "UpcomingMaintenance",
+      "properties": {
+        "endTime": {
+          "description": "Optional. The end time of the upcoming maintenance.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. The start time of the upcoming maintenance.",
+          "format": "google-datetime",
           "type": "string"
         }
       },

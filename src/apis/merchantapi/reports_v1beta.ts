@@ -429,11 +429,11 @@ export namespace merchantapi_reports_v1beta {
    */
   export interface Schema$ItemIssueSeverity {
     /**
-     * Aggregated severity of the issue for all reporting contexts it affects. **This field can be used for filtering the results.**
+     * Aggregated severity of the issue for all reporting contexts it affects. Reporting contexts included in the computation of the aggregated severity can be restricted using a filter on the `reporting_context` field. **This field can be used for filtering the results.**
      */
     aggregatedSeverity?: string | null;
     /**
-     * Issue severity per reporting context.
+     * Issue severity per reporting context. Reporting contexts included in this list can be restricted using a filter on the `reporting_context` field.
      */
     severityPerReportingContext?: Schema$IssueSeverityPerReportingContext[];
   }
@@ -826,11 +826,11 @@ export namespace merchantapi_reports_v1beta {
     resourceType?: string | null;
   }
   /**
-   * Fields available for query in `product_view` table. Products in the current inventory. Products in this table are the same as in Products sub-API but not all product attributes from Products sub-API are available for query in this table. In contrast to Products sub-API, this table allows to filter the returned list of products by product attributes. To retrieve a single product by `id` or list all products, Products sub-API should be used. Values are only set for fields requested explicitly in the request's search query.
+   * Fields available for query in `product_view` table. Products in the current inventory. Products in this table are the same as a [Product resource in Products sub-API](https://developers.google.com/merchant/api/reference/rest/products_v1/accounts.products) but not all product attributes from Products sub-API are available for query in this table. In contrast to Products sub-API, this table allows to filter the returned list of products by product attributes. To retrieve a single product by `id` or list all products, Products sub-API should be used. Values are only set for fields requested explicitly in the request's search query.
    */
   export interface Schema$ProductView {
     /**
-     * Aggregated status.
+     * Aggregated status across all reporting contexts. Reporting contexts included in the computation of the aggregated status can be restricted using a filter on the `reporting_context` field.
      */
     aggregatedReportingContextStatus?: string | null;
     /**
@@ -938,9 +938,17 @@ export namespace merchantapi_reports_v1beta {
      */
     productTypeL5?: string | null;
     /**
+     * Reporting context to restrict the query to. Restricts the reporting contexts returned in `status_per_reporting_context` and `item_issues`, and used to compute `aggregated_reporting_context_status`. **This field can only be used in the `WHERE` clause and cannot be selected in the `SELECT` clause.**
+     */
+    reportingContext?: string | null;
+    /**
      * Normalized [shipping label](https://support.google.com/merchants/answer/6324504) specified in the data source.
      */
     shippingLabel?: string | null;
+    /**
+     * Detailed product status per reporting context. Reporting contexts included in this list can be restricted using a filter on the `reporting_context` field. Equivalent to `ProductStatus.destination_statuses` in Products API. **This field cannot be used for sorting or filtering the results.**
+     */
+    statusPerReportingContext?: Schema$StatusPerReportingContext[];
     /**
      * Link to the processed image of the product, hosted on the Google infrastructure.
      */
@@ -1000,7 +1008,7 @@ export namespace merchantapi_reports_v1beta {
    */
   export interface Schema$SearchRequest {
     /**
-     * Optional. Number of `ReportRows` to retrieve in a single page. Defaults to 1000. Values above 5000 are coerced to 5000.
+     * Optional. Number of `ReportRows` to retrieve in a single page. Defaults to 1000. Values above 100,000 are coerced to 100,000.
      */
     pageSize?: number | null;
     /**
@@ -1008,7 +1016,7 @@ export namespace merchantapi_reports_v1beta {
      */
     pageToken?: string | null;
     /**
-     * Required. Query that defines a report to be retrieved. For details on how to construct your query, see the [Query Language guide](/merchant/api/guides/reports/query-language). For the full list of available tables and fields, see the [Available fields](/merchant/api/reference/rest/reports_{api_version\}/accounts.reports).
+     * Required. Query that defines a report to be retrieved. For details on how to construct your query, see the [Query Language guide](/merchant/api/guides/reports/query-language). For the full list of available tables and fields, see the Available fields.
      */
     query?: string | null;
   }
@@ -1024,6 +1032,27 @@ export namespace merchantapi_reports_v1beta {
      * Rows that matched the search query.
      */
     results?: Schema$ReportRow[];
+  }
+  /**
+   * Status of the product for a specific reporting context. Equivalent to `DestinationStatus` in Products API.
+   */
+  export interface Schema$StatusPerReportingContext {
+    /**
+     * List of approved countries in the reporting context, represented in [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format, for example, `US`.
+     */
+    approvedCountries?: string[] | null;
+    /**
+     * List of disapproved countries in the reporting context, represented in [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format, for example, `US`.
+     */
+    disapprovedCountries?: string[] | null;
+    /**
+     * List of pending countries in the reporting context, represented in [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format, for example, `US`.
+     */
+    pendingCountries?: string[] | null;
+    /**
+     * Reporting context the status applies to.
+     */
+    reportingContext?: string | null;
   }
 
   export class Resource$Accounts {

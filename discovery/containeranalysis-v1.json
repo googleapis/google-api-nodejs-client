@@ -1715,7 +1715,7 @@
       }
     }
   },
-  "revision": "20260130",
+  "revision": "20260220",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1895,6 +1895,10 @@
         },
         "name": {
           "description": "The name of the base image.",
+          "type": "string"
+        },
+        "registry": {
+          "description": "The registry in which the base image is from.",
           "type": "string"
         },
         "repository": {
@@ -5464,11 +5468,6 @@
       "description": "A type of analysis that can be done for a resource.",
       "id": "Note",
       "properties": {
-        "advisoryPublishTime": {
-          "description": "The timestamp when the advisory was first published by the source feed.",
-          "format": "google-datetime",
-          "type": "string"
-        },
         "attestation": {
           "$ref": "AttestationNote",
           "description": "A note describing an attestation role."
@@ -7002,6 +7001,11 @@
       "description": "A security vulnerability that can be found in resources.",
       "id": "VulnerabilityNote",
       "properties": {
+        "advisoryPublishTime": {
+          "description": "The time this advisory was published by the source.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "cvssScore": {
           "description": "The CVSS score of this vulnerability. CVSS score is on a scale of 0 - 10 where 0 indicates low severity and 10 indicates high severity.",
           "format": "float",

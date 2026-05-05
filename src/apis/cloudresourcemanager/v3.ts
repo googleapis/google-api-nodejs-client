@@ -869,11 +869,11 @@ export namespace cloudresourcemanager_v3 {
     message?: string | null;
   }
   /**
-   * A TagBinding represents a connection between a TagValue and a cloud resource Once a TagBinding is created, the TagValue is applied to all the descendants of the Google Cloud resource.
+   * A TagBinding represents a connection between a TagValue and a cloud resource. When a TagBinding is created, the TagValue is applied to all the descendants of the Google Cloud resource.
    */
   export interface Schema$TagBinding {
     /**
-     * Output only. The name of the TagBinding. This is a String of the form: `tagBindings/{full-resource-name\}/{tag-value-name\}` (e.g. `tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Fprojects%2F123/tagValues/456`).
+     * Output only. The name of the TagBinding. This is a String of the form: `tagBindings/{full-resource-name\}/{tag-value-name\}` (e.g. `tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Fprojects%2F123/tagValues/456`) or `tagBindings/{full-resource-name\}/{tag-key-name\}` (e.g. `tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Fprojects%2F123/tagKeys/123`).
      */
     name?: string | null;
     /**

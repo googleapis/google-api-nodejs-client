@@ -125,19 +125,6 @@ export namespace threatintelligence_v1beta {
   }
 
   /**
-   * The software that is affected by the vulnerability.
-   */
-  export interface Schema$AffectedSoftware {
-    /**
-     * Optional. The product of the software.
-     */
-    product?: string | null;
-    /**
-     * Optional. The vendor of the software.
-     */
-    vendor?: string | null;
-  }
-  /**
    * Stateful object representing a group of Findings. Key feature to an Alert is that it expresses the user's intent towards the findings of that group, even those that haven't occurred yet.
    */
   export interface Schema$Alert {
@@ -145,10 +132,6 @@ export namespace threatintelligence_v1beta {
      * Optional. AI summary of the finding.
      */
     aiSummary?: string | null;
-    /**
-     * Output only. Assets that are impacted by this alert.
-     */
-    assets?: string[] | null;
     /**
      * Output only. Audit information for the alert.
      */
@@ -181,6 +164,10 @@ export namespace threatintelligence_v1beta {
      * Output only. External ID for the alert. This is used internally to provide protection against out of order updates.
      */
     externalId?: string | null;
+    /**
+     * Output only. The number of findings associated with this alert.
+     */
+    findingCount?: string | null;
     /**
      * Output only. Findings that are covered by this alert.
      */
@@ -226,14 +213,6 @@ export namespace threatintelligence_v1beta {
      * Insider Threat alert detail type.
      */
     insiderThreat?: Schema$InsiderThreatAlertDetail;
-    /**
-     * Domain Monitoring alert detail type.
-     */
-    suspiciousDomain?: Schema$SuspiciousDomainAlertDetail;
-    /**
-     * Technology Watchlist alert detail type.
-     */
-    targetTechnology?: Schema$TargetTechnologyAlertDetail;
   }
   /**
    * A document that is associated with an alert.
@@ -306,61 +285,6 @@ export namespace threatintelligence_v1beta {
     translatedTitle?: string | null;
   }
   /**
-   * Customer defined Configuration for asset discovery.
-   */
-  export interface Schema$AssetDiscoveryConfig {
-    /**
-     * Output only. Timestamp of the last scan completed. This field is set by the system and cannot be modified by the user.
-     */
-    lastScanCompleteTime?: string | null;
-    /**
-     * Output only. Timestamp of the last scan started - used for scheduling the next scan. This field is set by the system and cannot be modified by the user.
-     */
-    lastScanStartTime?: string | null;
-    /**
-     * Required. Frequency at which the scheduled discovery scan should be run. If not specified, the default frequency is DAILY.
-     */
-    scanFrequency?: string | null;
-    /**
-     * Optional. Seed assets that are out of scope for the scheduled discovery scan.
-     */
-    scopeExclusionAssets?: Schema$AssetDiscoverySeed[];
-    /**
-     * Required. Seed assets for the scheduled discovery scan. At least one seed asset is required.
-     */
-    seedAssets?: Schema$AssetDiscoverySeed[];
-    /**
-     * Required. Workflow to be used for the scheduled discovery scan. If not specified, the default workflow is EXTERNAL_DISCOVERY.
-     */
-    workflow?: string | null;
-  }
-  /**
-   * Seed assets for asset discovery.
-   */
-  export interface Schema$AssetDiscoverySeed {
-    /**
-     * Required. Type of the seed asset.
-     */
-    seedType?: string | null;
-    /**
-     * Required. Value for the seed asset. Could be an IP address, network service, email addresses, etc.
-     */
-    seedValue?: string | null;
-  }
-  /**
-   * Represents an association with a vulnerability.
-   */
-  export interface Schema$Association {
-    /**
-     * Required. The ID of the association.
-     */
-    id?: string | null;
-    /**
-     * Required. The type of the association.
-     */
-    type?: string | null;
-  }
-  /**
    * Tracks basic CRUD facts.
    */
   export interface Schema$Audit {
@@ -380,63 +304,6 @@ export namespace threatintelligence_v1beta {
      * Output only. Time of creation or last update.
      */
     updateTime?: string | null;
-  }
-  /**
-   * Sample compromised credential detail.
-   */
-  export interface Schema$CompromisedCredentialsFindingDetail {
-    /**
-     * Optional. Reference to the author this detail was extracted from. This is deprecated and will be removed.
-     */
-    author?: string | null;
-    /**
-     * Optional. Claimed site the credential is intended for.
-     */
-    credentialService?: string | null;
-    /**
-     * Optional. Reference to the dark web document. This is deprecated and will be removed.
-     */
-    darkWebDoc?: string | null;
-    /**
-     * Optional. This will contain a link to the external reference for this credential. If set, this is a link back to the DTM product to allow customers to get additional context about this finding.
-     */
-    externalReferenceUri?: string | null;
-    /**
-     * Optional. If the source of the credential was from a file dump this will contain the name of the file the credential was found in. This can be used by customers for context on where the credential was found and to try to find other references to the file in the wild.
-     */
-    fileDump?: string | null;
-    /**
-     * Optional. A list of hashes of the file dump. These will be prefixed with the algorithm. Example: "sha256:"
-     */
-    fileDumpHashes?: string[] | null;
-    /**
-     * Optional. If file_dump is set this will contain the size of the dump file in bytes. File dumps can be very large.
-     */
-    fileDumpSizeBytes?: string | null;
-    /**
-     * Optional. Reference to the forum this detail was extracted from. This is deprecated and will be removed.
-     */
-    forum?: string | null;
-    /**
-     * Optional. This will indicate the malware family that leaked this credential, if known.
-     */
-    malwareFamily?: string | null;
-    /**
-     * Optional. This indicates our best guess as to when the credential was leaked to the particular venue that triggered this finding. This is not necessarily the time the credential was actually leaked and it may not always be be accurate.
-     */
-    postedTime?: string | null;
-    /**
-     * Optional. If the source of a credential is publicly addressable this will contain a uri to the where the credential was found.
-     */
-    sourceUri?: string | null;
-    /**
-     * Required. This field will always be set and will be used to identify the user named in the credential leak. In cases where customers are authorized to see the actual user key this will be set to the actual user key. In cases where the customer is not authorized to see the actual user key this will be set to a hash of the user key. The hashed value is an intentionally opaque value that is not intended to be used for any other purpose than to uniquely identify the user in the context of this specific customer, service domain, and user name. Example: "user@example.com" or "redacted:".
-     */
-    userKey?: string | null;
-    /**
-     * Optional. Claimed evidence of the password/secret. This will always be hashed. In the event where the plaintext password is known it will be set to "redacted:" where the same hash will be presented when the same password is found for the same organization for the same service. Redaction is done by hashing the password with a salt that is unique to the customer organization and service. In the event where the plaintext password is not known it will be set to ":" where the algorithm is the hash algorithm used and the hash is the hash of the password using that algorithm. In the event we don't know the exact algorithm used we will set it to "hashed:".
-     */
-    userSecretEvidence?: string | null;
   }
   /**
    * A configuration represents a behavior an engine should follow when producing new findings.
@@ -459,7 +326,7 @@ export namespace threatintelligence_v1beta {
      */
     displayName?: string | null;
     /**
-     * Identifier. Server generated name for the configuration. format is vaults/{vault\}/configurations/{configuration\}
+     * Identifier. Server generated name for the configuration. format is projects/{project\}/configurations/{configuration\}
      */
     name?: string | null;
     /**
@@ -480,10 +347,6 @@ export namespace threatintelligence_v1beta {
    */
   export interface Schema$ConfigurationDetail {
     /**
-     * Asset Discovery detail config.
-     */
-    assetDiscovery?: Schema$AssetDiscoveryConfig;
-    /**
      * Customer Profile detail config.
      */
     customerProfile?: Schema$CustomerProfileConfig;
@@ -491,18 +354,6 @@ export namespace threatintelligence_v1beta {
      * Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.
      */
     detailType?: string | null;
-    /**
-     * Domain Monitoring detail config.
-     */
-    domainMonitoring?: Schema$DomainMonitoringConfig;
-    /**
-     * Initial Access Broker (IAB) detail config.
-     */
-    initialAccessBroker?: Schema$InitialAccessBrokerConfig;
-    /**
-     * Technology Watchlist detail config.
-     */
-    technologyWatchlist?: Schema$TechnologyWatchListConfig;
   }
   /**
    * A ConfigurationRevision is a snapshot of a Configuration at a point in time. It is immutable.
@@ -513,7 +364,7 @@ export namespace threatintelligence_v1beta {
      */
     createTime?: string | null;
     /**
-     * Identifier. The name of the ConfigurationRevision Format: vaults//configurations//revisions/ OR projects//configurations//revisions/
+     * Identifier. The name of the ConfigurationRevision Format: projects//configurations//revisions/
      */
     name?: string | null;
     /**
@@ -836,61 +687,6 @@ export namespace threatintelligence_v1beta {
     severity?: string | null;
   }
   /**
-   * Any account-level configuration options will go here.
-   */
-  export interface Schema$DomainMonitoringConfig {
-    /**
-     * The domains to use as "seeds" for Suspicious Domain Monitoring.
-     */
-    domains?: Schema$DomainMonitoringDomain[];
-  }
-  /**
-   * A Domain Monitoring "domain"
-   */
-  export interface Schema$DomainMonitoringDomain {
-    /**
-     * The domain name to match against.
-     */
-    domain?: string | null;
-  }
-  /**
-   * EntityProfile represents the structured profile of a customer entity, containing key identifiers and descriptive attributes optimized for contextual matching against threat intelligence, particularly Initial Access Broker (IAB) offerings.
-   */
-  export interface Schema$EntityProfile {
-    /**
-     * Optional. List of specific countries of operation. Purpose: Essential for matching geographically targeted threats (e.g., actor specifies victims in 'DE'). Use ISO 3166-1 alpha-2 codes (e.g., "US", "GB", "JP", "DE").
-     */
-    countries?: string[] | null;
-    /**
-     * Required. List of primary internet domain names associated with the entity. Purpose: Crucial for explicit matching against domains mentioned in threat intel and can inform semantic matching. Must contain at least one domain. Example: ["acme.com", "acme.co.uk"]
-     */
-    domains?: string[] | null;
-    /**
-     * Optional. List of primary industry sectors the entity operates within. Purpose: Crucial for matching industry-specific threats and understanding attacker motivation. Use standardized GTI Industry Classification values. Example: ["Technology", "Financial Services", "Healthcare"]
-     */
-    industries?: string[] | null;
-    /**
-     * Required. Canonical name of the entity (e.g., the legal company name). Purpose: Primary identifier for the customer.
-     */
-    name?: string | null;
-    /**
-     * Optional. Specific geographic areas of *significant* operational concentration or strategic importance below the country level, if clearly identifiable and relevant. Purpose: Useful for highly localized threats, less commonly populated than `countries`. Example: ["Silicon Valley", "Frankfurt am Main Metropolitan Region"]
-     */
-    operationalAreas?: string[] | null;
-    /**
-     * Required. A concise, machine-generated (e.g., LLM) or human-curated summary of the entity. Purpose: Captures the semantic essence for embedding generation and similarity matching. Should synthesize key aspects like core business, scale, and market. Example: "Acme Corporation is a large, US-based multinational conglomerate operating..."
-     */
-    profileSummary?: string | null;
-    /**
-     * Optional. List of primary geopolitical regions where the entity has significant operations. Purpose: Filters geographically relevant threats. Use standardized names or codes where possible (e.g., "North America", "EMEA", "APAC", UN M49 codes).
-     */
-    regions?: string[] | null;
-    /**
-     * Optional. List of more granular sub-industries, if applicable and known. Purpose: Provides finer-grained context for more specific threat matching. Should align with GTI classifications if possible. Example: ["Semiconductors", "Cloud Computing Services", "Investment Banking"]
-     */
-    subIndustries?: string[] | null;
-  }
-  /**
    * Response message for EnumerateAlertFacets.
    */
   export interface Schema$EnumerateAlertFacetsResponse {
@@ -967,10 +763,6 @@ export namespace threatintelligence_v1beta {
      */
     alert?: string | null;
     /**
-     * Optional. Optional - asset name if known. Format: vaults/{vault\}/assets/{asset\}
-     */
-    asset?: string | null;
-    /**
      * Output only. Audit data about the finding.
      */
     audit?: Schema$Audit;
@@ -987,11 +779,7 @@ export namespace threatintelligence_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Optional - name of the issue that this finding is bound to. Format: vaults/{vault\}/issues/{issue\}
-     */
-    issue?: string | null;
-    /**
-     * Identifier. Server generated name for the finding (leave clear during creation). Format: vaults/{vault\}/findings/{finding\}
+     * Identifier. Server generated name for the finding (leave clear during creation). Format: projects/{project\}/findings/{finding\}
      */
     name?: string | null;
     /**
@@ -1020,10 +808,6 @@ export namespace threatintelligence_v1beta {
    */
   export interface Schema$FindingDetail {
     /**
-     * Compromised Credentials detail type.
-     */
-    compromisedCredentials?: Schema$CompromisedCredentialsFindingDetail;
-    /**
      * Data Leak finding detail type.
      */
     dataLeak?: Schema$DataLeakFindingDetail;
@@ -1032,10 +816,6 @@ export namespace threatintelligence_v1beta {
      */
     detailType?: string | null;
     /**
-     * Inband vulnerability detail type.
-     */
-    inbandVulnerability?: Schema$InbandVulnerabilityFindingDetail;
-    /**
      * Initial Access Broker finding detail type.
      */
     initialAccessBroker?: Schema$InitialAccessBrokerFindingDetail;
@@ -1043,96 +823,19 @@ export namespace threatintelligence_v1beta {
      * Insider Threat finding detail type.
      */
     insiderThreat?: Schema$InsiderThreatFindingDetail;
-    /**
-     * Misconfiguration finding detail type.
-     */
-    misconfiguration?: Schema$MisconfigurationFindingDetail;
-    /**
-     * Domain Monitoring finding detail type.
-     */
-    suspiciousDomain?: Schema$SuspiciousDomainFindingDetail;
-    /**
-     * Technology Watchlist finding detail type.
-     */
-    targetTechnology?: Schema$TargetTechnologyFindingDetail;
   }
   /**
-   * Fleshed out vulnerability object that includes enough details to fill out a vulnerability specific view for an issue.
+   * Request message for GenerateOrgProfileConfiguration.
    */
-  export interface Schema$InbandVulnerability {
+  export interface Schema$GenerateOrgProfileConfigurationRequest {
     /**
-     * Optional. The software that is affected by the vulnerability.
+     * Required. The display name of the organization to generate the profile for.
      */
-    affectedSoftware?: Schema$AffectedSoftware[];
+    displayName?: string | null;
     /**
-     * Optional. The authors of the vulnerability detection.
+     * Required. The domain of the organization to generate the profile for.
      */
-    authors?: string[] | null;
-    /**
-     * Required. The CVE ID of the vulnerability.
-     */
-    cveId?: string | null;
-    /**
-     * Required. The CVSS V3.1 score (Base score)for the vulnerability. ( )
-     */
-    cvssV31Score?: number | null;
-    /**
-     * Optional. Temporal CVSS V3.1 score for the vulnerability.
-     */
-    cvssV31ScoreTemporal?: number | null;
-    /**
-     * Optional. The human readable description. This can be basic HTML formatted text.
-     */
-    description?: string | null;
-    /**
-     * Optional. The date the vulnerability was first disclosed.
-     */
-    disclosureTime?: string | null;
-    /**
-     * Optional. Exploitation state of the vulnerability, for example "Available".
-     */
-    exploitationState?: string | null;
-    /**
-     * Required. The external ID of the vulnerability.
-     */
-    externalVulnerabilityId?: string | null;
-    /**
-     * Optional. Whether this is exploited in the wild.
-     */
-    isExploitedWild?: boolean | null;
-    /**
-     * Optional. Reference URLs to the vulnerability.
-     */
-    referenceUrls?: string[] | null;
-    /**
-     * Optional. The human readable remediation recommendation. This can be basic HTML formatted text.
-     */
-    remediation?: string | null;
-    /**
-     * Optional. Risk rating for the vulnerability, for example "High".
-     */
-    riskRating?: string | null;
-    /**
-     * Optional. Human readable name for the vulnerability.
-     */
-    title?: string | null;
-  }
-  /**
-   * This is a temporary detail type that will be used to support vulnerabilities until the engines start using the full vulnerability objects. The "Inband" refers to the fact that all vulnerability details are included with every finding.
-   */
-  export interface Schema$InbandVulnerabilityFindingDetail {
-    /**
-     * Optional. A short description of the proof of the vulnerability.
-     */
-    formattedProofDetails?: string | null;
-    /**
-     * Optional. The URI that lead to this detection, if appropriate.
-     */
-    requestUri?: string | null;
-    /**
-     * Required. Vulnerability metadata.
-     */
-    vulnerability?: Schema$InbandVulnerability;
+    domain?: string | null;
   }
   /**
    * Captures the specific details of InitialAccessBroker (IAB) alert.
@@ -1146,15 +849,6 @@ export namespace threatintelligence_v1beta {
      * Required. IAB specific severity
      */
     severity?: string | null;
-  }
-  /**
-   * InitialAccessBrokerConfig is specific to Initial Access Broker (IAB) matching scenarios.
-   */
-  export interface Schema$InitialAccessBrokerConfig {
-    /**
-     * Represents the comprehensive profile of the customer entity used for matching.
-     */
-    entityProfile?: Schema$EntityProfile;
   }
   /**
    * A detail object for an Initial Access Broker (IAB) finding.
@@ -1297,55 +991,29 @@ export namespace threatintelligence_v1beta {
    */
   export interface Schema$MarkAlertAsTriagedRequest {}
   /**
-   * Misconfiguration finding detail.
+   * This resource represents a long-running operation that is the result of a network API call.
    */
-  export interface Schema$MisconfigurationFindingDetail {
+  export interface Schema$Operation {
     /**
-     * Required. The misconfiguration metadata.
+     * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    misconfigurationMetadata?: Schema$MisconfigurationMetadata;
-  }
-  /**
-   * Misconfiguration metadata.
-   */
-  export interface Schema$MisconfigurationMetadata {
+    done?: boolean | null;
     /**
-     * Optional. Description of the misconfiguration.
+     * The error result of the operation in case of failure or cancellation.
      */
-    description?: string | null;
+    error?: Schema$Status;
     /**
-     * Optional. A user-friendly name for the misconfiguration.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
-    displayName?: string | null;
+    metadata?: {[key: string]: any} | null;
     /**
-     * Required. The identifier for the misconfiguration. This is an internal name generated by the finding provider.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
-    misconfigurationId?: string | null;
+    name?: string | null;
     /**
-     * Optional. References to external resources that provide more information about the misconfiguration.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    references?: Schema$MisconfigurationReference[];
-    /**
-     * Optional. Recommended remediation steps for the misconfiguration.
-     */
-    remediation?: string | null;
-    /**
-     * Optional. The endpoint which was found to have the vulnerability.
-     */
-    vulnerableUri?: string | null;
-  }
-  /**
-   * A reference to an external resource that provides more information about a misconfiguration.
-   */
-  export interface Schema$MisconfigurationReference {
-    /**
-     * Required. The type of the reference (e.g., "description", "remediation").
-     */
-    type?: string | null;
-    /**
-     * Required. The URI of the reference.
-     */
-    uri?: string | null;
+    response?: {[key: string]: any} | null;
   }
   /**
    * Structured priority analysis for a threat.
@@ -1363,19 +1031,6 @@ export namespace threatintelligence_v1beta {
      * Human-readable explanation from the model, detailing why a particular result is considered to have a certain priority.
      */
     reasoning?: string | null;
-  }
-  /**
-   * Request message for FetchAlertUriStatus.
-   */
-  export interface Schema$RefreshAlertUriStatusRequest {}
-  /**
-   * Response message for FetchAlertUriStatus.
-   */
-  export interface Schema$RefreshAlertUriStatusResponse {
-    /**
-     * Output only. Status of the alert in WebRisk.
-     */
-    state?: string | null;
   }
   /**
    * Structured relevance analysis for a threat.
@@ -1401,19 +1056,6 @@ export namespace threatintelligence_v1beta {
      * Indicates whether the threat is considered relevant.
      */
     relevant?: boolean | null;
-  }
-  /**
-   * Request message for ReportAlertUri.
-   */
-  export interface Schema$ReportAlertUriRequest {}
-  /**
-   * Response message for ReportAlertUri.
-   */
-  export interface Schema$ReportAlertUriResponse {
-    /**
-     * Output only. Status of the alert in WebRisk.
-     */
-    state?: string | null;
   }
   /**
    * Response message for SearchFindings.
@@ -1446,178 +1088,21 @@ export namespace threatintelligence_v1beta {
     severityLevel?: string | null;
   }
   /**
-   * The alert detail for a suspicious domain finding.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
-  export interface Schema$SuspiciousDomainAlertDetail {
+  export interface Schema$Status {
     /**
-     * The DNS details of the suspicious domain.
+     * The status code, which should be an enum value of google.rpc.Code.
      */
-    dns?: Schema$SuspiciousDomainDnsDetails;
+    code?: number | null;
     /**
-     * Required. The suspicious domain name.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
-    domain?: string | null;
+    details?: Array<{[key: string]: any}> | null;
     /**
-     * The GTI details of the suspicious domain.
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    gtiDetails?: Schema$SuspiciousDomainGtiDetails;
-    /**
-     * Output only. Name of Web Risk submission operation.
-     */
-    webRiskOperation?: string | null;
-    /**
-     * Output only. Status of the Web Risk submission.
-     */
-    webRiskState?: string | null;
-    /**
-     * The whois details of the suspicious domain.
-     */
-    whois?: Schema$SuspiciousDomainWhoIsDetails;
-  }
-  /**
-   * The DNS details of the suspicious domain.
-   */
-  export interface Schema$SuspiciousDomainDnsDetails {
-    /**
-     * The DNS records of the suspicious domain.
-     */
-    dnsRecords?: Schema$SuspiciousDomainDnsRecord[];
-    /**
-     * The time the DNS details were retrieved.
-     */
-    retrievalTime?: string | null;
-  }
-  /**
-   * The DNS record of the suspicious domain.
-   */
-  export interface Schema$SuspiciousDomainDnsRecord {
-    /**
-     * The name of the DNS record.
-     */
-    record?: string | null;
-    /**
-     * The TTL of the DNS record.
-     */
-    ttl?: number | null;
-    /**
-     * The type of the DNS record.
-     */
-    type?: string | null;
-    /**
-     * The value of the DNS record.
-     */
-    value?: string | null;
-  }
-  /**
-   * A detailed object for a suspicious Domain finding.
-   */
-  export interface Schema$SuspiciousDomainFindingDetail {
-    /**
-     * The DNS details of the suspicious domain.
-     */
-    dns?: Schema$SuspiciousDomainDnsDetails;
-    /**
-     * Required. The suspicious domain name.
-     */
-    domain?: string | null;
-    /**
-     * The GTI details of the suspicious domain.
-     */
-    gtiDetails?: Schema$SuspiciousDomainGtiDetails;
-    /**
-     * Required. Reference to the match score of the finding. This is a float value between 0 and 1 calculated by the matching engine.
-     */
-    matchScore?: number | null;
-    /**
-     * Required. The severity of the finding. This indicates the potential impact of the threat.
-     */
-    severity?: string | null;
-    /**
-     * The whois details of the suspicious domain.
-     */
-    whois?: Schema$SuspiciousDomainWhoIsDetails;
-  }
-  /**
-   * The GTI details of the suspicious domain.
-   */
-  export interface Schema$SuspiciousDomainGtiDetails {
-    /**
-     * The threat score of the suspicious domain. The threat score is a number between 0 and 100.
-     */
-    threatScore?: number | null;
-    /**
-     * Output only. The verdict of the suspicious domain.
-     */
-    verdict?: string | null;
-    /**
-     * VirusTotal link for the domain
-     */
-    virustotalUri?: string | null;
-  }
-  /**
-   * The whois details of the suspicious domain.
-   */
-  export interface Schema$SuspiciousDomainWhoIsDetails {
-    /**
-     * The time the whois details were retrieved.
-     */
-    retrievalTime?: string | null;
-    /**
-     * The whois details of the suspicious domain.
-     */
-    whois?: string | null;
-  }
-  /**
-   * Contains details for a technology watchlist alert.
-   */
-  export interface Schema$TargetTechnologyAlertDetail {
-    /**
-     * Optional. The vulnerability match details.
-     */
-    vulnerabilityMatch?: Schema$VulnerabilityMatch;
-  }
-  /**
-   * Contains details for a technology watchlist finding.
-   */
-  export interface Schema$TargetTechnologyFindingDetail {
-    /**
-     * Optional. The vulnerability match details.
-     */
-    vulnerabilityMatch?: Schema$VulnerabilityMatch;
-  }
-  /**
-   * TechnologyWatchListAlertThreshold contains the thresholds for alerting.
-   */
-  export interface Schema$TechnologyWatchListAlertThreshold {
-    /**
-     * Optional. The minimum cvss V3 score for the alert. Ex: 7.0. Valid range is [0.0, 10.0].
-     */
-    cvssScoreMinimum?: number | null;
-    /**
-     * Optional. The minimum epss score for the alert. Ex: 0.8. Valid range is [0.0, 1.0].
-     */
-    epssScoreMinimum?: number | null;
-    /**
-     * Optional. The exploitation states of the alert.
-     */
-    exploitationStates?: string[] | null;
-    /**
-     * Optional. The minimum priority for the alert.
-     */
-    priorityMinimum?: string | null;
-  }
-  /**
-   * TechnologyWatchListConfig is the configuration for the technology watchlist.
-   */
-  export interface Schema$TechnologyWatchListConfig {
-    /**
-     * Optional. Alert thresholds to effectively reduce noise.
-     */
-    alertThreshold?: Schema$TechnologyWatchListAlertThreshold;
-    /**
-     * Optional. List of vendor, technology or cpe fingerprint. example: Microsoft office 360 Apache Server 3.5 cpe:2.3:a:microsoft:outlook:*:*:*:*:*:*:*:*
-     */
-    technologies?: string[] | null;
+    message?: string | null;
   }
   /**
    * Response message for UpsertConfiguration.
@@ -1627,43 +1112,6 @@ export namespace threatintelligence_v1beta {
      * Output only. Created configuration ID with server assigned id.
      */
     configuration?: string | null;
-  }
-  /**
-   * Contains details about a vulnerability match.
-   */
-  export interface Schema$VulnerabilityMatch {
-    /**
-     * Optional. Associated threat actors, malware, etc. This is embedded as a snapshot because the details of the association at the time of the vulnerability match are important for context and reporting.
-     */
-    associations?: Schema$Association[];
-    /**
-     * Required. The collection ID of the vulnerability. Ex: "vulnerability--cve-2025-9876".
-     */
-    collectionId?: string | null;
-    /**
-     * Required. The CVE ID of the vulnerability. Ex: "CVE-2025-9876". See https://www.cve.org/ for more information.
-     */
-    cveId?: string | null;
-    /**
-     * Required. The CVSS v3 score of the vulnerability. Example: 6.4.
-     */
-    cvss3Score?: number | null;
-    /**
-     * Required. A description of the vulnerability.
-     */
-    description?: string | null;
-    /**
-     * Required. The exploitation state of the vulnerability.
-     */
-    exploitationState?: string | null;
-    /**
-     * Required. The risk rating of the vulnerability.
-     */
-    riskRating?: string | null;
-    /**
-     * Required. The affected technologies. Ex: "Apache Struts".
-     */
-    technologies?: string[] | null;
   }
 
   export class Resource$Projects {
@@ -1677,6 +1125,169 @@ export namespace threatintelligence_v1beta {
       this.configurations = new Resource$Projects$Configurations(this.context);
       this.findings = new Resource$Projects$Findings(this.context);
     }
+
+    /**
+     * Triggers the generation of a Customer Profile for a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/threatintelligence.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const threatintelligence = google.threatintelligence('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await threatintelligence.projects.generateOrgProfile({
+     *     // Required. The name of the project to generate the profile for. Format: projects/{project\}
+     *     name: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "domain": "my_domain"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateOrgProfile(
+      params: Params$Resource$Projects$Generateorgprofile,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generateOrgProfile(
+      params?: Params$Resource$Projects$Generateorgprofile,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    generateOrgProfile(
+      params: Params$Resource$Projects$Generateorgprofile,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateOrgProfile(
+      params: Params$Resource$Projects$Generateorgprofile,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    generateOrgProfile(
+      params: Params$Resource$Projects$Generateorgprofile,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    generateOrgProfile(callback: BodyResponseCallback<Schema$Operation>): void;
+    generateOrgProfile(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Generateorgprofile
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Generateorgprofile;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Generateorgprofile;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://threatintelligence.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:generateOrgProfile').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Generateorgprofile extends StandardParameters {
+    /**
+     * Required. The name of the project to generate the profile for. Format: projects/{project\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GenerateOrgProfileConfigurationRequest;
   }
 
   export class Resource$Projects$Alerts {
@@ -1732,7 +1343,6 @@ export namespace threatintelligence_v1beta {
      *   // Example response
      *   // {
      *   //   "aiSummary": "my_aiSummary",
-     *   //   "assets": [],
      *   //   "audit": {},
      *   //   "configurations": [],
      *   //   "detail": {},
@@ -1741,6 +1351,7 @@ export namespace threatintelligence_v1beta {
      *   //   "duplicatedBy": [],
      *   //   "etag": "my_etag",
      *   //   "externalId": "my_externalId",
+     *   //   "findingCount": "my_findingCount",
      *   //   "findings": [],
      *   //   "name": "my_name",
      *   //   "priorityAnalysis": {},
@@ -1893,7 +1504,6 @@ export namespace threatintelligence_v1beta {
      *   // Example response
      *   // {
      *   //   "aiSummary": "my_aiSummary",
-     *   //   "assets": [],
      *   //   "audit": {},
      *   //   "configurations": [],
      *   //   "detail": {},
@@ -1902,6 +1512,7 @@ export namespace threatintelligence_v1beta {
      *   //   "duplicatedBy": [],
      *   //   "etag": "my_etag",
      *   //   "externalId": "my_externalId",
+     *   //   "findingCount": "my_findingCount",
      *   //   "findings": [],
      *   //   "name": "my_name",
      *   //   "priorityAnalysis": {},
@@ -2198,7 +1809,6 @@ export namespace threatintelligence_v1beta {
      *   // Example response
      *   // {
      *   //   "aiSummary": "my_aiSummary",
-     *   //   "assets": [],
      *   //   "audit": {},
      *   //   "configurations": [],
      *   //   "detail": {},
@@ -2207,6 +1817,7 @@ export namespace threatintelligence_v1beta {
      *   //   "duplicatedBy": [],
      *   //   "etag": "my_etag",
      *   //   "externalId": "my_externalId",
+     *   //   "findingCount": "my_findingCount",
      *   //   "findings": [],
      *   //   "name": "my_name",
      *   //   "priorityAnalysis": {},
@@ -2357,7 +1968,6 @@ export namespace threatintelligence_v1beta {
      *   // Example response
      *   // {
      *   //   "aiSummary": "my_aiSummary",
-     *   //   "assets": [],
      *   //   "audit": {},
      *   //   "configurations": [],
      *   //   "detail": {},
@@ -2366,6 +1976,7 @@ export namespace threatintelligence_v1beta {
      *   //   "duplicatedBy": [],
      *   //   "etag": "my_etag",
      *   //   "externalId": "my_externalId",
+     *   //   "findingCount": "my_findingCount",
      *   //   "findings": [],
      *   //   "name": "my_name",
      *   //   "priorityAnalysis": {},
@@ -2510,7 +2121,6 @@ export namespace threatintelligence_v1beta {
      *   // Example response
      *   // {
      *   //   "aiSummary": "my_aiSummary",
-     *   //   "assets": [],
      *   //   "audit": {},
      *   //   "configurations": [],
      *   //   "detail": {},
@@ -2519,6 +2129,7 @@ export namespace threatintelligence_v1beta {
      *   //   "duplicatedBy": [],
      *   //   "etag": "my_etag",
      *   //   "externalId": "my_externalId",
+     *   //   "findingCount": "my_findingCount",
      *   //   "findings": [],
      *   //   "name": "my_name",
      *   //   "priorityAnalysis": {},
@@ -2813,7 +2424,6 @@ export namespace threatintelligence_v1beta {
      *   // Example response
      *   // {
      *   //   "aiSummary": "my_aiSummary",
-     *   //   "assets": [],
      *   //   "audit": {},
      *   //   "configurations": [],
      *   //   "detail": {},
@@ -2822,6 +2432,7 @@ export namespace threatintelligence_v1beta {
      *   //   "duplicatedBy": [],
      *   //   "etag": "my_etag",
      *   //   "externalId": "my_externalId",
+     *   //   "findingCount": "my_findingCount",
      *   //   "findings": [],
      *   //   "name": "my_name",
      *   //   "priorityAnalysis": {},
@@ -2972,7 +2583,6 @@ export namespace threatintelligence_v1beta {
      *   // Example response
      *   // {
      *   //   "aiSummary": "my_aiSummary",
-     *   //   "assets": [],
      *   //   "audit": {},
      *   //   "configurations": [],
      *   //   "detail": {},
@@ -2981,6 +2591,7 @@ export namespace threatintelligence_v1beta {
      *   //   "duplicatedBy": [],
      *   //   "etag": "my_etag",
      *   //   "externalId": "my_externalId",
+     *   //   "findingCount": "my_findingCount",
      *   //   "findings": [],
      *   //   "name": "my_name",
      *   //   "priorityAnalysis": {},
@@ -3087,304 +2698,6 @@ export namespace threatintelligence_v1beta {
     }
 
     /**
-     * Return the status of a URI submitted to Google WebRisk.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/threatintelligence.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const threatintelligence = google.threatintelligence('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await threatintelligence.projects.alerts.refreshUriStatus({
-     *     // Required. Name of alert to refresh status from WebRisk
-     *     name: 'projects/my-project/alerts/my-alert',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    refreshUriStatus(
-      params: Params$Resource$Projects$Alerts$Refreshuristatus,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    refreshUriStatus(
-      params?: Params$Resource$Projects$Alerts$Refreshuristatus,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$RefreshAlertUriStatusResponse>>;
-    refreshUriStatus(
-      params: Params$Resource$Projects$Alerts$Refreshuristatus,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    refreshUriStatus(
-      params: Params$Resource$Projects$Alerts$Refreshuristatus,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RefreshAlertUriStatusResponse>,
-      callback: BodyResponseCallback<Schema$RefreshAlertUriStatusResponse>
-    ): void;
-    refreshUriStatus(
-      params: Params$Resource$Projects$Alerts$Refreshuristatus,
-      callback: BodyResponseCallback<Schema$RefreshAlertUriStatusResponse>
-    ): void;
-    refreshUriStatus(
-      callback: BodyResponseCallback<Schema$RefreshAlertUriStatusResponse>
-    ): void;
-    refreshUriStatus(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Alerts$Refreshuristatus
-        | BodyResponseCallback<Schema$RefreshAlertUriStatusResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$RefreshAlertUriStatusResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$RefreshAlertUriStatusResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$RefreshAlertUriStatusResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Alerts$Refreshuristatus;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Alerts$Refreshuristatus;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://threatintelligence.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+name}:refreshUriStatus').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$RefreshAlertUriStatusResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$RefreshAlertUriStatusResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Report the URI associated with an alert to Google WebRisk.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/threatintelligence.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const threatintelligence = google.threatintelligence('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await threatintelligence.projects.alerts.reportAlertUri({
-     *     // Required. Name of alert to submit to WebRisk.
-     *     name: 'projects/my-project/alerts/my-alert',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    reportAlertUri(
-      params: Params$Resource$Projects$Alerts$Reportalerturi,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    reportAlertUri(
-      params?: Params$Resource$Projects$Alerts$Reportalerturi,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$ReportAlertUriResponse>>;
-    reportAlertUri(
-      params: Params$Resource$Projects$Alerts$Reportalerturi,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    reportAlertUri(
-      params: Params$Resource$Projects$Alerts$Reportalerturi,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ReportAlertUriResponse>,
-      callback: BodyResponseCallback<Schema$ReportAlertUriResponse>
-    ): void;
-    reportAlertUri(
-      params: Params$Resource$Projects$Alerts$Reportalerturi,
-      callback: BodyResponseCallback<Schema$ReportAlertUriResponse>
-    ): void;
-    reportAlertUri(
-      callback: BodyResponseCallback<Schema$ReportAlertUriResponse>
-    ): void;
-    reportAlertUri(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Alerts$Reportalerturi
-        | BodyResponseCallback<Schema$ReportAlertUriResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ReportAlertUriResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ReportAlertUriResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ReportAlertUriResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Alerts$Reportalerturi;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Alerts$Reportalerturi;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://threatintelligence.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+name}:reportAlertUri').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ReportAlertUriResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ReportAlertUriResponse>(parameters);
-      }
-    }
-
-    /**
      * Marks an alert to closed state - RESOLVED.
      * @example
      * ```js
@@ -3429,7 +2742,6 @@ export namespace threatintelligence_v1beta {
      *   // Example response
      *   // {
      *   //   "aiSummary": "my_aiSummary",
-     *   //   "assets": [],
      *   //   "audit": {},
      *   //   "configurations": [],
      *   //   "detail": {},
@@ -3438,6 +2750,7 @@ export namespace threatintelligence_v1beta {
      *   //   "duplicatedBy": [],
      *   //   "etag": "my_etag",
      *   //   "externalId": "my_externalId",
+     *   //   "findingCount": "my_findingCount",
      *   //   "findings": [],
      *   //   "name": "my_name",
      *   //   "priorityAnalysis": {},
@@ -3588,7 +2901,6 @@ export namespace threatintelligence_v1beta {
      *   // Example response
      *   // {
      *   //   "aiSummary": "my_aiSummary",
-     *   //   "assets": [],
      *   //   "audit": {},
      *   //   "configurations": [],
      *   //   "detail": {},
@@ -3597,6 +2909,7 @@ export namespace threatintelligence_v1beta {
      *   //   "duplicatedBy": [],
      *   //   "etag": "my_etag",
      *   //   "externalId": "my_externalId",
+     *   //   "findingCount": "my_findingCount",
      *   //   "findings": [],
      *   //   "name": "my_name",
      *   //   "priorityAnalysis": {},
@@ -3747,7 +3060,6 @@ export namespace threatintelligence_v1beta {
      *   // Example response
      *   // {
      *   //   "aiSummary": "my_aiSummary",
-     *   //   "assets": [],
      *   //   "audit": {},
      *   //   "configurations": [],
      *   //   "detail": {},
@@ -3756,6 +3068,7 @@ export namespace threatintelligence_v1beta {
      *   //   "duplicatedBy": [],
      *   //   "etag": "my_etag",
      *   //   "externalId": "my_externalId",
+     *   //   "findingCount": "my_findingCount",
      *   //   "findings": [],
      *   //   "name": "my_name",
      *   //   "priorityAnalysis": {},
@@ -3965,28 +3278,6 @@ export namespace threatintelligence_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$MarkAlertAsReadRequest;
-  }
-  export interface Params$Resource$Projects$Alerts$Refreshuristatus extends StandardParameters {
-    /**
-     * Required. Name of alert to refresh status from WebRisk
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$RefreshAlertUriStatusRequest;
-  }
-  export interface Params$Resource$Projects$Alerts$Reportalerturi extends StandardParameters {
-    /**
-     * Required. Name of alert to submit to WebRisk.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ReportAlertUriRequest;
   }
   export interface Params$Resource$Projects$Alerts$Resolve extends StandardParameters {
     /**
@@ -4884,7 +4175,7 @@ export namespace threatintelligence_v1beta {
     }
 
     /**
-     * Get a finding by name.
+     * Get a finding by name. The `name` field should have the format: `projects/{project\}/findings/{finding\}`
      * @example
      * ```js
      * // Before running the sample:
@@ -4923,12 +4214,10 @@ export namespace threatintelligence_v1beta {
      *   // {
      *   //   "aiSummary": "my_aiSummary",
      *   //   "alert": "my_alert",
-     *   //   "asset": "my_asset",
      *   //   "audit": {},
      *   //   "configurations": [],
      *   //   "detail": {},
      *   //   "displayName": "my_displayName",
-     *   //   "issue": "my_issue",
      *   //   "name": "my_name",
      *   //   "provider": "my_provider",
      *   //   "relevanceAnalysis": {},
@@ -5032,7 +4321,7 @@ export namespace threatintelligence_v1beta {
     }
 
     /**
-     * Get a list of findings that meet the filter criteria.
+     * Get a list of findings that meet the filter criteria. The `parent` field in ListFindingsRequest should have the format: projects/{project\}
      * @example
      * ```js
      * // Before running the sample:
@@ -5181,7 +4470,7 @@ export namespace threatintelligence_v1beta {
     }
 
     /**
-     * SearchFindings is a more powerful version of ListFindings that supports complex queries like "findings for issues" using functions such as `has_issue` and `has_asset` in the query string. Example to search for findings for a specific issue: `has_issue("name=\"vaults/vault-12345/issues/issue-12345\"")`)
+     * SearchFindings is a more powerful version of ListFindings that supports complex queries like "findings for alerts" using functions such as `has_alert` in the query string. The `parent` field in SearchFindingsRequest should have the format: projects/{project\} Example to search for findings for a specific issue: `has_alert("name=\"projects/gti-12345/alerts/alert-12345\"")`
      * @example
      * ```js
      * // Before running the sample:
@@ -5219,7 +4508,7 @@ export namespace threatintelligence_v1beta {
      *     pageToken: 'placeholder-value',
      *     // Required. Parent of the findings. Format: vaults/{vault\}
      *     parent: 'projects/my-project',
-     *     // Optional. Query on what findings will be returned. This supports the same filter criteria as FindingService.ListFindings as well as the following relationship queries `has_issue` and `has_asset`. Examples: - has_issue("name=\"vaults/vault-12345/issues/issue-12345\"") - has_asset("name=\"vaults/vault-12345/assets/asset-12345\"")
+     *     // Optional. Query on what findings will be returned. This supports the same filter criteria as FindingService.ListFindings as well as the following relationship query `has_alert`. Example: - `has_alert("name=\"projects/gti-12345/alerts/alert-12345\"")`
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5376,7 +4665,7 @@ export namespace threatintelligence_v1beta {
      */
     parent?: string;
     /**
-     * Optional. Query on what findings will be returned. This supports the same filter criteria as FindingService.ListFindings as well as the following relationship queries `has_issue` and `has_asset`. Examples: - has_issue("name=\"vaults/vault-12345/issues/issue-12345\"") - has_asset("name=\"vaults/vault-12345/assets/asset-12345\"")
+     * Optional. Query on what findings will be returned. This supports the same filter criteria as FindingService.ListFindings as well as the following relationship query `has_alert`. Example: - `has_alert("name=\"projects/gti-12345/alerts/alert-12345\"")`
      */
     query?: string;
   }

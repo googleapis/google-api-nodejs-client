@@ -231,6 +231,10 @@ export namespace containeranalysis_v1alpha1 {
      */
     name?: string | null;
     /**
+     * The registry of the base image.
+     */
+    registry?: string | null;
+    /**
      * The repository name in which the base image is from.
      */
     repository?: string | null;
@@ -4084,6 +4088,10 @@ export namespace containeranalysis_v1alpha1 {
    * VulnerabilityType provides metadata about a security vulnerability.
    */
   export interface Schema$VulnerabilityType {
+    /**
+     * Time this advisory was published by the source.
+     */
+    advisoryPublishTime?: string | null;
     /**
      * The CVSS score for this Vulnerability.
      */

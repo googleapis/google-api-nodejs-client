@@ -2543,7 +2543,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"`",
+                              "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"` * `collaborative_project = \"projects/123/locations/global/collections/default_collection/engines/\" \"default_engine/collaborative_projects/cp1\"`",
                               "location": "query",
                               "type": "string"
                             },
@@ -3448,7 +3448,7 @@
                 "engines": {
                   "methods": {
                     "create": {
-                      "description": "Creates a Engine.",
+                      "description": "Creates an Engine.",
                       "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines",
                       "httpMethod": "POST",
                       "id": "discoveryengine.projects.locations.collections.engines.create",
@@ -3482,7 +3482,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes a Engine.",
+                      "description": "Deletes an Engine.",
                       "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}",
                       "httpMethod": "DELETE",
                       "id": "discoveryengine.projects.locations.collections.engines.delete",
@@ -3508,7 +3508,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets a Engine.",
+                      "description": "Gets an Engine.",
                       "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}",
                       "httpMethod": "GET",
                       "id": "discoveryengine.projects.locations.collections.engines.get",
@@ -3527,6 +3527,38 @@
                       "path": "v1beta/{+name}",
                       "response": {
                         "$ref": "GoogleCloudDiscoveryengineV1betaEngine"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    },
+                    "getIamPolicy": {
+                      "description": "Gets the IAM access control policy for an Engine. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}:getIamPolicy",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.collections.engines.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "options.requestedPolicyVersion": {
+                          "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+resource}:getIamPolicy",
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -3611,7 +3643,7 @@
                       ]
                     },
                     "pause": {
-                      "description": "Pauses the training of an existing engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.",
+                      "description": "Pauses the training of an existing Engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.",
                       "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}:pause",
                       "httpMethod": "POST",
                       "id": "discoveryengine.projects.locations.collections.engines.pause",
@@ -3640,7 +3672,7 @@
                       ]
                     },
                     "resume": {
-                      "description": "Resumes the training of an existing engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.",
+                      "description": "Resumes the training of an existing Engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.",
                       "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}:resume",
                       "httpMethod": "POST",
                       "id": "discoveryengine.projects.locations.collections.engines.resume",
@@ -3668,8 +3700,37 @@
                         "https://www.googleapis.com/auth/discoveryengine.readwrite"
                       ]
                     },
+                    "setIamPolicy": {
+                      "description": "Sets the IAM access control policy for an Engine. A `NOT_FOUND` error is returned if the resource does not exist. **Important:** When setting a policy directly on an Engine resource, the only recommended roles in the bindings are: `roles/discoveryengine.user` and `roles/discoveryengine.agentspaceUser`. Attempting to grant any other role will result in a warning in logging.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.collections.engines.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "GoogleIamV1SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/discoveryengine.readwrite"
+                      ]
+                    },
                     "tune": {
-                      "description": "Tunes an existing engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.",
+                      "description": "Tunes an existing Engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.",
                       "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}:tune",
                       "httpMethod": "POST",
                       "id": "discoveryengine.projects.locations.collections.engines.tune",
@@ -4847,7 +4908,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"`",
+                              "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"` * `collaborative_project = \"projects/123/locations/global/collections/default_collection/engines/\" \"default_engine/collaborative_projects/cp1\"`",
                               "location": "query",
                               "type": "string"
                             },
@@ -6862,7 +6923,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"`",
+                          "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"` * `collaborative_project = \"projects/123/locations/global/collections/default_collection/engines/\" \"default_engine/collaborative_projects/cp1\"`",
                           "location": "query",
                           "type": "string"
                         },
@@ -8055,7 +8116,7 @@
             "licenseConfigs": {
               "methods": {
                 "create": {
-                  "description": "Creates a LicenseConfig",
+                  "description": "Creates a LicenseConfig This method should only be used for creating NotebookLm licenses or Gemini Enterprise free trial licenses.",
                   "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/licenseConfigs",
                   "httpMethod": "POST",
                   "id": "discoveryengine.projects.locations.licenseConfigs.create",
@@ -9106,7 +9167,7 @@
       }
     }
   },
-  "revision": "20260130",
+  "revision": "20260226",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -10201,14 +10262,16 @@
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
             "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT"
+            "SOLUTION_TYPE_GENERATIVE_CHAT",
+            "SOLUTION_TYPE_AI_MODE"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
             "Used for use cases related to the Generative AI agent.",
-            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+            "Used for AI Mode."
           ],
           "type": "string"
         },
@@ -10576,7 +10639,9 @@
             "THIRD_PARTY_FEDERATED",
             "THIRD_PARTY_EUA",
             "GCNV",
-            "GOOGLE_CHAT"
+            "GOOGLE_CHAT",
+            "GOOGLE_SITES",
+            "REMOTE_MCP"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -10591,7 +10656,9 @@
             "Federated connector, it is a third party connector that doesn't ingestion data, and search is powered by third party application's API.",
             "Connector utilized for End User Authentication features.",
             "Google Cloud NetApp Volumes connector.",
-            "Google Chat connector."
+            "Google Chat connector.",
+            "Google Sites connector.",
+            "Remote MCP based connector."
           ],
           "readOnly": true,
           "type": "string"
@@ -10615,6 +10682,14 @@
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1DestinationConfig"
           },
+          "type": "array"
+        },
+        "egressFqdns": {
+          "description": "Output only. The list of FQDNs of the data connector can egress to. This includes both FQDN derived from the customer provided instance URL and default per connector type FQDNs. Note: This field is derived from both the DataConnector.params, and connector source spec. It should only be used for CAIS and Org Policy evaluation purposes.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
           "type": "array"
         },
         "endUserConfig": {
@@ -10802,6 +10877,11 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "vpcscEnabled": {
+          "description": "Output only. Whether the connector is created with VPC-SC enabled. This is only used for CuOP evaluation purpose.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -11084,14 +11164,16 @@
               "SOLUTION_TYPE_RECOMMENDATION",
               "SOLUTION_TYPE_SEARCH",
               "SOLUTION_TYPE_CHAT",
-              "SOLUTION_TYPE_GENERATIVE_CHAT"
+              "SOLUTION_TYPE_GENERATIVE_CHAT",
+              "SOLUTION_TYPE_AI_MODE"
             ],
             "enumDescriptions": [
               "Default value.",
               "Used for Recommendations AI.",
               "Used for Discovery Search.",
               "Used for use cases related to the Generative AI agent.",
-              "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+              "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+              "Used for AI Mode."
             ],
             "type": "string"
           },
@@ -11578,6 +11660,13 @@
           ],
           "type": "string"
         },
+        "connectorTenantInfo": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Maps a connector ID (e.g., \"hybrid-github\", \"shopify\") to tenant-specific information required for that connector. The structure of the tenant information string is connector-dependent.",
+          "type": "object"
+        },
         "createTime": {
           "description": "Output only. Timestamp the Recommendation Engine was created at.",
           "format": "google-datetime",
@@ -11636,6 +11725,24 @@
           "$ref": "GoogleCloudDiscoveryengineV1EngineKnowledgeGraphConfig",
           "description": "Optional. Configurations for the Knowledge Graph. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
         },
+        "marketplaceAgentVisibility": {
+          "description": "Optional. The visibility of marketplace agents in the agent gallery.",
+          "enum": [
+            "MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED",
+            "SHOW_AVAILABLE_AGENTS_ONLY",
+            "SHOW_AGENTS_ALREADY_INTEGRATED",
+            "SHOW_AGENTS_ALREADY_PURCHASED",
+            "SHOW_ALL_AGENTS"
+          ],
+          "enumDescriptions": [
+            "Defaults to `MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED`.",
+            "Only agents that are currently available for use by the user are visible.",
+            "Show marketplace agents that the user does not yet have access to but are integrated into the engine. This level also includes all agents visible with `SHOW_AVAILABLE_AGENTS_ONLY`.",
+            "Show all agents visible with `SHOW_AGENTS_ALREADY_INTEGRATED`, plus agents that have already been purchased by the project/organization, even if they are not currently integrated into the engine.",
+            "All agents in the marketplace are visible, regardless of access or purchase status. This level encompasses all agents shown in the previous levels."
+          ],
+          "type": "string"
+        },
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig",
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
@@ -11665,6 +11772,10 @@
           "$ref": "GoogleCloudDiscoveryengineV1ObservabilityConfig",
           "description": "Optional. Observability config for the engine."
         },
+        "procurementContactEmail": {
+          "description": "Optional. The email of the procurement contact.",
+          "type": "string"
+        },
         "searchEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineSearchEngineConfig",
           "description": "Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
@@ -11676,14 +11787,16 @@
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
             "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT"
+            "SOLUTION_TYPE_GENERATIVE_CHAT",
+            "SOLUTION_TYPE_AI_MODE"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
             "Used for use cases related to the Generative AI agent.",
-            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+            "Used for AI Mode."
           ],
           "type": "string"
         },
@@ -11922,6 +12035,7 @@
             "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
             "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
             "SUBSCRIPTION_TIER_ENTERPRISE",
+            "SUBSCRIPTION_TIER_ENTERPRISE_EMERGING",
             "SUBSCRIPTION_TIER_EDU",
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
@@ -11930,18 +12044,19 @@
           ],
           "enumDescriptions": [
             "Default value.",
-            "Search tier. Search tier can access VAIS search features and NotebookLM features.",
-            "Search + assistant tier. Search + assistant tier can access VAIS search features, NotebookLM features and assistant features.",
+            "Search tier. Search tier can access Vertex AI Search features and NotebookLM features.",
+            "Gemini Enterprise Plus tier.",
             "NotebookLM tier. NotebookLM is a subscription tier can only access NotebookLM features.",
-            "Frontline worker tier.",
-            "Agentspace Starter tier.",
-            "Agentspace Business tier.",
-            "Enterprise tier.",
-            "EDU tier.",
-            "EDU Pro tier.",
-            "EDU emerging market tier.",
-            "EDU Pro emerging market tier.",
-            "Frontline starter tier."
+            "Gemini Frontline worker tier.",
+            "Gemini Business Starter tier.",
+            "Gemini Business tier.",
+            "Gemini Enterprise Standard tier.",
+            "Gemini Enterprise Standard tier for emerging markets.",
+            "Gemini Enterprise EDU tier.",
+            "Gemini Enterprise EDU Pro tier.",
+            "Gemini Enterprise EDU tier for emerging market only.",
+            "Gemini Enterprise EDU Pro tier for emerging market.",
+            "Gemini Frontline Starter tier."
           ],
           "type": "string"
         },
@@ -12297,6 +12412,16 @@
           "description": "Optional. Whether the license config should be auto renewed when it reaches the end date.",
           "type": "boolean"
         },
+        "earlyTerminated": {
+          "description": "Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "earlyTerminationDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Output only. The date when the subscription is terminated earlier than the expiration date.",
+          "readOnly": true
+        },
         "endDate": {
           "$ref": "GoogleTypeDate",
           "description": "Optional. The planed end date."
@@ -12329,13 +12454,17 @@
             "STATE_UNSPECIFIED",
             "ACTIVE",
             "EXPIRED",
-            "NOT_STARTED"
+            "NOT_STARTED",
+            "WITHDRAWN",
+            "DEACTIVATING"
           ],
           "enumDescriptions": [
             "Default value. The license config does not exist.",
             "The license config is effective and being used.",
             "The license config has expired.",
-            "The license config has not started yet, and its start date is in the future."
+            "The license config has not started yet, and its start date is in the future.",
+            "This is when a sub license config has returned all its seats back to BillingAccountLicenseConfig that it belongs to. Similar to EXPIRED.",
+            "The license config is terminated earlier than the expiration date and it is deactivating. The customer will still have access in this state. It will be converted to EXPIRED after the deactivating period ends (14 days) or when the end date is reached, whichever comes first."
           ],
           "readOnly": true,
           "type": "string"
@@ -12346,13 +12475,15 @@
             "SUBSCRIPTION_TERM_UNSPECIFIED",
             "SUBSCRIPTION_TERM_ONE_MONTH",
             "SUBSCRIPTION_TERM_ONE_YEAR",
-            "SUBSCRIPTION_TERM_THREE_YEARS"
+            "SUBSCRIPTION_TERM_THREE_YEARS",
+            "SUBSCRIPTION_TERM_CUSTOM"
           ],
           "enumDescriptions": [
             "Default value, do not use.",
             "1 month.",
             "1 year.",
-            "3 years."
+            "3 years.",
+            "Custom term. Must set the end_date."
           ],
           "type": "string"
         },
@@ -12367,6 +12498,7 @@
             "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
             "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
             "SUBSCRIPTION_TIER_ENTERPRISE",
+            "SUBSCRIPTION_TIER_ENTERPRISE_EMERGING",
             "SUBSCRIPTION_TIER_EDU",
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
@@ -12375,18 +12507,19 @@
           ],
           "enumDescriptions": [
             "Default value.",
-            "Search tier. Search tier can access VAIS search features and NotebookLM features.",
-            "Search + assistant tier. Search + assistant tier can access VAIS search features, NotebookLM features and assistant features.",
+            "Search tier. Search tier can access Vertex AI Search features and NotebookLM features.",
+            "Gemini Enterprise Plus tier.",
             "NotebookLM tier. NotebookLM is a subscription tier can only access NotebookLM features.",
-            "Frontline worker tier.",
-            "Agentspace Starter tier.",
-            "Agentspace Business tier.",
-            "Enterprise tier.",
-            "EDU tier.",
-            "EDU Pro tier.",
-            "EDU emerging market tier.",
-            "EDU Pro emerging market tier.",
-            "Frontline starter tier."
+            "Gemini Frontline worker tier.",
+            "Gemini Business Starter tier.",
+            "Gemini Business tier.",
+            "Gemini Enterprise Standard tier.",
+            "Gemini Enterprise Standard tier for emerging markets.",
+            "Gemini Enterprise EDU tier.",
+            "Gemini Enterprise EDU Pro tier.",
+            "Gemini Enterprise EDU tier for emerging market only.",
+            "Gemini Enterprise EDU Pro tier for emerging market.",
+            "Gemini Frontline Starter tier."
           ],
           "type": "string"
         }
@@ -12525,6 +12658,10 @@
       "description": "Configuration for NotebookLM.",
       "id": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfig",
       "properties": {
+        "dataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy",
+          "description": "Optional. Specifies the data protection policy for NotebookLM."
+        },
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
           "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
@@ -12536,6 +12673,28 @@
         "optOutNotebookSharing": {
           "description": "Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy": {
+      "description": "Data protection policy config for NotebookLM.",
+      "id": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy",
+      "properties": {
+        "sensitiveDataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy",
+          "description": "Optional. The sensitive data protection policy."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy": {
+      "description": "Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.",
+      "id": "GoogleCloudDiscoveryengineV1ProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy",
+      "properties": {
+        "policy": {
+          "description": "Optional. The Sensitive Data Protection policy resource name.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -13060,14 +13219,16 @@
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
             "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT"
+            "SOLUTION_TYPE_GENERATIVE_CHAT",
+            "SOLUTION_TYPE_AI_MODE"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
             "Used for use cases related to the Generative AI agent.",
-            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+            "Used for AI Mode."
           ],
           "type": "string"
         },
@@ -13700,6 +13861,10 @@
         },
         "languageCode": {
           "description": "Optional. The language code used for notifications",
+          "type": "string"
+        },
+        "regionCode": {
+          "description": "Optional. The region code used of the user that subscribed to the alert policy.",
           "type": "string"
         }
       },
@@ -15348,14 +15513,16 @@
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
             "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT"
+            "SOLUTION_TYPE_GENERATIVE_CHAT",
+            "SOLUTION_TYPE_AI_MODE"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
             "Used for use cases related to the Generative AI agent.",
-            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+            "Used for AI Mode."
           ],
           "type": "string"
         },
@@ -15751,7 +15918,9 @@
             "THIRD_PARTY_FEDERATED",
             "THIRD_PARTY_EUA",
             "GCNV",
-            "GOOGLE_CHAT"
+            "GOOGLE_CHAT",
+            "GOOGLE_SITES",
+            "REMOTE_MCP"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -15766,7 +15935,9 @@
             "Federated connector, it is a third party connector that doesn't ingestion data, and search is powered by third party application's API.",
             "Connector utilized for End User Authentication features.",
             "Google Cloud NetApp Volumes connector.",
-            "Google Chat connector."
+            "Google Chat connector.",
+            "Google Sites connector.",
+            "Remote MCP based connector."
           ],
           "readOnly": true,
           "type": "string"
@@ -15781,6 +15952,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "dataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDataProtectionPolicy",
+          "description": "Optional. Specifies the data protection policy for the connector."
+        },
         "dataSource": {
           "description": "Required. The name of the data source. Supported values: `salesforce`, `jira`, `confluence`, `bigquery`.",
           "type": "string"
@@ -15790,6 +15965,14 @@
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaDestinationConfig"
           },
+          "type": "array"
+        },
+        "egressFqdns": {
+          "description": "Output only. The list of FQDNs of the data connector can egress to. This includes both FQDN derived from the customer provided instance URL and default per connector type FQDNs. Note: This field is derived from both the DataConnector.params, and connector source spec. It should only be used for CAIS and Org Policy evaluation purposes.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
           "type": "array"
         },
         "endUserConfig": {
@@ -15977,6 +16160,11 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "vpcscEnabled": {
+          "description": "Output only. Whether the connector is created with VPC-SC enabled. This is only used for CuOP evaluation purpose.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -16128,6 +16316,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaDataProtectionPolicy": {
+      "description": "Data protection policy config for a connector.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDataProtectionPolicy",
+      "properties": {
+        "sensitiveDataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDataProtectionPolicySensitiveDataProtectionPolicy",
+          "description": "Optional. The sensitive data protection policy for the connector source."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDataProtectionPolicySensitiveDataProtectionPolicy": {
+      "description": "Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDataProtectionPolicySensitiveDataProtectionPolicy",
+      "properties": {
+        "policy": {
+          "description": "Optional. The Sensitive Data Protection content policy resource name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaDataStore": {
       "description": "DataStore captures global settings and configs at the DataStore level.",
       "id": "GoogleCloudDiscoveryengineV1alphaDataStore",
@@ -16268,14 +16478,16 @@
               "SOLUTION_TYPE_RECOMMENDATION",
               "SOLUTION_TYPE_SEARCH",
               "SOLUTION_TYPE_CHAT",
-              "SOLUTION_TYPE_GENERATIVE_CHAT"
+              "SOLUTION_TYPE_GENERATIVE_CHAT",
+              "SOLUTION_TYPE_AI_MODE"
             ],
             "enumDescriptions": [
               "Default value.",
               "Used for Recommendations AI.",
               "Used for Discovery Search.",
               "Used for use cases related to the Generative AI agent.",
-              "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+              "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+              "Used for AI Mode."
             ],
             "type": "string"
           },
@@ -16841,6 +17053,13 @@
           ],
           "type": "string"
         },
+        "connectorTenantInfo": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Maps a connector ID (e.g., \"hybrid-github\", \"shopify\") to tenant-specific information required for that connector. The structure of the tenant information string is connector-dependent.",
+          "type": "object"
+        },
         "createTime": {
           "description": "Output only. Timestamp the Recommendation Engine was created at.",
           "format": "google-datetime",
@@ -16899,6 +17118,24 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineKnowledgeGraphConfig",
           "description": "Optional. Configurations for the Knowledge Graph. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
         },
+        "marketplaceAgentVisibility": {
+          "description": "Optional. The visibility of marketplace agents in the agent gallery.",
+          "enum": [
+            "MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED",
+            "SHOW_AVAILABLE_AGENTS_ONLY",
+            "SHOW_AGENTS_ALREADY_INTEGRATED",
+            "SHOW_AGENTS_ALREADY_PURCHASED",
+            "SHOW_ALL_AGENTS"
+          ],
+          "enumDescriptions": [
+            "Defaults to `MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED`.",
+            "Only agents that are currently available for use by the user are visible.",
+            "Show marketplace agents that the user does not yet have access to but are integrated into the engine. This level also includes all agents visible with `SHOW_AVAILABLE_AGENTS_ONLY`.",
+            "Show all agents visible with `SHOW_AGENTS_ALREADY_INTEGRATED`, plus agents that have already been purchased by the project/organization, even if they are not currently integrated into the engine.",
+            "All agents in the marketplace are visible, regardless of access or purchase status. This level encompasses all agents shown in the previous levels."
+          ],
+          "type": "string"
+        },
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig",
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
@@ -16928,6 +17165,10 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaObservabilityConfig",
           "description": "Optional. Observability config for the engine."
         },
+        "procurementContactEmail": {
+          "description": "Optional. The email of the procurement contact.",
+          "type": "string"
+        },
         "recommendationMetadata": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineRecommendationMetadata",
           "description": "Output only. Additional information of a recommendation engine. Only applicable if solution_type is SOLUTION_TYPE_RECOMMENDATION.",
@@ -16948,14 +17189,16 @@
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
             "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT"
+            "SOLUTION_TYPE_GENERATIVE_CHAT",
+            "SOLUTION_TYPE_AI_MODE"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
             "Used for use cases related to the Generative AI agent.",
-            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+            "Used for AI Mode."
           ],
           "type": "string"
         },
@@ -17250,6 +17493,7 @@
             "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
             "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
             "SUBSCRIPTION_TIER_ENTERPRISE",
+            "SUBSCRIPTION_TIER_ENTERPRISE_EMERGING",
             "SUBSCRIPTION_TIER_EDU",
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
@@ -17258,18 +17502,19 @@
           ],
           "enumDescriptions": [
             "Default value.",
-            "Search tier. Search tier can access VAIS search features and NotebookLM features.",
-            "Search + assistant tier. Search + assistant tier can access VAIS search features, NotebookLM features and assistant features.",
+            "Search tier. Search tier can access Vertex AI Search features and NotebookLM features.",
+            "Gemini Enterprise Plus tier.",
             "NotebookLM tier. NotebookLM is a subscription tier can only access NotebookLM features.",
-            "Frontline worker tier.",
-            "Agentspace Starter tier.",
-            "Agentspace Business tier.",
-            "Enterprise tier.",
-            "EDU tier.",
-            "EDU Pro tier.",
-            "EDU emerging market tier.",
-            "EDU Pro emerging market tier.",
-            "Frontline starter tier."
+            "Gemini Frontline worker tier.",
+            "Gemini Business Starter tier.",
+            "Gemini Business tier.",
+            "Gemini Enterprise Standard tier.",
+            "Gemini Enterprise Standard tier for emerging markets.",
+            "Gemini Enterprise EDU tier.",
+            "Gemini Enterprise EDU Pro tier.",
+            "Gemini Enterprise EDU tier for emerging market only.",
+            "Gemini Enterprise EDU Pro tier for emerging market.",
+            "Gemini Frontline Starter tier."
           ],
           "type": "string"
         },
@@ -18070,6 +18315,16 @@
           "description": "Optional. Whether the license config should be auto renewed when it reaches the end date.",
           "type": "boolean"
         },
+        "earlyTerminated": {
+          "description": "Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "earlyTerminationDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Output only. The date when the subscription is terminated earlier than the expiration date.",
+          "readOnly": true
+        },
         "endDate": {
           "$ref": "GoogleTypeDate",
           "description": "Optional. The planed end date."
@@ -18102,13 +18357,17 @@
             "STATE_UNSPECIFIED",
             "ACTIVE",
             "EXPIRED",
-            "NOT_STARTED"
+            "NOT_STARTED",
+            "WITHDRAWN",
+            "DEACTIVATING"
           ],
           "enumDescriptions": [
             "Default value. The license config does not exist.",
             "The license config is effective and being used.",
             "The license config has expired.",
-            "The license config has not started yet, and its start date is in the future."
+            "The license config has not started yet, and its start date is in the future.",
+            "This is when a sub license config has returned all its seats back to BillingAccountLicenseConfig that it belongs to. Similar to EXPIRED.",
+            "The license config is terminated earlier than the expiration date and it is deactivating. The customer will still have access in this state. It will be converted to EXPIRED after the deactivating period ends (14 days) or when the end date is reached, whichever comes first."
           ],
           "readOnly": true,
           "type": "string"
@@ -18119,13 +18378,15 @@
             "SUBSCRIPTION_TERM_UNSPECIFIED",
             "SUBSCRIPTION_TERM_ONE_MONTH",
             "SUBSCRIPTION_TERM_ONE_YEAR",
-            "SUBSCRIPTION_TERM_THREE_YEARS"
+            "SUBSCRIPTION_TERM_THREE_YEARS",
+            "SUBSCRIPTION_TERM_CUSTOM"
           ],
           "enumDescriptions": [
             "Default value, do not use.",
             "1 month.",
             "1 year.",
-            "3 years."
+            "3 years.",
+            "Custom term. Must set the end_date."
           ],
           "type": "string"
         },
@@ -18140,6 +18401,7 @@
             "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
             "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
             "SUBSCRIPTION_TIER_ENTERPRISE",
+            "SUBSCRIPTION_TIER_ENTERPRISE_EMERGING",
             "SUBSCRIPTION_TIER_EDU",
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
@@ -18148,18 +18410,19 @@
           ],
           "enumDescriptions": [
             "Default value.",
-            "Search tier. Search tier can access VAIS search features and NotebookLM features.",
-            "Search + assistant tier. Search + assistant tier can access VAIS search features, NotebookLM features and assistant features.",
+            "Search tier. Search tier can access Vertex AI Search features and NotebookLM features.",
+            "Gemini Enterprise Plus tier.",
             "NotebookLM tier. NotebookLM is a subscription tier can only access NotebookLM features.",
-            "Frontline worker tier.",
-            "Agentspace Starter tier.",
-            "Agentspace Business tier.",
-            "Enterprise tier.",
-            "EDU tier.",
-            "EDU Pro tier.",
-            "EDU emerging market tier.",
-            "EDU Pro emerging market tier.",
-            "Frontline starter tier."
+            "Gemini Frontline worker tier.",
+            "Gemini Business Starter tier.",
+            "Gemini Business tier.",
+            "Gemini Enterprise Standard tier.",
+            "Gemini Enterprise Standard tier for emerging markets.",
+            "Gemini Enterprise EDU tier.",
+            "Gemini Enterprise EDU Pro tier.",
+            "Gemini Enterprise EDU tier for emerging market only.",
+            "Gemini Enterprise EDU Pro tier for emerging market.",
+            "Gemini Frontline Starter tier."
           ],
           "type": "string"
         }
@@ -18171,7 +18434,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaListSessionsRequest",
       "properties": {
         "filter": {
-          "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"`",
+          "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"` * `collaborative_project = \"projects/123/locations/global/collections/default_collection/engines/\" \"default_engine/collaborative_projects/cp1\"`",
           "type": "string"
         },
         "orderBy": {
@@ -18420,6 +18683,10 @@
       "description": "Configuration for NotebookLM.",
       "id": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfig",
       "properties": {
+        "dataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy",
+          "description": "Optional. Specifies the data protection policy for NotebookLM."
+        },
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
           "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
@@ -18431,6 +18698,28 @@
         "optOutNotebookSharing": {
           "description": "Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy": {
+      "description": "Data protection policy config for NotebookLM.",
+      "id": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy",
+      "properties": {
+        "sensitiveDataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy",
+          "description": "Optional. The sensitive data protection policy."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy": {
+      "description": "Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.",
+      "id": "GoogleCloudDiscoveryengineV1alphaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy",
+      "properties": {
+        "policy": {
+          "description": "Optional. The Sensitive Data Protection policy resource name.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -18716,6 +19005,13 @@
       "description": "Defines a user inputed query.",
       "id": "GoogleCloudDiscoveryengineV1alphaQuery",
       "properties": {
+        "parts": {
+          "description": "Query content parts.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaQueryPart"
+          },
+          "type": "array"
+        },
         "queryId": {
           "description": "Output only. Unique Id for the query.",
           "readOnly": true,
@@ -18723,6 +19019,137 @@
         },
         "text": {
           "description": "Plain text.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaQueryPart": {
+      "description": "Represents a part or the whole of a content, used to represent a query. A query can be made up of multiple parts.",
+      "id": "GoogleCloudDiscoveryengineV1alphaQueryPart",
+      "properties": {
+        "documentReference": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaQueryPartDocumentReference",
+          "description": "Other VAIS Document references."
+        },
+        "driveDocumentReference": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaQueryPartDriveDocumentReference",
+          "description": "Reference to a Google Drive document."
+        },
+        "mimeType": {
+          "description": "Optional. The IANA standard MIME type of the data. See https://www.iana.org/assignments/media-types/media-types.xhtml. This field is optional. If not set, the default assumed MIME type is \"text/plain\" for the \"data\" field.",
+          "type": "string"
+        },
+        "personReference": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaQueryPartPersonReference",
+          "description": "Reference to a person."
+        },
+        "text": {
+          "description": "Text content.",
+          "type": "string"
+        },
+        "uiJsonPayload": {
+          "description": "This field is expected to be a ui message in JSON format. As of Q1 2026, ui_json_payload is only supported for A2UI messages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaQueryPartDocumentReference": {
+      "description": "Represents a document reference.",
+      "id": "GoogleCloudDiscoveryengineV1alphaQueryPartDocumentReference",
+      "properties": {
+        "destinationUri": {
+          "description": "The destination uri of the reference.",
+          "type": "string"
+        },
+        "displayTitle": {
+          "description": "The display title of the reference.",
+          "type": "string"
+        },
+        "documentName": {
+          "description": "The full resource name of the document. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document_id}`.",
+          "type": "string"
+        },
+        "fileId": {
+          "description": "Output only. The file id of the document data stored in the session context files.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "iconUri": {
+          "description": "The icon uri of the reference.",
+          "type": "string"
+        },
+        "urlForConnector": {
+          "description": "Input only. The url_for_connector of the document returned by Federated Search.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaQueryPartDriveDocumentReference": {
+      "description": "Represents a Google Drive document reference.",
+      "id": "GoogleCloudDiscoveryengineV1alphaQueryPartDriveDocumentReference",
+      "properties": {
+        "destinationUri": {
+          "description": "The destination uri of the reference.",
+          "type": "string"
+        },
+        "displayTitle": {
+          "description": "The display title of the reference.",
+          "type": "string"
+        },
+        "documentName": {
+          "description": "The full resource name of the document. Format: `projects/*/locations/*/collections/*/dataStores/*/branches/*/documents/*`.",
+          "type": "string"
+        },
+        "driveId": {
+          "description": "The Drive id of the document.",
+          "type": "string"
+        },
+        "fileId": {
+          "description": "Output only. The file id of the Drive document data stored in the session context files.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "iconUri": {
+          "description": "The icon uri of the Drive document reference.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaQueryPartPersonReference": {
+      "description": "Represents a person reference.",
+      "id": "GoogleCloudDiscoveryengineV1alphaQueryPartPersonReference",
+      "properties": {
+        "destinationUri": {
+          "description": "The destination uri of the person.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the person.",
+          "type": "string"
+        },
+        "displayPhotoUri": {
+          "description": "The display photo url of the person.",
+          "type": "string"
+        },
+        "documentName": {
+          "description": "The full resource name of the person. Format: `projects/*/locations/*/collections/*/dataStores/*/branches/*/documents/*`.",
+          "type": "string"
+        },
+        "email": {
+          "description": "The email of the person.",
+          "type": "string"
+        },
+        "fileId": {
+          "description": "Output only. The file id of the person data stored in the session context files.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "personId": {
+          "description": "The person id of the person.",
           "type": "string"
         }
       },
@@ -19157,6 +19584,11 @@
         "naturalLanguageQueryUnderstandingSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec",
           "description": "Optional. Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done."
+        },
+        "numResultsPerDataStore": {
+          "description": "Optional. The maximum number of results to retrieve from each data store. If not specified, it will use the SearchRequest.DataStoreSpec.num_results if provided, otherwise there is no limit.",
+          "format": "int32",
+          "type": "integer"
         },
         "offset": {
           "description": "A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned. A large offset may be capped to a reasonable threshold.",
@@ -19663,6 +20095,11 @@
         "filter": {
           "description": "Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)",
           "type": "string"
+        },
+        "numResults": {
+          "description": "Optional. The maximum number of results to retrieve from this data store. If not specified, it will use the SearchRequest.num_results_per_data_store if provided, otherwise there is no limit. If both this field and SearchRequest.num_results_per_data_store are specified, this field will be used.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -23966,14 +24403,16 @@
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
             "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT"
+            "SOLUTION_TYPE_GENERATIVE_CHAT",
+            "SOLUTION_TYPE_AI_MODE"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
             "Used for use cases related to the Generative AI agent.",
-            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+            "Used for AI Mode."
           ],
           "type": "string"
         },
@@ -24645,14 +25084,16 @@
               "SOLUTION_TYPE_RECOMMENDATION",
               "SOLUTION_TYPE_SEARCH",
               "SOLUTION_TYPE_CHAT",
-              "SOLUTION_TYPE_GENERATIVE_CHAT"
+              "SOLUTION_TYPE_GENERATIVE_CHAT",
+              "SOLUTION_TYPE_AI_MODE"
             ],
             "enumDescriptions": [
               "Default value.",
               "Used for Recommendations AI.",
               "Used for Discovery Search.",
               "Used for use cases related to the Generative AI agent.",
-              "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+              "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+              "Used for AI Mode."
             ],
             "type": "string"
           },
@@ -25299,6 +25740,13 @@
           ],
           "type": "string"
         },
+        "connectorTenantInfo": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Maps a connector ID (e.g., \"hybrid-github\", \"shopify\") to tenant-specific information required for that connector. The structure of the tenant information string is connector-dependent.",
+          "type": "object"
+        },
         "createTime": {
           "description": "Output only. Timestamp the Recommendation Engine was created at.",
           "format": "google-datetime",
@@ -25357,6 +25805,24 @@
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineKnowledgeGraphConfig",
           "description": "Optional. Configurations for the Knowledge Graph. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
         },
+        "marketplaceAgentVisibility": {
+          "description": "Optional. The visibility of marketplace agents in the agent gallery.",
+          "enum": [
+            "MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED",
+            "SHOW_AVAILABLE_AGENTS_ONLY",
+            "SHOW_AGENTS_ALREADY_INTEGRATED",
+            "SHOW_AGENTS_ALREADY_PURCHASED",
+            "SHOW_ALL_AGENTS"
+          ],
+          "enumDescriptions": [
+            "Defaults to `MARKETPLACE_AGENT_VISIBILITY_UNSPECIFIED`.",
+            "Only agents that are currently available for use by the user are visible.",
+            "Show marketplace agents that the user does not yet have access to but are integrated into the engine. This level also includes all agents visible with `SHOW_AVAILABLE_AGENTS_ONLY`.",
+            "Show all agents visible with `SHOW_AGENTS_ALREADY_INTEGRATED`, plus agents that have already been purchased by the project/organization, even if they are not currently integrated into the engine.",
+            "All agents in the marketplace are visible, regardless of access or purchase status. This level encompasses all agents shown in the previous levels."
+          ],
+          "type": "string"
+        },
         "mediaRecommendationEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig",
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
@@ -25386,6 +25852,10 @@
           "$ref": "GoogleCloudDiscoveryengineV1betaObservabilityConfig",
           "description": "Optional. Observability config for the engine."
         },
+        "procurementContactEmail": {
+          "description": "Optional. The email of the procurement contact.",
+          "type": "string"
+        },
         "searchEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig",
           "description": "Configurations for the Search Engine. Only applicable if solution_type is SOLUTION_TYPE_SEARCH."
@@ -25397,14 +25867,16 @@
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
             "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT"
+            "SOLUTION_TYPE_GENERATIVE_CHAT",
+            "SOLUTION_TYPE_AI_MODE"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
             "Used for use cases related to the Generative AI agent.",
-            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+            "Used for AI Mode."
           ],
           "type": "string"
         },
@@ -25643,6 +26115,7 @@
             "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
             "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
             "SUBSCRIPTION_TIER_ENTERPRISE",
+            "SUBSCRIPTION_TIER_ENTERPRISE_EMERGING",
             "SUBSCRIPTION_TIER_EDU",
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
@@ -25651,18 +26124,19 @@
           ],
           "enumDescriptions": [
             "Default value.",
-            "Search tier. Search tier can access VAIS search features and NotebookLM features.",
-            "Search + assistant tier. Search + assistant tier can access VAIS search features, NotebookLM features and assistant features.",
+            "Search tier. Search tier can access Vertex AI Search features and NotebookLM features.",
+            "Gemini Enterprise Plus tier.",
             "NotebookLM tier. NotebookLM is a subscription tier can only access NotebookLM features.",
-            "Frontline worker tier.",
-            "Agentspace Starter tier.",
-            "Agentspace Business tier.",
-            "Enterprise tier.",
-            "EDU tier.",
-            "EDU Pro tier.",
-            "EDU emerging market tier.",
-            "EDU Pro emerging market tier.",
-            "Frontline starter tier."
+            "Gemini Frontline worker tier.",
+            "Gemini Business Starter tier.",
+            "Gemini Business tier.",
+            "Gemini Enterprise Standard tier.",
+            "Gemini Enterprise Standard tier for emerging markets.",
+            "Gemini Enterprise EDU tier.",
+            "Gemini Enterprise EDU Pro tier.",
+            "Gemini Enterprise EDU tier for emerging market only.",
+            "Gemini Enterprise EDU Pro tier for emerging market.",
+            "Gemini Frontline Starter tier."
           ],
           "type": "string"
         },
@@ -26667,6 +27141,16 @@
           "description": "Optional. Whether the license config should be auto renewed when it reaches the end date.",
           "type": "boolean"
         },
+        "earlyTerminated": {
+          "description": "Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is usually terminated by pipeline once the subscription gets terminated from subsv3.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "earlyTerminationDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Output only. The date when the subscription is terminated earlier than the expiration date.",
+          "readOnly": true
+        },
         "endDate": {
           "$ref": "GoogleTypeDate",
           "description": "Optional. The planed end date."
@@ -26699,13 +27183,17 @@
             "STATE_UNSPECIFIED",
             "ACTIVE",
             "EXPIRED",
-            "NOT_STARTED"
+            "NOT_STARTED",
+            "WITHDRAWN",
+            "DEACTIVATING"
           ],
           "enumDescriptions": [
             "Default value. The license config does not exist.",
             "The license config is effective and being used.",
             "The license config has expired.",
-            "The license config has not started yet, and its start date is in the future."
+            "The license config has not started yet, and its start date is in the future.",
+            "This is when a sub license config has returned all its seats back to BillingAccountLicenseConfig that it belongs to. Similar to EXPIRED.",
+            "The license config is terminated earlier than the expiration date and it is deactivating. The customer will still have access in this state. It will be converted to EXPIRED after the deactivating period ends (14 days) or when the end date is reached, whichever comes first."
           ],
           "readOnly": true,
           "type": "string"
@@ -26716,13 +27204,15 @@
             "SUBSCRIPTION_TERM_UNSPECIFIED",
             "SUBSCRIPTION_TERM_ONE_MONTH",
             "SUBSCRIPTION_TERM_ONE_YEAR",
-            "SUBSCRIPTION_TERM_THREE_YEARS"
+            "SUBSCRIPTION_TERM_THREE_YEARS",
+            "SUBSCRIPTION_TERM_CUSTOM"
           ],
           "enumDescriptions": [
             "Default value, do not use.",
             "1 month.",
             "1 year.",
-            "3 years."
+            "3 years.",
+            "Custom term. Must set the end_date."
           ],
           "type": "string"
         },
@@ -26737,6 +27227,7 @@
             "SUBSCRIPTION_TIER_AGENTSPACE_STARTER",
             "SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS",
             "SUBSCRIPTION_TIER_ENTERPRISE",
+            "SUBSCRIPTION_TIER_ENTERPRISE_EMERGING",
             "SUBSCRIPTION_TIER_EDU",
             "SUBSCRIPTION_TIER_EDU_PRO",
             "SUBSCRIPTION_TIER_EDU_EMERGING",
@@ -26745,18 +27236,19 @@
           ],
           "enumDescriptions": [
             "Default value.",
-            "Search tier. Search tier can access VAIS search features and NotebookLM features.",
-            "Search + assistant tier. Search + assistant tier can access VAIS search features, NotebookLM features and assistant features.",
+            "Search tier. Search tier can access Vertex AI Search features and NotebookLM features.",
+            "Gemini Enterprise Plus tier.",
             "NotebookLM tier. NotebookLM is a subscription tier can only access NotebookLM features.",
-            "Frontline worker tier.",
-            "Agentspace Starter tier.",
-            "Agentspace Business tier.",
-            "Enterprise tier.",
-            "EDU tier.",
-            "EDU Pro tier.",
-            "EDU emerging market tier.",
-            "EDU Pro emerging market tier.",
-            "Frontline starter tier."
+            "Gemini Frontline worker tier.",
+            "Gemini Business Starter tier.",
+            "Gemini Business tier.",
+            "Gemini Enterprise Standard tier.",
+            "Gemini Enterprise Standard tier for emerging markets.",
+            "Gemini Enterprise EDU tier.",
+            "Gemini Enterprise EDU Pro tier.",
+            "Gemini Enterprise EDU tier for emerging market only.",
+            "Gemini Enterprise EDU Pro tier for emerging market.",
+            "Gemini Frontline Starter tier."
           ],
           "type": "string"
         }
@@ -27438,6 +27930,10 @@
       "description": "Configuration for NotebookLM.",
       "id": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfig",
       "properties": {
+        "dataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy",
+          "description": "Optional. Specifies the data protection policy for NotebookLM."
+        },
         "modelArmorConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigModelArmorConfig",
           "description": "Model Armor configuration to be used for sanitizing user prompts and LLM responses."
@@ -27449,6 +27945,28 @@
         "optOutNotebookSharing": {
           "description": "Optional. Whether to disable the notebook sharing feature for the project. Default to false if not specified.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy": {
+      "description": "Data protection policy config for NotebookLM.",
+      "id": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicy",
+      "properties": {
+        "sensitiveDataProtectionPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy",
+          "description": "Optional. The sensitive data protection policy."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy": {
+      "description": "Specifies a Sensitive Data Protection (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.",
+      "id": "GoogleCloudDiscoveryengineV1betaProjectCustomerProvidedConfigNotebooklmConfigDataProtectionPolicySensitiveDataProtectionPolicy",
+      "properties": {
+        "policy": {
+          "description": "Optional. The Sensitive Data Protection policy resource name.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -28455,6 +28973,11 @@
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec",
           "description": "Optional. Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done."
         },
+        "numResultsPerDataStore": {
+          "description": "Optional. The maximum number of results to retrieve from each data store. If not specified, it will use the SearchRequest.DataStoreSpec.num_results if provided, otherwise there is no limit.",
+          "format": "int32",
+          "type": "integer"
+        },
         "offset": {
           "description": "A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned. A large offset may be capped to a reasonable threshold.",
           "format": "int32",
@@ -28956,6 +29479,11 @@
         "filter": {
           "description": "Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)",
           "type": "string"
+        },
+        "numResults": {
+          "description": "Optional. The maximum number of results to retrieve from this data store. If not specified, it will use the SearchRequest.num_results_per_data_store if provided, otherwise there is no limit. If both this field and SearchRequest.num_results_per_data_store are specified, this field will be used.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -30241,14 +30769,16 @@
             "SOLUTION_TYPE_RECOMMENDATION",
             "SOLUTION_TYPE_SEARCH",
             "SOLUTION_TYPE_CHAT",
-            "SOLUTION_TYPE_GENERATIVE_CHAT"
+            "SOLUTION_TYPE_GENERATIVE_CHAT",
+            "SOLUTION_TYPE_AI_MODE"
           ],
           "enumDescriptions": [
             "Default value.",
             "Used for Recommendations AI.",
             "Used for Discovery Search.",
             "Used for use cases related to the Generative AI agent.",
-            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution."
+            "Used for use cases related to the Generative Chat agent. It's used for Generative chat engine only, the associated data stores must enrolled with `SOLUTION_TYPE_CHAT` solution.",
+            "Used for AI Mode."
           ],
           "type": "string"
         },
@@ -31318,6 +31848,63 @@
       },
       "type": "object"
     },
+    "GoogleIamV1Binding": {
+      "description": "Associates `members`, or principals, with a `role`.",
+      "id": "GoogleIamV1Binding",
+      "properties": {
+        "condition": {
+          "$ref": "GoogleTypeExpr",
+          "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+        },
+        "members": {
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "role": {
+          "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleIamV1Policy": {
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "id": "GoogleIamV1Policy",
+      "properties": {
+        "bindings": {
+          "description": "Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`.",
+          "items": {
+            "$ref": "GoogleIamV1Binding"
+          },
+          "type": "array"
+        },
+        "etag": {
+          "description": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.",
+          "format": "byte",
+          "type": "string"
+        },
+        "version": {
+          "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleIamV1SetIamPolicyRequest": {
+      "description": "Request message for `SetIamPolicy` method.",
+      "id": "GoogleIamV1SetIamPolicyRequest",
+      "properties": {
+        "policy": {
+          "$ref": "GoogleIamV1Policy",
+          "description": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
+        }
+      },
+      "type": "object"
+    },
     "GoogleLongrunningCancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "GoogleLongrunningCancelOperationRequest",
@@ -31619,6 +32206,29 @@
           "description": "Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a datetime without a year.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleTypeExpr": {
+      "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
+      "id": "GoogleTypeExpr",
+      "properties": {
+        "description": {
+          "description": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.",
+          "type": "string"
+        },
+        "expression": {
+          "description": "Textual representation of an expression in Common Expression Language syntax.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
+          "type": "string"
         }
       },
       "type": "object"

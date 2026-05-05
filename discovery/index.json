@@ -1201,6 +1201,36 @@
       "version": "v1"
     },
     {
+      "description": "",
+      "discoveryRestUrl": "https://ces.googleapis.com/$discovery/rest?version=v1beta",
+      "documentationLink": "https://cloud.google.com/customer-engagement-ai/conversational-agents/ps/reference",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "ces:v1beta",
+      "kind": "discovery#directoryItem",
+      "name": "ces",
+      "preferred": false,
+      "title": "Gemini Enterprise for Customer Experience API",
+      "version": "v1beta"
+    },
+    {
+      "description": "",
+      "discoveryRestUrl": "https://ces.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://cloud.google.com/customer-engagement-ai/conversational-agents/ps/reference",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "ces:v1",
+      "kind": "discovery#directoryItem",
+      "name": "ces",
+      "preferred": true,
+      "title": "Gemini Enterprise for Customer Experience API",
+      "version": "v1"
+    },
+    {
       "description": "The Google Chat API lets you build Chat apps to integrate your services with Google Chat and manage Chat resources such as spaces, members, and messages.",
       "discoveryRestUrl": "https://chat.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://developers.google.com/workspace/chat",
@@ -3781,9 +3811,24 @@
       "id": "gmailpostmastertools:v1",
       "kind": "discovery#directoryItem",
       "name": "gmailpostmastertools",
-      "preferred": true,
+      "preferred": false,
       "title": "Gmail Postmaster Tools API",
       "version": "v1"
+    },
+    {
+      "description": "The Postmaster Tools API is a RESTful API that provides programmatic access to email traffic metrics (like spam reports, delivery errors etc) otherwise available through the Gmail Postmaster Tools UI currently.",
+      "discoveryRestUrl": "https://gmailpostmastertools.googleapis.com/$discovery/rest?version=v2",
+      "documentationLink": "https://developers.google.com/workspace/gmail/postmaster",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "gmailpostmastertools:v2",
+      "kind": "discovery#directoryItem",
+      "name": "gmailpostmastertools",
+      "preferred": true,
+      "title": "Gmail Postmaster Tools API",
+      "version": "v2"
     },
     {
       "description": "The Groups Migration API allows domain administrators to archive emails into Google groups.",
@@ -4219,21 +4264,6 @@
       "preferred": true,
       "title": "Enterprise License Manager API",
       "version": "v1"
-    },
-    {
-      "description": "Cloud Life Sciences is a suite of services and tools for managing, processing, and transforming life sciences data.",
-      "discoveryRestUrl": "https://lifesciences.googleapis.com/$discovery/rest?version=v2beta",
-      "documentationLink": "https://cloud.google.com/life-sciences",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "id": "lifesciences:v2beta",
-      "kind": "discovery#directoryItem",
-      "name": "lifesciences",
-      "preferred": true,
-      "title": "Cloud Life Sciences API",
-      "version": "v2beta"
     },
     {
       "description": "",
@@ -6879,7 +6909,7 @@
     {
       "description": "threatintelligence.googleapis.com API.",
       "discoveryRestUrl": "https://threatintelligence.googleapis.com/$discovery/rest?version=v1beta",
-      "documentationLink": "https://cloud.google.com/threatintelligence/docs/reference/rest",
+      "documentationLink": "https://docs.cloud.google.com/threatintelligence/",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"

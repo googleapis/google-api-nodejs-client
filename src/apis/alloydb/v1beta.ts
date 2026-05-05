@@ -645,14 +645,6 @@ export namespace alloydb_v1beta {
    */
   export interface Schema$ConnectionPoolConfig {
     /**
-     * Optional. Deprecated. Use 'flags' instead. The default pool size. Defaults to 20. Note: This field should not be added to client libraries if not present already.
-     */
-    defaultPoolSize?: string | null;
-    /**
-     * Optional. Deprecated; Prefer 'enabled' as this will be removed soon.
-     */
-    enable?: boolean | null;
-    /**
      * Optional. Whether to enable Managed Connection Pool (MCP).
      */
     enabled?: boolean | null;
@@ -661,41 +653,9 @@ export namespace alloydb_v1beta {
      */
     flags?: {[key: string]: string} | null;
     /**
-     * Optional. Deprecated. Use 'flags' instead. The list of startup parameters to ignore. Defaults to ["extra_float_digits"] Note: This field should not be added to client libraries if not present already.
-     */
-    ignoreStartupParameters?: string[] | null;
-    /**
-     * Optional. Deprecated. Use 'flags' instead. The maximum number of client connections allowed. Note: This field should not be added to client libraries if not present already.
-     */
-    maxClientConn?: string | null;
-    /**
-     * Optional. Deprecated. Use 'flags' instead. The maximum number of prepared statements allowed. MCP makes sure that any statement prepared by a client, up to this limit, is available on the backing server connection in transaction and statement pooling mode. Even if the statement was originally prepared on another server connection. Defaults to 0. Note: This field should not be added to client libraries if not present already.
-     */
-    maxPreparedStatements?: string | null;
-    /**
-     * Optional. Deprecated. Use 'flags' instead. The minimum pool size. Defaults to 0. Note: This field should not be added to client libraries if not present already.
-     */
-    minPoolSize?: string | null;
-    /**
      * Output only. The number of running poolers per instance.
      */
     poolerCount?: number | null;
-    /**
-     * Optional. Deprecated. Use 'flags' instead. The pool mode. Defaults to `POOL_MODE_TRANSACTION`. Note: This field should not be added to client libraries if not present already.
-     */
-    poolMode?: string | null;
-    /**
-     * Optional. Deprecated. Use 'flags' instead. The maximum number of seconds queries are allowed to spend waiting for execution. If the query is not assigned to a server during that time, the client is disconnected. 0 disables. Note: This field should not be added to client libraries if not present already.
-     */
-    queryWaitTimeout?: string | null;
-    /**
-     * Optional. Deprecated. Use 'flags' instead. The maximum number of seconds a server is allowed to be idle before it is disconnected. 0 disables. Note: This field should not be added to client libraries if not present already.
-     */
-    serverIdleTimeout?: string | null;
-    /**
-     * Optional. Deprecated. Use 'flags' instead. The list of users that are allowed to connect to the MCP stats console. The users must exist in the database. Note: This field should not be added to client libraries if not present already.
-     */
-    statsUsers?: string[] | null;
   }
   /**
    * ContinuousBackupConfig describes the continuous backups recovery configurations of a cluster.
@@ -1193,7 +1153,7 @@ export namespace alloydb_v1beta {
    */
   export interface Schema$InstanceNetworkConfig {
     /**
-     * Optional. Name of the allocated IP range for the private IP AlloyDB instance, for example: "google-managed-services-default". If set, the instance IPs will be created from this allocated range and will override the IP range used by the parent cluster. The range name must comply with [RFC 1035](http://datatracker.ietf.org/doc/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?.
+     * Optional. Name of the allocated IP range for the private IP AlloyDB instance, for example: "google-managed-services-default". If set, the instance IPs will be created from this allocated range and will override the IP range used by the parent cluster. The range name must comply with [RFC 1035](https://datatracker.ietf.org/doc/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?.
      */
     allocatedIpRangeOverride?: string | null;
     /**
@@ -2214,7 +2174,7 @@ export namespace alloydb_v1beta {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 30
+   * Common model for database resource instance metadata. Next ID: 31
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata {
     /**
@@ -2301,6 +2261,10 @@ export namespace alloydb_v1beta {
      * Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of "/", such as "projects/123". For GCP provided resources, number should be project number.
      */
     resourceContainer?: string | null;
+    /**
+     * Optional. List of resource flags for the database resource.
+     */
+    resourceFlags?: Schema$StorageDatabasecenterPartnerapiV1mainResourceFlags[];
     /**
      * Required. Different from DatabaseResourceId.unique_id, a resource name can be reused over time. That is, after a resource named "ABC" is deleted, the name "ABC" can be used to to create a new resource within the same source. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
      */
@@ -2503,6 +2467,19 @@ export namespace alloydb_v1beta {
     message?: string | null;
   }
   /**
+   * Message type for storing resource flags.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainResourceFlags {
+    /**
+     * Optional. Key of the resource flag.
+     */
+    key?: string | null;
+    /**
+     * Optional. Value of the resource flag.
+     */
+    value?: string | null;
+  }
+  /**
    * Deny maintenance period for the database resource. It specifies the time range during which the maintenance cannot start. This is configured by the customer.
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainResourceMaintenanceDenySchedule {
@@ -2524,9 +2501,17 @@ export namespace alloydb_v1beta {
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainResourceMaintenanceInfo {
     /**
+     * Optional. The date when the current maintenance version was released.
+     */
+    currentVersionReleaseDate?: Schema$GoogleTypeDate;
+    /**
      * Optional. List of Deny maintenance period for the database resource.
      */
     denyMaintenanceSchedules?: Schema$StorageDatabasecenterPartnerapiV1mainResourceMaintenanceDenySchedule[];
+    /**
+     * Optional. Whether the instance is in stopped state. This information is temporarily being captured in maintenanceInfo, till STOPPED state is supported by DB Center.
+     */
+    isInstanceStopped?: boolean | null;
     /**
      * Optional. Maintenance window for the database resource.
      */
@@ -3038,7 +3023,7 @@ export namespace alloydb_v1beta {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:

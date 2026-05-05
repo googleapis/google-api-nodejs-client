@@ -144,11 +144,11 @@ export namespace appsmarket_v2 {
      */
     id?: string | null;
     /**
-     * The type of API resource. This is always appsmarket#customerLicense.
+     * The type of API resource. This is always `appsmarket#customerLicense`.
      */
     kind?: string | null;
     /**
-     * The customer's license status. One of: - `ACTIVE`: The customer has a valid license. - `UNLICENSED`: There is no license: either this customer has never installed your application, or else has deleted it.
+     * The customer's license status. One of: - `ACTIVE`: The customer has a valid license. - `UNLICENSED`: There is no license. Either this customer has never installed your application or has deleted it.
      */
     state?: string | null;
   }
@@ -184,11 +184,11 @@ export namespace appsmarket_v2 {
      */
     enabled?: boolean | null;
     /**
-     * The ID of user license.
+     * The ID of the user license.
      */
     id?: string | null;
     /**
-     * The type of API resource. This is always appsmarket#userLicense.
+     * The type of API resource. This is always `appsmarket#userLicense`.
      */
     kind?: string | null;
     /**
@@ -208,7 +208,7 @@ export namespace appsmarket_v2 {
     }
 
     /**
-     * Gets the status of a license for a customer to determine if they have access for a given app.
+     * Gets the customer's licensing status to determine if they have access to a given app. For more information, see [Getting app installation and licensing details](https://developers.google.com/workspace/marketplace/example-calls-marketplace-api).
      * @example
      * ```js
      * // Before running the sample:
@@ -238,9 +238,9 @@ export namespace appsmarket_v2 {
      *
      *   // Do the magic
      *   const res = await appsmarket.customerLicense.get({
-     *     // Application Id
+     *     // The ID of the application.
      *     applicationId: 'placeholder-value',
-     *     // Customer Id
+     *     // The ID of the customer.
      *     customerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -354,11 +354,11 @@ export namespace appsmarket_v2 {
 
   export interface Params$Resource$Customerlicense$Get extends StandardParameters {
     /**
-     * Application Id
+     * The ID of the application.
      */
     applicationId?: string;
     /**
-     * Customer Id
+     * The ID of the customer.
      */
     customerId?: string;
   }
@@ -370,7 +370,7 @@ export namespace appsmarket_v2 {
     }
 
     /**
-     * Gets the user's licensing status for their permission to use a given app.
+     * Gets the user's licensing status to determine if they have permission to use a given app. For more information, see [Getting app installation and licensing details](https://developers.google.com/workspace/marketplace/example-calls-marketplace-api).
      * @example
      * ```js
      * // Before running the sample:
@@ -400,9 +400,9 @@ export namespace appsmarket_v2 {
      *
      *   // Do the magic
      *   const res = await appsmarket.userLicense.get({
-     *     // Application Id
+     *     // The ID of the application.
      *     applicationId: 'placeholder-value',
-     *     // User Id
+     *     // The ID of the user.
      *     userId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -516,11 +516,11 @@ export namespace appsmarket_v2 {
 
   export interface Params$Resource$Userlicense$Get extends StandardParameters {
     /**
-     * Application Id
+     * The ID of the application.
      */
     applicationId?: string;
     /**
-     * User Id
+     * The ID of the user.
      */
     userId?: string;
   }

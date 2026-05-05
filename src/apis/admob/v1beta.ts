@@ -712,7 +712,7 @@ export namespace admob_v1beta {
      */
     excludedRegionCodes?: string[] | null;
     /**
-     * Ad format targeted by this mediation group. Examples: "banner", "native".
+     * Ad format targeted by this mediation group. Examples: "BANNER", "NATIVE".
      */
     format?: string | null;
     /**

@@ -718,6 +718,10 @@ export namespace places_v1 {
      */
     googleMapsLinks?: Schema$GoogleMapsPlacesV1PlaceGoogleMapsLinks;
     /**
+     * The type label of the place on Google Maps, localized to the request language if applicable, for example, "Restaurant", "Cafe", "Airport", etc. The type label may be different from the primary type display name and may not be a supported type in [Places API Place Types table](https://developers.google.com/maps/documentation/places/web-service/place-types).
+     */
+    googleMapsTypeLabel?: Schema$GoogleTypeLocalizedText;
+    /**
      * A URL providing more information about this place.
      */
     googleMapsUri?: string | null;
@@ -2025,6 +2029,7 @@ export namespace places_v1 {
      *   //   "goodForGroups": false,
      *   //   "goodForWatchingSports": false,
      *   //   "googleMapsLinks": {},
+     *   //   "googleMapsTypeLabel": {},
      *   //   "googleMapsUri": "my_googleMapsUri",
      *   //   "iconBackgroundColor": "my_iconBackgroundColor",
      *   //   "iconMaskBaseUri": "my_iconMaskBaseUri",

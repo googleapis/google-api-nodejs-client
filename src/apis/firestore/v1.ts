@@ -719,7 +719,7 @@ export namespace firestore_v1 {
      */
     expireTime?: string | null;
     /**
-     * Output only. The unique resource name of the Backup. Format is `projects/{project\}/locations/{location\}/backups/{backup\}`.
+     * Output only. The unique resource name of the Backup. Format is `projects/{project\}/locations/{location\}/backups/{backup\}`. The location in the name will be the Standard Managed Multi-Region (SMMR) location (e.g. `us`) if the backup was created with an SMMR location, or the Google Managed Multi-Region (GMMR) location (e.g. `nam5`) if the backup was created with a GMMR location.
      */
     name?: string | null;
     /**
@@ -1418,12 +1418,7 @@ export namespace firestore_v1 {
   /**
    * The metadata message for google.cloud.location.Location.metadata.
    */
-  export interface Schema$GoogleFirestoreAdminV1LocationMetadata {
-    /**
-     * The storage placements available in the location. When the location represents a Standard Managed Multi-Region (SMMR) like "us", this field lists the available Google-Managed Multi-Regions (GMMRs) within it, such as "nam5" or "eur3".
-     */
-    availableStoragePlacements?: string[] | null;
-  }
+  export interface Schema$GoogleFirestoreAdminV1LocationMetadata {}
   /**
    * A consistent snapshot of a database at a specific point in time. A PITR (Point-in-time recovery) snapshot with previous versions of a database's data is available for every minute up to the associated database's data retention period. If the PITR feature is enabled, the retention period is 7 days; otherwise, it is one hour.
    */
@@ -1552,7 +1547,7 @@ export namespace firestore_v1 {
     sizeBytes?: string | null;
   }
   /**
-   * The TTL (time-to-live) configuration for documents that have this `Field` set. Storing a timestamp value into a TTL-enabled field will be treated as the document's absolute expiration time. Timestamp values in the past indicate that the document is eligible for immediate expiration. Using any other data type or leaving the field absent will disable expiration for the individual document.
+   * The TTL (time-to-live) configuration for documents that have this `Field` set. Storing a timestamp value into a TTL-enabled field will be treated as the document's absolute expiration time. For Enterprise edition databases, the timestamp value may also be stored in an array value in the TTL-enabled field. Timestamp values in the past indicate that the document is eligible for immediate expiration. Using any other data type or leaving the field absent will disable expiration for the individual document.
    */
   export interface Schema$GoogleFirestoreAdminV1TtlConfig {
     /**
@@ -11169,7 +11164,7 @@ export namespace firestore_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:

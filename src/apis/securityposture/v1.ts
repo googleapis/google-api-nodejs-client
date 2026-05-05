@@ -355,6 +355,31 @@ export namespace securityposture_v1 {
     tfPlan?: string | null;
   }
   /**
+   * Represents the criteria for considering an IaC validation as a failure.
+   */
+  export interface Schema$IacValidationFailureCriteria {
+    /**
+     * Output only. The time at which the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The etag for optimistic concurrency.
+     */
+    etag?: string | null;
+    /**
+     * Identifier. The resource name of the IacValidationFailureCriteria. Format: organizations/{organization\}/locations/{location\}/iacValidationFailureCriteria
+     */
+    name?: string | null;
+    /**
+     * Optional. A list of severity thresholds. An IaC validation fails if any threshold is exceeded.
+     */
+    severityCountThresholds?: Schema$SeverityCountThreshold[];
+    /**
+     * Output only. The time at which the resource was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Details of an infrastructure-as-code (IaC) validation report.
    */
   export interface Schema$IaCValidationReport {
@@ -899,6 +924,19 @@ export namespace securityposture_v1 {
      * Required. The name of the detector. For example, `BIGQUERY_TABLE_CMEK_DISABLED`. This field is also used as the finding category for all the asset violation findings that the detector returns.
      */
     moduleName?: string | null;
+  }
+  /**
+   * Represents a threshold for a specific severity.
+   */
+  export interface Schema$SeverityCountThreshold {
+    /**
+     * Optional. The severity level, reusing the existing Violation.Severity.
+     */
+    severity?: string | null;
+    /**
+     * Optional. If violation count meets or exceeds this threshold, validation fails.
+     */
+    thresholdCount?: number | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).

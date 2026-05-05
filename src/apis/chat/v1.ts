@@ -1083,6 +1083,10 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1DataSourceConfig {
     /**
+     * The minimum number of characters the user must enter before this data provider is triggered (i.e., before it starts returning results).
+     */
+    minCharactersTrigger?: number | null;
+    /**
      * The data is from a Google Workspace application.
      */
     platformDataSource?: Schema$GoogleAppsCardV1PlatformDataSource;
@@ -1519,7 +1523,7 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1SelectionInput {
     /**
-     * Optional. The data source configs for the selection control. This field provides more fine-grained control over the data source. If specified, the `multi_select_max_selected_items` field, `multi_select_min_query_length` field, `external_data_source` field and `platform_data_source` field are ignored. Available for Google Workspace add-ons that extend Google Workspace Studio. Available for the `Dropdown widget` in Google Chat apps as part of the [Developer Preview Program](https://developers.google.com/workspace/preview). For the `Dropdown` widget in Google Chat apps, only one `DataSourceConfig` is supported. If multiple `DataSourceConfig`s are set, only the first one is used.
+     * Optional. The data source configs for the selection control. This field provides more fine-grained control over the data source. If specified, the `multi_select_max_selected_items` field, `multi_select_min_query_length` field, `external_data_source` field and `platform_data_source` field are ignored. Available for Google Workspace add-ons that extend Google Workspace Studio. Available for the `Dropdown widget` in Google Chat apps. For the `Dropdown` widget in Google Chat apps, only one `DataSourceConfig` is supported. If multiple `DataSourceConfig`s are set, only the first one is used.
      */
     dataSourceConfigs?: Schema$GoogleAppsCardV1DataSourceConfig[];
     /**

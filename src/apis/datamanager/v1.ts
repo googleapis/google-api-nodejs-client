@@ -112,6 +112,7 @@ export namespace datamanager_v1 {
    */
   export class Datamanager {
     context: APIRequestContext;
+    accountTypes: Resource$Accounttypes;
     audienceMembers: Resource$Audiencemembers;
     events: Resource$Events;
     requestStatus: Resource$Requeststatus;
@@ -122,6 +123,7 @@ export namespace datamanager_v1 {
         google,
       };
 
+      this.accountTypes = new Resource$Accounttypes(this.context);
       this.audienceMembers = new Resource$Audiencemembers(this.context);
       this.events = new Resource$Events(this.context);
       this.requestStatus = new Resource$Requeststatus(this.context);
@@ -191,13 +193,21 @@ export namespace datamanager_v1 {
      */
     mobileData?: Schema$MobileData;
     /**
-     * [Publisher Advertiser Identity Reconciliation (PAIR) IDs](//support.google.com/admanager/answer/15067908).
+     * [Publisher Advertiser Identity Reconciliation (PAIR) IDs](//support.google.com/admanager/answer/15067908). This feature is only available to data partners.
      */
     pairData?: Schema$PairData;
+    /**
+     * Data related to publisher provided identifiers. This feature is only available to data partners.
+     */
+    ppidData?: Schema$PpidData;
     /**
      * User-provided data that identifies the user.
      */
     userData?: Schema$UserData;
+    /**
+     * Data related to unique identifiers for a user, as defined by the advertiser.
+     */
+    userIdData?: Schema$UserIdData;
   }
   /**
    * A data encryption key wrapped by an AWS KMS key.
@@ -219,6 +229,19 @@ export namespace datamanager_v1 {
      * Required. The Amazon Resource Name of the IAM Role to assume for KMS decryption access. Should be in the format of `arn:{partition\}:iam::{account_id\}:role/{role_name\}`
      */
     roleArn?: string | null;
+  }
+  /**
+   * Baseline criteria against which insights are compared.
+   */
+  export interface Schema$Baseline {
+    /**
+     * The baseline location of the request. Baseline location is an OR-list of the requested regions.
+     */
+    baselineLocation?: Schema$Location;
+    /**
+     * If set to true, the service will try to automatically detect the baseline location for insights.
+     */
+    locationAutoDetectionEnabled?: boolean | null;
   }
   /**
    * The cart data associated with the event.
@@ -257,6 +280,19 @@ export namespace datamanager_v1 {
      * Optional. Represents if the user consents to ad user data.
      */
     adUserData?: string | null;
+  }
+  /**
+   * Additional information when `CONTACT_ID` is one of the `upload_key_types`.
+   */
+  export interface Schema$ContactIdInfo {
+    /**
+     * Optional. Immutable. Source of the upload data
+     */
+    dataSourceType?: string | null;
+    /**
+     * Output only. Match rate for customer match user lists.
+     */
+    matchRatePercentage?: number | null;
   }
   /**
    * Custom variable for ads conversions.
@@ -313,6 +349,10 @@ export namespace datamanager_v1 {
      */
     userAgent?: string | null;
   }
+  /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
+   */
+  export interface Schema$Empty {}
   /**
    * Encryption information for the data being ingested.
    */
@@ -531,9 +571,50 @@ export namespace datamanager_v1 {
      */
     pairDataIngestionStatus?: Schema$IngestPairDataStatus;
     /**
+     * The status of the ppid data ingestion to the destination.
+     */
+    ppidDataIngestionStatus?: Schema$IngestPpidDataStatus;
+    /**
      * The status of the user data ingestion to the destination.
      */
     userDataIngestionStatus?: Schema$IngestUserDataStatus;
+    /**
+     * The status of the user id data ingestion to the destination.
+     */
+    userIdDataIngestionStatus?: Schema$IngestUserIdDataStatus;
+  }
+  /**
+   * Represents a user list that is populated by user provided data.
+   */
+  export interface Schema$IngestedUserListInfo {
+    /**
+     * Optional. Additional information when `CONTACT_ID` is one of the `upload_key_types`.
+     */
+    contactIdInfo?: Schema$ContactIdInfo;
+    /**
+     * Optional. Additional information when `MOBILE_ID` is one of the `upload_key_types`.
+     */
+    mobileIdInfo?: Schema$MobileIdInfo;
+    /**
+     * Optional. Additional information when `PAIR_ID` is one of the `upload_key_types`. This feature is only available to data partners.
+     */
+    pairIdInfo?: Schema$PairIdInfo;
+    /**
+     * Optional. Additional information for partner audiences. This feature is only available to data partners.
+     */
+    partnerAudienceInfo?: Schema$PartnerAudienceInfo;
+    /**
+     * Optional. Additional information for `PSEUDONYMOUS_ID` is one of the `upload_key_types`.
+     */
+    pseudonymousIdInfo?: Schema$PseudonymousIdInfo;
+    /**
+     * Required. Immutable. Upload key types of this user list.
+     */
+    uploadKeyTypes?: string[] | null;
+    /**
+     * Optional. Additional information when `USER_ID` is one of the `upload_key_types`.
+     */
+    userIdInfo?: Schema$UserIdInfo;
   }
   /**
    * Request to upload audience members to the provided destinations. Returns an IngestEventsResponse.
@@ -609,6 +690,19 @@ export namespace datamanager_v1 {
     recordCount?: string | null;
   }
   /**
+   * The status of the ppid data ingestion to the destination containing stats related to the ingestion.
+   */
+  export interface Schema$IngestPpidDataStatus {
+    /**
+     * The total count of ppids sent in the upload request for the destination. Includes all ppids in the request, regardless of whether they were successfully ingested or not.
+     */
+    ppidCount?: string | null;
+    /**
+     * The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.
+     */
+    recordCount?: string | null;
+  }
+  /**
    * The status of the user data ingestion to the destination containing stats related to the ingestion.
    */
   export interface Schema$IngestUserDataStatus {
@@ -624,6 +718,19 @@ export namespace datamanager_v1 {
      * The total count of user identifiers sent in the upload request for the destination. Includes all user identifiers in the request, regardless of whether they were successfully ingested or not.
      */
     userIdentifierCount?: string | null;
+  }
+  /**
+   * The status of the user id data ingestion to the destination containing stats related to the ingestion.
+   */
+  export interface Schema$IngestUserIdDataStatus {
+    /**
+     * The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.
+     */
+    recordCount?: string | null;
+    /**
+     * The total count of user ids sent in the upload request for the destination. Includes all user ids in the request, regardless of whether they were successfully ingested or not.
+     */
+    userIdCount?: string | null;
   }
   /**
    * Represents an item in the cart associated with the event.
@@ -664,6 +771,101 @@ export namespace datamanager_v1 {
     value?: string | null;
   }
   /**
+   * Response from the ListUserListDirectLicensesRequest.
+   */
+  export interface Schema$ListUserListDirectLicensesResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The licenses for the given user list in the request.
+     */
+    userListDirectLicenses?: Schema$UserListDirectLicense[];
+  }
+  /**
+   * Response from the ListUserListGlobalLicensesCustomerInfoRequest.
+   */
+  export interface Schema$ListUserListGlobalLicenseCustomerInfosResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The customer information for the given license in the request.
+     */
+    userListGlobalLicenseCustomerInfos?: Schema$UserListGlobalLicenseCustomerInfo[];
+  }
+  /**
+   * Response from the ListUserListGlobalLicensesRequest.
+   */
+  export interface Schema$ListUserListGlobalLicensesResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The licenses for the given user list in the request.
+     */
+    userListGlobalLicenses?: Schema$UserListGlobalLicense[];
+  }
+  /**
+   * Response message for ListUserLists.
+   */
+  export interface Schema$ListUserListsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The user lists from the specified account.
+     */
+    userLists?: Schema$UserList[];
+  }
+  /**
+   * The baseline location of the request. Baseline location is on OR-list of ISO 3166-1 alpha-2 region codes of the requested regions.
+   */
+  export interface Schema$Location {
+    /**
+     * List of ISO 3166-1 alpha-2 region codes.
+     */
+    regionCodes?: string[] | null;
+  }
+  /**
+   * Insights for marketing data. This feature is only available to data partners.
+   */
+  export interface Schema$MarketingDataInsight {
+    /**
+     * Insights for values of a given dimension.
+     */
+    attributes?: Schema$MarketingDataInsightsAttribute[];
+    /**
+     * The dimension to which the insight belongs.
+     */
+    dimension?: string | null;
+  }
+  /**
+   * Insights for a collection of related attributes of the same dimension.
+   */
+  export interface Schema$MarketingDataInsightsAttribute {
+    /**
+     * Age range of the audience for which the lift is provided.
+     */
+    ageRange?: string | null;
+    /**
+     * Gender of the audience for which the lift is provided.
+     */
+    gender?: string | null;
+    /**
+     * Measure of lift that the audience has for the attribute value as compared to the baseline. Range [0-1].
+     */
+    lift?: number | null;
+    /**
+     * The user interest ID.
+     */
+    userInterestId?: string | null;
+  }
+  /**
    * Mobile IDs for the audience. At least one mobile ID is required.
    */
   export interface Schema$MobileData {
@@ -673,13 +875,98 @@ export namespace datamanager_v1 {
     mobileIds?: string[] | null;
   }
   /**
-   * [PAIR](//support.google.com/admanager/answer/15067908) IDs for the audience. At least one PAIR ID is required.
+   * Additional information when `MOBILE_ID` is one of the `upload_key_types`.
+   */
+  export interface Schema$MobileIdInfo {
+    /**
+     * Required. Immutable. A string that uniquely identifies a mobile application from which the data was collected.
+     */
+    appId?: string | null;
+    /**
+     * Optional. Immutable. Source of the upload data.
+     */
+    dataSourceType?: string | null;
+    /**
+     * Required. Immutable. The key space of mobile IDs.
+     */
+    keySpace?: string | null;
+  }
+  /**
+   * [PAIR](//support.google.com/admanager/answer/15067908) IDs for the audience. At least one PAIR ID is required. This feature is only available to data partners.
    */
   export interface Schema$PairData {
     /**
      * Required. Cleanroom-provided PII data, hashed with SHA256, and encrypted with an EC commutative cipher using publisher key for the [PAIR]((//support.google.com/admanager/answer/15067908)) user list. At most 10 `pairIds` can be provided in a single AudienceMember.
      */
     pairIds?: string[] | null;
+  }
+  /**
+   * Additional information when `PAIR_ID` is one of the `upload_key_types`. This feature is only available to data partners.
+   */
+  export interface Schema$PairIdInfo {
+    /**
+     * Optional. The count of the advertiser's first party data records that have been uploaded to a clean room provider. This does not signify the size of a PAIR user list.
+     */
+    advertiserIdentifierCount?: string | null;
+    /**
+     * Required. Immutable. Identifies a unique advertiser to publisher relationship with one clean room provider or across multiple clean room providers.
+     */
+    cleanRoomIdentifier?: string | null;
+    /**
+     * Optional. This field denotes the percentage of membership match of this user list with the corresponding publisher's first party data. Must be between 0 and 100 inclusive.
+     */
+    matchRatePercentage?: number | null;
+    /**
+     * Required. Immutable. Identifies the publisher that the Publisher Advertiser Identity Reconciliation user list is reconciled with. This field is provided by the cleanroom provider and is only unique in the scope of that cleanroom. This cannot be used as a global identifier across multiple cleanrooms.
+     */
+    publisherId?: string | null;
+    /**
+     * Required. Descriptive name of the publisher to be displayed in the UI for a better targeting experience.
+     */
+    publisherName?: string | null;
+  }
+  /**
+   * Additional information for partner audiences. This feature is only available to data partners.
+   */
+  export interface Schema$PartnerAudienceInfo {
+    /**
+     * Optional. The commerce partner name. Only allowed if `partner_audience_source` is `COMMERCE_AUDIENCE`.
+     */
+    commercePartner?: string | null;
+    /**
+     * Required. Immutable. The source of the partner audience.
+     */
+    partnerAudienceSource?: string | null;
+  }
+  /**
+   * A partner link between an owning account and a partner account.
+   */
+  export interface Schema$PartnerLink {
+    /**
+     * Identifier. The name of the partner link. Format: accountTypes/{account_type\}/accounts/{account\}/partnerLinks/{partner_link\}
+     */
+    name?: string | null;
+    /**
+     * Required. The owning account granting access to the partner account.
+     */
+    owningAccount?: Schema$ProductAccount;
+    /**
+     * Required. The partner account granted access by the owning account.
+     */
+    partnerAccount?: Schema$ProductAccount;
+    /**
+     * Output only. The partner link ID.
+     */
+    partnerLinkId?: string | null;
+  }
+  /**
+   * Publisher provided identifiers data holding the ppids. At least one ppid is required. This feature is only available to data partners.
+   */
+  export interface Schema$PpidData {
+    /**
+     * Required. The list of publisher provided identifiers for a user.
+     */
+    ppids?: string[] | null;
   }
   /**
    * Represents a specific account.
@@ -697,6 +984,19 @@ export namespace datamanager_v1 {
      * Deprecated. Use `account_type` instead.
      */
     product?: string | null;
+  }
+  /**
+   * Additional information when `PSEUDONYMOUS_ID` is one of the `upload_key_types`.
+   */
+  export interface Schema$PseudonymousIdInfo {
+    /**
+     * Optional. Immutable. The number of billable records (e.g. uploaded or matched).
+     */
+    billableRecordCount?: string | null;
+    /**
+     * Output only. Sync status of the user list.
+     */
+    syncStatus?: string | null;
   }
   /**
    * Request to remove users from an audience in the provided destinations. Returns a RemoveAudienceMembersResponse.
@@ -745,9 +1045,17 @@ export namespace datamanager_v1 {
      */
     pairDataRemovalStatus?: Schema$RemovePairDataStatus;
     /**
+     * The status of the ppid data removal from the destination.
+     */
+    ppidDataRemovalStatus?: Schema$RemovePpidDataStatus;
+    /**
      * The status of the user data removal from the destination.
      */
     userDataRemovalStatus?: Schema$RemoveUserDataStatus;
+    /**
+     * The status of the user id data removal from the destination.
+     */
+    userIdDataRemovalStatus?: Schema$RemoveUserIdDataStatus;
   }
   /**
    * The status of the mobile data removal from the destination.
@@ -776,6 +1084,19 @@ export namespace datamanager_v1 {
     recordCount?: string | null;
   }
   /**
+   * The status of the ppid data removal from the destination.
+   */
+  export interface Schema$RemovePpidDataStatus {
+    /**
+     * The total count of ppids sent in the removal request. Includes all ppids in the request, regardless of whether they were successfully removed or not.
+     */
+    ppidCount?: string | null;
+    /**
+     * The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.
+     */
+    recordCount?: string | null;
+  }
+  /**
    * The status of the user data removal from the destination.
    */
   export interface Schema$RemoveUserDataStatus {
@@ -787,6 +1108,19 @@ export namespace datamanager_v1 {
      * The total count of user identifiers sent in the removal request. Includes all user identifiers in the request, regardless of whether they were successfully removed or not.
      */
     userIdentifierCount?: string | null;
+  }
+  /**
+   * The status of the user id data removal from the destination.
+   */
+  export interface Schema$RemoveUserIdDataStatus {
+    /**
+     * The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.
+     */
+    recordCount?: string | null;
+    /**
+     * The total count of user ids sent in the removal request. Includes all user ids in the request, regardless of whether they were successfully removed or not.
+     */
+    userIdCount?: string | null;
   }
   /**
    * A request status per destination.
@@ -822,6 +1156,28 @@ export namespace datamanager_v1 {
     warningInfo?: Schema$WarningInfo;
   }
   /**
+   * Request message for DM API MarketingDataInsightsService.RetrieveInsights
+   */
+  export interface Schema$RetrieveInsightsRequest {
+    /**
+     * Required. Baseline for the insights requested.
+     */
+    baseline?: Schema$Baseline;
+    /**
+     * Required. The user list ID for which insights are requested.
+     */
+    userListId?: string | null;
+  }
+  /**
+   * Response message for DM API MarketingDataInsightsService.RetrieveInsights
+   */
+  export interface Schema$RetrieveInsightsResponse {
+    /**
+     * Contains the insights for the marketing data.
+     */
+    marketingDataInsights?: Schema$MarketingDataInsight[];
+  }
+  /**
    * Response from the RetrieveRequestStatusRequest.
    */
   export interface Schema$RetrieveRequestStatusResponse {
@@ -829,6 +1185,32 @@ export namespace datamanager_v1 {
      * A list of request statuses per destination. The order of the statuses matches the order of the destinations in the original request.
      */
     requestStatusPerDestination?: Schema$RequestStatusPerDestination[];
+  }
+  /**
+   * Response from the SearchPartnerLinksRequest.
+   */
+  export interface Schema$SearchPartnerLinksResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The partner links for the given account.
+     */
+    partnerLinks?: Schema$PartnerLink[];
+  }
+  /**
+   * Estimated number of members in this user list in different target networks.
+   */
+  export interface Schema$SizeInfo {
+    /**
+     * Output only. Estimated number of members in this user list, on the Google Display Network.
+     */
+    displayNetworkMembersCount?: string | null;
+    /**
+     * Output only. Estimated number of members in this user list in the google.com domain. These are the members available for targeting in Search campaigns.
+     */
+    searchNetworkMembersCount?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -846,6 +1228,19 @@ export namespace datamanager_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Eligibility information for different target networks.
+   */
+  export interface Schema$TargetNetworkInfo {
+    /**
+     * Output only. Indicates this user list is eligible for Google Display Network.
+     */
+    eligibleForDisplay?: boolean | null;
+    /**
+     * Optional. Indicates if this user list is eligible for Google Search Network.
+     */
+    eligibleForSearch?: boolean | null;
   }
   /**
    * The terms of service that the user has accepted/rejected.
@@ -866,6 +1261,15 @@ export namespace datamanager_v1 {
     userIdentifiers?: Schema$UserIdentifier[];
   }
   /**
+   * User id data holding the user id.
+   */
+  export interface Schema$UserIdData {
+    /**
+     * Required. A unique identifier for a user, as defined by the advertiser.
+     */
+    userId?: string | null;
+  }
+  /**
    * A single identifier for the user.
    */
   export interface Schema$UserIdentifier {
@@ -881,6 +1285,273 @@ export namespace datamanager_v1 {
      * Hashed phone number using SHA-256 hash function after normalization (E164 standard).
      */
     phoneNumber?: string | null;
+  }
+  /**
+   * Additional information when `USER_ID` is one of the `upload_key_types`.
+   */
+  export interface Schema$UserIdInfo {
+    /**
+     * Optional. Immutable. Source of the upload data.
+     */
+    dataSourceType?: string | null;
+  }
+  /**
+   * A user list resource.
+   */
+  export interface Schema$UserList {
+    /**
+     * Output only. The reason this account has been granted access to the list.
+     */
+    accessReason?: string | null;
+    /**
+     * Optional. Indicates if this share is still enabled. When a user list is shared with the account this field is set to `ENABLED`. Later the user list owner can decide to revoke the share and make it `DISABLED`.
+     */
+    accountAccessStatus?: string | null;
+    /**
+     * Output only. The reason why this user list membership status is closed.
+     */
+    closingReason?: string | null;
+    /**
+     * Optional. A description of the user list.
+     */
+    description?: string | null;
+    /**
+     * Required. The display name of the user list.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The unique ID of the user list.
+     */
+    id?: string | null;
+    /**
+     * Optional. Represents a user list that is populated by user ingested data.
+     */
+    ingestedUserListInfo?: Schema$IngestedUserListInfo;
+    /**
+     * Optional. An ID from external system. It is used by user list sellers to correlate IDs on their systems.
+     */
+    integrationCode?: string | null;
+    /**
+     * Optional. The duration a user remains in the user list. Valid durations are exact multiples of 24 hours (86400 seconds). Providing a value that is not an exact multiple of 24 hours will result in an INVALID_ARGUMENT error.
+     */
+    membershipDuration?: string | null;
+    /**
+     * Optional. Membership status of this user list.
+     */
+    membershipStatus?: string | null;
+    /**
+     * Identifier. The resource name of the user list. Format: accountTypes/{account_type\}/accounts/{account\}/userLists/{user_list\}
+     */
+    name?: string | null;
+    /**
+     * Output only. An option that indicates if a user may edit a list.
+     */
+    readOnly?: boolean | null;
+    /**
+     * Output only. Estimated number of members in this user list in different target networks.
+     */
+    sizeInfo?: Schema$SizeInfo;
+    /**
+     * Optional. Eligibility information for different target networks.
+     */
+    targetNetworkInfo?: Schema$TargetNetworkInfo;
+  }
+  /**
+   * A user list direct license. This feature is only available to data partners.
+   */
+  export interface Schema$UserListDirectLicense {
+    /**
+     * Output only. Name of client customer which the user list is being licensed to. This field is read-only.
+     */
+    clientAccountDisplayName?: string | null;
+    /**
+     * Immutable. ID of client customer which the user list is being licensed to.
+     */
+    clientAccountId?: string | null;
+    /**
+     * Immutable. Account type of client customer which the user list is being licensed to.
+     */
+    clientAccountType?: string | null;
+    /**
+     * Output only. Pricing history of this user list license. This field is read-only.
+     */
+    historicalPricings?: Schema$UserListLicensePricing[];
+    /**
+     * Output only. Metrics related to this license This field is read-only and only populated if the start and end dates are set in the ListUserListDirectLicenses call
+     */
+    metrics?: Schema$UserListLicenseMetrics;
+    /**
+     * Identifier. The resource name of the user list direct license.
+     */
+    name?: string | null;
+    /**
+     * Optional. UserListDirectLicense pricing.
+     */
+    pricing?: Schema$UserListLicensePricing;
+    /**
+     * Optional. Status of UserListDirectLicense - ENABLED or DISABLED.
+     */
+    status?: string | null;
+    /**
+     * Output only. Name of the user list being licensed. This field is read-only.
+     */
+    userListDisplayName?: string | null;
+    /**
+     * Immutable. ID of the user list being licensed.
+     */
+    userListId?: string | null;
+  }
+  /**
+   * A user list global license. This feature is only available to data partners.
+   */
+  export interface Schema$UserListGlobalLicense {
+    /**
+     * Output only. Pricing history of this user list license. This field is read-only.
+     */
+    historicalPricings?: Schema$UserListLicensePricing[];
+    /**
+     * Immutable. Product type of client customer which the user list is being licensed to.
+     */
+    licenseType?: string | null;
+    /**
+     * Output only. Metrics related to this license This field is read-only and only populated if the start and end dates are set in the ListUserListGlobalLicenses call
+     */
+    metrics?: Schema$UserListLicenseMetrics;
+    /**
+     * Identifier. The resource name of the user list global license.
+     */
+    name?: string | null;
+    /**
+     * Optional. UserListGlobalLicense pricing.
+     */
+    pricing?: Schema$UserListLicensePricing;
+    /**
+     * Optional. Status of UserListGlobalLicense - ENABLED or DISABLED.
+     */
+    status?: string | null;
+    /**
+     * Output only. Name of the user list being licensed. This field is read-only.
+     */
+    userListDisplayName?: string | null;
+    /**
+     * Immutable. ID of the user list being licensed.
+     */
+    userListId?: string | null;
+  }
+  /**
+   * Information about a customer of a user list global license. This will automatically be created by the system when a customer purchases a global license.
+   */
+  export interface Schema$UserListGlobalLicenseCustomerInfo {
+    /**
+     * Output only. Name of client customer which the user list is being licensed to.
+     */
+    clientAccountDisplayName?: string | null;
+    /**
+     * Output only. ID of client customer which the user list is being licensed to.
+     */
+    clientAccountId?: string | null;
+    /**
+     * Output only. Product type of client customer which the user list is being licensed to.
+     */
+    clientAccountType?: string | null;
+    /**
+     * Output only. Pricing history of this user list license.
+     */
+    historicalPricings?: Schema$UserListLicensePricing[];
+    /**
+     * Output only. Product type of client customer which the user list is being licensed to.
+     */
+    licenseType?: string | null;
+    /**
+     * Output only. Metrics related to this license This field is only populated if the start and end dates are set in the ListUserListGlobalLicenseCustomerInfos call.
+     */
+    metrics?: Schema$UserListLicenseMetrics;
+    /**
+     * Identifier. The resource name of the user list global license customer.
+     */
+    name?: string | null;
+    /**
+     * Output only. UserListDirectLicense pricing.
+     */
+    pricing?: Schema$UserListLicensePricing;
+    /**
+     * Output only. Status of UserListDirectLicense - ENABLED or DISABLED.
+     */
+    status?: string | null;
+    /**
+     * Output only. Name of the user list being licensed.
+     */
+    userListDisplayName?: string | null;
+    /**
+     * Output only. ID of the user list being licensed.
+     */
+    userListId?: string | null;
+  }
+  /**
+   * Metrics related to a user list license.
+   */
+  export interface Schema$UserListLicenseMetrics {
+    /**
+     * Output only. The number of clicks for the user list license.
+     */
+    clickCount?: string | null;
+    /**
+     * Output only. The end date (inclusive) of the metrics in the format YYYYMMDD. For example, 20260102 represents January 2, 2026. If `start_date` is used in the filter, `end_date` is also required. If neither `start_date` nor `end_date` are included in the filter, the UserListLicenseMetrics fields will not be populated in the response.
+     */
+    endDate?: string | null;
+    /**
+     * Output only. The number of impressions for the user list license.
+     */
+    impressionCount?: string | null;
+    /**
+     * Output only. The revenue for the user list license in USD micros.
+     */
+    revenueUsdMicros?: string | null;
+    /**
+     * Output only. The start date (inclusive) of the metrics in the format YYYYMMDD. For example, 20260102 represents January 2, 2026. If `end_date` is used in the filter, `start_date` is also required. If neither `start_date` nor `end_date` are included in the filter, the UserListLicenseMetrics fields will not be populated in the response.
+     */
+    startDate?: string | null;
+  }
+  /**
+   * A user list license pricing.
+   */
+  export interface Schema$UserListLicensePricing {
+    /**
+     * Output only. The buyer approval state of this pricing. This field is read-only.
+     */
+    buyerApprovalState?: string | null;
+    /**
+     * Optional. The cost associated with the model, in micro units (10^-6), in the currency specified by the currency_code field. For example, 2000000 means $2 if `currency_code` is `USD`.
+     */
+    costMicros?: string | null;
+    /**
+     * Immutable. The cost type of this pricing. Can be set only in the `create` operation. Can't be updated for an existing license.
+     */
+    costType?: string | null;
+    /**
+     * Optional. The currency in which cost and max_cost is specified. Must be a three-letter currency code defined in ISO 4217.
+     */
+    currencyCode?: string | null;
+    /**
+     * Optional. End time of the pricing.
+     */
+    endTime?: string | null;
+    /**
+     * Optional. The maximum CPM a commerce audience can be charged when the MEDIA_SHARE cost type is used. The value is in micro units (10^-6) and in the currency specified by the currency_code field. For example, 2000000 means $2 if `currency_code` is `USD`. This is only relevant when cost_type is MEDIA_SHARE. When cost_type is not MEDIA_SHARE, and this field is set, a MAX_COST_NOT_ALLOWED error will be returned. If not set or set to`0`, there is no cap.
+     */
+    maxCostMicros?: string | null;
+    /**
+     * Output only. Whether this pricing is active.
+     */
+    pricingActive?: boolean | null;
+    /**
+     * Output only. The ID of this pricing.
+     */
+    pricingId?: string | null;
+    /**
+     * Output only. Start time of the pricing.
+     */
+    startTime?: string | null;
   }
   /**
    * Advertiser-assessed information about the user at the time that the event happened. See https://support.google.com/google-ads/answer/14007601 for more details.
@@ -933,6 +1604,3099 @@ export namespace datamanager_v1 {
      * A list of warnings and counts per warning reason.
      */
     warningCounts?: Schema$WarningCount[];
+  }
+
+  export class Resource$Accounttypes {
+    context: APIRequestContext;
+    accounts: Resource$Accounttypes$Accounts;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.accounts = new Resource$Accounttypes$Accounts(this.context);
+    }
+  }
+
+  export class Resource$Accounttypes$Accounts {
+    context: APIRequestContext;
+    insights: Resource$Accounttypes$Accounts$Insights;
+    partnerLinks: Resource$Accounttypes$Accounts$Partnerlinks;
+    userListDirectLicenses: Resource$Accounttypes$Accounts$Userlistdirectlicenses;
+    userListGlobalLicenses: Resource$Accounttypes$Accounts$Userlistgloballicenses;
+    userLists: Resource$Accounttypes$Accounts$Userlists;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.insights = new Resource$Accounttypes$Accounts$Insights(this.context);
+      this.partnerLinks = new Resource$Accounttypes$Accounts$Partnerlinks(
+        this.context
+      );
+      this.userListDirectLicenses =
+        new Resource$Accounttypes$Accounts$Userlistdirectlicenses(this.context);
+      this.userListGlobalLicenses =
+        new Resource$Accounttypes$Accounts$Userlistgloballicenses(this.context);
+      this.userLists = new Resource$Accounttypes$Accounts$Userlists(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Accounttypes$Accounts$Insights {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves marketing data insights for a given user list. This feature is only available to data partners. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType\}/accounts/{loginAccountId\}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType\}/accounts/{linkedAccountId\}`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamanager.accountTypes.accounts.insights.retrieve({
+     *     // Required. The parent account that owns the user list. Format: `accountTypes/{account_type\}/accounts/{account\}`
+     *     parent: 'accountTypes/my-accountType/accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "baseline": {},
+     *       //   "userListId": "my_userListId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "marketingDataInsights": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    retrieve(
+      params: Params$Resource$Accounttypes$Accounts$Insights$Retrieve,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    retrieve(
+      params?: Params$Resource$Accounttypes$Accounts$Insights$Retrieve,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RetrieveInsightsResponse>>;
+    retrieve(
+      params: Params$Resource$Accounttypes$Accounts$Insights$Retrieve,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    retrieve(
+      params: Params$Resource$Accounttypes$Accounts$Insights$Retrieve,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RetrieveInsightsResponse>,
+      callback: BodyResponseCallback<Schema$RetrieveInsightsResponse>
+    ): void;
+    retrieve(
+      params: Params$Resource$Accounttypes$Accounts$Insights$Retrieve,
+      callback: BodyResponseCallback<Schema$RetrieveInsightsResponse>
+    ): void;
+    retrieve(
+      callback: BodyResponseCallback<Schema$RetrieveInsightsResponse>
+    ): void;
+    retrieve(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Insights$Retrieve
+        | BodyResponseCallback<Schema$RetrieveInsightsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RetrieveInsightsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RetrieveInsightsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RetrieveInsightsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Insights$Retrieve;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounttypes$Accounts$Insights$Retrieve;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/insights:retrieve').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RetrieveInsightsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RetrieveInsightsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounttypes$Accounts$Insights$Retrieve extends StandardParameters {
+    /**
+     * Required. The parent account that owns the user list. Format: `accountTypes/{account_type\}/accounts/{account\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RetrieveInsightsRequest;
+  }
+
+  export class Resource$Accounttypes$Accounts$Partnerlinks {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a partner link for the given account. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType\}/accounts/{loginAccountId\}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType\}/accounts/{linkedAccountId\}`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamanager.accountTypes.accounts.partnerLinks.create({
+     *     // Required. The parent, which owns this collection of partner links. Format: accountTypes/{account_type\}/accounts/{account\}
+     *     parent: 'accountTypes/my-accountType/accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "owningAccount": {},
+     *       //   "partnerAccount": {},
+     *       //   "partnerLinkId": "my_partnerLinkId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "owningAccount": {},
+     *   //   "partnerAccount": {},
+     *   //   "partnerLinkId": "my_partnerLinkId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Accounttypes$Accounts$Partnerlinks$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Accounttypes$Accounts$Partnerlinks$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PartnerLink>>;
+    create(
+      params: Params$Resource$Accounttypes$Accounts$Partnerlinks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Accounttypes$Accounts$Partnerlinks$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$PartnerLink>,
+      callback: BodyResponseCallback<Schema$PartnerLink>
+    ): void;
+    create(
+      params: Params$Resource$Accounttypes$Accounts$Partnerlinks$Create,
+      callback: BodyResponseCallback<Schema$PartnerLink>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$PartnerLink>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Partnerlinks$Create
+        | BodyResponseCallback<Schema$PartnerLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PartnerLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PartnerLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PartnerLink>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Partnerlinks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounttypes$Accounts$Partnerlinks$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/partnerLinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PartnerLink>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PartnerLink>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a partner link for the given account. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType\}/accounts/{loginAccountId\}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType\}/accounts/{linkedAccountId\}`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamanager.accountTypes.accounts.partnerLinks.delete({
+     *     // Required. The resource name of the partner link to delete. Format: accountTypes/{account_type\}/accounts/{account\}/partnerLinks/{partner_link\}
+     *     name: 'accountTypes/my-accountType/accounts/my-account/partnerLinks/my-partnerLink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Accounttypes$Accounts$Partnerlinks$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Accounttypes$Accounts$Partnerlinks$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Accounttypes$Accounts$Partnerlinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Accounttypes$Accounts$Partnerlinks$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Accounttypes$Accounts$Partnerlinks$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Partnerlinks$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Partnerlinks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounttypes$Accounts$Partnerlinks$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Searches for all partner links to and from a given account. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType\}/accounts/{loginAccountId\}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType\}/accounts/{linkedAccountId\}`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamanager.accountTypes.accounts.partnerLinks.search({
+     *     // Optional. A [filter string](//google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `partner_link_id = 123456789`). Supported operations: - `AND` - `=` - `!=` Supported fields: - `partner_link_id` - `owning_account.account_type` - `owning_account.account_id` - `partner_account.account_type` - `partner_account.account_id` Example: `owning_account.account_type = "GOOGLE_ADS" AND partner_account.account_id = 987654321`
+     *     filter: 'placeholder-value',
+     *     // The maximum number of partner links to return. The service may return fewer than this value. If unspecified, at most 10 partner links will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `SearchPartnerLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchPartnerLinks` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Account to search for partner links. If no `filter` is specified, all partner links where this account is either the `owning_account` or `partner_account` are returned. Format: `accountTypes/{account_type\}/accounts/{account\}`
+     *     parent: 'accountTypes/my-accountType/accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "partnerLinks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Accounttypes$Accounts$Partnerlinks$Search,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    search(
+      params?: Params$Resource$Accounttypes$Accounts$Partnerlinks$Search,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SearchPartnerLinksResponse>>;
+    search(
+      params: Params$Resource$Accounttypes$Accounts$Partnerlinks$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Accounttypes$Accounts$Partnerlinks$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchPartnerLinksResponse>,
+      callback: BodyResponseCallback<Schema$SearchPartnerLinksResponse>
+    ): void;
+    search(
+      params: Params$Resource$Accounttypes$Accounts$Partnerlinks$Search,
+      callback: BodyResponseCallback<Schema$SearchPartnerLinksResponse>
+    ): void;
+    search(
+      callback: BodyResponseCallback<Schema$SearchPartnerLinksResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Partnerlinks$Search
+        | BodyResponseCallback<Schema$SearchPartnerLinksResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchPartnerLinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchPartnerLinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SearchPartnerLinksResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Partnerlinks$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounttypes$Accounts$Partnerlinks$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/partnerLinks:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchPartnerLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchPartnerLinksResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounttypes$Accounts$Partnerlinks$Create extends StandardParameters {
+    /**
+     * Required. The parent, which owns this collection of partner links. Format: accountTypes/{account_type\}/accounts/{account\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PartnerLink;
+  }
+  export interface Params$Resource$Accounttypes$Accounts$Partnerlinks$Delete extends StandardParameters {
+    /**
+     * Required. The resource name of the partner link to delete. Format: accountTypes/{account_type\}/accounts/{account\}/partnerLinks/{partner_link\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounttypes$Accounts$Partnerlinks$Search extends StandardParameters {
+    /**
+     * Optional. A [filter string](//google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `partner_link_id = 123456789`). Supported operations: - `AND` - `=` - `!=` Supported fields: - `partner_link_id` - `owning_account.account_type` - `owning_account.account_id` - `partner_account.account_type` - `partner_account.account_id` Example: `owning_account.account_type = "GOOGLE_ADS" AND partner_account.account_id = 987654321`
+     */
+    filter?: string;
+    /**
+     * The maximum number of partner links to return. The service may return fewer than this value. If unspecified, at most 10 partner links will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `SearchPartnerLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchPartnerLinks` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Account to search for partner links. If no `filter` is specified, all partner links where this account is either the `owning_account` or `partner_account` are returned. Format: `accountTypes/{account_type\}/accounts/{account\}`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Accounttypes$Accounts$Userlistdirectlicenses {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a user list direct license. This feature is only available to data partners.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamanager.accountTypes.accounts.userListDirectLicenses.create({
+     *       // Required. The account that owns the user list being licensed. Should be in the format accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}
+     *       parent: 'accountTypes/my-accountType/accounts/my-account',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "clientAccountDisplayName": "my_clientAccountDisplayName",
+     *         //   "clientAccountId": "my_clientAccountId",
+     *         //   "clientAccountType": "my_clientAccountType",
+     *         //   "historicalPricings": [],
+     *         //   "metrics": {},
+     *         //   "name": "my_name",
+     *         //   "pricing": {},
+     *         //   "status": "my_status",
+     *         //   "userListDisplayName": "my_userListDisplayName",
+     *         //   "userListId": "my_userListId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientAccountDisplayName": "my_clientAccountDisplayName",
+     *   //   "clientAccountId": "my_clientAccountId",
+     *   //   "clientAccountType": "my_clientAccountType",
+     *   //   "historicalPricings": [],
+     *   //   "metrics": {},
+     *   //   "name": "my_name",
+     *   //   "pricing": {},
+     *   //   "status": "my_status",
+     *   //   "userListDisplayName": "my_userListDisplayName",
+     *   //   "userListId": "my_userListId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserListDirectLicense>>;
+    create(
+      params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserListDirectLicense>,
+      callback: BodyResponseCallback<Schema$UserListDirectLicense>
+    ): void;
+    create(
+      params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Create,
+      callback: BodyResponseCallback<Schema$UserListDirectLicense>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$UserListDirectLicense>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Create
+        | BodyResponseCallback<Schema$UserListDirectLicense>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserListDirectLicense>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserListDirectLicense>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserListDirectLicense>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/userListDirectLicenses').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserListDirectLicense>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserListDirectLicense>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a user list direct license. This feature is only available to data partners.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamanager.accountTypes.accounts.userListDirectLicenses.get({
+     *       // Required. The resource name of the user list direct license.
+     *       name: 'accountTypes/my-accountType/accounts/my-account/userListDirectLicenses/my-userListDirectLicense',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientAccountDisplayName": "my_clientAccountDisplayName",
+     *   //   "clientAccountId": "my_clientAccountId",
+     *   //   "clientAccountType": "my_clientAccountType",
+     *   //   "historicalPricings": [],
+     *   //   "metrics": {},
+     *   //   "name": "my_name",
+     *   //   "pricing": {},
+     *   //   "status": "my_status",
+     *   //   "userListDisplayName": "my_userListDisplayName",
+     *   //   "userListId": "my_userListId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserListDirectLicense>>;
+    get(
+      params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserListDirectLicense>,
+      callback: BodyResponseCallback<Schema$UserListDirectLicense>
+    ): void;
+    get(
+      params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Get,
+      callback: BodyResponseCallback<Schema$UserListDirectLicense>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$UserListDirectLicense>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Get
+        | BodyResponseCallback<Schema$UserListDirectLicense>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserListDirectLicense>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserListDirectLicense>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserListDirectLicense>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserListDirectLicense>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserListDirectLicense>(parameters);
+      }
+    }
+
+    /**
+     * Lists all user list direct licenses owned by the parent account. This feature is only available to data partners.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamanager.accountTypes.accounts.userListDirectLicenses.list({
+     *       // Optional. Filters to apply to the list request. All fields need to be on the left hand side of each condition (for example: user_list_id = 123). **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
+     *       filter: 'placeholder-value',
+     *       // Optional. The maximum number of licenses to return per page. The service may return fewer than this value. If unspecified, at most 50 licenses will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListUserListDirectLicense` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserListDirectLicense` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The account whose licenses are being queried. Should be in the format accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}
+     *       parent: 'accountTypes/my-accountType/accounts/my-account',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "userListDirectLicenses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListUserListDirectLicensesResponse>
+    >;
+    list(
+      params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUserListDirectLicensesResponse>,
+      callback: BodyResponseCallback<Schema$ListUserListDirectLicensesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$List,
+      callback: BodyResponseCallback<Schema$ListUserListDirectLicensesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListUserListDirectLicensesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$List
+        | BodyResponseCallback<Schema$ListUserListDirectLicensesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUserListDirectLicensesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUserListDirectLicensesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListUserListDirectLicensesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/userListDirectLicenses').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListUserListDirectLicensesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListUserListDirectLicensesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a user list direct license. This feature is only available to data partners.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamanager.accountTypes.accounts.userListDirectLicenses.patch({
+     *       // Identifier. The resource name of the user list direct license.
+     *       name: 'accountTypes/my-accountType/accounts/my-account/userListDirectLicenses/my-userListDirectLicense',
+     *       // Optional. The list of fields to update. The special character `*` is not supported and an `INVALID_UPDATE_MASK` error will be thrown if used.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "clientAccountDisplayName": "my_clientAccountDisplayName",
+     *         //   "clientAccountId": "my_clientAccountId",
+     *         //   "clientAccountType": "my_clientAccountType",
+     *         //   "historicalPricings": [],
+     *         //   "metrics": {},
+     *         //   "name": "my_name",
+     *         //   "pricing": {},
+     *         //   "status": "my_status",
+     *         //   "userListDisplayName": "my_userListDisplayName",
+     *         //   "userListId": "my_userListId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientAccountDisplayName": "my_clientAccountDisplayName",
+     *   //   "clientAccountId": "my_clientAccountId",
+     *   //   "clientAccountType": "my_clientAccountType",
+     *   //   "historicalPricings": [],
+     *   //   "metrics": {},
+     *   //   "name": "my_name",
+     *   //   "pricing": {},
+     *   //   "status": "my_status",
+     *   //   "userListDisplayName": "my_userListDisplayName",
+     *   //   "userListId": "my_userListId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserListDirectLicense>>;
+    patch(
+      params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserListDirectLicense>,
+      callback: BodyResponseCallback<Schema$UserListDirectLicense>
+    ): void;
+    patch(
+      params: Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Patch,
+      callback: BodyResponseCallback<Schema$UserListDirectLicense>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$UserListDirectLicense>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Patch
+        | BodyResponseCallback<Schema$UserListDirectLicense>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserListDirectLicense>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserListDirectLicense>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserListDirectLicense>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserListDirectLicense>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserListDirectLicense>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Create extends StandardParameters {
+    /**
+     * Required. The account that owns the user list being licensed. Should be in the format accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UserListDirectLicense;
+  }
+  export interface Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Get extends StandardParameters {
+    /**
+     * Required. The resource name of the user list direct license.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$List extends StandardParameters {
+    /**
+     * Optional. Filters to apply to the list request. All fields need to be on the left hand side of each condition (for example: user_list_id = 123). **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of licenses to return per page. The service may return fewer than this value. If unspecified, at most 50 licenses will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListUserListDirectLicense` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserListDirectLicense` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The account whose licenses are being queried. Should be in the format accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Accounttypes$Accounts$Userlistdirectlicenses$Patch extends StandardParameters {
+    /**
+     * Identifier. The resource name of the user list direct license.
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update. The special character `*` is not supported and an `INVALID_UPDATE_MASK` error will be thrown if used.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UserListDirectLicense;
+  }
+
+  export class Resource$Accounttypes$Accounts$Userlistgloballicenses {
+    context: APIRequestContext;
+    userListGlobalLicenseCustomerInfos: Resource$Accounttypes$Accounts$Userlistgloballicenses$Userlistgloballicensecustomerinfos;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.userListGlobalLicenseCustomerInfos =
+        new Resource$Accounttypes$Accounts$Userlistgloballicenses$Userlistgloballicensecustomerinfos(
+          this.context
+        );
+    }
+
+    /**
+     * Creates a user list global license. This feature is only available to data partners.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamanager.accountTypes.accounts.userListGlobalLicenses.create({
+     *       // Required. The account that owns the user list being licensed. Should be in the format accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}
+     *       parent: 'accountTypes/my-accountType/accounts/my-account',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "historicalPricings": [],
+     *         //   "licenseType": "my_licenseType",
+     *         //   "metrics": {},
+     *         //   "name": "my_name",
+     *         //   "pricing": {},
+     *         //   "status": "my_status",
+     *         //   "userListDisplayName": "my_userListDisplayName",
+     *         //   "userListId": "my_userListId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historicalPricings": [],
+     *   //   "licenseType": "my_licenseType",
+     *   //   "metrics": {},
+     *   //   "name": "my_name",
+     *   //   "pricing": {},
+     *   //   "status": "my_status",
+     *   //   "userListDisplayName": "my_userListDisplayName",
+     *   //   "userListId": "my_userListId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserListGlobalLicense>>;
+    create(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserListGlobalLicense>,
+      callback: BodyResponseCallback<Schema$UserListGlobalLicense>
+    ): void;
+    create(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Create,
+      callback: BodyResponseCallback<Schema$UserListGlobalLicense>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$UserListGlobalLicense>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Create
+        | BodyResponseCallback<Schema$UserListGlobalLicense>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserListGlobalLicense>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserListGlobalLicense>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserListGlobalLicense>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/userListGlobalLicenses').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserListGlobalLicense>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserListGlobalLicense>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a user list global license. This feature is only available to data partners.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamanager.accountTypes.accounts.userListGlobalLicenses.get({
+     *       // Required. The resource name of the user list global license.
+     *       name: 'accountTypes/my-accountType/accounts/my-account/userListGlobalLicenses/my-userListGlobalLicense',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historicalPricings": [],
+     *   //   "licenseType": "my_licenseType",
+     *   //   "metrics": {},
+     *   //   "name": "my_name",
+     *   //   "pricing": {},
+     *   //   "status": "my_status",
+     *   //   "userListDisplayName": "my_userListDisplayName",
+     *   //   "userListId": "my_userListId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserListGlobalLicense>>;
+    get(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserListGlobalLicense>,
+      callback: BodyResponseCallback<Schema$UserListGlobalLicense>
+    ): void;
+    get(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Get,
+      callback: BodyResponseCallback<Schema$UserListGlobalLicense>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$UserListGlobalLicense>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Get
+        | BodyResponseCallback<Schema$UserListGlobalLicense>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserListGlobalLicense>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserListGlobalLicense>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserListGlobalLicense>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserListGlobalLicense>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserListGlobalLicense>(parameters);
+      }
+    }
+
+    /**
+     * Lists all user list global licenses owned by the parent account. This feature is only available to data partners.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamanager.accountTypes.accounts.userListGlobalLicenses.list({
+     *       // Optional. Filters to apply to the list request. All fields need to be on the left hand side of each condition (for example: user_list_id = 123). **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
+     *       filter: 'placeholder-value',
+     *       // Optional. The maximum number of licenses to return. The service may return fewer than this value. If unspecified, at most 50 licenses will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListUserListGlobalLicense` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserListDirectLicense` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The account whose licenses are being queried. Should be in the format accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}
+     *       parent: 'accountTypes/my-accountType/accounts/my-account',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "userListGlobalLicenses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListUserListGlobalLicensesResponse>
+    >;
+    list(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUserListGlobalLicensesResponse>,
+      callback: BodyResponseCallback<Schema$ListUserListGlobalLicensesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$List,
+      callback: BodyResponseCallback<Schema$ListUserListGlobalLicensesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListUserListGlobalLicensesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$List
+        | BodyResponseCallback<Schema$ListUserListGlobalLicensesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUserListGlobalLicensesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUserListGlobalLicensesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListUserListGlobalLicensesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/userListGlobalLicenses').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListUserListGlobalLicensesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListUserListGlobalLicensesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a user list global license. This feature is only available to data partners.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamanager.accountTypes.accounts.userListGlobalLicenses.patch({
+     *       // Identifier. The resource name of the user list global license.
+     *       name: 'accountTypes/my-accountType/accounts/my-account/userListGlobalLicenses/my-userListGlobalLicense',
+     *       // Optional. The list of fields to update. The special character `*` is not supported and an `INVALID_UPDATE_MASK` error will be thrown if used.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "historicalPricings": [],
+     *         //   "licenseType": "my_licenseType",
+     *         //   "metrics": {},
+     *         //   "name": "my_name",
+     *         //   "pricing": {},
+     *         //   "status": "my_status",
+     *         //   "userListDisplayName": "my_userListDisplayName",
+     *         //   "userListId": "my_userListId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "historicalPricings": [],
+     *   //   "licenseType": "my_licenseType",
+     *   //   "metrics": {},
+     *   //   "name": "my_name",
+     *   //   "pricing": {},
+     *   //   "status": "my_status",
+     *   //   "userListDisplayName": "my_userListDisplayName",
+     *   //   "userListId": "my_userListId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserListGlobalLicense>>;
+    patch(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UserListGlobalLicense>,
+      callback: BodyResponseCallback<Schema$UserListGlobalLicense>
+    ): void;
+    patch(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Patch,
+      callback: BodyResponseCallback<Schema$UserListGlobalLicense>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$UserListGlobalLicense>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Patch
+        | BodyResponseCallback<Schema$UserListGlobalLicense>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserListGlobalLicense>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserListGlobalLicense>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserListGlobalLicense>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserListGlobalLicense>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserListGlobalLicense>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Create extends StandardParameters {
+    /**
+     * Required. The account that owns the user list being licensed. Should be in the format accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UserListGlobalLicense;
+  }
+  export interface Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Get extends StandardParameters {
+    /**
+     * Required. The resource name of the user list global license.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$List extends StandardParameters {
+    /**
+     * Optional. Filters to apply to the list request. All fields need to be on the left hand side of each condition (for example: user_list_id = 123). **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of licenses to return. The service may return fewer than this value. If unspecified, at most 50 licenses will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListUserListGlobalLicense` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserListDirectLicense` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The account whose licenses are being queried. Should be in the format accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Patch extends StandardParameters {
+    /**
+     * Identifier. The resource name of the user list global license.
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update. The special character `*` is not supported and an `INVALID_UPDATE_MASK` error will be thrown if used.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UserListGlobalLicense;
+  }
+
+  export class Resource$Accounttypes$Accounts$Userlistgloballicenses$Userlistgloballicensecustomerinfos {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all customer info for a user list global license. This feature is only available to data partners.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datamanager.accountTypes.accounts.userListGlobalLicenses.userListGlobalLicenseCustomerInfos.list(
+     *       {
+     *         // Optional. Filters to apply to the list request. All fields need to be on the left hand side of each condition (for example: user_list_id = 123). **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
+     *         filter: 'placeholder-value',
+     *         // Optional. The maximum number of licenses to return. The service may return fewer than this value. If unspecified, at most 50 licenses will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListUserListDirectLicense` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserListDirectLicense` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The global license whose customer info are being queried. Should be in the format `accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}/userListGlobalLicenses/{USER_LIST_GLOBAL_LICENSE_ID\}`. To list all global license customer info under an account, replace the user list global license id with a '-' (for example, `accountTypes/DATA_PARTNER/accounts/123/userListGlobalLicenses/-`)
+     *         parent:
+     *           'accountTypes/my-accountType/accounts/my-account/userListGlobalLicenses/my-userListGlobalLicense',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "userListGlobalLicenseCustomerInfos": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Userlistgloballicensecustomerinfos$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Userlistgloballicensecustomerinfos$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListUserListGlobalLicenseCustomerInfosResponse>
+    >;
+    list(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Userlistgloballicensecustomerinfos$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Userlistgloballicensecustomerinfos$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUserListGlobalLicenseCustomerInfosResponse>,
+      callback: BodyResponseCallback<Schema$ListUserListGlobalLicenseCustomerInfosResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Userlistgloballicensecustomerinfos$List,
+      callback: BodyResponseCallback<Schema$ListUserListGlobalLicenseCustomerInfosResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListUserListGlobalLicenseCustomerInfosResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Userlistgloballicensecustomerinfos$List
+        | BodyResponseCallback<Schema$ListUserListGlobalLicenseCustomerInfosResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUserListGlobalLicenseCustomerInfosResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUserListGlobalLicenseCustomerInfosResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListUserListGlobalLicenseCustomerInfosResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Userlistgloballicensecustomerinfos$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Userlistgloballicensecustomerinfos$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/userListGlobalLicenseCustomerInfos'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListUserListGlobalLicenseCustomerInfosResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListUserListGlobalLicenseCustomerInfosResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounttypes$Accounts$Userlistgloballicenses$Userlistgloballicensecustomerinfos$List extends StandardParameters {
+    /**
+     * Optional. Filters to apply to the list request. All fields need to be on the left hand side of each condition (for example: user_list_id = 123). **Supported Operations:** - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of licenses to return. The service may return fewer than this value. If unspecified, at most 50 licenses will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListUserListDirectLicense` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserListDirectLicense` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The global license whose customer info are being queried. Should be in the format `accountTypes/{ACCOUNT_TYPE\}/accounts/{ACCOUNT_ID\}/userListGlobalLicenses/{USER_LIST_GLOBAL_LICENSE_ID\}`. To list all global license customer info under an account, replace the user list global license id with a '-' (for example, `accountTypes/DATA_PARTNER/accounts/123/userListGlobalLicenses/-`)
+     */
+    parent?: string;
+  }
+
+  export class Resource$Accounttypes$Accounts$Userlists {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a UserList. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType\}/accounts/{loginAccountId\}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType\}/accounts/{linkedAccountId\}`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamanager.accountTypes.accounts.userLists.create({
+     *     // Required. The parent account where this user list will be created. Format: accountTypes/{account_type\}/accounts/{account\}
+     *     parent: 'accountTypes/my-accountType/accounts/my-account',
+     *     // Optional. If true, the request is validated but not executed.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessReason": "my_accessReason",
+     *       //   "accountAccessStatus": "my_accountAccessStatus",
+     *       //   "closingReason": "my_closingReason",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "id": "my_id",
+     *       //   "ingestedUserListInfo": {},
+     *       //   "integrationCode": "my_integrationCode",
+     *       //   "membershipDuration": "my_membershipDuration",
+     *       //   "membershipStatus": "my_membershipStatus",
+     *       //   "name": "my_name",
+     *       //   "readOnly": false,
+     *       //   "sizeInfo": {},
+     *       //   "targetNetworkInfo": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessReason": "my_accessReason",
+     *   //   "accountAccessStatus": "my_accountAccessStatus",
+     *   //   "closingReason": "my_closingReason",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "id": "my_id",
+     *   //   "ingestedUserListInfo": {},
+     *   //   "integrationCode": "my_integrationCode",
+     *   //   "membershipDuration": "my_membershipDuration",
+     *   //   "membershipStatus": "my_membershipStatus",
+     *   //   "name": "my_name",
+     *   //   "readOnly": false,
+     *   //   "sizeInfo": {},
+     *   //   "targetNetworkInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Accounttypes$Accounts$Userlists$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserList>>;
+    create(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$UserList>,
+      callback: BodyResponseCallback<Schema$UserList>
+    ): void;
+    create(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$Create,
+      callback: BodyResponseCallback<Schema$UserList>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$UserList>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Userlists$Create
+        | BodyResponseCallback<Schema$UserList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Userlists$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounttypes$Accounts$Userlists$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/userLists').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserList>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a UserList. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType\}/accounts/{loginAccountId\}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType\}/accounts/{linkedAccountId\}`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamanager.accountTypes.accounts.userLists.delete({
+     *     // Required. The name of the user list to delete. Format: accountTypes/{account_type\}/accounts/{account\}/userLists/{user_list\}
+     *     name: 'accountTypes/my-accountType/accounts/my-account/userLists/my-userList',
+     *     // Optional. If true, the request is validated but not executed.
+     *     validateOnly: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Accounttypes$Accounts$Userlists$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Userlists$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Userlists$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounttypes$Accounts$Userlists$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a UserList. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType\}/accounts/{loginAccountId\}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType\}/accounts/{linkedAccountId\}`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamanager.accountTypes.accounts.userLists.get({
+     *     // Required. The resource name of the UserList to retrieve. Format: accountTypes/{account_type\}/accounts/{account\}/userLists/{user_list\}
+     *     name: 'accountTypes/my-accountType/accounts/my-account/userLists/my-userList',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessReason": "my_accessReason",
+     *   //   "accountAccessStatus": "my_accountAccessStatus",
+     *   //   "closingReason": "my_closingReason",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "id": "my_id",
+     *   //   "ingestedUserListInfo": {},
+     *   //   "integrationCode": "my_integrationCode",
+     *   //   "membershipDuration": "my_membershipDuration",
+     *   //   "membershipStatus": "my_membershipStatus",
+     *   //   "name": "my_name",
+     *   //   "readOnly": false,
+     *   //   "sizeInfo": {},
+     *   //   "targetNetworkInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Accounttypes$Accounts$Userlists$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserList>>;
+    get(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UserList>,
+      callback: BodyResponseCallback<Schema$UserList>
+    ): void;
+    get(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$Get,
+      callback: BodyResponseCallback<Schema$UserList>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$UserList>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Userlists$Get
+        | BodyResponseCallback<Schema$UserList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Userlists$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounttypes$Accounts$Userlists$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserList>(parameters);
+      }
+    }
+
+    /**
+     * Lists UserLists. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType\}/accounts/{loginAccountId\}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType\}/accounts/{linkedAccountId\}`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamanager.accountTypes.accounts.userLists.list({
+     *     // Optional. A [filter string](//google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `display_name = "list 1"`). Supported operations: - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` - `:` (has) Supported fields: - `id` - `display_name` - `description` - `membership_status` - `integration_code` - `access_reason` - `ingested_user_list_info.upload_key_types`
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of user lists to return. The service may return fewer than this value. If unspecified, at most 50 user lists will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListUserLists` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLists` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent account which owns this collection of user lists. Format: accountTypes/{account_type\}/accounts/{account\}
+     *     parent: 'accountTypes/my-accountType/accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "userLists": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Accounttypes$Accounts$Userlists$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListUserListsResponse>>;
+    list(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUserListsResponse>,
+      callback: BodyResponseCallback<Schema$ListUserListsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$List,
+      callback: BodyResponseCallback<Schema$ListUserListsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListUserListsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Userlists$List
+        | BodyResponseCallback<Schema$ListUserListsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUserListsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUserListsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListUserListsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Userlists$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounttypes$Accounts$Userlists$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/userLists').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListUserListsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListUserListsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a UserList. Authorization Headers: This method supports the following optional headers to define how the API authorizes access for the request: * `login-account`: (Optional) The resource name of the account where the Google Account of the credentials is a user. If not set, defaults to the account of the request. Format: `accountTypes/{loginAccountType\}/accounts/{loginAccountId\}` * `linked-account`: (Optional) The resource name of the account with an established product link to the `login-account`. Format: `accountTypes/{linkedAccountType\}/accounts/{linkedAccountId\}`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamanager.accountTypes.accounts.userLists.patch({
+     *     // Identifier. The resource name of the user list. Format: accountTypes/{account_type\}/accounts/{account\}/userLists/{user_list\}
+     *     name: 'accountTypes/my-accountType/accounts/my-account/userLists/my-userList',
+     *     // Optional. The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. If true, the request is validated but not executed.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessReason": "my_accessReason",
+     *       //   "accountAccessStatus": "my_accountAccessStatus",
+     *       //   "closingReason": "my_closingReason",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "id": "my_id",
+     *       //   "ingestedUserListInfo": {},
+     *       //   "integrationCode": "my_integrationCode",
+     *       //   "membershipDuration": "my_membershipDuration",
+     *       //   "membershipStatus": "my_membershipStatus",
+     *       //   "name": "my_name",
+     *       //   "readOnly": false,
+     *       //   "sizeInfo": {},
+     *       //   "targetNetworkInfo": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessReason": "my_accessReason",
+     *   //   "accountAccessStatus": "my_accountAccessStatus",
+     *   //   "closingReason": "my_closingReason",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "id": "my_id",
+     *   //   "ingestedUserListInfo": {},
+     *   //   "integrationCode": "my_integrationCode",
+     *   //   "membershipDuration": "my_membershipDuration",
+     *   //   "membershipStatus": "my_membershipStatus",
+     *   //   "name": "my_name",
+     *   //   "readOnly": false,
+     *   //   "sizeInfo": {},
+     *   //   "targetNetworkInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Accounttypes$Accounts$Userlists$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UserList>>;
+    patch(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$UserList>,
+      callback: BodyResponseCallback<Schema$UserList>
+    ): void;
+    patch(
+      params: Params$Resource$Accounttypes$Accounts$Userlists$Patch,
+      callback: BodyResponseCallback<Schema$UserList>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$UserList>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Accounttypes$Accounts$Userlists$Patch
+        | BodyResponseCallback<Schema$UserList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$UserList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounttypes$Accounts$Userlists$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounttypes$Accounts$Userlists$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserList>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounttypes$Accounts$Userlists$Create extends StandardParameters {
+    /**
+     * Required. The parent account where this user list will be created. Format: accountTypes/{account_type\}/accounts/{account\}
+     */
+    parent?: string;
+    /**
+     * Optional. If true, the request is validated but not executed.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UserList;
+  }
+  export interface Params$Resource$Accounttypes$Accounts$Userlists$Delete extends StandardParameters {
+    /**
+     * Required. The name of the user list to delete. Format: accountTypes/{account_type\}/accounts/{account\}/userLists/{user_list\}
+     */
+    name?: string;
+    /**
+     * Optional. If true, the request is validated but not executed.
+     */
+    validateOnly?: boolean;
+  }
+  export interface Params$Resource$Accounttypes$Accounts$Userlists$Get extends StandardParameters {
+    /**
+     * Required. The resource name of the UserList to retrieve. Format: accountTypes/{account_type\}/accounts/{account\}/userLists/{user_list\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounttypes$Accounts$Userlists$List extends StandardParameters {
+    /**
+     * Optional. A [filter string](//google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `display_name = "list 1"`). Supported operations: - `AND` - `=` - `!=` - `\>` - `\>=` - `<` - `<=` - `:` (has) Supported fields: - `id` - `display_name` - `description` - `membership_status` - `integration_code` - `access_reason` - `ingested_user_list_info.upload_key_types`
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of user lists to return. The service may return fewer than this value. If unspecified, at most 50 user lists will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListUserLists` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLists` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent account which owns this collection of user lists. Format: accountTypes/{account_type\}/accounts/{account\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Accounttypes$Accounts$Userlists$Patch extends StandardParameters {
+    /**
+     * Identifier. The resource name of the user list. Format: accountTypes/{account_type\}/accounts/{account\}/userLists/{user_list\}
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+    /**
+     * Optional. If true, the request is validated but not executed.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UserList;
   }
 
   export class Resource$Audiencemembers {

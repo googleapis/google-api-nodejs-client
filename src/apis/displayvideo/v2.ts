@@ -852,7 +852,7 @@ export namespace displayvideo_v2 {
      */
     fixedBid?: Schema$FixedBidStrategy;
     /**
-     * * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA`, `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC`, and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` only allow for `LINE_ITEM_TYPE_DISPLAY_DEFAULT` or `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` only allow for `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_REACH` only allows for `LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP` line items.
+     * A strategy that automatically adjusts the bid to optimize to your performance goal while spending the full budget. At insertion order level, the markup_type of line items cannot be set to `PARTNER_REVENUE_MODEL_MARKUP_TYPE_CPM`. In addition, the performance_goal_type value assigned to an insertion order determines the possible line_item_type values available for line items under that insertion order: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA`, `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC`, and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` only allow for `LINE_ITEM_TYPE_DISPLAY_DEFAULT` or `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` and `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` only allow for `LINE_ITEM_TYPE_VIDEO_DEFAULT` line items. * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_REACH` only allows for `LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP` line items.
      */
     maximizeSpendAutoBid?: Schema$MaximizeSpendBidStrategy;
     /**
@@ -2911,15 +2911,15 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$ImageAsset {
     /**
-     * File size of the image asset in bytes.
+     * Output only. File size of the image asset in bytes.
      */
     fileSize?: string | null;
     /**
-     * Metadata for this image at its original size.
+     * Output only. Metadata for this image at its original size.
      */
     fullSize?: Schema$Dimensions;
     /**
-     * MIME type of the image asset.
+     * Output only. MIME type of the image asset.
      */
     mimeType?: string | null;
   }
@@ -2932,7 +2932,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string | null;
     /**
-     * Optional. The bidding strategy of the insertion order. By default, fixed_bid is set.
+     * Optional. The bidding strategy of the insertion order. By default, fixed_bid is set. If the budget field automationType is set to `INSERTION_ORDER_AUTOMATION_TYPE_BUDGET` or `INSERTION_ORDER_AUTOMATION_TYPE_BID_BUDGET`, the insertion order will impose this bidding strategy on its line items. If an imposed bidding strategy is not compatible with a line item's enableOptimizedTargeting setting, the optimized targeting setting will be updated.
      */
     bidStrategy?: Schema$BiddingStrategy;
     /**
@@ -5835,13 +5835,17 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$YoutubeVideoDetails {
     /**
-     * The YouTube video ID which can be searched on YouTube webpage.
+     * Output only. The YouTube video ID which can be searched on YouTube webpage.
      */
     id?: string | null;
     /**
      * The reason why the video data is not available.
      */
     unavailableReason?: string | null;
+    /**
+     * Required. The YouTube video asset id. This is ad_asset.ad_asset_id.
+     */
+    videoAssetId?: string | null;
   }
 
   export class Resource$Advertisers {

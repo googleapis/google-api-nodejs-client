@@ -2039,6 +2039,10 @@ export namespace backupdr_v1 {
    */
   export interface Schema$InitializeServiceRequest {
     /**
+     * Optional. The location where the BackupPlan will be created. This field is required for multi-region BackupVaults and is optional for regional BackupVaults. It is useful when creating a Backup Vault in a multi-region, allowing the BackupPlan to reside in a specific region within that multi-region. If this field is not provided, the BackupPlan will be created in the same location as specified in the `name` field.
+     */
+    backupPlanLocation?: string | null;
+    /**
      * Optional. The configuration for initializing a Cloud SQL instance.
      */
     cloudSqlInstanceInitializationConfig?: Schema$CloudSqlInstanceInitializationConfig;
@@ -2643,7 +2647,7 @@ export namespace backupdr_v1 {
      */
     uid?: string | null;
     /**
-     * Output only. Whether the target resource is protected by a backup vault. This is true if the backup_configs_details is not empty and any of the ResourceBackupConfig.backup_configs_details has a backup configuration with BackupConfigDetails.backup_vault set. set.
+     * Output only. Whether the target resource is protected by a backup vault. This is true if the backup_configs_details is not empty and any of the ResourceBackupConfig.backup_configs_details has a backup configuration with BackupConfigDetails.backup_vault set.
      */
     vaulted?: boolean | null;
   }
@@ -3318,7 +3322,7 @@ export namespace backupdr_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -12428,13 +12432,14 @@ export namespace backupdr_v1 {
      *
      *   // Do the magic
      *   const res = await backupdr.projects.locations.serviceConfig.initialize({
-     *     // Required. The resource name of the serviceConfig used to initialize the service. Format: `projects/{project_id\}/locations/{location\}/serviceConfig`.
+     *     // Required. The resource name of the serviceConfig used to initialize the service. The location must be the location of the BackupVault. Format: `projects/{project_id\}/locations/{location\}/serviceConfig`.
      *     name: 'projects/my-project/locations/my-location/serviceConfig',
      *
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "backupPlanLocation": "my_backupPlanLocation",
      *       //   "cloudSqlInstanceInitializationConfig": {},
      *       //   "requestId": "my_requestId",
      *       //   "resourceType": "my_resourceType"
@@ -12552,7 +12557,7 @@ export namespace backupdr_v1 {
 
   export interface Params$Resource$Projects$Locations$Serviceconfig$Initialize extends StandardParameters {
     /**
-     * Required. The resource name of the serviceConfig used to initialize the service. Format: `projects/{project_id\}/locations/{location\}/serviceConfig`.
+     * Required. The resource name of the serviceConfig used to initialize the service. The location must be the location of the BackupVault. Format: `projects/{project_id\}/locations/{location\}/serviceConfig`.
      */
     name?: string;
 

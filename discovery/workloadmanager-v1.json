@@ -135,7 +135,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "workloadmanager.projects.locations.list",
@@ -183,6 +183,284 @@
             }
           },
           "resources": {
+            "deployments": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new Deployment in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments",
+                  "httpMethod": "POST",
+                  "id": "workloadmanager.projects.locations.deployments.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "deploymentId": {
+                      "description": "Required. Id of the deployment",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource prefix of the Deployment using the form: `projects/{project_id}/locations/{location_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/deployments",
+                  "request": {
+                    "$ref": "Deployment"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single Deployment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments/{deploymentsId}",
+                  "httpMethod": "DELETE",
+                  "id": "workloadmanager.projects.locations.deployments.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "force": {
+                      "description": "Optional. If set to true, any actuation will also be deleted. Followed the best practice from https://aip.dev/135#cascading-delete",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single Deployment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments/{deploymentsId}",
+                  "httpMethod": "GET",
+                  "id": "workloadmanager.projects.locations.deployments.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource. The format will be 'projects/{project_id}/locations/{location_id}/deployments/{deployment_id}'",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Deployment"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Deployments in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments",
+                  "httpMethod": "GET",
+                  "id": "workloadmanager.projects.locations.deployments.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter resource follow https://google.aip.dev/160",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource prefix of the Deployment using the form: `projects/{project_id}/locations/{location_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/deployments",
+                  "response": {
+                    "$ref": "ListDeploymentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "actuations": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new actuation for an existing Deployment.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments/{deploymentsId}/actuations",
+                      "httpMethod": "POST",
+                      "id": "workloadmanager.projects.locations.deployments.actuations.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The resource name of the Actuation location using the form: 'projects/{project_id}/locations/{location}/deployments/{deployment}'",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/actuations",
+                      "request": {
+                        "$ref": "Actuation"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a single Actuation",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments/{deploymentsId}/actuations/{actuationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "workloadmanager.projects.locations.deployments.actuations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the book to delete. project/{project_id}/locations/{location_id}/deployments/{deployment_id}/actuations/{actuation_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+/actuations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single Actuation.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments/{deploymentsId}/actuations/{actuationsId}",
+                      "httpMethod": "GET",
+                      "id": "workloadmanager.projects.locations.deployments.actuations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the resource",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+/actuations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Actuation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists Actuations in a given project, location and deployment.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployments/{deploymentsId}/actuations",
+                      "httpMethod": "GET",
+                      "id": "workloadmanager.projects.locations.deployments.actuations.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filtering results",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A token identifying a page of results the server should return.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource prefix of the Actuation using the form: 'projects/{project_id}/locations/{location}/deployments/{deployment}'",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/actuations",
+                      "response": {
+                        "$ref": "ListActuationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "discoveredprofiles": {
               "methods": {
                 "get": {
@@ -979,9 +1257,190 @@
       }
     }
   },
-  "revision": "20260121",
+  "revision": "20260204",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
+    "ActiveDirectory": {
+      "description": "Active directory details",
+      "id": "ActiveDirectory",
+      "properties": {
+        "dnsAddress": {
+          "description": "Optional. DNS IP address",
+          "type": "string"
+        },
+        "domain": {
+          "description": "Optional. human readable form of a domain such as “google.com”.",
+          "type": "string"
+        },
+        "domainUsername": {
+          "description": "Optional. domain username",
+          "type": "string"
+        },
+        "secretManagerSecret": {
+          "description": "Required. secret_manager_secret",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. active directory type",
+          "enum": [
+            "ACTIVE_DIRECTORY_TYPE_UNSPECIFIED",
+            "GCP_MANAGED",
+            "SELF_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Unspecified active directory type",
+            "GCP managed active directory type",
+            "Self managed active directory type"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Actuation": {
+      "description": "The Actuation object represents the bootstrap state and output results of deployed infrastructure and software.",
+      "id": "Actuation",
+      "properties": {
+        "actuationOutput": {
+          "$ref": "ActuationOutput",
+          "description": "Output only. [Output only] Actuation output",
+          "readOnly": true
+        },
+        "deploymentOutput": {
+          "description": "Output only. [Output only] Deployment output",
+          "items": {
+            "$ref": "DeploymentOutput"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "endTime": {
+          "description": "Output only. [Output only] End time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of actuation resource. The format is projects/{project}/locations/{location}/deployments/{deployment}/actuations/{actuation}",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. [Output only] Start time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. [Output only] Actuation state",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "INFRA_CREATING",
+            "SUCCEEDED",
+            "FAILED",
+            "POST_INFRA_CONFIGURING",
+            "INFRA_DESTROYING",
+            "TIMEOUT"
+          ],
+          "enumDescriptions": [
+            "state unspecified",
+            "creating infrastructure in backend (terraform applying)",
+            "success",
+            "failed either in infra creating, post infra configuring or infra destroying",
+            "configure workload after infrastructure is ready (ansible running)",
+            "destroying infrastructure in backend (terraform destroying)",
+            "ansible is timeout due to losing heartbeat in post infra configuring"
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ActuationOutput": {
+      "description": "Message for output of Actuation",
+      "id": "ActuationOutput",
+      "properties": {
+        "actuateLogs": {
+          "description": "A link to gcs file that store build logs",
+          "type": "string"
+        },
+        "ansibleError": {
+          "description": "Output only. error message return from ansible.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ansibleFailedTask": {
+          "description": "Output only. failed task name return from ansible.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "blueprintId": {
+          "description": "reference to Blueprint Controller deployment and revision resource",
+          "type": "string"
+        },
+        "cloudbuildId": {
+          "description": "Cloud Build instance UUID associated with this revision, without any suffix or prefix",
+          "type": "string"
+        },
+        "errorCode": {
+          "description": "Output only. Code describing any errors that may have occurred. If not specified, there is no error in actuation.",
+          "enum": [
+            "ERROR_CODE_UNSPECIFIED",
+            "TERRAFORM_FAILED",
+            "PERMISSION_DENIED_IN_TERRAFORM",
+            "QUOTA_EXCEED_IN_TERRAFORM",
+            "ANSIBLE_FAILED",
+            "CONSTRAINT_VIOLATION_IN_TERRAFORM",
+            "RESOURCE_ALREADY_EXISTS_IN_TERRAFORM",
+            "RESOURCE_UNAVAILABLE_IN_TERRAFORM",
+            "PERMISSION_DENIED_IN_ANSIBLE",
+            "INVALID_SECRET_IN_ANSIBLE",
+            "TERRAFORM_DELETION_FAILED",
+            "RESOURCE_IN_USE_IN_TERRAFORM_DELETION",
+            "ANSIBLE_START_FAILED"
+          ],
+          "enumDescriptions": [
+            "No error code was specified.",
+            "general terraform failure",
+            "permission error in terraform",
+            "quota related error in terraform",
+            "general ansible failure",
+            "constraint related error in terraform",
+            "resource already exists error in terraform",
+            "resource not found error in terraform",
+            "permission denied error in ansible",
+            "secret related error in ansible",
+            "general terraform failure during deletion",
+            "resource in use error in terraform deletion",
+            "start up failure in ansible"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "errorLogs": {
+          "description": "A link to actuation cloud build log.",
+          "type": "string"
+        },
+        "hasUserFacingErrorMsg": {
+          "description": "Output only. whether the error message is user facing. If true, the error message will be shown in the UI.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "terraformError": {
+          "description": "Output only. error message return from terraform.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "terraformTemplate": {
+          "description": "reference to terraform template used",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AgentCommand": {
       "description": "* An AgentCommand specifies a one-time executable program for the agent to run.",
       "id": "AgentCommand",
@@ -1297,6 +1756,81 @@
       },
       "type": "object"
     },
+    "AppDetails": {
+      "description": "Message for sap instant details",
+      "id": "AppDetails",
+      "properties": {
+        "appInstanceId": {
+          "description": "Optional. instance id for app",
+          "type": "string"
+        },
+        "appServiceAccount": {
+          "description": "Application service account - let custoemrs bring their own SA for application",
+          "type": "string"
+        },
+        "appVmNames": {
+          "description": "Optional. Customized vm names",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ascsImage": {
+          "description": "Required. image for ascs server",
+          "type": "string"
+        },
+        "ascsInstanceId": {
+          "description": "Optional. instance id for ascs",
+          "type": "string"
+        },
+        "ascsMachineType": {
+          "description": "Required. ascs_machine_type",
+          "type": "string"
+        },
+        "ascsServiceAccount": {
+          "description": "ASCS service account - let custoemrs bring their own SA for ASCS",
+          "type": "string"
+        },
+        "ascsVm": {
+          "description": "Optional. ASCS vm name",
+          "type": "string"
+        },
+        "ersInstanceId": {
+          "description": "Optional. instance id for ers",
+          "type": "string"
+        },
+        "ersVm": {
+          "description": "Optional. ERS vm name",
+          "type": "string"
+        },
+        "image": {
+          "description": "Required. image for app server and ascs server",
+          "type": "string"
+        },
+        "machineType": {
+          "description": "Required. machine type",
+          "type": "string"
+        },
+        "secretManagerSecret": {
+          "description": "Required. secret_manager_secret",
+          "type": "string"
+        },
+        "sharedStorage": {
+          "description": "Optional. Storage location",
+          "type": "string"
+        },
+        "sid": {
+          "description": "Required. The SAP SID is a three-digit server-specific unique identification code.",
+          "type": "string"
+        },
+        "vmsMultiplier": {
+          "description": "Required. vms_multiplier",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "BackupProperties": {
       "description": "Backup properties.",
       "id": "BackupProperties",
@@ -1471,6 +2005,110 @@
       },
       "type": "object"
     },
+    "Database": {
+      "description": "Database details",
+      "id": "Database",
+      "properties": {
+        "diskType": {
+          "description": "Required. disk_type",
+          "type": "string"
+        },
+        "floatingIpAddress": {
+          "description": "Optional. only useful for Linux High Availability setup",
+          "type": "string"
+        },
+        "machineType": {
+          "description": "Required. machine type",
+          "type": "string"
+        },
+        "secondarySoleTenantNode": {
+          "description": "Optional. the name of a secondary-sole-tenant node/node group",
+          "type": "string"
+        },
+        "secondarySoleTenantNodeType": {
+          "description": "Optional. the type of a secondary-sole-tenant node/node group e.g. compute.googleapis.com/node-name",
+          "type": "string"
+        },
+        "secretManagerSecret": {
+          "description": "Required. secret_manager_secret",
+          "type": "string"
+        },
+        "smt": {
+          "description": "Required. whether simultaneous multithreading is enabled or not",
+          "type": "boolean"
+        },
+        "soleTenantNode": {
+          "description": "Optional. the name of a primary sole-tenant node/node group",
+          "type": "string"
+        },
+        "soleTenantNodeType": {
+          "description": "Optional. the type of a primary sole-tenant node/node group e.g. compute.googleapis.com/node-name",
+          "type": "string"
+        },
+        "tempdbOnSsd": {
+          "description": "Required. whether to have TempDB on local SSD",
+          "type": "boolean"
+        },
+        "tenancyModel": {
+          "description": "Required. SHARED or SOLE_TENANT",
+          "enum": [
+            "TENANCY_MODEL_UNSPECIFIED",
+            "SHARED",
+            "SOLE_TENANT"
+          ],
+          "enumDescriptions": [
+            "Unspecified tenancy model",
+            "Shared tenancy model",
+            "Sole Tenant tenancy model"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseDetails": {
+      "description": "Message for sap instant details",
+      "id": "DatabaseDetails",
+      "properties": {
+        "databaseServiceAccount": {
+          "description": "Database service account - let custoemrs bring their own SA for database",
+          "type": "string"
+        },
+        "diskType": {
+          "description": "Required. disk_type",
+          "type": "string"
+        },
+        "image": {
+          "description": "Required. image for database server",
+          "type": "string"
+        },
+        "instanceId": {
+          "description": "Optional. instance id",
+          "type": "string"
+        },
+        "machineType": {
+          "description": "Required. machine type",
+          "type": "string"
+        },
+        "primaryDbVm": {
+          "description": "Optional. primary db vm name",
+          "type": "string"
+        },
+        "secondaryDbVm": {
+          "description": "Optional. secondary db vm name",
+          "type": "string"
+        },
+        "secretManagerSecret": {
+          "description": "Required. secret_manager_secret",
+          "type": "string"
+        },
+        "sid": {
+          "description": "Required. The SID is a three-digit server-specific unique identification code.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DatabaseProperties": {
       "description": "Database Properties.",
       "id": "DatabaseProperties",
@@ -1501,6 +2139,108 @@
             "SAP Sybase ASE"
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Deployment": {
+      "description": "The Deployment object represents user intent for deploying a specific type of workload.",
+      "id": "Deployment",
+      "properties": {
+        "createTime": {
+          "description": "Output only. [Output only] Create time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the Deployment",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of deployment resource. The format will be 'projects/{project_id}/locations/{location_id}/deployments/{deployment_id}'",
+          "type": "string"
+        },
+        "sapSystemS4Config": {
+          "$ref": "SapSystemS4Config",
+          "description": "SAP system workload input"
+        },
+        "serviceAccount": {
+          "description": "User-specified Service Account (SA) credentials to be used for cloud build Format: `projects/{projectID}/serviceAccounts/{serviceAccount}` The default Cloud Build SA will be used initially if this field is not set during deployment creation",
+          "type": "string"
+        },
+        "sqlServerWorkload": {
+          "$ref": "SqlServerWorkload",
+          "description": "MS SQL workload input"
+        },
+        "state": {
+          "description": "Output only. Current state of the deployment.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "The deployment is being created.",
+            "The deployment is healthy.",
+            "The deployment is being updated.",
+            "The deployment is being deleted.",
+            "The deployment has encountered an unexpected error."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "terraformVariables": {
+          "additionalProperties": {
+            "$ref": "TerraformVariable"
+          },
+          "description": "Optional. terraform_variables represents all the Terraform variables for the deployment workload. The key is the name of the Terraform variable, and the value is the TerraformVariable. For example: { \"project_id\": { \"input_value\": { \"string_value\": \"my-project-id\" } }, \"zone\": { \"input_value\": { \"string_value\": \"us-central1-a\" } } }",
+          "type": "object"
+        },
+        "updateTime": {
+          "description": "Output only. [Output only] Update time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "workerPool": {
+          "description": "Optional. The user-specified Cloud Build worker pool resource in which the Cloud Build job will execute. Format: `projects/{project}/locations/{location}/workerPools/{workerPoolId}`. If this field is unspecified, the default Cloud Build worker pool will be used.",
+          "type": "string"
+        },
+        "workloadType": {
+          "description": "Optional. Workload type of the deployment",
+          "enum": [
+            "WORKLOAD_TYPE_UNSPECIFIED",
+            "SAP_S4",
+            "SQL_SERVER",
+            "ORACLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified workload type",
+            "SAP S/4HANA workload type",
+            "SQL Server workload type",
+            "Oracle workload type"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeploymentOutput": {
+      "description": "Message for output of deployment resource",
+      "id": "DeploymentOutput",
+      "properties": {
+        "name": {
+          "description": "name of the resource",
+          "type": "string"
+        },
+        "type": {
+          "description": "type of the resource",
           "type": "string"
         }
       },
@@ -2015,6 +2755,56 @@
       },
       "type": "object"
     },
+    "ListActuationsResponse": {
+      "description": "The response object from `ListActuations`.",
+      "id": "ListActuationsResponse",
+      "properties": {
+        "actuations": {
+          "description": "The list of Actuation",
+          "items": {
+            "$ref": "Actuation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListDeploymentsResponse": {
+      "description": "Message for response to listing Deployments",
+      "id": "ListDeploymentsResponse",
+      "properties": {
+        "deployments": {
+          "description": "The list of Deployment",
+          "items": {
+            "$ref": "Deployment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListDiscoveredProfilesResponse": {
       "description": "List discovered profile Response returns discovered profiles from agents",
       "id": "ListDiscoveredProfilesResponse",
@@ -2223,6 +3013,73 @@
       },
       "type": "object"
     },
+    "LocationDetails": {
+      "description": "Message for sap instant details",
+      "id": "LocationDetails",
+      "properties": {
+        "createCommsFirewall": {
+          "description": "Optional. create firewall, if true, create firewall for the deployment. This field provides an option to not always create firewall for the deployment.",
+          "type": "boolean"
+        },
+        "customTags": {
+          "description": "Optional. network tags",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "deploymentDnsEnabled": {
+          "description": "Optional. when user skip DNS configuration from UI, deployment_dns_enabled=false otherwise deployment_dns_enabled=true",
+          "type": "boolean"
+        },
+        "dnsZone": {
+          "description": "Optional. dns zone name",
+          "type": "string"
+        },
+        "dnsZoneNameSuffix": {
+          "description": "Optional. dns_zone_name_suffix",
+          "type": "string"
+        },
+        "internetAccess": {
+          "enum": [
+            "INTERNETACCESS_UNSPECIFIED",
+            "ALLOW_EXTERNAL_IP",
+            "CONFIGURE_NAT"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "networkProject": {
+          "description": "Optional. network project",
+          "type": "string"
+        },
+        "regionName": {
+          "description": "Required. region_name",
+          "type": "string"
+        },
+        "subnetName": {
+          "description": "Required. subnet_name",
+          "type": "string"
+        },
+        "vpcName": {
+          "description": "Required. vpc_name",
+          "type": "string"
+        },
+        "zone1Name": {
+          "description": "Required. zone1_name",
+          "type": "string"
+        },
+        "zone2Name": {
+          "description": "Optional. zone2_name",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Notice": {
       "description": "Message for additional information generated by the execution",
       "id": "Notice",
@@ -2328,6 +3185,37 @@
         "verb": {
           "description": "Output only. Name of the verb executed by the operation.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Pacemaker": {
+      "description": "pacemaker configuration",
+      "id": "Pacemaker",
+      "properties": {
+        "bucketNameNodeCertificates": {
+          "description": "Required. bucket location for node certificates",
+          "type": "string"
+        },
+        "pacemakerCluster": {
+          "description": "Required. pacemaker cluster name",
+          "type": "string"
+        },
+        "pacemakerClusterSecret": {
+          "description": "Required. pacemaker cluster secret name",
+          "type": "string"
+        },
+        "pacemakerClusterUsername": {
+          "description": "Required. pacemaker cluster username",
+          "type": "string"
+        },
+        "sqlPacemakerSecret": {
+          "description": "Required. sql pacemaker secret name",
+          "type": "string"
+        },
+        "sqlPacemakerUsername": {
+          "description": "Required. sql pacemaker username",
           "type": "string"
         }
       },
@@ -3201,6 +4089,106 @@
       },
       "type": "object"
     },
+    "SapSystemS4Config": {
+      "description": "Message for sap system workload",
+      "id": "SapSystemS4Config",
+      "properties": {
+        "allowStoppingForUpdate": {
+          "type": "boolean"
+        },
+        "ansibleRunnerServiceAccount": {
+          "description": "Ansible runner service account - let custoemrs bring their own SA for Ansible runner",
+          "type": "string"
+        },
+        "app": {
+          "$ref": "AppDetails",
+          "description": "instance details"
+        },
+        "database": {
+          "$ref": "DatabaseDetails",
+          "description": "database details"
+        },
+        "deploymentModel": {
+          "description": "Required. two model non-HA and HA supported",
+          "enum": [
+            "DEPLOYMENT_MODEL_UNSPECIFIED",
+            "DISTRIBUTED",
+            "DISTRIBUTED_HA"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "environmentType": {
+          "description": "Required. deployment environment",
+          "enum": [
+            "ENVIRONMENT_TYPE_UNSPECIFIED",
+            "NON_PRODUCTION",
+            "PRODUCTION"
+          ],
+          "enumDescriptions": [
+            "Unspecified environment type",
+            "Non-production environment type",
+            "Production environment type"
+          ],
+          "type": "string"
+        },
+        "gcpProjectId": {
+          "description": "the project that infrastructure deployed, current only support the same project where the deployment resource exist.",
+          "type": "string"
+        },
+        "location": {
+          "$ref": "LocationDetails",
+          "description": "database details"
+        },
+        "mediaBucketName": {
+          "description": "Required. media_bucket_name",
+          "type": "string"
+        },
+        "sapBootDiskImage": {
+          "description": "Optional. sap_boot_disk_image",
+          "type": "string"
+        },
+        "scalingMethod": {
+          "description": "Required. support scale up and scale out",
+          "enum": [
+            "SCALE_METHOD_UNSPECIFIED",
+            "SCALE_UP",
+            "SCALE_OUT"
+          ],
+          "enumDescriptions": [
+            "",
+            "Scale up: Increases the size of a physical machine by increasing the amount of RAM and CPU available for processing",
+            "Scale out: Combines multiple independent computers into one system"
+          ],
+          "type": "string"
+        },
+        "version": {
+          "description": "Required. sap hana version",
+          "enum": [
+            "VERSION_UNSPECIFIED",
+            "S4_HANA_2021",
+            "S4_HANA_2022",
+            "S4_HANA_2023"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "vmPrefix": {
+          "description": "vm_prefix",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SapValidation": {
       "description": "A presentation of SAP workload insight. The schema of SAP workloads validation related data.",
       "id": "SapValidation",
@@ -3392,6 +4380,224 @@
       },
       "type": "object"
     },
+    "SqlLocationDetails": {
+      "description": "Location and networking details for configuring SQL server workload",
+      "id": "SqlLocationDetails",
+      "properties": {
+        "dnsZone": {
+          "description": "Optional. create a new DNS Zone when the field is empty, Only show for `Using an existing DNS` List of existing DNS Zones tf variable name: existing_dns_zone_name",
+          "type": "string"
+        },
+        "gcpProjectId": {
+          "description": "Required. the project that infrastructure deployed, currently only supports the same project where the deployment resource exists.",
+          "type": "string"
+        },
+        "internetAccess": {
+          "description": "Required. Internet Access",
+          "enum": [
+            "INTERNET_ACCESS_UNSPECIFIED",
+            "ALLOW_EXTERNAL_IP",
+            "CONFIGURE_NAT"
+          ],
+          "enumDescriptions": [
+            "Unspecified internet access",
+            "Allow external IP",
+            "Configure NAT"
+          ],
+          "type": "string"
+        },
+        "network": {
+          "description": "Required. network name",
+          "type": "string"
+        },
+        "primaryZone": {
+          "description": "Required. primary zone",
+          "type": "string"
+        },
+        "region": {
+          "description": "Required. region name",
+          "type": "string"
+        },
+        "secondaryZone": {
+          "description": "Optional. secondary zone can't be same as primary_zone and is only for High Availability deployment mode",
+          "type": "string"
+        },
+        "subnetwork": {
+          "description": "Required. subnetwork name",
+          "type": "string"
+        },
+        "tertiaryZone": {
+          "description": "Optional. teriary zone can't be same as primary_zone and secondary zone, and it is only for High Availability deployment mode",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerWorkload": {
+      "description": "Message for MS SQL workload",
+      "id": "SqlServerWorkload",
+      "properties": {
+        "activeDirectory": {
+          "$ref": "ActiveDirectory",
+          "description": "Required. active directory details"
+        },
+        "computeEngineServiceAccount": {
+          "description": "Compute engine service account - let customers bring their own SA for Compute engine",
+          "type": "string"
+        },
+        "database": {
+          "$ref": "Database",
+          "description": "Required. database details"
+        },
+        "deploymentModel": {
+          "description": "Required. HIGH_AVAILABILITY or SINGLE_INSTANCE",
+          "enum": [
+            "DEPLOYMENT_MODEL_UNSPECIFIED",
+            "HIGH_AVAILABILITY",
+            "SINGLE_INSTANCE"
+          ],
+          "enumDescriptions": [
+            "Unspecified deployment model",
+            "High Availability deployment model",
+            "Single Instance deployment model"
+          ],
+          "type": "string"
+        },
+        "environmentType": {
+          "description": "Required. deployment environment",
+          "enum": [
+            "ENVIRONMENT_TYPE_UNSPECIFIED",
+            "NON_PRODUCTION",
+            "PRODUCTION"
+          ],
+          "enumDescriptions": [
+            "Unspecified environment type",
+            "Non-production environment type",
+            "Production environment type"
+          ],
+          "type": "string"
+        },
+        "fciType": {
+          "description": "Optional. SHARED_DISK or S2D",
+          "enum": [
+            "FCI_TYPE_UNSPECIFIED",
+            "SHARED_DISK",
+            "S2D"
+          ],
+          "enumDescriptions": [
+            "Unspecified FCI type",
+            "SHARED DISK FCI type",
+            "S2D FCI type"
+          ],
+          "type": "string"
+        },
+        "haType": {
+          "description": "Optional. AOAG or FCI, it is only needed for High Availability deployment mode",
+          "enum": [
+            "HA_TYPE_UNSPECIFIED",
+            "AOAG",
+            "FCI"
+          ],
+          "enumDescriptions": [
+            "Unspecified HA type",
+            "AOAG HA type",
+            "FCI HA type"
+          ],
+          "type": "string"
+        },
+        "isSqlPayg": {
+          "description": "Required. SQL licensing type",
+          "type": "boolean"
+        },
+        "location": {
+          "$ref": "SqlLocationDetails",
+          "description": "Required. location details"
+        },
+        "mediaBucket": {
+          "description": "Required. name of the media storing SQL server installation files",
+          "type": "string"
+        },
+        "operatingSystemType": {
+          "description": "Required. type of the operating system the SQL server is going to run on top of",
+          "enum": [
+            "OPERATING_SYSTEM_TYPE_UNSPECIFIED",
+            "WINDOWS",
+            "UBUNTU",
+            "RED_HAT_ENTERPRISE_LINUX",
+            "SUSE"
+          ],
+          "enumDescriptions": [
+            "Unspecified operating system type",
+            "Windows operating system type",
+            "Ubuntu operating system type",
+            "Red Hat Enterprise Linux operating system type",
+            "Suse operating system type"
+          ],
+          "type": "string"
+        },
+        "osImage": {
+          "description": "Required. the image of the operating system",
+          "type": "string"
+        },
+        "osImageType": {
+          "description": "Optional. OS image type, it's used to create boot disks for VM instances When either Windows licensing type or SQL licensing type is BYOL, this option is disabled and default to custom image",
+          "enum": [
+            "OS_IMAGE_TYPE_UNSPECIFIED",
+            "PUBLIC_IMAGE",
+            "CUSTOM_IMAGE"
+          ],
+          "enumDescriptions": [
+            "Unspecified OS image type",
+            "Public image",
+            "Custom image"
+          ],
+          "type": "string"
+        },
+        "pacemaker": {
+          "$ref": "Pacemaker",
+          "description": "Optional. pacemaker configuration, only applicable for Linux HA deployments"
+        },
+        "sqlServerEdition": {
+          "description": "Optional. SQL Server Edition type, only applicable when Operating System is Linux",
+          "enum": [
+            "SQL_SERVER_EDITION_TYPE_UNSPECIFIED",
+            "SQL_SERVER_EDITION_TYPE_DEVELOPER",
+            "SQL_SERVER_EDITION_TYPE_ENTERPRISE",
+            "SQL_SERVER_EDITION_TYPE_STANDARD",
+            "SQL_SERVER_EDITION_TYPE_WEB"
+          ],
+          "enumDescriptions": [
+            "Unspecified type",
+            "Developer type",
+            "Enterprise type",
+            "Standard type",
+            "Web type"
+          ],
+          "type": "string"
+        },
+        "sqlServerVersion": {
+          "description": "Optional. 2017 or 2019 or 2022",
+          "enum": [
+            "SQL_SERVER_VERSION_TYPE_UNSPECIFIED",
+            "SQL_SERVER_VERSION_TYPE_2017",
+            "SQL_SERVER_VERSION_TYPE_2019",
+            "SQL_SERVER_VERSION_TYPE_2022"
+          ],
+          "enumDescriptions": [
+            "Unspecified type",
+            "2017 type",
+            "2019 type",
+            "2022 type"
+          ],
+          "type": "string"
+        },
+        "vmPrefix": {
+          "description": "Required. should be unique in the project",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SqlserverValidation": {
       "description": "A presentation of SQLServer workload insight. The schema of SqlServer workloads validation related data.",
       "id": "SqlserverValidation",
@@ -3528,6 +4734,17 @@
           "format": "int64",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TerraformVariable": {
+      "description": "In order to align with Infra Manager dependency, we create the same TerraformVariable message to represent a Terraform input variable, by following Infra Manager's API documentation: https://cloud.google.com/infrastructure-manager/docs/reference/rest A Terraform input variable.",
+      "id": "TerraformVariable",
+      "properties": {
+        "inputValue": {
+          "description": "Optional. Input variable value.",
+          "type": "any"
         }
       },
       "type": "object"

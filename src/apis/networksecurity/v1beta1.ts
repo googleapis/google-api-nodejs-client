@@ -4099,7 +4099,7 @@ export namespace networksecurity_v1beta1 {
     }
 
     /**
-     * Creates a new FirewallEndpoint in a given project and location.
+     * Creates a new FirewallEndpoint in a given organization and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -4267,7 +4267,7 @@ export namespace networksecurity_v1beta1 {
     }
 
     /**
-     * Deletes a single Endpoint.
+     * Deletes a single org Endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -4410,7 +4410,7 @@ export namespace networksecurity_v1beta1 {
     }
 
     /**
-     * Gets details of a single Endpoint.
+     * Gets details of a single org Endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -4559,7 +4559,7 @@ export namespace networksecurity_v1beta1 {
     }
 
     /**
-     * Lists FirewallEndpoints in a given project and location.
+     * Lists FirewallEndpoints in a given organization and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -4715,7 +4715,7 @@ export namespace networksecurity_v1beta1 {
     }
 
     /**
-     * Update a single Endpoint.
+     * Update a single org Endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -16321,7 +16321,7 @@ export namespace networksecurity_v1beta1 {
     }
 
     /**
-     * Deletes a single Endpoint.
+     * Deletes a single project Endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -16465,7 +16465,7 @@ export namespace networksecurity_v1beta1 {
     }
 
     /**
-     * Gets details of a single Endpoint.
+     * Gets details of a single project Endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -16767,7 +16767,7 @@ export namespace networksecurity_v1beta1 {
     }
 
     /**
-     * Update a single Endpoint.
+     * Update a single project Endpoint.
      * @example
      * ```js
      * // Before running the sample:

@@ -919,7 +919,7 @@
       }
     }
   },
-  "revision": "20260123",
+  "revision": "20260223",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -2294,18 +2294,32 @@
             "EVENT_TYPE_UNSPECIFIED",
             "EVENT_TYPE_MAX_TTL_EXCEEDED",
             "EVENT_TYPE_MAX_TTL_FROM_CREATION",
-            "EVENT_TYPE_MAX_TTL_FROM_LAST_MODIFICATION"
+            "EVENT_TYPE_MAX_TTL_FROM_LAST_MODIFICATION",
+            "EVENT_TYPE_MIN_TTL_FROM_CREATION"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Unspecified event type.",
-            "The maximum retention time has been exceeded.",
+            "Deprecated: This field is pending removal. Use EVENT_TYPE_MAX_TTL_FROM_CREATION or EVENT_TYPE_MAX_TTL_FROM_LAST_MODIFICATION instead.",
             "Max TTL from the asset's creation time.",
-            "Max TTL from the asset's last modification time."
+            "Max TTL from the asset's last modification time.",
+            "Min TTL from the asset's creation time."
           ],
           "type": "string"
         },
         "maxRetentionAllowed": {
           "description": "Maximum duration of retention allowed from the DRD control. This comes from the DRD control where users set a max TTL for their data. For example, suppose that a user sets the max TTL for a Cloud Storage bucket to 90 days. However, an object in that bucket is 100 days old. In this case, a DataRetentionDeletionEvent will be generated for that Cloud Storage bucket, and the max_retention_allowed is 90 days.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "minRetentionAllowed": {
+          "description": "Min duration of retention allowed from the DSPM retention control. This field is only populated when event type is set to EVENT_TYPE_MIN_TTL_FROM_CREATION.",
           "format": "google-duration",
           "type": "string"
         }
@@ -2547,6 +2561,61 @@
       },
       "type": "object"
     },
+    "ExternalExposure": {
+      "description": "Details about the externally exposed resource associated with the finding.",
+      "id": "ExternalExposure",
+      "properties": {
+        "backendService": {
+          "description": "The full resource name of load balancer backend service, for example, \"//compute.googleapis.com/projects/{project-id}/global/backendServices/{name}\".",
+          "type": "string"
+        },
+        "exposedEndpoint": {
+          "description": "The resource which is running the exposed service, for example, \"//compute.googleapis.com/projects/{project-id}/zones/{zone}/instances/{instance}.”",
+          "type": "string"
+        },
+        "exposedService": {
+          "description": "The name and version of the service, for example, \"Jupyter Notebook 6.14.0\".",
+          "type": "string"
+        },
+        "forwardingRule": {
+          "description": "The full resource name of the forwarding rule, for example, \"//compute.googleapis.com/projects/{project-id}/global/forwardingRules/{forwarding-rule-name}\".",
+          "type": "string"
+        },
+        "instanceGroup": {
+          "description": "The full resource name of the instance group, for example, \"//compute.googleapis.com/projects/{project-id}/global/instanceGroups/{name}\".",
+          "type": "string"
+        },
+        "loadBalancerFirewallPolicy": {
+          "description": "The full resource name of the load balancer firewall policy, for example, \"//compute.googleapis.com/projects/{project-id}/global/firewallPolicies/{policy-name}\".",
+          "type": "string"
+        },
+        "networkEndpointGroup": {
+          "description": "The full resource name of the network endpoint group, for example, \"//compute.googleapis.com/projects/{project-id}/global/networkEndpointGroups/{name}\".",
+          "type": "string"
+        },
+        "privateIpAddress": {
+          "description": "Private IP address of the exposed endpoint.",
+          "type": "string"
+        },
+        "privatePort": {
+          "description": "Port number associated with private IP address.",
+          "type": "string"
+        },
+        "publicIpAddress": {
+          "description": "Public IP address of the exposed endpoint.",
+          "type": "string"
+        },
+        "publicPort": {
+          "description": "Public port number of the exposed endpoint.",
+          "type": "string"
+        },
+        "serviceFirewallPolicy": {
+          "description": "The full resource name of the firewall policy of the exposed service, for example, \"//compute.googleapis.com/projects/{project-id}/global/firewallPolicies/{policy-name}\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "File": {
       "description": "File information about the related binary/library used by an executable, or the script used by a script interpreter",
       "id": "File",
@@ -2768,6 +2837,10 @@
           "$ref": "Exfiltration",
           "description": "Represents exfiltrations associated with the finding."
         },
+        "externalExposure": {
+          "$ref": "ExternalExposure",
+          "description": "External exposure associated with the finding."
+        },
         "externalSystems": {
           "additionalProperties": {
             "$ref": "GoogleCloudSecuritycenterV1ExternalSystem"
@@ -2799,7 +2872,8 @@
             "POSTURE_VIOLATION",
             "TOXIC_COMBINATION",
             "SENSITIVE_DATA_RISK",
-            "CHOKEPOINT"
+            "CHOKEPOINT",
+            "EXTERNAL_EXPOSURE"
           ],
           "enumDescriptions": [
             "Unspecified finding class.",
@@ -2811,7 +2885,8 @@
             "Describes a potential security risk due to a change in the security posture.",
             "Describes a group of security issues that, when the issues occur together, represent a greater risk than when the issues occur independently. A group of such issues is referred to as a toxic combination.",
             "Describes a potential security risk to data assets that contain sensitive data.",
-            "Describes a resource or resource group where high risk attack paths converge, based on attack path simulations (APS)."
+            "Describes a resource or resource group where high risk attack paths converge, based on attack path simulations (APS).",
+            "Describes a potential security risk due to the resource being exposed to the internet."
           ],
           "type": "string"
         },
@@ -5570,18 +5645,32 @@
             "EVENT_TYPE_UNSPECIFIED",
             "EVENT_TYPE_MAX_TTL_EXCEEDED",
             "EVENT_TYPE_MAX_TTL_FROM_CREATION",
-            "EVENT_TYPE_MAX_TTL_FROM_LAST_MODIFICATION"
+            "EVENT_TYPE_MAX_TTL_FROM_LAST_MODIFICATION",
+            "EVENT_TYPE_MIN_TTL_FROM_CREATION"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Unspecified event type.",
-            "The maximum retention time has been exceeded.",
+            "Deprecated: This field is pending removal. Use EVENT_TYPE_MAX_TTL_FROM_CREATION or EVENT_TYPE_MAX_TTL_FROM_LAST_MODIFICATION instead.",
             "Max TTL from the asset's creation time.",
-            "Max TTL from the asset's last modification time."
+            "Max TTL from the asset's last modification time.",
+            "Min TTL from the asset's creation time."
           ],
           "type": "string"
         },
         "maxRetentionAllowed": {
           "description": "Maximum duration of retention allowed from the DRD control. This comes from the DRD control where users set a max TTL for their data. For example, suppose that a user sets the max TTL for a Cloud Storage bucket to 90 days. However, an object in that bucket is 100 days old. In this case, a DataRetentionDeletionEvent will be generated for that Cloud Storage bucket, and the max_retention_allowed is 90 days.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "minRetentionAllowed": {
+          "description": "Min duration of retention allowed from the DSPM retention control. This field is only populated when event type is set to EVENT_TYPE_MIN_TTL_FROM_CREATION.",
           "format": "google-duration",
           "type": "string"
         }
@@ -5767,6 +5856,61 @@
         "totalExfiltratedBytes": {
           "description": "Total exfiltrated bytes processed for the entire job.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2ExternalExposure": {
+      "description": "Details about the externally exposed resource associated with the finding.",
+      "id": "GoogleCloudSecuritycenterV2ExternalExposure",
+      "properties": {
+        "backendService": {
+          "description": "The full resource name of load balancer backend service, for example, \"//compute.googleapis.com/projects/{project-id}/global/backendServices/{name}\".",
+          "type": "string"
+        },
+        "exposedEndpoint": {
+          "description": "The resource which is running the exposed service, for example, \"//compute.googleapis.com/projects/{project-id}/zones/{zone}/instances/{instance}.”",
+          "type": "string"
+        },
+        "exposedService": {
+          "description": "The name and version of the service, for example, \"Jupyter Notebook 6.14.0\".",
+          "type": "string"
+        },
+        "forwardingRule": {
+          "description": "The full resource name of the forwarding rule, for example, \"//compute.googleapis.com/projects/{project-id}/global/forwardingRules/{forwarding-rule-name}\".",
+          "type": "string"
+        },
+        "instanceGroup": {
+          "description": "The full resource name of the instance group, for example, \"//compute.googleapis.com/projects/{project-id}/global/instanceGroups/{name}\".",
+          "type": "string"
+        },
+        "loadBalancerFirewallPolicy": {
+          "description": "The full resource name of the load balancer firewall policy, for example, \"//compute.googleapis.com/projects/{project-id}/global/firewallPolicies/{policy-name}\".",
+          "type": "string"
+        },
+        "networkEndpointGroup": {
+          "description": "The full resource name of the network endpoint group, for example, \"//compute.googleapis.com/projects/{project-id}/global/networkEndpointGroups/{name}\".",
+          "type": "string"
+        },
+        "privateIpAddress": {
+          "description": "Private IP address of the exposed endpoint.",
+          "type": "string"
+        },
+        "privatePort": {
+          "description": "Port number associated with private IP address.",
+          "type": "string"
+        },
+        "publicIpAddress": {
+          "description": "Public IP address of the exposed endpoint.",
+          "type": "string"
+        },
+        "publicPort": {
+          "description": "Public port number of the exposed endpoint.",
+          "type": "string"
+        },
+        "serviceFirewallPolicy": {
+          "description": "The full resource name of the firewall policy of the exposed service, for example, \"//compute.googleapis.com/projects/{project-id}/global/firewallPolicies/{policy-name}\".",
           "type": "string"
         }
       },
@@ -6058,6 +6202,10 @@
           "$ref": "GoogleCloudSecuritycenterV2Exfiltration",
           "description": "Represents exfiltrations associated with the finding."
         },
+        "externalExposure": {
+          "$ref": "GoogleCloudSecuritycenterV2ExternalExposure",
+          "description": "External exposure associated with the finding."
+        },
         "externalSystems": {
           "additionalProperties": {
             "$ref": "GoogleCloudSecuritycenterV2ExternalSystem"
@@ -6089,7 +6237,8 @@
             "POSTURE_VIOLATION",
             "TOXIC_COMBINATION",
             "SENSITIVE_DATA_RISK",
-            "CHOKEPOINT"
+            "CHOKEPOINT",
+            "EXTERNAL_EXPOSURE"
           ],
           "enumDescriptions": [
             "Unspecified finding class.",
@@ -6101,7 +6250,8 @@
             "Describes a potential security risk due to a change in the security posture.",
             "Describes a combination of security issues that represent a more severe security problem when taken together.",
             "Describes a potential security risk to data assets that contain sensitive data.",
-            "Describes a resource or resource group where high risk attack paths converge, based on attack path simulations (APS)."
+            "Describes a resource or resource group where high risk attack paths converge, based on attack path simulations (APS).",
+            "Describes a potential security risk due to the resource being exposed to the internet."
           ],
           "type": "string"
         },

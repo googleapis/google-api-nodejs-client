@@ -142,7 +142,7 @@
       }
     }
   },
-  "revision": "20260202",
+  "revision": "20260223",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "BestSellersBrandView": {
@@ -648,6 +648,7 @@
             "LOCAL_INVENTORY_ADS",
             "VEHICLE_INVENTORY_ADS",
             "FREE_LISTINGS",
+            "FREE_LISTINGS_UCP_CHECKOUT",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
             "YOUTUBE_AFFILIATE",
@@ -677,6 +678,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -690,6 +692,7 @@
             "[Local inventory ads](https://support.google.com/merchants/answer/3271956).",
             "[Vehicle inventory ads](https://support.google.com/merchants/answer/11544533).",
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
+            "[Free product listings on UCP checkout](https://developers.google.com/merchant/ucp).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
             "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
@@ -739,7 +742,7 @@
       "id": "ItemIssueSeverity",
       "properties": {
         "aggregatedSeverity": {
-          "description": "Aggregated severity of the issue for all reporting contexts it affects. **This field can be used for filtering the results.**",
+          "description": "Aggregated severity of the issue for all reporting contexts it affects. Reporting contexts included in the computation of the aggregated severity can be restricted using a filter on the `reporting_context` field. **This field can be used for filtering the results.**",
           "enum": [
             "AGGREGATED_ISSUE_SEVERITY_UNSPECIFIED",
             "DISAPPROVED",
@@ -755,7 +758,7 @@
           "type": "string"
         },
         "severityPerReportingContext": {
-          "description": "Issue severity per reporting context.",
+          "description": "Issue severity per reporting context. Reporting contexts included in this list can be restricted using a filter on the `reporting_context` field.",
           "items": {
             "$ref": "IssueSeverityPerReportingContext"
           },
@@ -1031,6 +1034,7 @@
             "LOCAL_INVENTORY_ADS",
             "VEHICLE_INVENTORY_ADS",
             "FREE_LISTINGS",
+            "FREE_LISTINGS_UCP_CHECKOUT",
             "FREE_LOCAL_LISTINGS",
             "FREE_LOCAL_VEHICLE_LISTINGS",
             "YOUTUBE_AFFILIATE",
@@ -1060,6 +1064,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -1073,6 +1078,7 @@
             "[Local inventory ads](https://support.google.com/merchants/answer/3271956).",
             "[Vehicle inventory ads](https://support.google.com/merchants/answer/11544533).",
             "[Free product listings](https://support.google.com/merchants/answer/9199328).",
+            "[Free product listings on UCP checkout](https://developers.google.com/merchant/ucp).",
             "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
             "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
@@ -1287,11 +1293,11 @@
       "type": "object"
     },
     "ProductView": {
-      "description": "Fields available for query in `product_view` table. Products in the current inventory. Products in this table are the same as in Products sub-API but not all product attributes from Products sub-API are available for query in this table. In contrast to Products sub-API, this table allows to filter the returned list of products by product attributes. To retrieve a single product by `id` or list all products, Products sub-API should be used. Values are only set for fields requested explicitly in the request's search query. ",
+      "description": "Fields available for query in `product_view` table. Products in the current inventory. Products in this table are the same as a [Product resource in Products sub-API](https://developers.google.com/merchant/api/reference/rest/products_v1/accounts.products) but not all product attributes from Products sub-API are available for query in this table. In contrast to Products sub-API, this table allows to filter the returned list of products by product attributes. To retrieve a single product by `id` or list all products, Products sub-API should be used. Values are only set for fields requested explicitly in the request's search query.",
       "id": "ProductView",
       "properties": {
         "aggregatedReportingContextStatus": {
-          "description": "Aggregated status.",
+          "description": "Aggregated status across all reporting contexts. Reporting contexts included in the computation of the aggregated status can be restricted using a filter on the `reporting_context` field.",
           "enum": [
             "AGGREGATED_REPORTING_CONTEXT_STATUS_UNSPECIFIED",
             "NOT_ELIGIBLE_OR_DISAPPROVED",
@@ -1442,9 +1448,86 @@
           "description": "Product type (5th level) in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324406).",
           "type": "string"
         },
+        "reportingContext": {
+          "description": "Reporting context to restrict the query to. Restricts the reporting contexts returned in `status_per_reporting_context` and `item_issues`, and used to compute `aggregated_reporting_context_status`. **This field can only be used in the `WHERE` clause and cannot be selected in the `SELECT` clause.**",
+          "enum": [
+            "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
+            "SHOPPING_ADS",
+            "DISCOVERY_ADS",
+            "DEMAND_GEN_ADS",
+            "DEMAND_GEN_ADS_DISCOVER_SURFACE",
+            "VIDEO_ADS",
+            "DISPLAY_ADS",
+            "LOCAL_INVENTORY_ADS",
+            "VEHICLE_INVENTORY_ADS",
+            "FREE_LISTINGS",
+            "FREE_LISTINGS_UCP_CHECKOUT",
+            "FREE_LOCAL_LISTINGS",
+            "FREE_LOCAL_VEHICLE_LISTINGS",
+            "YOUTUBE_AFFILIATE",
+            "YOUTUBE_SHOPPING",
+            "CLOUD_RETAIL",
+            "LOCAL_CLOUD_RETAIL",
+            "PRODUCT_REVIEWS",
+            "MERCHANT_REVIEWS",
+            "YOUTUBE_CHECKOUT"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "[Shopping ads](https://support.google.com/merchants/answer/6149970).",
+            "Deprecated: Use `DEMAND_GEN_ADS` instead. [Discovery and Demand Gen ads](https://support.google.com/merchants/answer/13389785).",
+            "[Demand Gen ads](https://support.google.com/merchants/answer/13389785).",
+            "[Demand Gen ads on Discover surface](https://support.google.com/merchants/answer/13389785).",
+            "[Video ads](https://support.google.com/google-ads/answer/6340491).",
+            "[Display ads](https://support.google.com/merchants/answer/6069387).",
+            "[Local inventory ads](https://support.google.com/merchants/answer/3271956).",
+            "[Vehicle inventory ads](https://support.google.com/merchants/answer/11544533).",
+            "[Free product listings](https://support.google.com/merchants/answer/9199328).",
+            "[Free product listings on UCP checkout](https://developers.google.com/merchant/ucp).",
+            "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
+            "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
+            "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
+            "[YouTube Shopping](https://support.google.com/merchants/answer/13478370).",
+            "[Cloud retail](https://cloud.google.com/solutions/retail).",
+            "[Local cloud retail](https://cloud.google.com/solutions/retail).",
+            "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
+            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
+            "YouTube Checkout ."
+          ],
+          "type": "string"
+        },
         "shippingLabel": {
           "description": "Normalized [shipping label](https://support.google.com/merchants/answer/6324504) specified in the data source.",
           "type": "string"
+        },
+        "statusPerReportingContext": {
+          "description": "Detailed product status per reporting context. Reporting contexts included in this list can be restricted using a filter on the `reporting_context` field. Equivalent to `ProductStatus.destination_statuses` in Products API. **This field cannot be used for sorting or filtering the results.**",
+          "items": {
+            "$ref": "StatusPerReportingContext"
+          },
+          "type": "array"
         },
         "thumbnailLink": {
           "description": "Link to the processed image of the product, hosted on the Google infrastructure.",
@@ -1509,7 +1592,7 @@
       "id": "SearchRequest",
       "properties": {
         "pageSize": {
-          "description": "Optional. Number of `ReportRows` to retrieve in a single page. Defaults to 1000. Values above 5000 are coerced to 5000.",
+          "description": "Optional. Number of `ReportRows` to retrieve in a single page. Defaults to 1000. Values above 100,000 are coerced to 100,000.",
           "format": "int32",
           "type": "integer"
         },
@@ -1518,7 +1601,7 @@
           "type": "string"
         },
         "query": {
-          "description": "Required. Query that defines a report to be retrieved. For details on how to construct your query, see the [Query Language guide](/merchant/api/guides/reports/query-language). For the full list of available tables and fields, see the [Available fields](/merchant/api/reference/rest/reports_{api_version}/accounts.reports).",
+          "description": "Required. Query that defines a report to be retrieved. For details on how to construct your query, see the [Query Language guide](/merchant/api/guides/reports/query-language). For the full list of available tables and fields, see the Available fields.",
           "type": "string"
         }
       },
@@ -1538,6 +1621,104 @@
             "$ref": "ReportRow"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "StatusPerReportingContext": {
+      "description": "Status of the product for a specific reporting context. Equivalent to `DestinationStatus` in Products API.",
+      "id": "StatusPerReportingContext",
+      "properties": {
+        "approvedCountries": {
+          "description": "List of approved countries in the reporting context, represented in [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format, for example, `US`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "disapprovedCountries": {
+          "description": "List of disapproved countries in the reporting context, represented in [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format, for example, `US`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "pendingCountries": {
+          "description": "List of pending countries in the reporting context, represented in [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format, for example, `US`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "reportingContext": {
+          "description": "Reporting context the status applies to.",
+          "enum": [
+            "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
+            "SHOPPING_ADS",
+            "DISCOVERY_ADS",
+            "DEMAND_GEN_ADS",
+            "DEMAND_GEN_ADS_DISCOVER_SURFACE",
+            "VIDEO_ADS",
+            "DISPLAY_ADS",
+            "LOCAL_INVENTORY_ADS",
+            "VEHICLE_INVENTORY_ADS",
+            "FREE_LISTINGS",
+            "FREE_LISTINGS_UCP_CHECKOUT",
+            "FREE_LOCAL_LISTINGS",
+            "FREE_LOCAL_VEHICLE_LISTINGS",
+            "YOUTUBE_AFFILIATE",
+            "YOUTUBE_SHOPPING",
+            "CLOUD_RETAIL",
+            "LOCAL_CLOUD_RETAIL",
+            "PRODUCT_REVIEWS",
+            "MERCHANT_REVIEWS",
+            "YOUTUBE_CHECKOUT"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "[Shopping ads](https://support.google.com/merchants/answer/6149970).",
+            "Deprecated: Use `DEMAND_GEN_ADS` instead. [Discovery and Demand Gen ads](https://support.google.com/merchants/answer/13389785).",
+            "[Demand Gen ads](https://support.google.com/merchants/answer/13389785).",
+            "[Demand Gen ads on Discover surface](https://support.google.com/merchants/answer/13389785).",
+            "[Video ads](https://support.google.com/google-ads/answer/6340491).",
+            "[Display ads](https://support.google.com/merchants/answer/6069387).",
+            "[Local inventory ads](https://support.google.com/merchants/answer/3271956).",
+            "[Vehicle inventory ads](https://support.google.com/merchants/answer/11544533).",
+            "[Free product listings](https://support.google.com/merchants/answer/9199328).",
+            "[Free product listings on UCP checkout](https://developers.google.com/merchant/ucp).",
+            "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
+            "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
+            "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
+            "[YouTube Shopping](https://support.google.com/merchants/answer/13478370).",
+            "[Cloud retail](https://cloud.google.com/solutions/retail).",
+            "[Local cloud retail](https://cloud.google.com/solutions/retail).",
+            "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
+            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
+            "YouTube Checkout ."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

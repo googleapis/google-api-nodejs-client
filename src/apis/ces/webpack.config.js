@@ -37,8 +37,8 @@ module.exports = {
     },
   },
   output: {
-    library: 'Lifesciences',
-    filename: 'lifesciences.min.js',
+    library: 'Ces',
+    filename: 'ces.min.js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {

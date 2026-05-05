@@ -3671,7 +3671,7 @@
           ]
         },
         "update": {
-          "description": "Updates the specified disk with the data included in the request.\nThe update is performed only on selected fields included as part\nof update-mask. Only the following fields can be modified: user_license.",
+          "description": "Updates the specified disk with the data included in the request.\nThe update is performed only on selected fields included as part\nof update-mask.",
           "flatPath": "projects/{project}/zones/{zone}/disks/{disk}",
           "httpMethod": "PATCH",
           "id": "compute.disks.update",
@@ -4327,6 +4327,11 @@
           "httpMethod": "GET",
           "id": "compute.firewallPolicies.listAssociations",
           "parameters": {
+            "includeInheritedPolicies": {
+              "description": "If set to \"true\", the response will contain a list of all associations for\nthe containing folders and the containing organization of the target. The\nparameter has no effect if the target is an organization.",
+              "location": "query",
+              "type": "boolean"
+            },
             "targetResource": {
               "description": "The target resource to list associations. It is an organization, or a\nfolder.",
               "location": "query",
@@ -6378,7 +6383,7 @@
           ]
         },
         "insert": {
-          "description": "Creates a network endpoint group in the specified project using the\nparameters that are included in the request.",
+          "description": "Creates a network endpoint group in the specified project using the\nparameters that are included in the request.\n\nNote: Use the following APIs to manage network endpoint groups:\n   \n   - \n   To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity\n   NEGs): zonal\n   API\n   - \n   To manage NEGs with regional scope (such as regional internet NEGs,\n   serverless NEGs, Private Service Connect NEGs): regional\n   API\n   - \n   To manage NEGs with global scope (such as global internet NEGs):global\n   API",
           "flatPath": "projects/{project}/global/networkEndpointGroups",
           "httpMethod": "POST",
           "id": "compute.globalNetworkEndpointGroups.insert",
@@ -17594,7 +17599,7 @@
           ]
         },
         "insert": {
-          "description": "Creates a network endpoint group in the specified project using the\nparameters that are included in the request.",
+          "description": "Creates a network endpoint group in the specified project using the\nparameters that are included in the request.\n\nNote: Use the following APIs to manage network endpoint groups:\n   \n   - \n   To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity\n   NEGs): zonal\n   API\n   - \n   To manage NEGs with regional scope (such as regional internet NEGs,\n   serverless NEGs, Private Service Connect NEGs): regional\n   API\n   - \n   To manage NEGs with global scope (such as global internet NEGs):global\n   API",
           "flatPath": "projects/{project}/zones/{zone}/networkEndpointGroups",
           "httpMethod": "POST",
           "id": "compute.networkEndpointGroups.insert",
@@ -25117,7 +25122,7 @@
           ]
         },
         "update": {
-          "description": "Update the specified disk with the data included in the request. Update is\nperformed only on selected fields included as part of update-mask. Only the\nfollowing fields can be modified: user_license.",
+          "description": "Update the specified disk with the data included in the request. Update is\nperformed only on selected fields included as part of update-mask.",
           "flatPath": "projects/{project}/regions/{region}/disks/{disk}",
           "httpMethod": "PATCH",
           "id": "compute.regionDisks.update",
@@ -25175,6 +25180,366 @@
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/compute"
+          ]
+        }
+      }
+    },
+    "regionHealthAggregationPolicies": {
+      "methods": {
+        "aggregatedList": {
+          "description": "Retrieves the list of all HealthAggregationPolicy resources,\nregional and global, available to the specified project.\n\nTo prevent failure, it is recommended that you set the\n`returnPartialSuccess` parameter to `true`.",
+          "flatPath": "projects/{project}/aggregated/healthAggregationPolicies",
+          "httpMethod": "GET",
+          "id": "compute.regionHealthAggregationPolicies.aggregatedList",
+          "parameterOrder": [
+            "project"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "A filter expression that filters resources listed in the response. Most\nCompute resources support two types of filter expressions:\nexpressions that support regular expressions and expressions that follow\nAPI improvement proposal AIP-160.\nThese two types of filter expressions cannot be mixed in one request.\n\nIf you want to use AIP-160, your expression must specify the field name, an\noperator, and the value that you want to use for filtering. The value\nmust be a string, a number, or a boolean. The operator\nmust be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`.\n\nFor example, if you are filtering Compute Engine instances, you can\nexclude instances named `example-instance` by specifying\n`name != example-instance`.\n\nThe `:*` comparison can be used to test whether a key has been defined.\nFor example, to find all objects with `owner` label use:\n```\nlabels.owner:*\n```\n\nYou can also filter nested fields. For example, you could specify\n`scheduling.automaticRestart = false` to include instances only\nif they are not scheduled for automatic restarts. You can use filtering\non nested fields to filter based onresource labels.\n\nTo filter on multiple expressions, provide each separate expression within\nparentheses. For example:\n```\n(scheduling.automaticRestart = true)\n(cpuPlatform = \"Intel Skylake\")\n```\nBy default, each expression is an `AND` expression. However, you\ncan include `AND` and `OR` expressions explicitly.\nFor example:\n```\n(cpuPlatform = \"Intel Skylake\") OR\n(cpuPlatform = \"Intel Broadwell\") AND\n(scheduling.automaticRestart = true)\n```\n\nIf you want to use a regular expression, use the `eq` (equal) or `ne`\n(not equal) operator against a single un-parenthesized expression with or\nwithout quotes or against multiple parenthesized expressions. Examples:\n\n`fieldname eq unquoted literal`\n`fieldname eq 'single quoted literal'`\n`fieldname eq \"double quoted literal\"`\n`(fieldname1 eq literal) (fieldname2 ne \"literal\")`\n\nThe literal value is interpreted as a regular expression using GoogleRE2 library syntax.\nThe literal value must match the entire field.\n\nFor example, to filter for instances that do not end with name \"instance\",\nyou would use `name ne .*instance`.\n\nYou cannot combine constraints on multiple fields using regular\nexpressions.",
+              "location": "query",
+              "type": "string"
+            },
+            "includeAllScopes": {
+              "description": "Indicates whether every visible scope for each scope type (zone, region,\nglobal) should be included in the response. For new resource types added\nafter this field, the flag has no effect as new resource types will always\ninclude every visible scope for each scope type in response. For resource\ntypes which predate this field, if this flag is omitted or false, only\nscopes of the scope types where the resource type is expected to be found\nwill be included.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "maxResults": {
+              "default": "500",
+              "description": "The maximum number of results per page that should be returned.\nIf the number of available results is larger than `maxResults`,\nCompute Engine returns a `nextPageToken` that can be used to get\nthe next page of results in subsequent list requests. Acceptable values are\n`0` to `500`, inclusive. (Default: `500`)",
+              "format": "uint32",
+              "location": "query",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "orderBy": {
+              "description": "Sorts list results by a certain order. By default, results\nare returned in alphanumerical order based on the resource name.\n\nYou can also sort results in descending order based on the creation\ntimestamp using `orderBy=\"creationTimestamp desc\"`. This sorts\nresults based on the `creationTimestamp` field in\nreverse chronological order (newest result first). Use this to sort\nresources like operations so that the newest operation is returned first.\n\nCurrently, only sorting by `name` or\n`creationTimestamp desc` is supported.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "Specifies a page token to use. Set `pageToken` to the\n`nextPageToken` returned by a previous list request to get\nthe next page of results.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Name of the project scoping this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "Opt-in for partial success behavior which provides partial results in case\nof failure. The default value is false.\n\nFor example, when partial success behavior is enabled, aggregatedList for a\nsingle zone scope either returns all resources in the zone or no resources,\nwith an error code.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "serviceProjectNumber": {
+              "description": "The Shared VPC service project id or service project number for which\naggregated list request is invoked for subnetworks list-usable api.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/aggregated/healthAggregationPolicies",
+          "response": {
+            "$ref": "HealthAggregationPolicyAggregatedList"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "delete": {
+          "description": "Deletes the specified HealthAggregationPolicy in the given region.",
+          "flatPath": "projects/{project}/regions/{region}/healthAggregationPolicies/{healthAggregationPolicy}",
+          "httpMethod": "DELETE",
+          "id": "compute.regionHealthAggregationPolicies.delete",
+          "parameterOrder": [
+            "project",
+            "region",
+            "healthAggregationPolicy"
+          ],
+          "parameters": {
+            "healthAggregationPolicy": {
+              "description": "Name of the HealthAggregationPolicy resource to delete.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region scoping this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/healthAggregationPolicies/{healthAggregationPolicy}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "get": {
+          "description": "Returns the specified HealthAggregationPolicy resource in the given region.",
+          "flatPath": "projects/{project}/regions/{region}/healthAggregationPolicies/{healthAggregationPolicy}",
+          "httpMethod": "GET",
+          "id": "compute.regionHealthAggregationPolicies.get",
+          "parameterOrder": [
+            "project",
+            "region",
+            "healthAggregationPolicy"
+          ],
+          "parameters": {
+            "healthAggregationPolicy": {
+              "description": "Name of the HealthAggregationPolicy resource to return.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region scoping this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/healthAggregationPolicies/{healthAggregationPolicy}",
+          "response": {
+            "$ref": "HealthAggregationPolicy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "insert": {
+          "description": "Create a HealthAggregationPolicy in the specified project in the given\nregion using the parameters that are included in the request.",
+          "flatPath": "projects/{project}/regions/{region}/healthAggregationPolicies",
+          "httpMethod": "POST",
+          "id": "compute.regionHealthAggregationPolicies.insert",
+          "parameterOrder": [
+            "project",
+            "region"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region scoping this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/healthAggregationPolicies",
+          "request": {
+            "$ref": "HealthAggregationPolicy"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "list": {
+          "description": "Lists the HealthAggregationPolicies for a project in the given region.",
+          "flatPath": "projects/{project}/regions/{region}/healthAggregationPolicies",
+          "httpMethod": "GET",
+          "id": "compute.regionHealthAggregationPolicies.list",
+          "parameterOrder": [
+            "project",
+            "region"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "A filter expression that filters resources listed in the response. Most\nCompute resources support two types of filter expressions:\nexpressions that support regular expressions and expressions that follow\nAPI improvement proposal AIP-160.\nThese two types of filter expressions cannot be mixed in one request.\n\nIf you want to use AIP-160, your expression must specify the field name, an\noperator, and the value that you want to use for filtering. The value\nmust be a string, a number, or a boolean. The operator\nmust be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`.\n\nFor example, if you are filtering Compute Engine instances, you can\nexclude instances named `example-instance` by specifying\n`name != example-instance`.\n\nThe `:*` comparison can be used to test whether a key has been defined.\nFor example, to find all objects with `owner` label use:\n```\nlabels.owner:*\n```\n\nYou can also filter nested fields. For example, you could specify\n`scheduling.automaticRestart = false` to include instances only\nif they are not scheduled for automatic restarts. You can use filtering\non nested fields to filter based onresource labels.\n\nTo filter on multiple expressions, provide each separate expression within\nparentheses. For example:\n```\n(scheduling.automaticRestart = true)\n(cpuPlatform = \"Intel Skylake\")\n```\nBy default, each expression is an `AND` expression. However, you\ncan include `AND` and `OR` expressions explicitly.\nFor example:\n```\n(cpuPlatform = \"Intel Skylake\") OR\n(cpuPlatform = \"Intel Broadwell\") AND\n(scheduling.automaticRestart = true)\n```\n\nIf you want to use a regular expression, use the `eq` (equal) or `ne`\n(not equal) operator against a single un-parenthesized expression with or\nwithout quotes or against multiple parenthesized expressions. Examples:\n\n`fieldname eq unquoted literal`\n`fieldname eq 'single quoted literal'`\n`fieldname eq \"double quoted literal\"`\n`(fieldname1 eq literal) (fieldname2 ne \"literal\")`\n\nThe literal value is interpreted as a regular expression using GoogleRE2 library syntax.\nThe literal value must match the entire field.\n\nFor example, to filter for instances that do not end with name \"instance\",\nyou would use `name ne .*instance`.\n\nYou cannot combine constraints on multiple fields using regular\nexpressions.",
+              "location": "query",
+              "type": "string"
+            },
+            "maxResults": {
+              "default": "500",
+              "description": "The maximum number of results per page that should be returned.\nIf the number of available results is larger than `maxResults`,\nCompute Engine returns a `nextPageToken` that can be used to get\nthe next page of results in subsequent list requests. Acceptable values are\n`0` to `500`, inclusive. (Default: `500`)",
+              "format": "uint32",
+              "location": "query",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "orderBy": {
+              "description": "Sorts list results by a certain order. By default, results\nare returned in alphanumerical order based on the resource name.\n\nYou can also sort results in descending order based on the creation\ntimestamp using `orderBy=\"creationTimestamp desc\"`. This sorts\nresults based on the `creationTimestamp` field in\nreverse chronological order (newest result first). Use this to sort\nresources like operations so that the newest operation is returned first.\n\nCurrently, only sorting by `name` or\n`creationTimestamp desc` is supported.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "Specifies a page token to use. Set `pageToken` to the\n`nextPageToken` returned by a previous list request to get\nthe next page of results.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region scoping this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "Opt-in for partial success behavior which provides partial results in case\nof failure. The default value is false.\n\nFor example, when partial success behavior is enabled, aggregatedList for a\nsingle zone scope either returns all resources in the zone or no resources,\nwith an error code.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/healthAggregationPolicies",
+          "response": {
+            "$ref": "HealthAggregationPolicyList"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "patch": {
+          "description": "Updates the specified regional HealthAggregationPolicy\nresource with the data included in the request. This method supportsPATCH\nsemantics and uses theJSON merge\npatch format and processing rules.",
+          "flatPath": "projects/{project}/regions/{region}/healthAggregationPolicies/{healthAggregationPolicy}",
+          "httpMethod": "PATCH",
+          "id": "compute.regionHealthAggregationPolicies.patch",
+          "parameterOrder": [
+            "project",
+            "region",
+            "healthAggregationPolicy"
+          ],
+          "parameters": {
+            "healthAggregationPolicy": {
+              "description": "Name of the HealthAggregationPolicy to update. The name\nmust be 1-63 characters long, and comply with RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "Name of the region scoping this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/healthAggregationPolicies/{healthAggregationPolicy}",
+          "request": {
+            "$ref": "HealthAggregationPolicy"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified resource.",
+          "flatPath": "projects/{project}/regions/{region}/healthAggregationPolicies/{resource}/testIamPermissions",
+          "httpMethod": "POST",
+          "id": "compute.regionHealthAggregationPolicies.testIamPermissions",
+          "parameterOrder": [
+            "project",
+            "region",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/healthAggregationPolicies/{resource}/testIamPermissions",
+          "request": {
+            "$ref": "TestPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
           ]
         }
       }
@@ -28072,7 +28437,7 @@
           ]
         },
         "insert": {
-          "description": "Creates a network endpoint group in the specified project using the\nparameters that are included in the request.",
+          "description": "Creates a network endpoint group in the specified project using the\nparameters that are included in the request.\n\nNote: Use the following APIs to manage network endpoint groups:\n   \n   - \n   To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity\n   NEGs): zonal\n   API\n   - \n   To manage NEGs with regional scope (such as regional internet NEGs,\n   serverless NEGs, Private Service Connect NEGs): regional\n   API\n   - \n   To manage NEGs with global scope (such as global internet NEGs):global\n   API",
           "flatPath": "projects/{project}/regions/{region}/networkEndpointGroups",
           "httpMethod": "POST",
           "id": "compute.regionNetworkEndpointGroups.insert",
@@ -32402,7 +32767,7 @@
       "methods": {
         "get": {
           "description": "Retrieves information about the specified reservation subBlock.",
-          "flatPath": "projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks/{reservationSubBlock}",
           "httpMethod": "GET",
           "id": "compute.reservationSubBlocks.get",
           "parameterOrder": [
@@ -32415,6 +32780,7 @@
             "parentName": {
               "description": "The name of the parent reservation and parent block. In the format of\nreservations/{reservation_name}/reservationBlocks/{reservation_block_name}",
               "location": "path",
+              "pattern": "^reservations/[^/]+/reservationBlocks/[^/]+$",
               "required": true,
               "type": "string"
             },
@@ -32452,7 +32818,7 @@
               "type": "string"
             }
           },
-          "path": "projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}",
+          "path": "projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}",
           "response": {
             "$ref": "ReservationSubBlocksGetResponse"
           },
@@ -32464,7 +32830,7 @@
         },
         "getIamPolicy": {
           "description": "Gets the access control policy for a resource. May be empty if no such\npolicy or resource exists.",
-          "flatPath": "projects/{project}/zones/{zone}/{parentResource}/reservationSubBlocks/{resource}/getIamPolicy",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks/{resource}/getIamPolicy",
           "httpMethod": "GET",
           "id": "compute.reservationSubBlocks.getIamPolicy",
           "parameterOrder": [
@@ -32509,7 +32875,7 @@
               "type": "string"
             }
           },
-          "path": "projects/{project}/zones/{zone}/{parentResource}/reservationSubBlocks/{resource}/getIamPolicy",
+          "path": "projects/{project}/zones/{zone}/{+parentResource}/reservationSubBlocks/{resource}/getIamPolicy",
           "response": {
             "$ref": "Policy"
           },
@@ -32521,7 +32887,7 @@
         },
         "list": {
           "description": "Retrieves a list of reservation subBlocks under a single reservation.",
-          "flatPath": "projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks",
           "httpMethod": "GET",
           "id": "compute.reservationSubBlocks.list",
           "parameterOrder": [
@@ -32556,6 +32922,7 @@
             "parentName": {
               "description": "The name of the parent reservation and parent block. In the format of\nreservations/{reservation_name}/reservationBlocks/{reservation_block_name}",
               "location": "path",
+              "pattern": "^reservations/[^/]+/reservationBlocks/[^/]+$",
               "required": true,
               "type": "string"
             },
@@ -32577,7 +32944,7 @@
               "type": "string"
             }
           },
-          "path": "projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks",
+          "path": "projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks",
           "response": {
             "$ref": "ReservationSubBlocksListResponse"
           },
@@ -32589,7 +32956,7 @@
         },
         "performMaintenance": {
           "description": "Allows customers to perform maintenance on a reservation subBlock",
-          "flatPath": "projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}/performMaintenance",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks/{reservationSubBlock}/performMaintenance",
           "httpMethod": "POST",
           "id": "compute.reservationSubBlocks.performMaintenance",
           "parameterOrder": [
@@ -32602,6 +32969,7 @@
             "parentName": {
               "description": "The name of the parent reservation and parent block. In the format of\nreservations/{reservation_name}/reservationBlocks/{reservation_block_name}",
               "location": "path",
+              "pattern": "^reservations/[^/]+/reservationBlocks/[^/]+$",
               "required": true,
               "type": "string"
             },
@@ -32629,7 +32997,7 @@
               "type": "string"
             }
           },
-          "path": "projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}/performMaintenance",
+          "path": "projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/performMaintenance",
           "response": {
             "$ref": "Operation"
           },
@@ -32640,7 +33008,7 @@
         },
         "reportFaulty": {
           "description": "Allows customers to report a faulty subBlock.",
-          "flatPath": "projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}/reportFaulty",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks/{reservationSubBlock}/reportFaulty",
           "httpMethod": "POST",
           "id": "compute.reservationSubBlocks.reportFaulty",
           "parameterOrder": [
@@ -32653,6 +33021,7 @@
             "parentName": {
               "description": "The name of the parent reservation and parent block. In the format of\nreservations/{reservation_name}/reservationBlocks/{reservation_block_name}",
               "location": "path",
+              "pattern": "^reservations/[^/]+/reservationBlocks/[^/]+$",
               "required": true,
               "type": "string"
             },
@@ -32680,7 +33049,7 @@
               "type": "string"
             }
           },
-          "path": "projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}/reportFaulty",
+          "path": "projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/reportFaulty",
           "request": {
             "$ref": "ReservationSubBlocksReportFaultyRequest"
           },
@@ -32694,7 +33063,7 @@
         },
         "setIamPolicy": {
           "description": "Sets the access control policy on the specified resource.\nReplaces any existing policy.",
-          "flatPath": "projects/{project}/zones/{zone}/{parentResource}/reservationSubBlocks/{resource}/setIamPolicy",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks/{resource}/setIamPolicy",
           "httpMethod": "POST",
           "id": "compute.reservationSubBlocks.setIamPolicy",
           "parameterOrder": [
@@ -32733,7 +33102,7 @@
               "type": "string"
             }
           },
-          "path": "projects/{project}/zones/{zone}/{parentResource}/reservationSubBlocks/{resource}/setIamPolicy",
+          "path": "projects/{project}/zones/{zone}/{+parentResource}/reservationSubBlocks/{resource}/setIamPolicy",
           "request": {
             "$ref": "ZoneSetNestedPolicyRequest"
           },
@@ -32747,7 +33116,7 @@
         },
         "testIamPermissions": {
           "description": "Returns permissions that a caller has on the specified resource.",
-          "flatPath": "projects/{project}/zones/{zone}/{parentResource}/reservationSubBlocks/{resource}/testIamPermissions",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservationsId}/reservationBlocks/{reservationBlocksId}/reservationSubBlocks/{resource}/testIamPermissions",
           "httpMethod": "POST",
           "id": "compute.reservationSubBlocks.testIamPermissions",
           "parameterOrder": [
@@ -32786,7 +33155,7 @@
               "type": "string"
             }
           },
-          "path": "projects/{project}/zones/{zone}/{parentResource}/reservationSubBlocks/{resource}/testIamPermissions",
+          "path": "projects/{project}/zones/{zone}/{+parentResource}/reservationSubBlocks/{resource}/testIamPermissions",
           "request": {
             "$ref": "TestPermissionsRequest"
           },
@@ -43137,7 +43506,7 @@
       }
     }
   },
-  "revision": "20260122",
+  "revision": "20260213",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -44730,7 +45099,7 @@
       "type": "object"
     },
     "AllocationSpecificSKUAllocationReservedInstanceProperties": {
-      "description": "Properties of the SKU instances being reserved.\nNext ID: 9",
+      "description": "Properties of the SKU instances being reserved.\nNext ID: 10",
       "id": "AllocationSpecificSKUAllocationReservedInstanceProperties",
       "properties": {
         "guestAccelerators": {
@@ -45018,7 +45387,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Resource manager tags to be bound to the disk. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT & PATCH) when\nempty.",
+          "description": "Input only. Resource manager tags to be bound to the disk. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT & PATCH) when\nempty.",
           "type": "object"
         },
         "resourcePolicies": {
@@ -45979,6 +46348,10 @@
           "format": "float",
           "type": "number"
         },
+        "orchestrationInfo": {
+          "$ref": "BackendBackendOrchestrationInfo",
+          "description": "Information about the resource or system that manages the backend."
+        },
         "preference": {
           "description": "This field indicates whether this backend should be fully utilized before\nsending traffic to backends with default preference. The possible values\nare:\n   \n   - PREFERRED: Backends with this preference level will be\n   filled up to their capacity limits first, based on RTT.\n   - DEFAULT:  If preferred backends don't have enough\n   capacity, backends in this layer would be used and traffic would be\n   assigned based on the load balancing algorithm you use. This is the\n   default",
           "enum": [
@@ -45991,6 +46364,17 @@
             "If preference is unspecified, we set it to the DEFAULT value",
             "Traffic will be sent to this backend first."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BackendBackendOrchestrationInfo": {
+      "description": "A message containing information about the resource or system that manages\nthe backend.",
+      "id": "BackendBackendOrchestrationInfo",
+      "properties": {
+        "resourceUri": {
+          "description": "The URI of the resource or system that manages the backend.",
           "type": "string"
         }
       },
@@ -46657,6 +47041,10 @@
         "networkPassThroughLbTrafficPolicy": {
           "$ref": "BackendServiceNetworkPassThroughLbTrafficPolicy",
           "description": "Configures traffic steering properties of internal passthrough Network\nLoad Balancers.\n\nnetworkPassThroughLbTrafficPolicy cannot be specified with haPolicy."
+        },
+        "orchestrationInfo": {
+          "$ref": "BackendServiceOrchestrationInfo",
+          "description": "Information about the resource or system that manages the backend service."
         },
         "outlierDetection": {
           "$ref": "OutlierDetection",
@@ -47698,6 +48086,17 @@
           "description": "The value of the field must be in [0, 1]. When the ratio of the count\nof healthy backend endpoints in a zone to the count of backend\nendpoints in that same zone is equal to or above this threshold, the\nload balancer distributes new connections to all healthy endpoints in\nthe local zone only. When the ratio of the count of healthy backend\nendpoints in a zone to the count of backend endpoints in that same\nzone is below this threshold, the load balancer distributes all new\nconnections to all healthy endpoints across all zones.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "BackendServiceOrchestrationInfo": {
+      "description": "A message containing information about the resource or system that manages\nthe backend service.",
+      "id": "BackendServiceOrchestrationInfo",
+      "properties": {
+        "resourceUri": {
+          "description": "The resource URI of the resource or system that manages the backend\nservice.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -50484,7 +50883,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Resource manager tags to be bound to the disk. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
+          "description": "Input only. Resource manager tags to be bound to the disk. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
           "type": "object"
         }
       },
@@ -51605,6 +52004,10 @@
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
           "type": "string"
         },
+        "params": {
+          "$ref": "ExternalVpnGatewayParams",
+          "description": "Input only. [Input Only] Additional params passed with the request, but not persisted\nas part of resource payload."
+        },
         "redundancyType": {
           "description": "Indicates the user-supplied redundancy type of this external VPN gateway.",
           "enum": [
@@ -51802,6 +52205,19 @@
               "type": "string"
             }
           },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ExternalVpnGatewayParams": {
+      "id": "ExternalVpnGatewayParams",
+      "properties": {
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Tag keys/values directly bound to this resource.\nTag keys and values have the same definition as resource\nmanager tags. The field is allowed for INSERT\nonly. The keys/values to set on the resource should be specified in\neither ID { : } or Namespaced format\n{ : }.\nFor example the following are valid inputs:\n* {\"tagKeys/333\" : \"tagValues/444\", \"tagKeys/123\" : \"tagValues/456\"}\n* {\"123/environment\" : \"production\", \"345/abc\" : \"xyz\"}\nNote:\n* Invalid combinations of ID & namespaced format is not supported. For\n  instance: {\"123/environment\" : \"tagValues/444\"} is invalid.\n* Inconsistent format is not supported. For instance:\n  {\"tagKeys/333\" : \"tagValues/444\", \"123/env\" : \"prod\"} is invalid.",
           "type": "object"
         }
       },
@@ -55373,6 +55789,539 @@
       },
       "type": "object"
     },
+    "HealthAggregationPoliciesScopedList": {
+      "id": "HealthAggregationPoliciesScopedList",
+      "properties": {
+        "healthAggregationPolicies": {
+          "description": "A list of HealthAggregationPolicys contained in this scope.",
+          "items": {
+            "$ref": "HealthAggregationPolicy"
+          },
+          "type": "array"
+        },
+        "warning": {
+          "description": "Informational warning which replaces the list of health aggregation\npolicies when the list is empty.",
+          "properties": {
+            "code": {
+              "description": "[Output Only] A warning code, if applicable. For example, Compute\nEngine returns NO_RESULTS_ON_PAGE if there\nare no results in the response.",
+              "enum": [
+                "CLEANUP_FAILED",
+                "DEPRECATED_RESOURCE_USED",
+                "DEPRECATED_TYPE_USED",
+                "DISK_SIZE_LARGER_THAN_IMAGE_SIZE",
+                "EXPERIMENTAL_TYPE_USED",
+                "EXTERNAL_API_WARNING",
+                "FIELD_VALUE_OVERRIDEN",
+                "INJECTED_KERNELS_DEPRECATED",
+                "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB",
+                "LARGE_DEPLOYMENT_WARNING",
+                "LIST_OVERHEAD_QUOTA_EXCEED",
+                "MISSING_TYPE_DEPENDENCY",
+                "NEXT_HOP_ADDRESS_NOT_ASSIGNED",
+                "NEXT_HOP_CANNOT_IP_FORWARD",
+                "NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE",
+                "NEXT_HOP_INSTANCE_NOT_FOUND",
+                "NEXT_HOP_INSTANCE_NOT_ON_NETWORK",
+                "NEXT_HOP_NOT_RUNNING",
+                "NOT_CRITICAL_ERROR",
+                "NO_RESULTS_ON_PAGE",
+                "PARTIAL_SUCCESS",
+                "QUOTA_INFO_UNAVAILABLE",
+                "REQUIRED_TOS_AGREEMENT",
+                "RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING",
+                "RESOURCE_NOT_DELETED",
+                "SCHEMA_VALIDATION_IGNORED",
+                "SINGLE_INSTANCE_PROPERTY_TEMPLATE",
+                "UNDECLARED_PROPERTIES",
+                "UNREACHABLE"
+              ],
+              "enumDeprecated": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "enumDescriptions": [
+                "Warning about failed cleanup of transient changes made by a failed\noperation.",
+                "A link to a deprecated resource was created.",
+                "When deploying and at least one of the resources has a type marked as\ndeprecated",
+                "The user created a boot disk that is larger than image size.",
+                "When deploying and at least one of the resources has a type marked as\nexperimental",
+                "Warning that is present in an external api call",
+                "Warning that value of a field has been overridden.\nDeprecated unused field.",
+                "The operation involved use of an injected kernel, which is deprecated.",
+                "A WEIGHTED_MAGLEV backend service is associated with a health check that is\nnot of type HTTP/HTTPS/HTTP2.",
+                "When deploying a deployment with a exceedingly large number of resources",
+                "Resource can't be retrieved due to list overhead quota exceed\nwhich captures the amount of resources filtered out by\nuser-defined list filter.",
+                "A resource depends on a missing type",
+                "The route's nextHopIp address is not assigned to an instance on the\nnetwork.",
+                "The route's next hop instance cannot ip forward.",
+                "The route's nextHopInstance URL refers to an instance that does not have an\nipv6 interface on the same network as the route.",
+                "The route's nextHopInstance URL refers to an instance that does not exist.",
+                "The route's nextHopInstance URL refers to an instance that is not on the\nsame network as the route.",
+                "The route's next hop instance does not have a status of RUNNING.",
+                "Error which is not critical. We decided to continue the process despite\nthe mentioned error.",
+                "No results are present on a particular list page.",
+                "Success is reported, but some results may be missing due to errors",
+                "Quota information is not available to client requests (e.g:\nregions.list).",
+                "The user attempted to use a resource that requires a TOS they have not\naccepted.",
+                "Warning that a resource is in use.",
+                "One or more of the resources set to auto-delete could not be deleted\nbecause they were in use.",
+                "When a resource schema validation is ignored.",
+                "Instance template used in instance group manager is valid as such, but\nits application does not make a lot of sense, because it allows only\nsingle instance in instance group.",
+                "When undeclared properties in the schema are present",
+                "A given scope cannot be reached."
+              ],
+              "type": "string"
+            },
+            "data": {
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "items": {
+                "properties": {
+                  "key": {
+                    "description": "[Output Only] A key that provides more detail on the warning being\nreturned. For example, for warnings where there are no results in a list\nrequest for a particular zone, this key might be scope and\nthe key value might be the zone name. Other examples might be a key\nindicating a deprecated resource and a suggested replacement, or a\nwarning about invalid network settings (for example, if an instance\nattempts to perform IP forwarding but is not enabled for IP forwarding).",
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "[Output Only] A warning data value corresponding to the key.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "message": {
+              "description": "[Output Only] A human-readable description of the warning code.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "HealthAggregationPolicy": {
+      "description": "Represents a health aggregation policy.\n\nA health aggregation policy resource defines a policy to aggregate health.\n\nFor more information, see\nHealth checks overview.",
+      "id": "HealthAggregationPolicy",
+      "properties": {
+        "creationTimestamp": {
+          "description": "Output only. [Output Only] Creation timestamp inRFC3339\ntext format.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "An optional description of this resource. Provide this property when you\ncreate the resource.",
+          "type": "string"
+        },
+        "fingerprint": {
+          "description": "Fingerprint of this resource. A hash of the contents stored in this object.\nThis field is used in optimistic locking. This field will be ignored when\ninserting a HealthAggregationPolicy. An up-to-date fingerprint\nmust be provided in order to patch the HealthAggregationPolicy; Otherwise,\nthe request will fail with error 412 conditionNotMet. To see\nthe latest fingerprint, make a get() request to retrieve the\nHealthAggregationPolicy.",
+          "format": "byte",
+          "type": "string"
+        },
+        "healthyPercentThreshold": {
+          "description": "Can only be set if the policyType field isBACKEND_SERVICE_POLICY. Specifies the threshold (as a\npercentage) of healthy endpoints required in order to consider the\naggregated health result HEALTHY. Defaults to 60. Must be in\nrange [0, 100]. Not applicable if the policyType field isDNB_PUBLIC_IP_POLICY. Can be mutated. This field is optional,\nand will be set to the default if unspecified. Note that both this\nthreshold and minHealthyThreshold must be satisfied in order\nfor HEALTHY to be the aggregated result. \"Endpoints\" refers to network\nendpoints within a Network Endpoint Group or instances within an Instance\nGroup.",
+          "format": "uint32",
+          "type": "integer"
+        },
+        "id": {
+          "description": "Output only. [Output Only] The unique identifier for the resource. This identifier is\ndefined by the server.",
+          "format": "uint64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kind": {
+          "default": "compute#healthAggregationPolicy",
+          "description": "Output only. [Output Only] Type of the resource. Alwayscompute#healthAggregationPolicy for health aggregation\npolicies.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "minHealthyThreshold": {
+          "description": "Can only be set if the policyType field isBACKEND_SERVICE_POLICY. Specifies the minimum number of\nhealthy endpoints required in order to consider the aggregated health\nresult HEALTHY. Defaults to 1. Must be positive. Not\napplicable if the policyType field isDNB_PUBLIC_IP_POLICY. Can be mutated. This field is optional,\nand will be set to the default if unspecified. Note that both this\nthreshold and healthyPercentThreshold must be satisfied in\norder for HEALTHY to be the aggregated result. \"Endpoints\" refers to\nnetwork endpoints within a Network Endpoint Group or instances within an\nInstance Group.",
+          "format": "uint32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Name of the resource. Provided by the client when the resource is created.\nThe name must be 1-63 characters long, and comply withRFC1035.\nSpecifically, the name must be 1-63 characters long and match the regular\nexpression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first\ncharacter must be a lowercase letter, and all following characters must\nbe a dash, lowercase letter, or digit, except the last character, which\ncannot be a dash.",
+          "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+          "type": "string"
+        },
+        "policyType": {
+          "description": "Specifies the type of the healthAggregationPolicy. The only allowed value\nfor global resources is DNS_PUBLIC_IP_POLICY. The only allowed\nvalue for regional resources is BACKEND_SERVICE_POLICY. Must\nbe specified when the healthAggregationPolicy is created, and cannot be\nmutated.",
+          "enum": [
+            "BACKEND_SERVICE_POLICY",
+            "DNS_PUBLIC_IP_POLICY"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "region": {
+          "description": "Output only. [Output Only] URL of the region where the health aggregation policy\nresides. This field applies only to the regional resource. You must specify\nthis field as part of the HTTP request URL. It is not settable as a field\nin the request body.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "selfLink": {
+          "description": "Output only. [Output Only] Server-defined URL for the resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "selfLinkWithId": {
+          "description": "Output only. [Output Only] Server-defined URL with id for the resource.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "HealthAggregationPolicyAggregatedList": {
+      "description": "Contains a list of HealthAggregationPoliciesScopedList.",
+      "id": "HealthAggregationPolicyAggregatedList",
+      "properties": {
+        "id": {
+          "description": "[Output Only] Unique identifier for the resource; defined by the server.",
+          "type": "string"
+        },
+        "items": {
+          "additionalProperties": {
+            "$ref": "HealthAggregationPoliciesScopedList",
+            "description": "Name of the scope containing this set of HealthAggregationPolicies."
+          },
+          "description": "A list of HealthAggregationPoliciesScopedList resources.",
+          "type": "object"
+        },
+        "kind": {
+          "default": "compute#healthAggregationPolicyAggregatedList",
+          "description": "Output only. Type of resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nextPageToken": {
+          "description": "[Output Only] This token allows you to get the next page of results for\nlist requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for\nthe query parameter pageToken in the next list request.\nSubsequent list requests will have their own nextPageToken to\ncontinue paging through the results.",
+          "type": "string"
+        },
+        "selfLink": {
+          "description": "Output only. [Output Only] Server-defined URL for this resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "unreachables": {
+          "description": "Output only. [Output Only] Unreachable resources.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "warning": {
+          "description": "[Output Only] Informational warning message.",
+          "properties": {
+            "code": {
+              "description": "[Output Only] A warning code, if applicable. For example, Compute\nEngine returns NO_RESULTS_ON_PAGE if there\nare no results in the response.",
+              "enum": [
+                "CLEANUP_FAILED",
+                "DEPRECATED_RESOURCE_USED",
+                "DEPRECATED_TYPE_USED",
+                "DISK_SIZE_LARGER_THAN_IMAGE_SIZE",
+                "EXPERIMENTAL_TYPE_USED",
+                "EXTERNAL_API_WARNING",
+                "FIELD_VALUE_OVERRIDEN",
+                "INJECTED_KERNELS_DEPRECATED",
+                "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB",
+                "LARGE_DEPLOYMENT_WARNING",
+                "LIST_OVERHEAD_QUOTA_EXCEED",
+                "MISSING_TYPE_DEPENDENCY",
+                "NEXT_HOP_ADDRESS_NOT_ASSIGNED",
+                "NEXT_HOP_CANNOT_IP_FORWARD",
+                "NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE",
+                "NEXT_HOP_INSTANCE_NOT_FOUND",
+                "NEXT_HOP_INSTANCE_NOT_ON_NETWORK",
+                "NEXT_HOP_NOT_RUNNING",
+                "NOT_CRITICAL_ERROR",
+                "NO_RESULTS_ON_PAGE",
+                "PARTIAL_SUCCESS",
+                "QUOTA_INFO_UNAVAILABLE",
+                "REQUIRED_TOS_AGREEMENT",
+                "RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING",
+                "RESOURCE_NOT_DELETED",
+                "SCHEMA_VALIDATION_IGNORED",
+                "SINGLE_INSTANCE_PROPERTY_TEMPLATE",
+                "UNDECLARED_PROPERTIES",
+                "UNREACHABLE"
+              ],
+              "enumDeprecated": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "enumDescriptions": [
+                "Warning about failed cleanup of transient changes made by a failed\noperation.",
+                "A link to a deprecated resource was created.",
+                "When deploying and at least one of the resources has a type marked as\ndeprecated",
+                "The user created a boot disk that is larger than image size.",
+                "When deploying and at least one of the resources has a type marked as\nexperimental",
+                "Warning that is present in an external api call",
+                "Warning that value of a field has been overridden.\nDeprecated unused field.",
+                "The operation involved use of an injected kernel, which is deprecated.",
+                "A WEIGHTED_MAGLEV backend service is associated with a health check that is\nnot of type HTTP/HTTPS/HTTP2.",
+                "When deploying a deployment with a exceedingly large number of resources",
+                "Resource can't be retrieved due to list overhead quota exceed\nwhich captures the amount of resources filtered out by\nuser-defined list filter.",
+                "A resource depends on a missing type",
+                "The route's nextHopIp address is not assigned to an instance on the\nnetwork.",
+                "The route's next hop instance cannot ip forward.",
+                "The route's nextHopInstance URL refers to an instance that does not have an\nipv6 interface on the same network as the route.",
+                "The route's nextHopInstance URL refers to an instance that does not exist.",
+                "The route's nextHopInstance URL refers to an instance that is not on the\nsame network as the route.",
+                "The route's next hop instance does not have a status of RUNNING.",
+                "Error which is not critical. We decided to continue the process despite\nthe mentioned error.",
+                "No results are present on a particular list page.",
+                "Success is reported, but some results may be missing due to errors",
+                "Quota information is not available to client requests (e.g:\nregions.list).",
+                "The user attempted to use a resource that requires a TOS they have not\naccepted.",
+                "Warning that a resource is in use.",
+                "One or more of the resources set to auto-delete could not be deleted\nbecause they were in use.",
+                "When a resource schema validation is ignored.",
+                "Instance template used in instance group manager is valid as such, but\nits application does not make a lot of sense, because it allows only\nsingle instance in instance group.",
+                "When undeclared properties in the schema are present",
+                "A given scope cannot be reached."
+              ],
+              "type": "string"
+            },
+            "data": {
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "items": {
+                "properties": {
+                  "key": {
+                    "description": "[Output Only] A key that provides more detail on the warning being\nreturned. For example, for warnings where there are no results in a list\nrequest for a particular zone, this key might be scope and\nthe key value might be the zone name. Other examples might be a key\nindicating a deprecated resource and a suggested replacement, or a\nwarning about invalid network settings (for example, if an instance\nattempts to perform IP forwarding but is not enabled for IP forwarding).",
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "[Output Only] A warning data value corresponding to the key.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "message": {
+              "description": "[Output Only] A human-readable description of the warning code.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "HealthAggregationPolicyList": {
+      "id": "HealthAggregationPolicyList",
+      "properties": {
+        "id": {
+          "description": "[Output Only] Unique identifier for the resource; defined by the server.",
+          "type": "string"
+        },
+        "items": {
+          "description": "A list of HealthAggregationPolicy resources.",
+          "items": {
+            "$ref": "HealthAggregationPolicy"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "default": "compute#healthAggregationPolicyList",
+          "description": "Output only. [Output Only] Type of the resource. Alwayscompute#healthAggregationPolicy for health aggregation\npolicies.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nextPageToken": {
+          "description": "[Output Only] This token allows you to get the next page of results for\nlist requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for\nthe query parameter pageToken in the next list request.\nSubsequent list requests will have their own nextPageToken to\ncontinue paging through the results.",
+          "type": "string"
+        },
+        "selfLink": {
+          "description": "[Output Only] Server-defined URL for this resource.",
+          "type": "string"
+        },
+        "warning": {
+          "description": "[Output Only] Informational warning message.",
+          "properties": {
+            "code": {
+              "description": "[Output Only] A warning code, if applicable. For example, Compute\nEngine returns NO_RESULTS_ON_PAGE if there\nare no results in the response.",
+              "enum": [
+                "CLEANUP_FAILED",
+                "DEPRECATED_RESOURCE_USED",
+                "DEPRECATED_TYPE_USED",
+                "DISK_SIZE_LARGER_THAN_IMAGE_SIZE",
+                "EXPERIMENTAL_TYPE_USED",
+                "EXTERNAL_API_WARNING",
+                "FIELD_VALUE_OVERRIDEN",
+                "INJECTED_KERNELS_DEPRECATED",
+                "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB",
+                "LARGE_DEPLOYMENT_WARNING",
+                "LIST_OVERHEAD_QUOTA_EXCEED",
+                "MISSING_TYPE_DEPENDENCY",
+                "NEXT_HOP_ADDRESS_NOT_ASSIGNED",
+                "NEXT_HOP_CANNOT_IP_FORWARD",
+                "NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE",
+                "NEXT_HOP_INSTANCE_NOT_FOUND",
+                "NEXT_HOP_INSTANCE_NOT_ON_NETWORK",
+                "NEXT_HOP_NOT_RUNNING",
+                "NOT_CRITICAL_ERROR",
+                "NO_RESULTS_ON_PAGE",
+                "PARTIAL_SUCCESS",
+                "QUOTA_INFO_UNAVAILABLE",
+                "REQUIRED_TOS_AGREEMENT",
+                "RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING",
+                "RESOURCE_NOT_DELETED",
+                "SCHEMA_VALIDATION_IGNORED",
+                "SINGLE_INSTANCE_PROPERTY_TEMPLATE",
+                "UNDECLARED_PROPERTIES",
+                "UNREACHABLE"
+              ],
+              "enumDeprecated": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ],
+              "enumDescriptions": [
+                "Warning about failed cleanup of transient changes made by a failed\noperation.",
+                "A link to a deprecated resource was created.",
+                "When deploying and at least one of the resources has a type marked as\ndeprecated",
+                "The user created a boot disk that is larger than image size.",
+                "When deploying and at least one of the resources has a type marked as\nexperimental",
+                "Warning that is present in an external api call",
+                "Warning that value of a field has been overridden.\nDeprecated unused field.",
+                "The operation involved use of an injected kernel, which is deprecated.",
+                "A WEIGHTED_MAGLEV backend service is associated with a health check that is\nnot of type HTTP/HTTPS/HTTP2.",
+                "When deploying a deployment with a exceedingly large number of resources",
+                "Resource can't be retrieved due to list overhead quota exceed\nwhich captures the amount of resources filtered out by\nuser-defined list filter.",
+                "A resource depends on a missing type",
+                "The route's nextHopIp address is not assigned to an instance on the\nnetwork.",
+                "The route's next hop instance cannot ip forward.",
+                "The route's nextHopInstance URL refers to an instance that does not have an\nipv6 interface on the same network as the route.",
+                "The route's nextHopInstance URL refers to an instance that does not exist.",
+                "The route's nextHopInstance URL refers to an instance that is not on the\nsame network as the route.",
+                "The route's next hop instance does not have a status of RUNNING.",
+                "Error which is not critical. We decided to continue the process despite\nthe mentioned error.",
+                "No results are present on a particular list page.",
+                "Success is reported, but some results may be missing due to errors",
+                "Quota information is not available to client requests (e.g:\nregions.list).",
+                "The user attempted to use a resource that requires a TOS they have not\naccepted.",
+                "Warning that a resource is in use.",
+                "One or more of the resources set to auto-delete could not be deleted\nbecause they were in use.",
+                "When a resource schema validation is ignored.",
+                "Instance template used in instance group manager is valid as such, but\nits application does not make a lot of sense, because it allows only\nsingle instance in instance group.",
+                "When undeclared properties in the schema are present",
+                "A given scope cannot be reached."
+              ],
+              "type": "string"
+            },
+            "data": {
+              "description": "[Output Only] Metadata about this warning in key:\nvalue format. For example:\n\n\"data\": [\n  {\n   \"key\": \"scope\",\n   \"value\": \"zones/us-east1-d\"\n  }",
+              "items": {
+                "properties": {
+                  "key": {
+                    "description": "[Output Only] A key that provides more detail on the warning being\nreturned. For example, for warnings where there are no results in a list\nrequest for a particular zone, this key might be scope and\nthe key value might be the zone name. Other examples might be a key\nindicating a deprecated resource and a suggested replacement, or a\nwarning about invalid network settings (for example, if an instance\nattempts to perform IP forwarding but is not enabled for IP forwarding).",
+                    "type": "string"
+                  },
+                  "value": {
+                    "description": "[Output Only] A warning data value corresponding to the key.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "message": {
+              "description": "[Output Only] A human-readable description of the warning code.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "HealthCheck": {
       "description": "Represents a health check resource.\n\nGoogle Compute Engine has two health check resources:\n\n* [Regional](/compute/docs/reference/rest/v1/regionHealthChecks)\n* [Global](/compute/docs/reference/rest/v1/healthChecks)\n\nThese health check resources can be used for load balancing and for\nautohealing VMs in a managed instance group (MIG).\n\n**Load balancing**\n\nHealth check requirements vary depending on the type of load balancer. For\ndetails about the type of health check supported for\neach load balancer and corresponding backend type,\nsee Health\nchecks overview: Load balancer guide.\n\n**Autohealing in MIGs**\n\nThe health checks that you use for autohealing VMs in a MIG can be either\nregional or global. For more information, see  Set up an\napplication health check and autohealing.\n\nFor more information, seeHealth checks\noverview.",
       "id": "HealthCheck",
@@ -57630,7 +58579,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Resource manager tags to be bound to the image. Tag keys and values have\nthe same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
+          "description": "Input only. Resource manager tags to be bound to the image. Tag keys and values have\nthe same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
           "type": "object"
         }
       },
@@ -57935,6 +58884,9 @@
         "tags": {
           "$ref": "Tags",
           "description": "Tags to apply to this instance. Tags are used to identify valid\nsources or targets for network firewalls and are specified by the client\nduring instance creation. The tags can be later modified by the setTags\nmethod. Each tag within the list must comply withRFC1035.\nMultiple tags can be specified via the 'tags.items' field."
+        },
+        "workloadIdentityConfig": {
+          "$ref": "WorkloadIdentityConfig"
         },
         "zone": {
           "description": "Output only. [Output Only] URL of the zone where the instance resides.\nYou must specify this field as part of the HTTP request URL. It is\nnot settable as a field in the request body.",
@@ -59121,6 +60073,20 @@
           "enumDescriptions": [
             "",
             ""
+          ],
+          "type": "string"
+        },
+        "onFailedHealthCheck": {
+          "description": "The action that a MIG performs on an unhealthy VM. A VM is marked as\nunhealthy when the application running on that VM fails a health check.\nValid values are:\n   \n   - DEFAULT_ACTION (default): MIG uses the same action\n   configured for instanceLifecyclePolicy.defaultActionOnFailure field.\n   - REPAIR: MIG automatically repairs an unhealthy VM by\n   recreating it.\n   - DO_NOTHING: MIG doesn't repair an unhealthy VM.\n   For more information, see \n   About repairing VMs in a MIG.",
+          "enum": [
+            "DEFAULT_ACTION",
+            "DO_NOTHING",
+            "REPAIR"
+          ],
+          "enumDescriptions": [
+            "(Default) MIG uses the same action configured for\ninstanceLifecyclePolicy.defaultActionOnFailure field.",
+            "MIG doesn't repair an unhealthy VM.",
+            "MIG automatically repairs an unhealthy VM by recreating it."
           ],
           "type": "string"
         }
@@ -61214,7 +62180,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Resource manager tags to be bound to the instance. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
+          "description": "Input only. Resource manager tags to be bound to the instance. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
           "type": "object"
         }
       },
@@ -61324,7 +62290,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Resource manager tags to be bound to the instance. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and\nvalues are in the format `tagValues/456`. The field is ignored (both PUT &\nPATCH) when empty.",
+          "description": "Input only. Resource manager tags to be bound to the instance. Tag keys and values\nhave the same definition as resource\nmanager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and\nvalues are in the format `tagValues/456`. The field is ignored (both PUT &\nPATCH) when empty.",
           "type": "object"
         },
         "resourcePolicies": {
@@ -61352,6 +62318,9 @@
         "tags": {
           "$ref": "Tags",
           "description": "A list of tags to apply to the instances that are created from these\nproperties. The tags identify valid sources or targets for network\nfirewalls. The setTags method can modify this list of tags. Each tag within\nthe list must comply with RFC1035."
+        },
+        "workloadIdentityConfig": {
+          "$ref": "WorkloadIdentityConfig"
         }
       },
       "type": "object"
@@ -62481,6 +63450,10 @@
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
           "type": "string"
         },
+        "params": {
+          "$ref": "InstantSnapshotParams",
+          "description": "Input only. Additional params passed with the request, but not persisted\nas part of resource payload."
+        },
         "region": {
           "description": "Output only. [Output Only] URL of the region where the instant snapshot resides.\nYou must specify this field as part of the HTTP request URL. It is\nnot settable as a field in the request body.",
           "readOnly": true,
@@ -62864,6 +63837,20 @@
               "type": "string"
             }
           },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "InstantSnapshotParams": {
+      "description": "Additional instant snapshot params.",
+      "id": "InstantSnapshotParams",
+      "properties": {
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Input only. Resource manager tags to be bound to the instant snapshot. Tag keys and\nvalues have the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in\nnamespaced format such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
           "type": "object"
         }
       },
@@ -63278,7 +64265,7 @@
           "type": "string"
         },
         "subzone": {
-          "description": "Specific subzone in the InterconnectLocation that represents where\nthis connection is to be provisioned.",
+          "description": "To be deprecated.",
           "enum": [
             "SUBZONE_A",
             "SUBZONE_B"
@@ -67335,7 +68322,7 @@
           "additionalProperties": {
             "$ref": "LocationPolicyLocation"
           },
-          "description": "Location configurations mapped by location name.\nCurrently only zone names are supported and must be represented as valid\ninternal URLs, such as zones/us-central1-a.",
+          "description": "Location configurations mapped by location name.\nCurrently only zone names are supported and must be represented as valid\ninternal URLs, such as zones/us-central1-a.\nThe bulkInsert operation doesn't create instances in an AI zone, even if\nan AI zone is available in the specified region. For example, if you set a\nDENY preference for us-central1-a, Compute Engine will consider\nus-central1-b and us-central1-c for instance creation, but not\nus-central1-ai1a. Also, you can't use the locations[] configuration to\nallow instance creation in an AI zone. To include an AI zone in bulkInsert\noperations, use the locationPolicy.zones[] field.",
           "type": "object"
         },
         "targetShape": {
@@ -67351,6 +68338,13 @@
             "GCE prioritizes acquisition of resources, scheduling VMs in zones\nwhere resources are available while distributing VMs as evenly as\npossible across allowed zones to minimize the impact of zonal failure.\nRecommended for highly available serving workloads."
           ],
           "type": "string"
+        },
+        "zones": {
+          "description": "The bulkInsert operation applies any preferences set in the locations\nfield to the specific zones listed in the zones field if the same zones\nare specified in both fields.",
+          "items": {
+            "$ref": "LocationPolicyZoneConfiguration"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -67387,6 +68381,16 @@
           "description": "Maximum number of items that are allowed to be placed in this zone.\nThe value must be non-negative.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "LocationPolicyZoneConfiguration": {
+      "id": "LocationPolicyZoneConfiguration",
+      "properties": {
+        "zone": {
+          "description": "The URL of the zone.\nThe zone must exist in the region where the request is called.\nZones must be represented as valid partial URLs,\nsuch as zones/us-central1-a.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -69808,7 +70812,7 @@
       "type": "object"
     },
     "NetworkEndpointGroup": {
-      "description": "Represents a collection of network endpoints.\n\nA network endpoint group (NEG) defines how a set of endpoints should be\nreached, whether they are reachable, and where they are located.\nFor more information about using NEGs for different use cases, seeNetwork endpoint groups overview.",
+      "description": "Represents a collection of network endpoints.\n\nA network endpoint group (NEG) defines how a set of endpoints should be\nreached, whether they are reachable, and where they are located.\nFor more information about using NEGs for different use cases, seeNetwork endpoint groups overview.\n\nNote: Use the following APIs to manage network endpoint groups:\n   \n   - \n   To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity\n   NEGs): zonal\n   API\n   - \n   To manage NEGs with regional scope (such as regional internet NEGs,\n   serverless NEGs, Private Service Connect NEGs): regional\n   API\n   - \n   To manage NEGs with global scope (such as global internet NEGs):global\n   API",
       "id": "NetworkEndpointGroup",
       "properties": {
         "annotations": {
@@ -70877,6 +71881,10 @@
             "$ref": "AliasIpRange"
           },
           "type": "array"
+        },
+        "enableVpcScopedDns": {
+          "description": "Optional. If true, DNS resolution will be enabled over this interface. Only valid\nwith network_attachment.",
+          "type": "boolean"
         },
         "fingerprint": {
           "description": "Fingerprint hash of contents stored in this network interface.\nThis field will be ignored when inserting an Instance or\nadding a NetworkInterface. An up-to-date\nfingerprint must be provided in order to update theNetworkInterface. The request will fail with error400 Bad Request if the fingerprint is not provided, or412 Precondition Failed if the fingerprint is out of date.",
@@ -80362,6 +81370,20 @@
           "description": "An optional description of this resource. Provide this property when you\ncreate the resource.",
           "type": "string"
         },
+        "earlyAccessMaintenance": {
+          "description": "Indicates the early access maintenance for the reservation.\nIf this field is absent or set to NO_EARLY_ACCESS, the reservation is not\nenrolled in early access maintenance and the standard notice applies.",
+          "enum": [
+            "NO_EARLY_ACCESS",
+            "WAVE1",
+            "WAVE2"
+          ],
+          "enumDescriptions": [
+            "No early access.",
+            "Wave 1: Fastest notification period",
+            "Wave 2: Medium notification period"
+          ],
+          "type": "string"
+        },
         "enableEmergentMaintenance": {
           "description": "Indicates whether Compute Engine allows unplanned maintenance for your VMs;\nfor example, to fix hardware errors.",
           "type": "boolean"
@@ -80395,6 +81417,10 @@
           "description": "The name of the resource, provided by the client when initially creating\nthe resource. The resource name must be 1-63 characters long, and comply\nwithRFC1035.\nSpecifically, the name must be 1-63 characters long and match the regular\nexpression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first\ncharacter must be a lowercase letter, and all following characters must be\na dash, lowercase letter, or digit, except the last character, which cannot\nbe a dash.",
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
           "type": "string"
+        },
+        "params": {
+          "$ref": "ReservationParams",
+          "description": "Input only. Additional params passed with the request, but not persisted\nas part of resource payload."
         },
         "protectionTier": {
           "description": "Protection tier for the workload which specifies the workload expectations\nin the event of infrastructure failures at data center (e.g. power\nand/or cooling failures).",
@@ -81225,6 +82251,20 @@
       },
       "type": "object"
     },
+    "ReservationParams": {
+      "description": "Additional reservation params.",
+      "id": "ReservationParams",
+      "properties": {
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Input only. Resource manager tags to be bound to the reservation. Tag keys and\nvalues have the same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}` or in\nnamespaced format such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "ReservationSlot": {
       "description": "Represents a reservation slot resource.",
       "id": "ReservationSlot",
@@ -81277,13 +82317,15 @@
             "ACTIVE",
             "CREATING",
             "DELETING",
-            "STATE_UNSPECIFIED"
+            "STATE_UNSPECIFIED",
+            "UNAVAILABLE"
           ],
           "enumDescriptions": [
             "The reservation slot has allocated all its resources.",
             "The resources are being allocated for the reservation slot.",
             "The reservation slot is currently being deleted.",
-            ""
+            "",
+            "The reservation slot is currently unavailable."
           ],
           "readOnly": true,
           "type": "string"
@@ -83090,6 +84132,10 @@
         },
         "enableOsloginMetadataValue": {
           "description": "Effective enable-oslogin value at Instance level.",
+          "type": "boolean"
+        },
+        "gceContainerDeclarationMetadataValue": {
+          "description": "Effective gce-container-declaration value at Instance level.",
           "type": "boolean"
         },
         "serialPortEnableMetadataValue": {
@@ -88730,7 +89776,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Resource manager tags to be bound to the snapshot. Tag keys and values have\nthe same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
+          "description": "Input only. Resource manager tags to be bound to the snapshot. Tag keys and values have\nthe same definition as resource\nmanager tags. Keys and values can be either in numeric format,\nsuch as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced\nformat such as `{org_id|project_id}/{tag_key_short_name}` and\n`{tag_value_short_name}`. The field is ignored (both PUT &\nPATCH) when empty.",
           "type": "object"
         }
       },
@@ -96241,6 +97287,10 @@
           "description": "URL of the network to which this VPN gateway is attached. Provided by the\nclient when the VPN gateway is created.",
           "type": "string"
         },
+        "params": {
+          "$ref": "TargetVpnGatewayParams",
+          "description": "Input only. [Input Only] Additional params passed with the request, but not persisted\nas part of resource payload."
+        },
         "region": {
           "description": "[Output Only] URL of the region where the target VPN gateway resides.\nYou must specify this field as part of the HTTP request URL. It is\nnot settable as a field in the request body.",
           "type": "string"
@@ -96592,6 +97642,19 @@
               "type": "string"
             }
           },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "TargetVpnGatewayParams": {
+      "id": "TargetVpnGatewayParams",
+      "properties": {
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Tag keys/values directly bound to this resource.\nTag keys and values have the same definition as resource\nmanager tags. The field is allowed for INSERT\nonly. The keys/values to set on the resource should be specified in\neither ID { : } or Namespaced format\n{ : }.\nFor example the following are valid inputs:\n* {\"tagKeys/333\" : \"tagValues/444\", \"tagKeys/123\" : \"tagValues/456\"}\n* {\"123/environment\" : \"production\", \"345/abc\" : \"xyz\"}\nNote:\n* Invalid combinations of ID & namespaced format is not supported. For\n  instance: {\"123/environment\" : \"tagValues/444\"} is invalid.\n* Inconsistent format is not supported. For instance:\n  {\"tagKeys/333\" : \"tagValues/444\", \"123/env\" : \"prod\"} is invalid.",
           "type": "object"
         }
       },
@@ -98250,6 +99313,10 @@
           "description": "URL of the network to which this VPN gateway is attached. Provided by the\nclient when the VPN gateway is created.",
           "type": "string"
         },
+        "params": {
+          "$ref": "VpnGatewayParams",
+          "description": "Input only. [Input Only] Additional params passed with the request, but not persisted\nas part of resource payload."
+        },
         "region": {
           "description": "Output only. [Output Only] URL of the region where the VPN gateway resides.",
           "readOnly": true,
@@ -98606,6 +99673,19 @@
       },
       "type": "object"
     },
+    "VpnGatewayParams": {
+      "id": "VpnGatewayParams",
+      "properties": {
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Tag keys/values directly bound to this resource.\nTag keys and values have the same definition as resource\nmanager tags. The field is allowed for INSERT\nonly. The keys/values to set on the resource should be specified in\neither ID { : } or Namespaced format\n{ : }.\nFor example the following are valid inputs:\n* {\"tagKeys/333\" : \"tagValues/444\", \"tagKeys/123\" : \"tagValues/456\"}\n* {\"123/environment\" : \"production\", \"345/abc\" : \"xyz\"}\nNote:\n* Invalid combinations of ID & namespaced format is not supported. For\n  instance: {\"123/environment\" : \"tagValues/444\"} is invalid.\n* Inconsistent format is not supported. For instance:\n  {\"tagKeys/333\" : \"tagValues/444\", \"123/env\" : \"prod\"} is invalid.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "VpnGatewayStatus": {
       "id": "VpnGatewayStatus",
       "properties": {
@@ -98939,6 +100019,10 @@
           "description": "Name of the resource. Provided by the client when the resource is created.\nThe name must be 1-63 characters long, and comply withRFC1035.\nSpecifically, the name must be 1-63 characters long and match the regular\nexpression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first\ncharacter must be a lowercase letter, and all following characters must\nbe a dash, lowercase letter, or digit, except the last character, which\ncannot be a dash.",
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
           "type": "string"
+        },
+        "params": {
+          "$ref": "VpnTunnelParams",
+          "description": "Input only. [Input Only] Additional params passed with the request, but not persisted\nas part of resource payload."
         },
         "peerExternalGateway": {
           "description": "URL of the peer side external VPN gateway to which this VPN tunnel is\nconnected.\nProvided by the client when the VPN tunnel is created.\nThis field is exclusive with the field peerGcpGateway.",
@@ -99363,6 +100447,19 @@
               "type": "string"
             }
           },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "VpnTunnelParams": {
+      "id": "VpnTunnelParams",
+      "properties": {
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Tag keys/values directly bound to this resource.\nTag keys and values have the same definition as resource\nmanager tags. The field is allowed for INSERT\nonly. The keys/values to set on the resource should be specified in\neither ID { : } or Namespaced format\n{ : }.\nFor example the following are valid inputs:\n* {\"tagKeys/333\" : \"tagValues/444\", \"tagKeys/123\" : \"tagValues/456\"}\n* {\"123/environment\" : \"production\", \"345/abc\" : \"xyz\"}\nNote:\n* Invalid combinations of ID & namespaced format is not supported. For\n  instance: {\"123/environment\" : \"tagValues/444\"} is invalid.\n* Inconsistent format is not supported. For instance:\n  {\"tagKeys/333\" : \"tagValues/444\", \"123/env\" : \"prod\"} is invalid.",
           "type": "object"
         }
       },
@@ -99999,6 +101096,18 @@
             "Default."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadIdentityConfig": {
+      "id": "WorkloadIdentityConfig",
+      "properties": {
+        "identity": {
+          "type": "string"
+        },
+        "identityCertificateEnabled": {
+          "type": "boolean"
         }
       },
       "type": "object"

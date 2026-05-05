@@ -181,9 +181,26 @@ export namespace servicemanagement_v1 {
      */
     kind?: string | null;
     /**
+     * Optional. Rules of the Configuration.
+     */
+    rules?: Schema$AspectRule[];
+    /**
      * Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.
      */
     spec?: {[key: string]: any} | null;
+  }
+  /**
+   * Rule-based configuration for an aspect.
+   */
+  export interface Schema$AspectRule {
+    /**
+     * Required. Rules of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`.
+     */
+    config?: {[key: string]: any} | null;
+    /**
+     * Required. Selects the RPC methods to which this rule applies. Refer to selector for syntax details.
+     */
+    selector?: string | null;
   }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
@@ -1888,7 +1905,7 @@ export namespace servicemanagement_v1 {
      */
     documentation?: Schema$Documentation;
     /**
-     * Configuration for network endpoints. If this is empty, then an endpoint with the same name as the service is automatically generated to service all defined APIs.
+     * Configuration for network endpoints. If this is empty, then an endpoint with the same name as the service is automatically generated to service all defined APIs. WARNING: Defining any entries in the `endpoints` list disables the automatic generation of default endpoint variations (e.g., `{service\}.clients6.google.com`, `content-{service\}.googleapis.com`, and mTLS variants like `{service\}.mtls.googleapis.com`). To retain these default variations, you are required to explicitly include your main service endpoint (e.g., `myservice.googleapis.com`) in this list alongside any other custom endpoints (like REP, GFE, etc.).
      */
     endpoints?: Schema$Endpoint[];
     /**
@@ -1916,7 +1933,7 @@ export namespace servicemanagement_v1 {
      */
     metrics?: Schema$MetricDescriptor[];
     /**
-     * Defines the monitored resources used by this service. This is required by the Service.monitoring and Service.logging configurations.
+     * Defines the monitored resources used by this service. This is required by the `Service.monitoring` and `Service.logging` configurations.
      */
     monitoredResources?: Schema$MonitoredResourceDescriptor[];
     /**

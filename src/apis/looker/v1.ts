@@ -308,10 +308,6 @@ export namespace looker_v1 {
      */
     adminSettings?: Schema$AdminSettings;
     /**
-     * Optional. Indicates whether catalog integration is enabled for the Looker instance.
-     */
-    catalogIntegrationEnabled?: boolean | null;
-    /**
      * Optional. Storage class of the instance.
      */
     classType?: string | null;
@@ -432,17 +428,9 @@ export namespace looker_v1 {
      */
     satisfiesPzs?: boolean | null;
     /**
-     * Output only. The reason for the instance being in a soft-deleted state.
-     */
-    softDeleteReason?: string | null;
-    /**
      * Output only. The state of the instance.
      */
     state?: string | null;
-    /**
-     * Output only. The time when the Looker instance was suspended (soft deleted).
-     */
-    suspendedTime?: string | null;
     /**
      * Output only. The time when the Looker instance was last updated.
      */
@@ -604,6 +592,10 @@ export namespace looker_v1 {
      * Input only. Client secret from an external OAuth application. This is an input-only field, and thus will not be set in any responses.
      */
     clientSecret?: string | null;
+    /**
+     * Optional. Whether to use the shared OAuth client. Instances specifying this field do not need to provide client_id and client_secret.
+     */
+    sharedOauthClientEnabled?: boolean | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -773,10 +765,6 @@ export namespace looker_v1 {
      */
     seconds?: number | null;
   }
-  /**
-   * Request options for undeleting an instance.
-   */
-  export interface Schema$UndeleteInstanceRequest {}
   /**
    * Metadata about users for a Looker instance.
    */
@@ -955,7 +943,7 @@ export namespace looker_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -1183,7 +1171,6 @@ export namespace looker_v1 {
      *       // request body parameters
      *       // {
      *       //   "adminSettings": {},
-     *       //   "catalogIntegrationEnabled": false,
      *       //   "classType": "my_classType",
      *       //   "consumerNetwork": "my_consumerNetwork",
      *       //   "controlledEgressConfig": {},
@@ -1214,9 +1201,7 @@ export namespace looker_v1 {
      *       //   "reservedRange": "my_reservedRange",
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
-     *       //   "softDeleteReason": "my_softDeleteReason",
      *       //   "state": "my_state",
-     *       //   "suspendedTime": "my_suspendedTime",
      *       //   "updateTime": "my_updateTime",
      *       //   "userMetadata": {}
      *       // }
@@ -1655,7 +1640,6 @@ export namespace looker_v1 {
      *   // Example response
      *   // {
      *   //   "adminSettings": {},
-     *   //   "catalogIntegrationEnabled": false,
      *   //   "classType": "my_classType",
      *   //   "consumerNetwork": "my_consumerNetwork",
      *   //   "controlledEgressConfig": {},
@@ -1686,9 +1670,7 @@ export namespace looker_v1 {
      *   //   "reservedRange": "my_reservedRange",
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
-     *   //   "softDeleteReason": "my_softDeleteReason",
      *   //   "state": "my_state",
-     *   //   "suspendedTime": "my_suspendedTime",
      *   //   "updateTime": "my_updateTime",
      *   //   "userMetadata": {}
      *   // }
@@ -2118,7 +2100,6 @@ export namespace looker_v1 {
      *       // request body parameters
      *       // {
      *       //   "adminSettings": {},
-     *       //   "catalogIntegrationEnabled": false,
      *       //   "classType": "my_classType",
      *       //   "consumerNetwork": "my_consumerNetwork",
      *       //   "controlledEgressConfig": {},
@@ -2149,9 +2130,7 @@ export namespace looker_v1 {
      *       //   "reservedRange": "my_reservedRange",
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
-     *       //   "softDeleteReason": "my_softDeleteReason",
      *       //   "state": "my_state",
-     *       //   "suspendedTime": "my_suspendedTime",
      *       //   "updateTime": "my_updateTime",
      *       //   "userMetadata": {}
      *       // }
@@ -2556,153 +2535,6 @@ export namespace looker_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
-    /**
-     * Undeletes Looker instance.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/looker.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const looker = google.looker('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await looker.projects.locations.instances.undelete({
-     *     // Required. Format: projects/{project\}/locations/{location\}/instances/{instance\}
-     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    undelete(
-      params: Params$Resource$Projects$Locations$Instances$Undelete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    undelete(
-      params?: Params$Resource$Projects$Locations$Instances$Undelete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
-    undelete(
-      params: Params$Resource$Projects$Locations$Instances$Undelete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    undelete(
-      params: Params$Resource$Projects$Locations$Instances$Undelete,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    undelete(
-      params: Params$Resource$Projects$Locations$Instances$Undelete,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    undelete(callback: BodyResponseCallback<Schema$Operation>): void;
-    undelete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Instances$Undelete
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Instances$Undelete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Undelete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://looker.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:undelete').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Locations$Instances$Create extends StandardParameters {
@@ -2808,17 +2640,6 @@ export namespace looker_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RestoreInstanceRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Instances$Undelete extends StandardParameters {
-    /**
-     * Required. Format: projects/{project\}/locations/{location\}/instances/{instance\}
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$UndeleteInstanceRequest;
   }
 
   export class Resource$Projects$Locations$Instances$Backups {

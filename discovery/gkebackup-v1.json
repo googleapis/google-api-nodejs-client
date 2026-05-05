@@ -2338,7 +2338,7 @@
       }
     }
   },
-  "revision": "20260202",
+  "revision": "20260213",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2660,6 +2660,12 @@
           "readOnly": true,
           "type": "string"
         },
+        "namespaceCount": {
+          "description": "Output only. The total number of user managed namespaces contained in the Backup.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "permissiveMode": {
           "description": "Output only. If false, Backup will fail when Backup for GKE detects Kubernetes configuration that is non-standard or requires additional setup to restore. Inherited from the parent BackupPlan's permissive_mode value.",
           "readOnly": true,
@@ -2956,6 +2962,12 @@
           "description": "Output only. Identifier. The full name of the BackupPlan resource. Format: `projects/*/locations/*/backupPlans/*`",
           "readOnly": true,
           "type": "string"
+        },
+        "protectedNamespaceCount": {
+          "description": "Output only. The number of user managed namespaces backed up in the last successful Backup created via this BackupPlan.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "protectedPodCount": {
           "description": "Output only. The number of Kubernetes Pods backed up in the last successful Backup created via this BackupPlan.",

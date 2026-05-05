@@ -178,6 +178,7 @@ export namespace compute_v1 {
     regionCommitments: Resource$Regioncommitments;
     regionDisks: Resource$Regiondisks;
     regionDiskTypes: Resource$Regiondisktypes;
+    regionHealthAggregationPolicies: Resource$Regionhealthaggregationpolicies;
     regionHealthChecks: Resource$Regionhealthchecks;
     regionHealthCheckServices: Resource$Regionhealthcheckservices;
     regionInstanceGroupManagers: Resource$Regioninstancegroupmanagers;
@@ -323,6 +324,8 @@ export namespace compute_v1 {
       this.regionCommitments = new Resource$Regioncommitments(this.context);
       this.regionDisks = new Resource$Regiondisks(this.context);
       this.regionDiskTypes = new Resource$Regiondisktypes(this.context);
+      this.regionHealthAggregationPolicies =
+        new Resource$Regionhealthaggregationpolicies(this.context);
       this.regionHealthChecks = new Resource$Regionhealthchecks(this.context);
       this.regionHealthCheckServices = new Resource$Regionhealthcheckservices(
         this.context
@@ -1111,7 +1114,7 @@ export namespace compute_v1 {
   }
   /**
    * Properties of the SKU instances being reserved.
-   * Next ID: 9
+   * Next ID: 10
    */
   export interface Schema$AllocationSpecificSKUAllocationReservedInstanceProperties {
     /**
@@ -1415,7 +1418,7 @@ export namespace compute_v1 {
      */
     replicaZones?: string[] | null;
     /**
-     * Resource manager tags to be bound to the disk. Tag keys and values
+     * Input only. Resource manager tags to be bound to the disk. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -2301,6 +2304,10 @@ export namespace compute_v1 {
      */
     maxUtilization?: number | null;
     /**
+     * Information about the resource or system that manages the backend.
+     */
+    orchestrationInfo?: Schema$BackendBackendOrchestrationInfo;
+    /**
      * This field indicates whether this backend should be fully utilized before
      * sending traffic to backends with default preference. The possible values
      * are:
@@ -2313,6 +2320,16 @@ export namespace compute_v1 {
      *    default
      */
     preference?: string | null;
+  }
+  /**
+   * A message containing information about the resource or system that manages
+   * the backend.
+   */
+  export interface Schema$BackendBackendOrchestrationInfo {
+    /**
+     * The URI of the resource or system that manages the backend.
+     */
+    resourceUri?: string | null;
   }
   /**
    * Represents a Cloud Storage Bucket resource.
@@ -3069,6 +3086,10 @@ export namespace compute_v1 {
      * networkPassThroughLbTrafficPolicy cannot be specified with haPolicy.
      */
     networkPassThroughLbTrafficPolicy?: Schema$BackendServiceNetworkPassThroughLbTrafficPolicy;
+    /**
+     * Information about the resource or system that manages the backend service.
+     */
+    orchestrationInfo?: Schema$BackendServiceOrchestrationInfo;
     /**
      * Settings controlling the ejection of unhealthy backend endpoints from the
      * load balancing pool of each individual proxy instance that processes the
@@ -3973,6 +3994,17 @@ export namespace compute_v1 {
      * connections to all healthy endpoints across all zones.
      */
     spilloverRatio?: number | null;
+  }
+  /**
+   * A message containing information about the resource or system that manages
+   * the backend service.
+   */
+  export interface Schema$BackendServiceOrchestrationInfo {
+    /**
+     * The resource URI of the resource or system that manages the backend
+     * service.
+     */
+    resourceUri?: string | null;
   }
   /**
    * Additional Backend Service parameters.
@@ -6005,7 +6037,7 @@ export namespace compute_v1 {
    */
   export interface Schema$DiskParams {
     /**
-     * Resource manager tags to be bound to the disk. Tag keys and values
+     * Input only. Resource manager tags to be bound to the disk. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -6568,6 +6600,11 @@ export namespace compute_v1 {
      */
     name?: string | null;
     /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$ExternalVpnGatewayParams;
+    /**
      * Indicates the user-supplied redundancy type of this external VPN gateway.
      */
     redundancyType?: string | null;
@@ -6644,6 +6681,25 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  export interface Schema$ExternalVpnGatewayParams {
+    /**
+     * Tag keys/values directly bound to this resource.
+     * Tag keys and values have the same definition as resource
+     * manager tags. The field is allowed for INSERT
+     * only. The keys/values to set on the resource should be specified in
+     * either ID { : \} or Namespaced format
+     * { : \}.
+     * For example the following are valid inputs:
+     * * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"\}
+     * * {"123/environment" : "production", "345/abc" : "xyz"\}
+     * Note:
+     * * Invalid combinations of ID & namespaced format is not supported. For
+     *   instance: {"123/environment" : "tagValues/444"\} is invalid.
+     * * Inconsistent format is not supported. For instance:
+     *   {"tagKeys/333" : "tagValues/444", "123/env" : "prod"\} is invalid.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   export interface Schema$FileContentBuffer {
     /**
@@ -8784,6 +8840,194 @@ export namespace compute_v1 {
      */
     type?: string | null;
   }
+  export interface Schema$HealthAggregationPoliciesScopedList {
+    /**
+     * A list of HealthAggregationPolicys contained in this scope.
+     */
+    healthAggregationPolicies?: Schema$HealthAggregationPolicy[];
+    /**
+     * Informational warning which replaces the list of health aggregation
+     * policies when the list is empty.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  /**
+   * Represents a health aggregation policy.
+   *
+   * A health aggregation policy resource defines a policy to aggregate health.
+   *
+   * For more information, see
+   * Health checks overview.
+   */
+  export interface Schema$HealthAggregationPolicy {
+    /**
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
+     */
+    creationTimestamp?: string | null;
+    /**
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
+     */
+    description?: string | null;
+    /**
+     * Fingerprint of this resource. A hash of the contents stored in this object.
+     * This field is used in optimistic locking. This field will be ignored when
+     * inserting a HealthAggregationPolicy. An up-to-date fingerprint
+     * must be provided in order to patch the HealthAggregationPolicy; Otherwise,
+     * the request will fail with error 412 conditionNotMet. To see
+     * the latest fingerprint, make a get() request to retrieve the
+     * HealthAggregationPolicy.
+     */
+    fingerprint?: string | null;
+    /**
+     * Can only be set if the policyType field isBACKEND_SERVICE_POLICY. Specifies the threshold (as a
+     * percentage) of healthy endpoints required in order to consider the
+     * aggregated health result HEALTHY. Defaults to 60. Must be in
+     * range [0, 100]. Not applicable if the policyType field isDNB_PUBLIC_IP_POLICY. Can be mutated. This field is optional,
+     * and will be set to the default if unspecified. Note that both this
+     * threshold and minHealthyThreshold must be satisfied in order
+     * for HEALTHY to be the aggregated result. "Endpoints" refers to network
+     * endpoints within a Network Endpoint Group or instances within an Instance
+     * Group.
+     */
+    healthyPercentThreshold?: number | null;
+    /**
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
+     */
+    id?: string | null;
+    /**
+     * Output only. [Output Only] Type of the resource. Alwayscompute#healthAggregationPolicy for health aggregation
+     * policies.
+     */
+    kind?: string | null;
+    /**
+     * Can only be set if the policyType field isBACKEND_SERVICE_POLICY. Specifies the minimum number of
+     * healthy endpoints required in order to consider the aggregated health
+     * result HEALTHY. Defaults to 1. Must be positive. Not
+     * applicable if the policyType field isDNB_PUBLIC_IP_POLICY. Can be mutated. This field is optional,
+     * and will be set to the default if unspecified. Note that both this
+     * threshold and healthyPercentThreshold must be satisfied in
+     * order for HEALTHY to be the aggregated result. "Endpoints" refers to
+     * network endpoints within a Network Endpoint Group or instances within an
+     * Instance Group.
+     */
+    minHealthyThreshold?: number | null;
+    /**
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
+     */
+    name?: string | null;
+    /**
+     * Specifies the type of the healthAggregationPolicy. The only allowed value
+     * for global resources is DNS_PUBLIC_IP_POLICY. The only allowed
+     * value for regional resources is BACKEND_SERVICE_POLICY. Must
+     * be specified when the healthAggregationPolicy is created, and cannot be
+     * mutated.
+     */
+    policyType?: string | null;
+    /**
+     * Output only. [Output Only] URL of the region where the health aggregation policy
+     * resides. This field applies only to the regional resource. You must specify
+     * this field as part of the HTTP request URL. It is not settable as a field
+     * in the request body.
+     */
+    region?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for the resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL with id for the resource.
+     */
+    selfLinkWithId?: string | null;
+  }
+  /**
+   * Contains a list of HealthAggregationPoliciesScopedList.
+   */
+  export interface Schema$HealthAggregationPolicyAggregatedList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of HealthAggregationPoliciesScopedList resources.
+     */
+    items?: {[key: string]: Schema$HealthAggregationPoliciesScopedList} | null;
+    /**
+     * Output only. Type of resource.
+     */
+    kind?: string | null;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. [Output Only] Unreachable resources.
+     */
+    unreachables?: string[] | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
+  export interface Schema$HealthAggregationPolicyList {
+    /**
+     * [Output Only] Unique identifier for the resource; defined by the server.
+     */
+    id?: string | null;
+    /**
+     * A list of HealthAggregationPolicy resources.
+     */
+    items?: Schema$HealthAggregationPolicy[];
+    /**
+     * Output only. [Output Only] Type of the resource. Alwayscompute#healthAggregationPolicy for health aggregation
+     * policies.
+     */
+    kind?: string | null;
+    /**
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * [Output Only] Server-defined URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * [Output Only] Informational warning message.
+     */
+    warning?: {
+      code?: string;
+      data?: Array<{key?: string; value?: string}>;
+      message?: string;
+    } | null;
+  }
   /**
    * Represents a health check resource.
    *
@@ -10718,7 +10962,7 @@ export namespace compute_v1 {
    */
   export interface Schema$ImageParams {
     /**
-     * Resource manager tags to be bound to the image. Tag keys and values have
+     * Input only. Resource manager tags to be bound to the image. Tag keys and values have
      * the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -11014,6 +11258,7 @@ export namespace compute_v1 {
      * Multiple tags can be specified via the 'tags.items' field.
      */
     tags?: Schema$Tags;
+    workloadIdentityConfig?: Schema$WorkloadIdentityConfig;
     /**
      * Output only. [Output Only] URL of the zone where the instance resides.
      * You must specify this field as part of the HTTP request URL. It is
@@ -11713,6 +11958,20 @@ export namespace compute_v1 {
      *      during repair.
      */
     forceUpdateOnRepair?: string | null;
+    /**
+     * The action that a MIG performs on an unhealthy VM. A VM is marked as
+     * unhealthy when the application running on that VM fails a health check.
+     * Valid values are:
+     *
+     *    - DEFAULT_ACTION (default): MIG uses the same action
+     *    configured for instanceLifecyclePolicy.defaultActionOnFailure field.
+     *    - REPAIR: MIG automatically repairs an unhealthy VM by
+     *    recreating it.
+     *    - DO_NOTHING: MIG doesn't repair an unhealthy VM.
+     *    For more information, see
+     *    About repairing VMs in a MIG.
+     */
+    onFailedHealthCheck?: string | null;
   }
   /**
    * [Output Only] A list of managed instance groups.
@@ -12624,7 +12883,7 @@ export namespace compute_v1 {
      */
     requestValidForDuration?: Schema$Duration;
     /**
-     * Resource manager tags to be bound to the instance. Tag keys and values
+     * Input only. Resource manager tags to be bound to the instance. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -12722,7 +12981,7 @@ export namespace compute_v1 {
      */
     reservationAffinity?: Schema$ReservationAffinity;
     /**
-     * Resource manager tags to be bound to the instance. Tag keys and values
+     * Input only. Resource manager tags to be bound to the instance. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys must be in the format `tagKeys/{tag_key_id\}`, and
      * values are in the format `tagValues/456`. The field is ignored (both PUT &
@@ -12758,6 +13017,7 @@ export namespace compute_v1 {
      * the list must comply with RFC1035.
      */
     tags?: Schema$Tags;
+    workloadIdentityConfig?: Schema$WorkloadIdentityConfig;
   }
   /**
    * Represents the change that you want to make to the instance properties.
@@ -13241,6 +13501,11 @@ export namespace compute_v1 {
      */
     name?: string | null;
     /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$InstantSnapshotParams;
+    /**
      * Output only. [Output Only] URL of the region where the instant snapshot resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -13384,6 +13649,21 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  /**
+   * Additional instant snapshot params.
+   */
+  export interface Schema$InstantSnapshotParams {
+    /**
+     * Input only. Resource manager tags to be bound to the instant snapshot. Tag keys and
+     * values have the same definition as resource
+     * manager tags. Keys and values can be either in numeric format,
+     * such as `tagKeys/{tag_key_id\}` and `tagValues/{tag_value_id\}` or in
+     * namespaced format such as `{org_id|project_id\}/{tag_key_short_name\}` and
+     * `{tag_value_short_name\}`. The field is ignored (both PUT &
+     * PATCH) when empty.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   export interface Schema$InstantSnapshotResourceStatus {
     /**
@@ -13662,8 +13942,7 @@ export namespace compute_v1 {
      */
     state?: string | null;
     /**
-     * Specific subzone in the InterconnectLocation that represents where
-     * this connection is to be provisioned.
+     * To be deprecated.
      */
     subzone?: string | null;
     /**
@@ -16160,12 +16439,25 @@ export namespace compute_v1 {
      * Location configurations mapped by location name.
      * Currently only zone names are supported and must be represented as valid
      * internal URLs, such as zones/us-central1-a.
+     * The bulkInsert operation doesn't create instances in an AI zone, even if
+     * an AI zone is available in the specified region. For example, if you set a
+     * DENY preference for us-central1-a, Compute Engine will consider
+     * us-central1-b and us-central1-c for instance creation, but not
+     * us-central1-ai1a. Also, you can't use the locations[] configuration to
+     * allow instance creation in an AI zone. To include an AI zone in bulkInsert
+     * operations, use the locationPolicy.zones[] field.
      */
     locations?: {[key: string]: Schema$LocationPolicyLocation} | null;
     /**
      * Strategy for distributing VMs across zones in a region.
      */
     targetShape?: string | null;
+    /**
+     * The bulkInsert operation applies any preferences set in the locations
+     * field to the specific zones listed in the zones field if the same zones
+     * are specified in both fields.
+     */
+    zones?: Schema$LocationPolicyZoneConfiguration[];
   }
   export interface Schema$LocationPolicyLocation {
     /**
@@ -16187,6 +16479,15 @@ export namespace compute_v1 {
      * The value must be non-negative.
      */
     maxCount?: number | null;
+  }
+  export interface Schema$LocationPolicyZoneConfiguration {
+    /**
+     * The URL of the zone.
+     * The zone must exist in the region where the request is called.
+     * Zones must be represented as valid partial URLs,
+     * such as zones/us-central1-a.
+     */
+    zone?: string | null;
   }
   /**
    * Represents a machine image resource.
@@ -17347,6 +17648,20 @@ export namespace compute_v1 {
    * A network endpoint group (NEG) defines how a set of endpoints should be
    * reached, whether they are reachable, and where they are located.
    * For more information about using NEGs for different use cases, seeNetwork endpoint groups overview.
+   *
+   * Note: Use the following APIs to manage network endpoint groups:
+   *
+   *    -
+   *    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+   *    NEGs): zonal
+   *    API
+   *    -
+   *    To manage NEGs with regional scope (such as regional internet NEGs,
+   *    serverless NEGs, Private Service Connect NEGs): regional
+   *    API
+   *    -
+   *    To manage NEGs with global scope (such as global internet NEGs):global
+   *    API
    */
   export interface Schema$NetworkEndpointGroup {
     /**
@@ -17801,6 +18116,11 @@ export namespace compute_v1 {
      * You can only specify this field for network interfaces in VPC networks.
      */
     aliasIpRanges?: Schema$AliasIpRange[];
+    /**
+     * Optional. If true, DNS resolution will be enabled over this interface. Only valid
+     * with network_attachment.
+     */
+    enableVpcScopedDns?: boolean | null;
     /**
      * Fingerprint hash of contents stored in this network interface.
      * This field will be ignored when inserting an Instance or
@@ -22062,6 +22382,12 @@ export namespace compute_v1 {
      */
     description?: string | null;
     /**
+     * Indicates the early access maintenance for the reservation.
+     * If this field is absent or set to NO_EARLY_ACCESS, the reservation is not
+     * enrolled in early access maintenance and the standard notice applies.
+     */
+    earlyAccessMaintenance?: string | null;
+    /**
      * Indicates whether Compute Engine allows unplanned maintenance for your VMs;
      * for example, to fix hardware errors.
      */
@@ -22091,6 +22417,11 @@ export namespace compute_v1 {
      * be a dash.
      */
     name?: string | null;
+    /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$ReservationParams;
     /**
      * Protection tier for the workload which specifies the workload expectations
      * in the event of infrastructure failures at data center (e.g. power
@@ -22447,6 +22778,21 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  /**
+   * Additional reservation params.
+   */
+  export interface Schema$ReservationParams {
+    /**
+     * Input only. Resource manager tags to be bound to the reservation. Tag keys and
+     * values have the same definition as resource
+     * manager tags. Keys and values can be either in numeric format,
+     * such as `tagKeys/{tag_key_id\}` and `tagValues/{tag_value_id\}` or in
+     * namespaced format such as `{org_id|project_id\}/{tag_key_short_name\}` and
+     * `{tag_value_short_name\}`. The field is ignored (both PUT &
+     * PATCH) when empty.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   export interface Schema$ReservationsBlocksPerformMaintenanceRequest {
     /**
@@ -23302,6 +23648,10 @@ export namespace compute_v1 {
      * Effective enable-oslogin value at Instance level.
      */
     enableOsloginMetadataValue?: boolean | null;
+    /**
+     * Effective gce-container-declaration value at Instance level.
+     */
+    gceContainerDeclarationMetadataValue?: boolean | null;
     /**
      * Effective serial-port-enable value at Instance level.
      */
@@ -26864,7 +27214,7 @@ export namespace compute_v1 {
    */
   export interface Schema$SnapshotParams {
     /**
-     * Resource manager tags to be bound to the snapshot. Tag keys and values have
+     * Input only. Resource manager tags to be bound to the snapshot. Tag keys and values have
      * the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id\}` and `tagValues/456` or in namespaced
@@ -30127,6 +30477,11 @@ export namespace compute_v1 {
      */
     network?: string | null;
     /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$TargetVpnGatewayParams;
+    /**
      * [Output Only] URL of the region where the target VPN gateway resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -30222,6 +30577,25 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  export interface Schema$TargetVpnGatewayParams {
+    /**
+     * Tag keys/values directly bound to this resource.
+     * Tag keys and values have the same definition as resource
+     * manager tags. The field is allowed for INSERT
+     * only. The keys/values to set on the resource should be specified in
+     * either ID { : \} or Namespaced format
+     * { : \}.
+     * For example the following are valid inputs:
+     * * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"\}
+     * * {"123/environment" : "production", "345/abc" : "xyz"\}
+     * Note:
+     * * Invalid combinations of ID & namespaced format is not supported. For
+     *   instance: {"123/environment" : "tagValues/444"\} is invalid.
+     * * Inconsistent format is not supported. For instance:
+     *   {"tagKeys/333" : "tagValues/444", "123/env" : "prod"\} is invalid.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   export interface Schema$TargetVpnGatewaysScopedList {
     /**
@@ -31183,6 +31557,11 @@ export namespace compute_v1 {
      */
     network?: string | null;
     /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$VpnGatewayParams;
+    /**
      * Output only. [Output Only] URL of the region where the VPN gateway resides.
      */
     region?: string | null;
@@ -31276,6 +31655,25 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  export interface Schema$VpnGatewayParams {
+    /**
+     * Tag keys/values directly bound to this resource.
+     * Tag keys and values have the same definition as resource
+     * manager tags. The field is allowed for INSERT
+     * only. The keys/values to set on the resource should be specified in
+     * either ID { : \} or Namespaced format
+     * { : \}.
+     * For example the following are valid inputs:
+     * * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"\}
+     * * {"123/environment" : "production", "345/abc" : "xyz"\}
+     * Note:
+     * * Invalid combinations of ID & namespaced format is not supported. For
+     *   instance: {"123/environment" : "tagValues/444"\} is invalid.
+     * * Inconsistent format is not supported. For instance:
+     *   {"tagKeys/333" : "tagValues/444", "123/env" : "prod"\} is invalid.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   export interface Schema$VpnGatewaysGetStatusResponse {
     result?: Schema$VpnGatewayStatus;
@@ -31481,6 +31879,11 @@ export namespace compute_v1 {
      */
     name?: string | null;
     /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     */
+    params?: Schema$VpnTunnelParams;
+    /**
      * URL of the peer side external VPN gateway to which this VPN tunnel is
      * connected.
      * Provided by the client when the VPN tunnel is created.
@@ -31674,6 +32077,25 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  export interface Schema$VpnTunnelParams {
+    /**
+     * Tag keys/values directly bound to this resource.
+     * Tag keys and values have the same definition as resource
+     * manager tags. The field is allowed for INSERT
+     * only. The keys/values to set on the resource should be specified in
+     * either ID { : \} or Namespaced format
+     * { : \}.
+     * For example the following are valid inputs:
+     * * {"tagKeys/333" : "tagValues/444", "tagKeys/123" : "tagValues/456"\}
+     * * {"123/environment" : "production", "345/abc" : "xyz"\}
+     * Note:
+     * * Invalid combinations of ID & namespaced format is not supported. For
+     *   instance: {"123/environment" : "tagValues/444"\} is invalid.
+     * * Inconsistent format is not supported. For instance:
+     *   {"tagKeys/333" : "tagValues/444", "123/env" : "prod"\} is invalid.
+     */
+    resourceManagerTags?: {[key: string]: string} | null;
   }
   export interface Schema$VpnTunnelPhase1Algorithms {
     dh?: string[] | null;
@@ -32045,6 +32467,10 @@ export namespace compute_v1 {
      *    pseudowires.
      */
     faultResponse?: string | null;
+  }
+  export interface Schema$WorkloadIdentityConfig {
+    identity?: string | null;
+    identityCertificateEnabled?: boolean | null;
   }
   export interface Schema$XpnHostList {
     /**
@@ -40820,6 +41246,7 @@ export namespace compute_v1 {
      *   //   "name": "my_name",
      *   //   "network": "my_network",
      *   //   "networkPassThroughLbTrafficPolicy": {},
+     *   //   "orchestrationInfo": {},
      *   //   "outlierDetection": {},
      *   //   "params": {},
      *   //   "port": 0,
@@ -41480,6 +41907,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -42197,6 +42625,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -43138,6 +43567,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -48683,7 +49113,7 @@ export namespace compute_v1 {
     /**
      * Updates the specified disk with the data included in the request.
      * The update is performed only on selected fields included as part
-     * of update-mask. Only the following fields can be modified: user_license.
+     * of update-mask.
      * @example
      * ```js
      * // Before running the sample:
@@ -50811,6 +51241,7 @@ export namespace compute_v1 {
      *   //   "labelFingerprint": "my_labelFingerprint",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "redundancyType": "my_redundancyType",
      *   //   "selfLink": "my_selfLink"
      *   // }
@@ -50976,6 +51407,7 @@ export namespace compute_v1 {
      *       //   "labelFingerprint": "my_labelFingerprint",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "redundancyType": "my_redundancyType",
      *       //   "selfLink": "my_selfLink"
      *       // }
@@ -53731,6 +54163,10 @@ export namespace compute_v1 {
      *
      *   // Do the magic
      *   const res = await compute.firewallPolicies.listAssociations({
+     *     // If set to "true", the response will contain a list of all associations for
+     *     // the containing folders and the containing organization of the target. The
+     *     // parameter has no effect if the target is an organization.
+     *     includeInheritedPolicies: 'placeholder-value',
      *     // The target resource to list associations. It is an organization, or a
      *     // folder.
      *     targetResource: 'placeholder-value',
@@ -55388,6 +55824,12 @@ export namespace compute_v1 {
     returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Firewallpolicies$Listassociations extends StandardParameters {
+    /**
+     * If set to "true", the response will contain a list of all associations for
+     * the containing folders and the containing organization of the target. The
+     * parameter has no effect if the target is an organization.
+     */
+    includeInheritedPolicies?: boolean;
     /**
      * The target resource to list associations. It is an organization, or a
      * folder.
@@ -65120,6 +65562,20 @@ export namespace compute_v1 {
     /**
      * Creates a network endpoint group in the specified project using the
      * parameters that are included in the request.
+     *
+     * Note: Use the following APIs to manage network endpoint groups:
+     *
+     *    -
+     *    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+     *    NEGs): zonal
+     *    API
+     *    -
+     *    To manage NEGs with regional scope (such as regional internet NEGs,
+     *    serverless NEGs, Private Service Connect NEGs): regional
+     *    API
+     *    -
+     *    To manage NEGs with global scope (such as global internet NEGs):global
+     *    API
      * @example
      * ```js
      * // Before running the sample:
@@ -87535,6 +87991,7 @@ export namespace compute_v1 {
      *       // {
      *       //   "accessConfigs": [],
      *       //   "aliasIpRanges": [],
+     *       //   "enableVpcScopedDns": false,
      *       //   "fingerprint": "my_fingerprint",
      *       //   "igmpQuery": "my_igmpQuery",
      *       //   "internalIpv6PrefixLength": 0,
@@ -89399,6 +89856,7 @@ export namespace compute_v1 {
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
      *   //   "tags": {},
+     *   //   "workloadIdentityConfig": {},
      *   //   "zone": "my_zone"
      *   // }
      * }
@@ -90562,6 +91020,7 @@ export namespace compute_v1 {
      *       //   "status": "my_status",
      *       //   "statusMessage": "my_statusMessage",
      *       //   "tags": {},
+     *       //   "workloadIdentityConfig": {},
      *       //   "zone": "my_zone"
      *       // }
      *     },
@@ -96187,6 +96646,7 @@ export namespace compute_v1 {
      *       //   "status": "my_status",
      *       //   "statusMessage": "my_statusMessage",
      *       //   "tags": {},
+     *       //   "workloadIdentityConfig": {},
      *       //   "zone": "my_zone"
      *       // }
      *     },
@@ -96788,6 +97248,7 @@ export namespace compute_v1 {
      *       // {
      *       //   "accessConfigs": [],
      *       //   "aliasIpRanges": [],
+     *       //   "enableVpcScopedDns": false,
      *       //   "fingerprint": "my_fingerprint",
      *       //   "igmpQuery": "my_igmpQuery",
      *       //   "internalIpv6PrefixLength": 0,
@@ -101770,6 +102231,7 @@ export namespace compute_v1 {
      *   //   "labelFingerprint": "my_labelFingerprint",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "region": "my_region",
      *   //   "resourceStatus": {},
      *   //   "satisfiesPzi": false,
@@ -102097,6 +102559,7 @@ export namespace compute_v1 {
      *       //   "labelFingerprint": "my_labelFingerprint",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "region": "my_region",
      *       //   "resourceStatus": {},
      *       //   "satisfiesPzi": false,
@@ -121210,6 +121673,20 @@ export namespace compute_v1 {
     /**
      * Creates a network endpoint group in the specified project using the
      * parameters that are included in the request.
+     *
+     * Note: Use the following APIs to manage network endpoint groups:
+     *
+     *    -
+     *    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+     *    NEGs): zonal
+     *    API
+     *    -
+     *    To manage NEGs with regional scope (such as regional internet NEGs,
+     *    serverless NEGs, Private Service Connect NEGs): regional
+     *    API
+     *    -
+     *    To manage NEGs with global scope (such as global internet NEGs):global
+     *    API
      * @example
      * ```js
      * // Before running the sample:
@@ -151889,6 +152366,7 @@ export namespace compute_v1 {
      *   //   "name": "my_name",
      *   //   "network": "my_network",
      *   //   "networkPassThroughLbTrafficPolicy": {},
+     *   //   "orchestrationInfo": {},
      *   //   "outlierDetection": {},
      *   //   "params": {},
      *   //   "port": 0,
@@ -152411,6 +152889,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -153138,6 +153617,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -153895,6 +154375,7 @@ export namespace compute_v1 {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "networkPassThroughLbTrafficPolicy": {},
+     *       //   "orchestrationInfo": {},
      *       //   "outlierDetection": {},
      *       //   "params": {},
      *       //   "port": 0,
@@ -159040,8 +159521,7 @@ export namespace compute_v1 {
 
     /**
      * Update the specified disk with the data included in the request. Update is
-     * performed only on selected fields included as part of update-mask. Only the
-     * following fields can be modified: user_license.
+     * performed only on selected fields included as part of update-mask.
      * @example
      * ```js
      * // Before running the sample:
@@ -160397,6 +160877,1787 @@ export namespace compute_v1 {
      * with an error code.
      */
     returnPartialSuccess?: boolean;
+  }
+
+  export class Resource$Regionhealthaggregationpolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves the list of all HealthAggregationPolicy resources,
+     * regional and global, available to the specified project.
+     *
+     * To prevent failure, it is recommended that you set the
+     * `returnPartialSuccess` parameter to `true`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthAggregationPolicies.aggregatedList({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // Indicates whether every visible scope for each scope type (zone, region,
+     *     // global) should be included in the response. For new resource types added
+     *     // after this field, the flag has no effect as new resource types will always
+     *     // include every visible scope for each scope type in response. For resource
+     *     // types which predate this field, if this flag is omitted or false, only
+     *     // scopes of the scope types where the resource type is expected to be found
+     *     // will be included.
+     *     includeAllScopes: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Name of the project scoping this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *     // The Shared VPC service project id or service project number for which
+     *     // aggregated list request is invoked for subnetworks list-usable api.
+     *     serviceProjectNumber: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "items": {},
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "unreachables": [],
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    aggregatedList(
+      params: Params$Resource$Regionhealthaggregationpolicies$Aggregatedlist,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    aggregatedList(
+      params?: Params$Resource$Regionhealthaggregationpolicies$Aggregatedlist,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$HealthAggregationPolicyAggregatedList>
+    >;
+    aggregatedList(
+      params: Params$Resource$Regionhealthaggregationpolicies$Aggregatedlist,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Regionhealthaggregationpolicies$Aggregatedlist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$HealthAggregationPolicyAggregatedList>,
+      callback: BodyResponseCallback<Schema$HealthAggregationPolicyAggregatedList>
+    ): void;
+    aggregatedList(
+      params: Params$Resource$Regionhealthaggregationpolicies$Aggregatedlist,
+      callback: BodyResponseCallback<Schema$HealthAggregationPolicyAggregatedList>
+    ): void;
+    aggregatedList(
+      callback: BodyResponseCallback<Schema$HealthAggregationPolicyAggregatedList>
+    ): void;
+    aggregatedList(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthaggregationpolicies$Aggregatedlist
+        | BodyResponseCallback<Schema$HealthAggregationPolicyAggregatedList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HealthAggregationPolicyAggregatedList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HealthAggregationPolicyAggregatedList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$HealthAggregationPolicyAggregatedList>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthaggregationpolicies$Aggregatedlist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Regionhealthaggregationpolicies$Aggregatedlist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/aggregated/healthAggregationPolicies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HealthAggregationPolicyAggregatedList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HealthAggregationPolicyAggregatedList>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes the specified HealthAggregationPolicy in the given region.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthAggregationPolicies.delete({
+     *     // Name of the HealthAggregationPolicy resource to delete.
+     *     healthAggregationPolicy:
+     *       '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Regionhealthaggregationpolicies$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Regionhealthaggregationpolicies$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Regionhealthaggregationpolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Regionhealthaggregationpolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Regionhealthaggregationpolicies$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthaggregationpolicies$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthaggregationpolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthaggregationpolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies/{healthAggregationPolicy}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'healthAggregationPolicy'],
+        pathParams: ['healthAggregationPolicy', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns the specified HealthAggregationPolicy resource in the given region.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthAggregationPolicies.get({
+     *     // Name of the HealthAggregationPolicy resource to return.
+     *     healthAggregationPolicy:
+     *       '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "healthyPercentThreshold": 0,
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "minHealthyThreshold": 0,
+     *   //   "name": "my_name",
+     *   //   "policyType": "my_policyType",
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "selfLinkWithId": "my_selfLinkWithId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Regionhealthaggregationpolicies$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Regionhealthaggregationpolicies$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HealthAggregationPolicy>>;
+    get(
+      params: Params$Resource$Regionhealthaggregationpolicies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Regionhealthaggregationpolicies$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$HealthAggregationPolicy>,
+      callback: BodyResponseCallback<Schema$HealthAggregationPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Regionhealthaggregationpolicies$Get,
+      callback: BodyResponseCallback<Schema$HealthAggregationPolicy>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$HealthAggregationPolicy>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthaggregationpolicies$Get
+        | BodyResponseCallback<Schema$HealthAggregationPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HealthAggregationPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HealthAggregationPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HealthAggregationPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthaggregationpolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthaggregationpolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies/{healthAggregationPolicy}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'healthAggregationPolicy'],
+        pathParams: ['healthAggregationPolicy', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HealthAggregationPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HealthAggregationPolicy>(parameters);
+      }
+    }
+
+    /**
+     * Create a HealthAggregationPolicy in the specified project in the given
+     * region using the parameters that are included in the request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthAggregationPolicies.insert({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "description": "my_description",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "healthyPercentThreshold": 0,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "minHealthyThreshold": 0,
+     *       //   "name": "my_name",
+     *       //   "policyType": "my_policyType",
+     *       //   "region": "my_region",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "selfLinkWithId": "my_selfLinkWithId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Regionhealthaggregationpolicies$Insert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    insert(
+      params?: Params$Resource$Regionhealthaggregationpolicies$Insert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    insert(
+      params: Params$Resource$Regionhealthaggregationpolicies$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Regionhealthaggregationpolicies$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(
+      params: Params$Resource$Regionhealthaggregationpolicies$Insert,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthaggregationpolicies$Insert
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthaggregationpolicies$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthaggregationpolicies$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Lists the HealthAggregationPolicies for a project in the given region.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthAggregationPolicies.list({
+     *     // A filter expression that filters resources listed in the response. Most
+     *     // Compute resources support two types of filter expressions:
+     *     // expressions that support regular expressions and expressions that follow
+     *     // API improvement proposal AIP-160.
+     *     // These two types of filter expressions cannot be mixed in one request.
+     *     //
+     *     // If you want to use AIP-160, your expression must specify the field name, an
+     *     // operator, and the value that you want to use for filtering. The value
+     *     // must be a string, a number, or a boolean. The operator
+     *     // must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *     //
+     *     // For example, if you are filtering Compute Engine instances, you can
+     *     // exclude instances named `example-instance` by specifying
+     *     // `name != example-instance`.
+     *     //
+     *     // The `:*` comparison can be used to test whether a key has been defined.
+     *     // For example, to find all objects with `owner` label use:
+     *     // ```
+     *     // labels.owner:*
+     *     // ```
+     *     //
+     *     // You can also filter nested fields. For example, you could specify
+     *     // `scheduling.automaticRestart = false` to include instances only
+     *     // if they are not scheduled for automatic restarts. You can use filtering
+     *     // on nested fields to filter based onresource labels.
+     *     //
+     *     // To filter on multiple expressions, provide each separate expression within
+     *     // parentheses. For example:
+     *     // ```
+     *     // (scheduling.automaticRestart = true)
+     *     // (cpuPlatform = "Intel Skylake")
+     *     // ```
+     *     // By default, each expression is an `AND` expression. However, you
+     *     // can include `AND` and `OR` expressions explicitly.
+     *     // For example:
+     *     // ```
+     *     // (cpuPlatform = "Intel Skylake") OR
+     *     // (cpuPlatform = "Intel Broadwell") AND
+     *     // (scheduling.automaticRestart = true)
+     *     // ```
+     *     //
+     *     // If you want to use a regular expression, use the `eq` (equal) or `ne`
+     *     // (not equal) operator against a single un-parenthesized expression with or
+     *     // without quotes or against multiple parenthesized expressions. Examples:
+     *     //
+     *     // `fieldname eq unquoted literal`
+     *     // `fieldname eq 'single quoted literal'`
+     *     // `fieldname eq "double quoted literal"`
+     *     // `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *     //
+     *     // The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     *     // The literal value must match the entire field.
+     *     //
+     *     // For example, to filter for instances that do not end with name "instance",
+     *     // you would use `name ne .*instance`.
+     *     //
+     *     // You cannot combine constraints on multiple fields using regular
+     *     // expressions.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results per page that should be returned.
+     *     // If the number of available results is larger than `maxResults`,
+     *     // Compute Engine returns a `nextPageToken` that can be used to get
+     *     // the next page of results in subsequent list requests. Acceptable values are
+     *     // `0` to `500`, inclusive. (Default: `500`)
+     *     maxResults: 'placeholder-value',
+     *     // Sorts list results by a certain order. By default, results
+     *     // are returned in alphanumerical order based on the resource name.
+     *     //
+     *     // You can also sort results in descending order based on the creation
+     *     // timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     *     // results based on the `creationTimestamp` field in
+     *     // reverse chronological order (newest result first). Use this to sort
+     *     // resources like operations so that the newest operation is returned first.
+     *     //
+     *     // Currently, only sorting by `name` or
+     *     // `creationTimestamp desc` is supported.
+     *     orderBy: 'placeholder-value',
+     *     // Specifies a page token to use. Set `pageToken` to the
+     *     // `nextPageToken` returned by a previous list request to get
+     *     // the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Opt-in for partial success behavior which provides partial results in case
+     *     // of failure. The default value is false.
+     *     //
+     *     // For example, when partial success behavior is enabled, aggregatedList for a
+     *     // single zone scope either returns all resources in the zone or no resources,
+     *     // with an error code.
+     *     returnPartialSuccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "id": "my_id",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "warning": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Regionhealthaggregationpolicies$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Regionhealthaggregationpolicies$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HealthAggregationPolicyList>>;
+    list(
+      params: Params$Resource$Regionhealthaggregationpolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Regionhealthaggregationpolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$HealthAggregationPolicyList>,
+      callback: BodyResponseCallback<Schema$HealthAggregationPolicyList>
+    ): void;
+    list(
+      params: Params$Resource$Regionhealthaggregationpolicies$List,
+      callback: BodyResponseCallback<Schema$HealthAggregationPolicyList>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$HealthAggregationPolicyList>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthaggregationpolicies$List
+        | BodyResponseCallback<Schema$HealthAggregationPolicyList>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HealthAggregationPolicyList>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HealthAggregationPolicyList>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HealthAggregationPolicyList>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthaggregationpolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthaggregationpolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HealthAggregationPolicyList>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HealthAggregationPolicyList>(parameters);
+      }
+    }
+
+    /**
+     * Updates the specified regional HealthAggregationPolicy
+     * resource with the data included in the request. This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthAggregationPolicies.patch({
+     *     // Name of the HealthAggregationPolicy to update. The name
+     *     // must be 1-63 characters long, and comply with RFC1035.
+     *     healthAggregationPolicy: 'placeholder-value',
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Name of the region scoping this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "creationTimestamp": "my_creationTimestamp",
+     *       //   "description": "my_description",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "healthyPercentThreshold": 0,
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "minHealthyThreshold": 0,
+     *       //   "name": "my_name",
+     *       //   "policyType": "my_policyType",
+     *       //   "region": "my_region",
+     *       //   "selfLink": "my_selfLink",
+     *       //   "selfLinkWithId": "my_selfLinkWithId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Regionhealthaggregationpolicies$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Regionhealthaggregationpolicies$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Regionhealthaggregationpolicies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Regionhealthaggregationpolicies$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Regionhealthaggregationpolicies$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthaggregationpolicies$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthaggregationpolicies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionhealthaggregationpolicies$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies/{healthAggregationPolicy}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'healthAggregationPolicy'],
+        pathParams: ['healthAggregationPolicy', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *       'https://www.googleapis.com/auth/compute.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.regionHealthAggregationPolicies.testIamPermissions({
+     *     // Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // The name of the region for this request.
+     *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *     // Name or id of the resource for this request.
+     *     resource: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Regionhealthaggregationpolicies$Testiampermissions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    testIamPermissions(
+      params?: Params$Resource$Regionhealthaggregationpolicies$Testiampermissions,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>;
+    testIamPermissions(
+      params: Params$Resource$Regionhealthaggregationpolicies$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Regionhealthaggregationpolicies$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Regionhealthaggregationpolicies$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Regionhealthaggregationpolicies$Testiampermissions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Regionhealthaggregationpolicies$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Regionhealthaggregationpolicies$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/regions/{region}/healthAggregationPolicies/{resource}/testIamPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Regionhealthaggregationpolicies$Aggregatedlist extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * Indicates whether every visible scope for each scope type (zone, region,
+     * global) should be included in the response. For new resource types added
+     * after this field, the flag has no effect as new resource types will always
+     * include every visible scope for each scope type in response. For resource
+     * types which predate this field, if this flag is omitted or false, only
+     * scopes of the scope types where the resource type is expected to be found
+     * will be included.
+     */
+    includeAllScopes?: boolean;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+    /**
+     * The Shared VPC service project id or service project number for which
+     * aggregated list request is invoked for subnetworks list-usable api.
+     */
+    serviceProjectNumber?: string;
+  }
+  export interface Params$Resource$Regionhealthaggregationpolicies$Delete extends StandardParameters {
+    /**
+     * Name of the HealthAggregationPolicy resource to delete.
+     */
+    healthAggregationPolicy?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Regionhealthaggregationpolicies$Get extends StandardParameters {
+    /**
+     * Name of the HealthAggregationPolicy resource to return.
+     */
+    healthAggregationPolicy?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Regionhealthaggregationpolicies$Insert extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HealthAggregationPolicy;
+  }
+  export interface Params$Resource$Regionhealthaggregationpolicies$List extends StandardParameters {
+    /**
+     * A filter expression that filters resources listed in the response. Most
+     * Compute resources support two types of filter expressions:
+     * expressions that support regular expressions and expressions that follow
+     * API improvement proposal AIP-160.
+     * These two types of filter expressions cannot be mixed in one request.
+     *
+     * If you want to use AIP-160, your expression must specify the field name, an
+     * operator, and the value that you want to use for filtering. The value
+     * must be a string, a number, or a boolean. The operator
+     * must be either `=`, `!=`, `\>`, `<`, `<=`, `\>=` or `:`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named `example-instance` by specifying
+     * `name != example-instance`.
+     *
+     * The `:*` comparison can be used to test whether a key has been defined.
+     * For example, to find all objects with `owner` label use:
+     * ```
+     * labels.owner:*
+     * ```
+     *
+     * You can also filter nested fields. For example, you could specify
+     * `scheduling.automaticRestart = false` to include instances only
+     * if they are not scheduled for automatic restarts. You can use filtering
+     * on nested fields to filter based onresource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within
+     * parentheses. For example:
+     * ```
+     * (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake")
+     * ```
+     * By default, each expression is an `AND` expression. However, you
+     * can include `AND` and `OR` expressions explicitly.
+     * For example:
+     * ```
+     * (cpuPlatform = "Intel Skylake") OR
+     * (cpuPlatform = "Intel Broadwell") AND
+     * (scheduling.automaticRestart = true)
+     * ```
+     *
+     * If you want to use a regular expression, use the `eq` (equal) or `ne`
+     * (not equal) operator against a single un-parenthesized expression with or
+     * without quotes or against multiple parenthesized expressions. Examples:
+     *
+     * `fieldname eq unquoted literal`
+     * `fieldname eq 'single quoted literal'`
+     * `fieldname eq "double quoted literal"`
+     * `(fieldname1 eq literal) (fieldname2 ne "literal")`
+     *
+     * The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+     * The literal value must match the entire field.
+     *
+     * For example, to filter for instances that do not end with name "instance",
+     * you would use `name ne .*instance`.
+     *
+     * You cannot combine constraints on multiple fields using regular
+     * expressions.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     * If the number of available results is larger than `maxResults`,
+     * Compute Engine returns a `nextPageToken` that can be used to get
+     * the next page of results in subsequent list requests. Acceptable values are
+     * `0` to `500`, inclusive. (Default: `500`)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results
+     * are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation
+     * timestamp using `orderBy="creationTimestamp desc"`. This sorts
+     * results based on the `creationTimestamp` field in
+     * reverse chronological order (newest result first). Use this to sort
+     * resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or
+     * `creationTimestamp desc` is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set `pageToken` to the
+     * `nextPageToken` returned by a previous list request to get
+     * the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case
+     * of failure. The default value is false.
+     *
+     * For example, when partial success behavior is enabled, aggregatedList for a
+     * single zone scope either returns all resources in the zone or no resources,
+     * with an error code.
+     */
+    returnPartialSuccess?: boolean;
+  }
+  export interface Params$Resource$Regionhealthaggregationpolicies$Patch extends StandardParameters {
+    /**
+     * Name of the HealthAggregationPolicy to update. The name
+     * must be 1-63 characters long, and comply with RFC1035.
+     */
+    healthAggregationPolicy?: string;
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the region scoping this request.
+     */
+    region?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HealthAggregationPolicy;
+  }
+  export interface Params$Resource$Regionhealthaggregationpolicies$Testiampermissions extends StandardParameters {
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the region for this request.
+     */
+    region?: string;
+    /**
+     * Name or id of the resource for this request.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestPermissionsRequest;
   }
 
   export class Resource$Regionhealthchecks {
@@ -172151,6 +174412,7 @@ export namespace compute_v1 {
      *   //   "labelFingerprint": "my_labelFingerprint",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "region": "my_region",
      *   //   "resourceStatus": {},
      *   //   "satisfiesPzi": false,
@@ -172478,6 +174740,7 @@ export namespace compute_v1 {
      *       //   "labelFingerprint": "my_labelFingerprint",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "region": "my_region",
      *       //   "resourceStatus": {},
      *       //   "satisfiesPzi": false,
@@ -174406,6 +176669,20 @@ export namespace compute_v1 {
     /**
      * Creates a network endpoint group in the specified project using the
      * parameters that are included in the request.
+     *
+     * Note: Use the following APIs to manage network endpoint groups:
+     *
+     *    -
+     *    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+     *    NEGs): zonal
+     *    API
+     *    -
+     *    To manage NEGs with regional scope (such as regional internet NEGs,
+     *    serverless NEGs, Private Service Connect NEGs): regional
+     *    API
+     *    -
+     *    To manage NEGs with global scope (such as global internet NEGs):global
+     *    API
      * @example
      * ```js
      * // Before running the sample:
@@ -194184,11 +196461,13 @@ export namespace compute_v1 {
      *   //   "deleteAtTime": "my_deleteAtTime",
      *   //   "deploymentType": "my_deploymentType",
      *   //   "description": "my_description",
+     *   //   "earlyAccessMaintenance": "my_earlyAccessMaintenance",
      *   //   "enableEmergentMaintenance": false,
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "linkedCommitments": [],
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "protectionTier": "my_protectionTier",
      *   //   "reservationSharingPolicy": {},
      *   //   "resourcePolicies": {},
@@ -194517,11 +196796,13 @@ export namespace compute_v1 {
      *       //   "deleteAtTime": "my_deleteAtTime",
      *       //   "deploymentType": "my_deploymentType",
      *       //   "description": "my_description",
+     *       //   "earlyAccessMaintenance": "my_earlyAccessMaintenance",
      *       //   "enableEmergentMaintenance": false,
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "linkedCommitments": [],
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "protectionTier": "my_protectionTier",
      *       //   "reservationSharingPolicy": {},
      *       //   "resourcePolicies": {},
@@ -195677,11 +197958,13 @@ export namespace compute_v1 {
      *       //   "deleteAtTime": "my_deleteAtTime",
      *       //   "deploymentType": "my_deploymentType",
      *       //   "description": "my_description",
+     *       //   "earlyAccessMaintenance": "my_earlyAccessMaintenance",
      *       //   "enableEmergentMaintenance": false,
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "linkedCommitments": [],
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "protectionTier": "my_protectionTier",
      *       //   "reservationSharingPolicy": {},
      *       //   "resourcePolicies": {},
@@ -197102,7 +199385,8 @@ export namespace compute_v1 {
      *   const res = await compute.reservationSubBlocks.get({
      *     // The name of the parent reservation and parent block. In the format of
      *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
-     *     parentName: 'placeholder-value',
+     *     parentName:
+     *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
      *     // Project ID for this request.
      *     project: 'placeholder-value',
      *     // The name of the reservation subBlock.
@@ -197198,7 +199482,7 @@ export namespace compute_v1 {
           {
             url: (
               rootUrl +
-              '/compute/v1/projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}'
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -197359,7 +199643,7 @@ export namespace compute_v1 {
           {
             url: (
               rootUrl +
-              '/compute/v1/projects/{project}/zones/{zone}/{parentResource}/reservationSubBlocks/{resource}/getIamPolicy'
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentResource}/reservationSubBlocks/{resource}/getIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -197499,7 +199783,8 @@ export namespace compute_v1 {
      *     pageToken: 'placeholder-value',
      *     // The name of the parent reservation and parent block. In the format of
      *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
-     *     parentName: 'placeholder-value',
+     *     parentName:
+     *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
      *     // Project ID for this request.
      *     project: 'placeholder-value',
      *     // Opt-in for partial success behavior which provides partial results in case
@@ -197606,7 +199891,7 @@ export namespace compute_v1 {
           {
             url: (
               rootUrl +
-              '/compute/v1/projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks'
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -197666,7 +199951,8 @@ export namespace compute_v1 {
      *   const res = await compute.reservationSubBlocks.performMaintenance({
      *     // The name of the parent reservation and parent block. In the format of
      *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
-     *     parentName: 'placeholder-value',
+     *     parentName:
+     *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
      *     // Project ID for this request.
      *     project: 'placeholder-value',
      *     // An optional request ID to identify requests. Specify a unique request ID so
@@ -197795,7 +200081,7 @@ export namespace compute_v1 {
           {
             url: (
               rootUrl +
-              '/compute/v1/projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}/performMaintenance'
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/performMaintenance'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -197858,7 +200144,8 @@ export namespace compute_v1 {
      *   const res = await compute.reservationSubBlocks.reportFaulty({
      *     // The name of the parent reservation and parent block. In the format of
      *     // reservations/{reservation_name\}/reservationBlocks/{reservation_block_name\}
-     *     parentName: 'placeholder-value',
+     *     parentName:
+     *       'reservations/my-reservation/reservationBlocks/my-reservationBlock',
      *     // Project ID for this request.
      *     project: 'placeholder-value',
      *     // An optional request ID to identify requests. Specify a unique request ID so
@@ -197997,7 +200284,7 @@ export namespace compute_v1 {
           {
             url: (
               rootUrl +
-              '/compute/v1/projects/{project}/zones/{zone}/{parentName}/reservationSubBlocks/{reservationSubBlock}/reportFaulty'
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentName}/reservationSubBlocks/{reservationSubBlock}/reportFaulty'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -198163,7 +200450,7 @@ export namespace compute_v1 {
           {
             url: (
               rootUrl +
-              '/compute/v1/projects/{project}/zones/{zone}/{parentResource}/reservationSubBlocks/{resource}/setIamPolicy'
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentResource}/reservationSubBlocks/{resource}/setIamPolicy'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -198323,7 +200610,7 @@ export namespace compute_v1 {
           {
             url: (
               rootUrl +
-              '/compute/v1/projects/{project}/zones/{zone}/{parentResource}/reservationSubBlocks/{resource}/testIamPermissions'
+              '/compute/v1/projects/{project}/zones/{zone}/{+parentResource}/reservationSubBlocks/{resource}/testIamPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -238207,6 +240494,7 @@ export namespace compute_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
+     *   //   "params": {},
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
@@ -238377,6 +240665,7 @@ export namespace compute_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "params": {},
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
      *       //   "status": "my_status",
@@ -242147,6 +244436,7 @@ export namespace compute_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
+     *   //   "params": {},
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
      *   //   "stackType": "my_stackType",
@@ -242468,6 +244758,7 @@ export namespace compute_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "params": {},
      *       //   "region": "my_region",
      *       //   "selfLink": "my_selfLink",
      *       //   "stackType": "my_stackType",
@@ -244065,6 +246356,7 @@ export namespace compute_v1 {
      *   //   "labels": {},
      *   //   "localTrafficSelector": [],
      *   //   "name": "my_name",
+     *   //   "params": {},
      *   //   "peerExternalGateway": "my_peerExternalGateway",
      *   //   "peerExternalGatewayInterface": 0,
      *   //   "peerGcpGateway": "my_peerGcpGateway",
@@ -244246,6 +246538,7 @@ export namespace compute_v1 {
      *       //   "labels": {},
      *       //   "localTrafficSelector": [],
      *       //   "name": "my_name",
+     *       //   "params": {},
      *       //   "peerExternalGateway": "my_peerExternalGateway",
      *       //   "peerExternalGatewayInterface": 0,
      *       //   "peerGcpGateway": "my_peerGcpGateway",

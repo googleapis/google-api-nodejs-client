@@ -758,7 +758,7 @@
       }
     }
   },
-  "revision": "20250811",
+  "revision": "20260223",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "AdSource": {
@@ -1677,7 +1677,7 @@
           "type": "array"
         },
         "format": {
-          "description": "Ad format targeted by this mediation group. Examples: \"banner\", \"native\".",
+          "description": "Ad format targeted by this mediation group. Examples: \"BANNER\", \"NATIVE\".",
           "type": "string"
         },
         "idfaTargeting": {

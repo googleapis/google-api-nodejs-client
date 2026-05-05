@@ -129,6 +129,19 @@ export namespace firebasedataconnect_v1beta {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Client caching settings of a connector.
+   */
+  export interface Schema$ClientCache {
+    /**
+     * Optional. A field that, if true, means that responses served by this connector will include entityIds in GraphQL response extensions. This helps the client SDK cache responses in an improved way, known as "normalized caching", if caching is enabled on the client. Each entityId is a stable key based on primary key values. Therefore, this field should only be set to true if the primary keys of accessed tables do not contain sensitive information.
+     */
+    entityIdIncluded?: boolean | null;
+    /**
+     * Optional. A field that, if true, enables stricter validation on the connector source code to make sure the operation response shapes are suitable for client-side caching. This can include additional errors and warnings. For example, using the same alias for different fields is disallowed, as it may cause conflicts or confusion with normalized caching. (This field is off by default for compatibility, but enabling it is highly recommended to catch common caching pitfalls.)
+     */
+    strictValidationEnabled?: boolean | null;
+  }
+  /**
    * Settings for CloudSQL instance configuration.
    */
   export interface Schema$CloudSqlInstance {
@@ -145,6 +158,10 @@ export namespace firebasedataconnect_v1beta {
      * Optional. Stores small amounts of arbitrary data.
      */
     annotations?: {[key: string]: string} | null;
+    /**
+     * Optional. The client cache settings of the connector.
+     */
+    clientCache?: Schema$ClientCache;
     /**
      * Output only. [Output only] Create time stamp.
      */
@@ -181,6 +198,27 @@ export namespace firebasedataconnect_v1beta {
      * Output only. [Output only] Update time stamp.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Data Connect specific properties for a path under response.data.
+   */
+  export interface Schema$DataConnectProperties {
+    /**
+     * A single Entity ID. Set if the path points to a single entity.
+     */
+    entityId?: string | null;
+    /**
+     * A list of Entity IDs. Set if the path points to an array of entities. An ID is present for each element of the array at the corresponding index.
+     */
+    entityIds?: string[] | null;
+    /**
+     * The server-suggested duration before data under path is considered stale.
+     */
+    maxAge?: string | null;
+    /**
+     * The path under response.data where the rest of the fields apply. Each element may be a string (field name) or number (array index). The root of response.data is denoted by the empty list `[]`.
+     */
+    path?: any[] | null;
   }
   /**
    * A data source that backs Firebase Data Connect services.
@@ -224,6 +262,10 @@ export namespace firebasedataconnect_v1beta {
      * Errors of this response.
      */
     errors?: Schema$GraphqlError[];
+    /**
+     * Additional response information.
+     */
+    extensions?: Schema$GraphqlResponseExtensions;
   }
   /**
    * The ExecuteQuery request to Firebase Data Connect.
@@ -250,6 +292,10 @@ export namespace firebasedataconnect_v1beta {
      * Errors of this response.
      */
     errors?: Schema$GraphqlError[];
+    /**
+     * Additional response information.
+     */
+    extensions?: Schema$GraphqlResponseExtensions;
   }
   /**
    * Individual files.
@@ -349,9 +395,22 @@ export namespace firebasedataconnect_v1beta {
      */
     data?: {[key: string]: any} | null;
     /**
-     * Errors of this response. If the data entry in the response is not present, the errors entry must be present. It conforms to https://spec.graphql.org/draft/#sec-Errors.
+     * Errors of this response. If the data entry in the response is not present, the errors entry must be present. It conforms to https://spec.graphql.org/draft/#sec-Errors .
      */
     errors?: Schema$GraphqlError[];
+    /**
+     * Additional response information. It conforms to https://spec.graphql.org/draft/#sec-Extensions .
+     */
+    extensions?: Schema$GraphqlResponseExtensions;
+  }
+  /**
+   * GraphqlResponseExtensions contains additional information of `GraphqlResponse` or `ExecuteQueryResponse`.
+   */
+  export interface Schema$GraphqlResponseExtensions {
+    /**
+     * Data Connect specific GraphQL extension, a list of paths and properties.
+     */
+    dataConnect?: Schema$DataConnectProperties[];
   }
   /**
    * Settings for HTTP GraphQL server webhook.
@@ -901,7 +960,7 @@ export namespace firebasedataconnect_v1beta {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -2074,7 +2133,8 @@ export namespace firebasedataconnect_v1beta {
      *   // Example response
      *   // {
      *   //   "data": {},
-     *   //   "errors": []
+     *   //   "errors": [],
+     *   //   "extensions": {}
      *   // }
      * }
      *
@@ -2228,7 +2288,8 @@ export namespace firebasedataconnect_v1beta {
      *   // Example response
      *   // {
      *   //   "data": {},
-     *   //   "errors": []
+     *   //   "errors": [],
+     *   //   "extensions": {}
      *   // }
      * }
      *
@@ -2525,7 +2586,8 @@ export namespace firebasedataconnect_v1beta {
      *   // Example response
      *   // {
      *   //   "data": {},
-     *   //   "errors": []
+     *   //   "errors": [],
+     *   //   "extensions": {}
      *   // }
      * }
      *
@@ -3132,6 +3194,7 @@ export namespace firebasedataconnect_v1beta {
      *         // request body parameters
      *         // {
      *         //   "annotations": {},
+     *         //   "clientCache": {},
      *         //   "createTime": "my_createTime",
      *         //   "displayName": "my_displayName",
      *         //   "etag": "my_etag",
@@ -3455,7 +3518,8 @@ export namespace firebasedataconnect_v1beta {
      *   // Example response
      *   // {
      *   //   "data": {},
-     *   //   "errors": []
+     *   //   "errors": [],
+     *   //   "extensions": {}
      *   // }
      * }
      *
@@ -3611,7 +3675,8 @@ export namespace firebasedataconnect_v1beta {
      *   // Example response
      *   // {
      *   //   "data": {},
-     *   //   "errors": []
+     *   //   "errors": [],
+     *   //   "extensions": {}
      *   // }
      * }
      *
@@ -3756,6 +3821,7 @@ export namespace firebasedataconnect_v1beta {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "clientCache": {},
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
@@ -3914,7 +3980,8 @@ export namespace firebasedataconnect_v1beta {
      *   // Example response
      *   // {
      *   //   "data": {},
-     *   //   "errors": []
+     *   //   "errors": [],
+     *   //   "extensions": {}
      *   // }
      * }
      *
@@ -4069,7 +4136,8 @@ export namespace firebasedataconnect_v1beta {
      *   // Example response
      *   // {
      *   //   "data": {},
-     *   //   "errors": []
+     *   //   "errors": [],
+     *   //   "extensions": {}
      *   // }
      * }
      *
@@ -4372,6 +4440,7 @@ export namespace firebasedataconnect_v1beta {
      *         // request body parameters
      *         // {
      *         //   "annotations": {},
+     *         //   "clientCache": {},
      *         //   "createTime": "my_createTime",
      *         //   "displayName": "my_displayName",
      *         //   "etag": "my_etag",

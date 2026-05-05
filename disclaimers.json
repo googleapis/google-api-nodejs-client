@@ -172,10 +172,6 @@
     "package": "@google-cloud/dataproc-metastore"
   },
   {
-    "api": "datastore",
-    "package": "@google-cloud/datastore"
-  },
-  {
     "api": "datastream",
     "package": "@google-cloud/datastream"
   },
@@ -248,10 +244,6 @@
     "package": "@google-cloud/gke-hub"
   },
   {
-    "api": "bigquery",
-    "package": "@google-cloud/bigquery"
-  },
-  {
     "api": "bigqueryconnection",
     "package": "@google-cloud/bigquery-connection"
   },
@@ -322,10 +314,6 @@
   {
     "api": "logging",
     "package": "@google-cloud/logging"
-  },
-  {
-    "api": "logging",
-    "package": "@google-cloud/logging-bunyan"
   },
   {
     "api": "logging",
@@ -442,10 +430,6 @@
   {
     "api": "policysimulator",
     "package": "@google-cloud/policysimulator"
-  },
-  {
-    "api": "cloudprofiler",
-    "package": "@google-cloud/profiler"
   },
   {
     "api": "pubsub",

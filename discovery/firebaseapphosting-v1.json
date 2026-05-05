@@ -1106,7 +1106,7 @@
       }
     }
   },
-  "revision": "20260129",
+  "revision": "20260219",
   "rootUrl": "https://firebaseapphosting.googleapis.com/",
   "schemas": {
     "ArchiveSource": {
@@ -1115,7 +1115,8 @@
       "properties": {
         "author": {
           "$ref": "SourceUserMetadata",
-          "description": "Optional. The author contained in the metadata of a version control change."
+          "deprecated": true,
+          "description": "Optional. Deprecated: Not used. The author contained in the metadata of a version control change."
         },
         "description": {
           "description": "Optional. An optional message that describes the uploaded version of the source code.",
@@ -1126,7 +1127,7 @@
           "type": "string"
         },
         "rootDirectory": {
-          "description": "Optional. Relative path in the archive.",
+          "description": "Optional. The directory relative to the root of the archive to use as the root for the deployed web app. Defaults to use the root of the repository if not provided. If deploying a [monorepo](https://firebase.google.com/docs/app-hosting/monorepos), this should be the directory that contains the `package.json` or `apphosting.yaml` file.",
           "type": "string"
         },
         "userStorageUri": {
@@ -1400,7 +1401,7 @@
           "type": "string"
         },
         "rootDirectory": {
-          "description": "Optional. If `repository` is provided, the directory relative to the root of the repository to use as the root for the deployed web app.",
+          "description": "Optional. If `repository` is provided, the directory relative to the root of the repository to use as the root for the deployed web app. Defaults to use the root of the repository if not provided. If deploying a [monorepo](https://firebase.google.com/docs/app-hosting/monorepos), this should be the directory that contains the `package.json` or `apphosting.yaml` file.",
           "type": "string"
         }
       },
@@ -1444,6 +1445,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "repository": {
+          "description": "Output only. The resource name for the Developer Connect [`gitRepositoryLink`](https://cloud.google.com/developer-connect/docs/api/reference/rest/v1/projects.locations.connections.gitRepositoryLinks) used for this build, in the format: `projects/{project}/locations/{location}/connections/{connection}/gitRepositoryLinks/{repositoryLink}`",
+          "readOnly": true,
+          "type": "string"
+        },
         "uri": {
           "description": "Output only. A URI linking to the codebase on an hosting provider's website. May not be valid if the commit has been rebased or force-pushed out of existence in the linked repository.",
           "readOnly": true,
@@ -1465,7 +1471,7 @@
           "type": "array"
         },
         "env": {
-          "description": "Optional. Supplied environment variables for a specific build. Provided at Build creation time and immutable afterwards. This field is only applicable for Builds using a build image - (e.g., ContainerSource or ArchiveSource with locally_build_source) Attempts to set this for other build types will result in an error",
+          "description": "Optional. Supplied environment variables for a specific build. Provided at Build creation time and immutable afterwards. This field is only applicable for Builds using a build image - (e.g., ContainerSource or ArchiveSource with locally_built_source) Attempts to set this for other build types will result in an error",
           "items": {
             "$ref": "EnvironmentVariable"
           },
@@ -2561,7 +2567,7 @@
       "type": "object"
     },
     "RunConfig": {
-      "description": "Additional configuration to apply to the Cloud Run [`service`](https://cloud.google.com/run/docs/reference/rest/v2/projects.locations.services#resource:-service).",
+      "description": "Configuration applied to the Cloud Run [`service`](https://cloud.google.com/run/docs/reference/rest/v2/projects.locations.services#resource:-service).",
       "id": "RunConfig",
       "properties": {
         "concurrency": {
@@ -2615,21 +2621,25 @@
       "type": "object"
     },
     "SourceUserMetadata": {
-      "description": "Metadata for the user who started the build.",
+      "deprecated": true,
+      "description": "Deprecated: Not used. Metadata for the user who started the build.",
       "id": "SourceUserMetadata",
       "properties": {
         "displayName": {
-          "description": "Output only. The user-chosen displayname. May be empty.",
+          "deprecated": true,
+          "description": "Output only. Deprecated: Not used. The user-chosen displayname. May be empty.",
           "readOnly": true,
           "type": "string"
         },
         "email": {
-          "description": "Output only. The account email linked to the EUC that created the build. May be a service account or other robot account.",
+          "deprecated": true,
+          "description": "Output only. Deprecated: Not used. The account email linked to the EUC that created the build. May be a service account or other robot account.",
           "readOnly": true,
           "type": "string"
         },
         "imageUri": {
-          "description": "Output only. The URI of a profile photo associated with the user who created the build.",
+          "deprecated": true,
+          "description": "Output only. Deprecated: Not used. The URI of a profile photo associated with the user who created the build.",
           "readOnly": true,
           "type": "string"
         }

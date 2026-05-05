@@ -1281,11 +1281,11 @@ export namespace developerconnect_v1 {
     uri?: string | null;
   }
   /**
-   * Configuration for connections to SSM instance
+   * Configuration for connections to Secure Source Manager instance
    */
   export interface Schema$SecureSourceManagerInstanceConfig {
     /**
-     * Required. Immutable. SSM instance resource, formatted as `projects/x/locations/x/instances/x`
+     * Required. Immutable. Secure Source Manager instance resource, formatted as `projects/x/locations/x/instances/x`
      */
     instance?: string | null;
   }

@@ -489,6 +489,10 @@ export namespace saasservicemgmt_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * Output only. The timestamp when the resource was marked for deletion (deletion is an asynchronous operation).
+     */
+    deleteTime?: string | null;
+    /**
      * Optional. Output only. Output only snapshot of the effective unit filter at Rollout start time. Contains a CEL(https://github.com/google/cel-spec) expression consisting of a conjunction of Rollout.unit_filter and RolloutKind.unit_filter. This field captures the filter applied by the Rollout to determine the Unit population. If the associated RolloutKind's unit_filter is modified after the rollout is started, it will not be updated here.
      */
     effectiveUnitFilter?: string | null;
@@ -636,7 +640,7 @@ export namespace saasservicemgmt_v1beta1 {
    */
   export interface Schema$RolloutStats {
     /**
-     * Output only. A breakdown of the progress of operations triggered by the rollout. Provides a count of Operations by their state. This can be used to determine the number of units which have been updated, or are scheduled to be updated. There will be at most one entry per group. Possible values for operation groups are: - "SCHEDULED" - "PENDING" - "RUNNING" - "SUCCEEDED" - "FAILED" - "CANCELLED"
+     * Optional. Output only. Unordered list. A breakdown of the progress of operations triggered by the rollout. Provides a count of Operations by their state. This can be used to determine the number of units which have been updated, or are scheduled to be updated. There will be at most one entry per group. Possible values for operation groups are: - "SCHEDULED" - "PENDING" - "RUNNING" - "SUCCEEDED" - "FAILED" - "CANCELLED"
      */
     operationsByState?: Schema$Aggregate[];
   }
@@ -942,7 +946,7 @@ export namespace saasservicemgmt_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * UnitOperation encapsulates the intent of changing/interacting with the service component represented by the specific Unit. Multiple UnitOperations can be created (requested) and scheduled in the future, however only one will be allowed to execute at a time (that can change in the future for non-mutating operations). UnitOperations allow different actors interacting with the same unit to focus only on the change they have requested. This is a base object that contains the common fields in all unit operations. Next: 19
+   * UnitOperation encapsulates the intent of changing/interacting with the service component represented by the specific Unit. Multiple UnitOperations can be created (requested) and scheduled in the future, however only one will be allowed to execute at a time (that can change in the future for non-mutating operations). UnitOperations allow different actors interacting with the same unit to focus only on the change they have requested. This is a base object that contains the common fields in all unit operations. Next: 22
    */
   export interface Schema$UnitOperation {
     /**
@@ -961,6 +965,10 @@ export namespace saasservicemgmt_v1beta1 {
      * Output only. The timestamp when the resource was created.
      */
     createTime?: string | null;
+    /**
+     * Output only. The timestamp when the resource was marked for deletion (deletion is an asynchronous operation).
+     */
+    deleteTime?: string | null;
     deprovision?: Schema$Deprovision;
     /**
      * Optional. Output only. The engine state for on-going deployment engine operation(s). This field is opaque for external usage.
@@ -1265,7 +1273,7 @@ export namespace saasservicemgmt_v1beta1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -3266,6 +3274,7 @@ export namespace saasservicemgmt_v1beta1 {
      *       //   "annotations": {},
      *       //   "control": {},
      *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
      *       //   "effectiveUnitFilter": "my_effectiveUnitFilter",
      *       //   "endTime": "my_endTime",
      *       //   "etag": "my_etag",
@@ -3294,6 +3303,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "annotations": {},
      *   //   "control": {},
      *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
      *   //   "effectiveUnitFilter": "my_effectiveUnitFilter",
      *   //   "endTime": "my_endTime",
      *   //   "etag": "my_etag",
@@ -3591,6 +3601,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "annotations": {},
      *   //   "control": {},
      *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
      *   //   "effectiveUnitFilter": "my_effectiveUnitFilter",
      *   //   "endTime": "my_endTime",
      *   //   "etag": "my_etag",
@@ -3902,6 +3913,7 @@ export namespace saasservicemgmt_v1beta1 {
      *       //   "annotations": {},
      *       //   "control": {},
      *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
      *       //   "effectiveUnitFilter": "my_effectiveUnitFilter",
      *       //   "endTime": "my_endTime",
      *       //   "etag": "my_etag",
@@ -3930,6 +3942,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "annotations": {},
      *   //   "control": {},
      *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
      *   //   "effectiveUnitFilter": "my_effectiveUnitFilter",
      *   //   "endTime": "my_endTime",
      *   //   "etag": "my_etag",
@@ -6793,6 +6806,7 @@ export namespace saasservicemgmt_v1beta1 {
      *       //   "cancel": false,
      *       //   "conditions": [],
      *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
      *       //   "deprovision": {},
      *       //   "engineState": "my_engineState",
      *       //   "errorCategory": "my_errorCategory",
@@ -6819,6 +6833,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "cancel": false,
      *   //   "conditions": [],
      *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
      *   //   "deprovision": {},
      *   //   "engineState": "my_engineState",
      *   //   "errorCategory": "my_errorCategory",
@@ -7114,6 +7129,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "cancel": false,
      *   //   "conditions": [],
      *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
      *   //   "deprovision": {},
      *   //   "engineState": "my_engineState",
      *   //   "errorCategory": "my_errorCategory",
@@ -7425,6 +7441,7 @@ export namespace saasservicemgmt_v1beta1 {
      *       //   "cancel": false,
      *       //   "conditions": [],
      *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
      *       //   "deprovision": {},
      *       //   "engineState": "my_engineState",
      *       //   "errorCategory": "my_errorCategory",
@@ -7451,6 +7468,7 @@ export namespace saasservicemgmt_v1beta1 {
      *   //   "cancel": false,
      *   //   "conditions": [],
      *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
      *   //   "deprovision": {},
      *   //   "engineState": "my_engineState",
      *   //   "errorCategory": "my_errorCategory",

@@ -126,6 +126,11 @@
               "location": "query",
               "type": "string"
             },
+            "applicationInfoFilter": {
+              "description": "Optional. Used to filter on the `oAuthClientId` field present in [`ApplicationInfo`](#applicationinfo) message. **Usage** ``` GET...&applicationInfoFilter=oAuthClientId=\"clientId\" GET...&applicationInfoFilter=oAuthClientId=%22clientId%22 ```",
+              "location": "query",
+              "type": "string"
+            },
             "applicationName": {
               "description": "Application name for which the events are to be retrieved.",
               "enum": [
@@ -251,6 +256,11 @@
               "minimum": "1",
               "type": "integer"
             },
+            "networkInfoFilter": {
+              "description": "Optional. Used to filter on the `regionCode` field present in [`NetworkInfo`](#networkinfo) message. **Usage** ``` GET...&networkInfoFilter=regionCode=\"IN\" GET...&networkInfoFilter=regionCode=%22IN%22 ```",
+              "location": "query",
+              "type": "string"
+            },
             "orgUnitID": {
               "default": "",
               "description": "ID of the organizational unit to report on. Activity records will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results.",
@@ -272,6 +282,11 @@
               "description": "Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from `startTime` until `endTime`. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error. For Gmail requests, `startTime` and `endTime` must be provided and the difference must not be greater than 30 days.",
               "location": "query",
               "pattern": "(\\d\\d\\d\\d)-(\\d\\d)-(\\d\\d)T(\\d\\d):(\\d\\d):(\\d\\d)(?:\\.(\\d+))?(?:(Z)|([-+])(\\d\\d):(\\d\\d))",
+              "type": "string"
+            },
+            "statusFilter": {
+              "description": "Optional. Used to filter on the `statusCode` field present in [`Status`](#status) message. **Usage** ``` GET...&statusFilter=statusCode=\"200\" GET...&statusFilter=statusCode=%22200%22 ```",
+              "location": "query",
               "type": "string"
             },
             "userKey": {
@@ -666,7 +681,7 @@
       }
     }
   },
-  "revision": "20251202",
+  "revision": "20260223",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {
@@ -829,6 +844,10 @@
                 },
                 "type": "array"
               },
+              "status": {
+                "$ref": "ActivityEventsStatus",
+                "description": "Status of the event. Note: Not all events have status."
+              },
               "type": {
                 "description": "Type of event. The Google Workspace service or feature that an administrator changes is identified in the `type` property which identifies an event using the `eventName` property. For a full list of the API's `type` categories, see the list of event names for various applications above in `applicationName`.",
                 "type": "string"
@@ -885,6 +904,30 @@
             "$ref": "ResourceDetails"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ActivityEventsStatus": {
+      "description": "Status of the event. Note: Not all events have status.",
+      "id": "ActivityEventsStatus",
+      "properties": {
+        "errorCode": {
+          "description": "Error code of the event. Note: Field can be empty.",
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "Error message of the event. Note: Field can be empty.",
+          "type": "string"
+        },
+        "eventStatus": {
+          "description": "Status of the event. Possible values if not empty: - UNKNOWN_EVENT_STATUS - SUCCEEDED - SUCCEEDED_WITH_WARNINGS - FAILED - SKIPPED ",
+          "type": "string"
+        },
+        "httpStatusCode": {
+          "description": "Status code of the event. Note: Field can be empty.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"

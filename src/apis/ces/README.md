@@ -1,27 +1,18 @@
 <img src="https://avatars0.githubusercontent.com/u/1342004?v=3&s=96" alt="Google Inc. logo" title="Google" align="right" height="96" width="96"/>
 
-# lifesciences
+# ces
 
-> Cloud Life Sciences is a suite of services and tools for managing, processing, and transforming life sciences data.
-
-## Support status
-**Note**: Google provides multiple libraries for this service. This library is in
-maintenance mode, and will continue to be made available for users who have
-existing applications. If you're building a new application, or modernizing a
-legacy application, please use [@google-cloud/life-sciences](https://www.npmjs.com/package/@google-cloud/life-sciences) instead.
-The [@google-cloud/life-sciences](https://www.npmjs.com/package/@google-cloud/life-sciences) library is faster, easier to use, and better maintained.
-
-To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+> 
 
 ## Installation
 
 ```sh
-$ npm install @googleapis/lifesciences
+$ npm install @googleapis/ces
 ```
 
 ## Usage
 All documentation and usage information can be found on [GitHub](https://github.com/googleapis/google-api-nodejs-client).
-Information on classes can be found in [Googleapis Documentation](https://googleapis.dev/nodejs/googleapis/latest/lifesciences/classes/Lifesciences.html).
+Information on classes can be found in [Googleapis Documentation](https://googleapis.dev/nodejs/googleapis/latest/ces/classes/Ces.html).
 
 ## License
 This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/googleapis/google-api-nodejs-client/blob/main/LICENSE).

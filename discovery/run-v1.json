@@ -4,6 +4,12 @@
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
+        },
+        "https://www.googleapis.com/auth/run": {
+          "description": "See, edit, configure, and delete your Google Cloud Run data and see the email address for your Google Account"
+        },
+        "https://www.googleapis.com/auth/run.readonly": {
+          "description": "See your Google Cloud Run data and the email address of your Google Account"
         }
       }
     }
@@ -65,6 +71,11 @@
       "description": "Locational Endpoint",
       "endpointUrl": "https://asia-southeast2-run.googleapis.com/",
       "location": "asia-southeast2"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-southeast3-run.googleapis.com/",
+      "location": "asia-southeast3"
     },
     {
       "description": "Locational Endpoint",
@@ -295,6 +306,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://run.asia-southeast2.rep.googleapis.com/",
       "location": "asia-southeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://run.asia-southeast3.rep.googleapis.com/",
+      "location": "asia-southeast3"
     },
     {
       "description": "Regional Endpoint",
@@ -604,7 +620,9 @@
                 "$ref": "ListAuthorizedDomainsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             }
           }
@@ -633,7 +651,9 @@
                 "$ref": "Configuration"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             },
             "list": {
@@ -694,7 +714,9 @@
                 "$ref": "ListConfigurationsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             }
           }
@@ -731,7 +753,8 @@
                 "$ref": "DomainMapping"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             },
             "delete": {
@@ -776,7 +799,8 @@
                 "$ref": "Status"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             },
             "get": {
@@ -801,7 +825,9 @@
                 "$ref": "DomainMapping"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             },
             "list": {
@@ -862,7 +888,9 @@
                 "$ref": "ListDomainMappingsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             }
           }
@@ -894,7 +922,8 @@
                 "$ref": "Execution"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             },
             "delete": {
@@ -934,7 +963,8 @@
                 "$ref": "Status"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             },
             "get": {
@@ -959,7 +989,9 @@
                 "$ref": "Execution"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             },
             "list": {
@@ -1020,7 +1052,9 @@
                 "$ref": "ListExecutionsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             }
           }
@@ -1052,7 +1086,8 @@
                 "$ref": "Instance"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             },
             "delete": {
@@ -1092,7 +1127,8 @@
                 "$ref": "Status"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             },
             "get": {
@@ -1117,7 +1153,9 @@
                 "$ref": "Instance"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             },
             "list": {
@@ -1178,7 +1216,9 @@
                 "$ref": "ListInstancesResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             },
             "start": {
@@ -1206,7 +1246,8 @@
                 "$ref": "Instance"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             },
             "stop": {
@@ -1234,7 +1275,8 @@
                 "$ref": "Instance"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             }
           }
@@ -1266,7 +1308,8 @@
                 "$ref": "Job"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             },
             "delete": {
@@ -1306,7 +1349,8 @@
                 "$ref": "Status"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             },
             "get": {
@@ -1331,7 +1375,9 @@
                 "$ref": "Job"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             },
             "list": {
@@ -1392,7 +1438,9 @@
                 "$ref": "ListJobsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             },
             "replaceJob": {
@@ -1420,7 +1468,8 @@
                 "$ref": "Job"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             },
             "run": {
@@ -1448,7 +1497,8 @@
                 "$ref": "Execution"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             }
           }
@@ -1497,7 +1547,8 @@
                 "$ref": "Status"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             },
             "get": {
@@ -1522,7 +1573,9 @@
                 "$ref": "Revision"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             },
             "list": {
@@ -1583,7 +1636,9 @@
                 "$ref": "ListRevisionsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             }
           }
@@ -1612,7 +1667,9 @@
                 "$ref": "Route"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             },
             "list": {
@@ -1673,7 +1730,9 @@
                 "$ref": "ListRoutesResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             }
           }
@@ -1710,7 +1769,8 @@
                 "$ref": "Service"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             },
             "delete": {
@@ -1755,7 +1815,8 @@
                 "$ref": "Status"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             },
             "get": {
@@ -1780,7 +1841,9 @@
                 "$ref": "Service"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             },
             "list": {
@@ -1841,7 +1904,9 @@
                 "$ref": "ListServicesResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             },
             "replaceService": {
@@ -1874,7 +1939,8 @@
                 "$ref": "Service"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             }
           }
@@ -1903,7 +1969,9 @@
                 "$ref": "Task"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             },
             "list": {
@@ -1964,7 +2032,9 @@
                 "$ref": "ListTasksResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             }
           }
@@ -2001,7 +2071,8 @@
                 "$ref": "WorkerPool"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             },
             "delete": {
@@ -2031,7 +2102,8 @@
                 "$ref": "Status"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             },
             "get": {
@@ -2056,7 +2128,9 @@
                 "$ref": "WorkerPool"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             },
             "list": {
@@ -2097,7 +2171,9 @@
                 "$ref": "ListWorkerPoolsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             },
             "replaceWorkerPool": {
@@ -2130,7 +2206,8 @@
                 "$ref": "WorkerPool"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run"
               ]
             }
           }
@@ -2174,7 +2251,9 @@
                 "$ref": "ListAuthorizedDomainsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             }
           }
@@ -2182,7 +2261,7 @@
         "locations": {
           "methods": {
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "run.projects.locations.list",
@@ -2225,7 +2304,9 @@
                 "$ref": "ListLocationsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/run",
+                "https://www.googleapis.com/auth/run.readonly"
               ]
             }
           },
@@ -2265,7 +2346,9 @@
                     "$ref": "ListAuthorizedDomainsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 }
               }
@@ -2294,7 +2377,9 @@
                     "$ref": "Configuration"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "list": {
@@ -2355,7 +2440,9 @@
                     "$ref": "ListConfigurationsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 }
               }
@@ -2392,7 +2479,8 @@
                     "$ref": "DomainMapping"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "delete": {
@@ -2437,7 +2525,8 @@
                     "$ref": "Status"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "get": {
@@ -2462,7 +2551,9 @@
                     "$ref": "DomainMapping"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "list": {
@@ -2523,7 +2614,9 @@
                     "$ref": "ListDomainMappingsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 }
               }
@@ -2558,7 +2651,9 @@
                     "$ref": "Policy"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "setIamPolicy": {
@@ -2586,7 +2681,8 @@
                     "$ref": "Policy"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "testIamPermissions": {
@@ -2614,7 +2710,9 @@
                     "$ref": "TestIamPermissionsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 }
               }
@@ -2649,7 +2747,9 @@
                     "$ref": "Policy"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "setIamPolicy": {
@@ -2677,7 +2777,8 @@
                     "$ref": "Policy"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "testIamPermissions": {
@@ -2705,7 +2806,9 @@
                     "$ref": "TestIamPermissionsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 }
               }
@@ -2734,7 +2837,8 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "get": {
@@ -2759,7 +2863,9 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "list": {
@@ -2805,7 +2911,9 @@
                     "$ref": "GoogleLongrunningListOperationsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "wait": {
@@ -2833,7 +2941,9 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 }
               }
@@ -2882,7 +2992,8 @@
                     "$ref": "Status"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "get": {
@@ -2907,7 +3018,9 @@
                     "$ref": "Revision"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "list": {
@@ -2968,7 +3081,9 @@
                     "$ref": "ListRevisionsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 }
               }
@@ -2997,7 +3112,9 @@
                     "$ref": "Route"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "list": {
@@ -3058,7 +3175,9 @@
                     "$ref": "ListRoutesResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 }
               }
@@ -3095,7 +3214,8 @@
                     "$ref": "Service"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "delete": {
@@ -3140,7 +3260,8 @@
                     "$ref": "Status"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "get": {
@@ -3165,7 +3286,9 @@
                     "$ref": "Service"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "getIamPolicy": {
@@ -3196,7 +3319,9 @@
                     "$ref": "Policy"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "list": {
@@ -3257,7 +3382,9 @@
                     "$ref": "ListServicesResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "replaceService": {
@@ -3290,7 +3417,8 @@
                     "$ref": "Service"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "setIamPolicy": {
@@ -3318,7 +3446,8 @@
                     "$ref": "Policy"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "testIamPermissions": {
@@ -3346,7 +3475,9 @@
                     "$ref": "TestIamPermissionsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 }
               }
@@ -3381,7 +3512,9 @@
                     "$ref": "Policy"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 },
                 "setIamPolicy": {
@@ -3409,7 +3542,8 @@
                     "$ref": "Policy"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run"
                   ]
                 },
                 "testIamPermissions": {
@@ -3437,7 +3571,9 @@
                     "$ref": "TestIamPermissionsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/run",
+                    "https://www.googleapis.com/auth/run.readonly"
                   ]
                 }
               }
@@ -3447,7 +3583,7 @@
       }
     }
   },
-  "revision": "20260123",
+  "revision": "20260220",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -5958,6 +6094,11 @@
           "description": "Optional. Email address of the IAM service account associated with the Instance. The service account represents the identity of the running container, and determines what permissions the Instance has. If not provided, the Instance will use the project's default service account.",
           "type": "string"
         },
+        "timeout": {
+          "description": "Optional. Duration the instance may be active before the system will shut it down.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "volumes": {
           "description": "Optional. List of volumes that can be mounted by containers belonging to the Instance.",
           "items": {
@@ -6009,6 +6150,14 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "urls": {
+          "description": "Output only. All URLs serving traffic for this Instance.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -6565,7 +6714,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/base-images`: Service, Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/build-base-image`: Service. * `run.googleapis.com/build-enable-automatic-updates`: Service. * `run.googleapis.com/build-environment-variables`: Service. * `run.googleapis.com/build-function-target`: Service, Revision. * `run.googleapis.com/build-id`: Service, Revision. * `run.googleapis.com/build-image-uri`: Service. * `run.googleapis.com/build-name`: Service. * `run.googleapis.com/build-service-account`: Service. * `run.googleapis.com/build-source-location`: Service, Revision. * `run.googleapis.com/build-worker-pool`: Service. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution. * `run.googleapis.com/container-dependencies`: Revision . * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/default-url-disabled`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/gpu-zonal-redundancy-disabled`: Revision. * `run.googleapis.com/health-check-disabled`: Revision. * `run.googleapis.com/ingress`: Service. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/minScale`: Service. * `run.googleapis.com/maxScale`: Service. * `run.googleapis.com/manualInstanceCount`: Service. * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. `run.googleapis.com/scalingMode`: Service. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution.",
+          "description": "Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/base-images`: Service, Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/build-base-image`: Service. * `run.googleapis.com/build-enable-automatic-updates`: Service. * `run.googleapis.com/build-environment-variables`: Service. * `run.googleapis.com/build-function-target`: Service, Revision. * `run.googleapis.com/build-id`: Service, Revision. * `run.googleapis.com/build-image-uri`: Service. * `run.googleapis.com/build-name`: Service. * `run.googleapis.com/build-service-account`: Service. * `run.googleapis.com/build-source-location`: Service, Revision. * `run.googleapis.com/build-worker-pool`: Service. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution. * `run.googleapis.com/container-dependencies`: Revision . * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/default-url-disabled`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/gpu-zonal-redundancy-disabled`: Revision. * `run.googleapis.com/health-check-disabled`: Revision. * `run.googleapis.com/ingress`: Service, Instance. * `run.googleapis.com/invoker-iam-disabled`: Service, Instance. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/minScale`: Service. * `run.googleapis.com/maxScale`: Service. * `run.googleapis.com/manualInstanceCount`: Service. * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. `run.googleapis.com/scalingMode`: Service. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution.",
           "type": "object"
         },
         "clusterName": {
@@ -6595,7 +6744,7 @@
           "type": "array"
         },
         "generateName": {
-          "description": "Not supported by Cloud Run",
+          "description": "Optional. A prefix for the resource name if not provided in the create request. Must be less than 31 characters to allow for a random suffix.",
           "type": "string"
         },
         "generation": {
@@ -6611,7 +6760,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Required. The name of the resource. Name is required when creating top-level resources (Service, Job), must be unique within a Cloud Run project/region, and cannot be changed once created.",
+          "description": "Optional. The name of the resource. A name for creating top-level resources (Service, Job, WorkerPool). Must be unique within a Cloud Run project/region, and cannot be changed once created. If omitted, a default name will be generated.",
           "type": "string"
         },
         "namespace": {
@@ -6827,7 +6976,7 @@
       "type": "object"
     },
     "Revision": {
-      "description": "Revision is an immutable snapshot of code and configuration. A revision references a container image. Revisions are created by updates to a Configuration. See also: https://github.com/knative/specs/blob/main/specs/serving/overview.md#revision",
+      "description": "Revision is an immutable snapshot of code and configuration. A revision references one or more container images. Revisions are created by updates to a Service.",
       "id": "Revision",
       "properties": {
         "apiVersion": {
@@ -6863,7 +7012,7 @@
           "type": "integer"
         },
         "containers": {
-          "description": "Required. Containers holds the list which define the units of execution for this Revision. In the context of a Revision, we disallow a number of fields on this Container, including: name and lifecycle.",
+          "description": "Required. Containers holds the list which define the units of execution for this Revision.",
           "items": {
             "$ref": "Container"
           },

@@ -682,7 +682,7 @@
       }
     }
   },
-  "revision": "20251013",
+  "revision": "20260209",
   "rootUrl": "https://iap.googleapis.com/",
   "schemas": {
     "AccessDeniedPageSettings": {
@@ -1098,6 +1098,19 @@
       "description": "Configuration for OAuth login&consent flow behavior as well as for OAuth Credentials.",
       "id": "OAuthSettings",
       "properties": {
+        "clientId": {
+          "description": "Optional. OAuth 2.0 client ID used in the OAuth flow to generate an access token. If this field is set, you can skip obtaining the OAuth credentials in this step: https://developers.google.com/identity/protocols/OAuth2?hl=en_US#1.-obtain-oauth-2.0-credentials-from-the-google-api-console. However, this could allow for client sharing. The risks of client sharing are outlined here: https://cloud.google.com/iap/docs/sharing-oauth-clients#risks.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "Optional. Input only. OAuth secret paired with client ID",
+          "type": "string"
+        },
+        "clientSecretSha256": {
+          "description": "Output only. OAuth secret sha256 paired with client ID",
+          "readOnly": true,
+          "type": "string"
+        },
         "loginHint": {
           "description": "Domain hint to send as hd=? parameter in OAuth request flow. Enables redirect to primary IDP by skipping Google's login screen. https://developers.google.com/identity/protocols/OpenIDConnect#hd-param Note: IAP does not verify that the id token's hd claim matches this value since access behavior is managed by IAM policies.",
           "type": "string"

@@ -218,7 +218,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$AddFilterViewRequest {
     /**
-     * The filter to add. The filterViewId field is optional; if one is not set, an id will be randomly generated. (It is an error to specify the ID of a filter that already exists.)
+     * The filter to add. The filterViewId field is optional. If one is not set, an ID will be randomly generated. (It is an error to specify the ID of a filter that already exists.)
      */
     filter?: Schema$FilterView;
   }
@@ -638,7 +638,7 @@ export namespace sheets_v4 {
     totalDataLabel?: Schema$DataLabel;
   }
   /**
-   * The default filter associated with a sheet.
+   * The default filter associated with a sheet. For more information, see [Manage data visibility with filters](https://developers.google.com/workspace/sheets/api/guides/filters).
    */
   export interface Schema$BasicFilter {
     /**
@@ -697,7 +697,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchClearValuesByDataFilterResponse {
     /**
-     * The ranges that were cleared, in [A1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell). If the requests are for an unbounded range or a ranger larger than the bounds of the sheet, this is the actual ranges that were cleared, bounded to the sheet's limits.
+     * The ranges that were cleared, in [A1 notation](https://developers.google.com/workspace/sheets/api/guides/concepts#cell). If the requests are for an unbounded range or a range larger than the bounds of the sheet, this is the actual ranges that were cleared, bounded to the sheet's limits.
      */
     clearedRanges?: string[] | null;
     /**
@@ -719,7 +719,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchClearValuesResponse {
     /**
-     * The ranges that were cleared, in A1 notation. If the requests are for an unbounded range or a ranger larger than the bounds of the sheet, this is the actual ranges that were cleared, bounded to the sheet's limits.
+     * The ranges that were cleared, in A1 notation. If the requests are for an unbounded range or a range larger than the bounds of the sheet, this is the actual ranges that were cleared, bounded to the sheet's limits.
      */
     clearedRanges?: string[] | null;
     /**
@@ -1533,7 +1533,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$ClearValuesResponse {
     /**
-     * The range (in A1 notation) that was cleared. (If the request was for an unbounded range or a ranger larger than the bounds of the sheet, this will be the actual range that was cleared, bounded to the sheet's limits.)
+     * The range (in A1 notation) that was cleared. (If the request was for an unbounded range or a range larger than the bounds of the sheet, this will be the actual range that was cleared, bounded to the sheet's limits.)
      */
     clearedRange?: string | null;
     /**
@@ -1692,7 +1692,7 @@ export namespace sheets_v4 {
     state?: string | null;
   }
   /**
-   * Filter that describes what data should be selected or returned from a request.
+   * Filter that describes what data should be selected or returned from a request. For more information, see [Read, write, and search metadata](https://developers.google.com/workspace/sheets/api/guides/metadata).
    */
   export interface Schema$DataFilter {
     /**
@@ -2215,7 +2215,7 @@ export namespace sheets_v4 {
     tableId?: string | null;
   }
   /**
-   * Developer metadata associated with a location or object in a spreadsheet. Developer metadata may be used to associate arbitrary data with various parts of a spreadsheet and will remain associated at those locations as they move around and the spreadsheet is edited. For example, if developer metadata is associated with row 5 and another row is then subsequently inserted above row 5, that original metadata will still be associated with the row it was first associated with (what is now row 6). If the associated object is deleted its metadata is deleted too.
+   * Developer metadata associated with a location or object in a spreadsheet. For more information, see [Read, write, and search metadata](https://developers.google.com/workspace/sheets/api/guides/metadata). Developer metadata may be used to associate arbitrary data with various parts of a spreadsheet and it will remain associated at those locations as they move around and the spreadsheet is edited. For example, if developer metadata is associated with row 5 and another row is then subsequently inserted above row 5, that original metadata is still associated with the row it was first associated with (what is now row 6). If the associated object is deleted then its metadata is deleted too.
    */
   export interface Schema$DeveloperMetadata {
     /**
@@ -2235,7 +2235,7 @@ export namespace sheets_v4 {
      */
     metadataValue?: string | null;
     /**
-     * The metadata visibility. Developer metadata must always have a visibility specified.
+     * The metadata visibility. Developer metadata must always have visibility specified.
      */
     visibility?: string | null;
   }
@@ -2244,7 +2244,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$DeveloperMetadataLocation {
     /**
-     * Represents the row or column when metadata is associated with a dimension. The specified DimensionRange must represent a single row or column; it cannot be unbounded or span multiple rows or columns.
+     * Represents the row or column when metadata is associated with a dimension. The specified DimensionRange must represent a single row or column. It cannot be unbounded or span multiple rows or columns.
      */
     dimensionRange?: Schema$DimensionRange;
     /**
@@ -2261,7 +2261,7 @@ export namespace sheets_v4 {
     spreadsheet?: boolean | null;
   }
   /**
-   * Selects DeveloperMetadata that matches all of the specified fields. For example, if only a metadata ID is specified this considers the DeveloperMetadata with that particular unique ID. If a metadata key is specified, this considers all developer metadata with that key. If a key, visibility, and location type are all specified, this considers all developer metadata with that key and visibility that are associated with a location of that type. In general, this selects all DeveloperMetadata that matches the intersection of all the specified fields; any field or combination of fields may be specified.
+   * Selects DeveloperMetadata that matches all of the specified fields. For example, if only a metadata ID is specified this considers the DeveloperMetadata with that particular unique ID. If a metadata key is specified, this considers all developer metadata with that key. If a key, visibility, and location type are all specified, this considers all developer metadata with that key and visibility that are associated with a location of that type. In general, this selects all DeveloperMetadata that match the intersection of all the specified fields; any field or combination of fields may be specified.
    */
   export interface Schema$DeveloperMetadataLookup {
     /**
@@ -2269,7 +2269,7 @@ export namespace sheets_v4 {
      */
     locationMatchingStrategy?: string | null;
     /**
-     * Limits the selected developer metadata to those entries which are associated with locations of the specified type. For example, when this field is specified as ROW this lookup only considers developer metadata associated on rows. If the field is left unspecified, all location types are considered. This field cannot be specified as SPREADSHEET when the locationMatchingStrategy is specified as INTERSECTING or when the metadataLocation is specified as a non-spreadsheet location: spreadsheet metadata cannot intersect any other developer metadata location. This field also must be left unspecified when the locationMatchingStrategy is specified as EXACT.
+     * Limits the selected developer metadata to those entries which are associated with locations of the specified type. For example, when this field is specified as ROW this lookup only considers developer metadata associated on rows. If the field is left unspecified, all location types are considered. This field cannot be specified as SPREADSHEET when the locationMatchingStrategy is specified as INTERSECTING or when the metadataLocation is specified as a non-spreadsheet location. Spreadsheet metadata cannot intersect any other developer metadata location. This field also must be left unspecified when the locationMatchingStrategy is specified as EXACT.
      */
     locationType?: string | null;
     /**
@@ -2511,11 +2511,11 @@ export namespace sheets_v4 {
     stringValue?: string | null;
   }
   /**
-   * Criteria for showing/hiding rows in a filter or filter view.
+   * Criteria for showing or hiding rows in a filter or filter view.
    */
   export interface Schema$FilterCriteria {
     /**
-     * A condition that must be true for values to be shown. (This does not override hidden_values -- if a value is listed there, it will still be hidden.)
+     * A condition that must be `true` for values to be shown. (This does not override hidden_values -- if a value is listed there, it will still be hidden.)
      */
     condition?: Schema$BooleanCondition;
     /**
@@ -2557,7 +2557,7 @@ export namespace sheets_v4 {
     filterCriteria?: Schema$FilterCriteria;
   }
   /**
-   * A filter view.
+   * A filter view. For more information, see [Manage data visibility with filters](https://developers.google.com/workspace/sheets/api/guides/filters).
    */
   export interface Schema$FilterView {
     /**
@@ -2565,7 +2565,7 @@ export namespace sheets_v4 {
      */
     criteria?: {[key: string]: Schema$FilterCriteria} | null;
     /**
-     * The filter criteria for showing/hiding values per column. Both criteria and filter_specs are populated in responses. If both fields are specified in an update request, this field takes precedence.
+     * The filter criteria for showing or hiding values per column. Both criteria and filter_specs are populated in responses. If both fields are specified in an update request, this field takes precedence.
      */
     filterSpecs?: Schema$FilterSpec[];
     /**
@@ -2573,11 +2573,11 @@ export namespace sheets_v4 {
      */
     filterViewId?: number | null;
     /**
-     * The named range this filter view is backed by, if any. When writing, only one of range or named_range_id or table_id may be set.
+     * The named range this filter view is backed by, if any. When writing, only one of range, named_range_id, or table_id may be set.
      */
     namedRangeId?: string | null;
     /**
-     * The range this filter view covers. When writing, only one of range or named_range_id or table_id may be set.
+     * The range this filter view covers. When writing, only one of range, named_range_id, or table_id may be set.
      */
     range?: Schema$GridRange;
     /**
@@ -2585,7 +2585,7 @@ export namespace sheets_v4 {
      */
     sortSpecs?: Schema$SortSpec[];
     /**
-     * The table this filter view is backed by, if any. When writing, only one of range or named_range_id or table_id may be set.
+     * The table this filter view is backed by, if any. When writing, only one of range, named_range_id, or table_id may be set.
      */
     tableId?: string | null;
     /**
@@ -5716,7 +5716,7 @@ export namespace sheets_v4 {
     }
 
     /**
-     * Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. This method differs from GetSpreadsheet in that it allows selecting which subsets of spreadsheet data to return by specifying a dataFilters parameter. Multiple DataFilters can be specified. Specifying one or more data filters returns the portions of the spreadsheet that intersect ranges matched by any of the filters. By default, data within grids is not returned. You can include grid data one of 2 ways: * Specify a [field mask](https://developers.google.com/workspace/sheets/api/guides/field-masks) listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, as a best practice, retrieve only the specific spreadsheet fields that you want.
+     * Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. For more information, see [Read, write, and search metadata](https://developers.google.com/workspace/sheets/api/guides/metadata). This method differs from GetSpreadsheet in that it allows selecting which subsets of spreadsheet data to return by specifying a dataFilters parameter. Multiple DataFilters can be specified. Specifying one or more data filters returns the portions of the spreadsheet that intersect ranges matched by any of the filters. By default, data within grids is not returned. You can include grid data in one of two ways: * Specify a [field mask](https://developers.google.com/workspace/sheets/api/guides/field-masks) listing your desired fields using the `fields` URL parameter in HTTP. * Set the includeGridData parameter to `true`. If a field mask is set, the `includeGridData` parameter is ignored. For large spreadsheets, as a best practice, retrieve only the specific spreadsheet fields that you want.
      * @example
      * ```js
      * // Before running the sample:
@@ -5927,7 +5927,7 @@ export namespace sheets_v4 {
     }
 
     /**
-     * Returns the developer metadata with the specified ID. The caller must specify the spreadsheet ID and the developer metadata's unique metadataId.
+     * Returns the developer metadata with the specified ID. The caller must specify the spreadsheet ID and the developer metadata's unique metadataId. For more information, see [Read, write, and search metadata](https://developers.google.com/workspace/sheets/api/guides/metadata).
      * @example
      * ```js
      * // Before running the sample:
@@ -6074,7 +6074,7 @@ export namespace sheets_v4 {
     }
 
     /**
-     * Returns all developer metadata matching the specified DataFilter. If the provided DataFilter represents a DeveloperMetadataLookup object, this will return all DeveloperMetadata entries selected by it. If the DataFilter represents a location in a spreadsheet, this will return all developer metadata associated with locations intersecting that region.
+     * Returns all developer metadata matching the specified DataFilter. For more information, see [Read, write, and search metadata](https://developers.google.com/workspace/sheets/api/guides/metadata). If the provided DataFilter represents a DeveloperMetadataLookup object, this will return all DeveloperMetadata entries selected by it. If the DataFilter represents a location in a spreadsheet, this will return all developer metadata associated with locations intersecting that region.
      * @example
      * ```js
      * // Before running the sample:
@@ -6760,7 +6760,7 @@ export namespace sheets_v4 {
     }
 
     /**
-     * Clears one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more DataFilters. Ranges matching any of the specified data filters will be cleared. Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
+     * Clears one or more ranges of values from a spreadsheet. For more information, see [Read, write, and search metadata](https://developers.google.com/workspace/sheets/api/guides/metadata). The caller must specify the spreadsheet ID and one or more DataFilters. Ranges matching any of the specified data filters will be cleared. Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc.) are kept.
      * @example
      * ```js
      * // Before running the sample:
@@ -7076,7 +7076,7 @@ export namespace sheets_v4 {
     }
 
     /**
-     * Returns one or more ranges of values that match the specified data filters. The caller must specify the spreadsheet ID and one or more DataFilters. Ranges that match any of the data filters in the request will be returned.
+     * Returns one or more ranges of values that match the specified data filters. For more information, see [Read, write, and search metadata](https://developers.google.com/workspace/sheets/api/guides/metadata). The caller must specify the spreadsheet ID and one or more DataFilters. Ranges that match any of the data filters in the request will be returned.
      * @example
      * ```js
      * // Before running the sample:
@@ -7400,7 +7400,7 @@ export namespace sheets_v4 {
     }
 
     /**
-     * Sets values in one or more ranges of a spreadsheet. The caller must specify the spreadsheet ID, a valueInputOption, and one or more DataFilterValueRanges.
+     * Sets values in one or more ranges of a spreadsheet. For more information, see [Read, write, and search metadata](https://developers.google.com/workspace/sheets/api/guides/metadata). The caller must specify the spreadsheet ID, a valueInputOption, and one or more DataFilterValueRanges.
      * @example
      * ```js
      * // Before running the sample:

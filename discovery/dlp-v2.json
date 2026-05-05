@@ -5128,7 +5128,7 @@
       }
     }
   },
-  "revision": "20260123",
+  "revision": "20260129",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -6793,7 +6793,7 @@
       "id": "GooglePrivacyDlpV2CustomInfoType",
       "properties": {
         "detectionRules": {
-          "description": "Set of detection rules to apply to all findings of this CustomInfoType. Rules are applied in order that they are specified. Not supported for the `surrogate_type` CustomInfoType.",
+          "description": "Set of detection rules to apply to all findings of this CustomInfoType. Rules are applied in order that they are specified. Not supported for the `surrogate_type`, `metadata_key_value_expression`, and `prompt` CustomInfoType.",
           "items": {
             "$ref": "GooglePrivacyDlpV2DetectionRule"
           },
@@ -6804,7 +6804,7 @@
           "description": "A list of phrases to detect as a CustomInfoType."
         },
         "exclusionType": {
-          "description": "If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding to be returned. It still can be used for rules matching.",
+          "description": "If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding to be returned. It still can be used for rules matching. Not supported for the `metadata_key_value_expression` and `prompt` CustomInfoType.",
           "enum": [
             "EXCLUSION_TYPE_UNSPECIFIED",
             "EXCLUSION_TYPE_EXCLUDE"

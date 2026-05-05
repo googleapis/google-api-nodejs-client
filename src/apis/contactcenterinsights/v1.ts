@@ -30221,7 +30221,7 @@ export namespace contactcenterinsights_v1 {
      *   const res = await contactcenterinsights.projects.locations.dashboards.patch({
      *     // Identifier. Dashboard resource name. Format: projects/{project\}/locations/{location\}/dashboards/{dashboard\}
      *     name: 'projects/my-project/locations/my-location/dashboards/my-dashboard',
-     *     // Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name` * `root_container`
+     *     // Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name` * `root_container` * `description`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -30415,7 +30415,7 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string;
     /**
-     * Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name` * `root_container`
+     * Optional. List of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `display_name` * `root_container` * `description`
      */
     updateMask?: string;
 

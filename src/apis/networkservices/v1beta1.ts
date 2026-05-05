@@ -153,7 +153,7 @@ export namespace networkservices_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).
+     * Optional. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. Can be omitted for AuthzExtensions that do not reference a backend service. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).
      */
     loadBalancingScheme?: string | null;
     /**
@@ -2009,6 +2009,10 @@ export namespace networkservices_v1beta1 {
      */
     selfLink?: string | null;
     /**
+     * Optional. TargetProxies defines a list of TargetTcpProxies this TlsRoute is attached to, as one of the routing rules to route the requests served by the TargetTcpProxy. Each TargetTcpProxy reference should match the pattern: `projects/x/locations/x/targetTcpProxies/`
+     */
+    targetProxies?: string[] | null;
+    /**
      * Output only. The timestamp when the resource was updated.
      */
     updateTime?: string | null;
@@ -2444,7 +2448,7 @@ export namespace networkservices_v1beta1 {
     }
 
     /**
-     * Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id\}/locations`. This may include public locations as well as private or other locations specifically visible to the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -14736,6 +14740,7 @@ export namespace networkservices_v1beta1 {
      *       //   "name": "my_name",
      *       //   "rules": [],
      *       //   "selfLink": "my_selfLink",
+     *       //   "targetProxies": [],
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -15033,6 +15038,7 @@ export namespace networkservices_v1beta1 {
      *   //   "name": "my_name",
      *   //   "rules": [],
      *   //   "selfLink": "my_selfLink",
+     *   //   "targetProxies": [],
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -15326,6 +15332,7 @@ export namespace networkservices_v1beta1 {
      *       //   "name": "my_name",
      *       //   "rules": [],
      *       //   "selfLink": "my_selfLink",
+     *       //   "targetProxies": [],
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },

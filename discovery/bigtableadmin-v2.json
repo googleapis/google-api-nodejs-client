@@ -3061,7 +3061,7 @@
         "locations": {
           "methods": {
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v2/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "bigtableadmin.projects.locations.list",
@@ -3118,7 +3118,7 @@
       }
     }
   },
-  "revision": "20251209",
+  "revision": "20260210",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -4392,6 +4392,12 @@
     "GoogleBigtableAdminV2TypeFloat64": {
       "description": "Float64 Values of type `Float64` are stored in `Value.float_value`.",
       "id": "GoogleBigtableAdminV2TypeFloat64",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeGeography": {
+      "description": "A geography type, representing a point or region on Earth. The value is stored in `Value.bytes_value` as Well-Known Binary (WKB) bytes.",
+      "id": "GoogleBigtableAdminV2TypeGeography",
       "properties": {},
       "type": "object"
     },
@@ -5718,6 +5724,10 @@
         "float64Type": {
           "$ref": "GoogleBigtableAdminV2TypeFloat64",
           "description": "Float64"
+        },
+        "geographyType": {
+          "$ref": "GoogleBigtableAdminV2TypeGeography",
+          "description": "Geography"
         },
         "int64Type": {
           "$ref": "GoogleBigtableAdminV2TypeInt64",

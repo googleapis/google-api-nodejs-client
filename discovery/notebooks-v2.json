@@ -135,7 +135,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service.",
+              "description": "Lists information about the supported locations for this service. This method can be called in two ways: * **List all public locations:** Use the path `GET /v1/locations`. * **List project-visible locations:** Use the path `GET /v1/projects/{project_id}/locations`. This may include public locations as well as private or other locations specifically visible to the project.",
               "flatPath": "v2/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "notebooks.projects.locations.list",
@@ -474,7 +474,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Format: `parent=projects/{project_id}/locations/{location}`",
+                      "description": "Required. The parent of the instance. Formats: - `projects/{project_id}/locations/{location}` to list instances in a specific zone. - `projects/{project_id}/locations/-` to list instances in all locations.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -971,7 +971,7 @@
       }
     }
   },
-  "revision": "20251121",
+  "revision": "20260130",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1750,7 +1750,7 @@
           "type": "string"
         },
         "unreachable": {
-          "description": "Locations that could not be reached. For example, ['us-west1-a', 'us-central1-b']. A ListInstancesResponse will only contain either instances or unreachables,",
+          "description": "Unordered list. Locations that could not be reached. For example, ['projects/{project_id}/locations/us-west1-a', 'projects/{project_id}/locations/us-central1-b']. A ListInstancesResponse will only contain either instances or unreachables,",
           "items": {
             "type": "string"
           },

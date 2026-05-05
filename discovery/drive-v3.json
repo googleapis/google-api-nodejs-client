@@ -2800,7 +2800,7 @@
       }
     }
   },
-  "revision": "20260128",
+  "revision": "20260220",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3175,7 +3175,7 @@
           "type": "string"
         },
         "completeTime": {
-          "description": "Output only. The time time the approval was completed.",
+          "description": "Output only. The time the approval was completed.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
