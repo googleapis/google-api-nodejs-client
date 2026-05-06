@@ -250,6 +250,10 @@ export namespace ces_v1 {
      * Output only. Timestamp when the agent was last updated.
      */
     updateTime?: string | null;
+    /**
+     * Output only. Misconfigurations or errors in the agent that may affect agent quality.
+     */
+    validationErrors?: string[] | null;
   }
   /**
    * A toolset with a selection of its tools.
@@ -263,6 +267,52 @@ export namespace ces_v1 {
      * Required. The resource name of the toolset. Format: `projects/{project\}/locations/{location\}/apps/{app\}/toolsets/{toolset\}`
      */
     toolset?: string | null;
+  }
+  /**
+   * AgentCard conveys key information about a remote agent. It is a trimmed version of the AgentCard defined in the A2A protocol https://a2a-protocol.org/dev/specification/#441-agentcard
+   */
+  export interface Schema$AgentCard {
+    /**
+     * Required. A description of the agent's domain of action/solution space.
+     */
+    description?: string | null;
+    /**
+     * Required. A human-readable name for the agent.
+     */
+    name?: string | null;
+    /**
+     * Required. Skills represent a unit of ability an agent can perform. This may somewhat abstract but represents a more focused set of actions that the agent is highly likely to succeed at.
+     */
+    skills?: Schema$AgentSkill[];
+    /**
+     * Required. Ordered list of supported interfaces. The first entry is preferred.
+     */
+    supportedInterfaces?: Schema$AgentInterface[];
+    /**
+     * Required. The version of the agent.
+     */
+    version?: string | null;
+  }
+  /**
+   * Declares a combination of a target URL, transport and protocol version for interacting with the agent. This allows agents to expose the same functionality over multiple protocol binding mechanisms.
+   */
+  export interface Schema$AgentInterface {
+    /**
+     * Required. The protocol binding supported at this URL. This is an open form string, to be easily extended for other protocol bindings. The core ones officially supported are `JSONRPC`, `GRPC` and `HTTP+JSON`.
+     */
+    protocolBinding?: string | null;
+    /**
+     * Required. The version of the A2A protocol this interface exposes. Use the latest supported minor version per major version. Examples: "0.3", "1.0"
+     */
+    protocolVersion?: string | null;
+    /**
+     * Tenant ID to be used in the request when calling the agent.
+     */
+    tenant?: string | null;
+    /**
+     * Required. The URL where this interface is available. Must be a valid absolute HTTPS URL in production. Example: "https://api.example.com/a2a/v1", "https://grpc.example.com/a2a"
+     */
+    url?: string | null;
   }
   /**
    * Default agent type. The agent uses instructions and callbacks specified in the agent to perform the task using a large language model.
@@ -296,6 +346,39 @@ export namespace ces_v1 {
      * Optional. Indicates whether to respect the message-level interruption settings configured in the Dialogflow agent. * If false: all response messages from the Dialogflow agent follow the app-level barge-in settings. * If true: only response messages with [`allow_playback_interruption`](https://docs.cloud.google.com/dialogflow/cx/docs/reference/rpc/google.cloud.dialogflow.cx.v3#text) set to true will be interruptable, all other messages follow the app-level barge-in settings.
      */
     respectResponseInterruptionSettings?: boolean | null;
+  }
+  /**
+   * Represents a distinct capability or function that an agent can perform.
+   */
+  export interface Schema$AgentSkill {
+    /**
+     * Required. A detailed description of the skill.
+     */
+    description?: string | null;
+    /**
+     * Example prompts or scenarios that this skill can handle.
+     */
+    examples?: string[] | null;
+    /**
+     * Required. A unique identifier for the agent's skill.
+     */
+    id?: string | null;
+    /**
+     * The set of supported input media types for this skill, overriding the agent's defaults.
+     */
+    inputModes?: string[] | null;
+    /**
+     * Required. A human-readable name for the skill.
+     */
+    name?: string | null;
+    /**
+     * The set of supported output media types for this skill, overriding the agent's defaults.
+     */
+    outputModes?: string[] | null;
+    /**
+     * Required. A set of keywords describing the skill's capabilities.
+     */
+    tags?: string[] | null;
   }
   /**
    * Represents a tool that allows the agent to call another agent.
@@ -499,9 +582,17 @@ export namespace ces_v1 {
      */
     updateTime?: string | null;
     /**
+     * Output only. Misconfigurations or warnings in the app.
+     */
+    validationErrors?: string[] | null;
+    /**
      * Optional. The declarations of the variables.
      */
     variableDeclarations?: Schema$AppVariableDeclaration[];
+    /**
+     * Optional. VPC-SC settings for the app.
+     */
+    vpcScSettings?: Schema$VpcScSettings;
   }
   /**
    * A snapshot of the app.
@@ -2850,6 +2941,23 @@ export namespace ces_v1 {
     inspectTemplate?: string | null;
   }
   /**
+   * Represents a tool that allows the agent to call another remote agent.
+   */
+  export interface Schema$RemoteAgentTool {
+    /**
+     * Required. The agent card of the remote agent that this tool invokes.
+     */
+    agentCard?: Schema$AgentCard;
+    /**
+     * Required. The description of the tool.
+     */
+    description?: string | null;
+    /**
+     * Required. The name of the tool.
+     */
+    name?: string | null;
+  }
+  /**
    * Request message for AgentService.RestoreAppVersion
    */
   export interface Schema$RestoreAppVersionRequest {}
@@ -3384,9 +3492,17 @@ export namespace ces_v1 {
      */
     pythonFunction?: Schema$PythonFunction;
     /**
+     * Optional. The remote agent tool.
+     */
+    remoteAgentTool?: Schema$RemoteAgentTool;
+    /**
      * Optional. The system tool.
      */
     systemTool?: Schema$SystemTool;
+    /**
+     * Optional. The timeout for the tool execution. If not set, the default timeout is 30 seconds for `SYNCHRONOUS` tools and 60 seconds for `ASYNCHRONOUS` tools.
+     */
+    timeout?: string | null;
     /**
      * Optional. Configuration for tool behavior in fake mode.
      */
@@ -3642,6 +3758,15 @@ export namespace ces_v1 {
      * Required. The name of the agent to transfer the conversation to. The agent must be in the same app as the current agent. Format: `projects/{project\}/locations/{location\}/apps/{app\}/agents/{agent\}`
      */
     agent?: string | null;
+  }
+  /**
+   * VPC-SC settings for the app.
+   */
+  export interface Schema$VpcScSettings {
+    /**
+     * Optional. The allowed HTTP(s) origins that OpenAPI tools in the App are able to directly call when VPC Service Controls are enabled. These strings must match the origin exactly, including the port if specified. For example, "https://example.com" or "https://example.com:443". This list does not yet apply to Python tools that may make direct HTTP calls.
+     */
+    allowedOrigins?: string[] | null;
   }
   /**
    * Represents a single web search query and its associated search uri.
@@ -4185,7 +4310,9 @@ export namespace ces_v1 {
      *       //   "timeZoneSettings": {},
      *       //   "toolExecutionMode": "my_toolExecutionMode",
      *       //   "updateTime": "my_updateTime",
-     *       //   "variableDeclarations": []
+     *       //   "validationErrors": [],
+     *       //   "variableDeclarations": [],
+     *       //   "vpcScSettings": {}
      *       // }
      *     },
      *   });
@@ -4814,7 +4941,9 @@ export namespace ces_v1 {
      *   //   "timeZoneSettings": {},
      *   //   "toolExecutionMode": "my_toolExecutionMode",
      *   //   "updateTime": "my_updateTime",
-     *   //   "variableDeclarations": []
+     *   //   "validationErrors": [],
+     *   //   "variableDeclarations": [],
+     *   //   "vpcScSettings": {}
      *   // }
      * }
      *
@@ -5282,7 +5411,9 @@ export namespace ces_v1 {
      *       //   "timeZoneSettings": {},
      *       //   "toolExecutionMode": "my_toolExecutionMode",
      *       //   "updateTime": "my_updateTime",
-     *       //   "variableDeclarations": []
+     *       //   "validationErrors": [],
+     *       //   "variableDeclarations": [],
+     *       //   "vpcScSettings": {}
      *       // }
      *     },
      *   });
@@ -5315,7 +5446,9 @@ export namespace ces_v1 {
      *   //   "timeZoneSettings": {},
      *   //   "toolExecutionMode": "my_toolExecutionMode",
      *   //   "updateTime": "my_updateTime",
-     *   //   "variableDeclarations": []
+     *   //   "validationErrors": [],
+     *   //   "variableDeclarations": [],
+     *   //   "vpcScSettings": {}
      *   // }
      * }
      *
@@ -5752,7 +5885,8 @@ export namespace ces_v1 {
      *       //   "tools": [],
      *       //   "toolsets": [],
      *       //   "transferRules": [],
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "validationErrors": []
      *       // }
      *     },
      *   });
@@ -5781,7 +5915,8 @@ export namespace ces_v1 {
      *   //   "tools": [],
      *   //   "toolsets": [],
      *   //   "transferRules": [],
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "validationErrors": []
      *   // }
      * }
      *
@@ -6081,7 +6216,8 @@ export namespace ces_v1 {
      *   //   "tools": [],
      *   //   "toolsets": [],
      *   //   "transferRules": [],
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "validationErrors": []
      *   // }
      * }
      *
@@ -6390,7 +6526,8 @@ export namespace ces_v1 {
      *       //   "tools": [],
      *       //   "toolsets": [],
      *       //   "transferRules": [],
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "validationErrors": []
      *       // }
      *     },
      *   });
@@ -6419,7 +6556,8 @@ export namespace ces_v1 {
      *   //   "tools": [],
      *   //   "toolsets": [],
      *   //   "transferRules": [],
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "validationErrors": []
      *   // }
      * }
      *
@@ -10687,7 +10825,9 @@ export namespace ces_v1 {
      *       //   "name": "my_name",
      *       //   "openApiTool": {},
      *       //   "pythonFunction": {},
+     *       //   "remoteAgentTool": {},
      *       //   "systemTool": {},
+     *       //   "timeout": "my_timeout",
      *       //   "toolFakeConfig": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "widgetTool": {}
@@ -10713,7 +10853,9 @@ export namespace ces_v1 {
      *   //   "name": "my_name",
      *   //   "openApiTool": {},
      *   //   "pythonFunction": {},
+     *   //   "remoteAgentTool": {},
      *   //   "systemTool": {},
+     *   //   "timeout": "my_timeout",
      *   //   "toolFakeConfig": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "widgetTool": {}
@@ -11010,7 +11152,9 @@ export namespace ces_v1 {
      *   //   "name": "my_name",
      *   //   "openApiTool": {},
      *   //   "pythonFunction": {},
+     *   //   "remoteAgentTool": {},
      *   //   "systemTool": {},
+     *   //   "timeout": "my_timeout",
      *   //   "toolFakeConfig": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "widgetTool": {}
@@ -11316,7 +11460,9 @@ export namespace ces_v1 {
      *       //   "name": "my_name",
      *       //   "openApiTool": {},
      *       //   "pythonFunction": {},
+     *       //   "remoteAgentTool": {},
      *       //   "systemTool": {},
+     *       //   "timeout": "my_timeout",
      *       //   "toolFakeConfig": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "widgetTool": {}
@@ -11342,7 +11488,9 @@ export namespace ces_v1 {
      *   //   "name": "my_name",
      *   //   "openApiTool": {},
      *   //   "pythonFunction": {},
+     *   //   "remoteAgentTool": {},
      *   //   "systemTool": {},
+     *   //   "timeout": "my_timeout",
      *   //   "toolFakeConfig": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "widgetTool": {}
