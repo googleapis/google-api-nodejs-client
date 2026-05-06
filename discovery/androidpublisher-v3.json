@@ -5637,7 +5637,7 @@
       }
     }
   },
-  "revision": "20260416",
+  "revision": "20260506",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -8092,7 +8092,7 @@
       "type": "object"
     },
     "GeneratedApksPerSigningKey": {
-      "description": "Download metadata for split, standalone and universal APKs, as well as asset pack slices, signed with a given key.",
+      "description": "Download metadata for split, standalone and universal APKs, as well as asset pack slices, signed with a given key. Next ID: 10",
       "id": "GeneratedApksPerSigningKey",
       "properties": {
         "certificateSha256Hash": {
@@ -8134,6 +8134,20 @@
         "targetingInfo": {
           "$ref": "TargetingInfo",
           "description": "Contains targeting information about the generated apks."
+        },
+        "unprotectedGeneratedSplitApks": {
+          "description": "List of generated split APKs without automatic protection, signed with a key corresponding to certificate_sha256_hash. This field is only present if the app uses automatic protection. In this case, `generated_split_apks` contains APKs with automatic protection enabled, whereas this field contains APKs without automatic protection.",
+          "items": {
+            "$ref": "GeneratedSplitApk"
+          },
+          "type": "array"
+        },
+        "unprotectedGeneratedStandaloneApks": {
+          "description": "List of generated standalone APKs without automatic protection, signed with a key corresponding to certificate_sha256_hash. This field is only present if the app uses automatic protection. In this case, `generated_standalone_apks` contains APKs with automatic protection enabled, whereas this field contains APKs without automatic protection.",
+          "items": {
+            "$ref": "GeneratedStandaloneApk"
+          },
+          "type": "array"
         }
       },
       "type": "object"
