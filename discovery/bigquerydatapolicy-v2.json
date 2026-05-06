@@ -429,7 +429,7 @@
       }
     }
   },
-  "revision": "20251001",
+  "revision": "20260415",
   "rootUrl": "https://bigquerydatapolicy.googleapis.com/",
   "schemas": {
     "AddGranteesRequest": {
@@ -531,6 +531,21 @@
       },
       "type": "object"
     },
+    "DataGovernanceTag": {
+      "description": "Data Governance tag This is a namespaced name specifying the key and the value. For example: `project-id/pii/sensitive`.",
+      "id": "DataGovernanceTag",
+      "properties": {
+        "key": {
+          "description": "Optional. Tag keys are globally unique. Tag key is expected to be in the namespaced format, for example `parent-id/pii` where `parent-id` is the ID of the parent organization or project resource for this tag key.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Optional. Specifies the tag value as the short name, for example `sensitive`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DataMaskingPolicy": {
       "description": "The policy used to specify data masking rule.",
       "id": "DataMaskingPolicy",
@@ -572,6 +587,10 @@
       "description": "Represents the label-policy binding.",
       "id": "DataPolicy",
       "properties": {
+        "dataGovernanceTag": {
+          "$ref": "DataGovernanceTag",
+          "description": "Optional. Data Governance tag bound to the Data Policy."
+        },
         "dataMaskingPolicy": {
           "$ref": "DataMaskingPolicy",
           "description": "Optional. The data masking policy that specifies the data masking rule to use. It must be set if the data policy type is DATA_MASKING_POLICY."
