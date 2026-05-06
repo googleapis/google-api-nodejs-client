@@ -1174,7 +1174,7 @@ export namespace datamigration_v1 {
      */
     description?: string | null;
     /**
-     * A path that leads to a field in the request body. The value will be a sequence of dot-separated identifiers that identify a protocol buffer field. Consider the following: message CreateContactRequest { message EmailAddress { enum Type { TYPE_UNSPECIFIED = 0; HOME = 1; WORK = 2; \} optional string email = 1; repeated EmailType type = 2; \} string full_name = 1; repeated EmailAddress email_addresses = 2; \} In this example, in proto `field` could take one of the following values: * `full_name` for a violation in the `full_name` value * `email_addresses[1].email` for a violation in the `email` field of the first `email_addresses` message * `email_addresses[3].type[2]` for a violation in the second `type` value in the third `email_addresses` message. In JSON, the same values are represented as: * `fullName` for a violation in the `fullName` value * `emailAddresses[1].email` for a violation in the `email` field of the first `emailAddresses` message * `emailAddresses[3].type[2]` for a violation in the second `type` value in the third `emailAddresses` message.
+     * A path that leads to a field in the request body. The value will be a sequence of dot-separated identifiers that identify a protocol buffer field. Consider the following: message CreateContactRequest { message EmailAddress { enum Type { TYPE_UNSPECIFIED = 0; HOME = 1; WORK = 2; \} optional string email = 1; repeated EmailType type = 2; \} string full_name = 1; repeated EmailAddress email_addresses = 2; \} In this example, in proto `field` could take one of the following values: * `full_name` for a violation in the `full_name` value * `email_addresses[0].email` for a violation in the `email` field of the first `email_addresses` message * `email_addresses[2].type[1]` for a violation in the second `type` value in the third `email_addresses` message. In JSON, the same values are represented as: * `fullName` for a violation in the `fullName` value * `emailAddresses[0].email` for a violation in the `email` field of the first `emailAddresses` message * `emailAddresses[2].type[1]` for a violation in the second `type` value in the third `emailAddresses` message.
      */
     field?: string | null;
     /**
@@ -1845,6 +1845,10 @@ export namespace datamigration_v1 {
      */
     phase?: string | null;
     /**
+     * Optional. Configuration for PostgreSQL homogeneous migration.
+     */
+    postgresHomogeneousConfig?: Schema$PostgresHomogeneousConfig;
+    /**
      * Configuration for heterogeneous failback migrations from **PostgreSQL to SQL Server**.
      */
     postgresToSqlserverConfig?: Schema$PostgresToSqlServerConfig;
@@ -2284,6 +2288,19 @@ export namespace datamigration_v1 {
      * Optional. Timeout for data migration transactions.
      */
     transactionTimeout?: string | null;
+  }
+  /**
+   * Configuration for PostgreSQL to PostgreSQL migrations.
+   */
+  export interface Schema$PostgresHomogeneousConfig {
+    /**
+     * Required. Whether the migration is native logical.
+     */
+    isNativeLogical?: boolean | null;
+    /**
+     * Optional. Maximum number of additional subscriptions to use for the migration job.
+     */
+    maxAdditionalSubscriptions?: number | null;
   }
   /**
    * Specifies connection parameters required specifically for PostgreSQL databases.
@@ -9093,6 +9110,7 @@ export namespace datamigration_v1 {
      *       //   "originalMigrationName": "my_originalMigrationName",
      *       //   "performanceConfig": {},
      *       //   "phase": "my_phase",
+     *       //   "postgresHomogeneousConfig": {},
      *       //   "postgresToSqlserverConfig": {},
      *       //   "purpose": "my_purpose",
      *       //   "reverseSshConnectivity": {},
@@ -10020,6 +10038,7 @@ export namespace datamigration_v1 {
      *   //   "originalMigrationName": "my_originalMigrationName",
      *   //   "performanceConfig": {},
      *   //   "phase": "my_phase",
+     *   //   "postgresHomogeneousConfig": {},
      *   //   "postgresToSqlserverConfig": {},
      *   //   "purpose": "my_purpose",
      *   //   "reverseSshConnectivity": {},
@@ -10491,6 +10510,7 @@ export namespace datamigration_v1 {
      *       //   "originalMigrationName": "my_originalMigrationName",
      *       //   "performanceConfig": {},
      *       //   "phase": "my_phase",
+     *       //   "postgresHomogeneousConfig": {},
      *       //   "postgresToSqlserverConfig": {},
      *       //   "purpose": "my_purpose",
      *       //   "reverseSshConnectivity": {},
