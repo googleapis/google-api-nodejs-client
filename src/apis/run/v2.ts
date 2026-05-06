@@ -809,6 +809,10 @@ export namespace run_v2 {
      */
     creator?: string | null;
     /**
+     * Optional. Disables public resolution of the default URI of this Instance.
+     */
+    defaultUriDisabled?: boolean | null;
+    /**
      * Output only. The deletion time.
      */
     deleteTime?: string | null;
@@ -2820,7 +2824,7 @@ export namespace run_v2 {
      */
     pullTiming?: Schema$GoogleDevtoolsCloudbuildV1TimeSpan;
     /**
-     * Declaration of results for this build step.
+     * Output only. Declaration of results for this build step.
      */
     results?: Schema$GoogleDevtoolsCloudbuildV1StepResult[];
     /**
@@ -4708,6 +4712,7 @@ export namespace run_v2 {
      *       //   "containers": [],
      *       //   "createTime": "my_createTime",
      *       //   "creator": "my_creator",
+     *       //   "defaultUriDisabled": false,
      *       //   "deleteTime": "my_deleteTime",
      *       //   "description": "my_description",
      *       //   "encryptionKey": "my_encryptionKey",
@@ -5050,6 +5055,7 @@ export namespace run_v2 {
      *   //   "containers": [],
      *   //   "createTime": "my_createTime",
      *   //   "creator": "my_creator",
+     *   //   "defaultUriDisabled": false,
      *   //   "deleteTime": "my_deleteTime",
      *   //   "description": "my_description",
      *   //   "encryptionKey": "my_encryptionKey",
@@ -5539,6 +5545,7 @@ export namespace run_v2 {
      *       //   "containers": [],
      *       //   "createTime": "my_createTime",
      *       //   "creator": "my_creator",
+     *       //   "defaultUriDisabled": false,
      *       //   "deleteTime": "my_deleteTime",
      *       //   "description": "my_description",
      *       //   "encryptionKey": "my_encryptionKey",
