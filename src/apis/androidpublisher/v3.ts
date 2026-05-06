@@ -1863,7 +1863,7 @@ export namespace androidpublisher_v3 {
     generatedApks?: Schema$GeneratedApksPerSigningKey[];
   }
   /**
-   * Download metadata for split, standalone and universal APKs, as well as asset pack slices, signed with a given key.
+   * Download metadata for split, standalone and universal APKs, as well as asset pack slices, signed with a given key. Next ID: 10
    */
   export interface Schema$GeneratedApksPerSigningKey {
     /**
@@ -1894,6 +1894,14 @@ export namespace androidpublisher_v3 {
      * Contains targeting information about the generated apks.
      */
     targetingInfo?: Schema$TargetingInfo;
+    /**
+     * List of generated split APKs without automatic protection, signed with a key corresponding to certificate_sha256_hash. This field is only present if the app uses automatic protection. In this case, `generated_split_apks` contains APKs with automatic protection enabled, whereas this field contains APKs without automatic protection.
+     */
+    unprotectedGeneratedSplitApks?: Schema$GeneratedSplitApk[];
+    /**
+     * List of generated standalone APKs without automatic protection, signed with a key corresponding to certificate_sha256_hash. This field is only present if the app uses automatic protection. In this case, `generated_standalone_apks` contains APKs with automatic protection enabled, whereas this field contains APKs without automatic protection.
+     */
+    unprotectedGeneratedStandaloneApks?: Schema$GeneratedStandaloneApk[];
   }
   /**
    * Download metadata for an asset pack slice.
