@@ -68,6 +68,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://trafficdirector.asia-southeast3.rep.googleapis.com/",
+      "location": "asia-southeast3"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://trafficdirector.australia-southeast1.rep.googleapis.com/",
       "location": "australia-southeast1"
     },
@@ -110,6 +115,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://trafficdirector.europe-west12.rep.googleapis.com/",
       "location": "europe-west12"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://trafficdirector.europe-west15.rep.googleapis.com/",
+      "location": "europe-west15"
     },
     {
       "description": "Regional Endpoint",
@@ -355,7 +365,7 @@
       }
     }
   },
-  "revision": "20251015",
+  "revision": "20260427",
   "rootUrl": "https://trafficdirector.googleapis.com/",
   "schemas": {
     "Address": {
