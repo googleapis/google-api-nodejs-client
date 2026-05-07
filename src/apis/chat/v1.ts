@@ -2315,6 +2315,10 @@ export namespace chat_v1 {
      */
     sender?: Schema$User;
     /**
+     * Output only. Whether this is a silent message. Silent messages are messages where Chat suppresses push notifications for recipients.
+     */
+    silent?: boolean | null;
+    /**
      * Output only. Slash command information, if applicable.
      */
     slashCommand?: Schema$SlashCommand;
@@ -6787,6 +6791,8 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.create({
+     *     // The notification type for the message.
+     *     'createMessageNotificationOptions.notificationType': 'placeholder-value',
      *     // Optional. A custom ID for a message. Lets Chat apps get, update, or delete a message without needing to store the system-assigned ID in the message's resource name (represented in the message `name` field). The value for this field must meet the following requirements: * Begins with `client-`. For example, `client-custom-name` is a valid custom ID, but `custom-name` is not. * Contains up to 63 characters and only lowercase letters, numbers, and hyphens. * Is unique within a space. A Chat app can't use the same custom ID for different messages. For details, see [Name a message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *     messageId: 'placeholder-value',
      *     // Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces. When [responding to user interactions](https://developers.google.com/workspace/chat/receive-respond-interactions), this field is ignored. For interactions within a thread, the reply is created in the same thread. Otherwise, the reply is created as a new thread.
@@ -6823,6 +6829,7 @@ export namespace chat_v1 {
      *       //   "privateMessageViewer": {},
      *       //   "quotedMessageMetadata": {},
      *       //   "sender": {},
+     *       //   "silent": false,
      *       //   "slashCommand": {},
      *       //   "space": {},
      *       //   "text": "my_text",
@@ -6856,6 +6863,7 @@ export namespace chat_v1 {
      *   //   "privateMessageViewer": {},
      *   //   "quotedMessageMetadata": {},
      *   //   "sender": {},
+     *   //   "silent": false,
      *   //   "slashCommand": {},
      *   //   "space": {},
      *   //   "text": "my_text",
@@ -7161,6 +7169,7 @@ export namespace chat_v1 {
      *   //   "privateMessageViewer": {},
      *   //   "quotedMessageMetadata": {},
      *   //   "sender": {},
+     *   //   "silent": false,
      *   //   "slashCommand": {},
      *   //   "space": {},
      *   //   "text": "my_text",
@@ -7483,6 +7492,7 @@ export namespace chat_v1 {
      *       //   "privateMessageViewer": {},
      *       //   "quotedMessageMetadata": {},
      *       //   "sender": {},
+     *       //   "silent": false,
      *       //   "slashCommand": {},
      *       //   "space": {},
      *       //   "text": "my_text",
@@ -7516,6 +7526,7 @@ export namespace chat_v1 {
      *   //   "privateMessageViewer": {},
      *   //   "quotedMessageMetadata": {},
      *   //   "sender": {},
+     *   //   "silent": false,
      *   //   "slashCommand": {},
      *   //   "space": {},
      *   //   "text": "my_text",
@@ -7683,6 +7694,7 @@ export namespace chat_v1 {
      *       //   "privateMessageViewer": {},
      *       //   "quotedMessageMetadata": {},
      *       //   "sender": {},
+     *       //   "silent": false,
      *       //   "slashCommand": {},
      *       //   "space": {},
      *       //   "text": "my_text",
@@ -7716,6 +7728,7 @@ export namespace chat_v1 {
      *   //   "privateMessageViewer": {},
      *   //   "quotedMessageMetadata": {},
      *   //   "sender": {},
+     *   //   "silent": false,
      *   //   "slashCommand": {},
      *   //   "space": {},
      *   //   "text": "my_text",
@@ -7818,6 +7831,10 @@ export namespace chat_v1 {
   }
 
   export interface Params$Resource$Spaces$Messages$Create extends StandardParameters {
+    /**
+     * The notification type for the message.
+     */
+    'createMessageNotificationOptions.notificationType'?: string;
     /**
      * Optional. A custom ID for a message. Lets Chat apps get, update, or delete a message without needing to store the system-assigned ID in the message's resource name (represented in the message `name` field). The value for this field must meet the following requirements: * Begins with `client-`. For example, `client-custom-name` is a valid custom ID, but `custom-name` is not. * Contains up to 63 characters and only lowercase letters, numbers, and hyphens. * Is unique within a space. A Chat app can't use the same custom ID for different messages. For details, see [Name a message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      */

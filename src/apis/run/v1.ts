@@ -1114,7 +1114,7 @@ export namespace run_v1 {
      */
     pullTiming?: Schema$GoogleDevtoolsCloudbuildV1TimeSpan;
     /**
-     * Declaration of results for this build step.
+     * Output only. Declaration of results for this build step.
      */
     results?: Schema$GoogleDevtoolsCloudbuildV1StepResult[];
     /**

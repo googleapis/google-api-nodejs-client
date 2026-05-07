@@ -51797,7 +51797,7 @@
       }
     }
   },
-  "revision": "20260422",
+  "revision": "20260427",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -96877,6 +96877,7 @@
           "description": "Specifies the type of reservation from which this instance can consume\nresources: ANY_RESERVATION (default),SPECIFIC_RESERVATION, or NO_RESERVATION. See\nConsuming reserved instances for examples.",
           "enum": [
             "ANY_RESERVATION",
+            "ANY_RESERVATION_THEN_FAIL",
             "NO_RESERVATION",
             "SPECIFIC_RESERVATION",
             "SPECIFIC_THEN_ANY_RESERVATION",
@@ -96885,6 +96886,7 @@
           ],
           "enumDescriptions": [
             "Consume any allocation available.",
+            "Consume any reservation available, but fail if no reservation is\navailable. Will not consume from the on-demand pool.",
             "Do not consume from any allocated capacity.",
             "Must consume from a specific reservation. Must specify key value fields\nfor specifying the reservations.",
             "Prefer to consume from a specific reservation, but still consume any\nreservation available if the specified reservation is not available or\nexhausted. Must specify key value fields for specifying the reservations.",

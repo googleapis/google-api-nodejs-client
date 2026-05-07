@@ -18,6 +18,233 @@
   "description": "API for Cloud SQL database instance management",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/sql/docs",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.northamerica-northeast1.rep.googleapis.com/",
+      "location": "northamerica-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.northamerica-northeast2.rep.googleapis.com/",
+      "location": "northamerica-northeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.europe-north1.rep.googleapis.com/",
+      "location": "europe-north1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.us-west2.rep.googleapis.com/",
+      "location": "us-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.asia-east2.rep.googleapis.com/",
+      "location": "asia-east2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.europe-west3.rep.googleapis.com/",
+      "location": "europe-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.us-east1.rep.googleapis.com/",
+      "location": "us-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.asia-east1.rep.googleapis.com/",
+      "location": "asia-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.asia-northeast2.rep.googleapis.com/",
+      "location": "asia-northeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.me-central1.rep.googleapis.com/",
+      "location": "me-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.europe-central2.rep.googleapis.com/",
+      "location": "europe-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.northamerica-south1.rep.googleapis.com/",
+      "location": "northamerica-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.us-west8.rep.googleapis.com/",
+      "location": "us-west8"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.me-west1.rep.googleapis.com/",
+      "location": "me-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.asia-northeast3.rep.googleapis.com/",
+      "location": "asia-northeast3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.us-west1.rep.googleapis.com/",
+      "location": "us-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.europe-west9.rep.googleapis.com/",
+      "location": "europe-west9"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.asia-southeast3.rep.googleapis.com/",
+      "location": "asia-southeast3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.europe-west1.rep.googleapis.com/",
+      "location": "europe-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.asia-southeast1.rep.googleapis.com/",
+      "location": "asia-southeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.us-west4.rep.googleapis.com/",
+      "location": "us-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.europe-west12.rep.googleapis.com/",
+      "location": "europe-west12"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.asia-south2.rep.googleapis.com/",
+      "location": "asia-south2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.australia-southeast1.rep.googleapis.com/",
+      "location": "australia-southeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.europe-west6.rep.googleapis.com/",
+      "location": "europe-west6"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.us-east4.rep.googleapis.com/",
+      "location": "us-east4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.asia-southeast2.rep.googleapis.com/",
+      "location": "asia-southeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.europe-southwest1.rep.googleapis.com/",
+      "location": "europe-southwest1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.europe-west8.rep.googleapis.com/",
+      "location": "europe-west8"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.africa-south1.rep.googleapis.com/",
+      "location": "africa-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.me-central2.rep.googleapis.com/",
+      "location": "me-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.us-central1.rep.googleapis.com/",
+      "location": "us-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.us-central2.rep.googleapis.com/",
+      "location": "us-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.europe-north2.rep.googleapis.com/",
+      "location": "europe-north2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.asia-northeast1.rep.googleapis.com/",
+      "location": "asia-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.europe-west2.rep.googleapis.com/",
+      "location": "europe-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.southamerica-east1.rep.googleapis.com/",
+      "location": "southamerica-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.us-east5.rep.googleapis.com/",
+      "location": "us-east5"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.asia-south1.rep.googleapis.com/",
+      "location": "asia-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.europe-west4.rep.googleapis.com/",
+      "location": "europe-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.us-west3.rep.googleapis.com/",
+      "location": "us-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.australia-southeast2.rep.googleapis.com/",
+      "location": "australia-southeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.southamerica-west1.rep.googleapis.com/",
+      "location": "southamerica-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.europe-west10.rep.googleapis.com/",
+      "location": "europe-west10"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -2795,7 +3022,7 @@
       }
     }
   },
-  "revision": "20260317",
+  "revision": "20260424",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2985,6 +3212,7 @@
             "POSTGRES_16",
             "POSTGRES_17",
             "POSTGRES_18",
+            "POSTGRES_19",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -3009,6 +3237,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -3097,6 +3326,7 @@
             "The database version is PostgreSQL 16.",
             "The database version is PostgreSQL 17.",
             "The database version is PostgreSQL 18.",
+            "The database version is PostgreSQL 19.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -3459,6 +3689,7 @@
             "POSTGRES_16",
             "POSTGRES_17",
             "POSTGRES_18",
+            "POSTGRES_19",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -3483,6 +3714,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -3571,6 +3803,7 @@
             "The database version is PostgreSQL 16.",
             "The database version is PostgreSQL 17.",
             "The database version is PostgreSQL 18.",
+            "The database version is PostgreSQL 19.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -3928,6 +4161,7 @@
             "POSTGRES_16",
             "POSTGRES_17",
             "POSTGRES_18",
+            "POSTGRES_19",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -3952,6 +4186,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -4040,6 +4275,7 @@
             "The database version is PostgreSQL 16.",
             "The database version is PostgreSQL 17.",
             "The database version is PostgreSQL 18.",
+            "The database version is PostgreSQL 19.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -4345,6 +4581,7 @@
             "POSTGRES_16",
             "POSTGRES_17",
             "POSTGRES_18",
+            "POSTGRES_19",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -4369,6 +4606,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -4457,6 +4695,7 @@
             "The database version is PostgreSQL 16.",
             "The database version is PostgreSQL 17.",
             "The database version is PostgreSQL 18.",
+            "The database version is PostgreSQL 19.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -4724,14 +4963,16 @@
               "BILLING_ISSUE",
               "LEGAL_ISSUE",
               "OPERATIONAL_ISSUE",
-              "KMS_KEY_ISSUE"
+              "KMS_KEY_ISSUE",
+              "PROJECT_ABUSE"
             ],
             "enumDescriptions": [
               "This is an unknown suspension reason.",
               "The instance is suspended due to billing issues (for example:, account issue)",
               "The instance is suspended due to illegal content (for example:, child pornography, copyrighted material, etc.).",
               "The instance is causing operational issues (for example:, causing the database to crash).",
-              "The KMS key used by the instance is either revoked or denied access to"
+              "The KMS key used by the instance is either revoked or denied access to",
+              "The project is suspended due to abuse detected by Ares."
             ],
             "type": "string"
           },
@@ -5332,6 +5573,7 @@
               "POSTGRES_16",
               "POSTGRES_17",
               "POSTGRES_18",
+              "POSTGRES_19",
               "SQLSERVER_2019_STANDARD",
               "SQLSERVER_2019_ENTERPRISE",
               "SQLSERVER_2019_EXPRESS",
@@ -5356,6 +5598,7 @@
               false,
               false,
               true,
+              false,
               false,
               false,
               false,
@@ -5444,6 +5687,7 @@
               "The database version is PostgreSQL 16.",
               "The database version is PostgreSQL 17.",
               "The database version is PostgreSQL 18.",
+              "The database version is PostgreSQL 19.",
               "The database version is SQL Server 2019 Standard.",
               "The database version is SQL Server 2019 Enterprise.",
               "The database version is SQL Server 2019 Express.",
@@ -6979,35 +7223,35 @@
       "type": "object"
     },
     "PerformanceCaptureConfig": {
-      "description": "Performance Capture configuration.",
+      "description": "Performance capture configuration.",
       "id": "PerformanceCaptureConfig",
       "properties": {
         "enabled": {
-          "description": "Optional. Enable or disable the Performance Capture feature.",
+          "description": "Optional. Enables or disables the performance capture feature.",
           "type": "boolean"
         },
         "probeThreshold": {
-          "description": "Optional. The minimum number of consecutive readings above threshold that triggers instance state capture.",
+          "description": "Optional. Specifies the minimum number of consecutive probe threshold that triggers performance capture.",
           "format": "int32",
           "type": "integer"
         },
         "probingIntervalSeconds": {
-          "description": "Optional. The time interval in seconds between any two probes.",
+          "description": "Optional. Specifies the interval in seconds between consecutive probes that check if any trigger condition thresholds have been reached.",
           "format": "int32",
           "type": "integer"
         },
         "runningThreadsThreshold": {
-          "description": "Optional. The minimum number of server threads running to trigger the capture on primary.",
+          "description": "Optional. Specifies the minimum number of MySQL `Threads_running` to trigger the performance capture on the primary instance.",
           "format": "int32",
           "type": "integer"
         },
         "secondsBehindSourceThreshold": {
-          "description": "Optional. The minimum number of seconds replica must be lagging behind primary to trigger capture on replica.",
+          "description": "Optional. Specifies the minimum number of seconds replica must be lagging behind primary instance to trigger the performance capture on replica.",
           "format": "int32",
           "type": "integer"
         },
         "transactionDurationThreshold": {
-          "description": "Optional. The amount of time in seconds that a transaction needs to have been open before the watcher starts recording it.",
+          "description": "Optional. Specifies the amount of time in seconds that a transaction needs to have been open before the watcher starts recording it.",
           "format": "int32",
           "type": "integer"
         }
@@ -7216,6 +7460,7 @@
             "POSTGRES_16",
             "POSTGRES_17",
             "POSTGRES_18",
+            "POSTGRES_19",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -7240,6 +7485,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -7328,6 +7574,7 @@
             "The database version is PostgreSQL 16.",
             "The database version is PostgreSQL 17.",
             "The database version is PostgreSQL 18.",
+            "The database version is PostgreSQL 19.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",

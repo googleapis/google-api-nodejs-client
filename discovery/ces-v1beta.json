@@ -1718,6 +1718,35 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "export": {
+                      "description": "Exports evaluations runs.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apps/{appsId}/evaluationRuns:export",
+                      "httpMethod": "POST",
+                      "id": "ces.projects.locations.apps.evaluationRuns.export",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The resource name of the app to export evaluation runs from. Format: `projects/{project}/locations/{location}/apps/{app}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/{+parent}/evaluationRuns:export",
+                      "request": {
+                        "$ref": "ExportEvaluationRunsRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/ces",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "get": {
                       "description": "Gets details of the specified evaluation run.",
                       "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apps/{appsId}/evaluationRuns/{evaluationRunsId}",
@@ -2071,6 +2100,35 @@
                           "path": "v1beta/{+name}",
                           "response": {
                             "$ref": "Empty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/ces",
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "export": {
+                          "description": "Exports evaluations results.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apps/{appsId}/evaluations/{evaluationsId}/results:export",
+                          "httpMethod": "POST",
+                          "id": "ces.projects.locations.apps.evaluations.results.export",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The resource name of the evaluation to export evaluation results from. Format: `projects/{project}/locations/{location}/apps/{app}/evaluations/{evaluation}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+/evaluations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+parent}/results:export",
+                          "request": {
+                            "$ref": "ExportEvaluationResultsRequest"
+                          },
+                          "response": {
+                            "$ref": "Operation"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/ces",
@@ -3484,7 +3542,7 @@
       }
     }
   },
-  "revision": "20260422",
+  "revision": "20260429",
   "rootUrl": "https://ces.googleapis.com/",
   "schemas": {
     "Action": {
@@ -3676,6 +3734,14 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "validationErrors": {
+          "description": "Output only. Misconfigurations or errors in the agent that may affect agent quality.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -3693,6 +3759,62 @@
         },
         "toolset": {
           "description": "Required. The resource name of the toolset. Format: `projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentCard": {
+      "description": "AgentCard conveys key information about a remote agent. It is a trimmed version of the AgentCard defined in the A2A protocol https://a2a-protocol.org/dev/specification/#441-agentcard",
+      "id": "AgentCard",
+      "properties": {
+        "description": {
+          "description": "Required. A description of the agent's domain of action/solution space.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. A human-readable name for the agent.",
+          "type": "string"
+        },
+        "skills": {
+          "description": "Required. Skills represent a unit of ability an agent can perform. This may somewhat abstract but represents a more focused set of actions that the agent is highly likely to succeed at.",
+          "items": {
+            "$ref": "AgentSkill"
+          },
+          "type": "array"
+        },
+        "supportedInterfaces": {
+          "description": "Required. Ordered list of supported interfaces. The first entry is preferred.",
+          "items": {
+            "$ref": "AgentInterface"
+          },
+          "type": "array"
+        },
+        "version": {
+          "description": "Required. The version of the agent.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentInterface": {
+      "description": "Declares a combination of a target URL, transport and protocol version for interacting with the agent. This allows agents to expose the same functionality over multiple protocol binding mechanisms.",
+      "id": "AgentInterface",
+      "properties": {
+        "protocolBinding": {
+          "description": "Required. The protocol binding supported at this URL. This is an open form string, to be easily extended for other protocol bindings. The core ones officially supported are `JSONRPC`, `GRPC` and `HTTP+JSON`.",
+          "type": "string"
+        },
+        "protocolVersion": {
+          "description": "Required. The version of the A2A protocol this interface exposes. Use the latest supported minor version per major version. Examples: \"0.3\", \"1.0\"",
+          "type": "string"
+        },
+        "tenant": {
+          "description": "Tenant ID to be used in the request when calling the agent.",
+          "type": "string"
+        },
+        "url": {
+          "description": "Required. The URL where this interface is available. Must be a valid absolute HTTPS URL in production. Example: \"https://api.example.com/a2a/v1\", \"https://grpc.example.com/a2a\"",
           "type": "string"
         }
       },
@@ -3737,6 +3859,53 @@
         "respectResponseInterruptionSettings": {
           "description": "Optional. Indicates whether to respect the message-level interruption settings configured in the Dialogflow agent. * If false: all response messages from the Dialogflow agent follow the app-level barge-in settings. * If true: only response messages with [`allow_playback_interruption`](https://docs.cloud.google.com/dialogflow/cx/docs/reference/rpc/google.cloud.dialogflow.cx.v3#text) set to true will be interruptable, all other messages follow the app-level barge-in settings.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "AgentSkill": {
+      "description": "Represents a distinct capability or function that an agent can perform.",
+      "id": "AgentSkill",
+      "properties": {
+        "description": {
+          "description": "Required. A detailed description of the skill.",
+          "type": "string"
+        },
+        "examples": {
+          "description": "Example prompts or scenarios that this skill can handle.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Required. A unique identifier for the agent's skill.",
+          "type": "string"
+        },
+        "inputModes": {
+          "description": "The set of supported input media types for this skill, overriding the agent's defaults.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. A human-readable name for the skill.",
+          "type": "string"
+        },
+        "outputModes": {
+          "description": "The set of supported output media types for this skill, overriding the agent's defaults.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tags": {
+          "description": "Required. A set of keywords describing the skill's capabilities.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4237,12 +4406,24 @@
           "readOnly": true,
           "type": "string"
         },
+        "validationErrors": {
+          "description": "Output only. Misconfigurations or warnings in the app.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "variableDeclarations": {
           "description": "Optional. The declarations of the variables.",
           "items": {
             "$ref": "AppVariableDeclaration"
           },
           "type": "array"
+        },
+        "vpcScSettings": {
+          "$ref": "VpcScSettings",
+          "description": "Optional. VPC-SC settings for the app."
         }
       },
       "type": "object"
@@ -6507,6 +6688,15 @@
           "description": "Output only. The result of the agent transfer expectation.",
           "readOnly": true
         },
+        "observedPayload": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output only. An observed custom payload. There are no expectations for custom payloads. This is only used for metrics calculation. The outcome is always SKIPPED.",
+          "readOnly": true,
+          "type": "object"
+        },
         "observedToolCall": {
           "$ref": "ToolCall",
           "description": "Output only. The result of the tool call expectation.",
@@ -7786,6 +7976,24 @@
       },
       "type": "object"
     },
+    "ExportEvaluationResultsRequest": {
+      "description": "Request message for EvaluationService.ExportEvaluationResults.",
+      "id": "ExportEvaluationResultsRequest",
+      "properties": {
+        "exportOptions": {
+          "$ref": "ExportOptions",
+          "description": "Optional. The export options for the evaluation results."
+        },
+        "names": {
+          "description": "Required. The resource names of the evaluation results to export.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ExportEvaluationResultsResponse": {
       "description": "Response message for EvaluationService.ExportEvaluationResults.",
       "id": "ExportEvaluationResultsResponse",
@@ -7798,6 +8006,24 @@
         "evaluationResultsUri": {
           "description": "The Google Cloud Storage URI folder where the exported Evaluation Results were written. This will be populated if gcs_uri was specified in the request.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExportEvaluationRunsRequest": {
+      "description": "Request message for EvaluationService.ExportEvaluationRuns.",
+      "id": "ExportEvaluationRunsRequest",
+      "properties": {
+        "exportOptions": {
+          "$ref": "ExportOptions",
+          "description": "Optional. The export options for the evaluation runs."
+        },
+        "names": {
+          "description": "Required. The resource names of the evaluation runs to export.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -10285,6 +10511,25 @@
       },
       "type": "object"
     },
+    "RemoteAgentTool": {
+      "description": "Represents a tool that allows the agent to call another remote agent.",
+      "id": "RemoteAgentTool",
+      "properties": {
+        "agentCard": {
+          "$ref": "AgentCard",
+          "description": "Required. The agent card of the remote agent that this tool invokes."
+        },
+        "description": {
+          "description": "Required. The description of the tool.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The name of the tool.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RestoreAppVersionRequest": {
       "description": "Request message for AgentService.RestoreAppVersion",
       "id": "RestoreAppVersionRequest",
@@ -11211,9 +11456,18 @@
           "$ref": "PythonFunction",
           "description": "Optional. The python function tool."
         },
+        "remoteAgentTool": {
+          "$ref": "RemoteAgentTool",
+          "description": "Optional. The remote agent tool."
+        },
         "systemTool": {
           "$ref": "SystemTool",
           "description": "Optional. The system tool."
+        },
+        "timeout": {
+          "description": "Optional. The timeout for the tool execution. If not set, the default timeout is 30 seconds for `SYNCHRONOUS` tools and 60 seconds for `ASYNCHRONOUS` tools.",
+          "format": "google-duration",
+          "type": "string"
         },
         "toolFakeConfig": {
           "$ref": "ToolFakeConfig",
@@ -11580,6 +11834,20 @@
         "transcript": {
           "description": "The transcript of the audio, generated by Cloud Speech-to-Text.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VpcScSettings": {
+      "description": "VPC-SC settings for the app.",
+      "id": "VpcScSettings",
+      "properties": {
+        "allowedOrigins": {
+          "description": "Optional. The allowed HTTP(s) origins that OpenAPI tools in the App are able to directly call when VPC Service Controls are enabled. These strings must match the origin exactly, including the port if specified. For example, \"https://example.com\" or \"https://example.com:443\". This list does not yet apply to Python tools that may make direct HTTP calls.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

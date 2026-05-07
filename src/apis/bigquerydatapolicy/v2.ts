@@ -190,6 +190,19 @@ export namespace bigquerydatapolicy_v2 {
     dataPolicyId?: string | null;
   }
   /**
+   * Data Governance tag This is a namespaced name specifying the key and the value. For example: `project-id/pii/sensitive`.
+   */
+  export interface Schema$DataGovernanceTag {
+    /**
+     * Optional. Tag keys are globally unique. Tag key is expected to be in the namespaced format, for example `parent-id/pii` where `parent-id` is the ID of the parent organization or project resource for this tag key.
+     */
+    key?: string | null;
+    /**
+     * Optional. Specifies the tag value as the short name, for example `sensitive`.
+     */
+    value?: string | null;
+  }
+  /**
    * The policy used to specify data masking rule.
    */
   export interface Schema$DataMaskingPolicy {
@@ -206,6 +219,10 @@ export namespace bigquerydatapolicy_v2 {
    * Represents the label-policy binding.
    */
   export interface Schema$DataPolicy {
+    /**
+     * Optional. Data Governance tag bound to the Data Policy.
+     */
+    dataGovernanceTag?: Schema$DataGovernanceTag;
     /**
      * Optional. The data masking policy that specifies the data masking rule to use. It must be set if the data policy type is DATA_MASKING_POLICY.
      */
@@ -434,6 +451,7 @@ export namespace bigquerydatapolicy_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "dataGovernanceTag": {},
      *   //   "dataMaskingPolicy": {},
      *   //   "dataPolicyId": "my_dataPolicyId",
      *   //   "dataPolicyType": "my_dataPolicyType",
@@ -592,6 +610,7 @@ export namespace bigquerydatapolicy_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "dataGovernanceTag": {},
      *   //   "dataMaskingPolicy": {},
      *   //   "dataPolicyId": "my_dataPolicyId",
      *   //   "dataPolicyType": "my_dataPolicyType",
@@ -876,6 +895,7 @@ export namespace bigquerydatapolicy_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "dataGovernanceTag": {},
      *   //   "dataMaskingPolicy": {},
      *   //   "dataPolicyId": "my_dataPolicyId",
      *   //   "dataPolicyType": "my_dataPolicyType",
@@ -1330,6 +1350,7 @@ export namespace bigquerydatapolicy_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "dataGovernanceTag": {},
      *       //   "dataMaskingPolicy": {},
      *       //   "dataPolicyId": "my_dataPolicyId",
      *       //   "dataPolicyType": "my_dataPolicyType",
@@ -1345,6 +1366,7 @@ export namespace bigquerydatapolicy_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "dataGovernanceTag": {},
      *   //   "dataMaskingPolicy": {},
      *   //   "dataPolicyId": "my_dataPolicyId",
      *   //   "dataPolicyType": "my_dataPolicyType",
@@ -1500,6 +1522,7 @@ export namespace bigquerydatapolicy_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "dataGovernanceTag": {},
      *   //   "dataMaskingPolicy": {},
      *   //   "dataPolicyId": "my_dataPolicyId",
      *   //   "dataPolicyType": "my_dataPolicyType",

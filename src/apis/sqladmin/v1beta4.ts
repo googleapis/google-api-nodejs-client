@@ -2216,31 +2216,31 @@ export namespace sqladmin_v1beta4 {
     reuseInterval?: number | null;
   }
   /**
-   * Performance Capture configuration.
+   * Performance capture configuration.
    */
   export interface Schema$PerformanceCaptureConfig {
     /**
-     * Optional. Enable or disable the Performance Capture.
+     * Optional. Enables or disables the performance capture feature.
      */
     enabled?: boolean | null;
     /**
-     * Optional. The minimum number of consecutive readings above threshold that triggers instance state capture.
+     * Optional. Specifies the minimum number of consecutive probe threshold that triggers performance capture.
      */
     probeThreshold?: number | null;
     /**
-     * Optional. The time interval in seconds between any two probes.
+     * Optional. Specifies the interval in seconds between consecutive probes that check if any trigger condition thresholds have been reached.
      */
     probingIntervalSeconds?: number | null;
     /**
-     * Optional. The minimum number of server threads running to trigger the capture on primary.
+     * Optional. Specifies the minimum number of MySQL `Threads_running` to trigger the performance capture on the primary instance.
      */
     runningThreadsThreshold?: number | null;
     /**
-     * Optional. The minimum number of seconds replica must be lagging behind primary to trigger capture on replica.
+     * Optional. Specifies the minimum number of seconds replica must be lagging behind primary instance to trigger the performance capture on replica.
      */
     secondsBehindSourceThreshold?: number | null;
     /**
-     * Optional. The amount of time in seconds that a transaction needs to have been open before the watcher starts recording it.
+     * Optional. Specifies the amount of time in seconds that a transaction needs to have been open before the watcher starts recording it.
      */
     transactionDurationThreshold?: number | null;
   }

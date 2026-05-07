@@ -171,7 +171,9 @@
                 "admin_data_action",
                 "contacts",
                 "takeout",
-                "graduation"
+                "graduation",
+                "voice",
+                "chrome_sync"
               ],
               "enumDescriptions": [
                 "The Google Workspace Access Transparency activity reports return information about different types of Access Transparency activity events.",
@@ -211,10 +213,12 @@
                 "The Admin Data Action application's activity reports return information about various types of Admin Data Action activity events.",
                 "The Contacts application's activity reports return information about various types of Contacts activity events.",
                 "The Takeout application's activity reports return information about various types of Takeout activity events.",
-                "The Graduation application's activity reports return information about various types of Graduation activity events."
+                "The Graduation application's activity reports return information about various types of Graduation activity events.",
+                "The Voice application's activity reports return information about various types of Voice activity events.",
+                "The Chrome Sync application's activity reports return information about various types of Chrome Sync activity events."
               ],
               "location": "path",
-              "pattern": "(access_evaluation)|(access_transparency)|(admin)|(admin_data_action)|(assignments)|(calendar)|(chat)|(chrome)|(classroom)|(cloud_search)|(contacts)|(context_aware_access)|(data_studio)|(data_migration)|(directory_sync)|(drive)|(gcp)|(gmail)|(gplus)|(graduation)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(ldap)|(login)|(meet)|(meet_hardware)|(mobile)|(profile)|(rules)|(saml)|(token)|(user_accounts)|(vault)|(gemini_in_workspace_apps)|(tasks)|(takeout)",
+              "pattern": "(access_evaluation)|(access_transparency)|(admin)|(admin_data_action)|(assignments)|(calendar)|(chat)|(chrome)|(classroom)|(cloud_search)|(contacts)|(context_aware_access)|(data_studio)|(data_migration)|(directory_sync)|(drive)|(gcp)|(gmail)|(gplus)|(graduation)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(ldap)|(login)|(meet)|(meet_hardware)|(mobile)|(profile)|(rules)|(saml)|(token)|(user_accounts)|(vault)|(gemini_in_workspace_apps)|(tasks)|(takeout)|(voice)|(chrome_sync)",
               "required": true,
               "type": "string"
             },
@@ -686,7 +690,7 @@
       }
     }
   },
-  "revision": "20260317",
+  "revision": "20260504",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {

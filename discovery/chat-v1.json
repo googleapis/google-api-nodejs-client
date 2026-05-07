@@ -954,6 +954,21 @@
                 "parent"
               ],
               "parameters": {
+                "createMessageNotificationOptions.notificationType": {
+                  "description": "The notification type for the message.",
+                  "enum": [
+                    "NOTIFICATION_TYPE_NONE",
+                    "NOTIFICATION_TYPE_FORCE_NOTIFY",
+                    "NOTIFICATION_TYPE_SILENT"
+                  ],
+                  "enumDescriptions": [
+                    "Default behavior. Notification behavior is similar to when the human user sends the message using the Chat UI: no notification is sent to the human sender.",
+                    "Force notify recipients. This bypasses users' space notification settings and [Chat Do Not Disturb settings](https://support.google.com/chat/answer/9093489). This option does not bypass device-level Do Not Disturb settings. Requires [app authentication] (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).",
+                    "Silence the notification as if the recipients have [Chat Do Not Disturb](https://support.google.com/chat/answer/9093489) enabled or have muted the space. Requires [app authentication] (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
                 "messageId": {
                   "description": "Optional. A custom ID for a message. Lets Chat apps get, update, or delete a message without needing to store the system-assigned ID in the message's resource name (represented in the message `name` field). The value for this field must meet the following requirements: * Begins with `client-`. For example, `client-custom-name` is a valid custom ID, but `custom-name` is not. * Contains up to 63 characters and only lowercase letters, numbers, and hyphens. * Is unique within a space. A Chat app can't use the same custom ID for different messages. For details, see [Name a message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).",
                   "location": "query",
@@ -1834,7 +1849,7 @@
       }
     }
   },
-  "revision": "20260428",
+  "revision": "20260503",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessSettings": {
@@ -5154,6 +5169,11 @@
           "$ref": "User",
           "description": "Output only. The user who created the message. If your Chat app [authenticates as a user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user), the output populates the [user](https://developers.google.com/workspace/chat/api/reference/rest/v1/User) `name` and `type`.",
           "readOnly": true
+        },
+        "silent": {
+          "description": "Output only. Whether this is a silent message. Silent messages are messages where Chat suppresses push notifications for recipients.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "slashCommand": {
           "$ref": "SlashCommand",
