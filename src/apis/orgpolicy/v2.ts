@@ -133,7 +133,7 @@ export namespace orgpolicy_v2 {
    */
   export interface Schema$GoogleCloudOrgpolicyV2AlternatePolicySpec {
     /**
-     * Reference to the launch that will be used while audit logging and to control the launch. Should be set only in the alternate policy.
+     * Reference to the launch that will be used while audit logging and to control the launch. Set only in the alternate policy.
      */
     launch?: string | null;
     /**
@@ -292,7 +292,7 @@ export namespace orgpolicy_v2 {
      */
     methodTypes?: string[] | null;
     /**
-     * Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id\}/customConstraints/{custom_constraint_id\}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms` The max length is 71 characters and the minimum length is 1. Note that the prefix `organizations/{organization_id\}/customConstraints/custom.` is not counted.
+     * Immutable. Name of the constraint. This is unique within the organization. The name must be of the form: * `organizations/{organization_id\}/customConstraints/{custom_constraint_id\}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms` The max length is 71 characters and the minimum length is 1. Note that the prefix `organizations/{organization_id\}/customConstraints/custom.` is not counted.
      */
     name?: string | null;
     /**
@@ -313,7 +313,7 @@ export namespace orgpolicy_v2 {
      */
     constraints?: Schema$GoogleCloudOrgpolicyV2Constraint[];
     /**
-     * Page token used to retrieve the next page. This is currently not used.
+     * Page token used to retrieve the next page. This is not used.
      */
     nextPageToken?: string | null;
   }
@@ -326,7 +326,7 @@ export namespace orgpolicy_v2 {
      */
     customConstraints?: Schema$GoogleCloudOrgpolicyV2CustomConstraint[];
     /**
-     * Page token used to retrieve the next page. This is currently not used, but the server may at any point start supplying a valid token.
+     * Page token used to retrieve the next page. This is not used, but the server may at any point start supplying a valid token.
      */
     nextPageToken?: string | null;
   }
@@ -335,7 +335,7 @@ export namespace orgpolicy_v2 {
    */
   export interface Schema$GoogleCloudOrgpolicyV2ListPoliciesResponse {
     /**
-     * Page token used to retrieve the next page. This is currently not used, but the server may at any point start supplying a valid token.
+     * Page token used to retrieve the next page. This is not used, but the server may at any point start supplying a valid token.
      */
     nextPageToken?: string | null;
     /**
@@ -509,9 +509,9 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.folders.constraints.list({
-     *     // Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     *     // Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.
      *     pageSize: 'placeholder-value',
-     *     // Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     *     // Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      *     pageToken: 'placeholder-value',
      *     // Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
      *     parent: 'folders/my-folder',
@@ -633,11 +633,11 @@ export namespace orgpolicy_v2 {
 
   export interface Params$Resource$Folders$Constraints$List extends StandardParameters {
     /**
-     * Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     * Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.
      */
     pageSize?: number;
     /**
-     * Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     * Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      */
     pageToken?: string;
     /**
@@ -1267,9 +1267,9 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.folders.policies.list({
-     *     // Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     *     // Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.
      *     pageSize: 'placeholder-value',
-     *     // Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     *     // Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      *     pageToken: 'placeholder-value',
      *     // Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
      *     parent: 'folders/my-folder',
@@ -1582,11 +1582,11 @@ export namespace orgpolicy_v2 {
   }
   export interface Params$Resource$Folders$Policies$List extends StandardParameters {
     /**
-     * Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     * Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.
      */
     pageSize?: number;
     /**
-     * Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     * Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      */
     pageToken?: string;
     /**
@@ -1662,9 +1662,9 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.organizations.constraints.list({
-     *     // Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     *     // Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.
      *     pageSize: 'placeholder-value',
-     *     // Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     *     // Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      *     pageToken: 'placeholder-value',
      *     // Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
      *     parent: 'organizations/my-organization',
@@ -1786,11 +1786,11 @@ export namespace orgpolicy_v2 {
 
   export interface Params$Resource$Organizations$Constraints$List extends StandardParameters {
     /**
-     * Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     * Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.
      */
     pageSize?: number;
     /**
-     * Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     * Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      */
     pageToken?: string;
     /**
@@ -2288,9 +2288,9 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.organizations.customConstraints.list({
-     *     // Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     *     // Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.
      *     pageSize: 'placeholder-value',
-     *     // Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     *     // Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      *     pageToken: 'placeholder-value',
      *     // Required. The target Google Cloud resource that parents the set of custom constraints that will be returned from this call. Must be in one of the following forms: * `organizations/{organization_id\}`
      *     parent: 'organizations/my-organization',
@@ -2440,7 +2440,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.organizations.customConstraints.patch({
-     *     // Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id\}/customConstraints/{custom_constraint_id\}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms` The max length is 71 characters and the minimum length is 1. Note that the prefix `organizations/{organization_id\}/customConstraints/custom.` is not counted.
+     *     // Immutable. Name of the constraint. This is unique within the organization. The name must be of the form: * `organizations/{organization_id\}/customConstraints/{custom_constraint_id\}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms` The max length is 71 characters and the minimum length is 1. Note that the prefix `organizations/{organization_id\}/customConstraints/custom.` is not counted.
      *     name: 'organizations/my-organization/customConstraints/my-customConstraint',
      *
      *     // Request body metadata
@@ -2601,11 +2601,11 @@ export namespace orgpolicy_v2 {
   }
   export interface Params$Resource$Organizations$Customconstraints$List extends StandardParameters {
     /**
-     * Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     * Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.
      */
     pageSize?: number;
     /**
-     * Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     * Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      */
     pageToken?: string;
     /**
@@ -2615,7 +2615,7 @@ export namespace orgpolicy_v2 {
   }
   export interface Params$Resource$Organizations$Customconstraints$Patch extends StandardParameters {
     /**
-     * Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id\}/customConstraints/{custom_constraint_id\}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms` The max length is 71 characters and the minimum length is 1. Note that the prefix `organizations/{organization_id\}/customConstraints/custom.` is not counted.
+     * Immutable. Name of the constraint. This is unique within the organization. The name must be of the form: * `organizations/{organization_id\}/customConstraints/{custom_constraint_id\}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms` The max length is 71 characters and the minimum length is 1. Note that the prefix `organizations/{organization_id\}/customConstraints/custom.` is not counted.
      */
     name?: string;
 
@@ -3247,9 +3247,9 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.organizations.policies.list({
-     *     // Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     *     // Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.
      *     pageSize: 'placeholder-value',
-     *     // Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     *     // Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      *     pageToken: 'placeholder-value',
      *     // Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
      *     parent: 'organizations/my-organization',
@@ -3562,11 +3562,11 @@ export namespace orgpolicy_v2 {
   }
   export interface Params$Resource$Organizations$Policies$List extends StandardParameters {
     /**
-     * Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     * Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.
      */
     pageSize?: number;
     /**
-     * Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     * Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      */
     pageToken?: string;
     /**
@@ -3638,9 +3638,9 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.projects.constraints.list({
-     *     // Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     *     // Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.
      *     pageSize: 'placeholder-value',
-     *     // Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     *     // Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      *     pageToken: 'placeholder-value',
      *     // Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
      *     parent: 'projects/my-project',
@@ -3762,11 +3762,11 @@ export namespace orgpolicy_v2 {
 
   export interface Params$Resource$Projects$Constraints$List extends StandardParameters {
     /**
-     * Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     * Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.
      */
     pageSize?: number;
     /**
-     * Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     * Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      */
     pageToken?: string;
     /**
@@ -4396,9 +4396,9 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.projects.policies.list({
-     *     // Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     *     // Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.
      *     pageSize: 'placeholder-value',
-     *     // Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     *     // Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      *     pageToken: 'placeholder-value',
      *     // Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
      *     parent: 'projects/my-project',
@@ -4711,11 +4711,11 @@ export namespace orgpolicy_v2 {
   }
   export interface Params$Resource$Projects$Policies$List extends StandardParameters {
     /**
-     * Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.
+     * Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.
      */
     pageSize?: number;
     /**
-     * Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.
+     * Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      */
     pageToken?: string;
     /**
