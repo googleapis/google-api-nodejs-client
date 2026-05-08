@@ -119,13 +119,13 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.",
+                  "description": "Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.",
+                  "description": "Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.",
                   "location": "query",
                   "type": "string"
                 },
@@ -267,13 +267,13 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.",
+                  "description": "Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.",
+                  "description": "Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.",
                   "location": "query",
                   "type": "string"
                 },
@@ -345,13 +345,13 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.",
+                  "description": "Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.",
+                  "description": "Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.",
                   "location": "query",
                   "type": "string"
                 },
@@ -463,13 +463,13 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.",
+                  "description": "Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.",
+                  "description": "Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.",
                   "location": "query",
                   "type": "string"
                 },
@@ -499,7 +499,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id}/customConstraints/{custom_constraint_id}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms` The max length is 71 characters and the minimum length is 1. Note that the prefix `organizations/{organization_id}/customConstraints/custom.` is not counted.",
+                  "description": "Immutable. Name of the constraint. This is unique within the organization. The name must be of the form: * `organizations/{organization_id}/customConstraints/{custom_constraint_id}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms` The max length is 71 characters and the minimum length is 1. Note that the prefix `organizations/{organization_id}/customConstraints/custom.` is not counted.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/customConstraints/[^/]+$",
                   "required": true,
@@ -639,13 +639,13 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.",
+                  "description": "Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.",
+                  "description": "Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.",
                   "location": "query",
                   "type": "string"
                 },
@@ -717,13 +717,13 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.",
+                  "description": "Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.",
+                  "description": "Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.",
                   "location": "query",
                   "type": "string"
                 },
@@ -865,13 +865,13 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Size of the pages to be returned. This is currently unsupported and will be ignored. The server may at any point start using this field to limit page size.",
+                  "description": "Size of the pages to be returned. This is not used, but the server may at any point start using this field to limit page size.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "Page token used to retrieve the next page. This is currently unsupported and will be ignored. The server may at any point start using this field.",
+                  "description": "Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.",
                   "location": "query",
                   "type": "string"
                 },
@@ -930,7 +930,7 @@
       }
     }
   },
-  "revision": "20260312",
+  "revision": "20260504",
   "rootUrl": "https://orgpolicy.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2AlternatePolicySpec": {
@@ -938,7 +938,7 @@
       "id": "GoogleCloudOrgpolicyV2AlternatePolicySpec",
       "properties": {
         "launch": {
-          "description": "Reference to the launch that will be used while audit logging and to control the launch. Should be set only in the alternate policy.",
+          "description": "Reference to the launch that will be used while audit logging and to control the launch. Set only in the alternate policy.",
           "type": "string"
         },
         "spec": {
@@ -964,7 +964,7 @@
             "DENY"
           ],
           "enumDescriptions": [
-            "This is only used for distinguishing unset values and should never be used. Results in an error.",
+            "This is only used for distinguishing unset values, and results in an error if set.",
             "Indicate that all values are allowed for list constraints. Indicate that enforcement is off for boolean constraints.",
             "Indicate that all values are denied for list constraints. Indicate that enforcement is on for boolean constraints."
           ],
@@ -1024,7 +1024,7 @@
             "DENY"
           ],
           "enumDescriptions": [
-            "This is only used for distinguishing unset values and should never be used. Results in an error.",
+            "This is only used for distinguishing unset values, and results in an error if used.",
             "Allowed action type.",
             "Deny action type."
           ],
@@ -1046,10 +1046,10 @@
               "GOVERN_TAGS"
             ],
             "enumDescriptions": [
-              "This is only used for distinguishing unset values and should never be used. Results in an error.",
+              "This is only used for distinguishing unset values, and results in an error if used.",
               "Constraint applied when creating the resource.",
               "Constraint applied when updating the resource.",
-              "Constraint applied when deleting the resource. Not currently supported.",
+              "Constraint applied when deleting the resource. Not supported.",
               "Constraint applied when removing an IAM grant.",
               "Constraint applied when enforcing forced tagging."
             ],
@@ -1091,7 +1091,7 @@
             "BOOLEAN"
           ],
           "enumDescriptions": [
-            "This is only used for distinguishing unset values and should never be used. Results in an error.",
+            "This is only used for distinguishing unset values, and results in an error if used.",
             "List parameter type.",
             "String parameter type.",
             "Boolean parameter type."
@@ -1111,7 +1111,7 @@
             "BOOLEAN"
           ],
           "enumDescriptions": [
-            "This is only used for distinguishing unset values and should never be used. Results in an error.",
+            "This is only used for distinguishing unset values, and results in an error if used.",
             "List parameter type.",
             "String parameter type.",
             "Boolean parameter type."
@@ -1163,7 +1163,7 @@
             "DENY"
           ],
           "enumDescriptions": [
-            "This is only used for distinguishing unset values and should never be used. Results in an error.",
+            "This is only used for distinguishing unset values, and results in an error if used.",
             "Allowed action type.",
             "Deny action type."
           ],
@@ -1193,10 +1193,10 @@
               "GOVERN_TAGS"
             ],
             "enumDescriptions": [
-              "This is only used for distinguishing unset values and should never be used. Results in an error.",
+              "This is only used for distinguishing unset values, and results in an error if used.",
               "Constraint applied when creating the resource.",
               "Constraint applied when updating the resource.",
-              "Constraint applied when deleting the resource. Not currently supported.",
+              "Constraint applied when deleting the resource. Not supported.",
               "Constraint applied when removing an IAM grant.",
               "Constraint applied when enforcing forced tagging."
             ],
@@ -1205,7 +1205,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id}/customConstraints/{custom_constraint_id}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms` The max length is 71 characters and the minimum length is 1. Note that the prefix `organizations/{organization_id}/customConstraints/custom.` is not counted.",
+          "description": "Immutable. Name of the constraint. This is unique within the organization. The name must be of the form: * `organizations/{organization_id}/customConstraints/{custom_constraint_id}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms` The max length is 71 characters and the minimum length is 1. Note that the prefix `organizations/{organization_id}/customConstraints/custom.` is not counted.",
           "type": "string"
         },
         "resourceTypes": {
@@ -1236,7 +1236,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Page token used to retrieve the next page. This is currently not used.",
+          "description": "Page token used to retrieve the next page. This is not used.",
           "type": "string"
         }
       },
@@ -1254,7 +1254,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Page token used to retrieve the next page. This is currently not used, but the server may at any point start supplying a valid token.",
+          "description": "Page token used to retrieve the next page. This is not used, but the server may at any point start supplying a valid token.",
           "type": "string"
         }
       },
@@ -1265,7 +1265,7 @@
       "id": "GoogleCloudOrgpolicyV2ListPoliciesResponse",
       "properties": {
         "nextPageToken": {
-          "description": "Page token used to retrieve the next page. This is currently not used, but the server may at any point start supplying a valid token.",
+          "description": "Page token used to retrieve the next page. This is not used, but the server may at any point start supplying a valid token.",
           "type": "string"
         },
         "policies": {
