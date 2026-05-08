@@ -1147,6 +1147,23 @@ export namespace chromemanagement_v1 {
     totalSize?: number | null;
   }
   /**
+   * Response containing a list of profiles with queried app installed.
+   */
+  export interface Schema$GoogleChromeManagementV1FindInstalledAppProfilesResponse {
+    /**
+     * Token to specify the next page of the request.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of profiles which have the app installed. Sorted in ascending alphabetical order on the profile.Email field.
+     */
+    profiles?: Schema$GoogleChromeManagementV1ProfileAppInstallInstance[];
+    /**
+     * Total number of profiles matching request.
+     */
+    totalSize?: number | null;
+  }
+  /**
    * Information of a graphics adapter (GPU).
    */
   export interface Schema$GoogleChromeManagementV1GraphicsAdapterInfo {
@@ -1648,6 +1665,27 @@ export namespace chromemanagement_v1 {
      * The unique Directory API ID of the user who submitted the print job.
      */
     userId?: string | null;
+  }
+  /**
+   * Describes a profile reporting Chrome Profile information.
+   */
+  export interface Schema$GoogleChromeManagementV1ProfileAppInstallInstance {
+    /**
+     * Output only. The email of the profile.
+     */
+    email?: string | null;
+    /**
+     * Output only. The Chrome client side profile ID.
+     */
+    profileId?: string | null;
+    /**
+     * Output only. The organizational unit id of the profile.
+     */
+    profileOrgUnitId?: string | null;
+    /**
+     * Output only. Profile permanent ID is the unique identifier of a profile within one customer.
+     */
+    profilePermanentId?: string | null;
   }
   /**
    * Risk assessment for a Chrome extension.
@@ -2736,6 +2774,10 @@ export namespace chromemanagement_v1 {
      */
     googleSecOpsConfig?: Schema$GoogleChromeManagementVersionsV1GoogleSecOpsConfig;
     /**
+     * MIP label connector config.
+     */
+    mipLabelConfig?: Schema$GoogleChromeManagementVersionsV1MipLabelConfig;
+    /**
      * Palo Alto Networks connector config.
      */
     paloAltoNetworksConfig?: Schema$GoogleChromeManagementVersionsV1PaloAltoNetworksConfig;
@@ -2943,6 +2985,19 @@ export namespace chromemanagement_v1 {
      * The page token used to retrieve the next page of the listing request. If the token is empty, there are no more pages to retrieve.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * MIP label connector config.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1MipLabelConfig {
+    /**
+     * Optional. Domain can be used optionally for the corner case where one Dasher customer ID maps to multiple Microsoft tenant ID. Each domain can be verified with at most one Microsoft tenant.
+     */
+    domains?: string[] | null;
+    /**
+     * Required. Microsoft tenant ID.
+     */
+    microsoftTenantId?: string | null;
   }
   /**
    * Request to MoveThirdPartyProfileUser method.
@@ -9649,6 +9704,174 @@ export namespace chromemanagement_v1 {
         );
       }
     }
+
+    /**
+     * Generate report of managed Chrome profiles that have a specified app installed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.reports.findInstalledAppProfiles(
+     *     {
+     *       // Required. Unique identifier of the app. For Chrome apps and extensions, the 32-character id (e.g. ehoadneljpdggcbbknedodolkkjodefl). For Android apps, the package name (e.g. com.evernote).
+     *       appId: 'placeholder-value',
+     *       // Type of the app. Optional. If not provided, an app type will be inferred from the format of the app ID.
+     *       appType: 'placeholder-value',
+     *       // Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     *       customer: 'customers/my-customer',
+     *       // Optional. Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * last_active_date
+     *       filter: 'placeholder-value',
+     *       // Optional. Field used to order results. Supported order by fields: * email * profile_id * profile_permanent_id
+     *       orderBy: 'placeholder-value',
+     *       // Optional. The ID of the organizational unit.
+     *       orgUnitId: 'placeholder-value',
+     *       // Optional. Maximum number of results to return. Maximum and default are 100.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Token to specify the page of the request to be returned.
+     *       pageToken: 'placeholder-value',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "profiles": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    findInstalledAppProfiles(
+      params: Params$Resource$Customers$Reports$Findinstalledappprofiles,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    findInstalledAppProfiles(
+      params?: Params$Resource$Customers$Reports$Findinstalledappprofiles,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1FindInstalledAppProfilesResponse>
+    >;
+    findInstalledAppProfiles(
+      params: Params$Resource$Customers$Reports$Findinstalledappprofiles,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    findInstalledAppProfiles(
+      params: Params$Resource$Customers$Reports$Findinstalledappprofiles,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FindInstalledAppProfilesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1FindInstalledAppProfilesResponse>
+    ): void;
+    findInstalledAppProfiles(
+      params: Params$Resource$Customers$Reports$Findinstalledappprofiles,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1FindInstalledAppProfilesResponse>
+    ): void;
+    findInstalledAppProfiles(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1FindInstalledAppProfilesResponse>
+    ): void;
+    findInstalledAppProfiles(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Reports$Findinstalledappprofiles
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FindInstalledAppProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FindInstalledAppProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1FindInstalledAppProfilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1FindInstalledAppProfilesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Reports$Findinstalledappprofiles;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Reports$Findinstalledappprofiles;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/reports:findInstalledAppProfiles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1FindInstalledAppProfilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1FindInstalledAppProfilesResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Customers$Reports$Countactivedevices extends StandardParameters {
@@ -9936,6 +10159,40 @@ export namespace chromemanagement_v1 {
     pageSize?: number;
     /**
      * Token to specify the page of the request to be returned.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Customers$Reports$Findinstalledappprofiles extends StandardParameters {
+    /**
+     * Required. Unique identifier of the app. For Chrome apps and extensions, the 32-character id (e.g. ehoadneljpdggcbbknedodolkkjodefl). For Android apps, the package name (e.g. com.evernote).
+     */
+    appId?: string;
+    /**
+     * Type of the app. Optional. If not provided, an app type will be inferred from the format of the app ID.
+     */
+    appType?: string;
+    /**
+     * Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     */
+    customer?: string;
+    /**
+     * Optional. Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * last_active_date
+     */
+    filter?: string;
+    /**
+     * Optional. Field used to order results. Supported order by fields: * email * profile_id * profile_permanent_id
+     */
+    orderBy?: string;
+    /**
+     * Optional. The ID of the organizational unit.
+     */
+    orgUnitId?: string;
+    /**
+     * Optional. Maximum number of results to return. Maximum and default are 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token to specify the page of the request to be returned.
      */
     pageToken?: string;
   }
