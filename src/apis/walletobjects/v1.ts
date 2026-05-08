@@ -2877,6 +2877,10 @@ export namespace walletobjects_v1 {
      */
     sha256Hash?: string | null;
     /**
+     * Scotty-provided SHA512 hash for an upload.
+     */
+    sha512Hash?: string | null;
+    /**
      * Time at which the media data was last updated, in milliseconds since UNIX epoch
      */
     timestamp?: string | null;
@@ -17540,6 +17544,7 @@ export namespace walletobjects_v1 {
      *   //   "referenceType": "my_referenceType",
      *   //   "sha1Hash": "my_sha1Hash",
      *   //   "sha256Hash": "my_sha256Hash",
+     *   //   "sha512Hash": "my_sha512Hash",
      *   //   "timestamp": "my_timestamp",
      *   //   "token": "my_token"
      *   // }
