@@ -1484,6 +1484,83 @@
               "scopes": [
                 "https://www.googleapis.com/auth/chrome.management.reports.readonly"
               ]
+            },
+            "findInstalledAppProfiles": {
+              "description": "Generate report of managed Chrome profiles that have a specified app installed.",
+              "flatPath": "v1/customers/{customersId}/reports:findInstalledAppProfiles",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.findInstalledAppProfiles",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "appId": {
+                  "description": "Required. Unique identifier of the app. For Chrome apps and extensions, the 32-character id (e.g. ehoadneljpdggcbbknedodolkkjodefl). For Android apps, the package name (e.g. com.evernote).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "appType": {
+                  "description": "Type of the app. Optional. If not provided, an app type will be inferred from the format of the app ID.",
+                  "enum": [
+                    "APP_TYPE_UNSPECIFIED",
+                    "EXTENSION",
+                    "APP",
+                    "THEME",
+                    "HOSTED_APP",
+                    "ANDROID_APP"
+                  ],
+                  "enumDescriptions": [
+                    "App type not specified.",
+                    "Chrome extension.",
+                    "Chrome app.",
+                    "Chrome theme.",
+                    "Chrome hosted app.",
+                    "ARC++ app."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
+                "customer": {
+                  "description": "Required. Customer id or \"my_customer\" to use the customer associated to the account making the request.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Optional. Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * last_active_date",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. Field used to order results. Supported order by fields: * email * profile_id * profile_permanent_id",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orgUnitId": {
+                  "description": "Optional. The ID of the organizational unit.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Maximum number of results to return. Maximum and default are 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Token to specify the page of the request to be returned.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/reports:findInstalledAppProfiles",
+              "response": {
+                "$ref": "GoogleChromeManagementV1FindInstalledAppProfilesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
             }
           }
         },
@@ -1928,7 +2005,7 @@
       }
     }
   },
-  "revision": "20260424",
+  "revision": "20260505",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -3504,6 +3581,29 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1FindInstalledAppProfilesResponse": {
+      "description": "Response containing a list of profiles with queried app installed.",
+      "id": "GoogleChromeManagementV1FindInstalledAppProfilesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to specify the next page of the request.",
+          "type": "string"
+        },
+        "profiles": {
+          "description": "A list of profiles which have the app installed. Sorted in ascending alphabetical order on the profile.Email field.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1ProfileAppInstallInstance"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "Total number of profiles matching request.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1GraphicsAdapterInfo": {
       "description": "Information of a graphics adapter (GPU).",
       "id": "GoogleChromeManagementV1GraphicsAdapterInfo",
@@ -4341,6 +4441,33 @@
         "userCount": {
           "description": "Number of users that have sent print jobs to the printer.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1ProfileAppInstallInstance": {
+      "description": "Describes a profile reporting Chrome Profile information.",
+      "id": "GoogleChromeManagementV1ProfileAppInstallInstance",
+      "properties": {
+        "email": {
+          "description": "Output only. The email of the profile.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "profileId": {
+          "description": "Output only. The Chrome client side profile ID.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "profileOrgUnitId": {
+          "description": "Output only. The organizational unit id of the profile.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "profilePermanentId": {
+          "description": "Output only. Profile permanent ID is the unique identifier of a profile within one customer.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -6367,7 +6494,8 @@
             "XDR",
             "IDENTITY_BASED_ENROLLMENT",
             "CERTIFICATE_AUTHORITY",
-            "ROOT_STORE"
+            "ROOT_STORE",
+            "CONTENT_ANALYSIS"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -6376,7 +6504,8 @@
             "XDR connector.",
             "Authentication connector.",
             "Certificate authority connector. Not yet supported in the API.",
-            "Root certificate connector."
+            "Root certificate connector.",
+            "Content analysis connector."
           ],
           "type": "string"
         }
@@ -6406,6 +6535,10 @@
         "googleSecOpsConfig": {
           "$ref": "GoogleChromeManagementVersionsV1GoogleSecOpsConfig",
           "description": "Google SecOps connector config."
+        },
+        "mipLabelConfig": {
+          "$ref": "GoogleChromeManagementVersionsV1MipLabelConfig",
+          "description": "MIP label connector config."
         },
         "paloAltoNetworksConfig": {
           "$ref": "GoogleChromeManagementVersionsV1PaloAltoNetworksConfig",
@@ -6717,6 +6850,24 @@
         },
         "nextPageToken": {
           "description": "The page token used to retrieve the next page of the listing request. If the token is empty, there are no more pages to retrieve.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1MipLabelConfig": {
+      "description": "MIP label connector config.",
+      "id": "GoogleChromeManagementVersionsV1MipLabelConfig",
+      "properties": {
+        "domains": {
+          "description": "Optional. Domain can be used optionally for the corner case where one Dasher customer ID maps to multiple Microsoft tenant ID. Each domain can be verified with at most one Microsoft tenant.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "microsoftTenantId": {
+          "description": "Required. Microsoft tenant ID.",
           "type": "string"
         }
       },
