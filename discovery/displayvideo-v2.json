@@ -7789,7 +7789,7 @@
       }
     }
   },
-  "revision": "20260421",
+  "revision": "20260505",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -9721,7 +9721,8 @@
             "GEO_REGION_TYPE_DIVISION",
             "GEO_REGION_TYPE_COMMUNE",
             "GEO_REGION_TYPE_COLLOQUIAL_AREA",
-            "GEO_REGION_TYPE_POST_TOWN"
+            "GEO_REGION_TYPE_POST_TOWN",
+            "GEO_REGION_TYPE_WARD"
           ],
           "enumDescriptions": [
             "The geographic region type is unknown.",
@@ -9762,7 +9763,8 @@
             "The geographic region is a division.",
             "The geographic region is a commune.",
             "The geographic region is a colloquial area.",
-            "The geographic region is a post town."
+            "The geographic region is a post town.",
+            "The geographic region is a ward."
           ],
           "readOnly": true,
           "type": "string"
@@ -13544,7 +13546,8 @@
             "GEO_REGION_TYPE_DIVISION",
             "GEO_REGION_TYPE_COMMUNE",
             "GEO_REGION_TYPE_COLLOQUIAL_AREA",
-            "GEO_REGION_TYPE_POST_TOWN"
+            "GEO_REGION_TYPE_POST_TOWN",
+            "GEO_REGION_TYPE_WARD"
           ],
           "enumDescriptions": [
             "The geographic region type is unknown.",
@@ -13585,7 +13588,8 @@
             "The geographic region is a division.",
             "The geographic region is a commune.",
             "The geographic region is a colloquial area.",
-            "The geographic region is a post town."
+            "The geographic region is a post town.",
+            "The geographic region is a ward."
           ],
           "readOnly": true,
           "type": "string"
@@ -13662,7 +13666,8 @@
             "GEO_REGION_TYPE_DIVISION",
             "GEO_REGION_TYPE_COMMUNE",
             "GEO_REGION_TYPE_COLLOQUIAL_AREA",
-            "GEO_REGION_TYPE_POST_TOWN"
+            "GEO_REGION_TYPE_POST_TOWN",
+            "GEO_REGION_TYPE_WARD"
           ],
           "enumDescriptions": [
             "The geographic region type is unknown.",
@@ -13703,7 +13708,8 @@
             "The geographic region is a division.",
             "The geographic region is a commune.",
             "The geographic region is a colloquial area.",
-            "The geographic region is a post town."
+            "The geographic region is a post town.",
+            "The geographic region is a ward."
           ],
           "readOnly": true,
           "type": "string"
