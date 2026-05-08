@@ -2078,6 +2078,10 @@ export namespace dataflow_v1b3 {
      * The name of the package.
      */
     name?: string | null;
+    /**
+     * Optional. The hex-encoded SHA256 checksum of the package. If the checksum is provided, the worker will verify the checksum of the package before using it. If the checksum does not match, the worker will fail to start.
+     */
+    sha256?: string | null;
   }
   /**
    * Describes a particular operation comprising a MapTask.

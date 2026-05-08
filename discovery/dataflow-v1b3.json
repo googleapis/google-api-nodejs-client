@@ -2400,7 +2400,7 @@
       }
     }
   },
-  "revision": "20260405",
+  "revision": "20260503",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -5191,6 +5191,10 @@
         },
         "name": {
           "description": "The name of the package.",
+          "type": "string"
+        },
+        "sha256": {
+          "description": "Optional. The hex-encoded SHA256 checksum of the package. If the checksum is provided, the worker will verify the checksum of the package before using it. If the checksum does not match, the worker will fail to start.",
           "type": "string"
         }
       },
