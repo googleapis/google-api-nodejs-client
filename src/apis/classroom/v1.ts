@@ -404,6 +404,10 @@ export namespace classroom_v1 {
      */
     id?: string | null;
     /**
+     * Optional. Levels for the course. Examples: "9th grade", "Middle school", "4th - 5th", "K-2", "3000". If set, this field must be a valid UTF-8 string and fewer than 1000 characters. This field can only be cleared using the `PatchCourse` method.
+     */
+    levels?: string | null;
+    /**
      * Name of the course. For example, "10th Grade Biology". The name is required. It must be between 1 and 750 characters and a valid UTF-8 string.
      */
     name?: string | null;
@@ -1827,6 +1831,7 @@ export namespace classroom_v1 {
      *       //   "gradebookSettings": {},
      *       //   "guardiansEnabled": false,
      *       //   "id": "my_id",
+     *       //   "levels": "my_levels",
      *       //   "name": "my_name",
      *       //   "ownerId": "my_ownerId",
      *       //   "room": "my_room",
@@ -1854,6 +1859,7 @@ export namespace classroom_v1 {
      *   //   "gradebookSettings": {},
      *   //   "guardiansEnabled": false,
      *   //   "id": "my_id",
+     *   //   "levels": "my_levels",
      *   //   "name": "my_name",
      *   //   "ownerId": "my_ownerId",
      *   //   "room": "my_room",
@@ -2140,6 +2146,7 @@ export namespace classroom_v1 {
      *   //   "gradebookSettings": {},
      *   //   "guardiansEnabled": false,
      *   //   "id": "my_id",
+     *   //   "levels": "my_levels",
      *   //   "name": "my_name",
      *   //   "ownerId": "my_ownerId",
      *   //   "room": "my_room",
@@ -2564,7 +2571,7 @@ export namespace classroom_v1 {
      *   const res = await classroom.courses.patch({
      *     // Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
      *     id: 'placeholder-value',
-     *     // Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `courseState` * `description` * `descriptionHeading` * `name` * `ownerId` * `room` * `section` * `subject` Note: patches to ownerId are treated as being effective immediately, but in practice it may take some time for the ownership transfer of all affected resources to complete. When set in a query parameter, this field should be specified as `updateMask=,,...`
+     *     // Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `courseState` * `description` * `descriptionHeading` * `name` * `ownerId` * `room` * `section` * `subject` * `levels` Note: patches to ownerId are treated as being effective immediately, but in practice it may take some time for the ownership transfer of all affected resources to complete. When set in a query parameter, this field should be specified as `updateMask=,,...`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2583,6 +2590,7 @@ export namespace classroom_v1 {
      *       //   "gradebookSettings": {},
      *       //   "guardiansEnabled": false,
      *       //   "id": "my_id",
+     *       //   "levels": "my_levels",
      *       //   "name": "my_name",
      *       //   "ownerId": "my_ownerId",
      *       //   "room": "my_room",
@@ -2610,6 +2618,7 @@ export namespace classroom_v1 {
      *   //   "gradebookSettings": {},
      *   //   "guardiansEnabled": false,
      *   //   "id": "my_id",
+     *   //   "levels": "my_levels",
      *   //   "name": "my_name",
      *   //   "ownerId": "my_ownerId",
      *   //   "room": "my_room",
@@ -2713,7 +2722,7 @@ export namespace classroom_v1 {
     }
 
     /**
-     * Updates a course. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to modify the requested course or for access errors. * `NOT_FOUND` if no course exists with the requested ID. * `FAILED_PRECONDITION` for the following request errors: * CourseNotModifiable * CourseTitleCannotContainUrl
+     * Updates a course. Note: Unlike other fields, `levels` is not cleared if omitted from the request. The `UpdateCourse` method only modifies `levels` if it is explicitly provided; otherwise, the existing value is preserved. Use the `PatchCourse` method to clear the `levels` field. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to modify the requested course or for access errors. * `NOT_FOUND` if no course exists with the requested ID. * `FAILED_PRECONDITION` for the following request errors: * CourseNotModifiable * CourseTitleCannotContainUrl
      * @example
      * ```js
      * // Before running the sample:
@@ -2762,6 +2771,7 @@ export namespace classroom_v1 {
      *       //   "gradebookSettings": {},
      *       //   "guardiansEnabled": false,
      *       //   "id": "my_id",
+     *       //   "levels": "my_levels",
      *       //   "name": "my_name",
      *       //   "ownerId": "my_ownerId",
      *       //   "room": "my_room",
@@ -2789,6 +2799,7 @@ export namespace classroom_v1 {
      *   //   "gradebookSettings": {},
      *   //   "guardiansEnabled": false,
      *   //   "id": "my_id",
+     *   //   "levels": "my_levels",
      *   //   "name": "my_name",
      *   //   "ownerId": "my_ownerId",
      *   //   "room": "my_room",
@@ -3096,7 +3107,7 @@ export namespace classroom_v1 {
      */
     id?: string;
     /**
-     * Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `courseState` * `description` * `descriptionHeading` * `name` * `ownerId` * `room` * `section` * `subject` Note: patches to ownerId are treated as being effective immediately, but in practice it may take some time for the ownership transfer of all affected resources to complete. When set in a query parameter, this field should be specified as `updateMask=,,...`
+     * Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `courseState` * `description` * `descriptionHeading` * `name` * `ownerId` * `room` * `section` * `subject` * `levels` Note: patches to ownerId are treated as being effective immediately, but in practice it may take some time for the ownership transfer of all affected resources to complete. When set in a query parameter, this field should be specified as `updateMask=,,...`
      */
     updateMask?: string;
 
@@ -8172,6 +8183,11 @@ export namespace classroom_v1 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/classroom.addons.student',
      *       'https://www.googleapis.com/auth/classroom.addons.teacher',
+     *       'https://www.googleapis.com/auth/classroom.coursework.me',
+     *       'https://www.googleapis.com/auth/classroom.coursework.me.readonly',
+     *       'https://www.googleapis.com/auth/classroom.coursework.students',
+     *       'https://www.googleapis.com/auth/classroom.coursework.students.readonly',
+     *       'https://www.googleapis.com/auth/classroom.student-submissions.me.readonly',
      *       'https://www.googleapis.com/auth/classroom.student-submissions.students.readonly',
      *     ],
      *   });
@@ -13800,6 +13816,11 @@ export namespace classroom_v1 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/classroom.addons.student',
      *       'https://www.googleapis.com/auth/classroom.addons.teacher',
+     *       'https://www.googleapis.com/auth/classroom.coursework.me',
+     *       'https://www.googleapis.com/auth/classroom.coursework.me.readonly',
+     *       'https://www.googleapis.com/auth/classroom.coursework.students',
+     *       'https://www.googleapis.com/auth/classroom.coursework.students.readonly',
+     *       'https://www.googleapis.com/auth/classroom.student-submissions.me.readonly',
      *       'https://www.googleapis.com/auth/classroom.student-submissions.students.readonly',
      *     ],
      *   });
