@@ -168,6 +168,10 @@ export namespace datamanager_v1 {
      */
     landingPageDeviceInfo?: Schema$DeviceInfo;
     /**
+     * Optional. The mobile identifier for advertisers. This would be IDFA on iOS, AdID on Android, or other platforms’ identifiers for advertisers.
+     */
+    mobileDeviceId?: string | null;
+    /**
      * Optional. Session attributes for event attribution and modeling.
      */
     sessionAttributes?: string | null;
@@ -247,6 +251,10 @@ export namespace datamanager_v1 {
    * The cart data associated with the event.
    */
   export interface Schema$CartData {
+    /**
+     * Optional. The list of coupon codes that were applied to the cart. Cart-level and item-level coupon codes are independent. If the event is for a Google Analytics destination, only provide a single coupon code. Google Analytics ignores additional coupon codes.
+     */
+    couponCodes?: string[] | null;
     /**
      * Optional. The list of items associated with the event.
      */
@@ -341,9 +349,49 @@ export namespace datamanager_v1 {
    */
   export interface Schema$DeviceInfo {
     /**
+     * Optional. The brand of the device.
+     */
+    brand?: string | null;
+    /**
+     * Optional. The brand or type of the browser.
+     */
+    browser?: string | null;
+    /**
+     * Optional. The version of the browser.
+     */
+    browserVersion?: string | null;
+    /**
+     * Optional. The category of device. For example, “desktop”, “tablet”, “mobile”, “smart TV”.
+     */
+    category?: string | null;
+    /**
      * Optional. The IP address of the device for the given context. **Note:** Google Ads does not support IP address matching for end users in the European Economic Area (EEA), United Kingdom (UK), or Switzerland (CH). Add logic to conditionally exclude sharing IP addresses from users from these regions and ensure that you provide users with clear and comprehensive information about the data you collect on your sites, apps, and other properties and get consent where required by law or any applicable Google policies. See the [About offline conversion imports](https://support.google.com/google-ads/answer/2998031) page for more details.
      */
     ipAddress?: string | null;
+    /**
+     * Optional. The language the device uses in ISO 639-1 format.
+     */
+    languageCode?: string | null;
+    /**
+     * Optional. The model of the device.
+     */
+    model?: string | null;
+    /**
+     * Optional. The operating system or platform of the device.
+     */
+    operatingSystem?: string | null;
+    /**
+     * Optional. The version of the operating system or platform.
+     */
+    operatingSystemVersion?: string | null;
+    /**
+     * Optional. The height of the screen in pixels.
+     */
+    screenHeight?: number | null;
+    /**
+     * Optional. The width of the screen in pixels.
+     */
+    screenWidth?: number | null;
     /**
      * Optional. The user-agent string of the device for the given context.
      */
@@ -401,6 +449,10 @@ export namespace datamanager_v1 {
      */
     adIdentifiers?: Schema$AdIdentifiers;
     /**
+     * Optional. A unique identifier for the user instance of an app client for this GA4 app stream.
+     */
+    appInstanceId?: string | null;
+    /**
      * Optional. Information about the transaction and items associated with the event.
      */
     cartData?: Schema$CartData;
@@ -433,6 +485,10 @@ export namespace datamanager_v1 {
      */
     eventDeviceInfo?: Schema$DeviceInfo;
     /**
+     * Optional. Information gathered about the location of the user when this event occurred.
+     */
+    eventLocation?: Schema$EventLocation;
+    /**
      * Optional. The name of the event. Required for GA4 events.
      */
     eventName?: string | null;
@@ -453,7 +509,11 @@ export namespace datamanager_v1 {
      */
     lastUpdatedTimestamp?: string | null;
     /**
-     * Optional. The unique identifier for this event. Required for conversions using multiple data sources.
+     * Optional. The same type of data provided in user_data, but explicitly flagged as being provided as owned by a third-party and not first-party advertiser data.
+     */
+    thirdPartyUserData?: Schema$UserData;
+    /**
+     * Optional. The unique identifier for this event. Required for events sent as an additional data source for tag conversions.
      */
     transactionId?: string | null;
     /**
@@ -468,6 +528,35 @@ export namespace datamanager_v1 {
      * Optional. Advertiser-assessed information about the user at the time that the event happened.
      */
     userProperties?: Schema$UserProperties;
+  }
+  /**
+   * The location where the event occurred.
+   */
+  export interface Schema$EventLocation {
+    /**
+     * Optional. The name of the city where the event occurred.
+     */
+    city?: string | null;
+    /**
+     * Optional. The continent code in UN M49 format where the event occurred.
+     */
+    continentCode?: string | null;
+    /**
+     * Optional. The 2-letter CLDR region code of the user's address.
+     */
+    regionCode?: string | null;
+    /**
+     * Optional. Required for Store Sales. The identifier to represent a physical store where the event happened.
+     */
+    storeId?: string | null;
+    /**
+     * Optional. The subcontinent code in UN M49 format where the event occurred.
+     */
+    subcontinentCode?: string | null;
+    /**
+     * Optional. The ISO 3166-2 subdivision code where the event occurred.
+     */
+    subdivisionCode?: string | null;
   }
   /**
    * Event parameter for GA4 events.
@@ -741,9 +830,29 @@ export namespace datamanager_v1 {
      */
     additionalItemParameters?: Schema$ItemParameter[];
     /**
+     * Optional. The conversion value associated with this item within the event, for cases where the conversion value is different for each item.
+     */
+    conversionValue?: number | null;
+    /**
+     * Optional. Additional key/value pair information to send to the conversion containers (conversion action or Floodlight activity), when tracking per-item conversions.
+     */
+    customVariables?: Schema$ItemCustomVariable[];
+    /**
      * Optional. A unique identifier to reference the item.
      */
     itemId?: string | null;
+    /**
+     * Optional. The feed label of the Merchant Center feed. If countries are still being used, the 2-letter country code in ISO-3166-1 alpha-2 can be used instead. For Store Sales events this will override the value set at the cart level. This field is ignored for other events.
+     */
+    merchantFeedLabel?: string | null;
+    /**
+     * Optional. The language code in ISO 639-1 associated with the Merchant Center feed where your items are uploaded.
+     */
+    merchantFeedLanguageCode?: string | null;
+    /**
+     * Optional. The Merchant Center ID associated with the item. For Store Sales events this will override the value set at the cart level. This field is ignored for other events.
+     */
+    merchantId?: string | null;
     /**
      * Optional. The product ID within the Merchant Center account.
      */
@@ -756,6 +865,23 @@ export namespace datamanager_v1 {
      * Optional. The unit price excluding tax, shipping, and any transaction level discounts.
      */
     unitPrice?: number | null;
+  }
+  /**
+   * Item-level custom variable for ads conversions.
+   */
+  export interface Schema$ItemCustomVariable {
+    /**
+     * Optional. Reference string used to determine which of the Event.destination_references the custom variable should be sent to. If empty, the Event.destination_references will be used.
+     */
+    destinationReferences?: string[] | null;
+    /**
+     * Optional. The value to store for the custom variable.
+     */
+    value?: string | null;
+    /**
+     * Optional. The name of the custom variable to set. If the variable is not found for the given destination, it will be ignored.
+     */
+    variable?: string | null;
   }
   /**
    * A bucket of any [event parameters related to an item](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events) to be included within the event that were not already specified using other structured fields.
@@ -1139,7 +1265,7 @@ export namespace datamanager_v1 {
      */
     destination?: Schema$Destination;
     /**
-     * An error info error containing the error reason and error counts related to the upload.
+     * An error info error containing the error reason and error counts related to the upload. Only populated if the `request_status` is `FAILED` or `PARTIAL_SUCCESS`. This field isn't populated while the request has `request_status` of `PROCESSING`.
      */
     errorInfo?: Schema$ErrorInfo;
     /**
@@ -1151,7 +1277,7 @@ export namespace datamanager_v1 {
      */
     requestStatus?: string | null;
     /**
-     * A warning info containing the warning reason and warning counts related to the upload.
+     * A warning info containing the warning reason and warning counts related to the upload. This field isn't populated while the request has `request_status` of `PROCESSING`.
      */
     warningInfo?: Schema$WarningInfo;
   }
@@ -1208,9 +1334,17 @@ export namespace datamanager_v1 {
      */
     displayNetworkMembersCount?: string | null;
     /**
+     * Output only. Estimated number of members in this user list on Gmail.
+     */
+    gmailMembersCount?: string | null;
+    /**
      * Output only. Estimated number of members in this user list in the google.com domain. These are the members available for targeting in Search campaigns.
      */
     searchNetworkMembersCount?: string | null;
+    /**
+     * Output only. Estimated number of members in this user list on YouTube.
+     */
+    youtubeMembersCount?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).

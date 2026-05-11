@@ -820,7 +820,7 @@
       }
     }
   },
-  "revision": "20260420",
+  "revision": "20260507",
   "rootUrl": "https://datamanager.googleapis.com/",
   "schemas": {
     "AdIdentifiers": {
@@ -838,6 +838,10 @@
         "landingPageDeviceInfo": {
           "$ref": "DeviceInfo",
           "description": "Optional. Information gathered about the device being used (if any) at the time of landing onto the advertiser’s site after interacting with the ad."
+        },
+        "mobileDeviceId": {
+          "description": "Optional. The mobile identifier for advertisers. This would be IDFA on iOS, AdID on Android, or other platforms’ identifiers for advertisers.",
+          "type": "string"
         },
         "sessionAttributes": {
           "description": "Optional. Session attributes for event attribution and modeling.",
@@ -961,6 +965,13 @@
       "description": "The cart data associated with the event.",
       "id": "CartData",
       "properties": {
+        "couponCodes": {
+          "description": "Optional. The list of coupon codes that were applied to the cart. Cart-level and item-level coupon codes are independent. If the event is for a Google Analytics destination, only provide a single coupon code. Google Analytics ignores additional coupon codes.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "items": {
           "description": "Optional. The list of items associated with the event.",
           "items": {
@@ -1107,9 +1118,51 @@
       "description": "Information about the device being used (if any) when the event happened.",
       "id": "DeviceInfo",
       "properties": {
+        "brand": {
+          "description": "Optional. The brand of the device.",
+          "type": "string"
+        },
+        "browser": {
+          "description": "Optional. The brand or type of the browser.",
+          "type": "string"
+        },
+        "browserVersion": {
+          "description": "Optional. The version of the browser.",
+          "type": "string"
+        },
+        "category": {
+          "description": "Optional. The category of device. For example, “desktop”, “tablet”, “mobile”, “smart TV”.",
+          "type": "string"
+        },
         "ipAddress": {
           "description": "Optional. The IP address of the device for the given context. **Note:** Google Ads does not support IP address matching for end users in the European Economic Area (EEA), United Kingdom (UK), or Switzerland (CH). Add logic to conditionally exclude sharing IP addresses from users from these regions and ensure that you provide users with clear and comprehensive information about the data you collect on your sites, apps, and other properties and get consent where required by law or any applicable Google policies. See the [About offline conversion imports](https://support.google.com/google-ads/answer/2998031) page for more details.",
           "type": "string"
+        },
+        "languageCode": {
+          "description": "Optional. The language the device uses in ISO 639-1 format.",
+          "type": "string"
+        },
+        "model": {
+          "description": "Optional. The model of the device.",
+          "type": "string"
+        },
+        "operatingSystem": {
+          "description": "Optional. The operating system or platform of the device.",
+          "type": "string"
+        },
+        "operatingSystemVersion": {
+          "description": "Optional. The version of the operating system or platform.",
+          "type": "string"
+        },
+        "screenHeight": {
+          "description": "Optional. The height of the screen in pixels.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "screenWidth": {
+          "description": "Optional. The width of the screen in pixels.",
+          "format": "int32",
+          "type": "integer"
         },
         "userAgent": {
           "description": "Optional. The user-agent string of the device for the given context.",
@@ -1175,37 +1228,6 @@
             "PROCESSING_ERROR_REASON_USER_IDENTIFIER_DECRYPTION_ERROR",
             "PROCESSING_ERROR_OPERATING_ACCOUNT_MISMATCH_FOR_AD_IDENTIFIER",
             "PROCESSING_ERROR_REASON_ONE_PER_CLICK_CONVERSION_ACTION_NOT_PERMITTED_WITH_BRAID"
-          ],
-          "enumDeprecated": [
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            false,
-            true
           ],
           "enumDescriptions": [
             "The processing error reason is unknown.",
@@ -1277,6 +1299,10 @@
           },
           "type": "array"
         },
+        "appInstanceId": {
+          "description": "Optional. A unique identifier for the user instance of an app client for this GA4 app stream.",
+          "type": "string"
+        },
         "cartData": {
           "$ref": "CartData",
           "description": "Optional. Information about the transaction and items associated with the event."
@@ -1316,6 +1342,10 @@
           "$ref": "DeviceInfo",
           "description": "Optional. Information gathered about the device being used (if any) when the event happened."
         },
+        "eventLocation": {
+          "$ref": "EventLocation",
+          "description": "Optional. Information gathered about the location of the user when this event occurred."
+        },
         "eventName": {
           "description": "Optional. The name of the event. Required for GA4 events.",
           "type": "string"
@@ -1328,6 +1358,7 @@
             "APP",
             "IN_STORE",
             "PHONE",
+            "MESSAGE",
             "OTHER"
           ],
           "enumDescriptions": [
@@ -1336,6 +1367,7 @@
             "The event was generated from an app.",
             "The event was generated from an in-store transaction.",
             "The event was generated from a phone call.",
+            "The event was generated from a message.",
             "The event was generated from other sources."
           ],
           "type": "string"
@@ -1357,8 +1389,12 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "thirdPartyUserData": {
+          "$ref": "UserData",
+          "description": "Optional. The same type of data provided in user_data, but explicitly flagged as being provided as owned by a third-party and not first-party advertiser data."
+        },
         "transactionId": {
-          "description": "Optional. The unique identifier for this event. Required for conversions using multiple data sources.",
+          "description": "Optional. The unique identifier for this event. Required for events sent as an additional data source for tag conversions.",
           "type": "string"
         },
         "userData": {
@@ -1372,6 +1408,37 @@
         "userProperties": {
           "$ref": "UserProperties",
           "description": "Optional. Advertiser-assessed information about the user at the time that the event happened."
+        }
+      },
+      "type": "object"
+    },
+    "EventLocation": {
+      "description": "The location where the event occurred.",
+      "id": "EventLocation",
+      "properties": {
+        "city": {
+          "description": "Optional. The name of the city where the event occurred.",
+          "type": "string"
+        },
+        "continentCode": {
+          "description": "Optional. The continent code in UN M49 format where the event occurred.",
+          "type": "string"
+        },
+        "regionCode": {
+          "description": "Optional. The 2-letter CLDR region code of the user's address.",
+          "type": "string"
+        },
+        "storeId": {
+          "description": "Optional. Required for Store Sales. The identifier to represent a physical store where the event happened.",
+          "type": "string"
+        },
+        "subcontinentCode": {
+          "description": "Optional. The subcontinent code in UN M49 format where the event occurred.",
+          "type": "string"
+        },
+        "subdivisionCode": {
+          "description": "Optional. The ISO 3166-2 subdivision code where the event occurred.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1776,8 +1843,32 @@
           },
           "type": "array"
         },
+        "conversionValue": {
+          "description": "Optional. The conversion value associated with this item within the event, for cases where the conversion value is different for each item.",
+          "format": "double",
+          "type": "number"
+        },
+        "customVariables": {
+          "description": "Optional. Additional key/value pair information to send to the conversion containers (conversion action or Floodlight activity), when tracking per-item conversions.",
+          "items": {
+            "$ref": "ItemCustomVariable"
+          },
+          "type": "array"
+        },
         "itemId": {
           "description": "Optional. A unique identifier to reference the item.",
+          "type": "string"
+        },
+        "merchantFeedLabel": {
+          "description": "Optional. The feed label of the Merchant Center feed. If countries are still being used, the 2-letter country code in ISO-3166-1 alpha-2 can be used instead. For Store Sales events this will override the value set at the cart level. This field is ignored for other events.",
+          "type": "string"
+        },
+        "merchantFeedLanguageCode": {
+          "description": "Optional. The language code in ISO 639-1 associated with the Merchant Center feed where your items are uploaded.",
+          "type": "string"
+        },
+        "merchantId": {
+          "description": "Optional. The Merchant Center ID associated with the item. For Store Sales events this will override the value set at the cart level. This field is ignored for other events.",
           "type": "string"
         },
         "merchantProductId": {
@@ -1793,6 +1884,28 @@
           "description": "Optional. The unit price excluding tax, shipping, and any transaction level discounts.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ItemCustomVariable": {
+      "description": "Item-level custom variable for ads conversions.",
+      "id": "ItemCustomVariable",
+      "properties": {
+        "destinationReferences": {
+          "description": "Optional. Reference string used to determine which of the Event.destination_references the custom variable should be sent to. If empty, the Event.destination_references will be used.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "value": {
+          "description": "Optional. The value to store for the custom variable.",
+          "type": "string"
+        },
+        "variable": {
+          "description": "Optional. The name of the custom variable to set. If the variable is not found for the given destination, it will be ignored.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2420,7 +2533,7 @@
         },
         "errorInfo": {
           "$ref": "ErrorInfo",
-          "description": "An error info error containing the error reason and error counts related to the upload."
+          "description": "An error info error containing the error reason and error counts related to the upload. Only populated if the `request_status` is `FAILED` or `PARTIAL_SUCCESS`. This field isn't populated while the request has `request_status` of `PROCESSING`."
         },
         "eventsIngestionStatus": {
           "$ref": "IngestEventsStatus",
@@ -2437,16 +2550,16 @@
           ],
           "enumDescriptions": [
             "The request status is unknown.",
-            "The request succeeded.",
+            "Processing succeeded for all records without any errors. However, there may be warnings in the `warning_info` field.",
             "The request is processing.",
-            "The request failed.",
-            "The request partially succeeded."
+            "Processing failed for all records. Check the `error_info` field for error details, and check the `warning_info` field for warning details.",
+            "Processing completed successfully without errors for some records, but failed with errors for other records. Check the `error_info` field for error details, and check the `warning_info` field for warning details."
           ],
           "type": "string"
         },
         "warningInfo": {
           "$ref": "WarningInfo",
-          "description": "A warning info containing the warning reason and warning counts related to the upload."
+          "description": "A warning info containing the warning reason and warning counts related to the upload. This field isn't populated while the request has `request_status` of `PROCESSING`."
         }
       },
       "type": "object"
@@ -2522,8 +2635,20 @@
           "readOnly": true,
           "type": "string"
         },
+        "gmailMembersCount": {
+          "description": "Output only. Estimated number of members in this user list on Gmail.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "searchNetworkMembersCount": {
           "description": "Output only. Estimated number of members in this user list in the google.com domain. These are the members available for targeting in Search campaigns.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "youtubeMembersCount": {
+          "description": "Output only. Estimated number of members in this user list on YouTube.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -3228,7 +3353,7 @@
             "The WIP could not be used because it was rejected by its attestation condition.",
             "The WIP is formatted incorrectly or the WIP does not exist.",
             "The KEK cannot decrypt data because it is the wrong KEK, or it does not exist.",
-            "Failed to decrypt th UserIdentifier data using the DEK.",
+            "Failed to decrypt the UserIdentifier data using the DEK.",
             "Internal error.",
             "The system failed to authenticate with AWS."
           ],
