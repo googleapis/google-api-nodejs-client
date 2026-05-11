@@ -151,6 +151,19 @@ export namespace firebasedataconnect_v1beta {
     instance?: string | null;
   }
   /**
+   * A chunk of code.
+   */
+  export interface Schema$CodeChunk {
+    /**
+     * Required. The code content string.
+     */
+    code?: string | null;
+    /**
+     * Optional. Specifies the language if we expand support beyond GraphQL (e.g., SQL or JSON) The standard is BCP-47 language code.
+     */
+    languageCode?: string | null;
+  }
+  /**
    * Connector consists of a set of operations, i.e. queries and mutations.
    */
   export interface Schema$Connector {
@@ -309,6 +322,67 @@ export namespace firebasedataconnect_v1beta {
      * Required. The file name including folder path, if applicable. The path should be relative to a local workspace (e.g. dataconnect/(schema|connector)/x.gql) and not an absolute path (e.g. /absolute/path/(schema|connector)/x.gql).
      */
     path?: string | null;
+  }
+  /**
+   * Request message for GenerateQuery.
+   */
+  export interface Schema$GenerateQueryRequest {
+    /**
+     * Required. The natural language description of the desired query. Example: "Find all users who signed up in the last 7 days."
+     */
+    prompt?: string | null;
+    /**
+     * Optional. The user's locally defined FDC Schema(s). If not defined, the backend will fetch the user's deployed schema.
+     */
+    schemas?: Schema$Schema[];
+  }
+  /**
+   * Output for streaming generate query requests
+   */
+  export interface Schema$GenerateQueryResponse {
+    /**
+     * Required. The content from the current conversational turn.
+     */
+    part?: Schema$Part;
+    /**
+     * Essential for providing responsive UI feedback (e.g., a spinner or "Analyzing schema..." step).
+     */
+    status?: Schema$GenerationStatus;
+  }
+  /**
+   * Request message for GenerateSchema.
+   */
+  export interface Schema$GenerateSchemaRequest {
+    /**
+     * Required. The natural language description of the data model to generate. Example: "A blog system with Users, Posts, and Comments. Users can have multiple posts."
+     */
+    prompt?: string | null;
+  }
+  /**
+   * Output for streaming generate schema requests
+   */
+  export interface Schema$GenerateSchemaResponse {
+    /**
+     * The content from the current conversational turn.
+     */
+    part?: Schema$Part;
+    /**
+     * Essential for providing responsive UI feedback (e.g., a spinner or "Analyzing schema..." step).
+     */
+    status?: Schema$GenerationStatus;
+  }
+  /**
+   * Represents the progress of the server side generation request.
+   */
+  export interface Schema$GenerationStatus {
+    /**
+     * Output only. A message providing more details about the state.
+     */
+    message?: string | null;
+    /**
+     * Output only. The state of generation.
+     */
+    state?: string | null;
   }
   /**
    * GraphqlError conforms to the GraphQL error spec. https://spec.graphql.org/draft/#sec-Errors Firebase SQL Connect API surfaces `GraphqlError` in various APIs: - Upon compile error, `UpdateSchema` and `UpdateConnector` return Code.Invalid_Argument with a list of `GraphqlError` in error details. - Upon query compile error, `ExecuteGraphql`, `ExecuteGraphqlRead` and `IntrospectGraphql` return Code.OK with a list of `GraphqlError` in response body. - Upon query execution error, `ExecuteGraphql`, `ExecuteGraphqlRead`, `ExecuteMutation`, `ExecuteQuery`, `IntrospectGraphql`, `ImpersonateQuery` and `ImpersonateMutation` all return Code.OK with a list of `GraphqlError` in response body.
@@ -624,6 +698,19 @@ export namespace firebasedataconnect_v1beta {
     verb?: string | null;
   }
   /**
+   * Represents a chunk of content.
+   */
+  export interface Schema$Part {
+    /**
+     * Optional. A chunk of code.
+     */
+    codeChunk?: Schema$CodeChunk;
+    /**
+     * Optional. A chunk of text.
+     */
+    textChunk?: Schema$TextChunk;
+  }
+  /**
    * Settings for PostgreSQL data source.
    */
   export interface Schema$PostgreSql {
@@ -644,11 +731,11 @@ export namespace firebasedataconnect_v1beta {
      */
     schema?: string | null;
     /**
-     * Optional. Configure how to perform Postgresql schema migration.
+     * Optional. Configure how to perform automatic PostgreSQL schema migration before deploying the FDC schema. This is an additive-only operation.
      */
     schemaMigration?: string | null;
     /**
-     * Optional. Configure how much Postgresql schema validation to perform.
+     * Optional. Configure how much PostgreSQL schema validation to perform against the live database before deploying the FDC schema.
      */
     schemaValidation?: string | null;
     /**
@@ -784,6 +871,15 @@ export namespace firebasedataconnect_v1beta {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * A chunk of conversational text.
+   */
+  export interface Schema$TextChunk {
+    /**
+     * Required. The text content string.
+     */
+    text?: string | null;
   }
   /**
    * Workaround provides suggestions to address errors and warnings.
@@ -2397,6 +2493,313 @@ export namespace firebasedataconnect_v1beta {
     }
 
     /**
+     * Generates a GraphQL query based on a natural language prompt and the provided schema context. This is a stateless method; the schema is provided per request to support local development states. Streams results with real-time status and output chunks.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedataconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasedataconnect = google.firebasedataconnect('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebasedataconnect.projects.locations.services.generateQuery({
+     *       // Required. The resource name of the service in which to generate the query. Format: projects/{project\}/locations/{location\}/services/{service\}
+     *       name: 'projects/my-project/locations/my-location/services/my-service',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "prompt": "my_prompt",
+     *         //   "schemas": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "part": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateQuery(
+      params: Params$Resource$Projects$Locations$Services$Generatequery,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generateQuery(
+      params?: Params$Resource$Projects$Locations$Services$Generatequery,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateQueryResponse>>;
+    generateQuery(
+      params: Params$Resource$Projects$Locations$Services$Generatequery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateQuery(
+      params: Params$Resource$Projects$Locations$Services$Generatequery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateQueryResponse>,
+      callback: BodyResponseCallback<Schema$GenerateQueryResponse>
+    ): void;
+    generateQuery(
+      params: Params$Resource$Projects$Locations$Services$Generatequery,
+      callback: BodyResponseCallback<Schema$GenerateQueryResponse>
+    ): void;
+    generateQuery(
+      callback: BodyResponseCallback<Schema$GenerateQueryResponse>
+    ): void;
+    generateQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Generatequery
+        | BodyResponseCallback<Schema$GenerateQueryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateQueryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Generatequery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Generatequery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasedataconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:generateQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateQueryResponse>(parameters);
+      }
+    }
+
+    /**
+     * Generates GraphQL schema based on a natural language prompt or data description. This allows users to scaffold new types and tables quickly. Streams results with real-time status and output chunks.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedataconnect.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebasedataconnect = google.firebasedataconnect('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebasedataconnect.projects.locations.services.generateSchema({
+     *       // Required. The resource name of the service in which to generate the schema. Format: projects/{project\}/locations/{location\}/services/{service\}
+     *       name: 'projects/my-project/locations/my-location/services/my-service',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "prompt": "my_prompt"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "part": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateSchema(
+      params: Params$Resource$Projects$Locations$Services$Generateschema,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generateSchema(
+      params?: Params$Resource$Projects$Locations$Services$Generateschema,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateSchemaResponse>>;
+    generateSchema(
+      params: Params$Resource$Projects$Locations$Services$Generateschema,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateSchema(
+      params: Params$Resource$Projects$Locations$Services$Generateschema,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateSchemaResponse>,
+      callback: BodyResponseCallback<Schema$GenerateSchemaResponse>
+    ): void;
+    generateSchema(
+      params: Params$Resource$Projects$Locations$Services$Generateschema,
+      callback: BodyResponseCallback<Schema$GenerateSchemaResponse>
+    ): void;
+    generateSchema(
+      callback: BodyResponseCallback<Schema$GenerateSchemaResponse>
+    ): void;
+    generateSchema(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Generateschema
+        | BodyResponseCallback<Schema$GenerateSchemaResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateSchemaResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateSchemaResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateSchemaResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Generateschema;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Generateschema;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasedataconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:generateSchema').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateSchemaResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateSchemaResponse>(parameters);
+      }
+    }
+
+    /**
      * Gets details of a single Service.
      * @example
      * ```js
@@ -3078,6 +3481,28 @@ export namespace firebasedataconnect_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GraphqlRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Generatequery extends StandardParameters {
+    /**
+     * Required. The resource name of the service in which to generate the query. Format: projects/{project\}/locations/{location\}/services/{service\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GenerateQueryRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Generateschema extends StandardParameters {
+    /**
+     * Required. The resource name of the service in which to generate the schema. Format: projects/{project\}/locations/{location\}/services/{service\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GenerateSchemaRequest;
   }
   export interface Params$Resource$Projects$Locations$Services$Get extends StandardParameters {
     /**

@@ -462,6 +462,62 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "generateQuery": {
+                  "description": "Generates a GraphQL query based on a natural language prompt and the provided schema context. This is a stateless method; the schema is provided per request to support local development states. Streams results with real-time status and output chunks.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}:generateQuery",
+                  "httpMethod": "POST",
+                  "id": "firebasedataconnect.projects.locations.services.generateQuery",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the service in which to generate the query. Format: projects/{project}/locations/{location}/services/{service}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}:generateQuery",
+                  "request": {
+                    "$ref": "GenerateQueryRequest"
+                  },
+                  "response": {
+                    "$ref": "GenerateQueryResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "generateSchema": {
+                  "description": "Generates GraphQL schema based on a natural language prompt or data description. This allows users to scaffold new types and tables quickly. Streams results with real-time status and output chunks.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}:generateSchema",
+                  "httpMethod": "POST",
+                  "id": "firebasedataconnect.projects.locations.services.generateSchema",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the service in which to generate the schema. Format: projects/{project}/locations/{location}/services/{service}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}:generateSchema",
+                  "request": {
+                    "$ref": "GenerateSchemaRequest"
+                  },
+                  "response": {
+                    "$ref": "GenerateSchemaResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets details of a single Service.",
                   "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}",
@@ -1165,7 +1221,7 @@
       }
     }
   },
-  "revision": "20260426",
+  "revision": "20260502",
   "rootUrl": "https://firebasedataconnect.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -1195,6 +1251,21 @@
       "properties": {
         "instance": {
           "description": "Required. Name of the CloudSQL instance, in the format: ``` projects/{project}/locations/{location}/instances/{instance} ```",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CodeChunk": {
+      "description": "A chunk of code.",
+      "id": "CodeChunk",
+      "properties": {
+        "code": {
+          "description": "Required. The code content string.",
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "Optional. Specifies the language if we expand support beyond GraphQL (e.g., SQL or JSON) The standard is BCP-47 language code.",
           "type": "string"
         }
       },
@@ -1415,6 +1486,94 @@
         },
         "path": {
           "description": "Required. The file name including folder path, if applicable. The path should be relative to a local workspace (e.g. dataconnect/(schema|connector)/*.gql) and not an absolute path (e.g. /absolute/path/(schema|connector)/*.gql).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateQueryRequest": {
+      "description": "Request message for GenerateQuery.",
+      "id": "GenerateQueryRequest",
+      "properties": {
+        "prompt": {
+          "description": "Required. The natural language description of the desired query. Example: \"Find all users who signed up in the last 7 days.\"",
+          "type": "string"
+        },
+        "schemas": {
+          "description": "Optional. The user's locally defined FDC Schema(s). If not defined, the backend will fetch the user's deployed schema.",
+          "items": {
+            "$ref": "Schema"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateQueryResponse": {
+      "description": "Output for streaming generate query requests",
+      "id": "GenerateQueryResponse",
+      "properties": {
+        "part": {
+          "$ref": "Part",
+          "description": "Required. The content from the current conversational turn."
+        },
+        "status": {
+          "$ref": "GenerationStatus",
+          "description": "Essential for providing responsive UI feedback (e.g., a spinner or \"Analyzing schema...\" step)."
+        }
+      },
+      "type": "object"
+    },
+    "GenerateSchemaRequest": {
+      "description": "Request message for GenerateSchema.",
+      "id": "GenerateSchemaRequest",
+      "properties": {
+        "prompt": {
+          "description": "Required. The natural language description of the data model to generate. Example: \"A blog system with Users, Posts, and Comments. Users can have multiple posts.\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateSchemaResponse": {
+      "description": "Output for streaming generate schema requests",
+      "id": "GenerateSchemaResponse",
+      "properties": {
+        "part": {
+          "$ref": "Part",
+          "description": "The content from the current conversational turn."
+        },
+        "status": {
+          "$ref": "GenerationStatus",
+          "description": "Essential for providing responsive UI feedback (e.g., a spinner or \"Analyzing schema...\" step)."
+        }
+      },
+      "type": "object"
+    },
+    "GenerationStatus": {
+      "description": "Represents the progress of the server side generation request.",
+      "id": "GenerationStatus",
+      "properties": {
+        "message": {
+          "description": "Output only. A message providing more details about the state.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of generation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ANALYZING_CODE",
+            "GENERATING_CODE",
+            "COMPLETED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "The agent is analyzing schema or operations.",
+            "The agent is generating code",
+            "Generation is complete."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1902,6 +2061,21 @@
       },
       "type": "object"
     },
+    "Part": {
+      "description": "Represents a chunk of content.",
+      "id": "Part",
+      "properties": {
+        "codeChunk": {
+          "$ref": "CodeChunk",
+          "description": "Optional. A chunk of code."
+        },
+        "textChunk": {
+          "$ref": "TextChunk",
+          "description": "Optional. A chunk of text."
+        }
+      },
+      "type": "object"
+    },
     "PostgreSql": {
       "description": "Settings for PostgreSQL data source.",
       "id": "PostgreSql",
@@ -1924,19 +2098,19 @@
           "type": "string"
         },
         "schemaMigration": {
-          "description": "Optional. Configure how to perform Postgresql schema migration.",
+          "description": "Optional. Configure how to perform automatic PostgreSQL schema migration before deploying the FDC schema. This is an additive-only operation.",
           "enum": [
             "SQL_SCHEMA_MIGRATION_UNSPECIFIED",
             "MIGRATE_COMPATIBLE"
           ],
           "enumDescriptions": [
             "Unspecified SQL schema migration.",
-            "Connect to the SQL database and identify any missing SQL resources used in the given Firebase SQL Connect Schema. Automatically create necessary SQL resources (SQL table, column, etc) before deploying the schema. During migration steps, the SQL Schema must comply with the previous before_deploy setting in case the migration is interrupted. Therefore, the previous before_deploy setting must not be `schema_validation=STRICT`."
+            "Waits for the Cloud SQL instance to be provisioned and automatically creates necessary SQL resources (tables, columns, etc.) to match the desired FDC schema. This operation is strictly additive and executes as a Long-Running Operation during provisioning. Rejects migrations on a non-empty existing SQL schema."
           ],
           "type": "string"
         },
         "schemaValidation": {
-          "description": "Optional. Configure how much Postgresql schema validation to perform.",
+          "description": "Optional. Configure how much PostgreSQL schema validation to perform against the live database before deploying the FDC schema.",
           "enum": [
             "SQL_SCHEMA_VALIDATION_UNSPECIFIED",
             "NONE",
@@ -1944,10 +2118,10 @@
             "COMPATIBLE"
           ],
           "enumDescriptions": [
-            "Unspecified SQL schema validation. Default to STRICT.",
-            "Skip no SQL schema validation. Use it with extreme caution. CreateSchema or UpdateSchema will succeed even if SQL database is unavailable or SQL schema is incompatible. Generated SQL may fail at execution time.",
-            "Connect to the SQL database and validate that the SQL DDL matches the schema exactly. Surface any discrepancies as `FAILED_PRECONDITION` with an `IncompatibleSqlSchemaError` error detail.",
-            "Connect to the SQL database and validate that the SQL DDL has all the SQL resources used in the given Firebase SQL Connect Schema. Surface any missing resources as `FAILED_PRECONDITION` with an `IncompatibleSqlSchemaError` error detail. Succeed even if there are unknown tables and columns."
+            "Unspecified SQL schema validation. Defaults to STRICT.",
+            "Skips SQL schema validation. Deployment succeeds even if the database is pending provisioning, unavailable, or incompatible. Under NONE, newly created services route requests to a temporary ephemeral database (in-memory emulation) so the API can be tested immediately. Ephemeral data expires after 24 hours unless successfully validated or migrated to a linked database.",
+            "Connects to the SQL database and validates that the SQL DDL matches the FDC schema exactly. Any discrepancies (extra or missing tables/columns) result in a FAILED_PRECONDITION error with required SQL diffs. Recommended for greenfield projects to ensure full schema consistency.",
+            "Connects to the SQL database and validates that it contains all the SQL resources required by the FDC schema. Succeeds even if the database contains additional tables or columns not used by FDC. Suitable when sharing a database with other tools or legacy applications."
           ],
           "type": "string"
         },
@@ -2135,6 +2309,17 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TextChunk": {
+      "description": "A chunk of conversational text.",
+      "id": "TextChunk",
+      "properties": {
+        "text": {
+          "description": "Required. The text content string.",
           "type": "string"
         }
       },
