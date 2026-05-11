@@ -2713,7 +2713,7 @@
       }
     }
   },
-  "revision": "20260506",
+  "revision": "20260508",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -7311,11 +7311,6 @@
         },
         "sha256Hash": {
           "description": "Scotty-provided SHA256 hash for an upload.",
-          "format": "byte",
-          "type": "string"
-        },
-        "sha512Hash": {
-          "description": "Scotty-provided SHA512 hash for an upload.",
           "format": "byte",
           "type": "string"
         },
