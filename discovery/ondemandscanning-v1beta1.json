@@ -344,7 +344,7 @@
       }
     }
   },
-  "revision": "20260427",
+  "revision": "20260504",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AISkillAnalysisOccurrence": {
@@ -357,6 +357,10 @@
             "$ref": "Finding"
           },
           "type": "array"
+        },
+        "maxSeverity": {
+          "description": "Maximum severity found among findings.",
+          "type": "string"
         },
         "skillName": {
           "description": "Name of the skill that produced this analysis.",
@@ -1289,28 +1293,32 @@
           "description": "Category of the finding.",
           "type": "string"
         },
-        "description": {
-          "description": "Detailed description of the finding.",
-          "type": "string"
+        "location": {
+          "$ref": "FindingLocation",
+          "description": "Location (path and line) where the finding was detected."
         },
-        "filePath": {
-          "description": "Path to the file where the finding was detected.",
-          "type": "string"
-        },
-        "ruleId": {
-          "description": "Unique identifier of the rule that produced this finding.",
+        "scanner": {
+          "description": "Scanner determines which engine (e.g. static, llm) emitted the finding.",
           "type": "string"
         },
         "severity": {
           "description": "Severity of the finding.",
           "type": "string"
-        },
-        "snippet": {
-          "description": "Code snippet relevant to the finding.",
+        }
+      },
+      "type": "object"
+    },
+    "FindingLocation": {
+      "description": "Location details with file path and line number.",
+      "id": "FindingLocation",
+      "properties": {
+        "filePath": {
+          "description": "Relative path of the file containing the finding.",
           "type": "string"
         },
-        "title": {
-          "description": "Title of the finding.",
+        "lineNumber": {
+          "description": "Line number (1-based), or 0 if whole File / unknown.",
+          "format": "int64",
           "type": "string"
         }
       },

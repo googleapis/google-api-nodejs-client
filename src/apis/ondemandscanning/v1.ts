@@ -133,6 +133,10 @@ export namespace ondemandscanning_v1 {
      */
     findings?: Schema$Finding[];
     /**
+     * Maximum severity found among findings.
+     */
+    maxSeverity?: string | null;
+    /**
      * Name of the skill that produced this analysis.
      */
     skillName?: string | null;
@@ -662,29 +666,30 @@ export namespace ondemandscanning_v1 {
      */
     category?: string | null;
     /**
-     * Detailed description of the finding.
+     * Location (path and line) where the finding was detected.
      */
-    description?: string | null;
+    location?: Schema$FindingLocation;
     /**
-     * Path to the file where the finding was detected.
+     * Scanner determines which engine (e.g. static, llm) emitted the finding.
      */
-    filePath?: string | null;
-    /**
-     * Unique identifier of the rule that produced this finding.
-     */
-    ruleId?: string | null;
+    scanner?: string | null;
     /**
      * Severity of the finding.
      */
     severity?: string | null;
+  }
+  /**
+   * Location details with file path and line number.
+   */
+  export interface Schema$FindingLocation {
     /**
-     * Code snippet relevant to the finding.
+     * Relative path of the file containing the finding.
      */
-    snippet?: string | null;
+    filePath?: string | null;
     /**
-     * Title of the finding.
+     * Line number (1-based), or 0 if whole File / unknown.
      */
-    title?: string | null;
+    lineNumber?: string | null;
   }
   /**
    * A set of properties that uniquely identify a given Docker image.
