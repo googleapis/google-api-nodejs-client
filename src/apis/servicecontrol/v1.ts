@@ -203,6 +203,10 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$AuditLog {
     /**
+     * The API version identifier of the operation that uses interface based versioning (IBV). For example, `"2026-01-01-preview"`. The version identifier generally follows the format of [variant_]date[_decorator]. It should not be parsed because the exact format varies across services.
+     */
+    apiVersionIdentifier?: string | null;
+    /**
      * Authentication information.
      */
     authenticationInfo?: Schema$AuthenticationInfo;
