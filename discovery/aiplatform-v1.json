@@ -22213,6 +22213,36 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "cancelAsyncQuery": {
+                  "description": "Cancels an AsyncQueryReasoningEngine operation.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines/{reasoningEnginesId}:cancelAsyncQuery",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.reasoningEngines.cancelAsyncQuery",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the ReasoningEngine resource to use. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "operationName": {
+                      "description": "Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project}/locations/{location}/operations/{operation}`",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:cancelAsyncQuery",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "create": {
                   "description": "Creates a reasoning engine.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reasoningEngines",
@@ -29006,6 +29036,36 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "cancelAsyncQuery": {
+          "description": "Cancels an AsyncQueryReasoningEngine operation.",
+          "flatPath": "v1/reasoningEngines/{reasoningEnginesId}:cancelAsyncQuery",
+          "httpMethod": "POST",
+          "id": "aiplatform.reasoningEngines.cancelAsyncQuery",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the ReasoningEngine resource to use. Format: `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`",
+              "location": "path",
+              "pattern": "^reasoningEngines/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "operationName": {
+              "description": "Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project}/locations/{location}/operations/{operation}`",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}:cancelAsyncQuery",
+          "response": {
+            "$ref": "GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "create": {
           "description": "Creates a reasoning engine.",
           "flatPath": "v1/reasoningEngines",
@@ -32301,7 +32361,7 @@
       }
     }
   },
-  "revision": "20260427",
+  "revision": "20260506",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoExperiments": {
@@ -34631,6 +34691,12 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse": {
+      "description": "Response message for ReasoningEngineExecutionService.CancelAsyncQueryReasoningEngine.",
+      "id": "GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudAiplatformV1CancelBatchPredictionJobRequest": {
@@ -54296,7 +54362,7 @@
           "type": "string"
         },
         "pythonVersion": {
-          "description": "Optional. The Python version. Supported values are 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, the default value is 3.10.",
+          "description": "Optional. The Python version. Supported values are 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, the default value is 3.10.",
           "type": "string"
         },
         "requirementsGcsUri": {
@@ -54436,7 +54502,7 @@
           "type": "string"
         },
         "version": {
-          "description": "Optional. The version of Python to use. Support version includes 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, default value is 3.10.",
+          "description": "Optional. The version of Python to use. Supported versions include 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, default value is 3.10.",
           "type": "string"
         }
       },
@@ -55664,11 +55730,6 @@
         },
         "routingToken": {
           "description": "Output only. The routing token for the SandboxEnvironment.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "sandboxHostname": {
-          "description": "Output only. The hostname of the SandboxEnvironment.",
           "readOnly": true,
           "type": "string"
         },

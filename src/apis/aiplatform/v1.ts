@@ -1859,6 +1859,10 @@ export namespace aiplatform_v1 {
     videoDurationSeconds?: number | null;
   }
   /**
+   * Response message for ReasoningEngineExecutionService.CancelAsyncQueryReasoningEngine.
+   */
+  export interface Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse {}
+  /**
    * Request message for JobService.CancelBatchPredictionJob.
    */
   export interface Schema$GoogleCloudAiplatformV1CancelBatchPredictionJobRequest {}
@@ -16111,7 +16115,7 @@ export namespace aiplatform_v1 {
      */
     pickleObjectGcsUri?: string | null;
     /**
-     * Optional. The Python version. Supported values are 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, the default value is 3.10.
+     * Optional. The Python version. Supported values are 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, the default value is 3.10.
      */
     pythonVersion?: string | null;
     /**
@@ -16227,7 +16231,7 @@ export namespace aiplatform_v1 {
      */
     requirementsFile?: string | null;
     /**
-     * Optional. The version of Python to use. Support version includes 3.9, 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, default value is 3.10.
+     * Optional. The version of Python to use. Supported versions include 3.10, 3.11, 3.12, 3.13, 3.14. If not specified, default value is 3.10.
      */
     version?: string | null;
   }
@@ -17023,10 +17027,6 @@ export namespace aiplatform_v1 {
      * Output only. The routing token for the SandboxEnvironment.
      */
     routingToken?: string | null;
-    /**
-     * Output only. The hostname of the SandboxEnvironment.
-     */
-    sandboxHostname?: string | null;
     /**
      * Output only. The internal IP address of the SandboxEnvironment.
      */
@@ -136050,6 +136050,155 @@ export namespace aiplatform_v1 {
     }
 
     /**
+     * Cancels an AsyncQueryReasoningEngine operation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const aiplatform = google.aiplatform('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await aiplatform.projects.locations.reasoningEngines.cancelAsyncQuery({
+     *       // Required. The name of the ReasoningEngine resource to use. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
+     *       name: 'projects/my-project/locations/my-location/reasoningEngines/my-reasoningEngine',
+     *       // Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project\}/locations/{location\}/operations/{operation\}`
+     *       operationName: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancelAsyncQuery(
+      params: Params$Resource$Projects$Locations$Reasoningengines$Cancelasyncquery,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    cancelAsyncQuery(
+      params?: Params$Resource$Projects$Locations$Reasoningengines$Cancelasyncquery,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>
+    >;
+    cancelAsyncQuery(
+      params: Params$Resource$Projects$Locations$Reasoningengines$Cancelasyncquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancelAsyncQuery(
+      params: Params$Resource$Projects$Locations$Reasoningengines$Cancelasyncquery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>
+    ): void;
+    cancelAsyncQuery(
+      params: Params$Resource$Projects$Locations$Reasoningengines$Cancelasyncquery,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>
+    ): void;
+    cancelAsyncQuery(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>
+    ): void;
+    cancelAsyncQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reasoningengines$Cancelasyncquery
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reasoningengines$Cancelasyncquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Reasoningengines$Cancelasyncquery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancelAsyncQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Creates a reasoning engine.
      * @example
      * ```js
@@ -137748,6 +137897,16 @@ export namespace aiplatform_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudAiplatformV1AsyncQueryReasoningEngineRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Reasoningengines$Cancelasyncquery extends StandardParameters {
+    /**
+     * Required. The name of the ReasoningEngine resource to use. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
+     */
+    name?: string;
+    /**
+     * Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project\}/locations/{location\}/operations/{operation\}`
+     */
+    operationName?: string;
   }
   export interface Params$Resource$Projects$Locations$Reasoningengines$Create extends StandardParameters {
     /**
@@ -171512,6 +171671,153 @@ export namespace aiplatform_v1 {
     }
 
     /**
+     * Cancels an AsyncQueryReasoningEngine operation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const aiplatform = google.aiplatform('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await aiplatform.reasoningEngines.cancelAsyncQuery({
+     *     // Required. The name of the ReasoningEngine resource to use. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
+     *     name: 'reasoningEngines/my-reasoningEngine',
+     *     // Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project\}/locations/{location\}/operations/{operation\}`
+     *     operationName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancelAsyncQuery(
+      params: Params$Resource$Reasoningengines$Cancelasyncquery,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    cancelAsyncQuery(
+      params?: Params$Resource$Reasoningengines$Cancelasyncquery,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>
+    >;
+    cancelAsyncQuery(
+      params: Params$Resource$Reasoningengines$Cancelasyncquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancelAsyncQuery(
+      params: Params$Resource$Reasoningengines$Cancelasyncquery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>
+    ): void;
+    cancelAsyncQuery(
+      params: Params$Resource$Reasoningengines$Cancelasyncquery,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>
+    ): void;
+    cancelAsyncQuery(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>
+    ): void;
+    cancelAsyncQuery(
+      paramsOrCallback?:
+        | Params$Resource$Reasoningengines$Cancelasyncquery
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Reasoningengines$Cancelasyncquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reasoningengines$Cancelasyncquery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancelAsyncQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Creates a reasoning engine.
      * @example
      * ```js
@@ -172752,6 +173058,16 @@ export namespace aiplatform_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudAiplatformV1AsyncQueryReasoningEngineRequest;
+  }
+  export interface Params$Resource$Reasoningengines$Cancelasyncquery extends StandardParameters {
+    /**
+     * Required. The name of the ReasoningEngine resource to use. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
+     */
+    name?: string;
+    /**
+     * Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project\}/locations/{location\}/operations/{operation\}`
+     */
+    operationName?: string;
   }
   export interface Params$Resource$Reasoningengines$Create extends StandardParameters {
     /**
