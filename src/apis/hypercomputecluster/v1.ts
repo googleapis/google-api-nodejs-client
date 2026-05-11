@@ -129,7 +129,7 @@ export namespace hypercomputecluster_v1 {
    */
   export interface Schema$BootDisk {
     /**
-     * Required. Immutable. Size of the disk in gigabytes. Must be at least 10GB.
+     * Required. Immutable. Size of the disk in gigabytes. Must be at least 40GB.
      */
     sizeGb?: string | null;
     /**

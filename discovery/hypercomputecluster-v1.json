@@ -498,7 +498,7 @@
       }
     }
   },
-  "revision": "20260422",
+  "revision": "20260429",
   "rootUrl": "https://hypercomputecluster.googleapis.com/",
   "schemas": {
     "BootDisk": {
@@ -506,7 +506,7 @@
       "id": "BootDisk",
       "properties": {
         "sizeGb": {
-          "description": "Required. Immutable. Size of the disk in gigabytes. Must be at least 10GB.",
+          "description": "Required. Immutable. Size of the disk in gigabytes. Must be at least 40GB.",
           "format": "int64",
           "type": "string"
         },
@@ -958,10 +958,14 @@
         "terminalStorageClass": {
           "description": "Optional. Terminal storage class of the autoclass bucket",
           "enum": [
-            "TERMINAL_STORAGE_CLASS_UNSPECIFIED"
+            "TERMINAL_STORAGE_CLASS_UNSPECIFIED",
+            "NEARLINE",
+            "ARCHIVE"
           ],
           "enumDescriptions": [
-            "Unspecified terminal storage class"
+            "Unspecified terminal storage class",
+            "Nearline terminal storage class",
+            "Archive terminal storage class"
           ],
           "type": "string"
         }
