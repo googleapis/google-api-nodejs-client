@@ -2349,7 +2349,7 @@
       }
     }
   },
-  "revision": "20260317",
+  "revision": "20260506",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -2421,6 +2421,42 @@
         "verifyAppsEnabled": {
           "description": "Whether Google Play Protect Verify Apps is enabled.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "AntivirusInfo": {
+      "description": "Resource representing the anti-virus information of a Device.",
+      "id": "AntivirusInfo",
+      "properties": {
+        "displayName": {
+          "description": "Output only. The display name of the anti-virus software.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "productGuid": {
+          "description": "Output only. The GUID of the anti-virus product.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "productState": {
+          "description": "Output only. The state of the anti-virus.",
+          "enum": [
+            "PRODUCT_STATE_UNSPECIFIED",
+            "PRODUCT_STATE_ON",
+            "PRODUCT_STATE_OFF",
+            "PRODUCT_STATE_SNOOZED",
+            "PRODUCT_STATE_EXPIRED"
+          ],
+          "enumDescriptions": [
+            "Default value",
+            "The anti-virus is on.",
+            "The anti-virus is off.",
+            "The anti-virus is snoozed.",
+            "The anti-virus is expired."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -3017,6 +3053,14 @@
           "description": "Output only. Attributes specific to Android devices.",
           "readOnly": true
         },
+        "antivirusInfo": {
+          "description": "Output only. Anti-virus information for the device.",
+          "items": {
+            "$ref": "AntivirusInfo"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "assetTag": {
           "description": "Asset tag of the device.",
           "type": "string"
@@ -3220,6 +3264,23 @@
           "readOnly": true,
           "type": "string"
         },
+        "osFirewallStatus": {
+          "description": "Output only. OS firewall status of the device.",
+          "enum": [
+            "OS_FIREWALL_STATUS_UNSPECIFIED",
+            "OS_FIREWALL_STATUS_UNKNOWN",
+            "OS_FIREWALL_STATUS_ENABLED",
+            "OS_FIREWALL_STATUS_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Default value",
+            "OS firewall status is unknown.",
+            "OS firewall is enabled.",
+            "OS firewall is disabled."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "osVersion": {
           "description": "Output only. OS version of the device. Example: Android 8.1.0.",
           "readOnly": true,
@@ -3274,6 +3335,11 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "windowsSpecificDeviceAttributes": {
+          "$ref": "WindowsSpecificDeviceAttributes",
+          "description": "Output only. Attributes specific to Windows devices.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -5853,6 +5919,48 @@
         "updateTime": {
           "description": "Time when the `UserInvitation` was last updated.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WindowsSpecificDeviceAttributes": {
+      "description": "Represents the Windows specific attributes of a Device.",
+      "id": "WindowsSpecificDeviceAttributes",
+      "properties": {
+        "hotfixes": {
+          "description": "Output only. The hotfixes installed on the device.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "secureBootMode": {
+          "description": "Output only. Secure boot mode of the device.",
+          "enum": [
+            "SECURE_BOOT_MODE_UNSPECIFIED",
+            "SECURE_BOOT_MODE_UNKNOWN",
+            "SECURE_BOOT_MODE_ENABLED",
+            "SECURE_BOOT_MODE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Default value",
+            "Secure boot mode is unknown.",
+            "Secure boot mode is enabled.",
+            "Secure boot mode is disabled."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "windowsMachineDomain": {
+          "description": "Output only. The domain of the machine that the user is logged into. This is different from the windows_user_domain as the user could be logged into a domain different from the machine domain.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "windowsUserDomain": {
+          "description": "Output only. The domain of the user account that is logged into the machine.",
+          "readOnly": true,
           "type": "string"
         }
       },

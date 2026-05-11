@@ -200,6 +200,23 @@ export namespace cloudidentity_v1beta1 {
     verifyAppsEnabled?: boolean | null;
   }
   /**
+   * Resource representing the anti-virus information of a Device.
+   */
+  export interface Schema$AntivirusInfo {
+    /**
+     * Output only. The display name of the anti-virus software.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The GUID of the anti-virus product.
+     */
+    productGuid?: string | null;
+    /**
+     * Output only. The state of the anti-virus.
+     */
+    productState?: string | null;
+  }
+  /**
    * Request message for approving the device to access user data.
    */
   export interface Schema$ApproveDeviceUserRequest {
@@ -579,6 +596,10 @@ export namespace cloudidentity_v1beta1 {
      */
     androidSpecificAttributes?: Schema$AndroidAttributes;
     /**
+     * Output only. Anti-virus information for the device.
+     */
+    antivirusInfo?: Schema$AntivirusInfo[];
+    /**
      * Asset tag of the device.
      */
     assetTag?: string | null;
@@ -679,6 +700,10 @@ export namespace cloudidentity_v1beta1 {
      */
     networkOperator?: string | null;
     /**
+     * Output only. OS firewall status of the device.
+     */
+    osFirewallStatus?: string | null;
+    /**
      * Output only. OS version of the device. Example: Android 8.1.0.
      */
     osVersion?: string | null;
@@ -710,6 +735,10 @@ export namespace cloudidentity_v1beta1 {
      * WiFi MAC addresses of device.
      */
     wifiMacAddresses?: string[] | null;
+    /**
+     * Output only. Attributes specific to Windows devices.
+     */
+    windowsSpecificDeviceAttributes?: Schema$WindowsSpecificDeviceAttributes;
   }
   /**
    * Represents a user's use of a Device in the Cloud Identity Devices API. A DeviceUser is a resource representing a user's use of a Device
@@ -2382,6 +2411,27 @@ export namespace cloudidentity_v1beta1 {
     updateTime?: string | null;
   }
   /**
+   * Represents the Windows specific attributes of a Device.
+   */
+  export interface Schema$WindowsSpecificDeviceAttributes {
+    /**
+     * Output only. The hotfixes installed on the device.
+     */
+    hotfixes?: string[] | null;
+    /**
+     * Output only. Secure boot mode of the device.
+     */
+    secureBootMode?: string | null;
+    /**
+     * Output only. The domain of the machine that the user is logged into. This is different from the windows_user_domain as the user could be logged into a domain different from the machine domain.
+     */
+    windowsMachineDomain?: string | null;
+    /**
+     * Output only. The domain of the user account that is logged into the machine.
+     */
+    windowsUserDomain?: string | null;
+  }
+  /**
    * Request message for wiping all data on the device.
    */
   export interface Schema$WipeDeviceRequest {
@@ -3711,6 +3761,7 @@ export namespace cloudidentity_v1beta1 {
      *   // Example response
      *   // {
      *   //   "androidSpecificAttributes": {},
+     *   //   "antivirusInfo": [],
      *   //   "assetTag": "my_assetTag",
      *   //   "basebandVersion": "my_basebandVersion",
      *   //   "bootloaderVersion": "my_bootloaderVersion",
@@ -3736,6 +3787,7 @@ export namespace cloudidentity_v1beta1 {
      *   //   "model": "my_model",
      *   //   "name": "my_name",
      *   //   "networkOperator": "my_networkOperator",
+     *   //   "osFirewallStatus": "my_osFirewallStatus",
      *   //   "osVersion": "my_osVersion",
      *   //   "otherAccounts": [],
      *   //   "ownerType": "my_ownerType",
@@ -3743,7 +3795,8 @@ export namespace cloudidentity_v1beta1 {
      *   //   "securityPatchTime": "my_securityPatchTime",
      *   //   "serialNumber": "my_serialNumber",
      *   //   "unifiedDeviceId": "my_unifiedDeviceId",
-     *   //   "wifiMacAddresses": []
+     *   //   "wifiMacAddresses": [],
+     *   //   "windowsSpecificDeviceAttributes": {}
      *   // }
      * }
      *
