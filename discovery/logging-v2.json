@@ -650,7 +650,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2487,7 +2487,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -4079,7 +4079,7 @@
           ],
           "parameters": {
             "extraLocationTypes": {
-              "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+              "description": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -5327,7 +5327,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -7140,7 +7140,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -9167,7 +9167,7 @@
       }
     }
   },
-  "revision": "20260421",
+  "revision": "20260501",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "AppHub": {
@@ -9648,7 +9648,7 @@
       "type": "object"
     },
     "FieldSource": {
-      "description": "A source that can be used to represent a field within various parts of a structured query, such as in SELECT, WHERE, or ORDER BY clauses.",
+      "description": "A source that can be used to represent a \"field of data\" within various parts of a structured query, such as in SELECT, WHERE, or ORDER BY clauses. The term \"field of data\" is used here because it is not limited to literal fields in the underlying data schema.",
       "id": "FieldSource",
       "properties": {
         "aliasRef": {
@@ -11387,7 +11387,7 @@
       "type": "object"
     },
     "ProjectedField": {
-      "description": "Represents a field selected in the query, analogous to an item in a SQL SELECT clause. It specifies the source field and optionally applies transformations like aggregation, casting, regex extraction, or assigns an alias. Use ProjectedField when you need more than just the raw source field name (for which you might use FieldSource directly in QueryBuilderConfig's field_sources list if no transformations or specific operation type are needed).",
+      "description": "Represents a field selected in the query, analogous to an item in a SQL SELECT clause. It specifies the source field and optionally applies transformations like aggregation, casting, regex extraction, or assigns an alias. Use ProjectedField when you need more than just the raw source field name (for which you might use FieldSource directly in QueryBuilderConfig's field_sources list if no transformations or specific operation type are needed).A ProjectedField can represent either a field present in the data schema (specified via the field property) or a virtual field that is computed from other fields (specified via the virtual_field property).",
       "id": "ProjectedField",
       "properties": {
         "alias": {
@@ -11399,7 +11399,7 @@
           "type": "string"
         },
         "field": {
-          "description": "The field name. This will be the field that is selected using the dot notation to display the drill down value.",
+          "description": "Optional. The field name. This will be the field that is selected using the dot notation to display the drill down value.",
           "type": "string"
         },
         "operation": {
