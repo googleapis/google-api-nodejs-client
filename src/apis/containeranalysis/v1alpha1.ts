@@ -139,6 +139,10 @@ export namespace containeranalysis_v1alpha1 {
      */
     findings?: Schema$Finding[];
     /**
+     * Optional. Maximum severity found among findings.
+     */
+    maxSeverity?: string | null;
+    /**
      * Optional. Name of the skill that produced this analysis.
      */
     skillName?: string | null;
@@ -1785,51 +1789,79 @@ export namespace containeranalysis_v1alpha1 {
     operationId?: string | null;
   }
   /**
-   * Common Vulnerability Scoring System. This message is compatible with CVSS v2 and v3. For CVSS v2 details, see https://www.first.org/cvss/v2/guide CVSS v2 calculator: https://nvd.nist.gov/vuln-metrics/cvss/v2-calculator For CVSS v3 details, see https://www.first.org/cvss/specification-document CVSS v3 calculator: https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator
+   * Common Vulnerability Scoring System. This message is compatible with CVSS v2 and v3. For CVSS v2 details, see https://www.first.org/cvss/v2/guide CVSS v2 calculator: https://nvd.nist.gov/vuln-metrics/cvss/v2-calculator For CVSS v3 details, see https://www.first.org/cvss/specification-document CVSS v3 calculator: https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator For CVSS v4 details, see https://www.first.org/cvss/v4.0/user-guide CVSS v4 calculator: https://nvd.nist.gov/vuln-metrics/cvss/v4-calculator
    */
   export interface Schema$CVSS {
     /**
-     * Defined in CVSS v3, CVSS v2
+     * Optional. Attack Complexity (AC). Defined in CVSS v2, v3, v4.
      */
     attackComplexity?: string | null;
     /**
-     * Base Metrics Represents the intrinsic characteristics of a vulnerability that are constant over time and across user environments. Defined in CVSS v3, CVSS v2
+     * Optional. Attack Requirements (AT). Defined in CVSS v4.
+     */
+    attackRequirements?: string | null;
+    /**
+     * Optional. Attack Vector (AV). Defined in CVSS v2, v3, v4.
      */
     attackVector?: string | null;
     /**
-     * Defined in CVSS v2
+     * Optional. Authentication (Au). Defined in CVSS v2.
      */
     authentication?: string | null;
     /**
-     * Defined in CVSS v3, CVSS v2
+     * Optional. Availability Impact (A). Defined in CVSS v2, v3.
      */
     availabilityImpact?: string | null;
     /**
-     * The base score is a function of the base metric scores.
+     * Optional. The base score is a function of the base metric scores.
      */
     baseScore?: number | null;
     /**
-     * Defined in CVSS v3, CVSS v2
+     * Optional. Confidentiality Impact (C). Defined in CVSS v2, v3.
      */
     confidentialityImpact?: string | null;
     exploitabilityScore?: number | null;
     impactScore?: number | null;
     /**
-     * Defined in CVSS v3, CVSS v2
+     * Optional. Integrity Impact (I). Defined in CVSS v2, v3.
      */
     integrityImpact?: string | null;
     /**
-     * Defined in CVSS v3
+     * Optional. Privileges Required (PR). Defined in CVSS v3, v4.
      */
     privilegesRequired?: string | null;
     /**
-     * Defined in CVSS v3
+     * Optional. Scope (S). Defined in CVSS v3.
      */
     scope?: string | null;
     /**
-     * Defined in CVSS v3
+     * Optional. Subsequent System Availability Impact (SA). Defined in CVSS v4.
+     */
+    subsequentSystemAvailabilityImpact?: string | null;
+    /**
+     * Optional. Subsequent System Confidentiality Impact (SC). Defined in CVSS v4.
+     */
+    subsequentSystemConfidentialityImpact?: string | null;
+    /**
+     * Optional. Subsequent System Integrity Impact (SI). Defined in CVSS v4.
+     */
+    subsequentSystemIntegrityImpact?: string | null;
+    /**
+     * Optional. User Interaction (UI). Defined in CVSS v3, v4.
      */
     userInteraction?: string | null;
+    /**
+     * Optional. Vulnerable System Availability Impact (VA). Defined in CVSS v4.
+     */
+    vulnerableSystemAvailabilityImpact?: string | null;
+    /**
+     * Optional. Vulnerable System Confidentiality Impact (VC). Defined in CVSS v4.
+     */
+    vulnerableSystemConfidentialityImpact?: string | null;
+    /**
+     * Optional. Vulnerable System Integrity Impact (VI). Defined in CVSS v4.
+     */
+    vulnerableSystemIntegrityImpact?: string | null;
   }
   /**
    * An artifact that can be deployed in some runtime.
@@ -2324,29 +2356,30 @@ export namespace containeranalysis_v1alpha1 {
      */
     category?: string | null;
     /**
-     * Optional. Detailed description of the finding.
+     * Optional. Location (path and line) where the finding was detected.
      */
-    description?: string | null;
+    location?: Schema$FindingLocation;
     /**
-     * Optional. Path to the file where the finding was detected.
+     * Optional. Scanner determines which engine (e.g. static, llm) emitted the finding.
      */
-    filePath?: string | null;
-    /**
-     * Optional. Unique identifier of the rule that produced this finding.
-     */
-    ruleId?: string | null;
+    scanner?: string | null;
     /**
      * Optional. Severity of the finding.
      */
     severity?: string | null;
+  }
+  /**
+   * Location details with file path and line number.
+   */
+  export interface Schema$FindingLocation {
     /**
-     * Optional. Code snippet relevant to the finding.
+     * Optional. Relative path of the file containing the finding.
      */
-    snippet?: string | null;
+    filePath?: string | null;
     /**
-     * Optional. Title of the finding.
+     * Optional. Line number (1-based), or 0 if whole File / unknown.
      */
-    title?: string | null;
+    lineNumber?: string | null;
   }
   /**
    * A set of properties that uniquely identify a given Docker image.
