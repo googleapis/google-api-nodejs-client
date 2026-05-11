@@ -411,7 +411,7 @@
       }
     }
   },
-  "revision": "20260408",
+  "revision": "20260506",
   "rootUrl": "https://youtubereporting.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -833,6 +833,11 @@
           "type": "string"
         },
         "sha256Hash": {
+          "description": "gdata",
+          "format": "byte",
+          "type": "string"
+        },
+        "sha512Hash": {
           "description": "gdata",
           "format": "byte",
           "type": "string"

@@ -456,6 +456,10 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
+    sha512Hash?: string | null;
+    /**
+     * gdata
+     */
     timestamp?: string | null;
     /**
      * gdata
@@ -1672,6 +1676,7 @@ export namespace youtubereporting_v1 {
      *   //   "referenceType": "my_referenceType",
      *   //   "sha1Hash": "my_sha1Hash",
      *   //   "sha256Hash": "my_sha256Hash",
+     *   //   "sha512Hash": "my_sha512Hash",
      *   //   "timestamp": "my_timestamp",
      *   //   "token": "my_token"
      *   // }
