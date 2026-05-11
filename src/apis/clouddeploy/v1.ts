@@ -849,6 +849,10 @@ export namespace clouddeploy_v1 {
      * Required. Image is the container image to use.
      */
     image?: string | null;
+    /**
+     * Optional. Shell script to execute. If provided then command and args cannot be specified.
+     */
+    script?: string | null;
   }
   /**
    * A createChildRollout Job.

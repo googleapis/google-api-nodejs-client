@@ -2359,7 +2359,7 @@
       }
     }
   },
-  "revision": "20260422",
+  "revision": "20260427",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -3438,6 +3438,10 @@
         },
         "image": {
           "description": "Required. Image is the container image to use.",
+          "type": "string"
+        },
+        "script": {
+          "description": "Optional. Shell script to execute. If provided then command and args cannot be specified.",
           "type": "string"
         }
       },
