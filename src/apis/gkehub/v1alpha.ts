@@ -3231,7 +3231,7 @@ export namespace gkehub_v1alpha {
     targets?: Schema$RolloutTarget[];
   }
   /**
-   * RolloutSequence defines the desired order of upgrades.
+   * RolloutSequence defines the desired order of upgrades. Next ID: 20
    */
   export interface Schema$RolloutSequence {
     /**

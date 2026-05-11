@@ -2568,7 +2568,7 @@
       }
     }
   },
-  "revision": "20260426",
+  "revision": "20260429",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -7223,7 +7223,7 @@
       "type": "object"
     },
     "RolloutSequence": {
-      "description": "RolloutSequence defines the desired order of upgrades.",
+      "description": "RolloutSequence defines the desired order of upgrades. Next ID: 20",
       "id": "RolloutSequence",
       "properties": {
         "autoUpgradeConfig": {
