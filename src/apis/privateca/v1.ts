@@ -328,6 +328,10 @@ export namespace privateca_v1 {
      */
     pemCsr?: string | null;
     /**
+     * Optional. The requested not_before_time of this Certificate. This field may only be set if the CaPool.IssuancePolicy.allow_requester_specified_not_before_time field is set to true for the issuing CaPool. If this field is specified, the certificate will be issued with this 'not_before_time'. If this is not specified, the 'not_before_time' will be set to the issuance time or issuance time minus backdate_duration depending on the CaPool configuration.
+     */
+    requestedNotBeforeTime?: string | null;
+    /**
      * Output only. Details regarding the revocation of this Certificate. This Certificate is considered revoked if and only if this field is present.
      */
     revocationDetails?: Schema$RevocationDetails;
@@ -767,6 +771,10 @@ export namespace privateca_v1 {
      * Optional. If any AllowedKeyType is specified, then the certificate request's public key must match one of the key types listed here. Otherwise, any key may be used.
      */
     allowedKeyTypes?: Schema$AllowedKeyType[];
+    /**
+     * Optional. If set to true, allows requesters to specify the requested_not_before_time field when creating a Certificate. Certificates requested with this option enabled will have a 'not_before_time' equal to the value specified in the request. The 'not_after_time' will be adjusted to preserve the requested lifetime. The maximum time that a certificate can be backdated with these options is 48 hours in the past. This option cannot be set if backdate_duration is set.
+     */
+    allowRequesterSpecifiedNotBeforeTime?: boolean | null;
     /**
      * Optional. If set, all certificates issued from this CaPool will be backdated by this duration. The 'not_before_time' will be the issuance time minus this backdate_duration, and the 'not_after_time' will be adjusted to preserve the requested lifetime. The maximum duration that a certificate can be backdated with these options is 48 hours in the past. This option cannot be set if allow_requester_specified_not_before_time is set.
      */
@@ -1642,7 +1650,7 @@ export namespace privateca_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
+     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
      * @example
      * ```js
      * // Before running the sample:
@@ -1672,7 +1680,7 @@ export namespace privateca_v1 {
      *
      *   // Do the magic
      *   const res = await privateca.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1798,7 +1806,7 @@ export namespace privateca_v1 {
   }
   export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -6079,6 +6087,7 @@ export namespace privateca_v1 {
      *       //   "pemCertificate": "my_pemCertificate",
      *       //   "pemCertificateChain": [],
      *       //   "pemCsr": "my_pemCsr",
+     *       //   "requestedNotBeforeTime": "my_requestedNotBeforeTime",
      *       //   "revocationDetails": {},
      *       //   "subjectMode": "my_subjectMode",
      *       //   "updateTime": "my_updateTime"
@@ -6100,6 +6109,7 @@ export namespace privateca_v1 {
      *   //   "pemCertificate": "my_pemCertificate",
      *   //   "pemCertificateChain": [],
      *   //   "pemCsr": "my_pemCsr",
+     *   //   "requestedNotBeforeTime": "my_requestedNotBeforeTime",
      *   //   "revocationDetails": {},
      *   //   "subjectMode": "my_subjectMode",
      *   //   "updateTime": "my_updateTime"
@@ -6251,6 +6261,7 @@ export namespace privateca_v1 {
      *   //   "pemCertificate": "my_pemCertificate",
      *   //   "pemCertificateChain": [],
      *   //   "pemCsr": "my_pemCsr",
+     *   //   "requestedNotBeforeTime": "my_requestedNotBeforeTime",
      *   //   "revocationDetails": {},
      *   //   "subjectMode": "my_subjectMode",
      *   //   "updateTime": "my_updateTime"
@@ -6553,6 +6564,7 @@ export namespace privateca_v1 {
      *       //   "pemCertificate": "my_pemCertificate",
      *       //   "pemCertificateChain": [],
      *       //   "pemCsr": "my_pemCsr",
+     *       //   "requestedNotBeforeTime": "my_requestedNotBeforeTime",
      *       //   "revocationDetails": {},
      *       //   "subjectMode": "my_subjectMode",
      *       //   "updateTime": "my_updateTime"
@@ -6574,6 +6586,7 @@ export namespace privateca_v1 {
      *   //   "pemCertificate": "my_pemCertificate",
      *   //   "pemCertificateChain": [],
      *   //   "pemCsr": "my_pemCsr",
+     *   //   "requestedNotBeforeTime": "my_requestedNotBeforeTime",
      *   //   "revocationDetails": {},
      *   //   "subjectMode": "my_subjectMode",
      *   //   "updateTime": "my_updateTime"
@@ -6731,6 +6744,7 @@ export namespace privateca_v1 {
      *   //   "pemCertificate": "my_pemCertificate",
      *   //   "pemCertificateChain": [],
      *   //   "pemCsr": "my_pemCsr",
+     *   //   "requestedNotBeforeTime": "my_requestedNotBeforeTime",
      *   //   "revocationDetails": {},
      *   //   "subjectMode": "my_subjectMode",
      *   //   "updateTime": "my_updateTime"
