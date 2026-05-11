@@ -114,6 +114,20 @@
           "id": "solar.buildingInsights.findClosest",
           "parameterOrder": [],
           "parameters": {
+            "additionalInsights": {
+              "description": "Optional. A list of additional_insights to be included in the response.",
+              "enum": [
+                "ADDITIONAL_INSIGHTS_UNSPECIFIED",
+                "DETECTED_ARRAYS"
+              ],
+              "enumDescriptions": [
+                "The default value. The default BuildingInsights will be returned.",
+                "Determines whether the response will include the detected arrays. If specified, the `detected_arrays` field will be populated in the response."
+              ],
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
             "exactQualityRequired": {
               "description": "Optional. Whether to require exact quality of the imagery. If set to false, the `required_quality` field is interpreted as the minimum required quality, such that HIGH quality imagery may be returned when `required_quality` is set to MEDIUM. If set to true, `required_quality` is interpreted as the exact required quality and only `MEDIUM` quality imagery is returned if `required_quality` is set to `MEDIUM`.",
               "location": "query",
@@ -304,7 +318,7 @@
       }
     }
   },
-  "revision": "20260208",
+  "revision": "20260506",
   "rootUrl": "https://solar.googleapis.com/",
   "schemas": {
     "BuildingInsights": {
@@ -322,6 +336,10 @@
         "center": {
           "$ref": "LatLng",
           "description": "A point near the center of the building."
+        },
+        "detectedArrays": {
+          "$ref": "BuildingInsightsDetectedArrays",
+          "description": "Solar arrays detected on the building. This field is only populated if DETECTED_ARRAYS is included in the request's FindClosestBuildingInsightsRequest.additional_insights."
         },
         "imageryDate": {
           "$ref": "Date",
@@ -368,6 +386,33 @@
         "statisticalArea": {
           "description": "Statistical area (e.g., US census tract) this building is in.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BuildingInsightsDetectedArrays": {
+      "description": "Information about solar arrays detected on the building.",
+      "id": "BuildingInsightsDetectedArrays",
+      "properties": {
+        "detectionStatus": {
+          "description": "Indicates the detection status of solar arrays for this building.",
+          "enum": [
+            "DETECTION_STATUS_UNSPECIFIED",
+            "DETECTION_STATUS_DATA_UNAVAILABLE",
+            "DETECTION_STATUS_ARRAYS_DETECTED",
+            "DETECTION_STATUS_NO_ARRAYS_DETECTED"
+          ],
+          "enumDescriptions": [
+            "Unspecified status.",
+            "Detected solar array data is unavailable for this building.",
+            "At least one solar array has been detected for this building.",
+            "No solar arrays detected for this building."
+          ],
+          "type": "string"
+        },
+        "latestCaptureDate": {
+          "$ref": "Date",
+          "description": "The date indicating when the latest solar array data was captured."
         }
       },
       "type": "object"

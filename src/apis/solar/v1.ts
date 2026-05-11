@@ -145,6 +145,10 @@ export namespace solar_v1 {
      */
     center?: Schema$LatLng;
     /**
+     * Solar arrays detected on the building. This field is only populated if DETECTED_ARRAYS is included in the request's FindClosestBuildingInsightsRequest.additional_insights.
+     */
+    detectedArrays?: Schema$BuildingInsightsDetectedArrays;
+    /**
      * Date that the underlying imagery was acquired. This is approximate.
      */
     imageryDate?: Schema$Date;
@@ -176,6 +180,19 @@ export namespace solar_v1 {
      * Statistical area (e.g., US census tract) this building is in.
      */
     statisticalArea?: string | null;
+  }
+  /**
+   * Information about solar arrays detected on the building.
+   */
+  export interface Schema$BuildingInsightsDetectedArrays {
+    /**
+     * Indicates the detection status of solar arrays for this building.
+     */
+    detectionStatus?: string | null;
+    /**
+     * The date indicating when the latest solar array data was captured.
+     */
+    latestCaptureDate?: Schema$Date;
   }
   /**
    * Cost and benefit of an outright purchase of a particular configuration of solar panels with a particular electricity usage.
@@ -681,6 +698,8 @@ export namespace solar_v1 {
      *
      *   // Do the magic
      *   const res = await solar.buildingInsights.findClosest({
+     *     // Optional. A list of additional_insights to be included in the response.
+     *     additionalInsights: 'placeholder-value',
      *     // Optional. Whether to require exact quality of the imagery. If set to false, the `required_quality` field is interpreted as the minimum required quality, such that HIGH quality imagery may be returned when `required_quality` is set to MEDIUM. If set to true, `required_quality` is interpreted as the exact required quality and only `MEDIUM` quality imagery is returned if `required_quality` is set to `MEDIUM`.
      *     exactQualityRequired: 'placeholder-value',
      *     // Optional. Specifies the pre-GA experiments to enable. Requests using this field are classified as a pre-GA offering under the [Google Maps Platform Service Specific Terms](https://cloud.google.com/maps-platform/terms/maps-service-terms). See [launch stage descriptions](https://cloud.google.com/maps-platform/terms/launch-stages) for more details.
@@ -699,6 +718,7 @@ export namespace solar_v1 {
      *   //   "administrativeArea": "my_administrativeArea",
      *   //   "boundingBox": {},
      *   //   "center": {},
+     *   //   "detectedArrays": {},
      *   //   "imageryDate": {},
      *   //   "imageryProcessedDate": {},
      *   //   "imageryQuality": "my_imageryQuality",
@@ -807,6 +827,10 @@ export namespace solar_v1 {
   }
 
   export interface Params$Resource$Buildinginsights$Findclosest extends StandardParameters {
+    /**
+     * Optional. A list of additional_insights to be included in the response.
+     */
+    additionalInsights?: string[];
     /**
      * Optional. Whether to require exact quality of the imagery. If set to false, the `required_quality` field is interpreted as the minimum required quality, such that HIGH quality imagery may be returned when `required_quality` is set to MEDIUM. If set to true, `required_quality` is interpreted as the exact required quality and only `MEDIUM` quality imagery is returned if `required_quality` is set to `MEDIUM`.
      */
