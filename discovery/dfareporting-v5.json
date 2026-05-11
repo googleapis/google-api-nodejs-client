@@ -10091,7 +10091,7 @@
       }
     }
   },
-  "revision": "20260310",
+  "revision": "20260326",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -14984,6 +14984,11 @@
       "description": "Contains dependent field value information.",
       "id": "DependentFieldValue",
       "properties": {
+        "dynamicFeedId": {
+          "description": "Optional. The ID of the dynamic feed that value's field will match against.",
+          "format": "int64",
+          "type": "string"
+        },
         "elementId": {
           "description": "Optional. The ID of the element that value's field will match against.",
           "format": "int64",

@@ -3183,6 +3183,10 @@ export namespace dfareporting_v4 {
    */
   export interface Schema$DependentFieldValue {
     /**
+     * Optional. The ID of the dynamic feed that value's field will match against.
+     */
+    dynamicFeedId?: string | null;
+    /**
      * Optional. The ID of the element that value's field will match against.
      */
     elementId?: string | null;
