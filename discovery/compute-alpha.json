@@ -55121,7 +55121,7 @@
       }
     }
   },
-  "revision": "20260422",
+  "revision": "20260427",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -76871,6 +76871,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "minCpuPlatform": {
+          "description": "Name of the minimum CPU platform to be used by this instance selection.\ne.g. 'Intel Ice Lake'.",
+          "type": "string"
         },
         "rank": {
           "description": "Rank when prioritizing the shape flexibilities.\nThe instance selections with rank are considered\nfirst, in the ascending order of the rank.\nIf not set, defaults to 0.",

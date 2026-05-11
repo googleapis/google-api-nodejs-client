@@ -14801,6 +14801,11 @@ export namespace compute_alpha {
      */
     machineTypes?: string[] | null;
     /**
+     * Name of the minimum CPU platform to be used by this instance selection.
+     * e.g. 'Intel Ice Lake'.
+     */
+    minCpuPlatform?: string | null;
+    /**
      * Rank when prioritizing the shape flexibilities.
      * The instance selections with rank are considered
      * first, in the ascending order of the rank.
