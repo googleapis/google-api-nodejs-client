@@ -1265,7 +1265,7 @@
       }
     }
   },
-  "revision": "20260408",
+  "revision": "20260507",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -6115,6 +6115,20 @@
           "deprecated": true,
           "description": "Whether auto time is required, which prevents the user from manually setting the date and time. If autoDateAndTimeZone is set, this field is ignored.",
           "type": "boolean"
+        },
+        "autofillPolicy": {
+          "description": "Optional. The policy for the autofill service.",
+          "enum": [
+            "AUTOFILL_POLICY_UNSPECIFIED",
+            "AUTOFILL_USER_CHOICE",
+            "AUTOFILL_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Defaults to AUTOFILL_USER_CHOICE.",
+            "The user can choose and use an autofill service.",
+            "Autofill is disabled and the user is not allowed to change this setting. This is supported only on Android 8 and above."
+          ],
+          "type": "string"
         },
         "blockApplicationsEnabled": {
           "deprecated": true,

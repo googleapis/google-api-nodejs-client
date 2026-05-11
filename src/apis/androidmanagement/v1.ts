@@ -2710,6 +2710,10 @@ export namespace androidmanagement_v1 {
      */
     autoDateAndTimeZone?: string | null;
     /**
+     * Optional. The policy for the autofill service.
+     */
+    autofillPolicy?: string | null;
+    /**
      * Whether auto time is required, which prevents the user from manually setting the date and time. If autoDateAndTimeZone is set, this field is ignored.
      */
     autoTimeRequired?: boolean | null;
@@ -7887,6 +7891,7 @@ export namespace androidmanagement_v1 {
      *   //   "assistContentPolicy": "my_assistContentPolicy",
      *   //   "autoDateAndTimeZone": "my_autoDateAndTimeZone",
      *   //   "autoTimeRequired": false,
+     *   //   "autofillPolicy": "my_autofillPolicy",
      *   //   "blockApplicationsEnabled": false,
      *   //   "bluetoothConfigDisabled": false,
      *   //   "bluetoothContactSharingDisabled": false,
@@ -8425,6 +8430,7 @@ export namespace androidmanagement_v1 {
      *       //   "assistContentPolicy": "my_assistContentPolicy",
      *       //   "autoDateAndTimeZone": "my_autoDateAndTimeZone",
      *       //   "autoTimeRequired": false,
+     *       //   "autofillPolicy": "my_autofillPolicy",
      *       //   "blockApplicationsEnabled": false,
      *       //   "bluetoothConfigDisabled": false,
      *       //   "bluetoothContactSharingDisabled": false,
@@ -8531,6 +8537,7 @@ export namespace androidmanagement_v1 {
      *   //   "assistContentPolicy": "my_assistContentPolicy",
      *   //   "autoDateAndTimeZone": "my_autoDateAndTimeZone",
      *   //   "autoTimeRequired": false,
+     *   //   "autofillPolicy": "my_autofillPolicy",
      *   //   "blockApplicationsEnabled": false,
      *   //   "bluetoothConfigDisabled": false,
      *   //   "bluetoothContactSharingDisabled": false,
