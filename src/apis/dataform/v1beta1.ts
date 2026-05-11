@@ -420,7 +420,7 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$CompilationError {
     /**
-     * Output only. The identifier of the action where this error occurred, if available.
+     * Output only. The identifier of the action where this error occurred, if available. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:CompilationError)
      */
     actionTarget?: Schema$Target;
     /**
@@ -991,7 +991,7 @@ export namespace dataform_v1beta1 {
      */
     nextPageToken?: string | null;
     /**
-     * Locations which could not be reached.
+     * Locations which could not be reached. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListCompilationResultsResponse)
      */
     unreachable?: string[] | null;
   }
@@ -1038,7 +1038,7 @@ export namespace dataform_v1beta1 {
      */
     releaseConfigs?: Schema$ReleaseConfig[];
     /**
-     * Locations which could not be reached.
+     * Locations which could not be reached. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListReleaseConfigsResponse)
      */
     unreachable?: string[] | null;
   }
@@ -1251,7 +1251,7 @@ export namespace dataform_v1beta1 {
      */
     contents?: string | null;
     /**
-     * Output only. The ID of the Vertex job that executed the notebook in contents and also the ID used for the outputs created in Google Cloud Storage buckets. Only set once the job has started to run.
+     * Output only. The ID of the Gemini Enterprise Agent Platform job that executed the notebook in contents and also the ID used for the outputs created in Google Cloud Storage buckets. Only set once the job has started to run.
      */
     jobId?: string | null;
   }
@@ -1652,7 +1652,7 @@ export namespace dataform_v1beta1 {
      */
     gitCommitish?: string | null;
     /**
-     * Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.
+     * Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ReleaseConfig)
      */
     internalMetadata?: string | null;
     /**
@@ -2535,7 +2535,7 @@ export namespace dataform_v1beta1 {
     }
 
     /**
-     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
+     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
      * @example
      * ```js
      * // Before running the sample:
@@ -2568,7 +2568,7 @@ export namespace dataform_v1beta1 {
      *
      *   // Do the magic
      *   const res = await dataform.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -3005,7 +3005,7 @@ export namespace dataform_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -8061,7 +8061,7 @@ export namespace dataform_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await dataform.projects.locations.repositories.compilationResults.get({
-     *       // Required. The compilation result's name.
+     *       // Required. The compilation result's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:GetCompilationResultRequest)
      *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/compilationResults/my-compilationResult',
      *     });
      *   console.log(res.data);
@@ -8211,7 +8211,7 @@ export namespace dataform_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await dataform.projects.locations.repositories.compilationResults.list({
-     *       // Optional. Filter for the returned list.
+     *       // Optional. Filter for the returned list. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListCompilationResultsRequest)
      *       filter: 'placeholder-value',
      *       // Optional. This field only supports ordering by `name` and `create_time`. If unspecified, the server will choose the ordering. If specified, the default order is ascending for the `name` field.
      *       orderBy: 'placeholder-value',
@@ -8508,13 +8508,13 @@ export namespace dataform_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Repositories$Compilationresults$Get extends StandardParameters {
     /**
-     * Required. The compilation result's name.
+     * Required. The compilation result's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:GetCompilationResultRequest)
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Repositories$Compilationresults$List extends StandardParameters {
     /**
-     * Optional. Filter for the returned list.
+     * Optional. Filter for the returned list. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListCompilationResultsRequest)
      */
     filter?: string;
     /**
@@ -8597,7 +8597,7 @@ export namespace dataform_v1beta1 {
      *       // Required. The repository in which to create the release config. Must be in the format `projects/x/locations/x/repositories/x`.
      *       parent:
      *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *       // Required. The ID to use for the release config, which will become the final component of the release config's resource name.
+     *       // Required. The ID to use for the release config, which will become the final component of the release config's resource name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:CreateReleaseConfigRequest)
      *       releaseConfigId: 'placeholder-value',
      *
      *       // Request body metadata
@@ -8763,7 +8763,7 @@ export namespace dataform_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await dataform.projects.locations.repositories.releaseConfigs.delete({
-     *       // Required. The release config's name.
+     *       // Required. The release config's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:DeleteReleaseConfigRequest)
      *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/releaseConfigs/my-releaseConfig',
      *     });
      *   console.log(res.data);
@@ -8900,7 +8900,7 @@ export namespace dataform_v1beta1 {
      *   // Do the magic
      *   const res = await dataform.projects.locations.repositories.releaseConfigs.get(
      *     {
-     *       // Required. The release config's name.
+     *       // Required. The release config's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:GetReleaseConfigRequest)
      *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/releaseConfigs/my-releaseConfig',
      *     },
      *   );
@@ -9050,7 +9050,7 @@ export namespace dataform_v1beta1 {
      *     await dataform.projects.locations.repositories.releaseConfigs.list({
      *       // Optional. Maximum number of release configs to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token.
+     *       // Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListReleaseConfigsRequest)
      *       pageToken: 'placeholder-value',
      *       // Required. The repository in which to list release configs. Must be in the format `projects/x/locations/x/repositories/x`.
      *       parent:
@@ -9338,7 +9338,7 @@ export namespace dataform_v1beta1 {
      */
     parent?: string;
     /**
-     * Required. The ID to use for the release config, which will become the final component of the release config's resource name.
+     * Required. The ID to use for the release config, which will become the final component of the release config's resource name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:CreateReleaseConfigRequest)
      */
     releaseConfigId?: string;
 
@@ -9349,13 +9349,13 @@ export namespace dataform_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Repositories$Releaseconfigs$Delete extends StandardParameters {
     /**
-     * Required. The release config's name.
+     * Required. The release config's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:DeleteReleaseConfigRequest)
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Repositories$Releaseconfigs$Get extends StandardParameters {
     /**
-     * Required. The release config's name.
+     * Required. The release config's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:GetReleaseConfigRequest)
      */
     name?: string;
   }
@@ -9365,7 +9365,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListReleaseConfigsRequest)
      */
     pageToken?: string;
     /**

@@ -381,7 +381,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+              "description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
               "flatPath": "v1beta1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "dataform.projects.locations.list",
@@ -390,7 +390,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1503,7 +1503,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The compilation result's name.",
+                          "description": "Required. The compilation result's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:GetCompilationResultRequest)",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/compilationResults/[^/]+$",
                           "required": true,
@@ -1529,7 +1529,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter for the returned list.",
+                          "description": "Optional. Filter for the returned list. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListCompilationResultsRequest)",
                           "location": "query",
                           "type": "string"
                         },
@@ -1629,7 +1629,7 @@
                           "type": "string"
                         },
                         "releaseConfigId": {
-                          "description": "Required. The ID to use for the release config, which will become the final component of the release config's resource name.",
+                          "description": "Required. The ID to use for the release config, which will become the final component of the release config's resource name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:CreateReleaseConfigRequest)",
                           "location": "query",
                           "type": "string"
                         }
@@ -1656,7 +1656,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The release config's name.",
+                          "description": "Required. The release config's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:DeleteReleaseConfigRequest)",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/releaseConfigs/[^/]+$",
                           "required": true,
@@ -1682,7 +1682,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The release config's name.",
+                          "description": "Required. The release config's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:GetReleaseConfigRequest)",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/releaseConfigs/[^/]+$",
                           "required": true,
@@ -1714,7 +1714,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListReleaseConfigsRequest)",
                           "location": "query",
                           "type": "string"
                         },
@@ -3247,7 +3247,7 @@
       }
     }
   },
-  "revision": "20260409",
+  "revision": "20260430",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -3615,7 +3615,7 @@
       "properties": {
         "actionTarget": {
           "$ref": "Target",
-          "description": "Output only. The identifier of the action where this error occurred, if available.",
+          "description": "Output only. The identifier of the action where this error occurred, if available. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:CompilationError)",
           "readOnly": true
         },
         "message": {
@@ -4363,7 +4363,7 @@
           "type": "string"
         },
         "unreachable": {
-          "description": "Locations which could not be reached.",
+          "description": "Locations which could not be reached. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListCompilationResultsResponse)",
           "items": {
             "type": "string"
           },
@@ -4431,7 +4431,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Locations which could not be reached.",
+          "description": "Locations which could not be reached. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListReleaseConfigsResponse)",
           "items": {
             "type": "string"
           },
@@ -4717,7 +4717,7 @@
           "type": "string"
         },
         "jobId": {
-          "description": "Output only. The ID of the Vertex job that executed the notebook in contents and also the ID used for the outputs created in Google Cloud Storage buckets. Only set once the job has started to run.",
+          "description": "Output only. The ID of the Gemini Enterprise Agent Platform job that executed the notebook in contents and also the ID used for the outputs created in Google Cloud Storage buckets. Only set once the job has started to run.",
           "readOnly": true,
           "type": "string"
         }
@@ -5275,7 +5275,7 @@
           "type": "string"
         },
         "internalMetadata": {
-          "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.",
+          "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ReleaseConfig)",
           "readOnly": true,
           "type": "string"
         },
