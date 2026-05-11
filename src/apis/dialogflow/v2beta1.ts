@@ -1480,6 +1480,8 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1CesAppSpec {
     cesApp?: string | null;
     confirmationRequirement?: string | null;
+    proactiveEnabled?: boolean | null;
+    reactiveEnabled?: boolean | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1CesToolSpec {
     cesTool?: string | null;

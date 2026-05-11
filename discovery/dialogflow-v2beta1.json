@@ -8431,7 +8431,7 @@
       }
     }
   },
-  "revision": "20260426",
+  "revision": "20260509",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -16052,6 +16052,12 @@
             ""
           ],
           "type": "string"
+        },
+        "proactiveEnabled": {
+          "type": "boolean"
+        },
+        "reactiveEnabled": {
+          "type": "boolean"
         }
       },
       "type": "object"
