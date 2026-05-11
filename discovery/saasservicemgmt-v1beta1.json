@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2612,7 +2612,7 @@
       }
     }
   },
-  "revision": "20260415",
+  "revision": "20260505",
   "rootUrl": "https://saasservicemgmt.googleapis.com/",
   "schemas": {
     "Aggregate": {
@@ -2796,6 +2796,10 @@
       "description": "EvaluationRule defines a single rule for evaluating a feature flag. A rule consists of a condition that, if met, assigns a specific variant or allocation to the user.",
       "id": "EvaluationRule",
       "properties": {
+        "allocationId": {
+          "description": "Optional. The ID of an allocation to target.",
+          "type": "string"
+        },
         "condition": {
           "description": "Required. A Common Expression Language (CEL) expression that evaluates to a boolean. The expression is evaluated against the provided context. If it returns true, the rule's target is applied.",
           "type": "string"
@@ -2805,7 +2809,12 @@
           "type": "string"
         },
         "target": {
-          "description": "Required. The target variant or allocation to apply if the condition is met. This should match the name of a defined variant or allocation's ID.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use `rule_target` instead. The target variant or allocation to apply if the condition is met. This should match the name of a defined variant or allocation's ID.",
+          "type": "string"
+        },
+        "variantId": {
+          "description": "Optional. The name of a variant to target.",
           "type": "string"
         }
       },
@@ -2829,8 +2838,17 @@
           },
           "type": "array"
         },
+        "defaultAllocation": {
+          "description": "Optional. The ID of an allocation to use as the default.",
+          "type": "string"
+        },
         "defaultTarget": {
-          "description": "Required. Default variant or allocation of the flag.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use `base_target` instead. Default variant or allocation of the flag.",
+          "type": "string"
+        },
+        "defaultVariant": {
+          "description": "Optional. The name of a variant to use as the default.",
           "type": "string"
         },
         "rules": {
@@ -4658,14 +4676,16 @@
             "TYPE_READY",
             "TYPE_UPDATING",
             "TYPE_PROVISIONED",
-            "TYPE_OPERATION_ERROR"
+            "TYPE_OPERATION_ERROR",
+            "TYPE_FLAGS_CONFIG_INITIALIZED"
           ],
           "enumDescriptions": [
             "Condition type is unspecified.",
             "Condition type is ready.",
             "Condition type is updating.",
             "Condition type is provisioned.",
-            "Condition type is operationError. True when the last unit operation fails with a non-ignorable error."
+            "Condition type is operationError. True when the last unit operation fails with a non-ignorable error.",
+            "Condition type is flagsConfigInitialized. True when the flags configuration is synchronized and ready to be served."
           ],
           "type": "string"
         }
@@ -4965,7 +4985,8 @@
             "TYPE_SUCCEEDED",
             "TYPE_CANCELLED",
             "TYPE_APP_CREATED",
-            "TYPE_APP_COMPONENTS_REGISTERED"
+            "TYPE_APP_COMPONENTS_REGISTERED",
+            "TYPE_WORKLOAD_SUCCEEDED"
           ],
           "enumDescriptions": [
             "Condition type is unspecified.",
@@ -4974,7 +4995,8 @@
             "Condition type is succeeded.",
             "Condition type is cancelled.",
             "Indicates if AppHub app has been created.",
-            "Indicates if services and workloads have been registered with AppHub."
+            "Indicates if services and workloads have been registered with AppHub.",
+            "Indicates if the UnitOperation's core workload execution completed successfully. The workload is the core execution operation performed for a UnitOperation (e.g., provisioning, updating, or deprovisioning resources) excluding post-operation checks."
           ],
           "type": "string"
         }

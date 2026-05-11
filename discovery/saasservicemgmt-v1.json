@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1804,7 +1804,7 @@
       }
     }
   },
-  "revision": "20260415",
+  "revision": "20260505",
   "rootUrl": "https://saasservicemgmt.googleapis.com/",
   "schemas": {
     "Aggregate": {
@@ -3096,14 +3096,16 @@
             "TYPE_READY",
             "TYPE_UPDATING",
             "TYPE_PROVISIONED",
-            "TYPE_OPERATION_ERROR"
+            "TYPE_OPERATION_ERROR",
+            "TYPE_FLAGS_CONFIG_INITIALIZED"
           ],
           "enumDescriptions": [
             "Condition type is unspecified.",
             "Condition type is ready.",
             "Condition type is updating.",
             "Condition type is provisioned.",
-            "Condition type is operationError. True when the last unit operation fails with a non-ignorable error."
+            "Condition type is operationError. True when the last unit operation fails with a non-ignorable error.",
+            "Condition type is flagsConfigInitialized. True when the flags configuration is synchronized and ready to be served."
           ],
           "type": "string"
         }
@@ -3394,7 +3396,8 @@
             "TYPE_SUCCEEDED",
             "TYPE_CANCELLED",
             "TYPE_APP_CREATED",
-            "TYPE_APP_COMPONENTS_REGISTERED"
+            "TYPE_APP_COMPONENTS_REGISTERED",
+            "TYPE_WORKLOAD_SUCCEEDED"
           ],
           "enumDescriptions": [
             "Condition type is unspecified.",
@@ -3403,7 +3406,8 @@
             "Condition type is succeeded.",
             "Condition type is cancelled.",
             "Indicates if AppHub app has been created.",
-            "Indicates if services and workloads have been registered with AppHub."
+            "Indicates if services and workloads have been registered with AppHub.",
+            "Indicates if the UnitOperation's core workload execution completed successfully. The workload is the core execution operation performed for a UnitOperation (e.g., provisioning, updating, or deprovisioning resources) excluding post-operation checks."
           ],
           "type": "string"
         }
