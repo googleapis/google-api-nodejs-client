@@ -298,7 +298,7 @@
           ]
         },
         "testIamPermissions": {
-          "description": "Returns the IAM permissions that the caller has on the specified Access Context Manager resource. The resource can be an AccessPolicy, AccessLevel, or ServicePerimeter. This method does not support other resources.",
+          "description": "Returns the IAM permissions that the caller has on the specified Access Context Manager resource. The resource can be an AccessPolicy, AccessLevel, or ServicePerimeter. This method does not support other resources. **IAM Permissions**: No specific IAM permission is required to call this method. It returns the subset of the requested permissions that the caller possesses.",
           "flatPath": "v1/accessPolicies/{accessPoliciesId}:testIamPermissions",
           "httpMethod": "POST",
           "id": "accesscontextmanager.accessPolicies.testIamPermissions",
@@ -536,7 +536,7 @@
               ]
             },
             "testIamPermissions": {
-              "description": "Returns the IAM permissions that the caller has on the specified Access Context Manager resource. The resource can be an AccessPolicy, AccessLevel, or ServicePerimeter. This method does not support other resources.",
+              "description": "Returns the IAM permissions that the caller has on the specified Access Context Manager resource. The resource can be an AccessPolicy, AccessLevel, or ServicePerimeter. This method does not support other resources. **IAM Permissions**: No specific IAM permission is required to call this method. It returns the subset of the requested permissions that the caller possesses.",
               "flatPath": "v1/accessPolicies/{accessPoliciesId}/accessLevels/{accessLevelsId}:testIamPermissions",
               "httpMethod": "POST",
               "id": "accesscontextmanager.accessPolicies.accessLevels.testIamPermissions",
@@ -924,7 +924,7 @@
               ]
             },
             "testIamPermissions": {
-              "description": "Returns the IAM permissions that the caller has on the specified Access Context Manager resource. The resource can be an AccessPolicy, AccessLevel, or ServicePerimeter. This method does not support other resources.",
+              "description": "Returns the IAM permissions that the caller has on the specified Access Context Manager resource. The resource can be an AccessPolicy, AccessLevel, or ServicePerimeter. This method does not support other resources. **IAM Permissions**: No specific IAM permission is required to call this method. It returns the subset of the requested permissions that the caller possesses.",
               "flatPath": "v1/accessPolicies/{accessPoliciesId}/servicePerimeters/{servicePerimetersId}:testIamPermissions",
               "httpMethod": "POST",
               "id": "accesscontextmanager.accessPolicies.servicePerimeters.testIamPermissions",
@@ -1278,7 +1278,7 @@
     "services": {
       "methods": {
         "get": {
-          "description": "Returns a VPC-SC supported service based on the service name.",
+          "description": "Returns a VPC-SC supported service based on the service name. **IAM Permissions**: Requires the following IAM permissions to use this method: - `serviceusage.services.use` on the project.",
           "flatPath": "v1/services/{name}",
           "httpMethod": "GET",
           "id": "accesscontextmanager.services.get",
@@ -1302,7 +1302,7 @@
           ]
         },
         "list": {
-          "description": "Lists all VPC-SC supported services.",
+          "description": "Lists all VPC-SC supported services. **IAM Permissions**: Requires the following IAM permissions to use this method: - `serviceusage.services.use` on the project.",
           "flatPath": "v1/services",
           "httpMethod": "GET",
           "id": "accesscontextmanager.services.list",
@@ -1331,7 +1331,7 @@
       }
     }
   },
-  "revision": "20260426",
+  "revision": "20260506",
   "rootUrl": "https://accesscontextmanager.googleapis.com/",
   "schemas": {
     "AccessContextManagerOperationMetadata": {
