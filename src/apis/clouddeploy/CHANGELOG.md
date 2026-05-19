@@ -1,5 +1,18 @@
 # Changelog
 
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v13.4.0...clouddeploy-v14.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **clouddeploy:** update the API ([c5ea16d](https://github.com/googleapis/google-api-nodejs-client/commit/c5ea16d9c6d333c12434f19f17214677d0db6a91))
+* **clouddeploy:** update the API ([c14de59](https://github.com/googleapis/google-api-nodejs-client/commit/c14de59da724abe61f265eeb89a744e4b30ea7f1))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+
 ## [13.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v13.3.0...clouddeploy-v13.4.0) (2026-01-28)
 
 

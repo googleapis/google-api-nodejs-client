@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/clouderrorreporting-v7.0.1...clouderrorreporting-v7.0.2) (2026-05-19)
+
+
+### Bug Fixes
+
+* **clouderrorreporting:** update the API ([e7b44a1](https://github.com/googleapis/google-api-nodejs-client/commit/e7b44a14ce3f514adba53620655d741b4eb9314e))
+
 ## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/clouderrorreporting-v7.0.0...clouderrorreporting-v7.0.1) (2025-12-05)
 
 

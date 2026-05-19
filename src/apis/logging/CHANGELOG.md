@@ -1,5 +1,18 @@
 # Changelog
 
+## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/logging-v17.2.0...logging-v18.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **logging:** update the API ([a2e213f](https://github.com/googleapis/google-api-nodejs-client/commit/a2e213f1503fa6b4daf03d71d83e14aa8bdbc43c))
+* **logging:** update the API ([f3bfcab](https://github.com/googleapis/google-api-nodejs-client/commit/f3bfcab76ea26eac5c2e748619f3e668731d276b))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+
 ## [17.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/logging-v17.1.0...logging-v17.2.0) (2026-02-03)
 
 

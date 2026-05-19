@@ -1,5 +1,17 @@
 # Changelog
 
+## [8.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/config-v8.1.0...config-v8.2.0) (2026-05-19)
+
+
+### Features
+
+* **config:** update the API ([f48ca59](https://github.com/googleapis/google-api-nodejs-client/commit/f48ca591b48289891a471efe76f6c499b5c7f06d))
+
+
+### Bug Fixes
+
+* **config:** update the API ([acd2060](https://github.com/googleapis/google-api-nodejs-client/commit/acd20606a60d26c96956c71155d8335d543a5081))
+
 ## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/config-v8.0.1...config-v8.1.0) (2025-12-15)
 
 

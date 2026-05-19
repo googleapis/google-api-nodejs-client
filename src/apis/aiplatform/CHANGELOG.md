@@ -1,5 +1,20 @@
 # Changelog
 
+## [30.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v29.1.0...aiplatform-v30.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **aiplatform:** This release has breaking changes.
+* **aiplatform:** This release has breaking changes.
+
+### Features
+
+* **aiplatform:** update the API ([13b812c](https://github.com/googleapis/google-api-nodejs-client/commit/13b812ca472da48b490162218012599bed3b54b5))
+* **aiplatform:** update the API ([7a406e8](https://github.com/googleapis/google-api-nodejs-client/commit/7a406e812a3ea6cd8362dbcccdca21b513c629b3))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+
 ## [29.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v29.0.0...aiplatform-v29.1.0) (2026-02-04)
 
 

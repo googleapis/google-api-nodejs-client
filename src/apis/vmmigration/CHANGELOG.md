@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v19.1.0...vmmigration-v19.1.1) (2026-05-19)
+
+
+### Bug Fixes
+
+* **vmmigration:** update the API ([aca497f](https://github.com/googleapis/google-api-nodejs-client/commit/aca497fb49709c1e1ae34fbd54f8a4788fca0aa7))
+
 ## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v19.0.0...vmmigration-v19.1.0) (2026-02-05)
 
 

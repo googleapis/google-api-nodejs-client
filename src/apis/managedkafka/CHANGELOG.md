@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.6.1](https://github.com/googleapis/google-api-nodejs-client/compare/managedkafka-v7.6.0...managedkafka-v7.6.1) (2026-05-19)
+
+
+### Bug Fixes
+
+* **managedkafka:** update the API ([b061a47](https://github.com/googleapis/google-api-nodejs-client/commit/b061a47520eb9282a161d6423910daa6fce04690))
+
 ## [7.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/managedkafka-v7.5.0...managedkafka-v7.6.0) (2026-02-05)
 
 

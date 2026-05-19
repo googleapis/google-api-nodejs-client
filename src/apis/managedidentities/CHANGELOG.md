@@ -1,5 +1,22 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/managedidentities-v7.0.1...managedidentities-v8.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **managedidentities:** update the API ([51afce5](https://github.com/googleapis/google-api-nodejs-client/commit/51afce5976ba23fa9034c78ac6fd5aa6ca3783df))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+
+
+### Bug Fixes
+
+* **managedidentities:** update the API ([388ea61](https://github.com/googleapis/google-api-nodejs-client/commit/388ea61e6dff5004d7e47246799489f4e71b50ab))
+
 ## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/managedidentities-v7.0.0...managedidentities-v7.0.1) (2025-12-05)
 
 

@@ -1,5 +1,17 @@
 # Changelog
 
+## [12.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v12.1.1...iap-v12.2.0) (2026-05-19)
+
+
+### Features
+
+* **iap:** update the API ([c0af9d7](https://github.com/googleapis/google-api-nodejs-client/commit/c0af9d71cc06f0488211986d3257bc7d0e8e9aad))
+
+
+### Bug Fixes
+
+* **iap:** update the API ([1c1a70f](https://github.com/googleapis/google-api-nodejs-client/commit/1c1a70fbddfb11db8811cbd9d0e003c2a228539a))
+
 ## [12.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v12.1.0...iap-v12.1.1) (2025-12-05)
 
 

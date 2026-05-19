@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/cloudasset",
-  "version": "14.1.2",
+  "version": "14.1.3",
   "description": "cloudasset",
   "main": "build/index.js",
   "types": "build/index.d.ts",

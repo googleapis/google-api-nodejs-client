@@ -1,5 +1,13 @@
 # Changelog
 
+## [15.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/composer-v15.1.0...composer-v15.2.0) (2026-05-19)
+
+
+### Features
+
+* **composer:** update the API ([e68a16f](https://github.com/googleapis/google-api-nodejs-client/commit/e68a16fdcfe44678786ffcdb74ce17f6a4029ee5))
+* **composer:** update the API ([493c3d4](https://github.com/googleapis/google-api-nodejs-client/commit/493c3d42553c67b7ca7643a2723abdc30f3b5ba9))
+
 ## [15.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/composer-v15.0.0...composer-v15.1.0) (2026-02-03)
 
 

@@ -1,5 +1,18 @@
 # Changelog
 
+## [29.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v28.5.0...discoveryengine-v29.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **discoveryengine:** This release has breaking changes.
+* **discoveryengine:** This release has breaking changes.
+
+### Features
+
+* **discoveryengine:** update the API ([cd3fbd6](https://github.com/googleapis/google-api-nodejs-client/commit/cd3fbd61aa9190f410602e1297d559ac8d8744f2))
+* **discoveryengine:** update the API ([e921faa](https://github.com/googleapis/google-api-nodejs-client/commit/e921faa725211f9eb569116ab33249c402818e5c))
+
 ## [28.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v28.4.0...discoveryengine-v28.5.0) (2026-02-04)
 
 
