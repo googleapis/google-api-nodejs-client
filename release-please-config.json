@@ -241,7 +241,6 @@
     "src/apis/metastore": {},
     "src/apis/managedidentities": {},
     "src/apis/apikeys": {},
-    "src/apis/lifesciences": {},
     "src/apis/contentwarehouse": {},
     "src/apis/config": {},
     "src/apis/essentialcontacts": {},
