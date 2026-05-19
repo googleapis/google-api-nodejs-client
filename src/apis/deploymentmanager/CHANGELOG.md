@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v19.1.0...deploymentmanager-v19.2.0) (2026-05-19)
+
+
+### Features
+
+* **deploymentmanager:** update the API ([5363e27](https://github.com/googleapis/google-api-nodejs-client/commit/5363e27bb82dd63e3f4a081dc24da9467a648ee8))
+
 ## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v19.0.0...deploymentmanager-v19.1.0) (2025-12-05)
 
 

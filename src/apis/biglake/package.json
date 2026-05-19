@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/biglake",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "description": "biglake",
   "main": "build/index.js",
   "types": "build/index.d.ts",

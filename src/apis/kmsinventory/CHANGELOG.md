@@ -1,5 +1,13 @@
 # Changelog
 
+## [8.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/kmsinventory-v8.2.0...kmsinventory-v8.2.1) (2026-05-19)
+
+
+### Bug Fixes
+
+* **kmsinventory:** update the API ([724107f](https://github.com/googleapis/google-api-nodejs-client/commit/724107f95aaae5700f83cf58a031bc0a41e1a227))
+* **kmsinventory:** update the API ([acdf97a](https://github.com/googleapis/google-api-nodejs-client/commit/acdf97adcb6d7768455751f2e18d412e0363c5c6))
+
 ## [8.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/kmsinventory-v8.1.0...kmsinventory-v8.2.0) (2026-02-04)
 
 

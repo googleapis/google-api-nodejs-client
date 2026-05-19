@@ -1,5 +1,19 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/looker-v8.4.0...looker-v9.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **looker:** This release has breaking changes.
+
+### Features
+
+* **looker:** update the API ([38038b2](https://github.com/googleapis/google-api-nodejs-client/commit/38038b21e00e3b6d89b601c043909d832d8557a6))
+* **looker:** update the API ([444caad](https://github.com/googleapis/google-api-nodejs-client/commit/444caadc36328a1134c458832b1a28da0004edad))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+
 ## [8.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/looker-v8.3.0...looker-v8.4.0) (2026-01-30)
 
 

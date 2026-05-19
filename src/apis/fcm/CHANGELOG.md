@@ -1,5 +1,16 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/fcm-v9.0.1...fcm-v10.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **fcm:** This release has breaking changes.
+
+### Features
+
+* **fcm:** update the API ([64d0148](https://github.com/googleapis/google-api-nodejs-client/commit/64d0148de66d5e094d8581a395c1fb9d0b33f0ba))
+
 ## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/fcm-v9.0.0...fcm-v9.0.1) (2025-12-05)
 
 

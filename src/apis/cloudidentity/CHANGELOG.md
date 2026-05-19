@@ -1,5 +1,17 @@
 # Changelog
 
+## [22.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v21.2.1...cloudidentity-v22.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **cloudidentity:** update the API ([5fb30ac](https://github.com/googleapis/google-api-nodejs-client/commit/5fb30ac7904048129b439b0b6e20826b3294b045))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+
 ## [21.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v21.2.0...cloudidentity-v21.2.1) (2026-01-28)
 
 

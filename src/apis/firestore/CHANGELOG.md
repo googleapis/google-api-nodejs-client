@@ -1,5 +1,17 @@
 # Changelog
 
+## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v18.2.0...firestore-v19.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **firestore:** This release has breaking changes.
+
+### Features
+
+* **firestore:** update the API ([ccd55e8](https://github.com/googleapis/google-api-nodejs-client/commit/ccd55e87f67f4bc7f176bd25976019dd42f33ddf))
+* **firestore:** update the API ([4c0d283](https://github.com/googleapis/google-api-nodejs-client/commit/4c0d283a7a09bfe56d73569b57baa88f3e6ab51f))
+
 ## [18.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v18.1.0...firestore-v18.2.0) (2026-01-28)
 
 

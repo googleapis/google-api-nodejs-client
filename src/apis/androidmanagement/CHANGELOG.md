@@ -1,5 +1,19 @@
 # Changelog
 
+## [23.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v22.2.0...androidmanagement-v23.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **androidmanagement:** This release has breaking changes.
+
+### Features
+
+* **androidmanagement:** update the API ([912aa01](https://github.com/googleapis/google-api-nodejs-client/commit/912aa01160605bf30085e45ca68d078a1dc2ab0c))
+* **androidmanagement:** update the API ([18923fe](https://github.com/googleapis/google-api-nodejs-client/commit/18923fe60ae8d97b53a6d1935e7da84afea4647b))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+
 ## [22.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v22.1.2...androidmanagement-v22.2.0) (2026-01-28)
 
 

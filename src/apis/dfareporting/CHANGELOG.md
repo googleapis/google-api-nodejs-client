@@ -1,5 +1,18 @@
 # Changelog
 
+## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dfareporting-v17.2.1...dfareporting-v18.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **dfareporting:** update the API ([09a4bc1](https://github.com/googleapis/google-api-nodejs-client/commit/09a4bc189da1314717df42c75c24f131dbb93aa0))
+* **dfareporting:** update the API ([76e8a4d](https://github.com/googleapis/google-api-nodejs-client/commit/76e8a4dfd6c7cc44e6e0f293796b0feaad8ab245))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+
 ## [17.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/dfareporting-v17.2.0...dfareporting-v17.2.1) (2025-12-05)
 
 

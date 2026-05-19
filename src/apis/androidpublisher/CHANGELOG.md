@@ -1,5 +1,14 @@
 # Changelog
 
+## [35.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v35.3.0...androidpublisher-v35.4.0) (2026-05-19)
+
+
+### Features
+
+* **androidpublisher:** update the API ([cfdc6a1](https://github.com/googleapis/google-api-nodejs-client/commit/cfdc6a1515669c69ca0f64397c979be8cc622040))
+* **androidpublisher:** update the API ([b579920](https://github.com/googleapis/google-api-nodejs-client/commit/b579920a6f054666f82cde0c6bc9506f881669ba))
+* regenerate index files ([6e5b152](https://github.com/googleapis/google-api-nodejs-client/commit/6e5b152799ee21009bd9a3d20c52de6fa6a0e900))
+
 ## [35.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v35.2.0...androidpublisher-v35.3.0) (2026-02-05)
 
 

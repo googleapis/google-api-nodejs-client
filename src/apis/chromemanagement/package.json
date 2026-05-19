@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/chromemanagement",
-  "version": "25.1.0",
+  "version": "25.2.0",
   "description": "chromemanagement",
   "main": "build/index.js",
   "types": "build/index.d.ts",

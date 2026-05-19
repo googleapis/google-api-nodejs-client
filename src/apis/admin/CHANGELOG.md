@@ -1,5 +1,19 @@
 # Changelog
 
+## [30.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v30.3.0...admin-v30.4.0) (2026-05-19)
+
+
+### Features
+
+* **admin:** update the API ([df75963](https://github.com/googleapis/google-api-nodejs-client/commit/df75963876208c2520df58be1887322e88a4b320))
+* **admin:** update the API ([777ed27](https://github.com/googleapis/google-api-nodejs-client/commit/777ed278e25b7b388ab6931683077318e0062706))
+* regenerate index files ([6e5b152](https://github.com/googleapis/google-api-nodejs-client/commit/6e5b152799ee21009bd9a3d20c52de6fa6a0e900))
+
+
+### Bug Fixes
+
+* **admin:** update the API ([dbd96da](https://github.com/googleapis/google-api-nodejs-client/commit/dbd96da6403303b4dabba353c85edd2f6c65e37a))
+
 ## [30.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v30.2.0...admin-v30.3.0) (2026-01-28)
 
 
