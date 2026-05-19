@@ -1,5 +1,14 @@
 # Changelog
 
+## [13.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v13.3.0...datamigration-v13.4.0) (2026-05-19)
+
+
+### Features
+
+* **datamigration:** update the API ([f3724df](https://github.com/googleapis/google-api-nodejs-client/commit/f3724dfa394270a864013ac9745a61cd63b30a0d))
+* **datamigration:** update the API ([4d37c08](https://github.com/googleapis/google-api-nodejs-client/commit/4d37c0890551f39ed5706981cba419cd90808c85))
+* regenerate index files ([6e5b152](https://github.com/googleapis/google-api-nodejs-client/commit/6e5b152799ee21009bd9a3d20c52de6fa6a0e900))
+
 ## [13.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v13.2.0...datamigration-v13.3.0) (2026-02-05)
 
 

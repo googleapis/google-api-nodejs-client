@@ -1,5 +1,17 @@
 # Changelog
 
+## [20.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenterinsights-v20.5.0...contactcenterinsights-v20.6.0) (2026-05-19)
+
+
+### Features
+
+* **contactcenterinsights:** update the API ([09f0df3](https://github.com/googleapis/google-api-nodejs-client/commit/09f0df348d5321f03f4ea6da2262df05b500c3c8))
+
+
+### Bug Fixes
+
+* **contactcenterinsights:** update the API ([64e5fa2](https://github.com/googleapis/google-api-nodejs-client/commit/64e5fa28b4b8999d5dc4da77ea8ffcadd1bf2b80))
+
 ## [20.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenterinsights-v20.4.0...contactcenterinsights-v20.5.0) (2026-02-04)
 
 

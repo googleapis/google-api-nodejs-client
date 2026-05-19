@@ -1,5 +1,13 @@
 # Changelog
 
+## [8.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/servicedirectory-v8.0.2...servicedirectory-v8.0.3) (2026-05-19)
+
+
+### Bug Fixes
+
+* **servicedirectory:** update the API ([2462e21](https://github.com/googleapis/google-api-nodejs-client/commit/2462e218dc240d99585e8a0aa6de7020a41fb1b6))
+* **servicedirectory:** update the API ([7d23f0e](https://github.com/googleapis/google-api-nodejs-client/commit/7d23f0e553fc1461c24477e0cd504254728e28f8))
+
 ## [8.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/servicedirectory-v8.0.1...servicedirectory-v8.0.2) (2025-12-05)
 
 

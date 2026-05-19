@@ -1,5 +1,19 @@
 # Changelog
 
+## [36.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v35.2.0...sqladmin-v36.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **sqladmin:** This release has breaking changes.
+
+### Features
+
+* regenerate index files ([6e5b152](https://github.com/googleapis/google-api-nodejs-client/commit/6e5b152799ee21009bd9a3d20c52de6fa6a0e900))
+* **sqladmin:** update the API ([db5732c](https://github.com/googleapis/google-api-nodejs-client/commit/db5732cec16a2daefd595567867c931e9d173abe))
+* **sqladmin:** update the API ([77bb398](https://github.com/googleapis/google-api-nodejs-client/commit/77bb3983302a9dc2b63485b9d6b1133181feecc5))
+* **sqladmin:** update the API ([ce343d9](https://github.com/googleapis/google-api-nodejs-client/commit/ce343d9be78267ca992f5bfb7fc40303e9310b04))
+
 ## [35.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v35.1.0...sqladmin-v35.2.0) (2026-02-03)
 
 

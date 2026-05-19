@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v10.3.0...eventarc-v10.3.1) (2026-05-19)
+
+
+### Bug Fixes
+
+* **eventarc:** update the API ([634d431](https://github.com/googleapis/google-api-nodejs-client/commit/634d43157d461f12c70621f6d031d777ffa39049))
+
 ## [10.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v10.2.0...eventarc-v10.3.0) (2026-02-05)
 
 

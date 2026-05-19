@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/privateca",
-  "version": "12.0.4",
+  "version": "13.0.0",
   "description": "privateca",
   "main": "build/index.js",
   "types": "build/index.d.ts",

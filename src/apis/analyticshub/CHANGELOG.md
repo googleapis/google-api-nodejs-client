@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v18.3.0...analyticshub-v18.4.0) (2026-05-19)
+
+
+### Features
+
+* **analyticshub:** update the API ([0c2bdd9](https://github.com/googleapis/google-api-nodejs-client/commit/0c2bdd9c56ba08e4f5ab13130357d590233d9663))
+
 ## [18.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v18.2.0...analyticshub-v18.3.0) (2026-01-28)
 
 

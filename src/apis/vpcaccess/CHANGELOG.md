@@ -1,5 +1,22 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vpcaccess-v7.1.1...vpcaccess-v8.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+
+
+### Bug Fixes
+
+* **vpcaccess:** update the API ([e742080](https://github.com/googleapis/google-api-nodejs-client/commit/e742080ef6d6ae3049303daf332163c391c507e3))
+* **vpcaccess:** update the API ([e7c6c5a](https://github.com/googleapis/google-api-nodejs-client/commit/e7c6c5a2c789d582c9ff80879f036ac62d434e6e))
+
 ## [7.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/vpcaccess-v7.1.0...vpcaccess-v7.1.1) (2025-12-05)
 
 

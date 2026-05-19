@@ -1,5 +1,19 @@
 # Changelog
 
+## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/backupdr-v14.4.0...backupdr-v15.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **backupdr:** This release has breaking changes.
+
+### Features
+
+* **backupdr:** update the API ([01cd0f6](https://github.com/googleapis/google-api-nodejs-client/commit/01cd0f634e71c73f8b424e6f874a118b2a37cf43))
+* **backupdr:** update the API ([df24b24](https://github.com/googleapis/google-api-nodejs-client/commit/df24b24c113cccaeb2ecb050f5a4002a1db483b8))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+
 ## [14.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/backupdr-v14.3.0...backupdr-v14.4.0) (2026-01-28)
 
 

@@ -1,5 +1,17 @@
 # Changelog
 
+## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v14.1.0...appengine-v15.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **appengine:** This release has breaking changes.
+
+### Features
+
+* **appengine:** update the API ([f1f2819](https://github.com/googleapis/google-api-nodejs-client/commit/f1f2819fe387d12ddf0554243a1b47efc8bb4bc4))
+* **appengine:** update the API ([9013f69](https://github.com/googleapis/google-api-nodejs-client/commit/9013f6997ca987e9de0c49908c95d8033235fe5a))
+
 ## [14.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v14.0.1...appengine-v14.1.0) (2026-02-05)
 
 
