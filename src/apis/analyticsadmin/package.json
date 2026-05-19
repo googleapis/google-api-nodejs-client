@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/analyticsadmin",
-  "version": "16.0.1",
+  "version": "17.0.0",
   "description": "analyticsadmin",
   "main": "build/index.js",
   "types": "build/index.d.ts",

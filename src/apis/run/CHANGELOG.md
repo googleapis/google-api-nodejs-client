@@ -1,5 +1,15 @@
 # Changelog
 
+## [31.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v31.2.0...run-v31.3.0) (2026-05-19)
+
+
+### Features
+
+* regenerate index files ([6e5b152](https://github.com/googleapis/google-api-nodejs-client/commit/6e5b152799ee21009bd9a3d20c52de6fa6a0e900))
+* **run:** update the API ([e9e1502](https://github.com/googleapis/google-api-nodejs-client/commit/e9e1502037a38666905b39a26c8fdc3c1de17182))
+* **run:** update the API ([3f59abb](https://github.com/googleapis/google-api-nodejs-client/commit/3f59abb1900b0e5936c0f26d091b9522582dbe76))
+* **run:** update the API ([a6897b4](https://github.com/googleapis/google-api-nodejs-client/commit/a6897b4918a2f06b50016bc61fc2e42cda1aa27d))
+
 ## [31.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v31.1.0...run-v31.2.0) (2026-01-30)
 
 

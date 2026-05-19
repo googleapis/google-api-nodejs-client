@@ -1,5 +1,19 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/walletobjects-v11.2.0...walletobjects-v12.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+* **walletobjects:** update the API ([9fd8b53](https://github.com/googleapis/google-api-nodejs-client/commit/9fd8b538de32b215dc4aed4cf240594bc0d8dfcb))
+* **walletobjects:** update the API ([0b01739](https://github.com/googleapis/google-api-nodejs-client/commit/0b0173924b88fcd59243474a32320940649f8322))
+* **walletobjects:** update the API ([ee5b3dc](https://github.com/googleapis/google-api-nodejs-client/commit/ee5b3dc1030bbba1e2fe18868a8829691615d7a7))
+
 ## [11.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/walletobjects-v11.1.0...walletobjects-v11.2.0) (2026-01-28)
 
 

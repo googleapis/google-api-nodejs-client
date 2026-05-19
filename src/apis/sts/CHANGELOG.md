@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v15.1.0...sts-v15.1.1) (2026-05-19)
+
+
+### Bug Fixes
+
+* **sts:** update the API ([cc98cda](https://github.com/googleapis/google-api-nodejs-client/commit/cc98cda71d7337cef4e4f69e1af3fdfcd832cef7))
+
 ## [15.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v15.0.0...sts-v15.1.0) (2025-12-05)
 
 

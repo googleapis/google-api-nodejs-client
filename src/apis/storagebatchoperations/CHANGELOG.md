@@ -1,5 +1,13 @@
 # Changelog
 
+## [8.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/storagebatchoperations-v8.2.0...storagebatchoperations-v8.3.0) (2026-05-19)
+
+
+### Features
+
+* **storagebatchoperations:** update the API ([c5c2121](https://github.com/googleapis/google-api-nodejs-client/commit/c5c2121f44627c06c92e67b40d33c3790c552606))
+* **storagebatchoperations:** update the API ([1434415](https://github.com/googleapis/google-api-nodejs-client/commit/1434415f0d7fe07b3243465099994ec008dca363))
+
 ## [8.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/storagebatchoperations-v8.1.0...storagebatchoperations-v8.2.0) (2026-02-05)
 
 

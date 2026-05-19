@@ -1,5 +1,17 @@
 # Changelog
 
+## [32.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v31.0.0...youtube-v32.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **youtube:** This release has breaking changes.
+
+### Features
+
+* **youtube:** update the API ([1b6c277](https://github.com/googleapis/google-api-nodejs-client/commit/1b6c277ee85a4ff67e78339f71338c3ad0b62a52))
+* **youtube:** update the API ([00fb4fe](https://github.com/googleapis/google-api-nodejs-client/commit/00fb4fe14b4a235697c88b6cb6fa074399500fb5))
+
 ## [31.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v30.3.0...youtube-v31.0.0) (2026-01-28)
 
 

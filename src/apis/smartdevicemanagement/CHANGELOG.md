@@ -1,5 +1,16 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/smartdevicemanagement-v7.1.0...smartdevicemanagement-v8.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **smartdevicemanagement:** This release has breaking changes.
+
+### Features
+
+* **smartdevicemanagement:** update the API ([5d415c7](https://github.com/googleapis/google-api-nodejs-client/commit/5d415c7d64b18028c13b7d14455fac81de80f0ae))
+
 ## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/smartdevicemanagement-v7.0.1...smartdevicemanagement-v7.1.0) (2026-01-28)
 
 

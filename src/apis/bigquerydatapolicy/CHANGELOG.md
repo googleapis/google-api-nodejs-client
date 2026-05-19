@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquerydatapolicy-v4.1.1...bigquerydatapolicy-v4.2.0) (2026-05-19)
+
+
+### Features
+
+* **bigquerydatapolicy:** update the API ([7497463](https://github.com/googleapis/google-api-nodejs-client/commit/7497463a4e4e1736e4497b2e14154f07e0598137))
+* regenerate index files ([6e5b152](https://github.com/googleapis/google-api-nodejs-client/commit/6e5b152799ee21009bd9a3d20c52de6fa6a0e900))
+
 ## [4.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/bigquerydatapolicy-v4.1.0...bigquerydatapolicy-v4.1.1) (2025-12-05)
 
 

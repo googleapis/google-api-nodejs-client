@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/datastore-v8.0.2...datastore-v8.0.3) (2026-05-19)
+
+
+### Bug Fixes
+
+* **datastore:** update the API ([ed34e66](https://github.com/googleapis/google-api-nodejs-client/commit/ed34e66d361a6c98c8575c2ea5ff95159486afd0))
+
 ## [8.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/datastore-v8.0.1...datastore-v8.0.2) (2025-12-15)
 
 

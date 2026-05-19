@@ -1,5 +1,13 @@
 # Changelog
 
+## [25.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v25.2.0...cloudkms-v25.3.0) (2026-05-19)
+
+
+### Features
+
+* **cloudkms:** update the API ([ccc77a8](https://github.com/googleapis/google-api-nodejs-client/commit/ccc77a8771eff92120a21827880d59ac27944ea0))
+* **cloudkms:** update the API ([f808981](https://github.com/googleapis/google-api-nodejs-client/commit/f8089816f6d64a826d91050c75bbc8555ab21e99))
+
 ## [25.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v25.1.0...cloudkms-v25.2.0) (2026-02-05)
 
 

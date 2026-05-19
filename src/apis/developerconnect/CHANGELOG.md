@@ -1,5 +1,17 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/developerconnect-v9.2.0...developerconnect-v10.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **developerconnect:** This release has breaking changes.
+
+### Features
+
+* **developerconnect:** update the API ([c46353e](https://github.com/googleapis/google-api-nodejs-client/commit/c46353e05bd9ef7895af60c4e8e5c61a4dee83e2))
+* **developerconnect:** update the API ([ee3ae04](https://github.com/googleapis/google-api-nodejs-client/commit/ee3ae04bb9366453a4d73b7fb7a1bf5ff973644d))
+
 ## [9.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/developerconnect-v9.1.0...developerconnect-v9.2.0) (2026-01-28)
 
 

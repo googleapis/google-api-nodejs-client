@@ -1,5 +1,13 @@
 # Changelog
 
+## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dns-v11.0.2...dns-v11.1.0) (2026-05-19)
+
+
+### Features
+
+* **dns:** update the API ([af6431d](https://github.com/googleapis/google-api-nodejs-client/commit/af6431d41299573782c2dbba25fe644395597328))
+* **dns:** update the API ([e7d3330](https://github.com/googleapis/google-api-nodejs-client/commit/e7d3330985916255f8fe1835d8eb1b87ec8e2690))
+
 ## [11.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/dns-v11.0.1...dns-v11.0.2) (2026-01-28)
 
 

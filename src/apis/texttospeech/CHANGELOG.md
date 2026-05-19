@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/texttospeech-v7.2.0...texttospeech-v7.3.0) (2026-05-19)
+
+
+### Features
+
+* **texttospeech:** update the API ([df0b300](https://github.com/googleapis/google-api-nodejs-client/commit/df0b300e4bcb3b02460832dcee624b326846d343))
+
 ## [7.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/texttospeech-v7.1.1...texttospeech-v7.2.0) (2026-01-28)
 
 

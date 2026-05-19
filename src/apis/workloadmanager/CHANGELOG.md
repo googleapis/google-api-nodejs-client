@@ -1,5 +1,19 @@
 # Changelog
 
+## [32.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workloadmanager-v31.1.0...workloadmanager-v32.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **workloadmanager:** This release has breaking changes.
+
+### Features
+
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+* **workloadmanager:** update the API ([a380a00](https://github.com/googleapis/google-api-nodejs-client/commit/a380a00539031f10a50c1dd72970a6175d4449af))
+* **workloadmanager:** update the API ([85a3753](https://github.com/googleapis/google-api-nodejs-client/commit/85a37536550c6c60538225299612c5f44879fcea))
+
 ## [31.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/workloadmanager-v31.0.0...workloadmanager-v31.1.0) (2026-01-28)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/tagmanager-v14.1.0...tagmanager-v14.2.0) (2026-05-19)
+
+
+### Features
+
+* **tagmanager:** update the API ([ceddc05](https://github.com/googleapis/google-api-nodejs-client/commit/ceddc05033eee5b088f85f1ccec9d2a59aba6911))
+
 ## [14.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/tagmanager-v14.0.0...tagmanager-v14.1.0) (2025-12-05)
 
 

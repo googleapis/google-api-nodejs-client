@@ -1,5 +1,19 @@
 # Changelog
 
+## [18.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v18.1.0...workstations-v18.2.0) (2026-05-19)
+
+
+### Features
+
+* regenerate index files ([6e5b152](https://github.com/googleapis/google-api-nodejs-client/commit/6e5b152799ee21009bd9a3d20c52de6fa6a0e900))
+* **workstations:** update the API ([dd560af](https://github.com/googleapis/google-api-nodejs-client/commit/dd560afd3da39bcc653e28e9ebd58bb004bc1670))
+
+
+### Bug Fixes
+
+* **workstations:** update the API ([d4f7d65](https://github.com/googleapis/google-api-nodejs-client/commit/d4f7d6544f67c54524a5a2c67b60489ca408b45d))
+* **workstations:** update the API ([4fc6178](https://github.com/googleapis/google-api-nodejs-client/commit/4fc61784c489bca2931f7b88c3c1769567db3816))
+
 ## [18.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v18.0.0...workstations-v18.1.0) (2026-01-28)
 
 

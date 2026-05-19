@@ -1,5 +1,21 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v11.1.0...osconfig-v12.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **osconfig:** This release has breaking changes.
+
+### Features
+
+* **osconfig:** update the API ([3728afb](https://github.com/googleapis/google-api-nodejs-client/commit/3728afb45feac9dda7cb0b450357e9af4a97abc6))
+
+
+### Bug Fixes
+
+* **osconfig:** update the API ([2d154e5](https://github.com/googleapis/google-api-nodejs-client/commit/2d154e51f1728d4f8b14c95e53c788a46585220c))
+
 ## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v11.0.1...osconfig-v11.1.0) (2026-01-28)
 
 

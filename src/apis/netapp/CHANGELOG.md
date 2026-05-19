@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/netapp-v6.3.1...netapp-v7.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **netapp:** This release has breaking changes.
+
+### Features
+
+* **netapp:** update the API ([5419c41](https://github.com/googleapis/google-api-nodejs-client/commit/5419c411e8ab61369a4f5c55da63cc39f73a03b9))
+* **netapp:** update the API ([5882c17](https://github.com/googleapis/google-api-nodejs-client/commit/5882c1745b0198402c854b93a61ce0bcba4bf5a6))
+
 ## [6.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/netapp-v6.3.0...netapp-v6.3.1) (2026-01-30)
 
 
