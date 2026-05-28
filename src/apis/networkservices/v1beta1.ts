@@ -250,10 +250,6 @@ export namespace networkservices_v1beta1 {
      * Optional. A supported Google Cloud networking proxy in the Project and Location
      */
     resourceUri?: string | null;
-    /**
-     * Optional. List of supported Google Cloud networking proxies in the Project and Location. resource_uris is mutually exclusive with resource_uri.
-     */
-    resourceUris?: string[] | null;
   }
   /**
    * `AuthzExtension` is a resource that allows traffic forwarding to a callout backend service to make an authorization decision.
@@ -2255,11 +2251,11 @@ export namespace networkservices_v1beta1 {
      */
     description?: string | null;
     /**
-     * Optional. The name of the customer managed Cloud KMS key to be used to encrypt the `WasmPlugin` image (provided by image_uri) and configuration (provided by plugin_config_data or plugin_config_uri) that are stored by the `Service Extensions` product at rest. Format: "projects/{project\}/locations/{location\}/keyRings/{keyring\}/cryptoKeys/{key\}" By default, Google Cloud automatically encrypts all data at rest using Google-owned and Google-managed encryption keys. If you need ownership and control of the keys that protect your data at rest, you can specify a customer-managed encryption key (CMEK) to encrypt your `WasmPlugin` data. For more information, see [Using customer-managed encryption keys](https://cloud.google.com/kms/docs/cmek).
+     * Optional. The name of the customer-managed [CryptoKey](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys) to be used to encrypt the `WasmPlugin` image (provided by image_uri) and configuration (provided by plugin_config_data or plugin_config_uri) that are stored by the `Service Extensions` product at rest. Format: `projects/{project\}/locations/{location\}/keyRings/{keyring\}/cryptoKeys/{key\}` By default, Google Cloud automatically encrypts all data at rest using Google-owned and Google-managed encryption keys. If you need ownership and control of the keys that protect your data at rest, you can specify a customer-managed encryption key (CMEK) to encrypt your `WasmPlugin` data. For more information, see [Using customer-managed encryption keys](https://cloud.google.com/service-extensions/docs/cmek).
      */
     kmsKeyName?: string | null;
     /**
-     * Output only. The name of the specific CryptoKeyVersion used to encrypt the `WasmPlugin` data, if the kms_key_name field is set. Format: "projects/{project\}/locations/{location\}/keyRings/{keyring\}/cryptoKeys/{key\}/cryptoKeyVersions/{version\}" This is a read-only field. `WasmPlugin` data is automatically encrypted using the most recent `CryptoKeyVersion` of the `CryptoKey` provided in the `kms_key_name` field. See [Cloud KMS resources](https://cloud.google.com/kms/docs/resource-hierarchy) for more information.
+     * Output only. The name of the specific [CryptoKeyVersion](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions) used to encrypt the `WasmPlugin` data, if the kms_key_name field is set. Format: `projects/{project\}/locations/{location\}/keyRings/{keyring\}/cryptoKeys/{key\}/cryptoKeyVersions/{version\}` This is a read-only field. `WasmPlugin` data is automatically encrypted using the most recent `CryptoKeyVersion` of the `CryptoKey` provided in the `kms_key_name` field. See [Cloud KMS resources](https://cloud.google.com/kms/docs/resource-hierarchy) for more information.
      */
     kmsKeyVersion?: string | null;
     /**
