@@ -325,6 +325,8 @@
     "src/apis/ces": {},
     "src/apis/agentregistry": {},
     "src/apis/developerknowledge": {},
-    "src/apis/health": {}
+    "src/apis/health": {},
+    "src/apis/webcontentpublisher": {},
+    "src/apis/cloudnumberregistry": {}
   }
 }
