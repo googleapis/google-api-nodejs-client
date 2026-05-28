@@ -2741,7 +2741,7 @@
       }
     }
   },
-  "revision": "20260421",
+  "revision": "20260507",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3927,6 +3927,10 @@
           "deprecated": true,
           "description": "Parameters used in creating the cluster's nodes. For requests, this field should only be used in lieu of a \"node_pool\" object, since this configuration (along with the \"initial_node_count\") will be used to create a \"NodePool\" object with an auto-generated name. Do not use this and a node_pool at the same time. For responses, this field will be populated with the node configuration of the first node pool. (For configuration of each node pool, see `node_pool.config`) If unspecified, the defaults are used. This field is deprecated, use node_pool.config instead."
         },
+        "nodeCreationConfig": {
+          "$ref": "NodeCreationConfig",
+          "description": "Optional. Configuration for Node Creation Mode."
+        },
         "nodeIpv4CidrSize": {
           "description": "Output only. The size of the address space on each node for hosting containers. This is provisioned from within the `container_ipv4_cidr` range. This field will only be set when cluster is in route-based network mode.",
           "format": "int32",
@@ -4474,6 +4478,10 @@
         "desiredNetworkTierConfig": {
           "$ref": "NetworkTierConfig",
           "description": "The desired network tier configuration for the cluster."
+        },
+        "desiredNodeCreationConfig": {
+          "$ref": "NodeCreationConfig",
+          "description": "Optional. The desired NodeCreationConfig for the cluster."
         },
         "desiredNodeKubeletConfig": {
           "$ref": "NodeKubeletConfig",
@@ -5557,6 +5565,29 @@
         },
         "pidAvailable": {
           "description": "Optional. Amount of PID available for pod allocation. Defines the amount of \"pid.available\" signal in kubelet. Default is unset, if not specified in the kubelet config. Sample format: \"30%\". Must be >= 10%. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExclusionUntilEndOfSupport": {
+      "description": "Defines the maintenance exclusion for the node pool.",
+      "id": "ExclusionUntilEndOfSupport",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Indicates whether the exclusion is enabled.",
+          "type": "boolean"
+        },
+        "endTime": {
+          "description": "Output only. The end time of the maintenance exclusion. It is output only. It is the cluster control plane version's end of support time, or end of extended support time when the cluster is on extended support channel.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. The start time of the maintenance exclusion. It is output only. It is the exclusion creation time.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -7571,10 +7602,41 @@
       },
       "type": "object"
     },
+    "NodeCreationConfig": {
+      "description": "NodeCreationConfig defines the settings of node creation mode.",
+      "id": "NodeCreationConfig",
+      "properties": {
+        "nodeCreationMode": {
+          "description": "The mode of node creation.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "VIA_KUBELET",
+            "VIA_CONTROL_PLANE"
+          ],
+          "enumDescriptions": [
+            "When no user input is provided.",
+            "Kubelet registers itself.",
+            "gcp-controller-manager automatically creates the node object after CSR approval."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NodeDrainConfig": {
       "description": "NodeDrainConfig contains the node drain related configurations for this node pool.",
       "id": "NodeDrainConfig",
       "properties": {
+        "graceTerminationDuration": {
+          "description": "The duration of the grace termination period for node drain.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "pdbTimeoutDuration": {
+          "description": "The duration of the PDB timeout period for node drain.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "respectPdbDuringNodePoolDeletion": {
           "description": "Whether to respect PDB during node pool deletion.",
           "type": "boolean"
@@ -7861,6 +7923,10 @@
           },
           "type": "array"
         },
+        "maintenancePolicy": {
+          "$ref": "NodePoolMaintenancePolicy",
+          "description": "Optional. Specifies the maintenance policy for the node pool."
+        },
         "management": {
           "$ref": "NodeManagement",
           "description": "NodeManagement configuration for this NodePool."
@@ -8036,6 +8102,17 @@
         "variantConfig": {
           "$ref": "LoggingVariantConfig",
           "description": "Logging variant configuration."
+        }
+      },
+      "type": "object"
+    },
+    "NodePoolMaintenancePolicy": {
+      "description": "Defines the maintenance policy for the node pool.",
+      "id": "NodePoolMaintenancePolicy",
+      "properties": {
+        "exclusionUntilEndOfSupport": {
+          "$ref": "ExclusionUntilEndOfSupport",
+          "description": "Optional. The exclusion until end of support for the node pool."
         }
       },
       "type": "object"
