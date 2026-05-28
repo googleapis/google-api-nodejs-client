@@ -3525,6 +3525,190 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
+              },
+              "resources": {
+                "gatewayAdvertisedRoutes": {
+                  "methods": {
+                    "create": {
+                      "description": "Create a GatewayAdvertisedRoute",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/spokes/{spokesId}/gatewayAdvertisedRoutes",
+                      "httpMethod": "POST",
+                      "id": "networkconnectivity.projects.locations.spokes.gatewayAdvertisedRoutes.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "gatewayAdvertisedRouteId": {
+                          "description": "Required. Unique id for the route to create.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/spokes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/gatewayAdvertisedRoutes",
+                      "request": {
+                        "$ref": "GatewayAdvertisedRoute"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Delete a GatewayAdvertisedRoute",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/spokes/{spokesId}/gatewayAdvertisedRoutes/{gatewayAdvertisedRoutesId}",
+                      "httpMethod": "DELETE",
+                      "id": "networkconnectivity.projects.locations.spokes.gatewayAdvertisedRoutes.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the gateway advertised route to delete.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/spokes/[^/]+/gatewayAdvertisedRoutes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Get a GatewayAdvertisedRoute",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/spokes/{spokesId}/gatewayAdvertisedRoutes/{gatewayAdvertisedRoutesId}",
+                      "httpMethod": "GET",
+                      "id": "networkconnectivity.projects.locations.spokes.gatewayAdvertisedRoutes.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the gateway advertised route to get.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/spokes/[^/]+/gatewayAdvertisedRoutes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GatewayAdvertisedRoute"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "List GatewayAdvertisedRoutes",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/spokes/{spokesId}/gatewayAdvertisedRoutes",
+                      "httpMethod": "GET",
+                      "id": "networkconnectivity.projects.locations.spokes.gatewayAdvertisedRoutes.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "An expression that filters the list of results.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Sort the results by a certain order.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of results per page that should be returned.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListGatewayAdvertisedRoutes` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListGatewayAdvertisedRoutes` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent resource's name.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/spokes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/gatewayAdvertisedRoutes",
+                      "response": {
+                        "$ref": "ListGatewayAdvertisedRoutesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Update a GatewayAdvertisedRoute",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/spokes/{spokesId}/gatewayAdvertisedRoutes/{gatewayAdvertisedRoutesId}",
+                      "httpMethod": "PATCH",
+                      "id": "networkconnectivity.projects.locations.spokes.gatewayAdvertisedRoutes.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Identifier. The name of the gateway advertised route. Route names must be unique and use the following form: `projects/{project_number}/locations/{region}/spokes/{spoke}/gatewayAdvertisedRoutes/{gateway_advertised_route_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/spokes/[^/]+/gatewayAdvertisedRoutes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Optional. In the case of an update to an existing group, field mask is used to specify the fields to be overwritten. The fields specified in the update_mask are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not provide a mask, then all fields are overwritten.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GatewayAdvertisedRoute"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
               }
             },
             "transports": {
@@ -3714,7 +3898,7 @@
       }
     }
   },
-  "revision": "20260422",
+  "revision": "20260514",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -4538,6 +4722,136 @@
       },
       "type": "object"
     },
+    "Gateway": {
+      "description": "A gateway that can apply specialized traffic processing.",
+      "id": "Gateway",
+      "properties": {
+        "capacity": {
+          "description": "Optional. The aggregate processing capacity of this gateway.",
+          "enum": [
+            "GATEWAY_CAPACITY_UNSPECIFIED",
+            "CAPACITY_1_GBPS",
+            "CAPACITY_10_GBPS"
+          ],
+          "enumDescriptions": [
+            "The gateway capacity is unspecified.",
+            "The gateway has 1 Gbps of aggregate processing capacity",
+            "The gateway has 10 Gbps of aggregate processing capacity"
+          ],
+          "type": "string"
+        },
+        "cloudRouters": {
+          "description": "Output only. The list of Cloud Routers that are connected to this gateway. Should be in the form: https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers/{router}",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "ipRangeReservations": {
+          "description": "Optional. A list of IP ranges that are reserved for this gateway's internal intfrastructure.",
+          "items": {
+            "$ref": "IpRangeReservation"
+          },
+          "type": "array"
+        },
+        "sacAttachment": {
+          "description": "Output only. The URI of the connected SACAttachment. Should be in the form: projects/{project}/locations/{location}/sacAttachments/{sac_attachment}",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GatewayAdvertisedRoute": {
+      "description": "A gateway advertised route is a route that a gateway spoke advertises somewhere.",
+      "id": "GatewayAdvertisedRoute",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the gateway advertised route was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "An optional description of the gateway advertised route.",
+          "type": "string"
+        },
+        "ipRange": {
+          "description": "Immutable. This route's advertised IP address range. Must be a valid CIDR-formatted prefix. If an IP address is provided without a subnet mask, it is interpreted as, for IPv4, a `/32` singular IP address range, and, for IPv6, `/128`.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional labels in key-value pair format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The name of the gateway advertised route. Route names must be unique and use the following form: `projects/{project_number}/locations/{region}/spokes/{spoke}/gatewayAdvertisedRoutes/{gateway_advertised_route_id}`",
+          "type": "string"
+        },
+        "priority": {
+          "description": "Optional. The priority of this advertised route. You can choose a value from `0` to `65335`. If you don't provide a value, Google Cloud assigns a priority of `100` to the ranges.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "recipient": {
+          "description": "Optional. The recipient of this advertised route.",
+          "enum": [
+            "RECIPIENT_UNSPECIFIED",
+            "ADVERTISE_TO_HUB"
+          ],
+          "enumDescriptions": [
+            "No recipient specified. By default routes are advertised to the hub.",
+            "Advertises a route toward the hub. Other spokes reachable from this spoke will receive the route."
+          ],
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current lifecycle state of this gateway advertised route.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "ACCEPTING",
+            "REJECTING",
+            "UPDATING",
+            "INACTIVE",
+            "OBSOLETE",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "No state information available",
+            "The resource's create operation is in progress.",
+            "The resource is active",
+            "The resource's delete operation is in progress.",
+            "The resource's accept operation is in progress.",
+            "The resource's reject operation is in progress.",
+            "The resource's update operation is in progress.",
+            "The resource is inactive.",
+            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only.",
+            "The resource is in an undefined state due to resource creation or deletion failure. You can try to delete the resource later or contact support for help."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uniqueId": {
+          "description": "Output only. The Google-generated UUID for the gateway advertised route. This value is unique across all gateway advertised route resources. If a gateway advertised route is deleted and another with the same name is created, the new route is assigned a different `unique_id`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time the gateway advertised route was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleLongrunningCancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "GoogleLongrunningCancelOperationRequest",
@@ -4776,12 +5090,14 @@
           "enum": [
             "PRESET_TOPOLOGY_UNSPECIFIED",
             "MESH",
-            "STAR"
+            "STAR",
+            "HYBRID_INSPECTION"
           ],
           "enumDescriptions": [
             "Preset topology is unspecified. When policy_mode = PRESET, it defaults to MESH.",
             "Mesh topology is implemented. Group `default` is automatically created. All spokes in the hub are added to group `default`.",
-            "Star topology is implemented. Two groups, `center` and `edge`, are automatically created along with hub creation. Spokes have to join one of the groups during creation."
+            "Star topology is implemented. Two groups, `center` and `edge`, are automatically created along with hub creation. Spokes have to join one of the groups during creation.",
+            "Hybrid inspection has 4 groups ('non-prod', 'prod', 'services', and 'untrusted') that are automatically created along with hub creation."
           ],
           "type": "string"
         },
@@ -5006,6 +5322,17 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "IpRangeReservation": {
+      "description": "A list of IP ranges that are reserved for this gateway's internal intfrastructure.",
+      "id": "IpRangeReservation",
+      "properties": {
+        "ipRange": {
+          "description": "Required. A block of IP addresses used to allocate supporting infrastructure for this gateway. This block must not overlap with subnets in any spokes or peer VPC networks that the gateway can communicate with. Example: \"10.1.2.0/24\"",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5308,6 +5635,31 @@
         },
         "unreachable": {
           "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListGatewayAdvertisedRoutesResponse": {
+      "description": "Response for HubService.ListGatewayAdvertisedRoutes method.",
+      "id": "ListGatewayAdvertisedRoutesResponse",
+      "properties": {
+        "gatewayAdvertisedRoutes": {
+          "description": "The requested gateway advertised routes.",
+          "items": {
+            "$ref": "GatewayAdvertisedRoute"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The token for the next page of the response. To see more results, use this value as the page_token for your next request. If this value is empty, there are no more results.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Hubs that could not be reached.",
           "items": {
             "type": "string"
           },
@@ -7198,6 +7550,10 @@
           },
           "type": "array"
         },
+        "gateway": {
+          "$ref": "Gateway",
+          "description": "Optional. This is a gateway that can apply specialized processing to traffic going through it."
+        },
         "group": {
           "description": "Optional. The name of the group that this spoke is associated with.",
           "type": "string"
@@ -7253,6 +7609,7 @@
             "INTERCONNECT_ATTACHMENT",
             "ROUTER_APPLIANCE",
             "VPC_NETWORK",
+            "GATEWAY",
             "PRODUCER_VPC_NETWORK"
           ],
           "enumDescriptions": [
@@ -7261,6 +7618,7 @@
             "Spokes associated with VLAN attachments.",
             "Spokes associated with router appliance instances.",
             "Spokes associated with VPC networks.",
+            "Spokes that are NCC gateways.",
             "Spokes that are backed by a producer VPC network."
           ],
           "readOnly": true,
@@ -7438,6 +7796,7 @@
             "INTERCONNECT_ATTACHMENT",
             "ROUTER_APPLIANCE",
             "VPC_NETWORK",
+            "GATEWAY",
             "PRODUCER_VPC_NETWORK"
           ],
           "enumDescriptions": [
@@ -7446,6 +7805,7 @@
             "Spokes associated with VLAN attachments.",
             "Spokes associated with router appliance instances.",
             "Spokes associated with VPC networks.",
+            "Spokes that are NCC gateways.",
             "Spokes that are backed by a producer VPC network."
           ],
           "readOnly": true,

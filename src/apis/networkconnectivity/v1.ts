@@ -630,6 +630,72 @@ export namespace networkconnectivity_v1 {
     srcRange?: string | null;
   }
   /**
+   * A gateway that can apply specialized traffic processing.
+   */
+  export interface Schema$Gateway {
+    /**
+     * Optional. The aggregate processing capacity of this gateway.
+     */
+    capacity?: string | null;
+    /**
+     * Output only. The list of Cloud Routers that are connected to this gateway. Should be in the form: https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/routers/{router\}
+     */
+    cloudRouters?: string[] | null;
+    /**
+     * Optional. A list of IP ranges that are reserved for this gateway's internal intfrastructure.
+     */
+    ipRangeReservations?: Schema$IpRangeReservation[];
+    /**
+     * Output only. The URI of the connected SACAttachment. Should be in the form: projects/{project\}/locations/{location\}/sacAttachments/{sac_attachment\}
+     */
+    sacAttachment?: string | null;
+  }
+  /**
+   * A gateway advertised route is a route that a gateway spoke advertises somewhere.
+   */
+  export interface Schema$GatewayAdvertisedRoute {
+    /**
+     * Output only. The time the gateway advertised route was created.
+     */
+    createTime?: string | null;
+    /**
+     * An optional description of the gateway advertised route.
+     */
+    description?: string | null;
+    /**
+     * Immutable. This route's advertised IP address range. Must be a valid CIDR-formatted prefix. If an IP address is provided without a subnet mask, it is interpreted as, for IPv4, a `/32` singular IP address range, and, for IPv6, `/128`.
+     */
+    ipRange?: string | null;
+    /**
+     * Optional labels in key-value pair format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The name of the gateway advertised route. Route names must be unique and use the following form: `projects/{project_number\}/locations/{region\}/spokes/{spoke\}/gatewayAdvertisedRoutes/{gateway_advertised_route_id\}`
+     */
+    name?: string | null;
+    /**
+     * Optional. The priority of this advertised route. You can choose a value from `0` to `65335`. If you don't provide a value, Google Cloud assigns a priority of `100` to the ranges.
+     */
+    priority?: number | null;
+    /**
+     * Optional. The recipient of this advertised route.
+     */
+    recipient?: string | null;
+    /**
+     * Output only. The current lifecycle state of this gateway advertised route.
+     */
+    state?: string | null;
+    /**
+     * Output only. The Google-generated UUID for the gateway advertised route. This value is unique across all gateway advertised route resources. If a gateway advertised route is deleted and another with the same name is created, the new route is assigned a different `unique_id`.
+     */
+    uniqueId?: string | null;
+    /**
+     * Output only. The time the gateway advertised route was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$GoogleLongrunningCancelOperationRequest {}
@@ -907,6 +973,15 @@ export namespace networkconnectivity_v1 {
     users?: string[] | null;
   }
   /**
+   * A list of IP ranges that are reserved for this gateway's internal intfrastructure.
+   */
+  export interface Schema$IpRangeReservation {
+    /**
+     * Required. A block of IP addresses used to allocate supporting infrastructure for this gateway. This block must not overlap with subnets in any spokes or peer VPC networks that the gateway can communicate with. Example: "10.1.2.0/24"
+     */
+    ipRange?: string | null;
+  }
+  /**
    * A collection of VLAN attachment resources. These resources should be redundant attachments that all advertise the same prefixes to Google Cloud. Alternatively, in active/passive configurations, all attachments should be capable of advertising the same prefixes.
    */
   export interface Schema$LinkedInterconnectAttachments {
@@ -1099,6 +1174,23 @@ export namespace networkconnectivity_v1 {
     nextPageToken?: string | null;
     /**
      * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response for HubService.ListGatewayAdvertisedRoutes method.
+   */
+  export interface Schema$ListGatewayAdvertisedRoutesResponse {
+    /**
+     * The requested gateway advertised routes.
+     */
+    gatewayAdvertisedRoutes?: Schema$GatewayAdvertisedRoute[];
+    /**
+     * The token for the next page of the response. To see more results, use this value as the page_token for your next request. If this value is empty, there are no more results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Hubs that could not be reached.
      */
     unreachable?: string[] | null;
   }
@@ -2339,6 +2431,10 @@ export namespace networkconnectivity_v1 {
      * Optional. The list of fields waiting for hub administrator's approval.
      */
     fieldPathsPendingUpdate?: string[] | null;
+    /**
+     * Optional. This is a gateway that can apply specialized processing to traffic going through it.
+     */
+    gateway?: Schema$Gateway;
     /**
      * Optional. The name of the group that this spoke is associated with.
      */
@@ -17468,8 +17564,13 @@ export namespace networkconnectivity_v1 {
 
   export class Resource$Projects$Locations$Spokes {
     context: APIRequestContext;
+    gatewayAdvertisedRoutes: Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.gatewayAdvertisedRoutes =
+        new Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes(
+          this.context
+        );
     }
 
     /**
@@ -17518,6 +17619,7 @@ export namespace networkconnectivity_v1 {
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
      *       //   "fieldPathsPendingUpdate": [],
+     *       //   "gateway": {},
      *       //   "group": "my_group",
      *       //   "hub": "my_hub",
      *       //   "labels": {},
@@ -17834,6 +17936,7 @@ export namespace networkconnectivity_v1 {
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
      *   //   "fieldPathsPendingUpdate": [],
+     *   //   "gateway": {},
      *   //   "group": "my_group",
      *   //   "hub": "my_hub",
      *   //   "labels": {},
@@ -18281,6 +18384,7 @@ export namespace networkconnectivity_v1 {
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
      *       //   "fieldPathsPendingUpdate": [],
+     *       //   "gateway": {},
      *       //   "group": "my_group",
      *       //   "hub": "my_hub",
      *       //   "labels": {},
@@ -18817,6 +18921,890 @@ export namespace networkconnectivity_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create a GatewayAdvertisedRoute
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.spokes.gatewayAdvertisedRoutes.create(
+     *       {
+     *         // Required. Unique id for the route to create.
+     *         gatewayAdvertisedRouteId: 'placeholder-value',
+     *         // Required. The parent resource.
+     *         parent: 'projects/my-project/locations/my-location/spokes/my-spoke',
+     *         // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         requestId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "createTime": "my_createTime",
+     *           //   "description": "my_description",
+     *           //   "ipRange": "my_ipRange",
+     *           //   "labels": {},
+     *           //   "name": "my_name",
+     *           //   "priority": 0,
+     *           //   "recipient": "my_recipient",
+     *           //   "state": "my_state",
+     *           //   "uniqueId": "my_uniqueId",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/gatewayAdvertisedRoutes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Delete a GatewayAdvertisedRoute
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.spokes.gatewayAdvertisedRoutes.delete(
+     *       {
+     *         // Required. The name of the gateway advertised route to delete.
+     *         name: 'projects/my-project/locations/my-location/spokes/my-spoke/gatewayAdvertisedRoutes/my-gatewayAdvertisedRoute',
+     *         // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         requestId: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Get a GatewayAdvertisedRoute
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.spokes.gatewayAdvertisedRoutes.get(
+     *       {
+     *         // Required. The name of the gateway advertised route to get.
+     *         name: 'projects/my-project/locations/my-location/spokes/my-spoke/gatewayAdvertisedRoutes/my-gatewayAdvertisedRoute',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "ipRange": "my_ipRange",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "priority": 0,
+     *   //   "recipient": "my_recipient",
+     *   //   "state": "my_state",
+     *   //   "uniqueId": "my_uniqueId",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GatewayAdvertisedRoute>>;
+    get(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GatewayAdvertisedRoute>,
+      callback: BodyResponseCallback<Schema$GatewayAdvertisedRoute>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Get,
+      callback: BodyResponseCallback<Schema$GatewayAdvertisedRoute>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GatewayAdvertisedRoute>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Get
+        | BodyResponseCallback<Schema$GatewayAdvertisedRoute>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GatewayAdvertisedRoute>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GatewayAdvertisedRoute>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GatewayAdvertisedRoute>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GatewayAdvertisedRoute>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GatewayAdvertisedRoute>(parameters);
+      }
+    }
+
+    /**
+     * List GatewayAdvertisedRoutes
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.spokes.gatewayAdvertisedRoutes.list(
+     *       {
+     *         // An expression that filters the list of results.
+     *         filter: 'placeholder-value',
+     *         // Sort the results by a certain order.
+     *         orderBy: 'placeholder-value',
+     *         // Optional. The maximum number of results per page that should be returned.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListGatewayAdvertisedRoutes` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListGatewayAdvertisedRoutes` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent resource's name.
+     *         parent: 'projects/my-project/locations/my-location/spokes/my-spoke',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "gatewayAdvertisedRoutes": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListGatewayAdvertisedRoutesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGatewayAdvertisedRoutesResponse>,
+      callback: BodyResponseCallback<Schema$ListGatewayAdvertisedRoutesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$List,
+      callback: BodyResponseCallback<Schema$ListGatewayAdvertisedRoutesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListGatewayAdvertisedRoutesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$List
+        | BodyResponseCallback<Schema$ListGatewayAdvertisedRoutesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGatewayAdvertisedRoutesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGatewayAdvertisedRoutesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListGatewayAdvertisedRoutesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/gatewayAdvertisedRoutes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListGatewayAdvertisedRoutesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListGatewayAdvertisedRoutesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update a GatewayAdvertisedRoute
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.spokes.gatewayAdvertisedRoutes.patch(
+     *       {
+     *         // Identifier. The name of the gateway advertised route. Route names must be unique and use the following form: `projects/{project_number\}/locations/{region\}/spokes/{spoke\}/gatewayAdvertisedRoutes/{gateway_advertised_route_id\}`
+     *         name: 'projects/my-project/locations/my-location/spokes/my-spoke/gatewayAdvertisedRoutes/my-gatewayAdvertisedRoute',
+     *         // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         requestId: 'placeholder-value',
+     *         // Optional. In the case of an update to an existing group, field mask is used to specify the fields to be overwritten. The fields specified in the update_mask are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not provide a mask, then all fields are overwritten.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "createTime": "my_createTime",
+     *           //   "description": "my_description",
+     *           //   "ipRange": "my_ipRange",
+     *           //   "labels": {},
+     *           //   "name": "my_name",
+     *           //   "priority": 0,
+     *           //   "recipient": "my_recipient",
+     *           //   "state": "my_state",
+     *           //   "uniqueId": "my_uniqueId",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Create extends StandardParameters {
+    /**
+     * Required. Unique id for the route to create.
+     */
+    gatewayAdvertisedRouteId?: string;
+    /**
+     * Required. The parent resource.
+     */
+    parent?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GatewayAdvertisedRoute;
+  }
+  export interface Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Delete extends StandardParameters {
+    /**
+     * Required. The name of the gateway advertised route to delete.
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Get extends StandardParameters {
+    /**
+     * Required. The name of the gateway advertised route to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$List extends StandardParameters {
+    /**
+     * An expression that filters the list of results.
+     */
+    filter?: string;
+    /**
+     * Sort the results by a certain order.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of results per page that should be returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListGatewayAdvertisedRoutes` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListGatewayAdvertisedRoutes` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource's name.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Patch extends StandardParameters {
+    /**
+     * Identifier. The name of the gateway advertised route. Route names must be unique and use the following form: `projects/{project_number\}/locations/{region\}/spokes/{spoke\}/gatewayAdvertisedRoutes/{gateway_advertised_route_id\}`
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. In the case of an update to an existing group, field mask is used to specify the fields to be overwritten. The fields specified in the update_mask are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not provide a mask, then all fields are overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GatewayAdvertisedRoute;
   }
 
   export class Resource$Projects$Locations$Transports {
