@@ -351,6 +351,10 @@ export namespace mybusinessaccountmanagement_v1 {
      * The name of the location to which the user is invited.
      */
     locationName?: string | null;
+    /**
+     * Output only. The Place ID of the location to which the user is invited. Not always populated.
+     */
+    placeId?: string | null;
   }
   /**
    * Request message for AccessControl.TransferLocation.
