@@ -20,6 +20,21 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://threatintelligence.us-central1.rep.googleapis.com/",
       "location": "us-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://threatintelligence.us-east5.rep.googleapis.com/",
+      "location": "us-east5"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://threatintelligence.us-west2.rep.googleapis.com/",
+      "location": "us-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://threatintelligence.us.rep.googleapis.com/",
+      "location": "us"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -817,7 +832,7 @@
       }
     }
   },
-  "revision": "20260428",
+  "revision": "20260513",
   "rootUrl": "https://threatintelligence.googleapis.com/",
   "schemas": {
     "Alert": {
@@ -825,7 +840,7 @@
       "id": "Alert",
       "properties": {
         "aiSummary": {
-          "description": "Optional. AI summary of the finding.",
+          "description": "Optional. AI summary of the alert.",
           "type": "string"
         },
         "audit": {
@@ -969,7 +984,7 @@
       "id": "AlertDocument",
       "properties": {
         "aiSummary": {
-          "description": "Output only. AI summary of the finding.",
+          "description": "Output only. AI summary of the document.",
           "readOnly": true,
           "type": "string"
         },

@@ -129,7 +129,7 @@ export namespace threatintelligence_v1beta {
    */
   export interface Schema$Alert {
     /**
-     * Optional. AI summary of the finding.
+     * Optional. AI summary of the alert.
      */
     aiSummary?: string | null;
     /**
@@ -219,7 +219,7 @@ export namespace threatintelligence_v1beta {
    */
   export interface Schema$AlertDocument {
     /**
-     * Output only. AI summary of the finding.
+     * Output only. AI summary of the document.
      */
     aiSummary?: string | null;
     /**
