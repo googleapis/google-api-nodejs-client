@@ -1489,6 +1489,39 @@
                     }
                   }
                 },
+                "message": {
+                  "methods": {
+                    "send": {
+                      "description": "Sends a message to an agent.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apps/{appsId}/message:send",
+                      "httpMethod": "POST",
+                      "id": "ces.projects.locations.apps.message.send",
+                      "parameterOrder": [
+                        "tenant"
+                      ],
+                      "parameters": {
+                        "tenant": {
+                          "description": "Optional. Tenant ID, provided as a path parameter.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/apps/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+tenant}/message:send",
+                      "request": {
+                        "$ref": "LfA2aV1SendMessageRequest"
+                      },
+                      "response": {
+                        "$ref": "LfA2aV1SendMessageResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/ces",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "sessions": {
                   "methods": {
                     "generateChatToken": {
@@ -2283,7 +2316,7 @@
       }
     }
   },
-  "revision": "20260429",
+  "revision": "20260513",
   "rootUrl": "https://ces.googleapis.com/",
   "schemas": {
     "Action": {
@@ -2589,6 +2622,10 @@
           },
           "description": "Optional. The mapping of the app variables names to the Dialogflow session parameters names to be sent to the Dialogflow agent as input.",
           "type": "object"
+        },
+        "languageCodeVariable": {
+          "description": "Optional. The name of the variable that contains the language code to be used for the Dialogflow session. If unspecified, the default language code of the Dialogflow agent will be used.",
+          "type": "string"
         },
         "outputVariableMapping": {
           "additionalProperties": {
@@ -5349,6 +5386,343 @@
       },
       "type": "object"
     },
+    "LfA2aV1Artifact": {
+      "description": "Artifacts represent task outputs.",
+      "id": "LfA2aV1Artifact",
+      "properties": {
+        "artifactId": {
+          "description": "Required. Unique identifier (e.g. UUID) for the artifact. It must be unique within a task.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. A human readable description of the artifact.",
+          "type": "string"
+        },
+        "extensions": {
+          "description": "The URIs of extensions that are present or contributed to this Artifact.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Metadata included with the artifact.",
+          "type": "object"
+        },
+        "name": {
+          "description": "A human readable name for the artifact.",
+          "type": "string"
+        },
+        "parts": {
+          "description": "Required. The content of the artifact. Must contain at least one part.",
+          "items": {
+            "$ref": "LfA2aV1Part"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1AuthenticationInfo": {
+      "description": "Defines authentication details, used for push notifications.",
+      "id": "LfA2aV1AuthenticationInfo",
+      "properties": {
+        "credentials": {
+          "description": "Push Notification credentials. Format depends on the scheme (e.g., token for Bearer).",
+          "type": "string"
+        },
+        "scheme": {
+          "description": "Required. HTTP Authentication Scheme from the [IANA registry](https://www.iana.org/assignments/http-authschemes/). Examples: `Bearer`, `Basic`, `Digest`. Scheme names are case-insensitive per [RFC 9110 Section 11.1](https://www.rfc-editor.org/rfc/rfc9110#section-11.1).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1Message": {
+      "description": "`Message` is one unit of communication between client and server. It can be associated with a context and/or a task. For server messages, `context_id` must be provided, and `task_id` only if a task was created. For client messages, both fields are optional, with the caveat that if both are provided, they have to match (the `context_id` has to be the one that is set on the task). If only `task_id` is provided, the server will infer `context_id` from it.",
+      "id": "LfA2aV1Message",
+      "properties": {
+        "contextId": {
+          "description": "Optional. The context id of the message. If set, the message will be associated with the given context.",
+          "type": "string"
+        },
+        "extensions": {
+          "description": "The URIs of extensions that are present or contributed to this Message.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "messageId": {
+          "description": "Required. The unique identifier (e.g. UUID) of the message. This is created by the message creator.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Any metadata to provide along with the message.",
+          "type": "object"
+        },
+        "parts": {
+          "description": "Required. Parts is the container of the message content.",
+          "items": {
+            "$ref": "LfA2aV1Part"
+          },
+          "type": "array"
+        },
+        "referenceTaskIds": {
+          "description": "A list of task IDs that this message references for additional context.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "role": {
+          "description": "Required. Identifies the sender of the message.",
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "ROLE_USER",
+            "ROLE_AGENT"
+          ],
+          "enumDescriptions": [
+            "The role is unspecified.",
+            "The message is from the client to the server.",
+            "The message is from the server to the client."
+          ],
+          "type": "string"
+        },
+        "taskId": {
+          "description": "Optional. The task id of the message. If set, the message will be associated with the given task.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1Part": {
+      "description": "`Part` represents a container for a section of communication content. Parts can be purely textual, some sort of file (image, video, etc) or a structured data blob (i.e. JSON).",
+      "id": "LfA2aV1Part",
+      "properties": {
+        "data": {
+          "description": "Arbitrary structured `data` as a JSON value (object, array, string, number, boolean, or null).",
+          "type": "any"
+        },
+        "filename": {
+          "description": "An optional `filename` for the file (e.g., \"document.pdf\").",
+          "type": "string"
+        },
+        "mediaType": {
+          "description": "The `media_type` (MIME type) of the part content (e.g., \"text/plain\", \"application/json\", \"image/png\"). This field is available for all part types.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. metadata associated with this part.",
+          "type": "object"
+        },
+        "raw": {
+          "description": "The `raw` byte content of a file. In JSON serialization, this is encoded as a base64 string.",
+          "format": "byte",
+          "type": "string"
+        },
+        "text": {
+          "description": "The string content of the `text` part.",
+          "type": "string"
+        },
+        "url": {
+          "description": "A `url` pointing to the file's content.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1SendMessageConfiguration": {
+      "description": "Configuration of a send message request.",
+      "id": "LfA2aV1SendMessageConfiguration",
+      "properties": {
+        "acceptedOutputModes": {
+          "description": "A list of media types the client is prepared to accept for response parts. Agents SHOULD use this to tailor their output.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "historyLength": {
+          "description": "The maximum number of most recent messages from the task's history to retrieve in the response. An unset value means the client does not impose any limit. A value of zero is a request to not include any messages. The server MUST NOT return more messages than the provided value, but MAY apply a lower limit.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "returnImmediately": {
+          "description": "If `true`, the operation returns immediately after creating the task, even if processing is still in progress. If `false` (default), the operation MUST wait until the task reaches a terminal (`COMPLETED`, `FAILED`, `CANCELED`, `REJECTED`) or interrupted (`INPUT_REQUIRED`, `AUTH_REQUIRED`) state before returning.",
+          "type": "boolean"
+        },
+        "taskPushNotificationConfig": {
+          "$ref": "LfA2aV1TaskPushNotificationConfig",
+          "description": "Configuration for the agent to send push notifications for task updates. Task id should be empty when sending this configuration in a `SendMessage` request."
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1SendMessageRequest": {
+      "description": "Represents a request for the `SendMessage` method.",
+      "id": "LfA2aV1SendMessageRequest",
+      "properties": {
+        "configuration": {
+          "$ref": "LfA2aV1SendMessageConfiguration",
+          "description": "Configuration for the send request."
+        },
+        "message": {
+          "$ref": "LfA2aV1Message",
+          "description": "Required. The message to send to the agent."
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "A flexible key-value map for passing additional context or parameters.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1SendMessageResponse": {
+      "description": "Represents the response for the `SendMessage` method.",
+      "id": "LfA2aV1SendMessageResponse",
+      "properties": {
+        "message": {
+          "$ref": "LfA2aV1Message",
+          "description": "A message from the agent."
+        },
+        "task": {
+          "$ref": "LfA2aV1Task",
+          "description": "The task created or updated by the message."
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1Task": {
+      "description": "`Task` is the core unit of action for A2A. It has a current status and when results are created for the task they are stored in the artifact. If there are multiple turns for a task, these are stored in history.",
+      "id": "LfA2aV1Task",
+      "properties": {
+        "artifacts": {
+          "description": "A set of output artifacts for a `Task`.",
+          "items": {
+            "$ref": "LfA2aV1Artifact"
+          },
+          "type": "array"
+        },
+        "contextId": {
+          "description": "Unique identifier (e.g. UUID) for the contextual collection of interactions (tasks and messages).",
+          "type": "string"
+        },
+        "history": {
+          "description": "protolint:disable REPEATED_FIELD_NAMES_PLURALIZED The history of interactions from a `Task`.",
+          "items": {
+            "$ref": "LfA2aV1Message"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Required. Unique identifier (e.g. UUID) for the task, generated by the server for a new task.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "protolint:enable REPEATED_FIELD_NAMES_PLURALIZED A key/value object to store custom metadata about a task.",
+          "type": "object"
+        },
+        "status": {
+          "$ref": "LfA2aV1TaskStatus",
+          "description": "Required. The current status of a `Task`, including `state` and a `message`."
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1TaskPushNotificationConfig": {
+      "description": "A container associating a push notification configuration with a specific task.",
+      "id": "LfA2aV1TaskPushNotificationConfig",
+      "properties": {
+        "authentication": {
+          "$ref": "LfA2aV1AuthenticationInfo",
+          "description": "Authentication information required to send the notification."
+        },
+        "id": {
+          "description": "The push notification configuration details. A unique identifier (e.g. UUID) for this push notification configuration.",
+          "type": "string"
+        },
+        "taskId": {
+          "description": "The ID of the task this configuration is associated with.",
+          "type": "string"
+        },
+        "tenant": {
+          "description": "Optional. Tenant ID.",
+          "type": "string"
+        },
+        "token": {
+          "description": "A token unique for this task or session.",
+          "type": "string"
+        },
+        "url": {
+          "description": "Required. The URL where the notification should be sent.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfA2aV1TaskStatus": {
+      "description": "A container for the status of a task",
+      "id": "LfA2aV1TaskStatus",
+      "properties": {
+        "message": {
+          "$ref": "LfA2aV1Message",
+          "description": "A message associated with the status."
+        },
+        "state": {
+          "description": "Required. The current state of this task.",
+          "enum": [
+            "TASK_STATE_UNSPECIFIED",
+            "TASK_STATE_SUBMITTED",
+            "TASK_STATE_WORKING",
+            "TASK_STATE_COMPLETED",
+            "TASK_STATE_FAILED",
+            "TASK_STATE_CANCELED",
+            "TASK_STATE_INPUT_REQUIRED",
+            "TASK_STATE_REJECTED",
+            "TASK_STATE_AUTH_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "The task is in an unknown or indeterminate state.",
+            "Indicates that a task has been successfully submitted and acknowledged.",
+            "Indicates that a task is actively being processed by the agent.",
+            "Indicates that a task has finished successfully. This is a terminal state.",
+            "Indicates that a task has finished with an error. This is a terminal state.",
+            "Indicates that a task was canceled before completion. This is a terminal state.",
+            "Indicates that the agent requires additional user input to proceed. This is an interrupted state.",
+            "Indicates that the agent has decided to not perform the task. This may be done during initial task creation or later once an agent has determined it can't or won't proceed. This is a terminal state.",
+            "Indicates that authentication is required to proceed. This is an interrupted state."
+          ],
+          "type": "string"
+        },
+        "timestamp": {
+          "description": "ISO 8601 Timestamp when the status was recorded. Example: \"2023-10-27T10:00:00Z\"",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListAgentsResponse": {
       "description": "Response message for AgentService.ListAgents.",
       "id": "ListAgentsResponse",
@@ -5619,11 +5993,11 @@
       "properties": {
         "audioRecordingConfig": {
           "$ref": "AudioRecordingConfig",
-          "description": "Optional. Configuration for how audio interactions should be recorded."
+          "description": "Optional. Configuration for how audio interactions should be recorded. The audio is subject to redaction as configured in RedactionConfig."
         },
         "bigqueryExportSettings": {
           "$ref": "BigQueryExportSettings",
-          "description": "Optional. Settings to describe the BigQuery export behaviors for the app. The conversation data will be exported to BigQuery tables if it is enabled."
+          "description": "Optional. Configures the BigQuery export behaviors for the app. The conversation data is subject to redaction as configured in RedactionConfig."
         },
         "cloudLoggingSettings": {
           "$ref": "CloudLoggingSettings",
@@ -5647,7 +6021,7 @@
         },
         "unredactedAudioRecordingConfig": {
           "$ref": "AudioRecordingConfig",
-          "description": "Optional. Configures recording of unredacted audio. Use this to maintain a raw backup with restricted access when audio redaction is enabled, typically for auditing or monitoring purposes."
+          "description": "Optional. Configures an additional recording of unredacted audio. This can be used to maintain a raw audio copy when audio redaction is enabled, typically for auditing or monitoring purposes."
         }
       },
       "type": "object"
@@ -5679,6 +6053,10 @@
           "description": "Required. The name of the MCP tool.",
           "type": "string"
         },
+        "nameOverride": {
+          "description": "Optional. The name override of the MCP tool. This is populated if the name was overridden by a Toolset override.",
+          "type": "string"
+        },
         "outputSchema": {
           "$ref": "Schema",
           "description": "Optional. The schema of the output arguments of the MCP tool."
@@ -5691,9 +6069,72 @@
           "$ref": "ServiceDirectoryConfig",
           "description": "Optional. Service Directory configuration for VPC-SC, used to resolve service names within a perimeter."
         },
+        "state": {
+          "description": "Output only. The dynamic availability state of the tool on the external server.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "INACTIVE",
+            "STALE"
+          ],
+          "enumDescriptions": [
+            "Default state.",
+            "The tool is available and actively offered by the server.",
+            "The tool is configured or pinned, but currently not offered by the server.",
+            "The tool exists on the server, but does not match the version on the server."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "tlsConfig": {
           "$ref": "TlsConfig",
           "description": "Optional. The TLS configuration. Includes the custom server certificates that the client should trust."
+        }
+      },
+      "type": "object"
+    },
+    "McpToolDefinition": {
+      "description": "Container for a tool's core definition elements that are snapshot. Schemas in the snapshot are used as-is and cannot be overridden.",
+      "id": "McpToolDefinition",
+      "properties": {
+        "description": {
+          "description": "Output only. The description of the MCP tool. This can be overridden by `description_override` in `McpToolOverride`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "inputSchema": {
+          "$ref": "Schema",
+          "description": "Output only. The schema of the input arguments of the MCP tool.",
+          "readOnly": true
+        },
+        "outputSchema": {
+          "$ref": "Schema",
+          "description": "Output only. The schema of the output arguments of the MCP tool.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "McpToolOverride": {
+      "description": "Overrides associated with a given tool in a Toolset. This enables \"pinning\" or \"overriding\" of tool definitions from the external dynamic server.",
+      "id": "McpToolOverride",
+      "properties": {
+        "descriptionOverride": {
+          "description": "Optional. If present, this tool uses this description instead of the original description from the server.",
+          "type": "string"
+        },
+        "nameOverride": {
+          "description": "Optional. If present, this tool uses this name in the Agent instead of the original name. This is primarily used as an alias if the MCP server offers poorly named tools.",
+          "type": "string"
+        },
+        "snapshot": {
+          "$ref": "McpToolDefinition",
+          "description": "Output only. If present, this tool is \"Pinned\" and uses the snapshot values as fallbacks if the server becomes temporarily unavailable or if no Override is present.",
+          "readOnly": true
+        },
+        "tool": {
+          "description": "Required. The original name of the tool as it is emitted by the MCP server.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5724,6 +6165,13 @@
         "tlsConfig": {
           "$ref": "TlsConfig",
           "description": "Optional. The TLS configuration. Includes the custom server certificates that the client should trust."
+        },
+        "toolOverrides": {
+          "description": "Optional. Overrides for individual tools within this toolset. This allows overriding specific details like descriptions, names, or pinning the tools' states so they aren't fully dynamic.",
+          "items": {
+            "$ref": "McpToolOverride"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5875,178 +6323,6 @@
         },
         "tokenEndpoint": {
           "description": "Required. The token endpoint in the OAuth provider to exchange for an access token.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "Omnichannel": {
-      "description": "Represents an Omnichannel resource.",
-      "id": "Omnichannel",
-      "properties": {
-        "createTime": {
-          "description": "Output only. Timestamp when the omnichannel resource was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "description": {
-          "description": "Optional. Human-readable description of the omnichannel resource.",
-          "type": "string"
-        },
-        "displayName": {
-          "description": "Required. Display name of the omnichannel resource.",
-          "type": "string"
-        },
-        "etag": {
-          "description": "Output only. Etag used to ensure the object hasn't changed during a read-modify-write operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "integrationConfig": {
-          "$ref": "OmnichannelIntegrationConfig",
-          "description": "Optional. The integration config for the omnichannel resource."
-        },
-        "name": {
-          "description": "Identifier. The unique identifier of the omnichannel resource. Format: `projects/{project}/locations/{location}/omnichannels/{omnichannel}`",
-          "type": "string"
-        },
-        "updateTime": {
-          "description": "Output only. Timestamp when the omnichannel resource was last updated.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "OmnichannelIntegrationConfig": {
-      "description": "OmnichannelIntegrationConfig contains all App integration configs.",
-      "id": "OmnichannelIntegrationConfig",
-      "properties": {
-        "channelConfigs": {
-          "additionalProperties": {
-            "$ref": "OmnichannelIntegrationConfigChannelConfig"
-          },
-          "description": "Optional. Various of configuration for handling App events.",
-          "type": "object"
-        },
-        "routingConfigs": {
-          "additionalProperties": {
-            "$ref": "OmnichannelIntegrationConfigRoutingConfig"
-          },
-          "description": "Optional. The key of routing_configs is a key of `app_configs`, value is a `RoutingConfig`, which contains subscriber's key.",
-          "type": "object"
-        },
-        "subscriberConfigs": {
-          "additionalProperties": {
-            "$ref": "OmnichannelIntegrationConfigSubscriberConfig"
-          },
-          "description": "Optional. Various of subscribers configs.",
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "OmnichannelIntegrationConfigCesAppConfig": {
-      "description": "Configs for CES app.",
-      "id": "OmnichannelIntegrationConfigCesAppConfig",
-      "properties": {
-        "app": {
-          "description": "The unique identifier of the CES app. Format: `projects/{project}/locations/{location}/apps/{app}`",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "OmnichannelIntegrationConfigChannelConfig": {
-      "description": "ChannelConfig contains config for various of app integration.",
-      "id": "OmnichannelIntegrationConfigChannelConfig",
-      "properties": {
-        "whatsappConfig": {
-          "$ref": "OmnichannelIntegrationConfigWhatsappConfig",
-          "description": "WhatsApp config."
-        }
-      },
-      "type": "object"
-    },
-    "OmnichannelIntegrationConfigRoutingConfig": {
-      "description": "Routing config specify how/who to route app events to a subscriber.",
-      "id": "OmnichannelIntegrationConfigRoutingConfig",
-      "properties": {
-        "subscriberKey": {
-          "description": "The key of the subscriber.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "OmnichannelIntegrationConfigSubscriberConfig": {
-      "description": "Configs of subscribers.",
-      "id": "OmnichannelIntegrationConfigSubscriberConfig",
-      "properties": {
-        "cesAppConfig": {
-          "$ref": "OmnichannelIntegrationConfigCesAppConfig",
-          "description": "Ces app config."
-        }
-      },
-      "type": "object"
-    },
-    "OmnichannelIntegrationConfigWhatsappConfig": {
-      "description": "How Omnichannel should receive/reply events from WhatsApp.",
-      "id": "OmnichannelIntegrationConfigWhatsappConfig",
-      "properties": {
-        "metaBusinessPortfolioId": {
-          "description": "The Meta Business Portfolio (MBP) ID. https://www.facebook.com/business/help/1710077379203657",
-          "type": "string"
-        },
-        "phoneNumber": {
-          "description": "The phone number used for sending/receiving messages.",
-          "type": "string"
-        },
-        "phoneNumberId": {
-          "description": "The Phone Number ID associated with the WhatsApp Business Account.",
-          "type": "string"
-        },
-        "webhookVerifyToken": {
-          "description": "The verify token configured in the Meta App Dashboard for webhook verification.",
-          "type": "string"
-        },
-        "whatsappBusinessAccountId": {
-          "description": "The customer's WhatsApp Business Account (WABA) ID.",
-          "type": "string"
-        },
-        "whatsappBusinessToken": {
-          "description": "The access token for authenticating API calls to the WhatsApp Cloud API. https://developers.facebook.com/docs/whatsapp/business-management-api/get-started/#business-integration-system-user-access-tokens",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "OmnichannelOperationMetadata": {
-      "description": "Represents the metadata of the long-running operation.",
-      "id": "OmnichannelOperationMetadata",
-      "properties": {
-        "createTime": {
-          "description": "Output only. The time the operation was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "endTime": {
-          "description": "Output only. The time the operation finished running.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "requestedCancellation": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "statusMessage": {
-          "description": "Output only. Human-readable status of the operation, if any.",
-          "readOnly": true,
           "type": "string"
         }
       },
@@ -6241,6 +6517,10 @@
         "pythonCode": {
           "description": "Optional. The Python code to execute for the tool.",
           "type": "string"
+        },
+        "serviceDirectoryConfig": {
+          "$ref": "ServiceDirectoryConfig",
+          "description": "Optional. Service Directory configuration for the tool."
         }
       },
       "type": "object"
@@ -6331,6 +6611,10 @@
       "description": "Request message for ToolService.RetrieveTools.",
       "id": "RetrieveToolsRequest",
       "properties": {
+        "bypassPersistenceConfig": {
+          "description": "Optional. If true, the returned tools will contain raw descriptions and schemas directly from the server, bypassing any stored persistence configurations (overrides/snapshots).",
+          "type": "boolean"
+        },
         "toolIds": {
           "description": "Optional. The identifiers of the tools to retrieve from the toolset. If empty, all tools in the toolset will be returned.",
           "items": {
