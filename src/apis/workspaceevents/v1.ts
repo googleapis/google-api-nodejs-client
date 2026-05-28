@@ -185,6 +185,15 @@ export namespace workspaceevents_v1 {
     data?: {[key: string]: any} | null;
   }
   /**
+   * Additional supported options for serving Drive events.
+   */
+  export interface Schema$DriveOptions {
+    /**
+     * Optional. Immutable. For subscriptions to Google Drive events, whether to receive events about Drive files that are children of the target folder or shared drive. * If `false`, the subscription only receives events about changes to the folder or shared drive that's specified as the `targetResource`. * If `true`, the `mimeType` field of the `file` resource must be set to `application/vnd.google-apps.folder`. For details, see [Google Drive event types](https://developers.google.com/workspace/events/guides/events-drive#event-types).
+     */
+    includeDescendants?: boolean | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -417,6 +426,10 @@ export namespace workspaceevents_v1 {
      * Output only. The time when the subscription is created.
      */
     createTime?: string | null;
+    /**
+     * Optional. Features that are supported only for subscriptions on Drive resources.
+     */
+    driveOptions?: Schema$DriveOptions;
     /**
      * Optional. This checksum is computed by the server based on the value of other fields, and might be sent on update requests to ensure the client has an up-to-date value before proceeding.
      */
@@ -786,6 +799,8 @@ export namespace workspaceevents_v1 {
      *       'https://www.googleapis.com/auth/chat.messages.readonly',
      *       'https://www.googleapis.com/auth/chat.spaces',
      *       'https://www.googleapis.com/auth/chat.spaces.readonly',
+     *       'https://www.googleapis.com/auth/chat.users.availability',
+     *       'https://www.googleapis.com/auth/chat.users.availability.readonly',
      *       'https://www.googleapis.com/auth/chat.users.readstate',
      *       'https://www.googleapis.com/auth/chat.users.readstate.readonly',
      *       'https://www.googleapis.com/auth/drive',
@@ -961,6 +976,8 @@ export namespace workspaceevents_v1 {
      *       'https://www.googleapis.com/auth/chat.messages.readonly',
      *       'https://www.googleapis.com/auth/chat.spaces',
      *       'https://www.googleapis.com/auth/chat.spaces.readonly',
+     *       'https://www.googleapis.com/auth/chat.users.availability',
+     *       'https://www.googleapis.com/auth/chat.users.availability.readonly',
      *       'https://www.googleapis.com/auth/chat.users.readstate',
      *       'https://www.googleapis.com/auth/chat.users.readstate.readonly',
      *       'https://www.googleapis.com/auth/drive',
@@ -988,6 +1005,7 @@ export namespace workspaceevents_v1 {
      *       // {
      *       //   "authority": "my_authority",
      *       //   "createTime": "my_createTime",
+     *       //   "driveOptions": {},
      *       //   "etag": "my_etag",
      *       //   "eventTypes": [],
      *       //   "expireTime": "my_expireTime",
@@ -1143,6 +1161,8 @@ export namespace workspaceevents_v1 {
      *       'https://www.googleapis.com/auth/chat.messages.readonly',
      *       'https://www.googleapis.com/auth/chat.spaces',
      *       'https://www.googleapis.com/auth/chat.spaces.readonly',
+     *       'https://www.googleapis.com/auth/chat.users.availability',
+     *       'https://www.googleapis.com/auth/chat.users.availability.readonly',
      *       'https://www.googleapis.com/auth/chat.users.readstate',
      *       'https://www.googleapis.com/auth/chat.users.readstate.readonly',
      *       'https://www.googleapis.com/auth/drive',
@@ -1307,6 +1327,8 @@ export namespace workspaceevents_v1 {
      *       'https://www.googleapis.com/auth/chat.messages.readonly',
      *       'https://www.googleapis.com/auth/chat.spaces',
      *       'https://www.googleapis.com/auth/chat.spaces.readonly',
+     *       'https://www.googleapis.com/auth/chat.users.availability',
+     *       'https://www.googleapis.com/auth/chat.users.availability.readonly',
      *       'https://www.googleapis.com/auth/chat.users.readstate',
      *       'https://www.googleapis.com/auth/chat.users.readstate.readonly',
      *       'https://www.googleapis.com/auth/drive',
@@ -1334,6 +1356,7 @@ export namespace workspaceevents_v1 {
      *   // {
      *   //   "authority": "my_authority",
      *   //   "createTime": "my_createTime",
+     *   //   "driveOptions": {},
      *   //   "etag": "my_etag",
      *   //   "eventTypes": [],
      *   //   "expireTime": "my_expireTime",
@@ -1477,6 +1500,8 @@ export namespace workspaceevents_v1 {
      *       'https://www.googleapis.com/auth/chat.messages.readonly',
      *       'https://www.googleapis.com/auth/chat.spaces',
      *       'https://www.googleapis.com/auth/chat.spaces.readonly',
+     *       'https://www.googleapis.com/auth/chat.users.availability',
+     *       'https://www.googleapis.com/auth/chat.users.availability.readonly',
      *       'https://www.googleapis.com/auth/chat.users.readstate',
      *       'https://www.googleapis.com/auth/chat.users.readstate.readonly',
      *       'https://www.googleapis.com/auth/drive',
@@ -1644,6 +1669,8 @@ export namespace workspaceevents_v1 {
      *       'https://www.googleapis.com/auth/chat.messages.readonly',
      *       'https://www.googleapis.com/auth/chat.spaces',
      *       'https://www.googleapis.com/auth/chat.spaces.readonly',
+     *       'https://www.googleapis.com/auth/chat.users.availability',
+     *       'https://www.googleapis.com/auth/chat.users.availability.readonly',
      *       'https://www.googleapis.com/auth/chat.users.readstate',
      *       'https://www.googleapis.com/auth/chat.users.readstate.readonly',
      *       'https://www.googleapis.com/auth/drive',
@@ -1675,6 +1702,7 @@ export namespace workspaceevents_v1 {
      *       // {
      *       //   "authority": "my_authority",
      *       //   "createTime": "my_createTime",
+     *       //   "driveOptions": {},
      *       //   "etag": "my_etag",
      *       //   "eventTypes": [],
      *       //   "expireTime": "my_expireTime",
@@ -1834,6 +1862,8 @@ export namespace workspaceevents_v1 {
      *       'https://www.googleapis.com/auth/chat.messages.readonly',
      *       'https://www.googleapis.com/auth/chat.spaces',
      *       'https://www.googleapis.com/auth/chat.spaces.readonly',
+     *       'https://www.googleapis.com/auth/chat.users.availability',
+     *       'https://www.googleapis.com/auth/chat.users.availability.readonly',
      *       'https://www.googleapis.com/auth/chat.users.readstate',
      *       'https://www.googleapis.com/auth/chat.users.readstate.readonly',
      *       'https://www.googleapis.com/auth/drive',
