@@ -2178,6 +2178,49 @@
     },
     "policies": {
       "methods": {
+        "create": {
+          "description": "Create a policy.",
+          "flatPath": "v1/policies",
+          "httpMethod": "POST",
+          "id": "cloudidentity.policies.create",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/policies",
+          "request": {
+            "$ref": "Policy"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.policies"
+          ]
+        },
+        "delete": {
+          "description": "Delete a policy.",
+          "flatPath": "v1/policies/{policiesId}",
+          "httpMethod": "DELETE",
+          "id": "cloudidentity.policies.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the policy to delete. Format: `policies/{policy}`.",
+              "location": "path",
+              "pattern": "^policies/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.policies"
+          ]
+        },
         "get": {
           "description": "Get a policy.",
           "flatPath": "v1/policies/{policiesId}",
@@ -2212,7 +2255,7 @@
           "parameterOrder": [],
           "parameters": {
             "filter": {
-              "description": "Optional. A CEL expression for filtering the results. Policies can be filtered by application with this expression: setting.type.matches('^settings/gmail\\\\..*$') Policies can be filtered by setting type with this expression: setting.type.matches('^.*\\\\.service_status$') A maximum of one of the above setting.type clauses can be used. Policies can be filtered by customer with this expression: customer == \"customers/{customer}\" Where `customer` is the `id` from the [Admin SDK `Customer` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). You may use `customers/my_customer` to specify your own organization. When no customer is mentioned it will be default to customers/my_customer. A maximum of one customer clause can be used. The above clauses can only be combined together in a single filter expression with the `&&` operator.",
+              "description": "Optional. A CEL expression for filtering the results. Policies can be filtered by application with this expression: setting.type.matches('^settings/gmail\\\\..*$') Policies can be filtered by setting type with this expression: setting.type.matches('^.*\\\\.service_status$') Policies can be filtered by customer with this expression: customer == \"customers/{customer}\" Where `customer` is the `id` from the [Admin SDK `Customer` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). You may use `customers/my_customer` to specify your own organization. When no customer is mentioned it will be default to customers/my_customer. You may only filter on policies for a single customer at a time. The above clauses can be combined together in a single filter expression with the `&&` and `||` operators, like in the following example: customer == \"customers/my_customer\" && ( setting.type.matches('^settings/gmail\\\\..*$') || setting.type.matches('^.*\\\\.service_status$') )",
               "location": "query",
               "type": "string"
             },
@@ -2236,11 +2279,39 @@
             "https://www.googleapis.com/auth/cloud-identity.policies",
             "https://www.googleapis.com/auth/cloud-identity.policies.readonly"
           ]
+        },
+        "patch": {
+          "description": "Update a policy.",
+          "flatPath": "v1/policies/{policiesId}",
+          "httpMethod": "PATCH",
+          "id": "cloudidentity.policies.patch",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Output only. Identifier. The [resource name](https://cloud.google.com/apis/design/resource_names) of the Policy. Format: policies/{policy}.",
+              "location": "path",
+              "pattern": "^policies/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "request": {
+            "$ref": "Policy"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.policies"
+          ]
         }
       }
     }
   },
-  "revision": "20260113",
+  "revision": "20260524",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -4373,7 +4444,7 @@
           "type": "string"
         },
         "query": {
-          "description": "Immutable. The CEL query that defines which entities the Policy applies to (ex. a User entity). For details about CEL see https://opensource.google.com/projects/cel. The OrgUnits the Policy applies to are represented by a clause like so: entity.org_units.exists(org_unit, org_unit.org_unit_id == orgUnitId('{orgUnitId}')) The Group the Policy applies to are represented by a clause like so: entity.groups.exists(group, group.group_id == groupId('{groupId}')) The Licenses the Policy applies to are represented by a clause like so: entity.licenses.exists(license, license in ['/product/{productId}/sku/{skuId}']) The above clauses can be present in any combination, and used in conjunction with the &&, || and ! operators. The org_unit and group fields below are helper fields that contain the corresponding value(s) as the query to make the query easier to use.",
+          "description": "Immutable. The CEL query that defines which entities the Policy applies to (ex. a User entity). For details about CEL see https://opensource.google.com/projects/cel. The OrgUnits the Policy applies to are represented by a clause like so: entity.org_units.exists(org_unit, org_unit.org_unit_id == orgUnitId('{orgUnitId}')) The Group the Policy applies to are represented by a clause like so: entity.groups.exists(group, group.group_id == groupId('{groupId}')) The Licenses the Policy applies to are represented by a clause like so: entity.licenses.exists(license, license in ['/product/{productId}/sku/{skuId}']) **Note:** The licenses clause is not supported in mutate endpoints. The above clauses can be present in any combination, and used in conjunction with the &&, || and ! operators. The org_unit and group fields below are helper fields that contain the corresponding value(s) as the query to make the query easier to use.",
           "type": "string"
         },
         "sortOrder": {
