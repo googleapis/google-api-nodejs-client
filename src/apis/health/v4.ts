@@ -127,6 +127,28 @@ export namespace health_v4 {
   }
 
   /**
+   * Energy burned as part of an activity, excluding the basal energy burn.
+   */
+  export interface Schema$ActiveEnergyBurned {
+    /**
+     * Required. Observed interval
+     */
+    interval?: Schema$ObservationTimeInterval;
+    /**
+     * Required. Energy burned during an activity, measured in kilocalories.
+     */
+    kcal?: number | null;
+  }
+  /**
+   * Represents the result of the rollup of active energy burned.
+   */
+  export interface Schema$ActiveEnergyBurnedRollupValue {
+    /**
+     * Output only. Sum of the active energy burned in kilocalories.
+     */
+    kcalSum?: number | null;
+  }
+  /**
    * Record of active minutes in a given time interval.
    */
   export interface Schema$ActiveMinutes {
@@ -244,6 +266,43 @@ export namespace health_v4 {
     activityLevelRollupsByActivityLevelType?: Schema$ActivityLevelRollupByActivityLevelType[];
   }
   /**
+   * An analysis window evaluated for AFib. Note: The current version of the algorithm will only produce alerts if all windows are positive. So anything returned from the API will always have the positive bit set to true. Internally, windows can be negative, however. We never save "inconclusive" windows (they aren't produced by the algorithm).
+   */
+  export interface Schema$AlertWindow {
+    /**
+     * Output only. Observed interval end time in civil time in the timezone the subject is in at the end of the observed interval
+     */
+    civilEndTime?: Schema$CivilDateTime;
+    /**
+     * Output only. Observed interval start time in civil time in the timezone the subject is in at the start of the observed interval
+     */
+    civilStartTime?: Schema$CivilDateTime;
+    /**
+     * Required. The end time of the analysis window.
+     */
+    endTime?: string | null;
+    /**
+     * Required. The UTC offset of the user's timezone when the analysis window ended.
+     */
+    endUtcOffset?: string | null;
+    /**
+     * Optional. All heart beats in the interval contained in this analysis window.
+     */
+    heartBeats?: Schema$HeartBeat[];
+    /**
+     * Optional. Flag indicating whether the window was positive for AFib or not. A `true` value indicates that AFib was detected in this window. A `false` value means AFib was not detected, but does not guarantee the absence of AFib.
+     */
+    positive?: boolean | null;
+    /**
+     * Required. Observed interval. The start time of the analysis window.
+     */
+    startTime?: string | null;
+    /**
+     * Required. The UTC offset of the user's timezone when the analysis window started.
+     */
+    startUtcOffset?: string | null;
+  }
+  /**
    * Captures the altitude gain (i.e. deltas), and not level above sea, for a user in millimeters.
    */
   export interface Schema$Altitude {
@@ -303,6 +362,48 @@ export namespace health_v4 {
      * Required. The names of the DataPoints to delete. A maximum of 10000 data points can be deleted in a single request.
      */
     names?: string[] | null;
+  }
+  /**
+   * Represents a blood glucose level measurement. LINT: LEGACY_NAMES
+   */
+  export interface Schema$BloodGlucose {
+    /**
+     * Required. Blood glucose level concentration in mg/dL.
+     */
+    bloodGlucoseMilligramsPerDeciliter?: number | null;
+    /**
+     * Optional. Meal type of the measurement.
+     */
+    mealType?: string | null;
+    /**
+     * Optional. Source of the measurement.
+     */
+    measurementSource?: string | null;
+    /**
+     * Optional. Timing of the measurement.
+     */
+    measurementTiming?: string | null;
+    /**
+     * Optional. Standard free-form notes captured at manual logging.
+     */
+    notes?: string | null;
+    /**
+     * Required. The time at which blood glucose was measured.
+     */
+    sampleTime?: Schema$ObservationSampleTime;
+    /**
+     * Optional. Type of body fluid used to measure the blood glucose.
+     */
+    specimen?: string | null;
+  }
+  /**
+   * Represents the result of the rollup of the blood glucose data type. LINT: LEGACY_NAMES
+   */
+  export interface Schema$BloodGlucoseRollupValue {
+    /**
+     * Average blood glucose level in mg/dL.
+     */
+    bloodGlucoseMilligramsPerDeciliterAvg?: number | null;
   }
   /**
    * Body fat measurement.
@@ -375,6 +476,44 @@ export namespace health_v4 {
     start?: Schema$CivilDateTime;
   }
   /**
+   * Core body temperature measurement, distinct from peripheral body temperature, reflects the temperature of the body's internal organs.
+   */
+  export interface Schema$CoreBodyTemperature {
+    /**
+     * Optional. The unique identifier of the core body temperature measurement.
+     */
+    id?: string | null;
+    /**
+     * Optional. The location of the core body temperature measurement.
+     */
+    measurementLocation?: string | null;
+    /**
+     * Required. The time at which core body temperature was measured.
+     */
+    sampleTime?: Schema$ObservationSampleTime;
+    /**
+     * Required. The core body temperature in Celsius.
+     */
+    temperatureCelsius?: number | null;
+  }
+  /**
+   * Represents the result of the rollup of the core body temperature data type.
+   */
+  export interface Schema$CoreBodyTemperatureRollupValue {
+    /**
+     * Average core body temperature in Celsius.
+     */
+    temperatureCelsiusAvg?: number | null;
+    /**
+     * Maximum core body temperature in Celsius.
+     */
+    temperatureCelsiusMax?: number | null;
+    /**
+     * Minimum core body temperature in Celsius.
+     */
+    temperatureCelsiusMin?: number | null;
+  }
+  /**
    * Payload for creating a subscriber.
    */
   export interface Schema$CreateSubscriberPayload {
@@ -390,6 +529,19 @@ export namespace health_v4 {
      * Optional. Configuration for the subscriber.
      */
     subscriberConfigs?: Schema$SubscriberConfig[];
+  }
+  /**
+   * Payload for creating a subscription.
+   */
+  export interface Schema$CreateSubscriptionPayload {
+    /**
+     * Optional. Data types subscribed to.
+     */
+    dataTypes?: string[] | null;
+    /**
+     * Required. Immutable. The resource name of the user for whom this subscription is active. Format: `users/{user\}` where `{user\}` is the public `healthUserId` as returned by the `GetIdentity` action in the profile PAPI (see `google.devicesandservices.health.v4main.HealthProfileService.GetIdentity`).
+     */
+    user?: string | null;
   }
   /**
    * Represents the daily heart rate variability data type. At least one of the following fields must be set: - `average_heart_rate_variability_milliseconds` - `non_rem_heart_rate_beats_per_minute` - `entropy` - `deep_sleep_root_mean_square_of_successive_differences_milliseconds`
@@ -494,9 +646,13 @@ export namespace health_v4 {
     calculationMethod?: string | null;
   }
   /**
-   * Value of a daily rollup for a single civil time interval (aggregation window)
+   * Value of a daily rollup for a single civil time interval (aggregation window) of reconciled data points from all data sources, excluding those data points that are identified as recorded by wearables in intervals when they were not actually worn.
    */
   export interface Schema$DailyRollupDataPoint {
+    /**
+     * Returned by default when rolling up data points from the `active-energy-burned` data type.
+     */
+    activeEnergyBurned?: Schema$ActiveEnergyBurnedRollupValue;
     /**
      * Returned by default when rolling up data points from the `active-minutes` data type, or when requested explicitly using the `active-minutes` rollup type identifier.
      */
@@ -514,6 +670,10 @@ export namespace health_v4 {
      */
     altitude?: Schema$AltitudeRollupValue;
     /**
+     * Returned by default when rolling up data points from the `blood-glucose` data type.
+     */
+    bloodGlucose?: Schema$BloodGlucoseRollupValue;
+    /**
      * Returned by default when rolling up data points from the `body-fat` data type, or when requested explicitly using the `body-fat` rollup type identifier.
      */
     bodyFat?: Schema$BodyFatRollupValue;
@@ -529,6 +689,10 @@ export namespace health_v4 {
      * Start time of the window this value aggregates over
      */
     civilStartTime?: Schema$CivilDateTime;
+    /**
+     * Returned by default when rolling up data points from the `core-body-temperature` data type, or when requested explicitly using the `core-body-temperature` rollup type identifier.
+     */
+    coreBodyTemperature?: Schema$CoreBodyTemperatureRollupValue;
     /**
      * Returned by default when rolling up data points from the `distance` data type, or when requested explicitly using the `distance` rollup type identifier.
      */
@@ -549,6 +713,10 @@ export namespace health_v4 {
      * Returned by default when rolling up data points from the `hydration-log` data type, or when requested explicitly using the `hydration-log` rollup type identifier.
      */
     hydrationLog?: Schema$HydrationLogRollupValue;
+    /**
+     * Returned by default when rolling up data points from the `nutrition-log` data type, or when requested explicitly using the `nutrition-log` rollup type identifier.
+     */
+    nutritionLog?: Schema$NutritionLogRollupValue;
     /**
      * Returned by default when rolling up data points from the `daily-resting-heart-rate` data type, or when requested explicitly using the `resting-heart-rate-personal-range` rollup type identifier.
      */
@@ -667,6 +835,10 @@ export namespace health_v4 {
    */
   export interface Schema$DataPoint {
     /**
+     * Optional. Data for points in the `active-energy-burned` interval data type collection.
+     */
+    activeEnergyBurned?: Schema$ActiveEnergyBurned;
+    /**
      * Optional. Data for points in the `active-minutes` interval data type collection.
      */
     activeMinutes?: Schema$ActiveMinutes;
@@ -687,9 +859,17 @@ export namespace health_v4 {
      */
     basalEnergyBurned?: Schema$BasalEnergyBurned;
     /**
+     * Optional. Data for points in the `blood-glucose` sample data type collection.
+     */
+    bloodGlucose?: Schema$BloodGlucose;
+    /**
      * Optional. Data for points in the `body-fat` sample data type collection.
      */
     bodyFat?: Schema$BodyFat;
+    /**
+     * Optional. Data for points in the `core-body-temperature` sample data type collection.
+     */
+    coreBodyTemperature?: Schema$CoreBodyTemperature;
     /**
      * Optional. Data for points in the `daily-heart-rate-variability` daily data type collection.
      */
@@ -727,6 +907,10 @@ export namespace health_v4 {
      */
     distance?: Schema$Distance;
     /**
+     * Optional. Data for points in the `electrocardiogram` session data type collection.
+     */
+    electrocardiogram?: Schema$Electrocardiogram;
+    /**
      * Optional. Data for points in the `exercise` session data type collection.
      */
     exercise?: Schema$Exercise;
@@ -734,6 +918,14 @@ export namespace health_v4 {
      * Optional. Data for points in the `floors` interval data type collection.
      */
     floors?: Schema$Floors;
+    /**
+     * Optional. The food details.
+     */
+    food?: Schema$Food;
+    /**
+     * Optional. The food measurement unit details.
+     */
+    foodMeasurementUnit?: Schema$FoodMeasurementUnit;
     /**
      * Optional. Data for points in the `heart-rate` sample data type collection.
      */
@@ -751,9 +943,17 @@ export namespace health_v4 {
      */
     hydrationLog?: Schema$HydrationLog;
     /**
+     * Optional. Data for points in the `irregular-rhythm-notification` session data type collection.
+     */
+    irregularRhythmNotification?: Schema$IrregularRhythmNotification;
+    /**
      * Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type\}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `total-calories` for the `total_calories` field. The `{data_point\}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
      */
     name?: string | null;
+    /**
+     * Optional. Data for points in the `nutrition-log` session data type collection.
+     */
+    nutritionLog?: Schema$NutritionLog;
     /**
      * Optional. Data for points in the `oxygen-saturation` sample data type collection.
      */
@@ -914,6 +1114,47 @@ export namespace health_v4 {
     millimetersSum?: string | null;
   }
   /**
+   * Represents an Electrocardiogram (ECG) measurement session. This data type is based on SaMD feature and any changes to it may require additional review.
+   */
+  export interface Schema$Electrocardiogram {
+    /**
+     * Optional. Average heart rate recorded during ECG reading in beats per minute.
+     */
+    beatsPerMinuteAvg?: string | null;
+    /**
+     * Required. Observed interval. NOTE: Historical ECG data lacks timezone offsets, so `start_utc_offset` and `end_utc_offset` will be missing or default to zero. As a result, the civil time fields within this interval will default to UTC. It is recommended to use physical time fields instead for accurate time referencing. NOTE: The `start_time` and `end_time` of the interval are equal, representing the reading time.
+     */
+    interval?: Schema$SessionTimeInterval;
+    /**
+     * Optional. The number of leads used for ECG reading.
+     */
+    leadNumber?: number | null;
+    /**
+     * Output only. The meta information for the compatible device used to conduct the measurement. ECG measurements typically populate `firmware_version`, `feature_version`, and `device_model`.
+     */
+    medicalDeviceInfo?: Schema$MedicalDeviceInfo;
+    /**
+     * Optional. The factor by which to divide waveform samples to get voltage in millivolts: millivolts = waveform_sample / millivolts_scaling_factor.
+     */
+    millivoltsScalingFactor?: number | null;
+    /**
+     * Optional. The result classification of the ECG reading.
+     */
+    resultClassification?: string | null;
+    /**
+     * Optional. The sampling frequency of waveform samples in hertz.
+     */
+    samplingFrequencyHertz?: number | null;
+    /**
+     * Optional. An array of voltage values representing lead I ECG values. Each sample represents voltage difference in ECG graph. The first value in array corresponds to the start of the reading.
+     */
+    waveformSamples?: number[] | null;
+  }
+  /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
+   */
+  export interface Schema$Empty {}
+  /**
    * Authorization mechanism for a subscriber endpoint. For all requests sent by the Webhooks service, the JSON payload is cryptographically signed. The signature is delivered in the `X-HEALTHAPI-SIGNATURE` HTTP header. This is an ECDSA (NIST P256) signature of the JSON payload. Clients must verify this signature using Google Health API's public key to confirm the payload was sent by the Health API.
    */
   export interface Schema$EndpointAuthorization {
@@ -925,6 +1166,32 @@ export namespace health_v4 {
      * Output only. Whether the secret is set.
      */
     secretSet?: boolean | null;
+  }
+  /**
+   * Represents the energy quantity.
+   */
+  export interface Schema$EnergyQuantity {
+    /**
+     * Required. Value representing the energy in kilocalories.
+     */
+    kcal?: number | null;
+    /**
+     * Optional. Value representing the user provided unit.
+     */
+    userProvidedUnit?: string | null;
+  }
+  /**
+   * Rollup for the energy quantity.
+   */
+  export interface Schema$EnergyQuantityRollup {
+    /**
+     * Required. The sum of the energy in kilocalories.
+     */
+    kcalSum?: number | null;
+    /**
+     * Optional. The user provided unit on the last element.
+     */
+    userProvidedUnitLast?: string | null;
   }
   /**
    * An exercise that stores information about a physical activity.
@@ -1014,7 +1281,7 @@ export namespace health_v4 {
    */
   export interface Schema$ExportExerciseTcxResponse {
     /**
-     * Contains the exported TCX data.
+     * Contains the exported TCX data. This field is intended for gRPC clients, as media download integration is not supported for gRPC. HTTP clients should instead use the `alt=media` query parameter to download the raw binary TCX file.
      */
     tcxData?: string | null;
   }
@@ -1041,6 +1308,109 @@ export namespace health_v4 {
     countSum?: string | null;
   }
   /**
+   * Represents a food item.
+   */
+  export interface Schema$Food {
+    /**
+     * Required. The access level of the food.
+     */
+    accessLevel?: string | null;
+    /**
+     * Optional. The brand of the food.
+     */
+    brand?: string | null;
+    /**
+     * Required. Value representing the default serving of the food.
+     */
+    defaultServing?: Schema$FoodServing;
+    /**
+     * Optional. The description of the food.
+     */
+    description?: string | null;
+    /**
+     * Required. The display name of the food.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. Value representing the average energy of the food for the default serving.
+     */
+    energyAvg?: Schema$EnergyQuantity;
+    /**
+     * Optional. Value representing the energy from fat of the food for the default serving.
+     */
+    energyFromFat?: Schema$EnergyQuantity;
+    /**
+     * Optional. Value representing the maximum energy of the food for the default serving.
+     */
+    energyMax?: Schema$EnergyQuantity;
+    /**
+     * Optional. Value representing the minimum energy of the food for the default serving.
+     */
+    energyMin?: Schema$EnergyQuantity;
+    /**
+     * Optional. The language code where the food is available in format xx-XX. Supported values are defined in Settings.food_language_code.
+     */
+    languageCode?: string | null;
+    /**
+     * Optional. The meal type associated with this food.
+     */
+    mealType?: string | null;
+    /**
+     * Optional. Value representing the nutrients of the food for the default serving.
+     */
+    nutrients?: Schema$NutrientQuantity[];
+    /**
+     * Optional. The serving of the food.
+     */
+    servings?: Schema$FoodServing[];
+    /**
+     * Optional. Value representing the total carbohydrate of the food for the default serving.
+     */
+    totalCarbohydrate?: Schema$WeightQuantity;
+    /**
+     * Optional. Value representing the total fat of the food for the default serving.
+     */
+    totalFat?: Schema$WeightQuantity;
+  }
+  /**
+   * Represents a food measurement unit.
+   */
+  export interface Schema$FoodMeasurementUnit {
+    /**
+     * Required. The display name of the food measurement unit (e.g., "gram", "piece").
+     */
+    displayName?: string | null;
+    /**
+     * Optional. The plural display name of the food measurement unit (e.g., "grams", "pieces").
+     */
+    pluralDisplayName?: string | null;
+  }
+  /**
+   * Represents different properties and information about the serving of a specific food.
+   */
+  export interface Schema$FoodServing {
+    /**
+     * Optional. Amount of food consumed, fractional values are supported.
+     */
+    amount?: number | null;
+    /**
+     * Required. Food measurement unit
+     */
+    foodMeasurementUnit?: string | null;
+    /**
+     * Output only. Legacy measurement unit for serving size in singular form (e.g. "piece", "gram").
+     */
+    foodMeasurementUnitDisplayName?: string | null;
+    /**
+     * Output only. Legacy measurement unit for serving size in plural form (e.g. "pieces", "grams").
+     */
+    foodMeasurementUnitDisplayNamePlural?: string | null;
+    /**
+     * Optional. Value representing the multiplier used to compute the energy when using this serving instead of the default serving.
+     */
+    multiplier?: number | null;
+  }
+  /**
    * Represents a type of health data a user can have data points recorded for. It matches the parent resource of collection containing data points of the given type. Clients currently do not need to interact with this resource directly.
    */
   export interface Schema$GoogleDevicesandservicesHealthV4DataType {
@@ -1057,6 +1427,27 @@ export namespace health_v4 {
      * Required. Represents the HTTP response. This message includes the status code, reason phrase, headers, and body.
      */
     httpResponse?: Schema$HttpResponse;
+  }
+  /**
+   * A single heart beat measurement.
+   */
+  export interface Schema$HeartBeat {
+    /**
+     * Required. The beats-per-minute value extrapolated from the time before the following heart beat. This is calculated as 60000 / rr, where rr is the gap between heart beats in milliseconds (IBI - Interbeat Interval).
+     */
+    beatsPerMinute?: number | null;
+    /**
+     * Output only. The civil time in the timezone the subject is in at the time of the observation.
+     */
+    civilTime?: Schema$CivilDateTime;
+    /**
+     * Required. The time of the heart beat measurement.
+     */
+    physicalTime?: string | null;
+    /**
+     * Required. The UTC offset of the user's timezone when the heart beat measurement occurred.
+     */
+    utcOffset?: string | null;
   }
   /**
    * A heart rate measurement.
@@ -1110,7 +1501,7 @@ export namespace health_v4 {
    */
   export interface Schema$HeartRateVariability {
     /**
-     * Optional. The root mean square of successive differences between normal heartbeats. This is a measure of heart rate variability used by Fitbit.
+     * Optional. The root mean square of successive differences between normal heartbeats. This is a measure of heart rate variability used by Google Health.
      */
     rootMeanSquareOfSuccessiveDifferencesMilliseconds?: number | null;
     /**
@@ -1252,6 +1643,44 @@ export namespace health_v4 {
     startTime?: string | null;
   }
   /**
+   * Irregular Rhythm Notifications (IRN) Profile details. The Irregular Rhythm Notifications (IRN) feature checks for signs of atrial fibrillation (AFib). The IrnProfile details include information about the user's onboarding status, enrollment status, and the last update time of analyzable data for this feature.
+   */
+  export interface Schema$IrnProfile {
+    /**
+     * Required. Whether or not the user is currently enrolled in having their data processed for IRN alerts.
+     */
+    enrollmentStatus?: boolean | null;
+    /**
+     * Identifier. The resource name of this IrnProfile resource. Format: `users/{user\}/irnProfile` Example: `users/1234567890/irnProfile` or `users/me/irnProfile` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.
+     */
+    name?: string | null;
+    /**
+     * Required. Whether or not the user has onboarded onto the IRN feature.
+     */
+    onboardingStatus?: boolean | null;
+    /**
+     * Output only. The timestamp of the last piece of analyzable data synced by the user.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Represents an Irregular Rhythm Notification alert, indicating a potential sign of atrial fibrillation (AFib). This data type is based on SaMD feature and any changes to it may require additional review.
+   */
+  export interface Schema$IrregularRhythmNotification {
+    /**
+     * Optional. The overlapping analysis windows that were used to evaluate rhythm for potential AFib, containing specific information about the user's heart rhythm.
+     */
+    alertWindows?: Schema$AlertWindow[];
+    /**
+     * Required. Observed interval.
+     */
+    interval?: Schema$SessionTimeInterval;
+    /**
+     * Output only. The meta information for the compatible device used to conduct the measurement. Irregular Rhythm Notification measurements typically populate `algorithm_version`, `service_version`, and `device_model`.
+     */
+    medicalDeviceInfo?: Schema$MedicalDeviceInfo;
+  }
+  /**
    * Response containing raw data points matching the query
    */
   export interface Schema$ListDataPointsResponse {
@@ -1263,6 +1692,19 @@ export namespace health_v4 {
      * Next page token, empty if the response is complete
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ListPairedDevices.
+   */
+  export interface Schema$ListPairedDevicesResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The paired devices of the user.
+     */
+    pairedDevices?: Schema$PairedDevice[];
   }
   /**
    * Response message for ListSubscribers.
@@ -1280,6 +1722,44 @@ export namespace health_v4 {
      * The total number of subscribers matching the request.
      */
     totalSize?: number | null;
+  }
+  /**
+   * Response message for ListSubscriptions.
+   */
+  export interface Schema$ListSubscriptionsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The subscriptions from the specified subscriber.
+     */
+    subscriptions?: Schema$Subscription[];
+  }
+  /**
+   * Software as Medical Device (SaMD) metadata. Used to construct the Unique Device Identifier (UDI).
+   */
+  export interface Schema$MedicalDeviceInfo {
+    /**
+     * Output only. The algorithm version used by the feature.
+     */
+    algorithmVersion?: string | null;
+    /**
+     * Output only. The model name or device type of the compatible device used to collect the data.
+     */
+    deviceModel?: string | null;
+    /**
+     * Output only. The version of the feature/app running on the device.
+     */
+    featureVersion?: string | null;
+    /**
+     * Output only. The firmware version running on the compatible device used to collect the data.
+     */
+    firmwareVersion?: string | null;
+    /**
+     * Output only. The service version used by the feature.
+     */
+    serviceVersion?: string | null;
   }
   /**
    * Summary metrics for an exercise.
@@ -1358,6 +1838,102 @@ export namespace health_v4 {
      * Optional. Vertical oscillation/stride length between [5.0, 11.0].
      */
     avgVerticalRatio?: number | null;
+  }
+  /**
+   * Represents the quantity of a nutrient.
+   */
+  export interface Schema$NutrientQuantity {
+    /**
+     * Required. Value representing the nutrient.
+     */
+    nutrient?: string | null;
+    /**
+     * Required. Value representing the quantity of the nutrient.
+     */
+    quantity?: Schema$WeightQuantity;
+  }
+  /**
+   * Nutrient quantity rollup.
+   */
+  export interface Schema$NutrientQuantityRollup {
+    /**
+     * Required. Aggregated nutrient.
+     */
+    nutrient?: string | null;
+    /**
+     * Required. Aggregated nutrient weight.
+     */
+    quantity?: Schema$WeightQuantityRollup;
+  }
+  /**
+   * Holds information about a user logged food. There are two ways of creating a nutrition log based on the food type: 1. Identified food: Using the food field, which is a reference to a Food resource. In this case fields `nutrients`, `energy`, `energy_from_fat`, `total_carbohydrate`, `total_fat`, `food_display_name` will be populated based on the referenced food. 2. Anonymous food: Using the `food_display_name` field and setting the `nutrients`, `energy`, `energy_from_fat`, `total_carbohydrate`, `total_fat` fields manually. The identified food is preferred over the anonymous food. Nutrition logs created from anonymous food are not be editable.
+   */
+  export interface Schema$NutritionLog {
+    /**
+     * Optional. Value representing the energy of the nutrition log. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually.
+     */
+    energy?: Schema$EnergyQuantity;
+    /**
+     * Optional. Value representing the energy from fat of the nutrition log. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually.
+     */
+    energyFromFat?: Schema$EnergyQuantity;
+    /**
+     * Required. Represents the food ID.
+     */
+    food?: string | null;
+    /**
+     * Value representing the display name of the food. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually.
+     */
+    foodDisplayName?: string | null;
+    /**
+     * Required. Observed interval.
+     */
+    interval?: Schema$SessionTimeInterval;
+    /**
+     * Optional. Value representing the meal type of the nutrition log.
+     */
+    mealType?: string | null;
+    /**
+     * Optional. Value representing the nutrients of the nutrition log.
+     */
+    nutrients?: Schema$NutrientQuantity[];
+    /**
+     * Optional. Value representing the nutrition log serving.
+     */
+    serving?: Schema$Serving;
+    /**
+     * Optional. Value representing the total carbohydrate of the nutrition log. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually.
+     */
+    totalCarbohydrate?: Schema$WeightQuantity;
+    /**
+     * Optional. Value representing the total fat of the nutrition log. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually.
+     */
+    totalFat?: Schema$WeightQuantity;
+  }
+  /**
+   * Represents the result of the rollup of the nutrition log data type.
+   */
+  export interface Schema$NutritionLogRollupValue {
+    /**
+     * Energy rollup.
+     */
+    energy?: Schema$EnergyQuantityRollup;
+    /**
+     * Value Energy from fat rollup.
+     */
+    energyFromFat?: Schema$EnergyQuantityRollup;
+    /**
+     * List of the nutrient roll-ups by the nutrient type.
+     */
+    nutrients?: Schema$NutrientQuantityRollup[];
+    /**
+     * Total carbohydrate rollup.
+     */
+    totalCarbohydrate?: Schema$WeightQuantityRollup;
+    /**
+     * Total fat rollup.
+     */
+    totalFat?: Schema$WeightQuantityRollup;
   }
   /**
    * Represents a sample time of an observed data point.
@@ -1465,6 +2041,43 @@ export namespace health_v4 {
     sampleTime?: Schema$ObservationSampleTime;
   }
   /**
+   * User's Paired 1P Device The PairedDevice details include information about the device type, battery status, battery level, last sync time, device version, mac address, and features.
+   */
+  export interface Schema$PairedDevice {
+    /**
+     * Output only. The battery level of the device.
+     */
+    batteryLevel?: number | null;
+    /**
+     * Output only. The battery status of the device. Supported: High | Medium | Low | Empty
+     */
+    batteryStatus?: string | null;
+    /**
+     * Output only. The device type. Supported: TRACKER | SCALE
+     */
+    deviceType?: string | null;
+    /**
+     * Output only. The product name of the device
+     */
+    deviceVersion?: string | null;
+    /**
+     * Output only. Lists of unique features supported by the device. Comprehensive list of supported features: **Fitness Tracking** - `ACTIVE_MINUTES`: Legacy active minutes. - `AUTOSTRIDE`: Automatic stride length calculation. - `BIKE_ONBOARDING`: Cycling UI support. - `CALORIES`: Daily burned calories. - `DISTANCE`: Daily distance tracking. - `ELEVATION`: Floors climbed. - `INACTIVITY_ALERTS`: Reminders to move. - `SEDENTARY_TIME`: Tracks inactive time. - `STEPS`: Daily steps. - `SWIM`: Swim tracking (laps/strokes). - `AUTORUN`: Automatic run detection. - `ACTIVE_ZONE_MINUTES`: Active Zone Minutes (AZM). **Heart Rate & Health** - `HEART_RATE`: Continuous heart rate (PPG). - `BAT_SIGNAL`: High/Low Heart Rate Alerts. **Advanced Sensors** - `SPO2`: Blood oxygen saturation. - `NIGHTTIME_OXYGEN_SATURATION`: Sleep SpO2. - `ESTIMATED_OXYGEN_VARIATION`: Estimated Oxygen Variation. - `EDA`: Electrodermal Activity (stress). - `SKIN_TEMPERATURE`: Skin temperature variation. - `INTERNAL_DEVICE_TEMPERATURE`: Internal device temperature. **Sleep & Wellness** - `SLEEP`: Basic sleep tracking. - `SMART_SLEEP`: Advanced sleep tracking (stages/score). - `BEDTIME_REMINDER`: Bedtime reminders. - `SOUNDSCAPE`: Snore and noise detection. **Advanced Workouts** - `WB`: Custom Workout Builder. - `AUTOCUES`: Auto Cues / Auto Lap. - `DWR_RUN`: Daily Run Recommendations. - `ADVANCED_RUNNING`: Advanced Running Dynamics (e.g., GCT, VO). **GPS & Location** - `GPS`: Built-in GPS. - `CONNECTED_GPS`: Connected GPS (uses phone). - `LOCATION_HINT`: Location helper. **Payments & NFC** - `PAYMENTS`: NFC payments (Fitbit Pay/Google Wallet). - `FELICA`: FeliCa support (Japan payments/transit). **Activity Detection** - `GROK`: SmartTrack automatic activity detection. - `RETRO_AR`: Retroactive Activity Recognition prompts. **Smart Features & UI** - `ALARMS`: Silent alarms. - `BLE_MUSIC_CONTROL`: BLE music control. - `MUSIC`: Direct music storage/control. - `YOUTUBE_MUSIC_SUPPORTED`: YouTube Music support. - `GALLERY`: App Gallery. - `TUTORIAL_SUPPORTED`: On-screen tutorials. - `SMILEY_EMOTE`: Legacy Zip face. - `MOBILE_TO_DEVICE_DEEPLINK`: Mobile to device settings deep link. - `HIDE_GALLERY`: Option to hide Gallery. - `HIDE_GOAL_SELECTION`: Option to hide goal selection. - `DIGITAL_WARRANTY_SUPPORTED`: Digital warranty display. - `DIRECT_DEVICE_SETTINGS_SUPPORTED`: Direct device settings management. **Gym HR Broadcasting** - `ASPEN_SUPPORTED`: Broadcast HR to gym equipment. - `ASPEN_REMOTE_UI_SUPPORTED`: Remote UI for HR sharing. **Privacy & Security** - `FINITE_IMPROBABILITY`: BLE Resolvable Private Address (RPA) privacy. - `DOMAIN_KEY_SYNC`: Domain key synchronization. **BLE Protocol** - `BONDING`: Secure BLE bonding. - `ADVERTISES_SERIAL`: Advertises serial number. - `STATUS_CHARACTERISTIC`: BLE Status Characteristic. - `TRACKER_CHANNEL_CHARACTERISTIC`: BLE Tracker Channel Characteristic. - `PING_CHARACTERISTIC`: BLE Ping Characteristic. **Cellular & Wi-Fi** - `MOBILE_DATA`: LTE cellular support. - `SINGLE_AP_WIFI`: Single AP Wi-Fi. - `MULTI_AP_WIFI`: Multi AP Wi-Fi. - `WIFI_FWUP`: Firmware updates over Wi-Fi. **Data Sync & Transfer** - `APP_SYNC`: Background app sync. - `LIVE_DATA`: Real-time data streaming. - `EVENT_BASED_SYNC_SUPPORTED`: Event-based sync. - `TIME_SERVICE`: Time synchronization service. - `REMOTE_FILE_PROVIDER`: Remote file transfer. - `DIRECT_COMMS_ALARMS`: Direct communication for alarms. - `DIRECT_COMMS_EXERCISE`: Direct communication for exercise. - `DIRECT_COMMS_BATTERY_ALERTS`: Direct communication for battery alerts. **Google Integrations** - `PARROT_TREE_SUPPORTED`: Find My Device support.
+     */
+    features?: string[] | null;
+    /**
+     * Output only. The time of last sync with the Fitbit mobile application.
+     */
+    lastSyncTime?: string | null;
+    /**
+     * Output only. Mac ID number of the device.
+     */
+    macAddress?: string | null;
+    /**
+     * Identifier. The resource name of this Device resource. Format: `users/{user\}/pairedDevices/{paired_device\}` Example: `users/1234567890/pairedDevices/123` or `users/me/pairedDevices/123`
+     */
+    name?: string | null;
+  }
+  /**
    * Profile details.
    */
   export interface Schema$Profile {
@@ -1515,6 +2128,10 @@ export namespace health_v4 {
    */
   export interface Schema$ReconciledDataPoint {
     /**
+     * Data for points in the `active-energy-burned` interval data type collection.
+     */
+    activeEnergyBurned?: Schema$ActiveEnergyBurned;
+    /**
      * Data for points in the `active-minutes` interval data type collection.
      */
     activeMinutes?: Schema$ActiveMinutes;
@@ -1535,9 +2152,17 @@ export namespace health_v4 {
      */
     basalEnergyBurned?: Schema$BasalEnergyBurned;
     /**
+     * Data for points in the `blood-glucose` sample data type collection.
+     */
+    bloodGlucose?: Schema$BloodGlucose;
+    /**
      * Data for points in the `body-fat` sample data type collection.
      */
     bodyFat?: Schema$BodyFat;
+    /**
+     * Data for points in the `core-body-temperature` sample data type collection.
+     */
+    coreBodyTemperature?: Schema$CoreBodyTemperature;
     /**
      * Data for points in the `daily-heart-rate-variability` daily data type collection.
      */
@@ -1598,6 +2223,10 @@ export namespace health_v4 {
      * Data for points in the `hydration-log` session data type collection.
      */
     hydrationLog?: Schema$HydrationLog;
+    /**
+     * Data for points in the `nutrition-log` session data type collection.
+     */
+    nutritionLog?: Schema$NutritionLog;
     /**
      * Data for points in the `oxygen-saturation` sample data type collection.
      */
@@ -1695,9 +2324,13 @@ export namespace health_v4 {
     beatsPerMinuteMin?: number | null;
   }
   /**
-   * Value of a rollup for a single physical time interval (aggregation window)
+   * Value of a rollup for a single physical time interval (aggregation window) of reconciled data points from all data sources, excluding those data points that are identified as recorded by wearables in intervals when they were not actually worn.
    */
   export interface Schema$RollupDataPoint {
+    /**
+     * Returned by default when rolling up data points from the `active-energy-burned` data type.
+     */
+    activeEnergyBurned?: Schema$ActiveEnergyBurnedRollupValue;
     /**
      * Returned by default when rolling up data points from the `active-minutes` data type, or when requested explicitly using the `active-minutes` rollup type identifier.
      */
@@ -1715,6 +2348,10 @@ export namespace health_v4 {
      */
     altitude?: Schema$AltitudeRollupValue;
     /**
+     * Returned by default when rolling up data points from the `blood-glucose` data type.
+     */
+    bloodGlucose?: Schema$BloodGlucoseRollupValue;
+    /**
      * Returned by default when rolling up data points from the `body-fat` data type, or when requested explicitly using the `body-fat` rollup type identifier.
      */
     bodyFat?: Schema$BodyFatRollupValue;
@@ -1722,6 +2359,10 @@ export namespace health_v4 {
      * Returned by default when rolling up data points from the `calories-in-heart-rate-zone` data type, or when requested explicitly using the `calories-in-heart-rate-zone` rollup type identifier.
      */
     caloriesInHeartRateZone?: Schema$CaloriesInHeartRateZoneRollupValue;
+    /**
+     * Returned by default when rolling up data points from the `core-body-temperature` data type, or when requested explicitly using the `core-body-temperature` rollup type identifier.
+     */
+    coreBodyTemperature?: Schema$CoreBodyTemperatureRollupValue;
     /**
      * Returned by default when rolling up data points from the `distance` data type, or when requested explicitly using the `distance` rollup type identifier.
      */
@@ -1742,6 +2383,10 @@ export namespace health_v4 {
      * Returned by default when rolling up data points from the `hydration-log` data type, or when requested explicitly using the `hydration-log` rollup type identifier.
      */
     hydrationLog?: Schema$HydrationLogRollupValue;
+    /**
+     * Returned by default when rolling up data points from the `nutrition-log` data type, or when requested explicitly using the `nutrition-log` rollup type identifier.
+     */
+    nutritionLog?: Schema$NutritionLogRollupValue;
     /**
      * Returned by default when rolling up data points from the `run-vo2-max` data type, or when requested explicitly using the `run-vo2-max` rollup type identifier.
      */
@@ -1862,6 +2507,23 @@ export namespace health_v4 {
     durationSum?: string | null;
   }
   /**
+   * Represents different properties and information about the serving of a specific food.
+   */
+  export interface Schema$Serving {
+    /**
+     * Optional. Amount of food consumed, fractional values are supported.
+     */
+    amount?: number | null;
+    /**
+     * Required. Food measurement unit
+     */
+    foodMeasurementUnit?: string | null;
+    /**
+     * Output only. Legacy measurement unit for serving size in singular form (e.g. "piece", "gram").
+     */
+    foodMeasurementUnitDisplayName?: string | null;
+  }
+  /**
    * Represents a time interval of session data point, which bundles multiple observed metrics together.
    */
   export interface Schema$SessionTimeInterval {
@@ -1902,6 +2564,10 @@ export namespace health_v4 {
      * Optional. The measurement unit defined in the user's account settings. Updates to this field are currently not supported.
      */
     distanceUnit?: string | null;
+    /**
+     * Output only. The food language code derived from the user's food database. Possible values: `'en-US'`, `'en-GB'`, `'de-DE'`, `'es-ES'`, `'fr-FR'`, `'zh-CN'`, `'zh-TW'`, `'ja-JP'`, `'en-AU'`, `'en-CA'`, `'it-IT'`, `'ko-KR'`, `'es-MX'`, `'en-IN'`, `'en-SG'`, `'en-PH'`, `'en-IE'`, `'fr-CA'`. Updates to this field are currently not supported.
+     */
+    foodLanguageCode?: string | null;
     /**
      * Optional. The measurement unit defined in the user's account settings.
      */
@@ -2202,13 +2868,30 @@ export namespace health_v4 {
    */
   export interface Schema$SubscriberConfig {
     /**
-     * Required. Supported data types are: "altitude", "distance", "floors", "sleep", "steps", "weight". Values should be in kebab-case.
+     * Required. See [Google Health API data types](https://developers.google.com/health/data-types) for the list of supported data types. Values should be in kebab-case.
      */
     dataTypes?: string[] | null;
     /**
      * Required. Policy for subscription creation.
      */
     subscriptionCreatePolicy?: string | null;
+  }
+  /**
+   * A subscription to a data collection for a specific user, to be delivered to a subscriber.
+   */
+  export interface Schema$Subscription {
+    /**
+     * Optional. Data types subscribed to. A subscriber will only receive notifications for data types that are declared here. A subscription can only subscribe to the data types of the subscriber. Supported data types are: "altitude", "distance", "floors", "sleep", "steps", "weight".
+     */
+    dataTypes?: string[] | null;
+    /**
+     * Identifier. The resource name of the Subscription. Format: `projects/{project\}/subscribers/{subscriber\}/subscriptions/{subscription\}` Example: `projects/my-project/subscribers/my-subscriber-123/subscriptions/my-subscription-456` The {project\} ID is mandatory (6-30 characters, matching /a-z{6,30\}/) The {subscriber\} ID is user-settable (4-36 characters, matching /[a-z]([a-z0-9-]{2,34\}[a-z0-9])/) if provided during creation, or system-generated otherwise. The {subscription\} ID is user-settable (4-36 chars, matching /[a-z]([a-z0-9-]{2,34\}[a-z0-9])/) or system-generated otherwise.
+     */
+    name?: string | null;
+    /**
+     * Immutable. The resource name of the user for whom this subscription is active. Format: `users/{user\}` where `{user\}` is the public `healthUserId` as returned by the `GetIdentity` action in the profile PAPI (see `google.devicesandservices.health.v4main.HealthProfileService.GetIdentity`).
+     */
+    user?: string | null;
   }
   /**
    * Swim lengths data over the time interval.
@@ -2361,7 +3044,7 @@ export namespace health_v4 {
      */
     milliliters?: number | null;
     /**
-     * Optional. Value representing the user provided unit.
+     * Optional. Value representing the user provided unit, used only for user-facing input and display purposes. In the API format, all volume quantities are converted to milliliters.
      */
     userProvidedUnit?: string | null;
   }
@@ -2396,6 +3079,32 @@ export namespace health_v4 {
     weightGrams?: number | null;
   }
   /**
+   * Represents the weight quantity.
+   */
+  export interface Schema$WeightQuantity {
+    /**
+     * Required. Value representing the weight in grams.
+     */
+    grams?: number | null;
+    /**
+     * Optional. Value representing the user provided unit.
+     */
+    userProvidedUnit?: string | null;
+  }
+  /**
+   * Rollup for the weight.
+   */
+  export interface Schema$WeightQuantityRollup {
+    /**
+     * Required. The sum of the weight in grams.
+     */
+    gramsSum?: number | null;
+    /**
+     * Optional. The user provided unit on the last element.
+     */
+    userProvidedUnitLast?: string | null;
+  }
+  /**
    * Represents the result of the rollup of the weight data type.
    */
   export interface Schema$WeightRollupValue {
@@ -2416,8 +3125,12 @@ export namespace health_v4 {
 
   export class Resource$Projects$Subscribers {
     context: APIRequestContext;
+    subscriptions: Resource$Projects$Subscribers$Subscriptions;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.subscriptions = new Resource$Projects$Subscribers$Subscriptions(
+        this.context
+      );
     }
 
     /**
@@ -3068,12 +3781,656 @@ export namespace health_v4 {
     requestBody?: Schema$Subscriber;
   }
 
+  export class Resource$Projects$Subscribers$Subscriptions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a subscription for a specific user to a specific subscriber. This method requires the subscriber to have a `SubscriptionCreatePolicy` set to `MANUAL` for the given data types.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/health.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const health = google.health('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await health.projects.subscribers.subscriptions.create({
+     *     // Required. The parent subscriber. Format: projects/{project\}/subscribers/{subscriber\} The {subscriber\} ID is user-settable (4-36 characters, matching /[a-z]([a-z0-9-]{2,34\}[a-z0-9])/) if provided during creation, or system-generated otherwise.
+     *     parent: 'projects/my-project/subscribers/my-subscriber',
+     *     // Optional. The {subscription_id\} is user-settable (4-36 chars, matching /[a-z]([a-z0-9-]{2,34\}[a-z0-9])/) or system-generated otherwise. If provided, the ID must be unique within the parent subscriber.
+     *     subscriptionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataTypes": [],
+     *       //   "user": "my_user"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataTypes": [],
+     *   //   "name": "my_name",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Subscribers$Subscriptions$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Subscribers$Subscriptions$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Subscription>>;
+    create(
+      params: Params$Resource$Projects$Subscribers$Subscriptions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Subscribers$Subscriptions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Subscribers$Subscriptions$Create,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Subscription>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Subscribers$Subscriptions$Create
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Subscription>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Subscribers$Subscriptions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Subscribers$Subscriptions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v4/{+parent}/subscriptions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Subscription>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Subscription>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a specific user subscription, stopping notifications for this user to this subscriber.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/health.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const health = google.health('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await health.projects.subscribers.subscriptions.delete({
+     *     // Required. The resource name of the subscription to delete. Format: `projects/{project\}/subscribers/{subscriber\}/subscriptions/{subscription\}` Example: `projects/my-project/subscribers/my-subscriber-123/subscriptions/my-subscription-456` The {subscriber\} ID is user-settable (4-36 characters, matching /[a-z]([a-z0-9-]{2,34\}[a-z0-9])/) if provided during creation, or system-generated otherwise. The {subscription\} ID is user-settable (4-36 characters, matching /[a-z]([a-z0-9-]{2,34\}[a-z0-9])/) or system-generated if not provided during creation.
+     *     name: 'projects/my-project/subscribers/my-subscriber/subscriptions/my-subscription',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Subscribers$Subscriptions$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Subscribers$Subscriptions$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Projects$Subscribers$Subscriptions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Subscribers$Subscriptions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Subscribers$Subscriptions$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Subscribers$Subscriptions$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Subscribers$Subscriptions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Subscribers$Subscriptions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Lists all active subscriptions for a given subscriber. This can be filtered, for example, by user or data type.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/health.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const health = google.health('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await health.projects.subscribers.subscriptions.list({
+     *     // Optional. A filter to apply to the list of subscriptions. The filter syntax is described in https://google.aip.dev/160. The filter can be applied to the following fields: - `user` - `data_type` The `user` identifier (e.g., `user1` in `users/user1`) refers to the public `healthUserId` Example: user = "users/user1" Example: user = "users/user1" OR user = "users/user2" Example: user = "users/user1" AND (data_type = "sleep" OR data_type = "weight")
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 50 subscriptions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent subscriber. Format: projects/{project\}/subscribers/{subscriber\} The {subscriber\} ID is user-settable (4-36 characters, matching /[a-z]([a-z0-9-]{2,34\}[a-z0-9])/) if provided during creation, or system-generated otherwise.
+     *     parent: 'projects/my-project/subscribers/my-subscriber',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "subscriptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Subscribers$Subscriptions$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Subscribers$Subscriptions$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListSubscriptionsResponse>>;
+    list(
+      params: Params$Resource$Projects$Subscribers$Subscriptions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Subscribers$Subscriptions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSubscriptionsResponse>,
+      callback: BodyResponseCallback<Schema$ListSubscriptionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Subscribers$Subscriptions$List,
+      callback: BodyResponseCallback<Schema$ListSubscriptionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListSubscriptionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Subscribers$Subscriptions$List
+        | BodyResponseCallback<Schema$ListSubscriptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSubscriptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSubscriptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListSubscriptionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Subscribers$Subscriptions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Subscribers$Subscriptions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v4/{+parent}/subscriptions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSubscriptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSubscriptionsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the data types for an existing user subscription.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/health.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const health = google.health('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await health.projects.subscribers.subscriptions.patch({
+     *     // Identifier. The resource name of the Subscription. Format: `projects/{project\}/subscribers/{subscriber\}/subscriptions/{subscription\}` Example: `projects/my-project/subscribers/my-subscriber-123/subscriptions/my-subscription-456` The {project\} ID is mandatory (6-30 characters, matching /a-z{6,30\}/) The {subscriber\} ID is user-settable (4-36 characters, matching /[a-z]([a-z0-9-]{2,34\}[a-z0-9])/) if provided during creation, or system-generated otherwise. The {subscription\} ID is user-settable (4-36 chars, matching /[a-z]([a-z0-9-]{2,34\}[a-z0-9])/) or system-generated otherwise.
+     *     name: 'projects/my-project/subscribers/my-subscriber/subscriptions/my-subscription',
+     *     // Optional. The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataTypes": [],
+     *       //   "name": "my_name",
+     *       //   "user": "my_user"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataTypes": [],
+     *   //   "name": "my_name",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Subscribers$Subscriptions$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Subscribers$Subscriptions$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Subscription>>;
+    patch(
+      params: Params$Resource$Projects$Subscribers$Subscriptions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Subscribers$Subscriptions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Subscribers$Subscriptions$Patch,
+      callback: BodyResponseCallback<Schema$Subscription>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Subscription>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Subscribers$Subscriptions$Patch
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Subscription>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Subscription>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Subscribers$Subscriptions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Subscribers$Subscriptions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Subscription>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Subscription>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Subscribers$Subscriptions$Create extends StandardParameters {
+    /**
+     * Required. The parent subscriber. Format: projects/{project\}/subscribers/{subscriber\} The {subscriber\} ID is user-settable (4-36 characters, matching /[a-z]([a-z0-9-]{2,34\}[a-z0-9])/) if provided during creation, or system-generated otherwise.
+     */
+    parent?: string;
+    /**
+     * Optional. The {subscription_id\} is user-settable (4-36 chars, matching /[a-z]([a-z0-9-]{2,34\}[a-z0-9])/) or system-generated otherwise. If provided, the ID must be unique within the parent subscriber.
+     */
+    subscriptionId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CreateSubscriptionPayload;
+  }
+  export interface Params$Resource$Projects$Subscribers$Subscriptions$Delete extends StandardParameters {
+    /**
+     * Required. The resource name of the subscription to delete. Format: `projects/{project\}/subscribers/{subscriber\}/subscriptions/{subscription\}` Example: `projects/my-project/subscribers/my-subscriber-123/subscriptions/my-subscription-456` The {subscriber\} ID is user-settable (4-36 characters, matching /[a-z]([a-z0-9-]{2,34\}[a-z0-9])/) if provided during creation, or system-generated otherwise. The {subscription\} ID is user-settable (4-36 characters, matching /[a-z]([a-z0-9-]{2,34\}[a-z0-9])/) or system-generated if not provided during creation.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Subscribers$Subscriptions$List extends StandardParameters {
+    /**
+     * Optional. A filter to apply to the list of subscriptions. The filter syntax is described in https://google.aip.dev/160. The filter can be applied to the following fields: - `user` - `data_type` The `user` identifier (e.g., `user1` in `users/user1`) refers to the public `healthUserId` Example: user = "users/user1" Example: user = "users/user1" OR user = "users/user2" Example: user = "users/user1" AND (data_type = "sleep" OR data_type = "weight")
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 50 subscriptions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent subscriber. Format: projects/{project\}/subscribers/{subscriber\} The {subscriber\} ID is user-settable (4-36 characters, matching /[a-z]([a-z0-9-]{2,34\}[a-z0-9])/) if provided during creation, or system-generated otherwise.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Subscribers$Subscriptions$Patch extends StandardParameters {
+    /**
+     * Identifier. The resource name of the Subscription. Format: `projects/{project\}/subscribers/{subscriber\}/subscriptions/{subscription\}` Example: `projects/my-project/subscribers/my-subscriber-123/subscriptions/my-subscription-456` The {project\} ID is mandatory (6-30 characters, matching /a-z{6,30\}/) The {subscriber\} ID is user-settable (4-36 characters, matching /[a-z]([a-z0-9-]{2,34\}[a-z0-9])/) if provided during creation, or system-generated otherwise. The {subscription\} ID is user-settable (4-36 chars, matching /[a-z]([a-z0-9-]{2,34\}[a-z0-9])/) or system-generated otherwise.
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Subscription;
+  }
+
   export class Resource$Users {
     context: APIRequestContext;
     dataTypes: Resource$Users$Datatypes;
+    pairedDevices: Resource$Users$Paireddevices;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.dataTypes = new Resource$Users$Datatypes(this.context);
+      this.pairedDevices = new Resource$Users$Paireddevices(this.context);
     }
 
     /**
@@ -3098,7 +4455,13 @@ export namespace health_v4 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.profile.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.settings.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.sleep.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3213,6 +4576,143 @@ export namespace health_v4 {
     }
 
     /**
+     * Returns user's IRN Profile details.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/health.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const health = google.health('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/googlehealth.irn.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await health.users.getIrnProfile({
+     *     // Required. The resource name of the IRN Profile. Format: `users/{user\}/irnProfile` Example: `users/1234567890/irnProfile` or `users/me/irnProfile` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.
+     *     name: 'users/my-user/irnProfile',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enrollmentStatus": false,
+     *   //   "name": "my_name",
+     *   //   "onboardingStatus": false,
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIrnProfile(
+      params: Params$Resource$Users$Getirnprofile,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getIrnProfile(
+      params?: Params$Resource$Users$Getirnprofile,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$IrnProfile>>;
+    getIrnProfile(
+      params: Params$Resource$Users$Getirnprofile,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIrnProfile(
+      params: Params$Resource$Users$Getirnprofile,
+      options: MethodOptions | BodyResponseCallback<Schema$IrnProfile>,
+      callback: BodyResponseCallback<Schema$IrnProfile>
+    ): void;
+    getIrnProfile(
+      params: Params$Resource$Users$Getirnprofile,
+      callback: BodyResponseCallback<Schema$IrnProfile>
+    ): void;
+    getIrnProfile(callback: BodyResponseCallback<Schema$IrnProfile>): void;
+    getIrnProfile(
+      paramsOrCallback?:
+        | Params$Resource$Users$Getirnprofile
+        | BodyResponseCallback<Schema$IrnProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IrnProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IrnProfile>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$IrnProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Getirnprofile;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Getirnprofile;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$IrnProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$IrnProfile>(parameters);
+      }
+    }
+
+    /**
      * Returns user Profile details.
      * @example
      * ```js
@@ -3234,7 +4734,7 @@ export namespace health_v4 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/googlehealth.profile.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3373,7 +4873,7 @@ export namespace health_v4 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/googlehealth.settings.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3391,6 +4891,7 @@ export namespace health_v4 {
      *   // {
      *   //   "autoStrideEnabled": false,
      *   //   "distanceUnit": "my_distanceUnit",
+     *   //   "foodLanguageCode": "my_foodLanguageCode",
      *   //   "glucoseUnit": "my_glucoseUnit",
      *   //   "heightUnit": "my_heightUnit",
      *   //   "languageLocale": "my_languageLocale",
@@ -3696,6 +5197,7 @@ export namespace health_v4 {
      *       // {
      *       //   "autoStrideEnabled": false,
      *       //   "distanceUnit": "my_distanceUnit",
+     *       //   "foodLanguageCode": "my_foodLanguageCode",
      *       //   "glucoseUnit": "my_glucoseUnit",
      *       //   "heightUnit": "my_heightUnit",
      *       //   "languageLocale": "my_languageLocale",
@@ -3717,6 +5219,7 @@ export namespace health_v4 {
      *   // {
      *   //   "autoStrideEnabled": false,
      *   //   "distanceUnit": "my_distanceUnit",
+     *   //   "foodLanguageCode": "my_foodLanguageCode",
      *   //   "glucoseUnit": "my_glucoseUnit",
      *   //   "heightUnit": "my_heightUnit",
      *   //   "languageLocale": "my_languageLocale",
@@ -3828,6 +5331,12 @@ export namespace health_v4 {
   export interface Params$Resource$Users$Getidentity extends StandardParameters {
     /**
      * Required. The resource name of the Identity. Format: `users/me/identity`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Users$Getirnprofile extends StandardParameters {
+    /**
+     * Required. The resource name of the IRN Profile. Format: `users/{user\}/irnProfile` Example: `users/1234567890/irnProfile` or `users/me/irnProfile` The {user\} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.
      */
     name?: string;
   }
@@ -4076,12 +5585,15 @@ export namespace health_v4 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "activeEnergyBurned": {},
      *       //   "activeMinutes": {},
      *       //   "activeZoneMinutes": {},
      *       //   "activityLevel": {},
      *       //   "altitude": {},
      *       //   "basalEnergyBurned": {},
+     *       //   "bloodGlucose": {},
      *       //   "bodyFat": {},
+     *       //   "coreBodyTemperature": {},
      *       //   "dailyHeartRateVariability": {},
      *       //   "dailyHeartRateZones": {},
      *       //   "dailyOxygenSaturation": {},
@@ -4091,13 +5603,18 @@ export namespace health_v4 {
      *       //   "dailyVo2Max": {},
      *       //   "dataSource": {},
      *       //   "distance": {},
+     *       //   "electrocardiogram": {},
      *       //   "exercise": {},
      *       //   "floors": {},
+     *       //   "food": {},
+     *       //   "foodMeasurementUnit": {},
      *       //   "heartRate": {},
      *       //   "heartRateVariability": {},
      *       //   "height": {},
      *       //   "hydrationLog": {},
+     *       //   "irregularRhythmNotification": {},
      *       //   "name": "my_name",
+     *       //   "nutritionLog": {},
      *       //   "oxygenSaturation": {},
      *       //   "respiratoryRateSleepSummary": {},
      *       //   "runVo2Max": {},
@@ -4240,7 +5757,12 @@ export namespace health_v4 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.location.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.sleep.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4374,7 +5896,7 @@ export namespace health_v4 {
     }
 
     /**
-     * Exports exercise data in TCX format. Note: While the Authorization section below states that any one of the listed scopes is accepted, this specific method requires the user to provide both one of the `activity_and_fitness` scopes (`normal` or `readonly`) AND one of the `location` scopes (`normal` or `readonly`) in their access token to succeed.
+     * Exports exercise data in TCX format. **IMPORTANT:** HTTP clients must append `?alt=media` to the request URL to download the raw TCX file. Example: `https://health.googleapis.com/v4/users/me/dataTypes/exercise/dataPoints/EXERCISE_ID:exportExerciseTcx?alt=media` Without `alt=media`, the server returns a JSON response (`ExportExerciseTcxResponse`) which is intended primarily for gRPC clients. **Note:** While the Authorization section below states that any one of the listed scopes is accepted, this specific method requires the user to provide both one of the `activity_and_fitness` scopes (`normal` or `readonly`) AND one of the `location` scopes (`normal` or `readonly`) in their access token to succeed.
      * @example
      * ```js
      * // Before running the sample:
@@ -4395,7 +5917,10 @@ export namespace health_v4 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.location.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4539,7 +6064,12 @@ export namespace health_v4 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.location.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.sleep.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4555,12 +6085,15 @@ export namespace health_v4 {
      *
      *   // Example response
      *   // {
+     *   //   "activeEnergyBurned": {},
      *   //   "activeMinutes": {},
      *   //   "activeZoneMinutes": {},
      *   //   "activityLevel": {},
      *   //   "altitude": {},
      *   //   "basalEnergyBurned": {},
+     *   //   "bloodGlucose": {},
      *   //   "bodyFat": {},
+     *   //   "coreBodyTemperature": {},
      *   //   "dailyHeartRateVariability": {},
      *   //   "dailyHeartRateZones": {},
      *   //   "dailyOxygenSaturation": {},
@@ -4570,13 +6103,18 @@ export namespace health_v4 {
      *   //   "dailyVo2Max": {},
      *   //   "dataSource": {},
      *   //   "distance": {},
+     *   //   "electrocardiogram": {},
      *   //   "exercise": {},
      *   //   "floors": {},
+     *   //   "food": {},
+     *   //   "foodMeasurementUnit": {},
      *   //   "heartRate": {},
      *   //   "heartRateVariability": {},
      *   //   "height": {},
      *   //   "hydrationLog": {},
+     *   //   "irregularRhythmNotification": {},
      *   //   "name": "my_name",
+     *   //   "nutritionLog": {},
      *   //   "oxygenSaturation": {},
      *   //   "respiratoryRateSleepSummary": {},
      *   //   "runVo2Max": {},
@@ -4704,7 +6242,12 @@ export namespace health_v4 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.location.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.sleep.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4713,7 +6256,7 @@ export namespace health_v4 {
      *
      *   // Do the magic
      *   const res = await health.users.dataTypes.dataPoints.list({
-     *     // Optional. Filter expression following https://google.aip.dev/160. A time range (either physical or civil) can be specified. The supported filter fields are: - Interval start time: - Pattern: `{interval_data_type\}.interval.start_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `steps.interval.start_time \>= "2023-11-24T00:00:00Z" AND steps.interval.start_time < "2023-11-25T00:00:00Z"` - `distance.interval.start_time \>= "2024-08-14T12:34:56Z"` - Interval civil start time: - Pattern: `{interval_data_type\}.interval.civil_start_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `steps.interval.civil_start_time \>= "2023-11-24" AND steps.interval.civil_start_time < "2023-11-25"` - `distance.interval.civil_start_time \>= "2024-08-14T12:34:56"` - Sample observation physical time: - Pattern: `{sample_data_type\}.sample_time.physical_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `weight.sample_time.physical_time \>= "2023-11-24T00:00:00Z" AND weight.sample_time.physical_time < "2023-11-25T00:00:00Z"` - `weight.sample_time.physical_time \>= "2024-08-14T12:34:56Z"` - Sample observation civil time: - Pattern: `{sample_data_type\}.sample_time.civil_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `weight.sample_time.civil_time \>= "2023-11-24" AND weight.sample_time.civil_time < "2023-11-25"` - `weight.sample_time.civil_time \>= "2024-08-14T12:34:56"` - Daily summary date: - Pattern: `{daily_summary_data_type\}.date` - Supported comparison operators: `\>=`, `<` - Date literal expected in ISO 8601 `YYYY-MM-DD` format - Supported logical operators: `AND` - Example: - `daily_heart_rate_variability.date < "2024-08-15"` - Session civil start time (**Excluding Sleep**): - Pattern: `{session_data_type\}.interval.civil_start_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `exercise.interval.civil_start_time \>= "2023-11-24" AND exercise.interval.civil_start_time < "2023-11-25"` - `exercise.interval.civil_start_time \>= "2024-08-14T12:34:56"` - Session end time (**Sleep specific**): - Pattern: `sleep.interval.end_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.end_time \>= "2023-11-24T00:00:00Z" AND sleep.interval.end_time < "2023-11-25T00:00:00Z"` - Session civil end time (**Sleep specific**): - Pattern: `sleep.interval.civil_end_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.civil_end_time \>= "2023-11-24" AND sleep.interval.civil_end_time < "2023-11-25"` Data points in the response will be ordered by the interval start time in descending order.
+     *     // Optional. Filter expression following https://google.aip.dev/160. A time range (either physical or civil) can be specified. The supported filter fields are: - Interval start time: - Pattern: `{interval_data_type\}.interval.start_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `steps.interval.start_time \>= "2023-11-24T00:00:00Z" AND steps.interval.start_time < "2023-11-25T00:00:00Z"` - `distance.interval.start_time \>= "2024-08-14T12:34:56Z"` - Interval civil start time: - Pattern: `{interval_data_type\}.interval.civil_start_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `steps.interval.civil_start_time \>= "2023-11-24" AND steps.interval.civil_start_time < "2023-11-25"` - `distance.interval.civil_start_time \>= "2024-08-14T12:34:56"` - Sample observation physical time: - Pattern: `{sample_data_type\}.sample_time.physical_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `weight.sample_time.physical_time \>= "2023-11-24T00:00:00Z" AND weight.sample_time.physical_time < "2023-11-25T00:00:00Z"` - `weight.sample_time.physical_time \>= "2024-08-14T12:34:56Z"` - Sample observation civil time: - Pattern: `{sample_data_type\}.sample_time.civil_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `weight.sample_time.civil_time \>= "2023-11-24" AND weight.sample_time.civil_time < "2023-11-25"` - `weight.sample_time.civil_time \>= "2024-08-14T12:34:56"` - Daily summary date: - Pattern: `{daily_summary_data_type\}.date` - Supported comparison operators: `\>=`, `<` - Date literal expected in ISO 8601 `YYYY-MM-DD` format - Supported logical operators: `AND` - Example: - `daily_heart_rate_variability.date < "2024-08-15"` - Session civil start time (**Excluding Sleep and ECG**): - Pattern: `{session_data_type\}.interval.civil_start_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `exercise.interval.civil_start_time \>= "2023-11-24" AND exercise.interval.civil_start_time < "2023-11-25"` - `exercise.interval.civil_start_time \>= "2024-08-14T12:34:56"` - Session start time (**ECG specific**): - Pattern: `electrocardiogram.interval.start_time` - Supported comparison operators: `\>=` - Timestamp literal expected in RFC-3339 format - Example: - `electrocardiogram.interval.start_time \>= "2024-08-14T12:34:56Z"` - Note: Only filtering by start time is supported for ECG. Filtering by end time (e.g., `electrocardiogram.interval.end_time`) is not supported. - Session end time (**Sleep specific**): - Pattern: `sleep.interval.end_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.end_time \>= "2023-11-24T00:00:00Z" AND sleep.interval.end_time < "2023-11-25T00:00:00Z"` - Session civil end time (**Sleep specific**): - Pattern: `sleep.interval.civil_end_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.civil_end_time \>= "2023-11-24" AND sleep.interval.civil_end_time < "2023-11-25"` Data points in the response will be ordered by the interval start time in descending order.
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of data points to return. If unspecified, at most 1440 data points will be returned. The maximum page size is 10000; values above that will be truncated accordingly. For `exercise` and `sleep` the default page size is 25. The maximum page size for `exercise` and `sleep` is 25.
      *     pageSize: 'placeholder-value',
@@ -4866,12 +6409,15 @@ export namespace health_v4 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "activeEnergyBurned": {},
      *       //   "activeMinutes": {},
      *       //   "activeZoneMinutes": {},
      *       //   "activityLevel": {},
      *       //   "altitude": {},
      *       //   "basalEnergyBurned": {},
+     *       //   "bloodGlucose": {},
      *       //   "bodyFat": {},
+     *       //   "coreBodyTemperature": {},
      *       //   "dailyHeartRateVariability": {},
      *       //   "dailyHeartRateZones": {},
      *       //   "dailyOxygenSaturation": {},
@@ -4881,13 +6427,18 @@ export namespace health_v4 {
      *       //   "dailyVo2Max": {},
      *       //   "dataSource": {},
      *       //   "distance": {},
+     *       //   "electrocardiogram": {},
      *       //   "exercise": {},
      *       //   "floors": {},
+     *       //   "food": {},
+     *       //   "foodMeasurementUnit": {},
      *       //   "heartRate": {},
      *       //   "heartRateVariability": {},
      *       //   "height": {},
      *       //   "hydrationLog": {},
+     *       //   "irregularRhythmNotification": {},
      *       //   "name": "my_name",
+     *       //   "nutritionLog": {},
      *       //   "oxygenSaturation": {},
      *       //   "respiratoryRateSleepSummary": {},
      *       //   "runVo2Max": {},
@@ -5027,7 +6578,12 @@ export namespace health_v4 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.location.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.sleep.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5177,7 +6733,12 @@ export namespace health_v4 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.location.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.sleep.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5361,7 +6922,7 @@ export namespace health_v4 {
   }
   export interface Params$Resource$Users$Datatypes$Datapoints$List extends StandardParameters {
     /**
-     * Optional. Filter expression following https://google.aip.dev/160. A time range (either physical or civil) can be specified. The supported filter fields are: - Interval start time: - Pattern: `{interval_data_type\}.interval.start_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `steps.interval.start_time \>= "2023-11-24T00:00:00Z" AND steps.interval.start_time < "2023-11-25T00:00:00Z"` - `distance.interval.start_time \>= "2024-08-14T12:34:56Z"` - Interval civil start time: - Pattern: `{interval_data_type\}.interval.civil_start_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `steps.interval.civil_start_time \>= "2023-11-24" AND steps.interval.civil_start_time < "2023-11-25"` - `distance.interval.civil_start_time \>= "2024-08-14T12:34:56"` - Sample observation physical time: - Pattern: `{sample_data_type\}.sample_time.physical_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `weight.sample_time.physical_time \>= "2023-11-24T00:00:00Z" AND weight.sample_time.physical_time < "2023-11-25T00:00:00Z"` - `weight.sample_time.physical_time \>= "2024-08-14T12:34:56Z"` - Sample observation civil time: - Pattern: `{sample_data_type\}.sample_time.civil_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `weight.sample_time.civil_time \>= "2023-11-24" AND weight.sample_time.civil_time < "2023-11-25"` - `weight.sample_time.civil_time \>= "2024-08-14T12:34:56"` - Daily summary date: - Pattern: `{daily_summary_data_type\}.date` - Supported comparison operators: `\>=`, `<` - Date literal expected in ISO 8601 `YYYY-MM-DD` format - Supported logical operators: `AND` - Example: - `daily_heart_rate_variability.date < "2024-08-15"` - Session civil start time (**Excluding Sleep**): - Pattern: `{session_data_type\}.interval.civil_start_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `exercise.interval.civil_start_time \>= "2023-11-24" AND exercise.interval.civil_start_time < "2023-11-25"` - `exercise.interval.civil_start_time \>= "2024-08-14T12:34:56"` - Session end time (**Sleep specific**): - Pattern: `sleep.interval.end_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.end_time \>= "2023-11-24T00:00:00Z" AND sleep.interval.end_time < "2023-11-25T00:00:00Z"` - Session civil end time (**Sleep specific**): - Pattern: `sleep.interval.civil_end_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.civil_end_time \>= "2023-11-24" AND sleep.interval.civil_end_time < "2023-11-25"` Data points in the response will be ordered by the interval start time in descending order.
+     * Optional. Filter expression following https://google.aip.dev/160. A time range (either physical or civil) can be specified. The supported filter fields are: - Interval start time: - Pattern: `{interval_data_type\}.interval.start_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `steps.interval.start_time \>= "2023-11-24T00:00:00Z" AND steps.interval.start_time < "2023-11-25T00:00:00Z"` - `distance.interval.start_time \>= "2024-08-14T12:34:56Z"` - Interval civil start time: - Pattern: `{interval_data_type\}.interval.civil_start_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `steps.interval.civil_start_time \>= "2023-11-24" AND steps.interval.civil_start_time < "2023-11-25"` - `distance.interval.civil_start_time \>= "2024-08-14T12:34:56"` - Sample observation physical time: - Pattern: `{sample_data_type\}.sample_time.physical_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `weight.sample_time.physical_time \>= "2023-11-24T00:00:00Z" AND weight.sample_time.physical_time < "2023-11-25T00:00:00Z"` - `weight.sample_time.physical_time \>= "2024-08-14T12:34:56Z"` - Sample observation civil time: - Pattern: `{sample_data_type\}.sample_time.civil_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `weight.sample_time.civil_time \>= "2023-11-24" AND weight.sample_time.civil_time < "2023-11-25"` - `weight.sample_time.civil_time \>= "2024-08-14T12:34:56"` - Daily summary date: - Pattern: `{daily_summary_data_type\}.date` - Supported comparison operators: `\>=`, `<` - Date literal expected in ISO 8601 `YYYY-MM-DD` format - Supported logical operators: `AND` - Example: - `daily_heart_rate_variability.date < "2024-08-15"` - Session civil start time (**Excluding Sleep and ECG**): - Pattern: `{session_data_type\}.interval.civil_start_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `exercise.interval.civil_start_time \>= "2023-11-24" AND exercise.interval.civil_start_time < "2023-11-25"` - `exercise.interval.civil_start_time \>= "2024-08-14T12:34:56"` - Session start time (**ECG specific**): - Pattern: `electrocardiogram.interval.start_time` - Supported comparison operators: `\>=` - Timestamp literal expected in RFC-3339 format - Example: - `electrocardiogram.interval.start_time \>= "2024-08-14T12:34:56Z"` - Note: Only filtering by start time is supported for ECG. Filtering by end time (e.g., `electrocardiogram.interval.end_time`) is not supported. - Session end time (**Sleep specific**): - Pattern: `sleep.interval.end_time` - Supported comparison operators: `\>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.end_time \>= "2023-11-24T00:00:00Z" AND sleep.interval.end_time < "2023-11-25T00:00:00Z"` - Session civil end time (**Sleep specific**): - Pattern: `sleep.interval.civil_end_time` - Supported comparison operators: `\>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.civil_end_time \>= "2023-11-24" AND sleep.interval.civil_end_time < "2023-11-25"` Data points in the response will be ordered by the interval start time in descending order.
      */
     filter?: string;
     /**
@@ -5420,5 +6981,320 @@ export namespace health_v4 {
      * Request body metadata
      */
     requestBody?: Schema$RollUpDataPointsRequest;
+  }
+
+  export class Resource$Users$Paireddevices {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns user's Device.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/health.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const health = google.health('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/googlehealth.settings.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await health.users.pairedDevices.get({
+     *     // Required. The name of the device to retrieve. Format: users/{user\}/devices/{device\}
+     *     name: 'users/my-user/pairedDevices/my-pairedDevice',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "batteryLevel": 0,
+     *   //   "batteryStatus": "my_batteryStatus",
+     *   //   "deviceType": "my_deviceType",
+     *   //   "deviceVersion": "my_deviceVersion",
+     *   //   "features": [],
+     *   //   "lastSyncTime": "my_lastSyncTime",
+     *   //   "macAddress": "my_macAddress",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Users$Paireddevices$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Users$Paireddevices$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PairedDevice>>;
+    get(
+      params: Params$Resource$Users$Paireddevices$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Users$Paireddevices$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PairedDevice>,
+      callback: BodyResponseCallback<Schema$PairedDevice>
+    ): void;
+    get(
+      params: Params$Resource$Users$Paireddevices$Get,
+      callback: BodyResponseCallback<Schema$PairedDevice>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$PairedDevice>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Users$Paireddevices$Get
+        | BodyResponseCallback<Schema$PairedDevice>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PairedDevice>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PairedDevice>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PairedDevice>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Paireddevices$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Paireddevices$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v4/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PairedDevice>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PairedDevice>(parameters);
+      }
+    }
+
+    /**
+     * Returns the user's list of paired 1P trackers and smartwatches.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/health.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const health = google.health('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/googlehealth.settings.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await health.users.pairedDevices.list({
+     *     // Optional. The maximum number of devices to return. The service may return fewer than this value. If unspecified, at most 5 devices will be returned. The maximum value is 100. values above 100 will be coerced to 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListPairedDevices` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPairedDevices` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of devices. Format: users/{user\}
+     *     parent: 'users/my-user',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pairedDevices": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Users$Paireddevices$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Users$Paireddevices$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPairedDevicesResponse>>;
+    list(
+      params: Params$Resource$Users$Paireddevices$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Users$Paireddevices$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPairedDevicesResponse>,
+      callback: BodyResponseCallback<Schema$ListPairedDevicesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Users$Paireddevices$List,
+      callback: BodyResponseCallback<Schema$ListPairedDevicesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListPairedDevicesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Users$Paireddevices$List
+        | BodyResponseCallback<Schema$ListPairedDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPairedDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPairedDevicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPairedDevicesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Paireddevices$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Paireddevices$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v4/{+parent}/pairedDevices').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPairedDevicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPairedDevicesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Users$Paireddevices$Get extends StandardParameters {
+    /**
+     * Required. The name of the device to retrieve. Format: users/{user\}/devices/{device\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Users$Paireddevices$List extends StandardParameters {
+    /**
+     * Optional. The maximum number of devices to return. The service may return fewer than this value. If unspecified, at most 5 devices will be returned. The maximum value is 100. values above 100 will be coerced to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListPairedDevices` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPairedDevices` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of devices. Format: users/{user\}
+     */
+    parent?: string;
   }
 }
