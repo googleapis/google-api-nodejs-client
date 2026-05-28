@@ -276,6 +276,15 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1ActionUnauthorizedResource {}
   /**
+   * Request message for ApproveChangeRequest.
+   */
+  export interface Schema$GoogleCloudDataplexV1ApproveChangeRequestRequest {
+    /**
+     * Optional. The etag of the ChangeRequest.
+     */
+    etag?: string | null;
+  }
+  /**
    * Represents a single piece of metadata describing an entry or entry link.
    */
   export interface Schema$GoogleCloudDataplexV1Aspect {
@@ -763,6 +772,212 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1CancelMetadataJobRequest {}
   /**
+   * Represents a proposed change to a metadata resource.
+   */
+  export interface Schema$GoogleCloudDataplexV1ChangeRequest {
+    /**
+     * Output only. The email address of the user who approved/rejected the ChangeRequest.
+     */
+    approver?: string | null;
+    /**
+     * Output only. The email address of the user who created the ChangeRequest.
+     */
+    author?: string | null;
+    /**
+     * Output only. The type of change represented by the change_payload. This field is derived from the populated field in the change_payload oneof.
+     */
+    changeType?: string | null;
+    /**
+     * Payload for creating an Entry.
+     */
+    createEntry?: Schema$GoogleCloudDataplexV1CreateEntryRequest;
+    /**
+     * Payload for creating an EntryLink.
+     */
+    createEntryLink?: Schema$GoogleCloudDataplexV1CreateEntryLinkRequest;
+    /**
+     * Payload for creating a Glossary.
+     */
+    createGlossary?: Schema$GoogleCloudDataplexV1CreateGlossaryRequest;
+    /**
+     * Payload for creating a GlossaryCategory.
+     */
+    createGlossaryCategory?: Schema$GoogleCloudDataplexV1CreateGlossaryCategoryRequest;
+    /**
+     * Payload for creating a GlossaryTerm.
+     */
+    createGlossaryTerm?: Schema$GoogleCloudDataplexV1CreateGlossaryTermRequest;
+    /**
+     * Output only. The time when the ChangeRequest was created.
+     */
+    createTime?: string | null;
+    /**
+     * Payload for Data Product access request.
+     */
+    dataProductAccessRequest?: Schema$GoogleCloudDataplexV1DataProductAccessRequest;
+    /**
+     * Payload for deleting an Entry.
+     */
+    deleteEntry?: Schema$GoogleCloudDataplexV1DeleteEntryRequest;
+    /**
+     * Payload for deleting an EntryLink.
+     */
+    deleteEntryLink?: Schema$GoogleCloudDataplexV1DeleteEntryLinkRequest;
+    /**
+     * Payload for deleting a Glossary.
+     */
+    deleteGlossary?: Schema$GoogleCloudDataplexV1DeleteGlossaryRequest;
+    /**
+     * Payload for deleting a GlossaryCategory.
+     */
+    deleteGlossaryCategory?: Schema$GoogleCloudDataplexV1DeleteGlossaryCategoryRequest;
+    /**
+     * Payload for deleting a GlossaryTerm.
+     */
+    deleteGlossaryTerm?: Schema$GoogleCloudDataplexV1DeleteGlossaryTermRequest;
+    /**
+     * Optional. This checksum is computed by the service. It can be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Optional. Justification of the ChangeRequest. This should explain why the change is needed or why it should be approved.
+     */
+    justification?: string | null;
+    /**
+     * Optional. User-defined labels for the ChangeRequest.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The relative resource name of the ChangeRequest, of the form: projects/{project_number\}/locations/{location_id\}/changeRequests/{change_request_id\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The reason provided for rejecting the ChangeRequest.
+     */
+    rejectionComment?: string | null;
+    /**
+     * Output only. The full resource name of the target resource to be modified. Example: //dataplex.googleapis.com/projects/my-project/locations/us-central1/entryGroups/my-group/entries/my-entry
+     */
+    resource?: string | null;
+    /**
+     * Output only. The current state of the ChangeRequest.
+     */
+    state?: string | null;
+    /**
+     * Output only. System generated globally unique ID for the ChangeRequest.
+     */
+    uid?: string | null;
+    /**
+     * Payload for updating an Entry.
+     */
+    updateEntry?: Schema$GoogleCloudDataplexV1UpdateEntryRequest;
+    /**
+     * Payload for updating a Glossary.
+     */
+    updateGlossary?: Schema$GoogleCloudDataplexV1UpdateGlossaryRequest;
+    /**
+     * Payload for updating a GlossaryCategory.
+     */
+    updateGlossaryCategory?: Schema$GoogleCloudDataplexV1UpdateGlossaryCategoryRequest;
+    /**
+     * Payload for updating a GlossaryTerm.
+     */
+    updateGlossaryTerm?: Schema$GoogleCloudDataplexV1UpdateGlossaryTermRequest;
+    /**
+     * Output only. The time when the ChangeRequest was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Request message for CreateEntryLink.
+   */
+  export interface Schema$GoogleCloudDataplexV1CreateEntryLinkRequest {
+    /**
+     * Required. Entry Link resource.
+     */
+    entryLink?: Schema$GoogleCloudDataplexV1EntryLink;
+    /**
+     * Required. Entry Link identifier * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the EntryGroup.
+     */
+    entryLinkId?: string | null;
+    /**
+     * Required. The resource name of the parent Entry Group: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}.
+     */
+    parent?: string | null;
+  }
+  /**
+   * Create Entry request.
+   */
+  export interface Schema$GoogleCloudDataplexV1CreateEntryRequest {
+    /**
+     * Required. Entry resource.
+     */
+    entry?: Schema$GoogleCloudDataplexV1Entry;
+    /**
+     * Required. Entry identifier. It has to be unique within an Entry Group.Entries corresponding to Google Cloud resources use an Entry ID format based on full resource names (https://cloud.google.com/apis/design/resource_names#full_resource_name). The format is a full resource name of the resource without the prefix double slashes in the API service name part of the full resource name. This allows retrieval of entries using their associated resource name.For example, if the full resource name of a resource is //library.googleapis.com/shelves/shelf1/books/book2, then the suggested entry_id is library.googleapis.com/shelves/shelf1/books/book2.It is also suggested to follow the same convention for entries corresponding to resources from providers or systems other than Google Cloud.The maximum size of the field is 4000 characters.
+     */
+    entryId?: string | null;
+    /**
+     * Required. The resource name of the parent Entry Group: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}.
+     */
+    parent?: string | null;
+  }
+  /**
+   * Creates a new GlossaryCategory under the specified Glossary.
+   */
+  export interface Schema$GoogleCloudDataplexV1CreateGlossaryCategoryRequest {
+    /**
+     * Required. The GlossaryCategory to create.
+     */
+    category?: Schema$GoogleCloudDataplexV1GlossaryCategory;
+    /**
+     * Required. GlossaryCategory identifier.
+     */
+    categoryId?: string | null;
+    /**
+     * Required. The parent resource where this GlossaryCategory will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} where locationId refers to a Google Cloud region.
+     */
+    parent?: string | null;
+  }
+  /**
+   * Create Glossary Request
+   */
+  export interface Schema$GoogleCloudDataplexV1CreateGlossaryRequest {
+    /**
+     * Required. The Glossary to create.
+     */
+    glossary?: Schema$GoogleCloudDataplexV1Glossary;
+    /**
+     * Required. Glossary ID: Glossary identifier.
+     */
+    glossaryId?: string | null;
+    /**
+     * Required. The parent resource where this Glossary will be created. Format: projects/{project_id_or_number\}/locations/{location_id\} where location_id refers to a Google Cloud region.
+     */
+    parent?: string | null;
+    /**
+     * Optional. Validates the request without actually creating the Glossary. Default: false.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
+   * Creates a new GlossaryTerm under the specified Glossary.
+   */
+  export interface Schema$GoogleCloudDataplexV1CreateGlossaryTermRequest {
+    /**
+     * Required. The parent resource where the GlossaryTerm will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} where location_id refers to a Google Cloud region.
+     */
+    parent?: string | null;
+    /**
+     * Required. The GlossaryTerm to create.
+     */
+    term?: Schema$GoogleCloudDataplexV1GlossaryTerm;
+    /**
+     * Required. GlossaryTerm identifier.
+     */
+    termId?: string | null;
+  }
+  /**
    * DataAccessSpec holds the access control configuration to be enforced on data stored within resources (eg: rows, columns in BigQuery Tables). When associated with data, the data is only accessible to principals explicitly granted access through the DataAccessSpec. Principals with access to the containing resource are not implicitly granted access.
    */
   export interface Schema$GoogleCloudDataplexV1DataAccessSpec {
@@ -1103,10 +1318,6 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataDiscoverySpecStorageConfigUnstructuredDataOptions {
     /**
-     * Optional. Deprecated: Use semantic_inference_enabled instead. Specifies whether deeper entity inference over the objects' contents using GenAI is enabled.
-     */
-    entityInferenceEnabled?: boolean | null;
-    /**
      * Optional. Specifies whether deeper semantic inference over the objects' contents using GenAI is enabled.
      */
     semanticInferenceEnabled?: boolean | null;
@@ -1253,6 +1464,10 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataProduct {
     /**
+     * Optional. Configuration for access approval for the data product.
+     */
+    accessApprovalConfig?: Schema$GoogleCloudDataplexV1DataProductAccessApprovalConfig;
+    /**
      * Optional. Data product access groups by access group id as key. If data product is used only for packaging data assets, then access groups may be empty. However, if a data product is used for sharing data assets, then at least one access group must be specified.Example: { "analyst": { "id": "analyst", "displayName": "Analyst", "description": "Access group for analysts", "principal": { "googleGroup": "analysts@example.com" \} \} \}
      */
     accessGroups?: {
@@ -1304,6 +1519,15 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
+   * Configuration for access approval for the data product.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataProductAccessApprovalConfig {
+    /**
+     * Optional. Specifies the email addresses of users who are potential approvers and are notified when an access request is made for the data product. The maximum number of emails allowed is 10.
+     */
+    approverEmails?: string[] | null;
+  }
+  /**
    * Custom user defined access groups at the data product level. These are used for granting different levels of access (IAM roles) on the individual data product's data assets.
    */
   export interface Schema$GoogleCloudDataplexV1DataProductAccessGroup {
@@ -1325,6 +1549,27 @@ export namespace dataplex_v1 {
     principal?: Schema$GoogleCloudDataplexV1DataProductPrincipal;
   }
   /**
+   * Message for requesting access to a Data Product. This will be used to create a ChangeRequest of type REQUEST_DATA_PRODUCT_ACCESS.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataProductAccessRequest {
+    /**
+     * Output only. The display name of the access group defined in the Data Product for which access is being requested.
+     */
+    accessGroupDisplayName?: string | null;
+    /**
+     * Required. The ID of the access group for which access is being requested. This corresponds to the unique identifier of the AccessGroup defined in the Data Product.
+     */
+    accessGroupId?: string | null;
+    /**
+     * Required. The resource name of the data product. Format: projects/{project_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
+     */
+    parent?: string | null;
+    /**
+     * Optional. The principal for which access is being requested in IAM format. If not specified, the requestor's principal will be used. Example: serviceAccount:my-sa@my-project.iam.gserviceaccount.com. Only service account principals are currently supported. https://cloud.google.com/iam/docs/principal-identifiers
+     */
+    requestedPrincipal?: string | null;
+  }
+  /**
    * Represents the principal entity associated with an access group, as per https://cloud.google.com/iam/docs/principals-overview.
    */
   export interface Schema$GoogleCloudDataplexV1DataProductPrincipal {
@@ -1332,6 +1577,10 @@ export namespace dataplex_v1 {
      * Optional. Email of the Google Group, as per https://cloud.google.com/iam/docs/principals-overview#google-group.
      */
     googleGroup?: string | null;
+    /**
+     * Optional. Specifies the email of the producer service account, as per https://cloud.google.com/iam/docs/principals-overview#service-account.
+     */
+    serviceAccount?: string | null;
   }
   /**
    * DataProfileResult defines the output of DataProfileScan. Each field of the table will have field type specific profile result.
@@ -2701,6 +2950,55 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
+   * Request message for DeleteEntryLink.
+   */
+  export interface Schema$GoogleCloudDataplexV1DeleteEntryLinkRequest {
+    /**
+     * Required. The resource name of the Entry Link: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entryLinks/{entry_link_id\}.
+     */
+    name?: string | null;
+  }
+  /**
+   * Delete Entry request.
+   */
+  export interface Schema$GoogleCloudDataplexV1DeleteEntryRequest {
+    /**
+     * Required. The resource name of the Entry: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entries/{entry\}.
+     */
+    name?: string | null;
+  }
+  /**
+   * Delete GlossaryCategory Request
+   */
+  export interface Schema$GoogleCloudDataplexV1DeleteGlossaryCategoryRequest {
+    /**
+     * Required. The name of the GlossaryCategory to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
+     */
+    name?: string | null;
+  }
+  /**
+   * Delete Glossary Request
+   */
+  export interface Schema$GoogleCloudDataplexV1DeleteGlossaryRequest {
+    /**
+     * Optional. The etag of the Glossary. If this is provided, it must match the server's etag. If the etag is provided and does not match the server-computed etag, the request must fail with a ABORTED error code.
+     */
+    etag?: string | null;
+    /**
+     * Required. The name of the Glossary to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}
+     */
+    name?: string | null;
+  }
+  /**
+   * Delete GlossaryTerm Request
+   */
+  export interface Schema$GoogleCloudDataplexV1DeleteGlossaryTermRequest {
+    /**
+     * Required. The name of the GlossaryTerm to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/terms/{term_id\}
+     */
+    name?: string | null;
+  }
+  /**
    * The payload associated with Discovery data processing.
    */
   export interface Schema$GoogleCloudDataplexV1DiscoveryEvent {
@@ -3688,6 +3986,23 @@ export namespace dataplex_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for ListChangeRequests.
+   */
+  export interface Schema$GoogleCloudDataplexV1ListChangeRequestsResponse {
+    /**
+     * The ChangeRequests from the specified project and location.
+     */
+    changeRequests?: Schema$GoogleCloudDataplexV1ChangeRequest[];
+    /**
+     * A token, which can be sent as page_token to retrieve the next page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response message for listing data assets.
    */
   export interface Schema$GoogleCloudDataplexV1ListDataAssetsResponse {
@@ -4037,6 +4352,10 @@ export namespace dataplex_v1 {
    * Lookup Context using permissions in the source system.
    */
   export interface Schema$GoogleCloudDataplexV1LookupContextRequest {
+    /**
+     * Optional. The text representing contextual information for which metadata context is being requested.
+     */
+    context?: string | null;
     /**
      * Optional. Allows to configure the context.Supported options: format - The format of the context (one of yaml, xml, json, default is yaml). context_budget - If provided, the output will be intelligently truncated on a best-effort basis to contain approximately the desired amount of characters. There is no guarantee to achieve the specific amount.
      */
@@ -4433,6 +4752,41 @@ export namespace dataplex_v1 {
      * Required. Immutable. The set of values representing the partition, which correspond to the partition schema defined in the parent entity.
      */
     values?: string[] | null;
+  }
+  /**
+   * Request message for RejectChangeRequest.
+   */
+  export interface Schema$GoogleCloudDataplexV1RejectChangeRequestRequest {
+    /**
+     * Optional. The reason for rejecting the ChangeRequest.
+     */
+    comment?: string | null;
+    /**
+     * Optional. The etag of the ChangeRequest.
+     */
+    etag?: string | null;
+  }
+  /**
+   * Message for requesting access to a Data Product.
+   */
+  export interface Schema$GoogleCloudDataplexV1RequestDataProductAccessRequest {
+    /**
+     * Required. The change request for the data product access request.
+     */
+    changeRequest?: Schema$GoogleCloudDataplexV1ChangeRequest;
+    /**
+     * Optional. Validates the request without actually creating the access change request. Defaults to false.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
+   * Response message for requesting access to a Data Product.
+   */
+  export interface Schema$GoogleCloudDataplexV1RequestDataProductAccessResponse {
+    /**
+     * The resource name of the created ChangeRequest. Format: projects/{project_number\}/locations/{location_id\}/changeRequests/{change_request_id\}
+     */
+    changeRequestName?: string | null;
   }
   /**
    * ResourceAccessSpec holds the access control configuration to be enforced on the resources, for example, Cloud Storage bucket, BigQuery dataset, BigQuery table.
@@ -5033,6 +5387,74 @@ export namespace dataplex_v1 {
      * Required. Cron (https://en.wikipedia.org/wiki/Cron) schedule for running scans periodically.To explicitly set a timezone in the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE\}" or "TZ=${IANA_TIME_ZONE\}". The ${IANA_TIME_ZONE\} may only be a valid string from IANA time zone database (wikipedia (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List)). For example, CRON_TZ=America/New_York 1 * * * *, or TZ=America/New_York 1 * * * *.This field is required for Schedule scans.
      */
     cron?: string | null;
+  }
+  /**
+   * Update Entry request.
+   */
+  export interface Schema$GoogleCloudDataplexV1UpdateEntryRequest {
+    /**
+     * Optional. If set to true and the entry doesn't exist, the service will create it.
+     */
+    allowMissing?: boolean | null;
+    /**
+     * Optional. The map keys of the Aspects which the service should modify. It supports the following syntaxes: - matches an aspect of the given type and empty path. @path - matches an aspect of the given type and specified path. For example, to attach an aspect to a field that is specified by the schema aspect, the path should have the format Schema.. @* - matches aspects of the given type for all paths. *@path - matches aspects of all types on the given path.The service will not remove existing aspects matching the syntax unless delete_missing_aspects is set to true.If this field is left empty, the service treats it as specifying exactly those Aspects present in the request.
+     */
+    aspectKeys?: string[] | null;
+    /**
+     * Optional. If set to true and the aspect_keys specify aspect ranges, the service deletes any existing aspects from that range that weren't provided in the request.
+     */
+    deleteMissingAspects?: boolean | null;
+    /**
+     * Required. Entry resource.
+     */
+    entry?: Schema$GoogleCloudDataplexV1Entry;
+    /**
+     * Optional. Mask of fields to update. To update Aspects, the update_mask must contain the value "aspects".If the update_mask is empty, the service will update all modifiable fields present in the request.
+     */
+    updateMask?: string | null;
+  }
+  /**
+   * Update GlossaryCategory Request
+   */
+  export interface Schema$GoogleCloudDataplexV1UpdateGlossaryCategoryRequest {
+    /**
+     * Required. The GlossaryCategory to update. The GlossaryCategory's name field is used to identify the GlossaryCategory to update. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
+     */
+    category?: Schema$GoogleCloudDataplexV1GlossaryCategory;
+    /**
+     * Required. The list of fields to update.
+     */
+    updateMask?: string | null;
+  }
+  /**
+   * Update Glossary Request
+   */
+  export interface Schema$GoogleCloudDataplexV1UpdateGlossaryRequest {
+    /**
+     * Required. The Glossary to update. The Glossary's name field is used to identify the Glossary to update. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}
+     */
+    glossary?: Schema$GoogleCloudDataplexV1Glossary;
+    /**
+     * Required. The list of fields to update.
+     */
+    updateMask?: string | null;
+    /**
+     * Optional. Validates the request without actually updating the Glossary. Default: false.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
+   * Update GlossaryTerm Request
+   */
+  export interface Schema$GoogleCloudDataplexV1UpdateGlossaryTermRequest {
+    /**
+     * Required. The GlossaryTerm to update. The GlossaryTerm's name field is used to identify the GlossaryTerm to update. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/terms/{term_id\}
+     */
+    term?: Schema$GoogleCloudDataplexV1GlossaryTerm;
+    /**
+     * Required. The list of fields to update.
+     */
+    updateMask?: string | null;
   }
   /**
    * A zone represents a logical group of related assets within a lake. A zone can be used to map to organizational structure or represent stages of data readiness from raw to curated. It provides managing behavior that is shared or inherited by all contained assets.
@@ -7828,6 +8250,7 @@ export namespace dataplex_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "context": "my_context",
      *       //   "options": {},
      *       //   "resources": []
      *       // }
@@ -10119,6 +10542,503 @@ export namespace dataplex_v1 {
     }
 
     /**
+     * Approves a ChangeRequest.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.changeRequests.approve({
+     *     // Required. The name of the ChangeRequest to approve.
+     *     name: 'projects/my-project/locations/my-location/changeRequests/my-changeRequest',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approver": "my_approver",
+     *   //   "author": "my_author",
+     *   //   "changeType": "my_changeType",
+     *   //   "createEntry": {},
+     *   //   "createEntryLink": {},
+     *   //   "createGlossary": {},
+     *   //   "createGlossaryCategory": {},
+     *   //   "createGlossaryTerm": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "dataProductAccessRequest": {},
+     *   //   "deleteEntry": {},
+     *   //   "deleteEntryLink": {},
+     *   //   "deleteGlossary": {},
+     *   //   "deleteGlossaryCategory": {},
+     *   //   "deleteGlossaryTerm": {},
+     *   //   "etag": "my_etag",
+     *   //   "justification": "my_justification",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "rejectionComment": "my_rejectionComment",
+     *   //   "resource": "my_resource",
+     *   //   "state": "my_state",
+     *   //   "uid": "my_uid",
+     *   //   "updateEntry": {},
+     *   //   "updateGlossary": {},
+     *   //   "updateGlossaryCategory": {},
+     *   //   "updateGlossaryTerm": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    approve(
+      params: Params$Resource$Projects$Locations$Changerequests$Approve,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    approve(
+      params?: Params$Resource$Projects$Locations$Changerequests$Approve,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ChangeRequest>
+    >;
+    approve(
+      params: Params$Resource$Projects$Locations$Changerequests$Approve,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    approve(
+      params: Params$Resource$Projects$Locations$Changerequests$Approve,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+    ): void;
+    approve(
+      params: Params$Resource$Projects$Locations$Changerequests$Approve,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+    ): void;
+    approve(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+    ): void;
+    approve(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Changerequests$Approve
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ChangeRequest>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Changerequests$Approve;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Changerequests$Approve;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:approve').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ChangeRequest>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ChangeRequest>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a ChangeRequest.Behavior depends on the caller's permissions and the resource's state: 1. Callers with dataplex.changeRequests.delete can only delete ChangeRequests in the NEW state. 2. Callers with the dataplex.changeRequests.adminDelete permission can delete ChangeRequests regardless of their state.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.changeRequests.delete({
+     *     // Optional. The etag of the ChangeRequest.
+     *     etag: 'placeholder-value',
+     *     // Required. The name of the ChangeRequest to delete. Format: projects/{project_number\}/locations/{location_id\}/changeRequests/{change_request_id\}
+     *     name: 'projects/my-project/locations/my-location/changeRequests/my-changeRequest',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Changerequests$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Changerequests$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Changerequests$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Changerequests$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Changerequests$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Changerequests$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Changerequests$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Changerequests$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a ChangeRequest.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.changeRequests.get({
+     *     // Required. The name of the ChangeRequest to retrieve. Format: projects/{project_number\}/locations/{location_id\}/changeRequests/{change_request_id\}
+     *     name: 'projects/my-project/locations/my-location/changeRequests/my-changeRequest',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approver": "my_approver",
+     *   //   "author": "my_author",
+     *   //   "changeType": "my_changeType",
+     *   //   "createEntry": {},
+     *   //   "createEntryLink": {},
+     *   //   "createGlossary": {},
+     *   //   "createGlossaryCategory": {},
+     *   //   "createGlossaryTerm": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "dataProductAccessRequest": {},
+     *   //   "deleteEntry": {},
+     *   //   "deleteEntryLink": {},
+     *   //   "deleteGlossary": {},
+     *   //   "deleteGlossaryCategory": {},
+     *   //   "deleteGlossaryTerm": {},
+     *   //   "etag": "my_etag",
+     *   //   "justification": "my_justification",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "rejectionComment": "my_rejectionComment",
+     *   //   "resource": "my_resource",
+     *   //   "state": "my_state",
+     *   //   "uid": "my_uid",
+     *   //   "updateEntry": {},
+     *   //   "updateGlossary": {},
+     *   //   "updateGlossaryCategory": {},
+     *   //   "updateGlossaryTerm": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Changerequests$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Changerequests$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ChangeRequest>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Changerequests$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Changerequests$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Changerequests$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Changerequests$Get
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ChangeRequest>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Changerequests$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Changerequests$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ChangeRequest>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ChangeRequest>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
      * ```js
@@ -10264,6 +11184,560 @@ export namespace dataplex_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists ChangeRequests.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.changeRequests.list({
+     *     // Optional. Filter request. Supports filtering by: state, author, resource, create_time, update_time.
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by fields for the result.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of ChangeRequests to return. The service may return fewer.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListChangeRequests call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of ChangeRequests. Format: projects/{project_number\}/locations/{location_id\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "changeRequests": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Changerequests$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Changerequests$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListChangeRequestsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Changerequests$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Changerequests$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListChangeRequestsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListChangeRequestsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Changerequests$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListChangeRequestsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListChangeRequestsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Changerequests$List
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListChangeRequestsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListChangeRequestsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListChangeRequestsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ListChangeRequestsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Changerequests$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Changerequests$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/changeRequests').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ListChangeRequestsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ListChangeRequestsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a ChangeRequest. Only allowed when the state is NEW.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.changeRequests.patch({
+     *     // Identifier. The relative resource name of the ChangeRequest, of the form: projects/{project_number\}/locations/{location_id\}/changeRequests/{change_request_id\}
+     *     name: 'projects/my-project/locations/my-location/changeRequests/my-changeRequest',
+     *     // Optional. The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "approver": "my_approver",
+     *       //   "author": "my_author",
+     *       //   "changeType": "my_changeType",
+     *       //   "createEntry": {},
+     *       //   "createEntryLink": {},
+     *       //   "createGlossary": {},
+     *       //   "createGlossaryCategory": {},
+     *       //   "createGlossaryTerm": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "dataProductAccessRequest": {},
+     *       //   "deleteEntry": {},
+     *       //   "deleteEntryLink": {},
+     *       //   "deleteGlossary": {},
+     *       //   "deleteGlossaryCategory": {},
+     *       //   "deleteGlossaryTerm": {},
+     *       //   "etag": "my_etag",
+     *       //   "justification": "my_justification",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "rejectionComment": "my_rejectionComment",
+     *       //   "resource": "my_resource",
+     *       //   "state": "my_state",
+     *       //   "uid": "my_uid",
+     *       //   "updateEntry": {},
+     *       //   "updateGlossary": {},
+     *       //   "updateGlossaryCategory": {},
+     *       //   "updateGlossaryTerm": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approver": "my_approver",
+     *   //   "author": "my_author",
+     *   //   "changeType": "my_changeType",
+     *   //   "createEntry": {},
+     *   //   "createEntryLink": {},
+     *   //   "createGlossary": {},
+     *   //   "createGlossaryCategory": {},
+     *   //   "createGlossaryTerm": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "dataProductAccessRequest": {},
+     *   //   "deleteEntry": {},
+     *   //   "deleteEntryLink": {},
+     *   //   "deleteGlossary": {},
+     *   //   "deleteGlossaryCategory": {},
+     *   //   "deleteGlossaryTerm": {},
+     *   //   "etag": "my_etag",
+     *   //   "justification": "my_justification",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "rejectionComment": "my_rejectionComment",
+     *   //   "resource": "my_resource",
+     *   //   "state": "my_state",
+     *   //   "uid": "my_uid",
+     *   //   "updateEntry": {},
+     *   //   "updateGlossary": {},
+     *   //   "updateGlossaryCategory": {},
+     *   //   "updateGlossaryTerm": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Changerequests$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Changerequests$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ChangeRequest>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Changerequests$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Changerequests$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Changerequests$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Changerequests$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ChangeRequest>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Changerequests$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Changerequests$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ChangeRequest>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ChangeRequest>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Rejects a ChangeRequest.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.changeRequests.reject({
+     *     // Required. The name of the ChangeRequest to reject.
+     *     name: 'projects/my-project/locations/my-location/changeRequests/my-changeRequest',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "comment": "my_comment",
+     *       //   "etag": "my_etag"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "approver": "my_approver",
+     *   //   "author": "my_author",
+     *   //   "changeType": "my_changeType",
+     *   //   "createEntry": {},
+     *   //   "createEntryLink": {},
+     *   //   "createGlossary": {},
+     *   //   "createGlossaryCategory": {},
+     *   //   "createGlossaryTerm": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "dataProductAccessRequest": {},
+     *   //   "deleteEntry": {},
+     *   //   "deleteEntryLink": {},
+     *   //   "deleteGlossary": {},
+     *   //   "deleteGlossaryCategory": {},
+     *   //   "deleteGlossaryTerm": {},
+     *   //   "etag": "my_etag",
+     *   //   "justification": "my_justification",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "rejectionComment": "my_rejectionComment",
+     *   //   "resource": "my_resource",
+     *   //   "state": "my_state",
+     *   //   "uid": "my_uid",
+     *   //   "updateEntry": {},
+     *   //   "updateGlossary": {},
+     *   //   "updateGlossaryCategory": {},
+     *   //   "updateGlossaryTerm": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    reject(
+      params: Params$Resource$Projects$Locations$Changerequests$Reject,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    reject(
+      params?: Params$Resource$Projects$Locations$Changerequests$Reject,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ChangeRequest>
+    >;
+    reject(
+      params: Params$Resource$Projects$Locations$Changerequests$Reject,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reject(
+      params: Params$Resource$Projects$Locations$Changerequests$Reject,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+    ): void;
+    reject(
+      params: Params$Resource$Projects$Locations$Changerequests$Reject,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+    ): void;
+    reject(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+    ): void;
+    reject(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Changerequests$Reject
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ChangeRequest>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1ChangeRequest>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Changerequests$Reject;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Changerequests$Reject;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:reject').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ChangeRequest>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ChangeRequest>(
+          parameters
+        );
       }
     }
 
@@ -10585,6 +12059,33 @@ export namespace dataplex_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Changerequests$Approve extends StandardParameters {
+    /**
+     * Required. The name of the ChangeRequest to approve.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1ApproveChangeRequestRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Changerequests$Delete extends StandardParameters {
+    /**
+     * Optional. The etag of the ChangeRequest.
+     */
+    etag?: string;
+    /**
+     * Required. The name of the ChangeRequest to delete. Format: projects/{project_number\}/locations/{location_id\}/changeRequests/{change_request_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Changerequests$Get extends StandardParameters {
+    /**
+     * Required. The name of the ChangeRequest to retrieve. Format: projects/{project_number\}/locations/{location_id\}/changeRequests/{change_request_id\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Changerequests$Getiampolicy extends StandardParameters {
     /**
      * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
@@ -10594,6 +12095,54 @@ export namespace dataplex_v1 {
      * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Changerequests$List extends StandardParameters {
+    /**
+     * Optional. Filter request. Supports filtering by: state, author, resource, create_time, update_time.
+     */
+    filter?: string;
+    /**
+     * Optional. Order by fields for the result.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Maximum number of ChangeRequests to return. The service may return fewer.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token received from a previous ListChangeRequests call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of ChangeRequests. Format: projects/{project_number\}/locations/{location_id\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Changerequests$Patch extends StandardParameters {
+    /**
+     * Identifier. The relative resource name of the ChangeRequest, of the form: projects/{project_number\}/locations/{location_id\}/changeRequests/{change_request_id\}
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1ChangeRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Changerequests$Reject extends StandardParameters {
+    /**
+     * Required. The name of the ChangeRequest to reject.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1RejectChangeRequestRequest;
   }
   export interface Params$Resource$Projects$Locations$Changerequests$Setiampolicy extends StandardParameters {
     /**
@@ -12568,6 +14117,7 @@ export namespace dataplex_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "accessApprovalConfig": {},
      *       //   "accessGroups": {},
      *       //   "assetCount": 0,
      *       //   "createTime": "my_createTime",
@@ -12886,6 +14436,7 @@ export namespace dataplex_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "accessApprovalConfig": {},
      *   //   "accessGroups": {},
      *   //   "assetCount": 0,
      *   //   "createTime": "my_createTime",
@@ -13359,6 +14910,7 @@ export namespace dataplex_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "accessApprovalConfig": {},
      *       //   "accessGroups": {},
      *       //   "assetCount": 0,
      *       //   "createTime": "my_createTime",
@@ -13479,6 +15031,167 @@ export namespace dataplex_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Requests access to a data product. This will trigger an access approval workflow, and the requester will need to wait for the approval to be granted before they will be able to access the data product assets.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dataplex.read-write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataProducts.requestAccess({
+     *     // Required. The resource name of the data product. Format: projects/{project_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
+     *     parent:
+     *       'projects/my-project/locations/my-location/dataProducts/my-dataProduct',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "changeRequest": {},
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "changeRequestName": "my_changeRequestName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    requestAccess(
+      params: Params$Resource$Projects$Locations$Dataproducts$Requestaccess,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    requestAccess(
+      params?: Params$Resource$Projects$Locations$Dataproducts$Requestaccess,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1RequestDataProductAccessResponse>
+    >;
+    requestAccess(
+      params: Params$Resource$Projects$Locations$Dataproducts$Requestaccess,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    requestAccess(
+      params: Params$Resource$Projects$Locations$Dataproducts$Requestaccess,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1RequestDataProductAccessResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1RequestDataProductAccessResponse>
+    ): void;
+    requestAccess(
+      params: Params$Resource$Projects$Locations$Dataproducts$Requestaccess,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1RequestDataProductAccessResponse>
+    ): void;
+    requestAccess(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1RequestDataProductAccessResponse>
+    ): void;
+    requestAccess(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dataproducts$Requestaccess
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1RequestDataProductAccessResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1RequestDataProductAccessResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1RequestDataProductAccessResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDataplexV1RequestDataProductAccessResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dataproducts$Requestaccess;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dataproducts$Requestaccess;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:requestAccess').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1RequestDataProductAccessResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1RequestDataProductAccessResponse>(
+          parameters
+        );
       }
     }
 
@@ -13890,6 +15603,17 @@ export namespace dataplex_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDataplexV1DataProduct;
+  }
+  export interface Params$Resource$Projects$Locations$Dataproducts$Requestaccess extends StandardParameters {
+    /**
+     * Required. The resource name of the data product. Format: projects/{project_number\}/locations/{location_id\}/dataProducts/{data_product_id\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1RequestDataProductAccessRequest;
   }
   export interface Params$Resource$Projects$Locations$Dataproducts$Setiampolicy extends StandardParameters {
     /**
@@ -14844,7 +16568,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.dataScans.create({
-     *     // Required. DataScan identifier. Must contain only lowercase letters, numbers and hyphens. Must start with a letter. Must end with a number or a letter. Must be between 1-63 characters. Must be unique within the customer project / location.
+     *     // Optional. DataScan identifier. If not provided, a unique ID will be generated with the prefix "data-scan-". Must contain only lowercase letters, numbers and hyphens. Must start with a letter. Must end with a number or a letter. Must be between 1-63 characters. Must be unique within the customer project / location.
      *     dataScanId: 'placeholder-value',
      *     // Required. The resource name of the parent location: projects/{project\}/locations/{location_id\} where project refers to a project_id or project_number and location_id refers to a Google Cloud region.
      *     parent: 'projects/my-project/locations/my-location',
@@ -16419,7 +18143,7 @@ export namespace dataplex_v1 {
 
   export interface Params$Resource$Projects$Locations$Datascans$Create extends StandardParameters {
     /**
-     * Required. DataScan identifier. Must contain only lowercase letters, numbers and hyphens. Must start with a letter. Must end with a number or a letter. Must be between 1-63 characters. Must be unique within the customer project / location.
+     * Optional. DataScan identifier. If not provided, a unique ID will be generated with the prefix "data-scan-". Must contain only lowercase letters, numbers and hyphens. Must start with a letter. Must end with a number or a letter. Must be between 1-63 characters. Must be unique within the customer project / location.
      */
     dataScanId?: string;
     /**
