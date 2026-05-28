@@ -188,6 +188,14 @@ export namespace classroom_v1 {
    */
   export interface Schema$AddOnAttachmentStudentSubmission {
     /**
+     * Output only. Identifier of the course work submission under which this attachment submission was made.
+     */
+    courseWorkSubmissionId?: string | null;
+    /**
+     * Output only. Classroom-assigned identifier for this student submission. This is unique among submissions for the relevant course work and add-on attachment combination.
+     */
+    id?: string | null;
+    /**
      * Student grade on this attachment. If unset, no grade was set.
      */
     pointsEarned?: number | null;
@@ -8214,6 +8222,8 @@ export namespace classroom_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "courseWorkSubmissionId": "my_courseWorkSubmissionId",
+     *   //   "id": "my_id",
      *   //   "pointsEarned": {},
      *   //   "postSubmissionState": "my_postSubmissionState",
      *   //   "userId": "my_userId"
@@ -8376,6 +8386,8 @@ export namespace classroom_v1 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "courseWorkSubmissionId": "my_courseWorkSubmissionId",
+     *           //   "id": "my_id",
      *           //   "pointsEarned": {},
      *           //   "postSubmissionState": "my_postSubmissionState",
      *           //   "userId": "my_userId"
@@ -8387,6 +8399,8 @@ export namespace classroom_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "courseWorkSubmissionId": "my_courseWorkSubmissionId",
+     *   //   "id": "my_id",
      *   //   "pointsEarned": {},
      *   //   "postSubmissionState": "my_postSubmissionState",
      *   //   "userId": "my_userId"
@@ -13847,6 +13861,8 @@ export namespace classroom_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "courseWorkSubmissionId": "my_courseWorkSubmissionId",
+     *   //   "id": "my_id",
      *   //   "pointsEarned": {},
      *   //   "postSubmissionState": "my_postSubmissionState",
      *   //   "userId": "my_userId"
@@ -14008,6 +14024,8 @@ export namespace classroom_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "courseWorkSubmissionId": "my_courseWorkSubmissionId",
+     *         //   "id": "my_id",
      *         //   "pointsEarned": {},
      *         //   "postSubmissionState": "my_postSubmissionState",
      *         //   "userId": "my_userId"
@@ -14018,6 +14036,8 @@ export namespace classroom_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "courseWorkSubmissionId": "my_courseWorkSubmissionId",
+     *   //   "id": "my_id",
      *   //   "pointsEarned": {},
      *   //   "postSubmissionState": "my_postSubmissionState",
      *   //   "userId": "my_userId"

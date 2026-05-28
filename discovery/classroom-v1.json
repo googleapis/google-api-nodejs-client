@@ -4376,7 +4376,7 @@
       }
     }
   },
-  "revision": "20260505",
+  "revision": "20260511",
   "rootUrl": "https://classroom.googleapis.com/",
   "schemas": {
     "AddOnAttachment": {
@@ -4444,6 +4444,16 @@
       "description": "Payload for grade update requests.",
       "id": "AddOnAttachmentStudentSubmission",
       "properties": {
+        "courseWorkSubmissionId": {
+          "description": "Output only. Identifier of the course work submission under which this attachment submission was made.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. Classroom-assigned identifier for this student submission. This is unique among submissions for the relevant course work and add-on attachment combination.",
+          "readOnly": true,
+          "type": "string"
+        },
         "pointsEarned": {
           "description": "Student grade on this attachment. If unset, no grade was set.",
           "format": "double",
