@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/chromewebstore",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "chromewebstore",
   "main": "build/index.js",
   "types": "build/index.d.ts",

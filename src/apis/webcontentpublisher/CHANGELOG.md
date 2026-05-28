@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/health-v1.0.0...health-v2.0.0) (2026-05-28)
+## 1.0.0 (2026-05-28)
 
 
 ### ⚠ BREAKING CHANGES
@@ -10,10 +10,3 @@
 ### Features
 
 * run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
-
-## 1.0.0 (2026-05-19)
-
-
-### Bug Fixes
-
-* **health:** update the API ([ded5736](https://github.com/googleapis/google-api-nodejs-client/commit/ded5736a3a6c719fe8ec973c876a99c4eee844a7))

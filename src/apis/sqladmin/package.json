@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/sqladmin",
-  "version": "36.0.0",
+  "version": "37.0.0",
   "description": "sqladmin",
   "main": "build/index.js",
   "types": "build/index.d.ts",
