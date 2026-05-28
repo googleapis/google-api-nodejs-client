@@ -214,7 +214,7 @@ export namespace mybusinessverifications_v1 {
    */
   export interface Schema$GenerateInstantVerificationTokenRequest {
     /**
-     * Immutable. The address and other details of the location to generate an instant verification token for.
+     * Immutable. Deprecated: Please use location_id instead. The address and other details of the location to generate an instant verification token for.
      */
     locationData?: Schema$LocationData;
     /**
