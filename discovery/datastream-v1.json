@@ -1503,7 +1503,7 @@
       }
     }
   },
-  "revision": "20260426",
+  "revision": "20260503",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -4259,6 +4259,18 @@
       },
       "type": "object"
     },
+    "SpannerChangeStreamPosition": {
+      "description": "Represents a position in a Spanner change stream from which to start replicating.",
+      "id": "SpannerChangeStreamPosition",
+      "properties": {
+        "startTime": {
+          "description": "Required. The timestamp to start change stream queries from. The timestamp must be a positive value.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SpannerColumn": {
       "description": "Spanner column.",
       "id": "SpannerColumn",
@@ -4435,6 +4447,10 @@
         "oracleScnPosition": {
           "$ref": "OracleScnPosition",
           "description": "Oracle SCN to start replicating from."
+        },
+        "spannerChangeStreamPosition": {
+          "$ref": "SpannerChangeStreamPosition",
+          "description": "Optional. Spanner change stream position to start replicating from."
         },
         "sqlServerLsnPosition": {
           "$ref": "SqlServerLsnPosition",

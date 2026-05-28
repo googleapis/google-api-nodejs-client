@@ -2289,6 +2289,15 @@ export namespace datastream_v1 {
     sqlServerIdentifier?: Schema$SqlServerObjectIdentifier;
   }
   /**
+   * Represents a position in a Spanner change stream from which to start replicating.
+   */
+  export interface Schema$SpannerChangeStreamPosition {
+    /**
+     * Required. The timestamp to start change stream queries from. The timestamp must be a positive value.
+     */
+    startTime?: string | null;
+  }
+  /**
    * Spanner column.
    */
   export interface Schema$SpannerColumn {
@@ -2427,6 +2436,10 @@ export namespace datastream_v1 {
      * Oracle SCN to start replicating from.
      */
     oracleScnPosition?: Schema$OracleScnPosition;
+    /**
+     * Optional. Spanner change stream position to start replicating from.
+     */
+    spannerChangeStreamPosition?: Schema$SpannerChangeStreamPosition;
     /**
      * SqlServer LSN to start replicating from.
      */
