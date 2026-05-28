@@ -492,24 +492,76 @@ export namespace ondemandscanning_v1beta1 {
    * Common Vulnerability Scoring System. For details, see https://www.first.org/cvss/specification-document This is a message we will try to use for storing various versions of CVSS rather than making a separate proto for storing a specific version.
    */
   export interface Schema$CVSS {
+    /**
+     * Attack Complexity (AC). Defined in CVSS v2, v3, v4.
+     */
     attackComplexity?: string | null;
     /**
-     * Base Metrics Represents the intrinsic characteristics of a vulnerability that are constant over time and across user environments.
+     * Attack Requirements (AT). Defined in CVSS v4.
+     */
+    attackRequirements?: string | null;
+    /**
+     * Attack Vector (AV). Defined in CVSS v2, v3, v4.
      */
     attackVector?: string | null;
+    /**
+     * Authentication (Au). Defined in CVSS v2.
+     */
     authentication?: string | null;
+    /**
+     * Availability Impact (A). Defined in CVSS v2, v3.
+     */
     availabilityImpact?: string | null;
     /**
      * The base score is a function of the base metric scores.
      */
     baseScore?: number | null;
+    /**
+     * Confidentiality Impact (C). Defined in CVSS v2, v3.
+     */
     confidentialityImpact?: string | null;
     exploitabilityScore?: number | null;
     impactScore?: number | null;
+    /**
+     * Integrity Impact (I). Defined in CVSS v2, v3.
+     */
     integrityImpact?: string | null;
+    /**
+     * Privileges Required (PR). Defined in CVSS v3, v4.
+     */
     privilegesRequired?: string | null;
+    /**
+     * Scope (S). Defined in CVSS v3.
+     */
     scope?: string | null;
+    /**
+     * Subsequent System Availability Impact (SA). Defined in CVSS v4.
+     */
+    subsequentSystemAvailabilityImpact?: string | null;
+    /**
+     * Subsequent System Confidentiality Impact (SC). Defined in CVSS v4.
+     */
+    subsequentSystemConfidentialityImpact?: string | null;
+    /**
+     * Subsequent System Integrity Impact (SI). Defined in CVSS v4.
+     */
+    subsequentSystemIntegrityImpact?: string | null;
+    /**
+     * User Interaction (UI). Defined in CVSS v3, v4.
+     */
     userInteraction?: string | null;
+    /**
+     * Vulnerable System Availability Impact (VA). Defined in CVSS v4.
+     */
+    vulnerableSystemAvailabilityImpact?: string | null;
+    /**
+     * Vulnerable System Confidentiality Impact (VC). Defined in CVSS v4.
+     */
+    vulnerableSystemConfidentialityImpact?: string | null;
+    /**
+     * Vulnerable System Integrity Impact (VI). Defined in CVSS v4.
+     */
+    vulnerableSystemIntegrityImpact?: string | null;
   }
   /**
    * The period during which some deployable was active in a runtime.
