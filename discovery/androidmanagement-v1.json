@@ -1265,7 +1265,7 @@
       }
     }
   },
-  "revision": "20260507",
+  "revision": "20260521",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -2370,10 +2370,19 @@
           "type": "string"
         },
         "signingKeyCertFingerprints": {
-          "description": "The SHA-1 hash of each android.content.pm.Signature (https://developer.android.com/reference/android/content/pm/Signature.html) associated with the app package. Each byte of each hash value is represented as a two-digit hexadecimal number.",
+          "deprecated": true,
+          "description": "Deprecated. Use signingKeyCerts instead. The SHA-1 hash of each android.content.pm.Signature (https://developer.android.com/reference/android/content/pm/Signature.html) associated with the app package. Each byte of each hash value is represented as a two-digit hexadecimal number.",
           "items": {
             "type": "string"
           },
+          "type": "array"
+        },
+        "signingKeyCerts": {
+          "description": "Output only. Signing key certificates of the app.",
+          "items": {
+            "$ref": "ApplicationSigningKeyCert"
+          },
+          "readOnly": true,
           "type": "array"
         },
         "state": {
