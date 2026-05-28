@@ -1713,7 +1713,7 @@
       }
     }
   },
-  "revision": "20260309",
+  "revision": "20260521",
   "rootUrl": "https://blogger.googleapis.com/",
   "schemas": {
     "Blog": {
@@ -2554,6 +2554,6 @@
     }
   },
   "servicePath": "",
-  "title": "Blogger API",
+  "title": "blogger API",
   "version": "v3"
 }
