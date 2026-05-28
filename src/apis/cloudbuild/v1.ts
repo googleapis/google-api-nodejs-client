@@ -743,6 +743,10 @@ export namespace cloudbuild_v1 {
      */
     pullTiming?: Schema$TimeSpan;
     /**
+     * Declaration of results for this build step.
+     */
+    results?: Schema$StepResult[];
+    /**
      * A shell script to be executed in the step. When script is provided, the user cannot specify the entrypoint or args.
      */
     script?: string | null;
@@ -770,6 +774,15 @@ export namespace cloudbuild_v1 {
      * The ID(s) of the step(s) that this build step depends on. This build step will not start until all the build steps in `wait_for` have completed successfully. If `wait_for` is empty, this build step will start when all previous build steps in the `Build.Steps` list have completed successfully.
      */
     waitFor?: string[] | null;
+  }
+  /**
+   * Results for a build step.
+   */
+  export interface Schema$BuildStepResults {
+    /**
+     * Results for a build step.
+     */
+    results?: {[key: string]: string} | null;
   }
   /**
    * Configuration for an automated build in response to source repository changes.
@@ -2161,6 +2174,10 @@ export namespace cloudbuild_v1 {
      */
     buildStepOutputs?: string[] | null;
     /**
+     * Results for build steps. step_id -\>
+     */
+    buildStepResults?: {[key: string]: Schema$BuildStepResults} | null;
+    /**
      * Output only. Generic artifacts uploaded to Artifact Registry at the end of the build.
      */
     genericArtifacts?: Schema$UploadedGenericArtifact[];
@@ -2345,6 +2362,23 @@ export namespace cloudbuild_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * StepResult is the declaration of a result for a build step.
+   */
+  export interface Schema$StepResult {
+    /**
+     * Optional. The content of the attestation to be generated.
+     */
+    attestationContent?: string | null;
+    /**
+     * Optional. The type of attestation to be generated.
+     */
+    attestationType?: string | null;
+    /**
+     * Required. The name of the result.
+     */
+    name?: string | null;
   }
   /**
    * Location of the source in an archive file in Cloud Storage.
