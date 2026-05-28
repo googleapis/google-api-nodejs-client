@@ -481,6 +481,19 @@ export namespace merchantapi_products_v1 {
     value?: string | null;
   }
   /**
+   * The pickup cost of the item.
+   */
+  export interface Schema$PickupCost {
+    /**
+     * Required. The flat rate pickup cost of the item.
+     */
+    flatRate?: Schema$Price;
+    /**
+     * Optional. The price threshold above which pickup is free of charge.
+     */
+    freeThreshold?: Schema$Price;
+  }
+  /**
    * The price represented as a number and currency.
    */
   export interface Schema$Price {
@@ -497,6 +510,10 @@ export namespace merchantapi_products_v1 {
    * The processed product, built from multiple product inputs after applying rules and supplemental data sources. This processed product matches what is shown in your Merchant Center account. Each product is built from exactly one primary data source product input, and multiple supplemental data source inputs. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved. All fields in the processed product and its sub-messages match the name of their corresponding attribute in the [Product data specification](https://support.google.com/merchants/answer/7052112) with some exceptions.
    */
   export interface Schema$Product {
+    /**
+     * Output only. Determines whether the product is [archived](https://support.google.com/merchants/answer/11909930). To archive or restore your product, visit Merchant Center products page. Learn also more about [offer visibility](https://support.google.com/merchants/answer/12488713).
+     */
+    archived?: boolean | null;
     /**
      * Output only. The automated discounts information for the product.
      */
@@ -683,6 +700,10 @@ export namespace merchantapi_products_v1 {
      */
     displayAdsValue?: number | null;
     /**
+     * Optional. Contains a list of PDF [document URLs](https://support.google.com/merchants/answer/17084656) for the product. Examples are training manuals, user guides, assembly instructions, package inserts, etc. Must start with "http://" or "https://"), ASCII characters only, and RFC 3986 compliant.
+     */
+    documentLinks?: string[] | null;
+    /**
      * The [electric range](https://support.google.com/google-ads/answer/15162232) of the vehicle in miles/kms.
      */
     electricRange?: Schema$Mileage;
@@ -767,6 +788,10 @@ export namespace merchantapi_products_v1 {
      */
     itemGroupId?: string | null;
     /**
+     * Optional. Represents the [title of the product group](https://support.google.com/merchants/answer/17085146) to which this variant product belongs. This can be used along with the [item group id](https://support.google.com/merchants/answer/6324507) attribute. It lets you perform better grouping of variant products, and helps identifying common product characteristics more efficiently.
+     */
+    itemGroupTitle?: string | null;
+    /**
      * Additional URLs of lifestyle images of the item, used to explicitly identify images that showcase your item in a real-world context. See the [Help Center article](https://support.google.com/merchants/answer/9103186) for more information.
      */
     lifestyleImageLinks?: string[] | null;
@@ -847,6 +872,10 @@ export namespace merchantapi_products_v1 {
      */
     pause?: string | null;
     /**
+     * Optional. The [pickup cost](https://support.google.com/merchants/answer/16988704) for an item when a customer buys it online and picks it up at a store.
+     */
+    pickupCost?: Schema$PickupCost;
+    /**
      * The [pickup](https://support.google.com/merchants/answer/14634021) option for the item.
      */
     pickupMethod?: string | null;
@@ -854,6 +883,10 @@ export namespace merchantapi_products_v1 {
      * Item store pickup timeline. For more information, see [Pickup SLA](https://support.google.com/merchants/answer/14635400).
      */
     pickupSla?: string | null;
+    /**
+     * Optional. Indicates the [popularity](https://support.google.com/merchants/answer/17085297) of the product in a merchant's inventory. Using a scale of 0.0 (lowest) to 100.0 (highest).
+     */
+    popularityRank?: number | null;
     /**
      * Price of the item.
      */
@@ -890,6 +923,14 @@ export namespace merchantapi_products_v1 {
      * The unique ID of a promotion.
      */
     promotionIds?: string[] | null;
+    /**
+     * Optional. Contains user-, merchant-, and manufacturer-authored [questions and answers](https://support.google.com/merchants/answer/17085211) about the product. Max 30 question and answer pairs. Max 5000 characters total. Each question can have max 1000 characters. Each answer can have max 1000 characters.
+     */
+    questionsAndAnswers?: Schema$QuestionAndAnswer[];
+    /**
+     * Optional. Specifies how other [products are related](https://support.google.com/merchants/answer/17085213) to this product.
+     */
+    relatedProducts?: Schema$RelatedProduct[];
     /**
      * The return label of the product, used to group products in account-level return policies. Max. 100 characters. For more information, see [Return policy label](https://support.google.com/merchants/answer/9445425).
      */
@@ -990,6 +1031,10 @@ export namespace merchantapi_products_v1 {
      * The measure and dimension of an item.
      */
     unitPricingMeasure?: Schema$UnitPricingMeasure;
+    /**
+     * Optional. Contains the [list of all variant-identifying options](https://support.google.com/merchants/answer/17085214) of this product.
+     */
+    variantOptions?: Schema$VariantOption[];
     /**
      * The all-in advertised price for a vehicle, which includes costs for the following – any accessories attached to the vehicle, environmental levies, extra warranty, fuel, freight, pre-delivery inspection (PDI), dealer fees for handling licensing, provincial regulatory fees, miscellaneous dealer charges for security etching and nitrogen tire fill, and factory-to-customer or dealer-to-customer discounts or incentives. See the [Vehicle all-in price](https://support.google.com/google-ads/answer/14156981) for more information.
      */
@@ -1299,6 +1344,36 @@ export namespace merchantapi_products_v1 {
     value?: number | null;
   }
   /**
+   * The question and answer for the product.
+   */
+  export interface Schema$QuestionAndAnswer {
+    /**
+     * Required. The answer text.
+     */
+    answer?: string | null;
+    /**
+     * Required. The question text.
+     */
+    question?: string | null;
+  }
+  /**
+   * Specifies how other products are related to this product.
+   */
+  export interface Schema$RelatedProduct {
+    /**
+     * Required. The identifier of the related product.
+     */
+    id?: string | null;
+    /**
+     * Required. The type of the identifier of the related product. For example, [GTIN](https://support.google.com/merchants/answer/6219078) or [product ID](https://support.google.com/merchants/answer/6324405).
+     */
+    idType?: string | null;
+    /**
+     * Required. The type of the relationship between this product and the related product.
+     */
+    relationshipType?: string | null;
+  }
+  /**
    * The Shipping of the product.
    */
   export interface Schema$Shipping {
@@ -1470,6 +1545,19 @@ export namespace merchantapi_products_v1 {
      * The measure of an item.
      */
     value?: number | null;
+  }
+  /**
+   * Additional product variants for the product.
+   */
+  export interface Schema$VariantOption {
+    /**
+     * Required. The name of the variant. For example, "Color", "Memory", "Size", "Length"
+     */
+    name?: string | null;
+    /**
+     * Required. The value of the variant. For example, "Red", "128GB", "XL", "100cm"
+     */
+    value?: string | null;
   }
   /**
    * The warranty of the vehicle.
@@ -2064,6 +2152,7 @@ export namespace merchantapi_products_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "archived": false,
      *   //   "automatedDiscounts": {},
      *   //   "base64EncodedName": "my_base64EncodedName",
      *   //   "contentLanguage": "my_contentLanguage",

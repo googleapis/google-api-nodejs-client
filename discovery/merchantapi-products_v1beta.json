@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20260419",
+  "revision": "20260512",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -1240,6 +1240,11 @@
       "description": "The processed product, built from multiple product inputs after applying rules and supplemental data sources. This processed product matches what is shown in your Merchant Center account. Each product is built from exactly one primary data source product input, and multiple supplemental data source inputs. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved. All fields in the processed product and its sub-messages match the name of their corresponding attribute in the [Product data specification](https://support.google.com/merchants/answer/7052112) with some exceptions.",
       "id": "Product",
       "properties": {
+        "archived": {
+          "description": "Output only. Determines whether the product is [archived](https://support.google.com/merchants/answer/11909930). To archive or restore your product, visit Merchant Center products page. Learn also more about [offer visibility](https://support.google.com/merchants/answer/12488713).",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "attributes": {
           "$ref": "Attributes",
           "description": "Output only. A list of product attributes.",

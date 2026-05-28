@@ -795,6 +795,10 @@ export namespace merchantapi_products_v1beta {
    */
   export interface Schema$Product {
     /**
+     * Output only. Determines whether the product is [archived](https://support.google.com/merchants/answer/11909930). To archive or restore your product, visit Merchant Center products page. Learn also more about [offer visibility](https://support.google.com/merchants/answer/12488713).
+     */
+    archived?: boolean | null;
+    /**
      * Output only. A list of product attributes.
      */
     attributes?: Schema$Attributes;
@@ -1808,6 +1812,7 @@ export namespace merchantapi_products_v1beta {
      *
      *   // Example response
      *   // {
+     *   //   "archived": false,
      *   //   "attributes": {},
      *   //   "automatedDiscounts": {},
      *   //   "base64EncodedName": "my_base64EncodedName",
