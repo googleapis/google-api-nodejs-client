@@ -868,7 +868,7 @@
       }
     }
   },
-  "revision": "20260504",
+  "revision": "20260518",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -1711,7 +1711,8 @@
             "AAB_NO_APP_WITH_GIVEN_PACKAGE_NAME_IN_ACCOUNT",
             "AAB_UPLOAD_ERROR",
             "APP_NOT_FOUND",
-            "AAB_ADHOC_SHARING_KEY_NOT_REGISTERED"
+            "AAB_ADHOC_SHARING_KEY_NOT_REGISTERED",
+            "AAB_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND"
           ],
           "enumDescriptions": [
             "",
@@ -1737,7 +1738,8 @@
             "",
             "",
             "Happens if the Firebase app no longer exists by the time of extraction",
-            ""
+            "",
+            "A corresponding Android Developer Console account for this app's Play Console account was not found."
           ],
           "type": "string"
         },

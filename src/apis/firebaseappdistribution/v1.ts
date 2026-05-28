@@ -448,6 +448,10 @@ export namespace firebaseappdistribution_v1 {
      */
     sha256Hash?: string | null;
     /**
+     * Scotty-provided SHA512 hash for an upload.
+     */
+    sha512Hash?: string | null;
+    /**
      * Time at which the media data was last updated, in milliseconds since UNIX epoch
      */
     timestamp?: string | null;
