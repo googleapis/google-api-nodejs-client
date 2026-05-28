@@ -108,6 +108,80 @@
     "organizations": {
       "resources": {
         "locations": {
+          "methods": {
+            "get": {
+              "description": "Gets information about a location.",
+              "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}",
+              "httpMethod": "GET",
+              "id": "networksecurity.organizations.locations.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Resource name for the location.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "Location"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+              "flatPath": "v1/organizations/{organizationsId}/locations",
+              "httpMethod": "GET",
+              "id": "networksecurity.organizations.locations.list",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "The resource that owns the locations collection, if applicable.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}/locations",
+              "response": {
+                "$ref": "ListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
           "resources": {
             "addressGroups": {
               "methods": {
@@ -399,6 +473,34 @@
                   },
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/addressGroups/{addressGroupsId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.organizations.locations.addressGroups.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/addressGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "GoogleIamV1TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1TestIamPermissionsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -4846,6 +4948,292 @@
                 }
               }
             },
+            "sacAttachments": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new SACAttachment in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sacAttachments",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.sacAttachments.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent, in the form `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "sacAttachmentId": {
+                      "description": "Required. ID of the created attachment. The ID must be 1-63 characters long, and comply with RFC1035. Specifically, it must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/sacAttachments",
+                  "request": {
+                    "$ref": "SACAttachment"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the specified attachment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sacAttachments/{sacAttachmentsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.sacAttachments.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource, in the form `projects/{project}/locations/{location}/sacAttachments/{sac_attachment}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/sacAttachments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Returns the specified attachment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sacAttachments/{sacAttachmentsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.sacAttachments.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource, in the form `projects/{project}/locations/{location}/sacAttachments/{sac_attachment}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/sacAttachments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "SACAttachment"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists SACAttachments in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sacAttachments",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.sacAttachments.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression that filters the list of results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Sort the results by a certain order.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent, in the form `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/sacAttachments",
+                  "response": {
+                    "$ref": "ListSACAttachmentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "sacRealms": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new SACRealm in a given project.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sacRealms",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.sacRealms.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent, in the form `projects/{project}/locations/global`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "sacRealmId": {
+                      "description": "Required. ID of the created realm. The ID must be 1-63 characters long, and comply with RFC1035. Specifically, it must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/sacRealms",
+                  "request": {
+                    "$ref": "SACRealm"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the specified realm.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sacRealms/{sacRealmsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.sacRealms.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource, in the form `projects/{project}/locations/global/sacRealms/{sacRealm}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/sacRealms/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Returns the specified realm.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sacRealms/{sacRealmsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.sacRealms.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource, in the form `projects/{project}/locations/global/sacRealms/{sacRealm}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/sacRealms/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "SACRealm"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists SACRealms in a given project.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sacRealms",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.sacRealms.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression that filters the list of results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Sort the results by a certain order.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent, in the form `projects/{project}/locations/global`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/sacRealms",
+                  "response": {
+                    "$ref": "ListSACRealmsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "securityProfileGroups": {
               "methods": {
                 "create": {
@@ -5743,7 +6131,7 @@
       }
     }
   },
-  "revision": "20260426",
+  "revision": "20260518",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -6001,6 +6389,13 @@
         "name": {
           "description": "Required. Identifier. Name of the `AuthzPolicy` resource in the following format: `projects/{project}/locations/{location}/authzPolicies/{authz_policy}`.",
           "type": "string"
+        },
+        "networkRules": {
+          "description": "Optional. A list of authorization network rules to match against the incoming request. A policy match occurs when at least one network rule matches the request. At least one network rule is required for Allow or Deny Action if no HTTP rules are provided. Network rules are mutually exclusive with HTTP rules. Limited to 5 rules.",
+          "items": {
+            "$ref": "AuthzPolicyAuthzRule"
+          },
+          "type": "array"
         },
         "policyProfile": {
           "description": "Optional. Immutable. Defines the type of authorization being performed. If not specified, `REQUEST_AUTHZ` is applied. This field cannot be changed once AuthzPolicy is created.",
@@ -6261,6 +6656,13 @@
         },
         "paths": {
           "description": "Optional. A list of paths to match against. The match can be one of exact, prefix, suffix, or contains (substring match). Matches are always case sensitive unless the ignoreCase is set. Limited to 10 paths per Authorization Policy. Note that this path match includes the query parameters. For gRPC services, this should be a fully-qualified name of the form /package.service/method.",
+          "items": {
+            "$ref": "AuthzPolicyAuthzRuleStringMatch"
+          },
+          "type": "array"
+        },
+        "snis": {
+          "description": "Optional. A list of SNIs to match against. The match can be one of exact, prefix, suffix, or contains (substring match). If there is no SNI (i.e. plaintext HTTP traffic), the request will be denied. Matches are always case sensitive unless the ignoreCase is set. Limited to 10 SNIs per Authorization Policy.",
           "items": {
             "$ref": "AuthzPolicyAuthzRuleStringMatch"
           },
@@ -6675,7 +7077,7 @@
       "properties": {
         "associatedNetworks": {
           "deprecated": true,
-          "description": "Output only. List of networks that are associated with this endpoint in the local zone. This is a projection of the FirewallEndpointAssociations pointing at this endpoint. A network will only appear in this list after traffic routing is fully configured. Format: projects/{project}/global/networks/{name}.",
+          "description": "Output only. Deprecated: List of networks that are associated with this endpoint in the local zone. This is a projection of the FirewallEndpointAssociations pointing at this endpoint. A network will only appear in this list after traffic routing is fully configured. Format: projects/{project}/global/networks/{name}.",
           "items": {
             "type": "string"
           },
@@ -8096,6 +8498,56 @@
       },
       "type": "object"
     },
+    "ListSACAttachmentsResponse": {
+      "description": "Response for `ListSACAttachments` method.",
+      "id": "ListSACAttachmentsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "sacAttachments": {
+          "description": "The list of SACAttachments.",
+          "items": {
+            "$ref": "SACAttachment"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListSACRealmsResponse": {
+      "description": "Response for `ListSACRealms` method.",
+      "id": "ListSACRealmsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "sacRealms": {
+          "description": "The list of SACRealms.",
+          "items": {
+            "$ref": "SACRealm"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListSecurityProfileGroupsResponse": {
       "description": "Response returned by the ListSecurityProfileGroups method.",
       "id": "ListSecurityProfileGroupsResponse",
@@ -8878,6 +9330,145 @@
             "$ref": "Source"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SACAttachment": {
+      "description": "Represents a Secure Access Connect (SAC) attachment resource. A Secure Access Connect attachment enables NCC Gateway to process traffic with an SSE product.",
+      "id": "SACAttachment",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp when the attachment was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Optional list of labels applied to the resource.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. Resource name, in the form `projects/{project}/locations/{location}/sacAttachments/{sac_attachment}`.",
+          "type": "string"
+        },
+        "nccGateway": {
+          "description": "Required. NCC Gateway associated with the attachment. This can be input as an ID or a full resource name. The output always has the form `projects/{project_number}/locations/{location}/spokes/{ncc_gateway}`.",
+          "type": "string"
+        },
+        "sacRealm": {
+          "description": "Required. SAC Realm which owns the attachment. This can be input as an ID or a full resource name. The output always has the form `projects/{project_number}/locations/{location}/sacRealms/{sac_realm}`.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the attachment.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING_PARTNER_ATTACHMENT",
+            "PARTNER_ATTACHED",
+            "PARTNER_DETACHED"
+          ],
+          "enumDescriptions": [
+            "No state specified. This should not be used.",
+            "Has never been attached to a partner.",
+            "Currently attached to a partner.",
+            "Was once attached to a partner but has been detached."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when the attachment was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SACRealm": {
+      "description": "Represents a Secure Access Connect (SAC) realm resource. A Secure Access Connect realm establishes a connection between your Google Cloud project and an SSE service.",
+      "id": "SACRealm",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp when the realm was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Optional list of labels applied to the resource.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. Resource name, in the form `projects/{project}/locations/global/sacRealms/{sacRealm}`.",
+          "type": "string"
+        },
+        "pairingKey": {
+          "$ref": "SACRealmPairingKey",
+          "description": "Output only. Key to be shared with SSE service provider during pairing.",
+          "readOnly": true
+        },
+        "securityService": {
+          "description": "Immutable. SSE service provider associated with the realm.",
+          "enum": [
+            "SECURITY_SERVICE_UNSPECIFIED",
+            "PALO_ALTO_PRISMA_ACCESS"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "[Palo Alto Networks Prisma Access](https://www.paloaltonetworks.com/sase/access)."
+          ],
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the realm.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING_PARTNER_ATTACHMENT",
+            "PARTNER_ATTACHED",
+            "PARTNER_DETACHED",
+            "KEY_EXPIRED"
+          ],
+          "enumDescriptions": [
+            "No state specified. This should not be used.",
+            "Has never been attached to a partner. Used only for Prisma Access.",
+            "Currently attached to a partner.",
+            "Was once attached to a partner but has been detached.",
+            "Is not attached to a partner and has an expired pairing key. Used only for Prisma Access."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when the realm was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SACRealmPairingKey": {
+      "description": "Key to be shared with SSE service provider to establish global handshake.",
+      "id": "SACRealmPairingKey",
+      "properties": {
+        "expireTime": {
+          "description": "Output only. Timestamp in UTC of when this resource is considered expired. It expires 7 days after creation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "key": {
+          "description": "Output only. Key value.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
