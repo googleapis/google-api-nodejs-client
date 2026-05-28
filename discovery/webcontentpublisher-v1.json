@@ -1,0 +1,167 @@
+{
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly": {
+          "description": "See and review your subscription information"
+        }
+      }
+    }
+  },
+  "basePath": "",
+  "baseUrl": "https://webcontentpublisher.googleapis.com/",
+  "batchPath": "batch",
+  "canonicalName": "Web Content Publisher",
+  "description": "webcontentpublisher.googleapis.com API, a service for web content publishers.",
+  "discoveryVersion": "v1",
+  "documentationLink": "https://developers.google.com/news/subscribe",
+  "fullyEncodeReservedExpansion": true,
+  "icons": {
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+  },
+  "id": "webcontentpublisher:v1",
+  "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://webcontentpublisher.mtls.googleapis.com/",
+  "name": "webcontentpublisher",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "$.xgafv": {
+      "description": "V1 error format.",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "enumDescriptions": [
+        "v1 error format",
+        "v2 error format"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
+      "location": "query",
+      "type": "string"
+    },
+    "fields": {
+      "description": "Selector specifying which fields to include in a partial response.",
+      "location": "query",
+      "type": "string"
+    },
+    "key": {
+      "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
+      "location": "query",
+      "type": "string"
+    },
+    "prettyPrint": {
+      "default": "true",
+      "description": "Returns response with indentations and line breaks.",
+      "location": "query",
+      "type": "boolean"
+    },
+    "quotaUser": {
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "location": "query",
+      "type": "string"
+    },
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "publications": {
+      "methods": {
+        "checkFreeAccess": {
+          "description": "Checks if a user is eligible for free article access.",
+          "flatPath": "v1/publications/{publicationsId}:checkFreeAccess",
+          "httpMethod": "GET",
+          "id": "webcontentpublisher.publications.checkFreeAccess",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "httpReferrer": {
+              "description": "Required. The HTTP referrer.",
+              "location": "query",
+              "type": "string"
+            },
+            "name": {
+              "description": "Required. The resource name of the publication. Format: publications/{publication_id}",
+              "location": "path",
+              "pattern": "^publications/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "uri": {
+              "description": "Required. The URI of the content.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}:checkFreeAccess",
+          "response": {
+            "$ref": "CheckFreeAccessResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly"
+          ]
+        }
+      }
+    }
+  },
+  "revision": "20260526",
+  "rootUrl": "https://webcontentpublisher.googleapis.com/",
+  "schemas": {
+    "CheckFreeAccessResponse": {
+      "description": "Response message for CheckFreeAccess",
+      "id": "CheckFreeAccessResponse",
+      "properties": {
+        "isAllowed": {
+          "description": "True if free access should be allowed, false otherwise.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "servicePath": "",
+  "title": "Web Content Publisher API",
+  "version": "v1",
+  "version_module": true
+}
