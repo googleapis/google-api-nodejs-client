@@ -5720,6 +5720,142 @@
         }
       }
     },
+    "interactions": {
+      "methods": {
+        "cancel": {
+          "description": "Cancels an interaction.",
+          "flatPath": "v1beta1/interactions/{interactionsId}:cancel",
+          "httpMethod": "POST",
+          "id": "aiplatform.interactions.cancel",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the interaction to cancel. Format: `interactions/{interaction}`.",
+              "location": "path",
+              "pattern": "^interactions/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/{+name}:cancel",
+          "response": {
+            "$ref": "GenaiVertexV1beta1Interaction"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "delete": {
+          "description": "Deletes an interaction.",
+          "flatPath": "v1beta1/interactions/{interactionsId}",
+          "httpMethod": "DELETE",
+          "id": "aiplatform.interactions.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the interaction to delete. Format: interactions/{interaction}",
+              "location": "path",
+              "pattern": "^interactions/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/{+name}",
+          "response": {
+            "$ref": "GoogleApiHttpBody"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "getPoll": {
+          "description": "Fully typed proto, unary version of GetInteraction that returns Interaction proto.",
+          "flatPath": "v1beta1/interactions/{interactionsId}:poll",
+          "httpMethod": "GET",
+          "id": "aiplatform.interactions.getPoll",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "include_input": {
+              "deprecated": true,
+              "description": "Optional. If true, includes the input in the response.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "last_event_id": {
+              "description": "Optional. If set, resumes the interaction stream from the chunk after the event marked by the event id. Can only be used if `stream` is true.",
+              "location": "query",
+              "type": "string"
+            },
+            "name": {
+              "description": "Required. The name of the interaction to retrieve. Format: interactions/{interaction}",
+              "location": "path",
+              "pattern": "^interactions/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "stream": {
+              "description": "Optional. If true, streams the interaction events as Server-Sent Events.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "v1beta1/{+name}:poll",
+          "response": {
+            "$ref": "GenaiVertexV1beta1Interaction"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "getStream": {
+          "description": "Fully typed proto, streaming version of GetInteraction that returns Interaction proto.",
+          "flatPath": "v1beta1/interactions/{interactionsId}:stream",
+          "httpMethod": "GET",
+          "id": "aiplatform.interactions.getStream",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "include_input": {
+              "deprecated": true,
+              "description": "Optional. If true, includes the input in the response.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "last_event_id": {
+              "description": "Optional. If set, resumes the interaction stream from the chunk after the event marked by the event id. Can only be used if `stream` is true.",
+              "location": "query",
+              "type": "string"
+            },
+            "name": {
+              "description": "Required. The name of the interaction to retrieve. Format: interactions/{interaction}",
+              "location": "path",
+              "pattern": "^interactions/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "stream": {
+              "description": "Optional. If true, streams the interaction events as Server-Sent Events.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "v1beta1/{+name}:stream",
+          "response": {
+            "$ref": "GenaiVertexV1beta1InteractionStreamingEvent"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
+    },
     "media": {
       "methods": {
         "upload": {
@@ -8949,6 +9085,161 @@
           },
           "resources": {
             "agents": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new Agent in a given location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/agents",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.agents.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The resource name of the location to create the agent in. Format: `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/agents",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1Agent"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the specific Agent.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}",
+                  "httpMethod": "DELETE",
+                  "id": "aiplatform.projects.locations.agents.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the agent. Format: `projects/{project}/locations/{location}/agents/{agent}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of the specific Agent.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.agents.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the agent. Format: `projects/{project}/locations/{location}/agents/{agent}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1Agent"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Agents in a given location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/agents",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.agents.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "orderBy": {
+                      "description": "Optional. A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `create_time` * `update_time` Example: `create_time desc`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of agents to return. The service may return fewer than this value. If unspecified, at most 100 agents will be returned.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The next_page_token value returned from a previous list AgentService.ListAgents call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the location to list agents from. Format: `projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/agents",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1ListAgentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the specific Agent.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}",
+                  "httpMethod": "PATCH",
+                  "id": "aiplatform.projects.locations.agents.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the Agent. Format: `projects/{project}/locations/{location}/agents/{agent}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to control which fields get updated. If the mask is not present, all fields will be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1Agent"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1Agent"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "operations": {
                   "methods": {
@@ -13581,6 +13872,62 @@
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "responses": {
+                  "methods": {
+                    "delete": {
+                      "description": "Deletes the response from the endpoint.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/endpoints/{endpointsId}/responses/{responsesId}",
+                      "httpMethod": "DELETE",
+                      "id": "aiplatform.projects.locations.endpoints.responses.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the Response resource to be deleted. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}/responses/{response}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/endpoints/[^/]+/responses/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleApiHttpBody"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the response from the endpoint.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/endpoints/{endpointsId}/responses/{responsesId}",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.endpoints.responses.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the Response resource. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}/responses/{response}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/endpoints/[^/]+/responses/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleApiHttpBody"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
                       ]
                     }
                   }
@@ -20634,6 +20981,74 @@
                       ]
                     }
                   }
+                }
+              }
+            },
+            "interactions": {
+              "methods": {
+                "create": {
+                  "description": "Creates an interaction.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interactions:create",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.interactions.create",
+                  "parameterOrder": [
+                    "projectsId",
+                    "locationsId"
+                  ],
+                  "parameters": {
+                    "locationsId": {
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectsId": {
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/projects/{projectsId}/locations/{locationsId}/interactions:create",
+                  "request": {
+                    "$ref": "GenaiVertexV1beta1CreateInteractionRequest"
+                  },
+                  "response": {
+                    "$ref": "GenaiVertexV1beta1Interaction"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "createStream": {
+                  "description": "Creates an interaction and streams the response.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/interactions:createStream",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.interactions.createStream",
+                  "parameterOrder": [
+                    "projectsId",
+                    "locationsId"
+                  ],
+                  "parameters": {
+                    "locationsId": {
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectsId": {
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/projects/{projectsId}/locations/{locationsId}/interactions:createStream",
+                  "request": {
+                    "$ref": "GenaiVertexV1beta1CreateInteractionRequest"
+                  },
+                  "response": {
+                    "$ref": "GenaiVertexV1beta1InteractionStreamingEvent"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
@@ -28849,14 +29264,12 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+$",
                       "required": true,
                       "type": "string"
-                    },
-                    "operationName": {
-                      "description": "Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project}/locations/{location}/operations/{operation}`",
-                      "location": "query",
-                      "type": "string"
                     }
                   },
                   "path": "v1beta1/{+name}:cancelAsyncQuery",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1CancelAsyncQueryReasoningEngineRequest"
+                  },
                   "response": {
                     "$ref": "GoogleCloudAiplatformV1beta1CancelAsyncQueryReasoningEngineResponse"
                   },
@@ -34417,7 +34830,358 @@
                 }
               }
             },
+            "servingProfiles": {
+              "resources": {
+                "operations": {
+                  "methods": {
+                    "cancel": {
+                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/servingProfiles/{servingProfilesId}/operations/{operationsId}:cancel",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.servingProfiles.operations.cancel",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be cancelled.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/servingProfiles/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:cancel",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/servingProfiles/{servingProfilesId}/operations/{operationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "aiplatform.projects.locations.servingProfiles.operations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be deleted.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/servingProfiles/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/servingProfiles/{servingProfilesId}/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.servingProfiles.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/servingProfiles/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/servingProfiles/{servingProfilesId}/operations",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.servingProfiles.operations.list",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The standard list filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the operation's parent resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/servingProfiles/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The standard list page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                          "location": "query",
+                          "type": "boolean"
+                        }
+                      },
+                      "path": "v1beta1/{+name}/operations",
+                      "response": {
+                        "$ref": "GoogleLongrunningListOperationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "wait": {
+                      "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/servingProfiles/{servingProfilesId}/operations/{operationsId}:wait",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.servingProfiles.operations.wait",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to wait on.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/servingProfiles/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "timeout": {
+                          "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+                          "format": "google-duration",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:wait",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "skills": {
+              "methods": {
+                "create": {
+                  "description": "Create a Skill.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/skills",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.skills.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The location to create the Skill in. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "skillId": {
+                      "description": "Optional. The ID to use for the Skill, which will become the final component of the Skill's resource name. If not provided, a system-generated ID will be used. This value must be 1-63 characters. Valid characters are lowercase letters, numbers, and hyphens. The first character must be a lowercase letter, and the last character must be a lowercase letter or a number. Specifically, the ID must match the regular expression: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$` See [AIP-122](https://aip.dev/122#resource-id-segments) for more details.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/skills",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1Skill"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete a Skill.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/skills/{skillsId}",
+                  "httpMethod": "DELETE",
+                  "id": "aiplatform.projects.locations.skills.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the Skill to delete. Format: `projects/{project}/locations/{location}/skills/{skill}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/skills/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Get a Skill.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/skills/{skillsId}",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.skills.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the Skill to retrieve. Format: `projects/{project}/locations/{location}/skills/{skill}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/skills/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1Skill"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List Skills.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/skills",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.skills.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The standard list page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The standard list page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The location to list the Skills in. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/skills",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1ListSkillsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update a Skill.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/skills/{skillsId}",
+                  "httpMethod": "PATCH",
+                  "id": "aiplatform.projects.locations.skills.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the Skill. Format: `projects/{project}/locations/{location}/skills/{skill}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/skills/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Mask specifying which fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1Skill"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "retrieve": {
+                  "description": "Retrieves skills.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/skills:retrieve",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.skills.retrieve",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The location to retrieve the Skills in. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "query": {
+                      "description": "Optional. The query to find matching skills.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "topK": {
+                      "description": "Optional. The maximum number of skills to return. The service may return fewer than this value. If unspecified, at most 10 skills will be returned. The maximum value is 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/skills:retrieve",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1RetrieveSkillsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "operations": {
                   "methods": {
@@ -34568,6 +35332,76 @@
                       "path": "v1beta1/{+name}:wait",
                       "response": {
                         "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "revisions": {
+                  "methods": {
+                    "get": {
+                      "description": "Get a Skill Revision.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/skills/{skillsId}/revisions/{revisionsId}",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.skills.revisions.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Skill Revision to retrieve. Format: `projects/{project}/locations/{location}/skills/{skill}/revisions/{revision}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/skills/[^/]+/revisions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1beta1SkillRevision"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "List Skill Revisions for a Skill.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/skills/{skillsId}/revisions",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.skills.revisions.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. The standard list filter. More detail in [AIP-160](https://google.aip.dev/160). Supported fields (equality match only): * `labels`",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The standard list page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the Skill to list revisions for. Format: `projects/{project}/locations/{location}/skills/{skill}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/skills/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/revisions",
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1beta1ListSkillRevisionsResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -38873,14 +39707,12 @@
               "pattern": "^reasoningEngines/[^/]+$",
               "required": true,
               "type": "string"
-            },
-            "operationName": {
-              "description": "Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project}/locations/{location}/operations/{operation}`",
-              "location": "query",
-              "type": "string"
             }
           },
           "path": "v1beta1/{+name}:cancelAsyncQuery",
+          "request": {
+            "$ref": "GoogleCloudAiplatformV1beta1CancelAsyncQueryReasoningEngineRequest"
+          },
           "response": {
             "$ref": "GoogleCloudAiplatformV1beta1CancelAsyncQueryReasoningEngineResponse"
           },
@@ -43823,6 +44655,166 @@
         }
       }
     },
+    "servingProfiles": {
+      "resources": {
+        "operations": {
+          "methods": {
+            "cancel": {
+              "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+              "flatPath": "v1beta1/servingProfiles/{servingProfilesId}/operations/{operationsId}:cancel",
+              "httpMethod": "POST",
+              "id": "aiplatform.servingProfiles.operations.cancel",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "The name of the operation resource to be cancelled.",
+                  "location": "path",
+                  "pattern": "^servingProfiles/[^/]+/operations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}:cancel",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+              "flatPath": "v1beta1/servingProfiles/{servingProfilesId}/operations/{operationsId}",
+              "httpMethod": "DELETE",
+              "id": "aiplatform.servingProfiles.operations.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "The name of the operation resource to be deleted.",
+                  "location": "path",
+                  "pattern": "^servingProfiles/[^/]+/operations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+              "flatPath": "v1beta1/servingProfiles/{servingProfilesId}/operations/{operationsId}",
+              "httpMethod": "GET",
+              "id": "aiplatform.servingProfiles.operations.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "The name of the operation resource.",
+                  "location": "path",
+                  "pattern": "^servingProfiles/[^/]+/operations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+              "flatPath": "v1beta1/servingProfiles/{servingProfilesId}/operations",
+              "httpMethod": "GET",
+              "id": "aiplatform.servingProfiles.operations.list",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "The standard list filter.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "The name of the operation's parent resource.",
+                  "location": "path",
+                  "pattern": "^servingProfiles/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The standard list page size.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "The standard list page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "returnPartialSuccess": {
+                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                  "location": "query",
+                  "type": "boolean"
+                }
+              },
+              "path": "v1beta1/{+name}/operations",
+              "response": {
+                "$ref": "GoogleLongrunningListOperationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "wait": {
+              "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+              "flatPath": "v1beta1/servingProfiles/{servingProfilesId}/operations/{operationsId}:wait",
+              "httpMethod": "POST",
+              "id": "aiplatform.servingProfiles.operations.wait",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "The name of the operation resource to wait on.",
+                  "location": "path",
+                  "pattern": "^servingProfiles/[^/]+/operations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "timeout": {
+                  "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+                  "format": "google-duration",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}:wait",
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        }
+      }
+    },
     "skills": {
       "resources": {
         "operations": {
@@ -45523,13 +46515,27 @@
       }
     }
   },
-  "revision": "20260506",
+  "revision": "20260515",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoExperiments": {
       "description": "Experimental parameters for video generation.",
       "id": "CloudAiLargeModelsVisionGenerateVideoExperiments",
       "properties": {
+        "codec": {
+          "description": "Optional. Video codec to use for output.",
+          "enum": [
+            "VIDEO_CODEC_UNSPECIFIED",
+            "VIDEO_CODEC_H264",
+            "VIDEO_CODEC_PRORES"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "conditioningFrames": {
           "description": "Conditioning frames for veo experimental models ONLY, not to be confused with keyframes (ID:31) in GenerateVideoRequest.",
           "items": {
@@ -46076,6 +47082,3357 @@
       },
       "type": "object"
     },
+    "GenaiField": {
+      "description": "Represents a single field in a struct.",
+      "id": "GenaiField",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "$ref": "GenaiValue"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiListValue": {
+      "description": "`ListValue` is a wrapper around a repeated field of values.",
+      "id": "GenaiListValue",
+      "properties": {
+        "values": {
+          "description": "Repeated field of dynamically typed values.",
+          "items": {
+            "$ref": "GenaiValue"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiStruct": {
+      "description": "`Struct` represents a structured data value, consisting of fields which map to dynamically typed values.",
+      "id": "GenaiStruct",
+      "properties": {
+        "fields": {
+          "description": "Dynamically typed fields. List instead of map because LLMs are sensitive to ordering, and we want to give users full control.",
+          "items": {
+            "$ref": "GenaiField"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiValue": {
+      "description": "`Value` represents a dynamically typed value which can be either null, a number, a string, a boolean, a recursive struct value, or a list of values. A producer of value is expected to set one of these variants. Absence of any variant indicates an error.",
+      "id": "GenaiValue",
+      "properties": {
+        "boolValue": {
+          "description": "Represents a boolean value.",
+          "type": "boolean"
+        },
+        "listValue": {
+          "$ref": "GenaiListValue",
+          "description": "Represents a repeated `Value`."
+        },
+        "nullValue": {
+          "description": "Represents a null value.",
+          "enum": [
+            "NULL_VALUE"
+          ],
+          "enumDescriptions": [
+            "Null value."
+          ],
+          "type": "string"
+        },
+        "numberValue": {
+          "description": "Represents a double value.",
+          "format": "double",
+          "type": "number"
+        },
+        "stringValue": {
+          "description": "Represents a string value.",
+          "type": "string"
+        },
+        "structValue": {
+          "$ref": "GenaiStruct",
+          "description": "Represents a structured value."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1AgentInteraction": {
+      "description": "Interaction for generating the completion using agents.",
+      "id": "GenaiVertexV1beta1AgentInteraction",
+      "properties": {
+        "agent": {
+          "description": "The name of the `Agent` used for generating the completion.",
+          "type": "string"
+        },
+        "deep_research_config": {
+          "$ref": "GenaiVertexV1beta1DeepResearchAgentConfig"
+        },
+        "dynamic_config": {
+          "$ref": "GenaiVertexV1beta1DynamicAgentConfig"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1AllowedTools": {
+      "description": "The configuration for allowed tools.",
+      "id": "GenaiVertexV1beta1AllowedTools",
+      "properties": {
+        "mode": {
+          "description": "The mode of the tool choice.",
+          "enum": [
+            "TOOL_CHOICE_TYPE_UNSPECIFIED",
+            "AUTO",
+            "ANY",
+            "NONE",
+            "VALIDATED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Auto tool choice.",
+            "Any tool choice.",
+            "No tool choice.",
+            "Validated tool choice."
+          ],
+          "type": "string"
+        },
+        "tools": {
+          "description": "The names of the allowed tools.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ArgumentsDelta": {
+      "id": "GenaiVertexV1beta1ArgumentsDelta",
+      "properties": {
+        "partial_arguments": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1AudioContent": {
+      "description": "An audio content block.",
+      "id": "GenaiVertexV1beta1AudioContent",
+      "properties": {
+        "channels": {
+          "description": "The number of audio channels.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "data": {
+          "description": "The audio content.",
+          "format": "byte",
+          "type": "string"
+        },
+        "mime_type": {
+          "description": "The mime type of the audio.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_WAV",
+            "TYPE_MP3",
+            "TYPE_AIFF",
+            "TYPE_AAC",
+            "TYPE_OGG",
+            "TYPE_FLAC",
+            "TYPE_MPEG",
+            "TYPE_M4A",
+            "TYPE_L16",
+            "TYPE_OPUS",
+            "TYPE_ALAW",
+            "TYPE_MULAW"
+          ],
+          "enumDescriptions": [
+            "",
+            "WAV audio format",
+            "MP3 audio format",
+            "AIFF audio format",
+            "AAC audio format",
+            "OGG audio format",
+            "FLAC audio format",
+            "MPEG audio format",
+            "M4A audio format",
+            "L16 audio format",
+            "OPUS audio format",
+            "ALAW audio format",
+            "MULAW audio format"
+          ],
+          "type": "string"
+        },
+        "sample_rate": {
+          "description": "The sample rate of the audio.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "uri": {
+          "description": "The URI of the audio.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1AudioDelta": {
+      "id": "GenaiVertexV1beta1AudioDelta",
+      "properties": {
+        "channels": {
+          "description": "The number of audio channels.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "data": {
+          "format": "byte",
+          "type": "string"
+        },
+        "mime_type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_WAV",
+            "TYPE_MP3",
+            "TYPE_AIFF",
+            "TYPE_AAC",
+            "TYPE_OGG",
+            "TYPE_FLAC",
+            "TYPE_MPEG",
+            "TYPE_M4A",
+            "TYPE_L16",
+            "TYPE_OPUS",
+            "TYPE_ALAW",
+            "TYPE_MULAW"
+          ],
+          "enumDescriptions": [
+            "",
+            "WAV audio format",
+            "MP3 audio format",
+            "AIFF audio format",
+            "AAC audio format",
+            "OGG audio format",
+            "FLAC audio format",
+            "MPEG audio format",
+            "M4A audio format",
+            "L16 audio format",
+            "OPUS audio format",
+            "ALAW audio format",
+            "MULAW audio format"
+          ],
+          "type": "string"
+        },
+        "rate": {
+          "deprecated": true,
+          "description": "Deprecated. Use sample_rate instead. The value is ignored.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "sample_rate": {
+          "description": "The sample rate of the audio.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1AudioResponseFormat": {
+      "description": "Configuration for audio output format.",
+      "id": "GenaiVertexV1beta1AudioResponseFormat",
+      "properties": {
+        "bit_rate": {
+          "description": "Bit rate in bits per second (bps). Only applicable for compressed formats (MP3, Opus).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "delivery": {
+          "description": "The delivery mode for the audio output.",
+          "enum": [
+            "DELIVERY_UNSPECIFIED",
+            "INLINE",
+            "URL"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Audio data is returned inline in the response.",
+            "Audio data is returned as a URL."
+          ],
+          "type": "string"
+        },
+        "mime_type": {
+          "description": "The MIME type of the audio output.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_MP3",
+            "TYPE_OGG_OPUS",
+            "TYPE_L16",
+            "TYPE_WAV",
+            "TYPE_ALAW",
+            "TYPE_MULAW"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "MP3 audio format.",
+            "OGG Opus audio format.",
+            "Raw PCM (L16) audio format.",
+            "WAV audio format.",
+            "A-law audio format.",
+            "Mu-law audio format."
+          ],
+          "type": "string"
+        },
+        "sample_rate": {
+          "description": "Sample rate in Hz.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1CodeExecution": {
+      "description": "A tool that can be used by the model to execute code.",
+      "id": "GenaiVertexV1beta1CodeExecution",
+      "properties": {},
+      "type": "object"
+    },
+    "GenaiVertexV1beta1CodeExecutionCallContent": {
+      "description": "Code execution content.",
+      "id": "GenaiVertexV1beta1CodeExecutionCallContent",
+      "properties": {
+        "arguments": {
+          "$ref": "GenaiVertexV1beta1CodeExecutionCallContentCodeExecutionCallArguments",
+          "description": "Required. The arguments to pass to the code execution."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1CodeExecutionCallContentCodeExecutionCallArguments": {
+      "description": "The arguments to pass to the code execution.",
+      "id": "GenaiVertexV1beta1CodeExecutionCallContentCodeExecutionCallArguments",
+      "properties": {
+        "code": {
+          "description": "The code to be executed.",
+          "type": "string"
+        },
+        "language": {
+          "description": "Programming language of the `code`.",
+          "enum": [
+            "LANGUAGE_UNSPECIFIED",
+            "PYTHON"
+          ],
+          "enumDescriptions": [
+            "Unspecified language. This value should not be used.",
+            "Python >= 3.10, with numpy and simpy available."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1CodeExecutionCallDelta": {
+      "id": "GenaiVertexV1beta1CodeExecutionCallDelta",
+      "properties": {
+        "arguments": {
+          "$ref": "GenaiVertexV1beta1CodeExecutionCallContentCodeExecutionCallArguments"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1CodeExecutionCallStep": {
+      "description": "Code execution call step.",
+      "id": "GenaiVertexV1beta1CodeExecutionCallStep",
+      "properties": {
+        "arguments": {
+          "$ref": "GenaiVertexV1beta1CodeExecutionCallStepCodeExecutionCallStepArguments",
+          "description": "Required. The arguments to pass to the code execution."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1CodeExecutionCallStepCodeExecutionCallStepArguments": {
+      "description": "The arguments to pass to the code execution.",
+      "id": "GenaiVertexV1beta1CodeExecutionCallStepCodeExecutionCallStepArguments",
+      "properties": {
+        "code": {
+          "description": "The code to be executed.",
+          "type": "string"
+        },
+        "language": {
+          "description": "Programming language of the `code`.",
+          "enum": [
+            "LANGUAGE_UNSPECIFIED",
+            "PYTHON"
+          ],
+          "enumDescriptions": [
+            "Unspecified language. This value should not be used.",
+            "Python >= 3.10, with numpy and simpy available."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1CodeExecutionResultContent": {
+      "description": "Code execution result content.",
+      "id": "GenaiVertexV1beta1CodeExecutionResultContent",
+      "properties": {
+        "is_error": {
+          "description": "Whether the code execution resulted in an error.",
+          "type": "boolean"
+        },
+        "result": {
+          "description": "Required. The output of the code execution.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1CodeExecutionResultDelta": {
+      "id": "GenaiVertexV1beta1CodeExecutionResultDelta",
+      "properties": {
+        "is_error": {
+          "type": "boolean"
+        },
+        "result": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1CodeExecutionResultStep": {
+      "description": "Code execution result step.",
+      "id": "GenaiVertexV1beta1CodeExecutionResultStep",
+      "properties": {
+        "is_error": {
+          "description": "Whether the code execution resulted in an error.",
+          "type": "boolean"
+        },
+        "result": {
+          "description": "Required. The output of the code execution.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ComputerUse": {
+      "description": "A tool that can be used by the model to interact with the computer.",
+      "id": "GenaiVertexV1beta1ComputerUse",
+      "properties": {
+        "environment": {
+          "description": "The environment being operated.",
+          "enum": [
+            "ENVIRONMENT_UNSPECIFIED",
+            "BROWSER"
+          ],
+          "enumDescriptions": [
+            "Defaults to browser.",
+            "Operates in a web browser."
+          ],
+          "type": "string"
+        },
+        "excluded_predefined_functions": {
+          "description": "The list of predefined functions that are excluded from the model call.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1Content": {
+      "description": "The content of the response.",
+      "id": "GenaiVertexV1beta1Content",
+      "properties": {
+        "audio": {
+          "$ref": "GenaiVertexV1beta1AudioContent"
+        },
+        "document": {
+          "$ref": "GenaiVertexV1beta1DocumentContent"
+        },
+        "image": {
+          "$ref": "GenaiVertexV1beta1ImageContent"
+        },
+        "text": {
+          "$ref": "GenaiVertexV1beta1TextContent"
+        },
+        "thought": {
+          "$ref": "GenaiVertexV1beta1ThoughtContent",
+          "deprecated": true
+        },
+        "toolCall": {
+          "$ref": "GenaiVertexV1beta1ToolCallContent",
+          "deprecated": true
+        },
+        "toolResult": {
+          "$ref": "GenaiVertexV1beta1ToolResultContent",
+          "deprecated": true
+        },
+        "video": {
+          "$ref": "GenaiVertexV1beta1VideoContent"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ContentDelta": {
+      "id": "GenaiVertexV1beta1ContentDelta",
+      "properties": {
+        "delta": {
+          "$ref": "GenaiVertexV1beta1ContentDeltaData"
+        },
+        "index": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ContentDeltaData": {
+      "description": "The delta content data for a content block.",
+      "id": "GenaiVertexV1beta1ContentDeltaData",
+      "properties": {
+        "audio": {
+          "$ref": "GenaiVertexV1beta1AudioDelta"
+        },
+        "document": {
+          "$ref": "GenaiVertexV1beta1DocumentDelta"
+        },
+        "image": {
+          "$ref": "GenaiVertexV1beta1ImageDelta"
+        },
+        "text": {
+          "$ref": "GenaiVertexV1beta1TextDelta"
+        },
+        "textAnnotation": {
+          "$ref": "GenaiVertexV1beta1TextAnnotationDelta"
+        },
+        "thoughtSignature": {
+          "$ref": "GenaiVertexV1beta1ThoughtSignatureDelta"
+        },
+        "thoughtSummary": {
+          "$ref": "GenaiVertexV1beta1ThoughtSummaryDelta"
+        },
+        "toolCall": {
+          "$ref": "GenaiVertexV1beta1ToolCallDelta"
+        },
+        "toolResult": {
+          "$ref": "GenaiVertexV1beta1ToolResultDelta"
+        },
+        "video": {
+          "$ref": "GenaiVertexV1beta1VideoDelta"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ContentList": {
+      "description": "A list of Content.",
+      "id": "GenaiVertexV1beta1ContentList",
+      "properties": {
+        "contents": {
+          "description": "The contents of the list.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1Content"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ContentStart": {
+      "id": "GenaiVertexV1beta1ContentStart",
+      "properties": {
+        "content": {
+          "$ref": "GenaiVertexV1beta1Content"
+        },
+        "index": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ContentStop": {
+      "id": "GenaiVertexV1beta1ContentStop",
+      "properties": {
+        "index": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1CreateInteractionRequest": {
+      "description": "Configuration parameters for creating an interaction.",
+      "id": "GenaiVertexV1beta1CreateInteractionRequest",
+      "properties": {
+        "background": {
+          "description": "Input only. Whether to run the model interaction in the background.",
+          "type": "boolean"
+        },
+        "interaction": {
+          "$ref": "GenaiVertexV1beta1Interaction",
+          "description": "The interaction to create."
+        },
+        "store": {
+          "description": "Input only. Whether to store the response and request for later retrieval.",
+          "type": "boolean"
+        },
+        "stream": {
+          "description": "Input only. Whether the interaction will be streamed.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1DeepResearchAgentConfig": {
+      "description": "Configuration for the Deep Research agent.",
+      "id": "GenaiVertexV1beta1DeepResearchAgentConfig",
+      "properties": {
+        "collaborative_planning": {
+          "description": "Enables human-in-the-loop planning for the Deep Research agent. If set to true, the Deep Research agent will provide a research plan in its response. The agent will then proceed only if the user confirms the plan in the next turn.",
+          "type": "boolean"
+        },
+        "thinking_summaries": {
+          "description": "Whether to include thought summaries in the response.",
+          "enum": [
+            "THINKING_SUMMARIES_UNSPECIFIED",
+            "THINKING_SUMMARIES_AUTO",
+            "THINKING_SUMMARIES_NONE"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Auto thinking summaries.",
+            "No thinking summaries."
+          ],
+          "type": "string"
+        },
+        "visualization": {
+          "description": "Whether to include visualizations in the response.",
+          "enum": [
+            "UNSPECIFIED",
+            "OFF",
+            "AUTO"
+          ],
+          "enumDescriptions": [
+            "The default visualization mode. Will default to AUTO.",
+            "Do not include visualizations.",
+            "Automatically include visualizations."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1DocumentContent": {
+      "description": "A document content block.",
+      "id": "GenaiVertexV1beta1DocumentContent",
+      "properties": {
+        "data": {
+          "description": "The document content.",
+          "format": "byte",
+          "type": "string"
+        },
+        "mime_type": {
+          "description": "The mime type of the document.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_PDF"
+          ],
+          "enumDescriptions": [
+            "",
+            "PDF document format"
+          ],
+          "type": "string"
+        },
+        "uri": {
+          "description": "The URI of the document.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1DocumentDelta": {
+      "id": "GenaiVertexV1beta1DocumentDelta",
+      "properties": {
+        "data": {
+          "format": "byte",
+          "type": "string"
+        },
+        "mime_type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_PDF"
+          ],
+          "enumDescriptions": [
+            "",
+            "PDF document format"
+          ],
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1DynamicAgentConfig": {
+      "description": "Configuration for dynamic agents.",
+      "id": "GenaiVertexV1beta1DynamicAgentConfig",
+      "properties": {
+        "config": {
+          "$ref": "GenaiStruct",
+          "description": "For agents that are not supported statically in the API definition."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1Error": {
+      "description": "Error message from an interaction.",
+      "id": "GenaiVertexV1beta1Error",
+      "properties": {
+        "code": {
+          "description": "A URI that identifies the error type.",
+          "type": "string"
+        },
+        "message": {
+          "description": "A human-readable error message.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ErrorEvent": {
+      "id": "GenaiVertexV1beta1ErrorEvent",
+      "properties": {
+        "error": {
+          "$ref": "GenaiVertexV1beta1Error"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1FileCitation": {
+      "description": "A file citation annotation.",
+      "id": "GenaiVertexV1beta1FileCitation",
+      "properties": {
+        "custom_metadata": {
+          "$ref": "GenaiStruct",
+          "description": "User provided metadata about the retrieved context."
+        },
+        "document_uri": {
+          "description": "The URI of the file.",
+          "type": "string"
+        },
+        "file_name": {
+          "description": "The name of the file.",
+          "type": "string"
+        },
+        "media_id": {
+          "description": "Media ID in-case of image citations, if applicable.",
+          "type": "string"
+        },
+        "page_number": {
+          "description": "Page number of the cited document, if applicable.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "source": {
+          "description": "Source attributed for a portion of the text.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1FileSearch": {
+      "description": "A tool that can be used by the model to search files.",
+      "id": "GenaiVertexV1beta1FileSearch",
+      "properties": {
+        "file_search_store_names": {
+          "description": "The file search store names to search.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metadata_filter": {
+          "description": "Metadata filter to apply to the semantic retrieval documents and chunks.",
+          "type": "string"
+        },
+        "top_k": {
+          "description": "The number of semantic retrieval chunks to retrieve.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1FileSearchCallContent": {
+      "description": "File Search content.",
+      "id": "GenaiVertexV1beta1FileSearchCallContent",
+      "properties": {},
+      "type": "object"
+    },
+    "GenaiVertexV1beta1FileSearchCallDelta": {
+      "id": "GenaiVertexV1beta1FileSearchCallDelta",
+      "properties": {},
+      "type": "object"
+    },
+    "GenaiVertexV1beta1FileSearchCallStep": {
+      "description": "File Search call step.",
+      "id": "GenaiVertexV1beta1FileSearchCallStep",
+      "properties": {},
+      "type": "object"
+    },
+    "GenaiVertexV1beta1FileSearchResultContent": {
+      "description": "File Search result content.",
+      "id": "GenaiVertexV1beta1FileSearchResultContent",
+      "properties": {
+        "result": {
+          "description": "Optional. The results of the File Search.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1FileSearchResultContentFileSearchResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1FileSearchResultContentFileSearchResult": {
+      "description": "The result of the File Search.",
+      "id": "GenaiVertexV1beta1FileSearchResultContentFileSearchResult",
+      "properties": {},
+      "type": "object"
+    },
+    "GenaiVertexV1beta1FileSearchResultDelta": {
+      "id": "GenaiVertexV1beta1FileSearchResultDelta",
+      "properties": {
+        "result": {
+          "items": {
+            "$ref": "GenaiVertexV1beta1FileSearchResultContentFileSearchResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1FileSearchResultStep": {
+      "description": "File Search result step.",
+      "id": "GenaiVertexV1beta1FileSearchResultStep",
+      "properties": {},
+      "type": "object"
+    },
+    "GenaiVertexV1beta1Function": {
+      "description": "A tool that can be used by the model.",
+      "id": "GenaiVertexV1beta1Function",
+      "properties": {
+        "description": {
+          "description": "A description of the function.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the function.",
+          "type": "string"
+        },
+        "parameters": {
+          "$ref": "GenaiValue",
+          "description": "The JSON Schema for the function's parameters."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1FunctionCallContent": {
+      "description": "A function tool call content block.",
+      "id": "GenaiVertexV1beta1FunctionCallContent",
+      "properties": {
+        "arguments": {
+          "$ref": "GenaiStruct",
+          "description": "Required. The arguments to pass to the function."
+        },
+        "name": {
+          "description": "Required. The name of the tool to call.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1FunctionCallDelta": {
+      "id": "GenaiVertexV1beta1FunctionCallDelta",
+      "properties": {
+        "arguments": {
+          "$ref": "GenaiStruct"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1FunctionCallStep": {
+      "description": "A function tool call step.",
+      "id": "GenaiVertexV1beta1FunctionCallStep",
+      "properties": {
+        "arguments": {
+          "$ref": "GenaiStruct",
+          "description": "Required. The arguments to pass to the function."
+        },
+        "name": {
+          "description": "Required. The name of the tool to call.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1FunctionResultContent": {
+      "description": "A function tool result content block.",
+      "id": "GenaiVertexV1beta1FunctionResultContent",
+      "properties": {
+        "contentList": {
+          "$ref": "GenaiVertexV1beta1FunctionResultSubcontentList"
+        },
+        "is_error": {
+          "description": "Whether the tool call resulted in an error.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "The name of the tool that was called.",
+          "type": "string"
+        },
+        "stringResult": {
+          "type": "string"
+        },
+        "structResult": {
+          "$ref": "GenaiStruct"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1FunctionResultDelta": {
+      "id": "GenaiVertexV1beta1FunctionResultDelta",
+      "properties": {
+        "contentList": {
+          "$ref": "GenaiVertexV1beta1FunctionResultSubcontentList"
+        },
+        "is_error": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "stringResult": {
+          "type": "string"
+        },
+        "structResult": {
+          "$ref": "GenaiStruct"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1FunctionResultStep": {
+      "description": "Result of a function tool call.",
+      "id": "GenaiVertexV1beta1FunctionResultStep",
+      "properties": {
+        "contentList": {
+          "$ref": "GenaiVertexV1beta1FunctionResultSubcontentList"
+        },
+        "is_error": {
+          "description": "Whether the tool call resulted in an error.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "The name of the tool that was called.",
+          "type": "string"
+        },
+        "stringResult": {
+          "type": "string"
+        },
+        "structResult": {
+          "$ref": "GenaiStruct"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1FunctionResultSubcontent": {
+      "id": "GenaiVertexV1beta1FunctionResultSubcontent",
+      "properties": {
+        "image": {
+          "$ref": "GenaiVertexV1beta1ImageContent"
+        },
+        "text": {
+          "$ref": "GenaiVertexV1beta1TextContent"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1FunctionResultSubcontentList": {
+      "id": "GenaiVertexV1beta1FunctionResultSubcontentList",
+      "properties": {
+        "contents": {
+          "items": {
+            "$ref": "GenaiVertexV1beta1FunctionResultSubcontent"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GenerationConfig": {
+      "description": "Configuration parameters for model interactions.",
+      "id": "GenaiVertexV1beta1GenerationConfig",
+      "properties": {
+        "image_config": {
+          "$ref": "GenaiVertexV1beta1ImageConfig",
+          "description": "Configuration for image interaction."
+        },
+        "max_output_tokens": {
+          "description": "The maximum number of tokens to include in the response.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "seed": {
+          "description": "Seed used in decoding for reproducibility.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "speech_config": {
+          "description": "Configuration for speech interaction.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1SpeechConfig"
+          },
+          "type": "array"
+        },
+        "stop_sequences": {
+          "description": "A list of character sequences that will stop output interaction.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "temperature": {
+          "description": "Controls the randomness of the output.",
+          "format": "float",
+          "type": "number"
+        },
+        "thinking_level": {
+          "description": "The level of thought tokens that the model should generate.",
+          "enum": [
+            "THINKING_LEVEL_UNSPECIFIED",
+            "THINKING_LEVEL_MINIMAL",
+            "THINKING_LEVEL_LOW",
+            "THINKING_LEVEL_MEDIUM",
+            "THINKING_LEVEL_HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Little to no thinking.",
+            "Low thinking level.",
+            "Medium thinking level.",
+            "High thinking level."
+          ],
+          "type": "string"
+        },
+        "thinking_summaries": {
+          "description": "Whether to include thought summaries in the response.",
+          "enum": [
+            "THINKING_SUMMARIES_UNSPECIFIED",
+            "THINKING_SUMMARIES_AUTO",
+            "THINKING_SUMMARIES_NONE"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Auto thinking summaries.",
+            "No thinking summaries."
+          ],
+          "type": "string"
+        },
+        "toolChoiceConfig": {
+          "$ref": "GenaiVertexV1beta1ToolChoiceConfig",
+          "description": "The config for the tool choice."
+        },
+        "toolChoiceMode": {
+          "description": "The mode of the tool choice.",
+          "enum": [
+            "TOOL_CHOICE_TYPE_UNSPECIFIED",
+            "AUTO",
+            "ANY",
+            "NONE",
+            "VALIDATED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Auto tool choice.",
+            "Any tool choice.",
+            "No tool choice.",
+            "Validated tool choice."
+          ],
+          "type": "string"
+        },
+        "top_p": {
+          "description": "The maximum cumulative probability of tokens to consider when sampling.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleMaps": {
+      "description": "A tool that can be used by the model to call Google Maps.",
+      "id": "GenaiVertexV1beta1GoogleMaps",
+      "properties": {
+        "enable_widget": {
+          "description": "Whether to return a widget context token in the tool call result of the response.",
+          "type": "boolean"
+        },
+        "latitude": {
+          "description": "The latitude of the user's location.",
+          "format": "double",
+          "type": "number"
+        },
+        "longitude": {
+          "description": "The longitude of the user's location.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleMapsCallContent": {
+      "description": "Google Maps content.",
+      "id": "GenaiVertexV1beta1GoogleMapsCallContent",
+      "properties": {
+        "arguments": {
+          "$ref": "GenaiVertexV1beta1GoogleMapsCallContentGoogleMapsCallArguments",
+          "description": "The arguments to pass to the Google Maps tool."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleMapsCallContentGoogleMapsCallArguments": {
+      "description": "The arguments to pass to the Google Maps tool.",
+      "id": "GenaiVertexV1beta1GoogleMapsCallContentGoogleMapsCallArguments",
+      "properties": {
+        "queries": {
+          "description": "The queries to be executed.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleMapsCallDelta": {
+      "id": "GenaiVertexV1beta1GoogleMapsCallDelta",
+      "properties": {
+        "arguments": {
+          "$ref": "GenaiVertexV1beta1GoogleMapsCallContentGoogleMapsCallArguments",
+          "description": "The arguments to pass to the Google Maps tool."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleMapsCallStep": {
+      "description": "Google Maps call step.",
+      "id": "GenaiVertexV1beta1GoogleMapsCallStep",
+      "properties": {
+        "arguments": {
+          "$ref": "GenaiVertexV1beta1GoogleMapsCallStepGoogleMapsCallStepArguments",
+          "description": "The arguments to pass to the Google Maps tool."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleMapsCallStepGoogleMapsCallStepArguments": {
+      "description": "The arguments to pass to the Google Maps tool.",
+      "id": "GenaiVertexV1beta1GoogleMapsCallStepGoogleMapsCallStepArguments",
+      "properties": {
+        "queries": {
+          "description": "The queries to be executed.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleMapsResultContent": {
+      "description": "Google Maps result content.",
+      "id": "GenaiVertexV1beta1GoogleMapsResultContent",
+      "properties": {
+        "result": {
+          "description": "Required. The results of the Google Maps.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1GoogleMapsResultContentGoogleMapsResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleMapsResultContentGoogleMapsResult": {
+      "description": "The result of the Google Maps.",
+      "id": "GenaiVertexV1beta1GoogleMapsResultContentGoogleMapsResult",
+      "properties": {
+        "places": {
+          "description": "The places that were found.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1GoogleMapsResultContentGoogleMapsResultPlaces"
+          },
+          "type": "array"
+        },
+        "widget_context_token": {
+          "description": "Resource name of the Google Maps widget context token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleMapsResultContentGoogleMapsResultPlaces": {
+      "id": "GenaiVertexV1beta1GoogleMapsResultContentGoogleMapsResultPlaces",
+      "properties": {
+        "name": {
+          "description": "Title of the place.",
+          "type": "string"
+        },
+        "place_id": {
+          "description": "The ID of the place, in `places/{place_id}` format.",
+          "type": "string"
+        },
+        "review_snippets": {
+          "description": "Snippets of reviews that are used to generate answers about the features of a given place in Google Maps.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1ReviewSnippet"
+          },
+          "type": "array"
+        },
+        "url": {
+          "description": "URI reference of the place.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleMapsResultDelta": {
+      "id": "GenaiVertexV1beta1GoogleMapsResultDelta",
+      "properties": {
+        "result": {
+          "description": "The results of the Google Maps.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1GoogleMapsResultContentGoogleMapsResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleMapsResultStep": {
+      "description": "Google Maps result step.",
+      "id": "GenaiVertexV1beta1GoogleMapsResultStep",
+      "properties": {
+        "result": {
+          "items": {
+            "$ref": "GenaiVertexV1beta1GoogleMapsResultStepGoogleMapsResultItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleMapsResultStepGoogleMapsResultItem": {
+      "description": "The result of the Google Maps.",
+      "id": "GenaiVertexV1beta1GoogleMapsResultStepGoogleMapsResultItem",
+      "properties": {
+        "places": {
+          "items": {
+            "$ref": "GenaiVertexV1beta1GoogleMapsResultStepGoogleMapsResultItemGoogleMapsResultPlaces"
+          },
+          "type": "array"
+        },
+        "widget_context_token": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleMapsResultStepGoogleMapsResultItemGoogleMapsResultPlaces": {
+      "id": "GenaiVertexV1beta1GoogleMapsResultStepGoogleMapsResultItemGoogleMapsResultPlaces",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "place_id": {
+          "type": "string"
+        },
+        "review_snippets": {
+          "items": {
+            "$ref": "GenaiVertexV1beta1ReviewSnippet"
+          },
+          "type": "array"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleSearch": {
+      "description": "A tool that can be used by the model to search Google.",
+      "id": "GenaiVertexV1beta1GoogleSearch",
+      "properties": {
+        "search_types": {
+          "description": "The types of search grounding to enable.",
+          "items": {
+            "enum": [
+              "SEARCH_TYPE_UNSPECIFIED",
+              "SEARCH_TYPE_WEB_SEARCH",
+              "SEARCH_TYPE_IMAGE_SEARCH",
+              "SEARCH_TYPE_ENTERPRISE_WEB_SEARCH"
+            ],
+            "enumDescriptions": [
+              "Unspecified search type. This value should not be used.",
+              "Setting this field enables web search. Only text results are returned.",
+              "Setting this field enables image search. Image bytes are returned.",
+              "Setting this field enables enterprise web search."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleSearchCallContent": {
+      "description": "Google Search content.",
+      "id": "GenaiVertexV1beta1GoogleSearchCallContent",
+      "properties": {
+        "arguments": {
+          "$ref": "GenaiVertexV1beta1GoogleSearchCallContentGoogleSearchCallArguments",
+          "description": "Required. The arguments to pass to Google Search."
+        },
+        "search_type": {
+          "description": "The type of search grounding enabled.",
+          "enum": [
+            "SEARCH_TYPE_UNSPECIFIED",
+            "SEARCH_TYPE_WEB_SEARCH",
+            "SEARCH_TYPE_IMAGE_SEARCH",
+            "SEARCH_TYPE_ENTERPRISE_WEB_SEARCH"
+          ],
+          "enumDescriptions": [
+            "Unspecified search type. This value should not be used.",
+            "Setting this field enables web search. Only text results are returned.",
+            "Setting this field enables image search. Image bytes are returned.",
+            "Setting this field enables enterprise web search."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleSearchCallContentGoogleSearchCallArguments": {
+      "description": "The arguments to pass to Google Search.",
+      "id": "GenaiVertexV1beta1GoogleSearchCallContentGoogleSearchCallArguments",
+      "properties": {
+        "queries": {
+          "description": "Web search queries for the following-up web search.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleSearchCallDelta": {
+      "id": "GenaiVertexV1beta1GoogleSearchCallDelta",
+      "properties": {
+        "arguments": {
+          "$ref": "GenaiVertexV1beta1GoogleSearchCallContentGoogleSearchCallArguments"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleSearchCallStep": {
+      "description": "Google Search call step.",
+      "id": "GenaiVertexV1beta1GoogleSearchCallStep",
+      "properties": {
+        "arguments": {
+          "$ref": "GenaiVertexV1beta1GoogleSearchCallStepGoogleSearchCallStepArguments",
+          "description": "Required. The arguments to pass to Google Search."
+        },
+        "search_type": {
+          "description": "The type of search grounding enabled.",
+          "enum": [
+            "SEARCH_TYPE_UNSPECIFIED",
+            "SEARCH_TYPE_WEB_SEARCH",
+            "SEARCH_TYPE_IMAGE_SEARCH",
+            "SEARCH_TYPE_ENTERPRISE_WEB_SEARCH"
+          ],
+          "enumDescriptions": [
+            "Unspecified search type. This value should not be used.",
+            "Setting this field enables web search. Only text results are returned.",
+            "Setting this field enables image search. Image bytes are returned.",
+            "Setting this field enables enterprise web search."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleSearchCallStepGoogleSearchCallStepArguments": {
+      "description": "The arguments to pass to Google Search.",
+      "id": "GenaiVertexV1beta1GoogleSearchCallStepGoogleSearchCallStepArguments",
+      "properties": {
+        "queries": {
+          "description": "Web search queries for the following-up web search.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleSearchResultContent": {
+      "description": "Google Search result content.",
+      "id": "GenaiVertexV1beta1GoogleSearchResultContent",
+      "properties": {
+        "is_error": {
+          "description": "Whether the Google Search resulted in an error.",
+          "type": "boolean"
+        },
+        "result": {
+          "description": "Required. The results of the Google Search.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1GoogleSearchResultContentGoogleSearchResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleSearchResultContentGoogleSearchResult": {
+      "description": "The result of the Google Search.",
+      "id": "GenaiVertexV1beta1GoogleSearchResultContentGoogleSearchResult",
+      "properties": {
+        "search_suggestions": {
+          "description": "Web content snippet that can be embedded in a web page or an app webview.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleSearchResultDelta": {
+      "id": "GenaiVertexV1beta1GoogleSearchResultDelta",
+      "properties": {
+        "is_error": {
+          "type": "boolean"
+        },
+        "result": {
+          "items": {
+            "$ref": "GenaiVertexV1beta1GoogleSearchResultContentGoogleSearchResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleSearchResultStep": {
+      "description": "Google Search result step.",
+      "id": "GenaiVertexV1beta1GoogleSearchResultStep",
+      "properties": {
+        "is_error": {
+          "description": "Whether the Google Search resulted in an error.",
+          "type": "boolean"
+        },
+        "result": {
+          "description": "Required. The results of the Google Search.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1GoogleSearchResultStepGoogleSearchResultItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1GoogleSearchResultStepGoogleSearchResultItem": {
+      "description": "The result of the Google Search.",
+      "id": "GenaiVertexV1beta1GoogleSearchResultStepGoogleSearchResultItem",
+      "properties": {
+        "search_suggestions": {
+          "description": "Web content snippet that can be embedded in a web page or an app webview.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ImageConfig": {
+      "description": "The configuration for image interaction.",
+      "id": "GenaiVertexV1beta1ImageConfig",
+      "properties": {
+        "aspect_ratio": {
+          "description": "The aspect ratio of the image to generate. Supported aspect ratios: 1:1, 2:3, 3:2, 3:4, 4:3, 9:16, 16:9, 21:9. If not specified, the model will choose a default aspect ratio based on any reference images provided.",
+          "type": "string"
+        },
+        "image_size": {
+          "description": "Specifies the size of generated images. Supported values are `1K`, `2K`, `4K`. If not specified, the model will use default value `1K`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ImageContent": {
+      "description": "An image content block.",
+      "id": "GenaiVertexV1beta1ImageContent",
+      "properties": {
+        "data": {
+          "description": "The image content.",
+          "format": "byte",
+          "type": "string"
+        },
+        "mime_type": {
+          "description": "The mime type of the image.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_PNG",
+            "TYPE_JPEG",
+            "TYPE_WEBP",
+            "TYPE_HEIC",
+            "TYPE_HEIF",
+            "TYPE_GIF",
+            "TYPE_BMP",
+            "TYPE_TIFF"
+          ],
+          "enumDescriptions": [
+            "",
+            "PNG image format",
+            "JPEG image format",
+            "WebP image format",
+            "HEIC image format",
+            "HEIF image format",
+            "GIF image format",
+            "BMP image format",
+            "TIFF image format"
+          ],
+          "type": "string"
+        },
+        "resolution": {
+          "description": "The resolution of the media.",
+          "enum": [
+            "MEDIA_RESOLUTION_UNSPECIFIED",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "ULTRA_HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Low resolution.",
+            "Medium resolution.",
+            "High resolution.",
+            "Ultra high resolution."
+          ],
+          "type": "string"
+        },
+        "uri": {
+          "description": "The URI of the image.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ImageDelta": {
+      "id": "GenaiVertexV1beta1ImageDelta",
+      "properties": {
+        "data": {
+          "format": "byte",
+          "type": "string"
+        },
+        "mime_type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_PNG",
+            "TYPE_JPEG",
+            "TYPE_WEBP",
+            "TYPE_HEIC",
+            "TYPE_HEIF",
+            "TYPE_GIF",
+            "TYPE_BMP",
+            "TYPE_TIFF"
+          ],
+          "enumDescriptions": [
+            "",
+            "PNG image format",
+            "JPEG image format",
+            "WebP image format",
+            "HEIC image format",
+            "HEIF image format",
+            "GIF image format",
+            "BMP image format",
+            "TIFF image format"
+          ],
+          "type": "string"
+        },
+        "resolution": {
+          "description": "The resolution of the media.",
+          "enum": [
+            "MEDIA_RESOLUTION_UNSPECIFIED",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "ULTRA_HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Low resolution.",
+            "Medium resolution.",
+            "High resolution.",
+            "Ultra high resolution."
+          ],
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ImageResponseFormat": {
+      "description": "Configuration for image output format.",
+      "id": "GenaiVertexV1beta1ImageResponseFormat",
+      "properties": {
+        "aspect_ratio": {
+          "description": "The aspect ratio for the image output.",
+          "enum": [
+            "ASPECT_RATIO_UNSPECIFIED",
+            "ASPECT_RATIO_ONE_BY_ONE",
+            "ASPECT_RATIO_TWO_BY_THREE",
+            "ASPECT_RATIO_THREE_BY_TWO",
+            "ASPECT_RATIO_THREE_BY_FOUR",
+            "ASPECT_RATIO_FOUR_BY_THREE",
+            "ASPECT_RATIO_FOUR_BY_FIVE",
+            "ASPECT_RATIO_FIVE_BY_FOUR",
+            "ASPECT_RATIO_NINE_BY_SIXTEEN",
+            "ASPECT_RATIO_SIXTEEN_BY_NINE",
+            "ASPECT_RATIO_TWENTY_ONE_BY_NINE",
+            "ASPECT_RATIO_ONE_BY_EIGHT",
+            "ASPECT_RATIO_EIGHT_BY_ONE",
+            "ASPECT_RATIO_ONE_BY_FOUR",
+            "ASPECT_RATIO_FOUR_BY_ONE"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "1:1 aspect ratio.",
+            "2:3 aspect ratio.",
+            "3:2 aspect ratio.",
+            "3:4 aspect ratio.",
+            "4:3 aspect ratio.",
+            "4:5 aspect ratio.",
+            "5:4 aspect ratio.",
+            "9:16 aspect ratio.",
+            "16:9 aspect ratio.",
+            "21:9 aspect ratio.",
+            "1:8 aspect ratio.",
+            "8:1 aspect ratio.",
+            "1:4 aspect ratio.",
+            "4:1 aspect ratio."
+          ],
+          "type": "string"
+        },
+        "delivery": {
+          "description": "The delivery mode for the image output.",
+          "enum": [
+            "DELIVERY_UNSPECIFIED",
+            "INLINE",
+            "URL"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Image data is returned inline in the response.",
+            "Image data is returned as a URL."
+          ],
+          "type": "string"
+        },
+        "image_size": {
+          "description": "The size of the image output.",
+          "enum": [
+            "IMAGE_SIZE_UNSPECIFIED",
+            "IMAGE_SIZE_FIVE_TWELVE",
+            "IMAGE_SIZE_ONE_K",
+            "IMAGE_SIZE_TWO_K",
+            "IMAGE_SIZE_FOUR_K"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "512px image size.",
+            "1K image size.",
+            "2K image size.",
+            "4K image size."
+          ],
+          "type": "string"
+        },
+        "mime_type": {
+          "description": "The MIME type of the image output.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_JPEG"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "JPEG image format."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1Interaction": {
+      "description": "Response for InteractionService.CreateInteraction.",
+      "id": "GenaiVertexV1beta1Interaction",
+      "properties": {
+        "agentInteraction": {
+          "$ref": "GenaiVertexV1beta1AgentInteraction",
+          "description": "Interaction for generating the completion using agents."
+        },
+        "content": {
+          "$ref": "GenaiVertexV1beta1Content",
+          "description": "The content for the interaction."
+        },
+        "contentList": {
+          "$ref": "GenaiVertexV1beta1ContentList",
+          "deprecated": true,
+          "description": "The inputs for the interaction."
+        },
+        "created": {
+          "description": "Required. Output only. The time at which the response was created in ISO 8601 format (YYYY-MM-DDThh:mm:ssZ).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Required. Output only. A unique identifier for the interaction completion.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "modelInteraction": {
+          "$ref": "GenaiVertexV1beta1ModelInteraction",
+          "description": "Interaction for generating the completion using models."
+        },
+        "outputs": {
+          "deprecated": true,
+          "description": "Output only. Responses from the model.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1Content"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "previous_interaction_id": {
+          "description": "The ID of the previous interaction, if any.",
+          "type": "string"
+        },
+        "responseFormatList": {
+          "$ref": "GenaiVertexV1beta1ResponseFormatList"
+        },
+        "responseFormatSingleton": {
+          "$ref": "GenaiVertexV1beta1ResponseFormat"
+        },
+        "response_format": {
+          "$ref": "GenaiValue",
+          "deprecated": true,
+          "description": "Enforces that the generated response is a JSON object that complies with the JSON schema specified in this field."
+        },
+        "response_mime_type": {
+          "description": "The mime type of the response. This is required if response_format is set.",
+          "type": "string"
+        },
+        "response_modalities": {
+          "description": "The requested modalities of the response (TEXT, IMAGE, AUDIO).",
+          "items": {
+            "enum": [
+              "RESPONSE_MODALITY_UNSPECIFIED",
+              "TEXT",
+              "IMAGE",
+              "AUDIO",
+              "VIDEO",
+              "DOCUMENT"
+            ],
+            "enumDescriptions": [
+              "Default value. This value is unused.",
+              "Indicates the model should return text.",
+              "Indicates the model should return images.",
+              "Indicates the model should return audio.",
+              "Indicates the model should return video.",
+              "Indicates the model should return documents."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "role": {
+          "deprecated": true,
+          "description": "Output only. The role of the interaction.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "Required. Output only. The status of the interaction.",
+          "enum": [
+            "UNSPECIFIED",
+            "IN_PROGRESS",
+            "REQUIRES_ACTION",
+            "COMPLETED",
+            "FAILED",
+            "CANCELLED",
+            "INCOMPLETE"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The interaction is in progress.",
+            "The interaction requires action/input from the user.",
+            "The interaction is completed.",
+            "The interaction failed.",
+            "The interaction was cancelled.",
+            "The interaction is completed, but contains incomplete results (e.g. hitting max_tokens)."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stepList": {
+          "$ref": "GenaiVertexV1beta1StepList",
+          "description": "Input only. The steps for the interaction."
+        },
+        "steps": {
+          "description": "Output only. The steps that make up the interaction.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1Step"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "stringContent": {
+          "description": "A string input for the interaction, it will be processed as a single text input.",
+          "type": "string"
+        },
+        "system_instruction": {
+          "description": "System instruction for the interaction.",
+          "type": "string"
+        },
+        "tools": {
+          "description": "A list of tool declarations the model may call during interaction.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1Tool"
+          },
+          "type": "array"
+        },
+        "turnList": {
+          "$ref": "GenaiVertexV1beta1TurnList",
+          "deprecated": true,
+          "description": "The turns for the interaction."
+        },
+        "updated": {
+          "description": "Required. Output only. The time at which the response was last updated in ISO 8601 format (YYYY-MM-DDThh:mm:ssZ).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "usage": {
+          "$ref": "GenaiVertexV1beta1InteractionUsage",
+          "description": "Output only. Statistics on the interaction request's token usage.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1InteractionCompleteEvent": {
+      "deprecated": true,
+      "id": "GenaiVertexV1beta1InteractionCompleteEvent",
+      "properties": {
+        "interaction": {
+          "$ref": "GenaiVertexV1beta1Interaction",
+          "description": "Required. The completed interaction with empty outputs to reduce the payload size. Use the preceding ContentDelta events for the actual output."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1InteractionCompletedSseEvent": {
+      "id": "GenaiVertexV1beta1InteractionCompletedSseEvent",
+      "properties": {
+        "interaction": {
+          "$ref": "GenaiVertexV1beta1Interaction",
+          "description": "Required. The completed interaction with empty outputs to reduce the payload size. Use the preceding ContentDelta events for the actual output."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1InteractionCreatedSseEvent": {
+      "id": "GenaiVertexV1beta1InteractionCreatedSseEvent",
+      "properties": {
+        "interaction": {
+          "$ref": "GenaiVertexV1beta1Interaction"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1InteractionStartEvent": {
+      "deprecated": true,
+      "id": "GenaiVertexV1beta1InteractionStartEvent",
+      "properties": {
+        "interaction": {
+          "$ref": "GenaiVertexV1beta1Interaction"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1InteractionStatusUpdate": {
+      "id": "GenaiVertexV1beta1InteractionStatusUpdate",
+      "properties": {
+        "interaction_id": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "UNSPECIFIED",
+            "IN_PROGRESS",
+            "REQUIRES_ACTION",
+            "COMPLETED",
+            "FAILED",
+            "CANCELLED",
+            "INCOMPLETE"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The interaction is in progress.",
+            "The interaction requires action/input from the user.",
+            "The interaction is completed.",
+            "The interaction failed.",
+            "The interaction was cancelled.",
+            "The interaction is completed, but contains incomplete results (e.g. hitting max_tokens)."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1InteractionStreamingEvent": {
+      "id": "GenaiVertexV1beta1InteractionStreamingEvent",
+      "properties": {
+        "contentDelta": {
+          "$ref": "GenaiVertexV1beta1ContentDelta",
+          "description": "The content block delta data, used for content.delta events."
+        },
+        "contentStart": {
+          "$ref": "GenaiVertexV1beta1ContentStart",
+          "description": "The content block start data, used for content.start events."
+        },
+        "contentStop": {
+          "$ref": "GenaiVertexV1beta1ContentStop",
+          "description": "The content block stop data, used for content.stop events."
+        },
+        "errorEvent": {
+          "$ref": "GenaiVertexV1beta1ErrorEvent",
+          "description": "The error event data, used for error events."
+        },
+        "event_id": {
+          "description": "The event_id token to be used to resume the interaction stream, from this event.",
+          "type": "string"
+        },
+        "interactionCompleteEvent": {
+          "$ref": "GenaiVertexV1beta1InteractionCompleteEvent",
+          "deprecated": true,
+          "description": "The interaction data, used for interaction.complete events."
+        },
+        "interactionCompletedEvent": {
+          "$ref": "GenaiVertexV1beta1InteractionCompletedSseEvent",
+          "description": "The interaction data, used for interaction.completed events."
+        },
+        "interactionCreatedEvent": {
+          "$ref": "GenaiVertexV1beta1InteractionCreatedSseEvent",
+          "description": "The interaction data, used for interaction.created events."
+        },
+        "interactionStartEvent": {
+          "$ref": "GenaiVertexV1beta1InteractionStartEvent",
+          "deprecated": true,
+          "description": "The interaction data, used for interaction.start events."
+        },
+        "interactionStatusUpdate": {
+          "$ref": "GenaiVertexV1beta1InteractionStatusUpdate",
+          "description": "The interaction status data, used for interaction.status_update events."
+        },
+        "stepDelta": {
+          "$ref": "GenaiVertexV1beta1StepDelta",
+          "description": "The step delta data, used for step.delta events."
+        },
+        "stepStart": {
+          "$ref": "GenaiVertexV1beta1StepStart",
+          "description": "The step start data, used for step.start events."
+        },
+        "stepStop": {
+          "$ref": "GenaiVertexV1beta1StepStop",
+          "description": "The step stop data, used for step.stop events."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1InteractionUsage": {
+      "description": "Statistics on the interaction request's token usage.",
+      "id": "GenaiVertexV1beta1InteractionUsage",
+      "properties": {
+        "cached_tokens_by_modality": {
+          "description": "A breakdown of cached token usage by modality.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1InteractionUsageModalityTokens"
+          },
+          "type": "array"
+        },
+        "grounding_tool_count": {
+          "description": "Grounding tool count.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1InteractionUsageGroundingToolCount"
+          },
+          "type": "array"
+        },
+        "input_tokens_by_modality": {
+          "description": "A breakdown of input token usage by modality.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1InteractionUsageModalityTokens"
+          },
+          "type": "array"
+        },
+        "output_tokens_by_modality": {
+          "description": "A breakdown of output token usage by modality.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1InteractionUsageModalityTokens"
+          },
+          "type": "array"
+        },
+        "tool_use_tokens_by_modality": {
+          "description": "A breakdown of tool-use token usage by modality.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1InteractionUsageModalityTokens"
+          },
+          "type": "array"
+        },
+        "total_cached_tokens": {
+          "description": "Number of tokens in the cached part of the prompt (the cached content).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "total_input_tokens": {
+          "description": "Number of tokens in the prompt (context).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "total_output_tokens": {
+          "description": "Total number of tokens across all the generated responses.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "total_thought_tokens": {
+          "description": "Number of tokens of thoughts for thinking models.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "total_tokens": {
+          "description": "Total token count for the interaction request (prompt + responses + other internal tokens).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "total_tool_use_tokens": {
+          "description": "Number of tokens present in tool-use prompt(s).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1InteractionUsageGroundingToolCount": {
+      "description": "The number of grounding tool counts.",
+      "id": "GenaiVertexV1beta1InteractionUsageGroundingToolCount",
+      "properties": {
+        "count": {
+          "description": "The number of grounding tool counts.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": {
+          "description": "The grounding tool type associated with the count.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "GOOGLE_SEARCH",
+            "GOOGLE_MAPS",
+            "RETRIEVAL"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Grounding with Google Web Search and Image Search, & Web Grounding for Enterprise.",
+            "Grounding with Google Maps.",
+            "Grounding with customer's data, for example, VertexAISearch."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1InteractionUsageModalityTokens": {
+      "description": "The token count for a single response modality.",
+      "id": "GenaiVertexV1beta1InteractionUsageModalityTokens",
+      "properties": {
+        "modality": {
+          "description": "The modality associated with the token count.",
+          "enum": [
+            "RESPONSE_MODALITY_UNSPECIFIED",
+            "TEXT",
+            "IMAGE",
+            "AUDIO",
+            "VIDEO",
+            "DOCUMENT"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Indicates the model should return text.",
+            "Indicates the model should return images.",
+            "Indicates the model should return audio.",
+            "Indicates the model should return video.",
+            "Indicates the model should return documents."
+          ],
+          "type": "string"
+        },
+        "tokens": {
+          "description": "Number of tokens for the modality.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1McpServer": {
+      "description": "A MCPServer is a server that can be called by the model to perform actions.",
+      "id": "GenaiVertexV1beta1McpServer",
+      "properties": {
+        "allowed_tools": {
+          "description": "The allowed tools.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1AllowedTools"
+          },
+          "type": "array"
+        },
+        "headers": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional: Fields for authentication headers, timeouts, etc., if needed.",
+          "type": "object"
+        },
+        "name": {
+          "description": "The name of the MCPServer.",
+          "type": "string"
+        },
+        "url": {
+          "description": "The full URL for the MCPServer endpoint. Example: \"https://api.example.com/mcp\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1McpServerToolCallContent": {
+      "description": "MCPServer tool call content.",
+      "id": "GenaiVertexV1beta1McpServerToolCallContent",
+      "properties": {
+        "arguments": {
+          "$ref": "GenaiStruct",
+          "description": "Required. The JSON object of arguments for the function."
+        },
+        "name": {
+          "description": "Required. The name of the tool which was called.",
+          "type": "string"
+        },
+        "server_name": {
+          "description": "Required. The name of the used MCP server.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1McpServerToolCallDelta": {
+      "id": "GenaiVertexV1beta1McpServerToolCallDelta",
+      "properties": {
+        "arguments": {
+          "$ref": "GenaiStruct"
+        },
+        "name": {
+          "type": "string"
+        },
+        "server_name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1McpServerToolCallStep": {
+      "description": "MCPServer tool call step.",
+      "id": "GenaiVertexV1beta1McpServerToolCallStep",
+      "properties": {
+        "arguments": {
+          "$ref": "GenaiStruct",
+          "description": "Required. The JSON object of arguments for the function."
+        },
+        "name": {
+          "description": "Required. The name of the tool which was called.",
+          "type": "string"
+        },
+        "server_name": {
+          "description": "Required. The name of the used MCP server.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1McpServerToolResultContent": {
+      "description": "MCPServer tool result content.",
+      "id": "GenaiVertexV1beta1McpServerToolResultContent",
+      "properties": {
+        "contentList": {
+          "$ref": "GenaiVertexV1beta1FunctionResultSubcontentList"
+        },
+        "name": {
+          "description": "Name of the tool which is called for this specific tool call.",
+          "type": "string"
+        },
+        "server_name": {
+          "description": "The name of the used MCP server.",
+          "type": "string"
+        },
+        "stringResult": {
+          "type": "string"
+        },
+        "structResult": {
+          "$ref": "GenaiStruct"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1McpServerToolResultDelta": {
+      "id": "GenaiVertexV1beta1McpServerToolResultDelta",
+      "properties": {
+        "contentList": {
+          "$ref": "GenaiVertexV1beta1FunctionResultSubcontentList"
+        },
+        "name": {
+          "type": "string"
+        },
+        "server_name": {
+          "type": "string"
+        },
+        "stringResult": {
+          "type": "string"
+        },
+        "structResult": {
+          "$ref": "GenaiStruct"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1McpServerToolResultStep": {
+      "description": "MCPServer tool result step.",
+      "id": "GenaiVertexV1beta1McpServerToolResultStep",
+      "properties": {
+        "contentList": {
+          "$ref": "GenaiVertexV1beta1FunctionResultSubcontentList"
+        },
+        "name": {
+          "description": "Name of the tool which is called for this specific tool call.",
+          "type": "string"
+        },
+        "server_name": {
+          "description": "The name of the used MCP server.",
+          "type": "string"
+        },
+        "stringResult": {
+          "type": "string"
+        },
+        "structResult": {
+          "$ref": "GenaiStruct"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ModelInteraction": {
+      "description": "Interaction for generating the completion using models.",
+      "id": "GenaiVertexV1beta1ModelInteraction",
+      "properties": {
+        "generation_config": {
+          "$ref": "GenaiVertexV1beta1GenerationConfig",
+          "description": "Input only. Configuration parameters for the model interaction."
+        },
+        "model": {
+          "description": "The name of the `Model` used for generating the completion.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ModelOutputStep": {
+      "description": "Output generated by the model.",
+      "id": "GenaiVertexV1beta1ModelOutputStep",
+      "properties": {
+        "content": {
+          "items": {
+            "$ref": "GenaiVertexV1beta1Content"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1PlaceCitation": {
+      "description": "A place citation annotation.",
+      "id": "GenaiVertexV1beta1PlaceCitation",
+      "properties": {
+        "name": {
+          "description": "Title of the place.",
+          "type": "string"
+        },
+        "place_id": {
+          "description": "The ID of the place, in `places/{place_id}` format.",
+          "type": "string"
+        },
+        "review_snippets": {
+          "description": "Snippets of reviews that are used to generate answers about the features of a given place in Google Maps.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1ReviewSnippet"
+          },
+          "type": "array"
+        },
+        "url": {
+          "description": "URI reference of the place.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ResponseFormat": {
+      "id": "GenaiVertexV1beta1ResponseFormat",
+      "properties": {
+        "audio": {
+          "$ref": "GenaiVertexV1beta1AudioResponseFormat"
+        },
+        "image": {
+          "$ref": "GenaiVertexV1beta1ImageResponseFormat"
+        },
+        "structValue": {
+          "$ref": "GenaiStruct",
+          "description": "Multi-discriminator values is already enabled in GAOS"
+        },
+        "text": {
+          "$ref": "GenaiVertexV1beta1TextResponseFormat"
+        },
+        "video": {
+          "$ref": "GenaiVertexV1beta1VideoResponseFormat"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ResponseFormatList": {
+      "id": "GenaiVertexV1beta1ResponseFormatList",
+      "properties": {
+        "response_formats": {
+          "items": {
+            "$ref": "GenaiVertexV1beta1ResponseFormat"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1Retrieval": {
+      "description": "A tool that can be used by the model to retrieve files.",
+      "id": "GenaiVertexV1beta1Retrieval",
+      "properties": {
+        "retrieval_types": {
+          "description": "The types of file retrieval to enable.",
+          "items": {
+            "enum": [
+              "RETRIEVAL_TYPE_UNSPECIFIED",
+              "RETRIEVAL_TYPE_VERTEX_AI_SEARCH"
+            ],
+            "enumDescriptions": [
+              "",
+              ""
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "vertex_ai_search_config": {
+          "$ref": "GenaiVertexV1beta1VertexAISearchConfig",
+          "description": "Used to specify configuration for VertexAISearch."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ReviewSnippet": {
+      "description": "Encapsulates a snippet of a user review that answers a question about the features of a specific place in Google Maps.",
+      "id": "GenaiVertexV1beta1ReviewSnippet",
+      "properties": {
+        "review_id": {
+          "description": "The ID of the review snippet.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the review.",
+          "type": "string"
+        },
+        "url": {
+          "description": "A link that corresponds to the user review on Google Maps.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1SpeechConfig": {
+      "description": "The configuration for speech interaction.",
+      "id": "GenaiVertexV1beta1SpeechConfig",
+      "properties": {
+        "language": {
+          "description": "The language of the speech.",
+          "type": "string"
+        },
+        "speaker": {
+          "description": "The speaker's name, it should match the speaker name given in the prompt.",
+          "type": "string"
+        },
+        "voice": {
+          "description": "The voice of the speaker.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1Step": {
+      "description": "A step in the interaction.",
+      "id": "GenaiVertexV1beta1Step",
+      "properties": {
+        "modelOutput": {
+          "$ref": "GenaiVertexV1beta1ModelOutputStep"
+        },
+        "thought": {
+          "$ref": "GenaiVertexV1beta1ThoughtStep"
+        },
+        "toolCall": {
+          "$ref": "GenaiVertexV1beta1ToolCallStep"
+        },
+        "toolResult": {
+          "$ref": "GenaiVertexV1beta1ToolResultStep"
+        },
+        "userInput": {
+          "$ref": "GenaiVertexV1beta1UserInputStep"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1StepDelta": {
+      "id": "GenaiVertexV1beta1StepDelta",
+      "properties": {
+        "delta": {
+          "$ref": "GenaiVertexV1beta1StepDeltaData"
+        },
+        "index": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1StepDeltaData": {
+      "id": "GenaiVertexV1beta1StepDeltaData",
+      "properties": {
+        "argumentsDelta": {
+          "$ref": "GenaiVertexV1beta1ArgumentsDelta"
+        },
+        "audio": {
+          "$ref": "GenaiVertexV1beta1AudioDelta"
+        },
+        "document": {
+          "$ref": "GenaiVertexV1beta1DocumentDelta"
+        },
+        "image": {
+          "$ref": "GenaiVertexV1beta1ImageDelta"
+        },
+        "text": {
+          "$ref": "GenaiVertexV1beta1TextDelta"
+        },
+        "textAnnotationDelta": {
+          "$ref": "GenaiVertexV1beta1TextAnnotationDelta"
+        },
+        "thoughtSignature": {
+          "$ref": "GenaiVertexV1beta1ThoughtSignatureDelta"
+        },
+        "thoughtSummary": {
+          "$ref": "GenaiVertexV1beta1ThoughtSummaryDelta"
+        },
+        "video": {
+          "$ref": "GenaiVertexV1beta1VideoDelta"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1StepList": {
+      "description": "A list of Steps.",
+      "id": "GenaiVertexV1beta1StepList",
+      "properties": {
+        "steps": {
+          "description": "The steps of the list.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1Step"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1StepStart": {
+      "id": "GenaiVertexV1beta1StepStart",
+      "properties": {
+        "index": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "step": {
+          "$ref": "GenaiVertexV1beta1Step"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1StepStop": {
+      "id": "GenaiVertexV1beta1StepStop",
+      "properties": {
+        "index": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1TextAnnotationDelta": {
+      "id": "GenaiVertexV1beta1TextAnnotationDelta",
+      "properties": {
+        "annotations": {
+          "description": "Citation information for model-generated content.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1TextContentAnnotation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1TextContent": {
+      "description": "A text content block.",
+      "id": "GenaiVertexV1beta1TextContent",
+      "properties": {
+        "annotations": {
+          "description": "Citation information for model-generated content.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1TextContentAnnotation"
+          },
+          "type": "array"
+        },
+        "text": {
+          "description": "Required. The text content.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1TextContentAnnotation": {
+      "description": "Citation information for model-generated content.",
+      "id": "GenaiVertexV1beta1TextContentAnnotation",
+      "properties": {
+        "end_index": {
+          "description": "End of the attributed segment, exclusive.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "file_citation": {
+          "$ref": "GenaiVertexV1beta1FileCitation",
+          "description": "A file citation annotation."
+        },
+        "place_citation": {
+          "$ref": "GenaiVertexV1beta1PlaceCitation",
+          "description": "A place citation annotation."
+        },
+        "start_index": {
+          "description": "Start of segment of the response that is attributed to this source. Index indicates the start of the segment, measured in bytes.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "url_citation": {
+          "$ref": "GenaiVertexV1beta1UrlCitation",
+          "description": "A URL citation annotation."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1TextDelta": {
+      "id": "GenaiVertexV1beta1TextDelta",
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1TextResponseFormat": {
+      "description": "Configuration for text output format.",
+      "id": "GenaiVertexV1beta1TextResponseFormat",
+      "properties": {
+        "mime_type": {
+          "description": "The MIME type of the text output.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_APPLICATION_JSON",
+            "TYPE_TEXT_PLAIN"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "JSON output format.",
+            "Plain text output format."
+          ],
+          "type": "string"
+        },
+        "schema": {
+          "$ref": "GenaiStruct",
+          "description": "The JSON schema that the output should conform to. Only applicable when mime_type is application/json."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ThoughtContent": {
+      "description": "A thought content block.",
+      "id": "GenaiVertexV1beta1ThoughtContent",
+      "properties": {
+        "signature": {
+          "description": "Signature to match the backend source to be part of the generation.",
+          "format": "byte",
+          "type": "string"
+        },
+        "summary": {
+          "description": "A summary of the thought.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1ThoughtSummaryContent"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ThoughtSignatureDelta": {
+      "id": "GenaiVertexV1beta1ThoughtSignatureDelta",
+      "properties": {
+        "signature": {
+          "description": "Signature to match the backend source to be part of the generation.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ThoughtStep": {
+      "description": "A thought step.",
+      "id": "GenaiVertexV1beta1ThoughtStep",
+      "properties": {
+        "signature": {
+          "description": "A signature hash for backend validation.",
+          "format": "byte",
+          "type": "string"
+        },
+        "summary": {
+          "description": "A summary of the thought.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1ThoughtSummaryContent"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ThoughtSummaryContent": {
+      "id": "GenaiVertexV1beta1ThoughtSummaryContent",
+      "properties": {
+        "image": {
+          "$ref": "GenaiVertexV1beta1ImageContent"
+        },
+        "text": {
+          "$ref": "GenaiVertexV1beta1TextContent"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ThoughtSummaryDelta": {
+      "id": "GenaiVertexV1beta1ThoughtSummaryDelta",
+      "properties": {
+        "content": {
+          "$ref": "GenaiVertexV1beta1ThoughtSummaryContent",
+          "description": "A new summary item to be added to the thought."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1Tool": {
+      "description": "A tool that can be used by the model.",
+      "id": "GenaiVertexV1beta1Tool",
+      "properties": {
+        "codeExecution": {
+          "$ref": "GenaiVertexV1beta1CodeExecution",
+          "description": "A tool that can be used by the model to execute code."
+        },
+        "computerUse": {
+          "$ref": "GenaiVertexV1beta1ComputerUse",
+          "description": "Tool to support the model interacting directly with the computer."
+        },
+        "fileSearch": {
+          "$ref": "GenaiVertexV1beta1FileSearch",
+          "description": "A tool that can be used by the model to search files."
+        },
+        "function": {
+          "$ref": "GenaiVertexV1beta1Function",
+          "description": "A function that can be used by the model."
+        },
+        "googleMaps": {
+          "$ref": "GenaiVertexV1beta1GoogleMaps",
+          "description": "A tool that can be used by the model to search Google Maps."
+        },
+        "googleSearch": {
+          "$ref": "GenaiVertexV1beta1GoogleSearch",
+          "description": "A tool that can be used by the model to search Google."
+        },
+        "mcpServer": {
+          "$ref": "GenaiVertexV1beta1McpServer",
+          "description": "A MCPServer is a server that can be called by the model to perform actions."
+        },
+        "retrieval": {
+          "$ref": "GenaiVertexV1beta1Retrieval",
+          "description": "A tool that can be used by the model to retrieve files."
+        },
+        "urlContext": {
+          "$ref": "GenaiVertexV1beta1UrlContext",
+          "description": "A tool that can be used by the model to fetch URL context."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ToolCallContent": {
+      "description": "Tool call content.",
+      "id": "GenaiVertexV1beta1ToolCallContent",
+      "properties": {
+        "codeExecutionCall": {
+          "$ref": "GenaiVertexV1beta1CodeExecutionCallContent"
+        },
+        "fileSearchCall": {
+          "$ref": "GenaiVertexV1beta1FileSearchCallContent"
+        },
+        "functionCall": {
+          "$ref": "GenaiVertexV1beta1FunctionCallContent"
+        },
+        "googleMapsCall": {
+          "$ref": "GenaiVertexV1beta1GoogleMapsCallContent"
+        },
+        "googleSearchCall": {
+          "$ref": "GenaiVertexV1beta1GoogleSearchCallContent"
+        },
+        "id": {
+          "description": "Required. A unique ID for this specific tool call.",
+          "type": "string"
+        },
+        "mcpServerToolCall": {
+          "$ref": "GenaiVertexV1beta1McpServerToolCallContent"
+        },
+        "signature": {
+          "description": "A signature hash for backend validation.",
+          "format": "byte",
+          "type": "string"
+        },
+        "urlContextCall": {
+          "$ref": "GenaiVertexV1beta1UrlContextCallContent"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ToolCallDelta": {
+      "id": "GenaiVertexV1beta1ToolCallDelta",
+      "properties": {
+        "codeExecutionCall": {
+          "$ref": "GenaiVertexV1beta1CodeExecutionCallDelta"
+        },
+        "fileSearchCall": {
+          "$ref": "GenaiVertexV1beta1FileSearchCallDelta"
+        },
+        "functionCall": {
+          "$ref": "GenaiVertexV1beta1FunctionCallDelta"
+        },
+        "googleMapsCall": {
+          "$ref": "GenaiVertexV1beta1GoogleMapsCallDelta"
+        },
+        "googleSearchCall": {
+          "$ref": "GenaiVertexV1beta1GoogleSearchCallDelta"
+        },
+        "id": {
+          "description": "Required. A unique ID for this specific tool call.",
+          "type": "string"
+        },
+        "mcpServerToolCall": {
+          "$ref": "GenaiVertexV1beta1McpServerToolCallDelta"
+        },
+        "signature": {
+          "description": "A signature hash for backend validation.",
+          "format": "byte",
+          "type": "string"
+        },
+        "urlContextCall": {
+          "$ref": "GenaiVertexV1beta1UrlContextCallDelta"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ToolCallStep": {
+      "description": "Tool call step.",
+      "id": "GenaiVertexV1beta1ToolCallStep",
+      "properties": {
+        "codeExecutionCall": {
+          "$ref": "GenaiVertexV1beta1CodeExecutionCallStep"
+        },
+        "fileSearchCall": {
+          "$ref": "GenaiVertexV1beta1FileSearchCallStep"
+        },
+        "functionCall": {
+          "$ref": "GenaiVertexV1beta1FunctionCallStep"
+        },
+        "googleMapsCall": {
+          "$ref": "GenaiVertexV1beta1GoogleMapsCallStep"
+        },
+        "googleSearchCall": {
+          "$ref": "GenaiVertexV1beta1GoogleSearchCallStep"
+        },
+        "id": {
+          "description": "Required. A unique ID for this specific tool call.",
+          "type": "string"
+        },
+        "mcpServerToolCall": {
+          "$ref": "GenaiVertexV1beta1McpServerToolCallStep"
+        },
+        "signature": {
+          "description": "A signature hash for backend validation.",
+          "format": "byte",
+          "type": "string"
+        },
+        "urlContextCall": {
+          "$ref": "GenaiVertexV1beta1UrlContextCallStep"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ToolChoiceConfig": {
+      "description": "The tool choice configuration containing allowed tools.",
+      "id": "GenaiVertexV1beta1ToolChoiceConfig",
+      "properties": {
+        "allowed_tools": {
+          "$ref": "GenaiVertexV1beta1AllowedTools",
+          "description": "The allowed tools."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ToolResultContent": {
+      "description": "Tool result content.",
+      "id": "GenaiVertexV1beta1ToolResultContent",
+      "properties": {
+        "call_id": {
+          "description": "Required. ID to match the ID from the function call block.",
+          "type": "string"
+        },
+        "codeExecutionResult": {
+          "$ref": "GenaiVertexV1beta1CodeExecutionResultContent"
+        },
+        "fileSearchResult": {
+          "$ref": "GenaiVertexV1beta1FileSearchResultContent"
+        },
+        "functionResult": {
+          "$ref": "GenaiVertexV1beta1FunctionResultContent"
+        },
+        "googleMapsResult": {
+          "$ref": "GenaiVertexV1beta1GoogleMapsResultContent"
+        },
+        "googleSearchResult": {
+          "$ref": "GenaiVertexV1beta1GoogleSearchResultContent"
+        },
+        "mcpServerToolResult": {
+          "$ref": "GenaiVertexV1beta1McpServerToolResultContent"
+        },
+        "signature": {
+          "description": "A signature hash for backend validation.",
+          "format": "byte",
+          "type": "string"
+        },
+        "urlContextResult": {
+          "$ref": "GenaiVertexV1beta1UrlContextResultContent"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ToolResultDelta": {
+      "id": "GenaiVertexV1beta1ToolResultDelta",
+      "properties": {
+        "call_id": {
+          "description": "Required. ID to match the ID from the function call block.",
+          "type": "string"
+        },
+        "codeExecutionResult": {
+          "$ref": "GenaiVertexV1beta1CodeExecutionResultDelta"
+        },
+        "fileSearchResult": {
+          "$ref": "GenaiVertexV1beta1FileSearchResultDelta"
+        },
+        "functionResult": {
+          "$ref": "GenaiVertexV1beta1FunctionResultDelta"
+        },
+        "googleMapsResult": {
+          "$ref": "GenaiVertexV1beta1GoogleMapsResultDelta"
+        },
+        "googleSearchResult": {
+          "$ref": "GenaiVertexV1beta1GoogleSearchResultDelta"
+        },
+        "mcpServerToolResult": {
+          "$ref": "GenaiVertexV1beta1McpServerToolResultDelta"
+        },
+        "signature": {
+          "description": "A signature hash for backend validation.",
+          "format": "byte",
+          "type": "string"
+        },
+        "urlContextResult": {
+          "$ref": "GenaiVertexV1beta1UrlContextResultDelta"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ToolResultStep": {
+      "description": "Tool result step.",
+      "id": "GenaiVertexV1beta1ToolResultStep",
+      "properties": {
+        "call_id": {
+          "description": "Required. ID to match the ID from the function call block.",
+          "type": "string"
+        },
+        "codeExecutionResult": {
+          "$ref": "GenaiVertexV1beta1CodeExecutionResultStep"
+        },
+        "fileSearchResult": {
+          "$ref": "GenaiVertexV1beta1FileSearchResultStep"
+        },
+        "functionResult": {
+          "$ref": "GenaiVertexV1beta1FunctionResultStep"
+        },
+        "googleMapsResult": {
+          "$ref": "GenaiVertexV1beta1GoogleMapsResultStep"
+        },
+        "googleSearchResult": {
+          "$ref": "GenaiVertexV1beta1GoogleSearchResultStep"
+        },
+        "mcpServerToolResult": {
+          "$ref": "GenaiVertexV1beta1McpServerToolResultStep"
+        },
+        "signature": {
+          "description": "A signature hash for backend validation.",
+          "format": "byte",
+          "type": "string"
+        },
+        "urlContextResult": {
+          "$ref": "GenaiVertexV1beta1UrlContextResultStep"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1Turn": {
+      "deprecated": true,
+      "id": "GenaiVertexV1beta1Turn",
+      "properties": {
+        "contentList": {
+          "$ref": "GenaiVertexV1beta1ContentList",
+          "description": "The content of the turn. An array of Content objects."
+        },
+        "contentString": {
+          "description": "The content of the turn. A single string.",
+          "type": "string"
+        },
+        "role": {
+          "description": "The originator of this turn. Must be user for input or model for model output.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1TurnList": {
+      "deprecated": true,
+      "description": "A list of Turns.",
+      "id": "GenaiVertexV1beta1TurnList",
+      "properties": {
+        "turns": {
+          "items": {
+            "$ref": "GenaiVertexV1beta1Turn"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1UrlCitation": {
+      "description": "A URL citation annotation.",
+      "id": "GenaiVertexV1beta1UrlCitation",
+      "properties": {
+        "title": {
+          "description": "The title of the URL.",
+          "type": "string"
+        },
+        "url": {
+          "description": "The URL.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1UrlContext": {
+      "description": "A tool that can be used by the model to fetch URL context.",
+      "id": "GenaiVertexV1beta1UrlContext",
+      "properties": {},
+      "type": "object"
+    },
+    "GenaiVertexV1beta1UrlContextCallContent": {
+      "description": "URL context content.",
+      "id": "GenaiVertexV1beta1UrlContextCallContent",
+      "properties": {
+        "arguments": {
+          "$ref": "GenaiVertexV1beta1UrlContextCallContentUrlContextCallArguments",
+          "description": "Required. The arguments to pass to the URL context."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1UrlContextCallContentUrlContextCallArguments": {
+      "description": "The arguments to pass to the URL context.",
+      "id": "GenaiVertexV1beta1UrlContextCallContentUrlContextCallArguments",
+      "properties": {
+        "urls": {
+          "description": "The URLs to fetch.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1UrlContextCallDelta": {
+      "id": "GenaiVertexV1beta1UrlContextCallDelta",
+      "properties": {
+        "arguments": {
+          "$ref": "GenaiVertexV1beta1UrlContextCallContentUrlContextCallArguments"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1UrlContextCallStep": {
+      "description": "URL context call step.",
+      "id": "GenaiVertexV1beta1UrlContextCallStep",
+      "properties": {
+        "arguments": {
+          "$ref": "GenaiVertexV1beta1UrlContextCallStepUrlContextCallStepArguments",
+          "description": "Required. The arguments to pass to the URL context."
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1UrlContextCallStepUrlContextCallStepArguments": {
+      "description": "The arguments to pass to the URL context.",
+      "id": "GenaiVertexV1beta1UrlContextCallStepUrlContextCallStepArguments",
+      "properties": {
+        "urls": {
+          "description": "The URLs to fetch.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1UrlContextResultContent": {
+      "description": "URL context result content.",
+      "id": "GenaiVertexV1beta1UrlContextResultContent",
+      "properties": {
+        "is_error": {
+          "description": "Whether the URL context resulted in an error.",
+          "type": "boolean"
+        },
+        "result": {
+          "description": "Required. The results of the URL context.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1UrlContextResultContentUrlContextResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1UrlContextResultContentUrlContextResult": {
+      "description": "The result of the URL context.",
+      "id": "GenaiVertexV1beta1UrlContextResultContentUrlContextResult",
+      "properties": {
+        "status": {
+          "description": "The status of the URL retrieval.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "SUCCESS",
+            "ERROR",
+            "PAYWALL",
+            "UNSAFE"
+          ],
+          "enumDescriptions": [
+            "Unspecified status. This value should not be used.",
+            "Url retrieval is successful.",
+            "Url retrieval is failed due to error.",
+            "Url retrieval is failed because the content is behind paywall.",
+            "Url retrieval is failed because the content is unsafe."
+          ],
+          "type": "string"
+        },
+        "url": {
+          "description": "The URL that was fetched.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1UrlContextResultDelta": {
+      "id": "GenaiVertexV1beta1UrlContextResultDelta",
+      "properties": {
+        "is_error": {
+          "type": "boolean"
+        },
+        "result": {
+          "items": {
+            "$ref": "GenaiVertexV1beta1UrlContextResultContentUrlContextResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1UrlContextResultStep": {
+      "description": "URL context result step.",
+      "id": "GenaiVertexV1beta1UrlContextResultStep",
+      "properties": {
+        "is_error": {
+          "description": "Whether the URL context resulted in an error.",
+          "type": "boolean"
+        },
+        "result": {
+          "description": "Required. The results of the URL context.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1UrlContextResultStepUrlContextResultItem"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1UrlContextResultStepUrlContextResultItem": {
+      "description": "The result of the URL context.",
+      "id": "GenaiVertexV1beta1UrlContextResultStepUrlContextResultItem",
+      "properties": {
+        "status": {
+          "description": "The status of the URL retrieval.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "SUCCESS",
+            "ERROR",
+            "PAYWALL",
+            "UNSAFE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "url": {
+          "description": "The URL that was fetched.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1UserInputStep": {
+      "description": "Input provided by the user.",
+      "id": "GenaiVertexV1beta1UserInputStep",
+      "properties": {
+        "content": {
+          "items": {
+            "$ref": "GenaiVertexV1beta1Content"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1VertexAISearchConfig": {
+      "description": "Used to specify configuration for VertexAISearch.",
+      "id": "GenaiVertexV1beta1VertexAISearchConfig",
+      "properties": {
+        "datastores": {
+          "description": "Optional. Used to specify Vertex AI Search datastores.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "engine": {
+          "description": "Optional. Used to specify Vertex AI Search engine.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1VideoContent": {
+      "description": "A video content block.",
+      "id": "GenaiVertexV1beta1VideoContent",
+      "properties": {
+        "data": {
+          "description": "The video content.",
+          "format": "byte",
+          "type": "string"
+        },
+        "mime_type": {
+          "description": "The mime type of the video.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_MP4",
+            "TYPE_MPEG",
+            "TYPE_MPG",
+            "TYPE_MOV",
+            "TYPE_AVI",
+            "TYPE_X_FLV",
+            "TYPE_WEBM",
+            "TYPE_WMV",
+            "TYPE_3GPP"
+          ],
+          "enumDescriptions": [
+            "",
+            "MP4 video format",
+            "MPEG video format",
+            "MPG video format",
+            "MOV video format",
+            "AVI video format",
+            "FLV video format",
+            "WebM video format",
+            "WMV video format",
+            "3GPP video format"
+          ],
+          "type": "string"
+        },
+        "resolution": {
+          "description": "The resolution of the media.",
+          "enum": [
+            "MEDIA_RESOLUTION_UNSPECIFIED",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "ULTRA_HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Low resolution.",
+            "Medium resolution.",
+            "High resolution.",
+            "Ultra high resolution."
+          ],
+          "type": "string"
+        },
+        "uri": {
+          "description": "The URI of the video.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1VideoDelta": {
+      "id": "GenaiVertexV1beta1VideoDelta",
+      "properties": {
+        "data": {
+          "format": "byte",
+          "type": "string"
+        },
+        "mime_type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_MP4",
+            "TYPE_MPEG",
+            "TYPE_MPG",
+            "TYPE_MOV",
+            "TYPE_AVI",
+            "TYPE_X_FLV",
+            "TYPE_WEBM",
+            "TYPE_WMV",
+            "TYPE_3GPP"
+          ],
+          "enumDescriptions": [
+            "",
+            "MP4 video format",
+            "MPEG video format",
+            "MPG video format",
+            "MOV video format",
+            "AVI video format",
+            "FLV video format",
+            "WebM video format",
+            "WMV video format",
+            "3GPP video format"
+          ],
+          "type": "string"
+        },
+        "resolution": {
+          "description": "The resolution of the media.",
+          "enum": [
+            "MEDIA_RESOLUTION_UNSPECIFIED",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "ULTRA_HIGH"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Low resolution.",
+            "Medium resolution.",
+            "High resolution.",
+            "Ultra high resolution."
+          ],
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1VideoResponseFormat": {
+      "description": "Configuration for video output format.",
+      "id": "GenaiVertexV1beta1VideoResponseFormat",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleApiHttpBody": {
       "description": "Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.",
       "id": "GoogleApiHttpBody",
@@ -46322,6 +50679,68 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1Agent": {
+      "description": "A Vertex agent contains instructions and configurations for the LLM to execute a certain task.",
+      "id": "GoogleCloudAiplatformV1beta1Agent",
+      "properties": {
+        "base_agent": {
+          "description": "Required. The base agent of the agent. Supported values: - \"antigravity-preview-05-2026\"",
+          "type": "string"
+        },
+        "base_environment": {
+          "description": "Optional. The environment config of the agent. Valid types are: - string value for environment_id, or 'remote' for default - struct value for EnvironmentConfig.",
+          "type": "any"
+        },
+        "created": {
+          "description": "Output only. Timestamp when the agent was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. The description of the agent.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Immutable. The ID to use for agent, which will become the final component of the agent resource name. If not provided, Vertex AI will generate a value for this ID. This value may be up to 63 characters, and valid characters are `[a-z0-9-]`. The first character must be a letter, the last character must be a letter or number.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The metadata of the agent.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the Agent. Format: `projects/{project}/locations/{location}/agents/{agent}`.",
+          "type": "string"
+        },
+        "object": {
+          "description": "Output only. The object type of this resource. Always set to \"agent\" in this case.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "system_instruction": {
+          "description": "Optional. The detailed struction that the agent should follow. The instruction is passed to LLM as system instruction.",
+          "type": "string"
+        },
+        "tools": {
+          "description": "Optional. A list of tools that are available for the agent during the process of execucting the task.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1AgentTool"
+          },
+          "type": "array"
+        },
+        "updated": {
+          "description": "Output only. Timestamp when the agent was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1AgentConfig": {
       "description": "Represents configuration for an Agent.",
       "id": "GoogleCloudAiplatformV1beta1AgentConfig",
@@ -46411,6 +50830,32 @@
           },
           "description": "Optional. The change in the session state caused by this event. This is a key-value map of fields that were modified or added by the event.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1AgentTool": {
+      "description": "A tool provides a list of actions that are available for the Agent during the process of executing the task.",
+      "id": "GoogleCloudAiplatformV1beta1AgentTool",
+      "properties": {
+        "headers": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Headers for the MCP server (e.g., authentication). Only applicable when `type` is \"mcp\".",
+          "type": "object"
+        },
+        "name": {
+          "description": "Optional. The name of the MCP server. Only applicable when `type` is \"mcp\".",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Type of the tool. Supported types: - \"code_execution\" - \"filesystem\" - \"google_search\" - \"mcp\" - \"url_context\"",
+          "type": "string"
+        },
+        "url": {
+          "description": "Optional. The full URL for the MCP server endpoint. Only applicable when `type` is \"mcp\".",
+          "type": "string"
         }
       },
       "type": "object"
@@ -46895,11 +51340,11 @@
       "id": "GoogleCloudAiplatformV1beta1AsyncQueryReasoningEngineRequest",
       "properties": {
         "inputGcsUri": {
-          "description": "Optional. Input Cloud Storage URI for the Async query.",
+          "description": "Optional. Input Cloud Storage URI for the Async query. If you are not bringing your own container (BYOC), the content of the file should be a JSON object with an `input` field matching the `input` field of `QueryReasoningEngineRequest` (e.g. `{ \"input\": { \"user_id\": \"hello\", \"message\":\"$QUERY\"} }`). For BYOC, the content of the file depends on the the agent application.",
           "type": "string"
         },
         "outputGcsUri": {
-          "description": "Optional. Output Cloud Storage URI for the Async query.",
+          "description": "Optional. Output Cloud Storage URI for the Async query. This contains the final response of the query.",
           "type": "string"
         }
       },
@@ -48315,6 +52760,17 @@
           "description": "Duration of video in seconds.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1CancelAsyncQueryReasoningEngineRequest": {
+      "description": "Request message for ReasoningEngineExecutionService.CancelAsyncQueryReasoningEngine.",
+      "id": "GoogleCloudAiplatformV1beta1CancelAsyncQueryReasoningEngineRequest",
+      "properties": {
+        "operationName": {
+          "description": "Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project}/locations/{location}/operations/{operation}`",
+          "type": "string"
         }
       },
       "type": "object"
@@ -49854,6 +54310,18 @@
         "genericMetadata": {
           "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
           "description": "Operation metadata for Feature."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1CreateServingProfileOperationMetadata": {
+      "description": "Runtime operation metadata for ServingProfileService.CreateServingProfile.",
+      "id": "GoogleCloudAiplatformV1beta1CreateServingProfileOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
+          "description": "Output only. The standard operation metadata for Vertex AI.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -53505,7 +57973,7 @@
           "type": "array"
         },
         "metrics": {
-          "description": "Required. The metrics to be calculated in the evaluation run.",
+          "description": "Optional. The metrics to be calculated in the evaluation run. Required when analysis_configs is not set.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunMetric"
           },
@@ -57799,6 +62267,20 @@
       "description": "Structured representation of a function declaration as defined by the [OpenAPI 3.0 specification](https://spec.openapis.org/oas/v3.0.3). Included in this declaration are the function name, description, parameters and response type. This FunctionDeclaration is a representation of a block of code that can be used as a `Tool` by the model and executed by the client.",
       "id": "GoogleCloudAiplatformV1beta1FunctionDeclaration",
       "properties": {
+        "behavior": {
+          "description": "Optional. Specifies the function Behavior. If not specified, the system keeps the current function call behavior. This field is currently only supported by the BidiGenerateContent method.",
+          "enum": [
+            "UNSPECIFIED",
+            "BLOCKING",
+            "NON_BLOCKING"
+          ],
+          "enumDescriptions": [
+            "This value is unspecified.",
+            "If set, the system will wait to receive the function response before continuing the conversation.",
+            "If set, the system will not wait to receive the function response. Instead, it will attempt to handle function responses as they become available while maintaining the conversation between the user and the model."
+          ],
+          "type": "string"
+        },
         "description": {
           "description": "Optional. Description and purpose of the function. Model uses it to decide how and whether to call the function.",
           "type": "string"
@@ -60996,6 +65478,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1ListAgentsResponse": {
+      "description": "Response message for AgentService.ListAgents.",
+      "id": "GoogleCloudAiplatformV1beta1ListAgentsResponse",
+      "properties": {
+        "agents": {
+          "description": "A list of agents matching the request.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Agent"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as ListAgentsRequest.page_token to retrieve the next page. Absence of this field indicates there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1ListAnnotationsResponse": {
       "description": "Response message for DatasetService.ListAnnotations.",
       "id": "GoogleCloudAiplatformV1beta1ListAnnotationsResponse",
@@ -62179,6 +66679,42 @@
           "description": "A list of sessions matching the request.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1beta1Session"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ListSkillRevisionsResponse": {
+      "description": "Response message for SkillRegistryService.ListSkillRevisions.",
+      "id": "GoogleCloudAiplatformV1beta1ListSkillRevisionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "skillRevisions": {
+          "description": "The list of Skill Revisions in the request page.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1SkillRevision"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ListSkillsResponse": {
+      "description": "Response message for SkillRegistryService.ListSkills.",
+      "id": "GoogleCloudAiplatformV1beta1ListSkillsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as ListSkillsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "skills": {
+          "description": "The Skills.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Skill"
           },
           "type": "array"
         }
@@ -73245,6 +77781,35 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1RetrieveSkillsResponse": {
+      "description": "Response message for SkillRegistryService.RetrieveSkills.",
+      "id": "GoogleCloudAiplatformV1beta1RetrieveSkillsResponse",
+      "properties": {
+        "retrievedSkills": {
+          "description": "Skills ranked by similarity if applicable; otherwise, the order is undefined.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1RetrieveSkillsResponseRetrievedSkill"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RetrieveSkillsResponseRetrievedSkill": {
+      "description": "A retrieved skill.",
+      "id": "GoogleCloudAiplatformV1beta1RetrieveSkillsResponseRetrievedSkill",
+      "properties": {
+        "description": {
+          "description": "The skill description.",
+          "type": "string"
+        },
+        "skillName": {
+          "description": "The skill resource name. Format: projects/{project}/locations/{location}/skills/{skill}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1RollbackMemoryRequest": {
       "description": "Request message for MemoryBankService.RollbackMemory.",
       "id": "GoogleCloudAiplatformV1beta1RollbackMemoryRequest",
@@ -74053,7 +78618,7 @@
           "type": "string"
         },
         "sandboxEnvironmentTemplate": {
-          "description": "Optional. The name of the SandboxEnvironmentTemplate specified in the parent Agent Engine resource that this SandboxEnvironment is created from. Only one of `sandbox_environment_template` and `spec` should be set.",
+          "description": "Optional. The name of the SandboxEnvironmentTemplate specified in the parent Agent Engine resource that this SandboxEnvironment is created from.",
           "type": "string"
         },
         "spec": {
@@ -79716,6 +84281,137 @@
         "tosAccepted": {
           "description": "Required. Whether the Terms of Service are accepted.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1Skill": {
+      "description": "A skill.",
+      "id": "GoogleCloudAiplatformV1beta1Skill",
+      "properties": {
+        "compatibility": {
+          "description": "Optional. Specifies the compatibility of the Skill. Indicates environment requirements (intended product, system packages, network access, etc.). This should align with `compatibility` in the `SKILL.md` file.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Timestamp when this Skill was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Required. Describes the Skill. Should describe both what the skill does and when to use it. Should include specific keywords that help agents identify relevant tasks. This should align with `description` in the `SKILL.md` file.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. Provides the display name of the Skill. This should align with `name` in the `SKILL.md` file.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The labels with user-defined metadata to organize Skills.",
+          "type": "object"
+        },
+        "license": {
+          "description": "Optional. Specifies the license of the Skill. This should be an SPDX license identifier (e.g., \"MIT\", \"Apache-2.0\"). See https://spdx.org/licenses/. This should align with `license` in the `SKILL.md` file.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the Skill. Format: `projects/{project}/locations/{location}/skills/{skill}`",
+          "type": "string"
+        },
+        "sha256": {
+          "description": "Output only. The SHA256 checksum of the zipped filesystem.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "skillSource": {
+          "description": "Output only. The source of the Skill.",
+          "enum": [
+            "SKILL_SOURCE_UNSPECIFIED",
+            "USER",
+            "SYSTEM"
+          ],
+          "enumDescriptions": [
+            "The skill source is unspecified.",
+            "The skill is created by a user.",
+            "The skill is a system skill."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the Skill.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "FAILED",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "The state of the Skill is unspecified.",
+            "The Skill is active.",
+            "The Skill is being created.",
+            "The Skill was created, but failed to process.",
+            "The Skill is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when this Skill was most recently updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "zippedFilesystem": {
+          "description": "Required. Provides the zipped filesystem of the Skill. This should contain the `SKILL.md` file at the root of the zip and optional directories for scripts, references, and assets. Directory should align with the directory structure specified at https://agentskills.io/specification#directory-structure.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1SkillRevision": {
+      "description": "A revision of a Skill.",
+      "id": "GoogleCloudAiplatformV1beta1SkillRevision",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp when this Skill Revision was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the Skill Revision. Format: `projects/{project}/locations/{location}/skills/{skill}/revisions/{revision}`",
+          "type": "string"
+        },
+        "skill": {
+          "$ref": "GoogleCloudAiplatformV1beta1Skill",
+          "description": "Output only. The state of the Skill at this revision. TODO(b/503772996) Use a different proto for skill data included in skill revision",
+          "readOnly": true
+        },
+        "state": {
+          "description": "Output only. The state of the Skill Revision.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CREATING",
+            "FAILED",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "The state of the Skill Revision is unspecified.",
+            "The Skill Revision is active.",
+            "The Skill Revision is being created.",
+            "The Skill Revision was created, but failed to process.",
+            "The Skill Revision is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

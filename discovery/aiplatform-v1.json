@@ -22228,14 +22228,12 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+/reasoningEngines/[^/]+$",
                       "required": true,
                       "type": "string"
-                    },
-                    "operationName": {
-                      "description": "Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project}/locations/{location}/operations/{operation}`",
-                      "location": "query",
-                      "type": "string"
                     }
                   },
                   "path": "v1/{+name}:cancelAsyncQuery",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineRequest"
+                  },
                   "response": {
                     "$ref": "GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse"
                   },
@@ -29051,14 +29049,12 @@
               "pattern": "^reasoningEngines/[^/]+$",
               "required": true,
               "type": "string"
-            },
-            "operationName": {
-              "description": "Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project}/locations/{location}/operations/{operation}`",
-              "location": "query",
-              "type": "string"
             }
           },
           "path": "v1/{+name}:cancelAsyncQuery",
+          "request": {
+            "$ref": "GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineRequest"
+          },
           "response": {
             "$ref": "GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineResponse"
           },
@@ -32361,13 +32357,27 @@
       }
     }
   },
-  "revision": "20260506",
+  "revision": "20260509",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoExperiments": {
       "description": "Experimental parameters for video generation.",
       "id": "CloudAiLargeModelsVisionGenerateVideoExperiments",
       "properties": {
+        "codec": {
+          "description": "Optional. Video codec to use for output.",
+          "enum": [
+            "VIDEO_CODEC_UNSPECIFIED",
+            "VIDEO_CODEC_H264",
+            "VIDEO_CODEC_PRORES"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "conditioningFrames": {
           "description": "Conditioning frames for veo experimental models ONLY, not to be confused with keyframes (ID:31) in GenerateVideoRequest.",
           "items": {
@@ -33384,11 +33394,11 @@
       "id": "GoogleCloudAiplatformV1AsyncQueryReasoningEngineRequest",
       "properties": {
         "inputGcsUri": {
-          "description": "Optional. Input Cloud Storage URI for the Async query.",
+          "description": "Optional. Input Cloud Storage URI for the Async query. If you are not bringing your own container (BYOC), the content of the file should be a JSON object with an `input` field matching the `input` field of `QueryReasoningEngineRequest` (e.g. `{ \"input\": { \"user_id\": \"hello\", \"message\":\"$QUERY\"} }`). For BYOC, the content of the file depends on the the agent application.",
           "type": "string"
         },
         "outputGcsUri": {
-          "description": "Optional. Output Cloud Storage URI for the Async query.",
+          "description": "Optional. Output Cloud Storage URI for the Async query. This contains the final response of the query.",
           "type": "string"
         }
       },
@@ -34689,6 +34699,17 @@
           "description": "Duration of video in seconds.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineRequest": {
+      "description": "Request message for ReasoningEngineExecutionService.CancelAsyncQueryReasoningEngine.",
+      "id": "GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineRequest",
+      "properties": {
+        "operationName": {
+          "description": "Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project}/locations/{location}/operations/{operation}`",
+          "type": "string"
         }
       },
       "type": "object"
@@ -39290,7 +39311,7 @@
           "type": "array"
         },
         "metrics": {
-          "description": "Required. The metrics to be calculated in the evaluation run.",
+          "description": "Optional. The metrics to be calculated in the evaluation run. Required when analysis_configs is not set.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1EvaluationRunMetric"
           },
@@ -42734,6 +42755,20 @@
       "description": "Structured representation of a function declaration as defined by the [OpenAPI 3.0 specification](https://spec.openapis.org/oas/v3.0.3). Included in this declaration are the function name, description, parameters and response type. This FunctionDeclaration is a representation of a block of code that can be used as a `Tool` by the model and executed by the client.",
       "id": "GoogleCloudAiplatformV1FunctionDeclaration",
       "properties": {
+        "behavior": {
+          "description": "Optional. Specifies the function Behavior. If not specified, the system keeps the current function call behavior. This field is currently only supported by the BidiGenerateContent method.",
+          "enum": [
+            "UNSPECIFIED",
+            "BLOCKING",
+            "NON_BLOCKING"
+          ],
+          "enumDescriptions": [
+            "This value is unspecified.",
+            "If set, the system will wait to receive the function response before continuing the conversation.",
+            "If set, the system will not wait to receive the function response. Instead, it will attempt to handle function responses as they become available while maintaining the conversation between the user and the model."
+          ],
+          "type": "string"
+        },
         "description": {
           "description": "Optional. Description and purpose of the function. Model uses it to decide how and whether to call the function.",
           "type": "string"
@@ -55672,7 +55707,7 @@
           "type": "string"
         },
         "sandboxEnvironmentTemplate": {
-          "description": "Optional. The name of the SandboxEnvironmentTemplate specified in the parent Agent Engine resource that this SandboxEnvironment is created from. Only one of `sandbox_environment_template` and `spec` should be set.",
+          "description": "Optional. The name of the SandboxEnvironmentTemplate specified in the parent Agent Engine resource that this SandboxEnvironment is created from.",
           "type": "string"
         },
         "spec": {

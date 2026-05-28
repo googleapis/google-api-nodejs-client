@@ -208,6 +208,10 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$CloudAiLargeModelsVisionGenerateVideoExperiments {
     /**
+     * Optional. Video codec to use for output.
+     */
+    codec?: string | null;
+    /**
      * Conditioning frames for veo experimental models ONLY, not to be confused with keyframes (ID:31) in GenerateVideoRequest.
      */
     conditioningFrames?: Schema$CloudAiLargeModelsVisionGenerateVideoExperimentsConditioningFrame[];
@@ -900,11 +904,11 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1AsyncQueryReasoningEngineRequest {
     /**
-     * Optional. Input Cloud Storage URI for the Async query.
+     * Optional. Input Cloud Storage URI for the Async query. If you are not bringing your own container (BYOC), the content of the file should be a JSON object with an `input` field matching the `input` field of `QueryReasoningEngineRequest` (e.g. `{ "input": { "user_id": "hello", "message":"$QUERY"\} \}`). For BYOC, the content of the file depends on the the agent application.
      */
     inputGcsUri?: string | null;
     /**
-     * Optional. Output Cloud Storage URI for the Async query.
+     * Optional. Output Cloud Storage URI for the Async query. This contains the final response of the query.
      */
     outputGcsUri?: string | null;
   }
@@ -1857,6 +1861,15 @@ export namespace aiplatform_v1 {
      * Duration of video in seconds.
      */
     videoDurationSeconds?: number | null;
+  }
+  /**
+   * Request message for ReasoningEngineExecutionService.CancelAsyncQueryReasoningEngine.
+   */
+  export interface Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineRequest {
+    /**
+     * Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project\}/locations/{location\}/operations/{operation\}`
+     */
+    operationName?: string | null;
   }
   /**
    * Response message for ReasoningEngineExecutionService.CancelAsyncQueryReasoningEngine.
@@ -5286,7 +5299,7 @@ export namespace aiplatform_v1 {
      */
     datasetCustomMetrics?: Schema$GoogleCloudAiplatformV1DatasetCustomMetric[];
     /**
-     * Required. The metrics to be calculated in the evaluation run.
+     * Optional. The metrics to be calculated in the evaluation run. Required when analysis_configs is not set.
      */
     metrics?: Schema$GoogleCloudAiplatformV1EvaluationRunMetric[];
     /**
@@ -7776,6 +7789,10 @@ export namespace aiplatform_v1 {
    * Structured representation of a function declaration as defined by the [OpenAPI 3.0 specification](https://spec.openapis.org/oas/v3.0.3). Included in this declaration are the function name, description, parameters and response type. This FunctionDeclaration is a representation of a block of code that can be used as a `Tool` by the model and executed by the client.
    */
   export interface Schema$GoogleCloudAiplatformV1FunctionDeclaration {
+    /**
+     * Optional. Specifies the function Behavior. If not specified, the system keeps the current function call behavior. This field is currently only supported by the BidiGenerateContent method.
+     */
+    behavior?: string | null;
     /**
      * Optional. Description and purpose of the function. Model uses it to decide how and whether to call the function.
      */
@@ -16991,7 +17008,7 @@ export namespace aiplatform_v1 {
      */
     sandboxEnvironmentSnapshot?: string | null;
     /**
-     * Optional. The name of the SandboxEnvironmentTemplate specified in the parent Agent Engine resource that this SandboxEnvironment is created from. Only one of `sandbox_environment_template` and `spec` should be set.
+     * Optional. The name of the SandboxEnvironmentTemplate specified in the parent Agent Engine resource that this SandboxEnvironment is created from.
      */
     sandboxEnvironmentTemplate?: string | null;
     /**
@@ -136083,8 +136100,14 @@ export namespace aiplatform_v1 {
      *     await aiplatform.projects.locations.reasoningEngines.cancelAsyncQuery({
      *       // Required. The name of the ReasoningEngine resource to use. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
      *       name: 'projects/my-project/locations/my-location/reasoningEngines/my-reasoningEngine',
-     *       // Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project\}/locations/{location\}/operations/{operation\}`
-     *       operationName: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "operationName": "my_operationName"
+     *         // }
+     *       },
      *     });
      *   console.log(res.data);
      *
@@ -137903,10 +137926,11 @@ export namespace aiplatform_v1 {
      * Required. The name of the ReasoningEngine resource to use. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
      */
     name?: string;
+
     /**
-     * Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project\}/locations/{location\}/operations/{operation\}`
+     * Request body metadata
      */
-    operationName?: string;
+    requestBody?: Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineRequest;
   }
   export interface Params$Resource$Projects$Locations$Reasoningengines$Create extends StandardParameters {
     /**
@@ -171703,8 +171727,14 @@ export namespace aiplatform_v1 {
      *   const res = await aiplatform.reasoningEngines.cancelAsyncQuery({
      *     // Required. The name of the ReasoningEngine resource to use. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
      *     name: 'reasoningEngines/my-reasoningEngine',
-     *     // Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project\}/locations/{location\}/operations/{operation\}`
-     *     operationName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "operationName": "my_operationName"
+     *       // }
+     *     },
      *   });
      *   console.log(res.data);
      *
@@ -173064,10 +173094,11 @@ export namespace aiplatform_v1 {
      * Required. The name of the ReasoningEngine resource to use. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
      */
     name?: string;
+
     /**
-     * Required. The name of the longrunning operation returned from AsyncQueryReasoningEngine. Format: `projects/{project\}/locations/{location\}/operations/{operation\}`
+     * Request body metadata
      */
-    operationName?: string;
+    requestBody?: Schema$GoogleCloudAiplatformV1CancelAsyncQueryReasoningEngineRequest;
   }
   export interface Params$Resource$Reasoningengines$Create extends StandardParameters {
     /**
