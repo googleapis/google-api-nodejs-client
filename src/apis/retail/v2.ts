@@ -3295,7 +3295,7 @@ export namespace retail_v2 {
      */
     catalogAttribute?: Schema$GoogleCloudRetailV2CatalogAttribute;
     /**
-     * Indicates which fields in the provided CatalogAttribute to update. The following are NOT supported: * CatalogAttribute.key If not set, all supported fields are updated.
+     * Optional. Indicates which fields in the provided CatalogAttribute to update. The following are NOT supported: * CatalogAttribute.key If not set, all supported fields are updated.
      */
     updateMask?: string | null;
   }
@@ -5775,7 +5775,7 @@ export namespace retail_v2 {
      *   const res = await retail.projects.locations.catalogs.patch({
      *     // Required. Immutable. The fully qualified resource name of the catalog.
      *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog',
-     *     // Indicates which fields in the provided Catalog to update. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
+     *     // Optional. Indicates which fields in the provided Catalog to update. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6075,7 +6075,7 @@ export namespace retail_v2 {
      *   const res = await retail.projects.locations.catalogs.updateAttributesConfig({
      *     // Required. Immutable. The fully qualified resource name of the attribute config. Format: `projects/x/locations/x/catalogs/x/attributesConfig`
      *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/attributesConfig',
-     *     // Indicates which fields in the provided AttributesConfig to update. The following is the only supported field: * AttributesConfig.catalog_attributes If not set, all supported fields are updated.
+     *     // Optional. Indicates which fields in the provided AttributesConfig to update. The following is the only supported field: * AttributesConfig.catalog_attributes If not set, all supported fields are updated.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6234,7 +6234,7 @@ export namespace retail_v2 {
      *   const res = await retail.projects.locations.catalogs.updateCompletionConfig({
      *     // Required. Immutable. Fully qualified name `projects/x/locations/x/catalogs/x/completionConfig`
      *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/completionConfig',
-     *     // Indicates which fields in the provided CompletionConfig to update. The following are the only supported fields: * CompletionConfig.matching_order * CompletionConfig.max_suggestions * CompletionConfig.min_prefix_length * CompletionConfig.auto_learning If not set, all supported fields are updated.
+     *     // Optional. Indicates which fields in the provided CompletionConfig to update. The following are the only supported fields: * CompletionConfig.matching_order * CompletionConfig.max_suggestions * CompletionConfig.min_prefix_length * CompletionConfig.auto_learning If not set, all supported fields are updated.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6976,7 +6976,7 @@ export namespace retail_v2 {
      */
     name?: string;
     /**
-     * Indicates which fields in the provided Catalog to update. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
+     * Optional. Indicates which fields in the provided Catalog to update. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
      */
     updateMask?: string;
 
@@ -7002,7 +7002,7 @@ export namespace retail_v2 {
      */
     name?: string;
     /**
-     * Indicates which fields in the provided AttributesConfig to update. The following is the only supported field: * AttributesConfig.catalog_attributes If not set, all supported fields are updated.
+     * Optional. Indicates which fields in the provided AttributesConfig to update. The following is the only supported field: * AttributesConfig.catalog_attributes If not set, all supported fields are updated.
      */
     updateMask?: string;
 
@@ -7017,7 +7017,7 @@ export namespace retail_v2 {
      */
     name?: string;
     /**
-     * Indicates which fields in the provided CompletionConfig to update. The following are the only supported fields: * CompletionConfig.matching_order * CompletionConfig.max_suggestions * CompletionConfig.min_prefix_length * CompletionConfig.auto_learning If not set, all supported fields are updated.
+     * Optional. Indicates which fields in the provided CompletionConfig to update. The following are the only supported fields: * CompletionConfig.matching_order * CompletionConfig.max_suggestions * CompletionConfig.min_prefix_length * CompletionConfig.auto_learning If not set, all supported fields are updated.
      */
     updateMask?: string;
 
