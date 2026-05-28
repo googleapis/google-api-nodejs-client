@@ -2610,7 +2610,7 @@
       }
     }
   },
-  "revision": "20260501",
+  "revision": "20260522",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -3826,11 +3826,6 @@
           "$ref": "GoogleCloudRunV2Condition",
           "description": "Output only. The Condition of this Instance, containing its readiness status, and detailed error information in case it did not reach a serving state. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.",
           "readOnly": true
-        },
-        "timeout": {
-          "description": "Optional. Duration the instance may be active before the system will shut it down.",
-          "format": "google-duration",
-          "type": "string"
         },
         "uid": {
           "description": "Output only. Server assigned unique identifier for the trigger. The value is a UUID4 string and guaranteed to remain unchanged until the resource is deleted.",
@@ -6702,11 +6697,10 @@
           "readOnly": true
         },
         "results": {
-          "description": "Output only. Declaration of results for this build step.",
+          "description": "Declaration of results for this build step.",
           "items": {
             "$ref": "GoogleDevtoolsCloudbuildV1StepResult"
           },
-          "readOnly": true,
           "type": "array"
         },
         "script": {
