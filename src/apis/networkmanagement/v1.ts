@@ -255,6 +255,23 @@ export namespace networkmanagement_v1 {
     versionId?: string | null;
   }
   /**
+   * For display only. Metadata associated with a Cloud Run job.
+   */
+  export interface Schema$CloudRunJobInfo {
+    /**
+     * Name of a Cloud Run job.
+     */
+    displayName?: string | null;
+    /**
+     * Location in which this job is deployed.
+     */
+    location?: string | null;
+    /**
+     * URI of a Cloud Run job.
+     */
+    uri?: string | null;
+  }
+  /**
    * Wrapper for Cloud Run revision attributes.
    */
   export interface Schema$CloudRunRevisionEndpoint {
@@ -802,6 +819,37 @@ export namespace networkmanagement_v1 {
     vip?: string | null;
   }
   /**
+   * Message for response for getting Monitoring Point configuration of a NetworkMonitoringProvider resource.
+   */
+  export interface Schema$GenerateMonitoringPointConfigResponse {
+    /**
+     * The Monitoring Point configuration of the provider in JSON format.
+     */
+    config?: {[key: string]: any} | null;
+  }
+  /**
+   * Message for response for generating an access token for a NetworkMonitoringProvider resource.
+   */
+  export interface Schema$GenerateProviderAccessTokenResponse {
+    /**
+     * Provider access token for the NetworkMonitoringProvider resource.
+     */
+    providerAccessToken?: string | null;
+  }
+  /**
+   * The geographical location of the MonitoringPoint.
+   */
+  export interface Schema$GeoLocation {
+    /**
+     * Formatted address.
+     */
+    formattedAddress?: string | null;
+    /**
+     * Unicode CLDR region code.
+     */
+    regionCode?: string | null;
+  }
+  /**
    * For display only. Metadata associated with a Google Kubernetes Engine (GKE) cluster master.
    */
   export interface Schema$GKEMasterInfo {
@@ -885,6 +933,56 @@ export namespace networkmanagement_v1 {
      * Source IP address.
      */
     sourceIp?: string | null;
+  }
+  /**
+   * Message describing information about the host.
+   */
+  export interface Schema$Host {
+    /**
+     * Output only. The cloud instance id of the host.
+     */
+    cloudInstanceId?: string | null;
+    /**
+     * Output only. The cloud project id of the host.
+     */
+    cloudProjectId?: string | null;
+    /**
+     * Output only. The cloud provider of the host.
+     */
+    cloudProvider?: string | null;
+    /**
+     * Output only. The cloud region of the host.
+     */
+    cloudRegion?: string | null;
+    /**
+     * Output only. The ids of cloud virtual networks of the host.
+     */
+    cloudVirtualNetworkIds?: string[] | null;
+    /**
+     * Output only. The cloud zone of the host.
+     */
+    cloudZone?: string | null;
+    /**
+     * Output only. The operating system of the host.
+     */
+    os?: string | null;
+  }
+  /**
+   * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; \} service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); \} Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); \} Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
+   */
+  export interface Schema$HttpBody {
+    /**
+     * The HTTP Content-Type header value specifying the content type of the body.
+     */
+    contentType?: string | null;
+    /**
+     * The HTTP request/response body as raw binary.
+     */
+    data?: string | null;
+    /**
+     * Application specific response metadata. Must be set in the first response for streaming APIs.
+     */
+    extensions?: Array<{[key: string]: any}> | null;
   }
   /**
    * For display only. Metadata associated with a hybrid subnet.
@@ -1051,6 +1149,45 @@ export namespace networkmanagement_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Message for response to listing MonitoringPoints
+   */
+  export interface Schema$ListMonitoringPointsResponse {
+    /**
+     * The list of MonitoringPoints.
+     */
+    monitoringPoints?: Schema$MonitoringPoint[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Message for response to listing NetworkMonitoringProviders
+   */
+  export interface Schema$ListNetworkMonitoringProvidersResponse {
+    /**
+     * The list of NetworkMonitoringProvider
+     */
+    networkMonitoringProviders?: Schema$NetworkMonitoringProvider[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Message for response to listing NetworkPaths
+   */
+  export interface Schema$ListNetworkPathsResponse {
+    /**
+     * The list of NetworkPath
+     */
+    networkPaths?: Schema$NetworkPath[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -1083,6 +1220,19 @@ export namespace networkmanagement_v1 {
      * List of VPC Flow Log configurations.
      */
     vpcFlowLogsConfigs?: Schema$VpcFlowLogsConfig[];
+  }
+  /**
+   * Message for response to listing WebPaths
+   */
+  export interface Schema$ListWebPathsResponse {
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of WebPath.
+     */
+    webPaths?: Schema$WebPath[];
   }
   /**
    * For display only. Metadata associated with a specific load balancer backend.
@@ -1205,6 +1355,87 @@ export namespace networkmanagement_v1 {
     name?: string | null;
   }
   /**
+   * Message describing MonitoringPoint resource.
+   */
+  export interface Schema$MonitoringPoint {
+    /**
+     * Output only. Indicates if automaitic geographic location is enabled for the MonitoringPoint.
+     */
+    autoGeoLocationEnabled?: boolean | null;
+    /**
+     * Output only. Connection status of the MonitoringPoint.
+     */
+    connectionStatus?: string | null;
+    /**
+     * Output only. The time the MonitoringPoint was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The deployment type of the MonitoringPoint.
+     */
+    deploymentType?: string | null;
+    /**
+     * Output only. Display name of the MonitoringPoint.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The codes of errors detected in the MonitoringPoint.
+     */
+    errors?: string[] | null;
+    /**
+     * Output only. The geographical location of the MonitoringPoint.
+     */
+    geoLocation?: Schema$GeoLocation;
+    /**
+     * Output only. The GUID of the MonitoringPoint.
+     */
+    guid?: string | null;
+    /**
+     * Output only. The host information of the MonitoringPoint.
+     */
+    host?: Schema$Host;
+    /**
+     * Output only. The hostname of the MonitoringPoint.
+     */
+    hostname?: string | null;
+    /**
+     * Identifier. Name of the resource. Format: `projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}/monitoringPoints/{monitoring_point\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The network interfaces of the MonitoringPoint.
+     */
+    networkInterfaces?: Schema$NetworkInterface[];
+    /**
+     * Output only. IP address visible when MonitoringPoint connects to the provider.
+     */
+    originatingIp?: string | null;
+    /**
+     * Output only. The provider tags of the MonitoringPoint.
+     */
+    providerTags?: Schema$ProviderTag[];
+    /**
+     * Output only. Deployment type of the MonitoringPoint.
+     */
+    type?: string | null;
+    /**
+     * Output only. The time the MonitoringPoint was updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. Indicates if an upgrade is available for the MonitoringPoint.
+     */
+    upgradeAvailable?: boolean | null;
+    /**
+     * Output only. The type of upgrade available for the MonitoringPoint.
+     */
+    upgradeType?: string | null;
+    /**
+     * Output only. Version of the software running on the MonitoringPoint.
+     */
+    version?: string | null;
+  }
+  /**
    * For display only. Metadata associated with NAT.
    */
   export interface Schema$NatInfo {
@@ -1289,6 +1520,141 @@ export namespace networkmanagement_v1 {
      * URI of a Compute Engine network.
      */
     uri?: string | null;
+  }
+  /**
+   * Message describing network interfaces.
+   */
+  export interface Schema$NetworkInterface {
+    /**
+     * Output only. The description of the interface.
+     */
+    adapterDescription?: string | null;
+    /**
+     * Output only. The IP address of the interface and subnet mask in CIDR format. Examples: 192.168.1.0/24, 2001:db8::/32
+     */
+    cidr?: string | null;
+    /**
+     * Output only. The name of the network interface. Examples: eth0, eno1
+     */
+    interfaceName?: string | null;
+    /**
+     * Output only. The IP address of the interface.
+     */
+    ipAddress?: string | null;
+    /**
+     * Output only. The MAC address of the interface.
+     */
+    macAddress?: string | null;
+    /**
+     * Output only. Speed of the interface in millions of bits per second.
+     */
+    speed?: string | null;
+    /**
+     * Output only. The id of the VLAN.
+     */
+    vlanId?: string | null;
+  }
+  /**
+   * Message describing NetworkMonitoringProvider resource.
+   */
+  export interface Schema$NetworkMonitoringProvider {
+    /**
+     * Output only. The time the NetworkMonitoringProvider was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The list of error messages detected for the NetworkMonitoringProvider.
+     */
+    errors?: string[] | null;
+    /**
+     * Output only. Identifier. Name of the resource. Format: `projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}`
+     */
+    name?: string | null;
+    /**
+     * Required. Type of the NetworkMonitoringProvider.
+     */
+    providerType?: string | null;
+    /**
+     * Output only. Link to the provider's UI.
+     */
+    providerUri?: string | null;
+    /**
+     * Output only. State of the NetworkMonitoringProvider.
+     */
+    state?: string | null;
+    /**
+     * Output only. The time the NetworkMonitoringProvider was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Message describing NetworkPath resource.
+   */
+  export interface Schema$NetworkPath {
+    /**
+     * Output only. The time the NetworkPath was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. IP address or hostname of the network path destination.
+     */
+    destination?: string | null;
+    /**
+     * Output only. Geographical location of the destination MonitoringPoint.
+     */
+    destinationGeoLocation?: Schema$GeoLocation;
+    /**
+     * Output only. Provider's UUID of the destination MonitoringPoint. This id may not point to a resource in the Google Cloud.
+     */
+    destinationMonitoringPointId?: string | null;
+    /**
+     * Output only. The display name of the network path.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Indicates if the network path is dual ended. When true, the network path is measured both: from both source to destination, and from destination to source. When false, the network path is measured from the source through the destination back to the source (round trip measurement).
+     */
+    dualEnded?: boolean | null;
+    /**
+     * Output only. Is monitoring enabled for the network path.
+     */
+    monitoringEnabled?: boolean | null;
+    /**
+     * Output only. Display name of the monitoring policy.
+     */
+    monitoringPolicyDisplayName?: string | null;
+    /**
+     * Output only. ID of monitoring policy.
+     */
+    monitoringPolicyId?: string | null;
+    /**
+     * Output only. The monitoring status of the network path.
+     */
+    monitoringStatus?: string | null;
+    /**
+     * Identifier. Name of the resource. Format: `projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}/networkPaths/{network_path\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The network protocol of the network path.
+     */
+    networkProtocol?: string | null;
+    /**
+     * Output only. The provider tags of the network path.
+     */
+    providerTags?: Schema$ProviderTag[];
+    /**
+     * Output only. Link to provider's UI; link shows the NetworkPath.
+     */
+    providerUiUri?: string | null;
+    /**
+     * Output only. Provider's UUID of the source MonitoringPoint. This id may not point to a resource in the Google Cloud.
+     */
+    sourceMonitoringPointId?: string | null;
+    /**
+     * Output only. The time the NetworkPath was updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * For display only. Metadata associated with a layer 7 packet inspection by the firewall.
@@ -1435,6 +1801,23 @@ export namespace networkmanagement_v1 {
      * The time that reachability was assessed through active probing.
      */
     verifyTime?: string | null;
+  }
+  /**
+   * Message describing the provider tag.
+   */
+  export interface Schema$ProviderTag {
+    /**
+     * Output only. The category of the provider tag.
+     */
+    category?: string | null;
+    /**
+     * Output only. The resource type of the provider tag.
+     */
+    resourceType?: string | null;
+    /**
+     * Output only. The value of the provider tag.
+     */
+    value?: string | null;
   }
   /**
    * For display only. Metadata associated with ProxyConnection.
@@ -1801,6 +2184,10 @@ export namespace networkmanagement_v1 {
      */
     cloudFunction?: Schema$CloudFunctionInfo;
     /**
+     * Display information of a Cloud Run job.
+     */
+    cloudRunJob?: Schema$CloudRunJobInfo;
+    /**
      * Display information of a Cloud Run revision.
      */
     cloudRunRevision?: Schema$CloudRunRevisionInfo;
@@ -2156,6 +2543,75 @@ export namespace networkmanagement_v1 {
      * URI of a VPN tunnel.
      */
     uri?: string | null;
+  }
+  /**
+   * Message describing WebPath resource.
+   */
+  export interface Schema$WebPath {
+    /**
+     * Output only. The time the WebPath was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Web monitoring target.
+     */
+    destination?: string | null;
+    /**
+     * Output only. Geographical location of the destination.
+     */
+    destinationGeoLocation?: Schema$GeoLocation;
+    /**
+     * Output only. Display name of the WebPath.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Monitoring interval.
+     */
+    interval?: string | null;
+    /**
+     * Output only. Is monitoring enabled for the WebPath.
+     */
+    monitoringEnabled?: boolean | null;
+    /**
+     * Output only. Display name of the monitoring policy.
+     */
+    monitoringPolicyDisplayName?: string | null;
+    /**
+     * Output only. ID of the monitoring policy.
+     */
+    monitoringPolicyId?: string | null;
+    /**
+     * Output only. The monitoring status of the WebPath.
+     */
+    monitoringStatus?: string | null;
+    /**
+     * Identifier. Name of the resource. Format: `projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}/webPaths/{web_path\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The provider tags of the web path.
+     */
+    providerTags?: Schema$ProviderTag[];
+    /**
+     * Output only. Link to provider's UI; link shows the WebPath.
+     */
+    providerUiUri?: string | null;
+    /**
+     * Output only. Provider's UUID of the related NetworkPath.
+     */
+    relatedNetworkPathId?: string | null;
+    /**
+     * Output only. ID of the source MonitoringPoint.
+     */
+    sourceMonitoringPointId?: string | null;
+    /**
+     * Output only. The time the WebPath was updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. The workflow type of the WebPath.
+     */
+    workflowType?: string | null;
   }
 
   export class Resource$Organizations {
@@ -4000,10 +4456,15 @@ export namespace networkmanagement_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     global: Resource$Projects$Locations$Global;
+    networkMonitoringProviders: Resource$Projects$Locations$Networkmonitoringproviders;
     vpcFlowLogsConfigs: Resource$Projects$Locations$Vpcflowlogsconfigs;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.global = new Resource$Projects$Locations$Global(this.context);
+      this.networkMonitoringProviders =
+        new Resource$Projects$Locations$Networkmonitoringproviders(
+          this.context
+        );
       this.vpcFlowLogsConfigs =
         new Resource$Projects$Locations$Vpcflowlogsconfigs(this.context);
     }
@@ -6460,6 +6921,2563 @@ export namespace networkmanagement_v1 {
      * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
+  }
+
+  export class Resource$Projects$Locations$Networkmonitoringproviders {
+    context: APIRequestContext;
+    monitoringPoints: Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints;
+    networkPaths: Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths;
+    webPaths: Resource$Projects$Locations$Networkmonitoringproviders$Webpaths;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.monitoringPoints =
+        new Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints(
+          this.context
+        );
+      this.networkPaths =
+        new Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths(
+          this.context
+        );
+      this.webPaths =
+        new Resource$Projects$Locations$Networkmonitoringproviders$Webpaths(
+          this.context
+        );
+    }
+
+    /**
+     * Creates a NetworkMonitoringProvider resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.networkMonitoringProviders.create(
+     *       {
+     *         // Required. The ID to use for the NetworkMonitoringProvider resource, which will become the final component of the NetworkMonitoringProvider resource's name.
+     *         networkMonitoringProviderId: 'placeholder-value',
+     *         // Required. Parent value for CreateNetworkMonitoringProviderRequest. Format: projects/{project\}/locations/{location\}
+     *         parent: 'projects/my-project/locations/my-location',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "createTime": "my_createTime",
+     *           //   "errors": [],
+     *           //   "name": "my_name",
+     *           //   "providerType": "my_providerType",
+     *           //   "providerUri": "my_providerUri",
+     *           //   "state": "my_state",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Networkmonitoringproviders$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkmonitoringproviders$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkmonitoringproviders$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkmonitoringproviders$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/networkMonitoringProviders').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a NetworkMonitoringProvider resource and all of its child resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.networkMonitoringProviders.delete(
+     *       {
+     *         // Optional. If set to true, any nested MonitoringPoints, NetworkPaths and WebPaths resources from this NetworkMonitoringProvider will also be deleted. Otherwise, the request will only work if there are no nested resources.
+     *         force: 'placeholder-value',
+     *         // Required. Name of the resource. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     *         name: 'projects/my-project/locations/my-location/networkMonitoringProviders/my-networkMonitoringProvider',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Networkmonitoringproviders$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkmonitoringproviders$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkmonitoringproviders$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkmonitoringproviders$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Generates Monitoring Point configuration of a NetworkMonitoringProvider resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.networkMonitoringProviders.generateMonitoringPointConfig(
+     *       {
+     *         // Required. Name of the resource. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     *         name: 'projects/my-project/locations/my-location/networkMonitoringProviders/my-networkMonitoringProvider',
+     *         // Optional. For Google Cloud MPs, this field indicates whether the Monitoring Point is deployed in a Private Service Connect deployment. Not used for non-Google Cloud MPs.
+     *         privateConnectivityEnabled: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateMonitoringPointConfig(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Generatemonitoringpointconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generateMonitoringPointConfig(
+      params?: Params$Resource$Projects$Locations$Networkmonitoringproviders$Generatemonitoringpointconfig,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GenerateMonitoringPointConfigResponse>
+    >;
+    generateMonitoringPointConfig(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Generatemonitoringpointconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateMonitoringPointConfig(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Generatemonitoringpointconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateMonitoringPointConfigResponse>,
+      callback: BodyResponseCallback<Schema$GenerateMonitoringPointConfigResponse>
+    ): void;
+    generateMonitoringPointConfig(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Generatemonitoringpointconfig,
+      callback: BodyResponseCallback<Schema$GenerateMonitoringPointConfigResponse>
+    ): void;
+    generateMonitoringPointConfig(
+      callback: BodyResponseCallback<Schema$GenerateMonitoringPointConfigResponse>
+    ): void;
+    generateMonitoringPointConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkmonitoringproviders$Generatemonitoringpointconfig
+        | BodyResponseCallback<Schema$GenerateMonitoringPointConfigResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateMonitoringPointConfigResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateMonitoringPointConfigResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GenerateMonitoringPointConfigResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkmonitoringproviders$Generatemonitoringpointconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkmonitoringproviders$Generatemonitoringpointconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+name}:generateMonitoringPointConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateMonitoringPointConfigResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateMonitoringPointConfigResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Generates a provider access token for a given Google access token. Provider access token is a short-lived token that is used to access resources in the provider's platform.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.networkMonitoringProviders.generateProviderAccessToken(
+     *       {
+     *         // Required. Google access token.
+     *         gcpAccessToken: 'placeholder-value',
+     *         // Required. Name of the resource. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     *         name: 'projects/my-project/locations/my-location/networkMonitoringProviders/my-networkMonitoringProvider',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "providerAccessToken": "my_providerAccessToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateProviderAccessToken(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Generateprovideraccesstoken,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generateProviderAccessToken(
+      params?: Params$Resource$Projects$Locations$Networkmonitoringproviders$Generateprovideraccesstoken,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GenerateProviderAccessTokenResponse>
+    >;
+    generateProviderAccessToken(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Generateprovideraccesstoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateProviderAccessToken(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Generateprovideraccesstoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateProviderAccessTokenResponse>,
+      callback: BodyResponseCallback<Schema$GenerateProviderAccessTokenResponse>
+    ): void;
+    generateProviderAccessToken(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Generateprovideraccesstoken,
+      callback: BodyResponseCallback<Schema$GenerateProviderAccessTokenResponse>
+    ): void;
+    generateProviderAccessToken(
+      callback: BodyResponseCallback<Schema$GenerateProviderAccessTokenResponse>
+    ): void;
+    generateProviderAccessToken(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkmonitoringproviders$Generateprovideraccesstoken
+        | BodyResponseCallback<Schema$GenerateProviderAccessTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateProviderAccessTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateProviderAccessTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GenerateProviderAccessTokenResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkmonitoringproviders$Generateprovideraccesstoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkmonitoringproviders$Generateprovideraccesstoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:generateProviderAccessToken').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateProviderAccessTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateProviderAccessTokenResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets the NetworkMonitoringProvider resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.networkMonitoringProviders.get({
+     *       // Required. Name of the resource. Format: `projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}`
+     *       name: 'projects/my-project/locations/my-location/networkMonitoringProviders/my-networkMonitoringProvider',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "errors": [],
+     *   //   "name": "my_name",
+     *   //   "providerType": "my_providerType",
+     *   //   "providerUri": "my_providerUri",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Networkmonitoringproviders$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$NetworkMonitoringProvider>>;
+    get(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$NetworkMonitoringProvider>,
+      callback: BodyResponseCallback<Schema$NetworkMonitoringProvider>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Get,
+      callback: BodyResponseCallback<Schema$NetworkMonitoringProvider>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$NetworkMonitoringProvider>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkmonitoringproviders$Get
+        | BodyResponseCallback<Schema$NetworkMonitoringProvider>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NetworkMonitoringProvider>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NetworkMonitoringProvider>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$NetworkMonitoringProvider>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkmonitoringproviders$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkmonitoringproviders$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NetworkMonitoringProvider>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$NetworkMonitoringProvider>(parameters);
+      }
+    }
+
+    /**
+     * Lists NetworkMonitoringProviders for a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.networkMonitoringProviders.list({
+     *       // Optional. The maximum number of monitoring points to return. The service may return fewer than this value. If unspecified, at most 20 monitoring points will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListMonitoringPoints` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMonitoringPoints` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Parent value for ListNetworkMonitoringProvidersRequest. Format: `projects/{project\}/locations/{location\}`
+     *       parent: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "networkMonitoringProviders": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Networkmonitoringproviders$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListNetworkMonitoringProvidersResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNetworkMonitoringProvidersResponse>,
+      callback: BodyResponseCallback<Schema$ListNetworkMonitoringProvidersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$List,
+      callback: BodyResponseCallback<Schema$ListNetworkMonitoringProvidersResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListNetworkMonitoringProvidersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkmonitoringproviders$List
+        | BodyResponseCallback<Schema$ListNetworkMonitoringProvidersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListNetworkMonitoringProvidersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListNetworkMonitoringProvidersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListNetworkMonitoringProvidersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkmonitoringproviders$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkmonitoringproviders$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/networkMonitoringProviders').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListNetworkMonitoringProvidersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListNetworkMonitoringProvidersResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Networkmonitoringproviders$Create extends StandardParameters {
+    /**
+     * Required. The ID to use for the NetworkMonitoringProvider resource, which will become the final component of the NetworkMonitoringProvider resource's name.
+     */
+    networkMonitoringProviderId?: string;
+    /**
+     * Required. Parent value for CreateNetworkMonitoringProviderRequest. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$NetworkMonitoringProvider;
+  }
+  export interface Params$Resource$Projects$Locations$Networkmonitoringproviders$Delete extends StandardParameters {
+    /**
+     * Optional. If set to true, any nested MonitoringPoints, NetworkPaths and WebPaths resources from this NetworkMonitoringProvider will also be deleted. Otherwise, the request will only work if there are no nested resources.
+     */
+    force?: boolean;
+    /**
+     * Required. Name of the resource. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Networkmonitoringproviders$Generatemonitoringpointconfig extends StandardParameters {
+    /**
+     * Required. Name of the resource. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     */
+    name?: string;
+    /**
+     * Optional. For Google Cloud MPs, this field indicates whether the Monitoring Point is deployed in a Private Service Connect deployment. Not used for non-Google Cloud MPs.
+     */
+    privateConnectivityEnabled?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Networkmonitoringproviders$Generateprovideraccesstoken extends StandardParameters {
+    /**
+     * Required. Google access token.
+     */
+    gcpAccessToken?: string;
+    /**
+     * Required. Name of the resource. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Networkmonitoringproviders$Get extends StandardParameters {
+    /**
+     * Required. Name of the resource. Format: `projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Networkmonitoringproviders$List extends StandardParameters {
+    /**
+     * Optional. The maximum number of monitoring points to return. The service may return fewer than this value. If unspecified, at most 20 monitoring points will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListMonitoringPoints` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMonitoringPoints` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListNetworkMonitoringProvidersRequest. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Downloads an install script for MonitoringPoints for a given network monitoring provider.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.networkMonitoringProviders.monitoringPoints.downloadInstallScript(
+     *       {
+     *         // Required. The hostname of the MonitoringPoint, e.g. "test-vm"
+     *         hostname: 'placeholder-value',
+     *         // Required. The type of the monitoring point.
+     *         monitoringPointType: 'placeholder-value',
+     *         // Optional. Network Time Protocol a user can configure. If the user omits the field, the default is either NTP servers provided in the DHCP lease or a set of well-known NTP servers pre-configured on the monitoring point. This field can be an IP address or FQDN.
+     *         ntpServerAddress: 'placeholder-value',
+     *         // Optional. Second NTP server.
+     *         ntpServerSecondaryAddress: 'placeholder-value',
+     *         // Required. Parent value for DownloadInstallScriptRequest. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     *         parent:
+     *           'projects/my-project/locations/my-location/networkMonitoringProviders/my-networkMonitoringProvider',
+     *         // Optional. For Google Cloud MPs, this field indicates whether the Monitoring Point is deployed in a Private Service Connect deployment. Not used for non-Google Cloud MPs.
+     *         privateConnectivityEnabled: 'placeholder-value',
+     *         // Required. DNS server.
+     *         'staticIpAddress.dnsServerAddress': 'placeholder-value',
+     *         // Optional. Second DNS server.
+     *         'staticIpAddress.dnsServerSecondaryAddress': 'placeholder-value',
+     *         // Optional. Domain name of the MonitoringPoint.
+     *         'staticIpAddress.domain': 'placeholder-value',
+     *         // Required. Gateway IP address. Example: "100.80.40.1".
+     *         'staticIpAddress.gatewayAddress': 'placeholder-value',
+     *         // Required. IP address of the MonitoringPoint.
+     *         'staticIpAddress.ipAddress': 'placeholder-value',
+     *         // Optional. Networkmask and CIDR range. Example: "255.255.255.0/24"
+     *         'staticIpAddress.netmask': 'placeholder-value',
+     *         // IANA Time Zone Database time zone. For example "America/New_York".
+     *         'timeZone.id': 'placeholder-value',
+     *         // Optional. IANA Time Zone Database version number. For example "2019a".
+     *         'timeZone.version': 'placeholder-value',
+     *         // Optional. Dynamic Host Configuration Protocol, is a network management protocol that automatically assigns IP addresses and other network configuration parameters to devices connecting to a network.
+     *         useDhcp: 'placeholder-value',
+     *         // Optional. Password for logging into the MonitoringPoint.
+     *         _password: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    downloadInstallScript(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadinstallscript,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    downloadInstallScript(
+      params?: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadinstallscript,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
+    downloadInstallScript(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadinstallscript,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    downloadInstallScript(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadinstallscript,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    downloadInstallScript(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadinstallscript,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    downloadInstallScript(
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    downloadInstallScript(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadinstallscript
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadinstallscript;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadinstallscript;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/monitoringPoints:downloadInstallScript'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * Downloads an install script for a specific Container MonitoringPoint.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.networkMonitoringProviders.monitoringPoints.downloadRecreateInstallScript(
+     *       {
+     *         // Optional. The hostname of the MonitoringPoint, e.g. "test-vm"
+     *         hostname: 'placeholder-value',
+     *         // Required. Resource name of the MonitoringPoint. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}/monitoringPoints/{monitoring_point\}
+     *         name: 'projects/my-project/locations/my-location/networkMonitoringProviders/my-networkMonitoringProvider/monitoringPoints/my-monitoringPoint',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    downloadRecreateInstallScript(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadrecreateinstallscript,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    downloadRecreateInstallScript(
+      params?: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadrecreateinstallscript,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
+    downloadRecreateInstallScript(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadrecreateinstallscript,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    downloadRecreateInstallScript(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadrecreateinstallscript,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    downloadRecreateInstallScript(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadrecreateinstallscript,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    downloadRecreateInstallScript(
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    downloadRecreateInstallScript(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadrecreateinstallscript
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadrecreateinstallscript;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadrecreateinstallscript;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+name}:downloadRecreateInstallScript'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * Downloads the server connect configuration for a given network monitoring provider.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.networkMonitoringProviders.monitoringPoints.downloadServerConnectConfig(
+     *       {
+     *         // Required. Parent value for DownloadServerConnectConfigRequest. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     *         parent:
+     *           'projects/my-project/locations/my-location/networkMonitoringProviders/my-networkMonitoringProvider',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    downloadServerConnectConfig(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadserverconnectconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    downloadServerConnectConfig(
+      params?: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadserverconnectconfig,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
+    downloadServerConnectConfig(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadserverconnectconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    downloadServerConnectConfig(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadserverconnectconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    downloadServerConnectConfig(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadserverconnectconfig,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    downloadServerConnectConfig(
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    downloadServerConnectConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadserverconnectconfig
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadserverconnectconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadserverconnectconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+parent}/monitoringPoints:downloadServerConnectConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * Gets the MonitoringPoint resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.networkMonitoringProviders.monitoringPoints.get(
+     *       {
+     *         // Required. Name of the resource. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}/monitoringPoints/{monitoring_point\}
+     *         name: 'projects/my-project/locations/my-location/networkMonitoringProviders/my-networkMonitoringProvider/monitoringPoints/my-monitoringPoint',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoGeoLocationEnabled": false,
+     *   //   "connectionStatus": "my_connectionStatus",
+     *   //   "createTime": "my_createTime",
+     *   //   "deploymentType": "my_deploymentType",
+     *   //   "displayName": "my_displayName",
+     *   //   "errors": [],
+     *   //   "geoLocation": {},
+     *   //   "guid": "my_guid",
+     *   //   "host": {},
+     *   //   "hostname": "my_hostname",
+     *   //   "name": "my_name",
+     *   //   "networkInterfaces": [],
+     *   //   "originatingIp": "my_originatingIp",
+     *   //   "providerTags": [],
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "upgradeAvailable": false,
+     *   //   "upgradeType": "my_upgradeType",
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$MonitoringPoint>>;
+    get(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$MonitoringPoint>,
+      callback: BodyResponseCallback<Schema$MonitoringPoint>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Get,
+      callback: BodyResponseCallback<Schema$MonitoringPoint>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$MonitoringPoint>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Get
+        | BodyResponseCallback<Schema$MonitoringPoint>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MonitoringPoint>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MonitoringPoint>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$MonitoringPoint>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MonitoringPoint>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MonitoringPoint>(parameters);
+      }
+    }
+
+    /**
+     * Lists MonitoringPoints for a given network monitoring provider.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.networkMonitoringProviders.monitoringPoints.list(
+     *       {
+     *         // Optional. The maximum number of monitoring points to return. The service may return fewer than this value. If unspecified, at most 20 monitoring points will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListMonitoringPoints` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMonitoringPoints` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Parent value for ListMonitoringPointsRequest. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     *         parent:
+     *           'projects/my-project/locations/my-location/networkMonitoringProviders/my-networkMonitoringProvider',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "monitoringPoints": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListMonitoringPointsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMonitoringPointsResponse>,
+      callback: BodyResponseCallback<Schema$ListMonitoringPointsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$List,
+      callback: BodyResponseCallback<Schema$ListMonitoringPointsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListMonitoringPointsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$List
+        | BodyResponseCallback<Schema$ListMonitoringPointsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMonitoringPointsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMonitoringPointsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListMonitoringPointsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/monitoringPoints').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMonitoringPointsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMonitoringPointsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadinstallscript extends StandardParameters {
+    /**
+     * Required. The hostname of the MonitoringPoint, e.g. "test-vm"
+     */
+    hostname?: string;
+    /**
+     * Required. The type of the monitoring point.
+     */
+    monitoringPointType?: string;
+    /**
+     * Optional. Network Time Protocol a user can configure. If the user omits the field, the default is either NTP servers provided in the DHCP lease or a set of well-known NTP servers pre-configured on the monitoring point. This field can be an IP address or FQDN.
+     */
+    ntpServerAddress?: string;
+    /**
+     * Optional. Second NTP server.
+     */
+    ntpServerSecondaryAddress?: string;
+    /**
+     * Required. Parent value for DownloadInstallScriptRequest. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     */
+    parent?: string;
+    /**
+     * Optional. For Google Cloud MPs, this field indicates whether the Monitoring Point is deployed in a Private Service Connect deployment. Not used for non-Google Cloud MPs.
+     */
+    privateConnectivityEnabled?: boolean;
+    /**
+     * Required. DNS server.
+     */
+    'staticIpAddress.dnsServerAddress'?: string;
+    /**
+     * Optional. Second DNS server.
+     */
+    'staticIpAddress.dnsServerSecondaryAddress'?: string;
+    /**
+     * Optional. Domain name of the MonitoringPoint.
+     */
+    'staticIpAddress.domain'?: string;
+    /**
+     * Required. Gateway IP address. Example: "100.80.40.1".
+     */
+    'staticIpAddress.gatewayAddress'?: string;
+    /**
+     * Required. IP address of the MonitoringPoint.
+     */
+    'staticIpAddress.ipAddress'?: string;
+    /**
+     * Optional. Networkmask and CIDR range. Example: "255.255.255.0/24"
+     */
+    'staticIpAddress.netmask'?: string;
+    /**
+     * IANA Time Zone Database time zone. For example "America/New_York".
+     */
+    'timeZone.id'?: string;
+    /**
+     * Optional. IANA Time Zone Database version number. For example "2019a".
+     */
+    'timeZone.version'?: string;
+    /**
+     * Optional. Dynamic Host Configuration Protocol, is a network management protocol that automatically assigns IP addresses and other network configuration parameters to devices connecting to a network.
+     */
+    useDhcp?: boolean;
+    /**
+     * Optional. Password for logging into the MonitoringPoint.
+     */
+    _password?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadrecreateinstallscript extends StandardParameters {
+    /**
+     * Optional. The hostname of the MonitoringPoint, e.g. "test-vm"
+     */
+    hostname?: string;
+    /**
+     * Required. Resource name of the MonitoringPoint. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}/monitoringPoints/{monitoring_point\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Downloadserverconnectconfig extends StandardParameters {
+    /**
+     * Required. Parent value for DownloadServerConnectConfigRequest. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$Get extends StandardParameters {
+    /**
+     * Required. Name of the resource. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}/monitoringPoints/{monitoring_point\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Networkmonitoringproviders$Monitoringpoints$List extends StandardParameters {
+    /**
+     * Optional. The maximum number of monitoring points to return. The service may return fewer than this value. If unspecified, at most 20 monitoring points will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListMonitoringPoints` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMonitoringPoints` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListMonitoringPointsRequest. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the NetworkPath resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.networkMonitoringProviders.networkPaths.get(
+     *       {
+     *         // Required. Name of the resource. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}/networkPaths/{network_path\}
+     *         name: 'projects/my-project/locations/my-location/networkMonitoringProviders/my-networkMonitoringProvider/networkPaths/my-networkPath',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "destination": "my_destination",
+     *   //   "destinationGeoLocation": {},
+     *   //   "destinationMonitoringPointId": "my_destinationMonitoringPointId",
+     *   //   "displayName": "my_displayName",
+     *   //   "dualEnded": false,
+     *   //   "monitoringEnabled": false,
+     *   //   "monitoringPolicyDisplayName": "my_monitoringPolicyDisplayName",
+     *   //   "monitoringPolicyId": "my_monitoringPolicyId",
+     *   //   "monitoringStatus": "my_monitoringStatus",
+     *   //   "name": "my_name",
+     *   //   "networkProtocol": "my_networkProtocol",
+     *   //   "providerTags": [],
+     *   //   "providerUiUri": "my_providerUiUri",
+     *   //   "sourceMonitoringPointId": "my_sourceMonitoringPointId",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$NetworkPath>>;
+    get(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$NetworkPath>,
+      callback: BodyResponseCallback<Schema$NetworkPath>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$Get,
+      callback: BodyResponseCallback<Schema$NetworkPath>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$NetworkPath>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$Get
+        | BodyResponseCallback<Schema$NetworkPath>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$NetworkPath>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$NetworkPath>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$NetworkPath>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$NetworkPath>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$NetworkPath>(parameters);
+      }
+    }
+
+    /**
+     * Lists NetworkPaths for a given network monitoring provider.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.networkMonitoringProviders.networkPaths.list(
+     *       {
+     *         // Optional. The maximum number of network paths to return. The service may return fewer than this value. If unspecified, at most 20 network pathswill be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListNetworkPaths` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListNetworkPaths` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Parent value for ListNetworkPathsRequest. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     *         parent:
+     *           'projects/my-project/locations/my-location/networkMonitoringProviders/my-networkMonitoringProvider',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "networkPaths": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListNetworkPathsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNetworkPathsResponse>,
+      callback: BodyResponseCallback<Schema$ListNetworkPathsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$List,
+      callback: BodyResponseCallback<Schema$ListNetworkPathsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListNetworkPathsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$List
+        | BodyResponseCallback<Schema$ListNetworkPathsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListNetworkPathsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListNetworkPathsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListNetworkPathsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/networkPaths').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListNetworkPathsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListNetworkPathsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$Get extends StandardParameters {
+    /**
+     * Required. Name of the resource. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}/networkPaths/{network_path\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$List extends StandardParameters {
+    /**
+     * Optional. The maximum number of network paths to return. The service may return fewer than this value. If unspecified, at most 20 network pathswill be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListNetworkPaths` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListNetworkPaths` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListNetworkPathsRequest. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Networkmonitoringproviders$Webpaths {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the WebPath resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.networkMonitoringProviders.webPaths.get(
+     *       {
+     *         // Required. Name of the resource.. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}/webPaths/{web_path\}
+     *         name: 'projects/my-project/locations/my-location/networkMonitoringProviders/my-networkMonitoringProvider/webPaths/my-webPath',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "destination": "my_destination",
+     *   //   "destinationGeoLocation": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "interval": "my_interval",
+     *   //   "monitoringEnabled": false,
+     *   //   "monitoringPolicyDisplayName": "my_monitoringPolicyDisplayName",
+     *   //   "monitoringPolicyId": "my_monitoringPolicyId",
+     *   //   "monitoringStatus": "my_monitoringStatus",
+     *   //   "name": "my_name",
+     *   //   "providerTags": [],
+     *   //   "providerUiUri": "my_providerUiUri",
+     *   //   "relatedNetworkPathId": "my_relatedNetworkPathId",
+     *   //   "sourceMonitoringPointId": "my_sourceMonitoringPointId",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "workflowType": "my_workflowType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WebPath>>;
+    get(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$WebPath>,
+      callback: BodyResponseCallback<Schema$WebPath>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$Get,
+      callback: BodyResponseCallback<Schema$WebPath>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$WebPath>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$Get
+        | BodyResponseCallback<Schema$WebPath>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WebPath>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WebPath>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WebPath>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WebPath>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WebPath>(parameters);
+      }
+    }
+
+    /**
+     * Lists WebPaths for a given network monitoring provider.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.networkMonitoringProviders.webPaths.list(
+     *       {
+     *         // Optional. The maximum number of web paths to return. The service may return fewer than this value. If unspecified, at most 20 web paths will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListWebPaths` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWebPaths` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Parent value for ListWebPathsRequest. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     *         parent:
+     *           'projects/my-project/locations/my-location/networkMonitoringProviders/my-networkMonitoringProvider',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "webPaths": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListWebPathsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWebPathsResponse>,
+      callback: BodyResponseCallback<Schema$ListWebPathsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$List,
+      callback: BodyResponseCallback<Schema$ListWebPathsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListWebPathsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$List
+        | BodyResponseCallback<Schema$ListWebPathsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWebPathsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWebPathsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListWebPathsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/webPaths').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWebPathsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListWebPathsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$Get extends StandardParameters {
+    /**
+     * Required. Name of the resource.. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}/webPaths/{web_path\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$List extends StandardParameters {
+    /**
+     * Optional. The maximum number of web paths to return. The service may return fewer than this value. If unspecified, at most 20 web paths will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListWebPaths` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWebPaths` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListWebPathsRequest. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Vpcflowlogsconfigs {

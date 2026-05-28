@@ -1237,7 +1237,7 @@
       }
     }
   },
-  "revision": "20260424",
+  "revision": "20260520",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1552,6 +1552,25 @@
       },
       "type": "object"
     },
+    "CloudRunJobInfo": {
+      "description": "For display only. Metadata associated with a Cloud Run job.",
+      "id": "CloudRunJobInfo",
+      "properties": {
+        "displayName": {
+          "description": "Name of a Cloud Run job.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Location in which this job is deployed.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of a Cloud Run job.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CloudRunRevisionEndpoint": {
       "description": "Wrapper for Cloud Run revision attributes.",
       "id": "CloudRunRevisionEndpoint",
@@ -1764,7 +1783,10 @@
             "GOOGLE_MANAGED_SERVICE",
             "REDIS_INSTANCE",
             "REDIS_CLUSTER",
-            "GKE_POD"
+            "GKE_POD",
+            "CLOUD_RUN_JOB",
+            "DMS_PRIVATE_CONNECTION",
+            "DATASTREAM_PRIVATE_CONNECTION"
           ],
           "enumDescriptions": [
             "Target not specified.",
@@ -1785,7 +1807,10 @@
             "Target is a Google-managed service. Used only for return traces.",
             "Target is a Redis Instance.",
             "Target is a Redis Cluster.",
-            "Target is a GKE Pod."
+            "Target is a GKE Pod.",
+            "Target is a Cloud Run Job. Used only for return traces.",
+            "Target is a DMS Private Connection. Used only for return traces.",
+            "Target is a Datastream Private Connection. Used only for return traces."
           ],
           "type": "string"
         }
@@ -1853,6 +1878,7 @@
             "FORWARDING_RULE_MISMATCH",
             "FORWARDING_RULE_NO_INSTANCES",
             "FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK",
+            "FIREWALL_BLOCKING_LOAD_BALANCER_ENVOY_PROXY_HEALTH_CHECK",
             "INGRESS_FIREWALL_TAGS_UNSUPPORTED_BY_DIRECT_VPC_EGRESS",
             "INSTANCE_NOT_RUNNING",
             "GKE_CLUSTER_NOT_RUNNING",
@@ -1865,6 +1891,8 @@
             "CLOUD_SQL_INSTANCE_UNAUTHORIZED_ACCESS",
             "DROPPED_INSIDE_GKE_SERVICE",
             "DROPPED_INSIDE_CLOUD_SQL_SERVICE",
+            "DROPPED_INSIDE_DMS_PRIVATE_CONNECTION",
+            "DROPPED_INSIDE_DATASTREAM_PRIVATE_CONNECTION",
             "GOOGLE_MANAGED_SERVICE_NO_PEERING",
             "GOOGLE_MANAGED_SERVICE_NO_PSC_ENDPOINT",
             "GKE_PSC_ENDPOINT_MISSING",
@@ -1892,6 +1920,7 @@
             "HYBRID_NEG_NON_DYNAMIC_ROUTE_MATCHED",
             "HYBRID_NEG_NON_LOCAL_DYNAMIC_ROUTE_MATCHED",
             "CLOUD_RUN_REVISION_NOT_READY",
+            "CLOUD_RUN_JOB_NOT_READY",
             "DROPPED_INSIDE_PSC_SERVICE_PRODUCER",
             "LOAD_BALANCER_HAS_NO_PROXY_SUBNET",
             "CLOUD_NAT_NO_ADDRESSES",
@@ -1961,6 +1990,7 @@
             "Forwarding rule's protocol and ports do not match the packet header.",
             "Forwarding rule does not have backends configured.",
             "Firewalls block the health check probes to the backends and cause the backends to be unavailable for traffic from the load balancer. For more details, see [Health check firewall rules](https://cloud.google.com/load-balancing/docs/health-checks#firewall_rules).",
+            "Firewalls block health check probes to the Envoy proxies that power this load balancer.",
             "Matching ingress firewall rules by network tags for packets sent via serverless VPC direct egress is unsupported. Behavior is undefined. https://cloud.google.com/run/docs/configuring/vpc-direct-vpc#limitations",
             "Packet is sent from or to a Compute Engine instance that is not in a running state.",
             "Packet sent from or to a GKE cluster that is not in running state.",
@@ -1973,6 +2003,8 @@
             "Access to the Cloud SQL instance endpoint is not authorized. See [Authorizing with authorized networks](https://cloud.google.com/sql/docs/mysql/authorize-networks) for more details.",
             "Packet was dropped inside Google Kubernetes Engine Service.",
             "Packet was dropped inside Cloud SQL Service.",
+            "Packet was dropped inside DMS Private Connection.",
+            "Packet was dropped inside Datastream Private Connection.",
             "Packet was dropped because there is no peering between the originating network and the Google Managed Services Network.",
             "Packet was dropped because the Google-managed service uses Private Service Connect (PSC), but the PSC endpoint is not found in the project.",
             "Packet was dropped because the GKE cluster uses Private Service Connect (PSC), but the PSC endpoint is not found in the project.",
@@ -2000,6 +2032,7 @@
             "The packet sent from the hybrid NEG proxy matches a non-dynamic route, but such a configuration is not supported.",
             "The packet sent from the hybrid NEG proxy matches a dynamic route with a next hop in a different region, but such a configuration is not supported.",
             "Packet sent from a Cloud Run revision that is not ready.",
+            "Packet sent from a Cloud Run job that is not ready.",
             "Packet was dropped inside Private Service Connect service producer.",
             "Packet sent to a load balancer, which requires a proxy-only subnet and the subnet is not found.",
             "Packet sent to Cloud Nat without active NAT IPs.",
@@ -2229,6 +2262,10 @@
         "cloudFunction": {
           "$ref": "CloudFunctionEndpoint",
           "description": "A [Cloud Function](https://cloud.google.com/functions). Applicable only to source endpoint."
+        },
+        "cloudRunJob": {
+          "description": "A [Cloud Run](https://cloud.google.com/run) [job](https://docs.cloud.google.com/run/docs/reference/rest/v2/projects.locations.jobs#Job) URI. Applicable only to source endpoint. The format is: projects/{project}/locations/{location}/jobs/{job}",
+          "type": "string"
         },
         "cloudRunRevision": {
           "$ref": "CloudRunRevisionEndpoint",
@@ -4126,6 +4163,10 @@
           "$ref": "CloudFunctionInfo",
           "description": "Display information of a Cloud Function."
         },
+        "cloudRunJob": {
+          "$ref": "CloudRunJobInfo",
+          "description": "Display information of a Cloud Run job."
+        },
         "cloudRunRevision": {
           "$ref": "CloudRunRevisionInfo",
           "description": "Display information of a Cloud Run revision."
@@ -4275,6 +4316,7 @@
             "START_FROM_CLOUD_FUNCTION",
             "START_FROM_APP_ENGINE_VERSION",
             "START_FROM_CLOUD_RUN_REVISION",
+            "START_FROM_CLOUD_RUN_JOB",
             "START_FROM_STORAGE_BUCKET",
             "START_FROM_PSC_PUBLISHED_SERVICE",
             "START_FROM_SERVERLESS_NEG",
@@ -4312,6 +4354,7 @@
             "VIEWER_PERMISSION_MISSING"
           ],
           "enumDeprecated": [
+            false,
             false,
             false,
             false,
@@ -4375,6 +4418,7 @@
             "Initial state: packet originating from a Cloud Function. A CloudFunctionInfo is populated with starting function information.",
             "Initial state: packet originating from an App Engine service version. An AppEngineVersionInfo is populated with starting version information.",
             "Initial state: packet originating from a Cloud Run revision. A CloudRunRevisionInfo is populated with starting revision information.",
+            "Initial state: packet originating from a Cloud Run Job. A CloudRunJobInfo is populated with starting Job information.",
             "Initial state: packet originating from a Storage Bucket. Used only for return traces. The storage_bucket information is populated.",
             "Initial state: packet originating from a published service that uses Private Service Connect. Used only for return traces.",
             "Initial state: packet originating from a serverless network endpoint group backend. Used only for return traces. The serverless_neg information is populated.",
