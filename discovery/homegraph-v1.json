@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20260414",
+  "revision": "20260523",
   "rootUrl": "https://homegraph.googleapis.com/",
   "schemas": {
     "AgentDeviceId": {
@@ -355,6 +355,21 @@
       },
       "type": "object"
     },
+    "DeviceMetadata": {
+      "description": "Metadata for traits of a single device.",
+      "id": "DeviceMetadata",
+      "properties": {
+        "traitCommitTimestamps": {
+          "additionalProperties": {
+            "format": "google-datetime",
+            "type": "string"
+          },
+          "description": "Map from the Trait ID (e.g., \"action.devices.traits.OnOff\") to its last Spanner commit timestamp.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "DeviceNames": {
       "description": "Identifiers used to describe the device.",
       "id": "DeviceNames",
@@ -472,6 +487,10 @@
           "description": "Required. Third-party user ID.",
           "type": "string"
         },
+        "includeDeviceMetadata": {
+          "description": "Optional. If true, the response will include device metadata in the device_metadata field.",
+          "type": "boolean"
+        },
         "inputs": {
           "description": "Required. Inputs containing third-party device IDs for which to get the device states.",
           "items": {
@@ -530,6 +549,13 @@
       "description": "Payload containing device states information.",
       "id": "QueryResponsePayload",
       "properties": {
+        "deviceMetadata": {
+          "additionalProperties": {
+            "$ref": "DeviceMetadata"
+          },
+          "description": "Map from the Trait ID (e.g., \"action.devices.traits.OnOff\") to its last Spanner commit timestamp. If a trait has no recorded timestamp, it will be omitted from this map.",
+          "type": "object"
+        },
         "devices": {
           "additionalProperties": {
             "additionalProperties": {
@@ -709,7 +735,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "Optional. The Home API trait payload.",
+          "description": "The Provider Home API trait payload.",
           "type": "object"
         }
       },
