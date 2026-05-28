@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20260323",
+  "revision": "20260524",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -691,11 +691,11 @@
       "type": "object"
     },
     "GoogleMapsPlacesV1ContextualContent": {
-      "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Content that is contextual to the place query.",
+      "description": "Content that is contextual to the place query.",
       "id": "GoogleMapsPlacesV1ContextualContent",
       "properties": {
         "justifications": {
-          "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Justifications for the place.",
+          "description": "Justifications for the place.",
           "items": {
             "$ref": "GoogleMapsPlacesV1ContextualContentJustification"
           },
@@ -719,22 +719,20 @@
       "type": "object"
     },
     "GoogleMapsPlacesV1ContextualContentJustification": {
-      "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Justifications for the place. Justifications answers the question of why a place could interest an end user.",
+      "description": "Justifications for the place. Justifications answers the question of why a place could interest an end user.",
       "id": "GoogleMapsPlacesV1ContextualContentJustification",
       "properties": {
         "businessAvailabilityAttributesJustification": {
-          "$ref": "GoogleMapsPlacesV1ContextualContentJustificationBusinessAvailabilityAttributesJustification",
-          "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details."
+          "$ref": "GoogleMapsPlacesV1ContextualContentJustificationBusinessAvailabilityAttributesJustification"
         },
         "reviewJustification": {
-          "$ref": "GoogleMapsPlacesV1ContextualContentJustificationReviewJustification",
-          "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details."
+          "$ref": "GoogleMapsPlacesV1ContextualContentJustificationReviewJustification"
         }
       },
       "type": "object"
     },
     "GoogleMapsPlacesV1ContextualContentJustificationBusinessAvailabilityAttributesJustification": {
-      "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. BusinessAvailabilityAttributes justifications. This shows some attributes a business has that could interest an end user.",
+      "description": "BusinessAvailabilityAttributes justifications. This shows some attributes a business has that could interest an end user.",
       "id": "GoogleMapsPlacesV1ContextualContentJustificationBusinessAvailabilityAttributesJustification",
       "properties": {
         "delivery": {
@@ -753,7 +751,7 @@
       "type": "object"
     },
     "GoogleMapsPlacesV1ContextualContentJustificationReviewJustification": {
-      "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. User review justifications. This highlights a section of the user review that would interest an end user. For instance, if the search query is \"firewood pizza\", the review justification highlights the text relevant to the search query.",
+      "description": "User review justifications. This highlights a section of the user review that would interest an end user. For instance, if the search query is \"firewood pizza\", the review justification highlights the text relevant to the search query.",
       "id": "GoogleMapsPlacesV1ContextualContentJustificationReviewJustification",
       "properties": {
         "highlightedText": {
@@ -1356,6 +1354,10 @@
         "timeZone": {
           "$ref": "GoogleTypeTimeZone",
           "description": "IANA Time Zone Database time zone. For example \"America/New_York\"."
+        },
+        "transitStation": {
+          "$ref": "GoogleMapsPlacesV1TransitStation",
+          "description": "The transit station information for the place."
         },
         "types": {
           "description": "A set of type tags for this result. For example, \"political\" and \"locality\". For the complete list of possible values, see Table A and Table B at https://developers.google.com/maps/documentation/places/web-service/place-types",
@@ -2380,6 +2382,202 @@
         "searchUri": {
           "description": "A link allows the user to search with the same text query as specified in the request on Google Maps.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1TransitAgency": {
+      "description": "Represents a transit agency.",
+      "id": "GoogleMapsPlacesV1TransitAgency",
+      "properties": {
+        "displayName": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "Agency name (e.g. \"VTA\") in the requested language."
+        },
+        "fareUrl": {
+          "description": "The URL of the agency's fare details page.",
+          "type": "string"
+        },
+        "icon": {
+          "$ref": "GoogleMapsPlacesV1TransitIcon",
+          "description": "Icon identifier for localized branded icon of a transit system (e.g. London Underground) which should be used instead of TransitLine.vehicle_icon in the UI."
+        },
+        "lines": {
+          "description": "The transit lines that are served by this agency.",
+          "items": {
+            "$ref": "GoogleMapsPlacesV1TransitLine"
+          },
+          "type": "array"
+        },
+        "url": {
+          "description": "The URL of the agency's homepage.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1TransitIcon": {
+      "description": "Icon for a transit line, vehicle, or agency.",
+      "id": "GoogleMapsPlacesV1TransitIcon",
+      "properties": {
+        "nameIncluded": {
+          "description": "Whether the name is contained in the icon and there is no need to display it next to the icon.",
+          "type": "boolean"
+        },
+        "url": {
+          "description": "The URL of the icon.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1TransitLine": {
+      "description": "Represents a single transit line.",
+      "id": "GoogleMapsPlacesV1TransitLine",
+      "properties": {
+        "backgroundColor": {
+          "description": "The background color of the labels for this transit line in #RRGGBB hex format, e.g. #909CE1. This color can also be used for drawing shapes for this transit line.",
+          "type": "string"
+        },
+        "displayName": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "The long name for this transit line (e.g. \"Sunnydale local\")."
+        },
+        "icon": {
+          "$ref": "GoogleMapsPlacesV1TransitIcon",
+          "description": "Icon identifier for this particular line (e.g. subway lines in New York)."
+        },
+        "id": {
+          "description": "The id of the transit line that can be used to uniquely identify the line among other transit lines in the same transit station. This identifier is not guaranteed to be stable across different responses.",
+          "type": "string"
+        },
+        "shortDisplayName": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "The short name for this transit line (e.g. \"S2\")."
+        },
+        "textColor": {
+          "description": "The text color of labels for this transit line in #RRGGBB hex format, e.g. #909CE1.",
+          "type": "string"
+        },
+        "url": {
+          "description": "The URL of a webpage with details about this line.",
+          "type": "string"
+        },
+        "vehicleIcon": {
+          "$ref": "GoogleMapsPlacesV1TransitIcon",
+          "description": "Icon identifier for this particular vehicle type."
+        },
+        "vehicleType": {
+          "description": "The type of vehicle using this line.",
+          "enum": [
+            "VEHICLE_TYPE_UNSPECIFIED",
+            "RAIL",
+            "METRO_RAIL",
+            "SUBWAY",
+            "TRAM",
+            "MONORAIL",
+            "HEAVY_RAIL",
+            "COMMUTER_TRAIN",
+            "HIGH_SPEED_TRAIN",
+            "LONG_DISTANCE_TRAIN",
+            "BUS",
+            "INTERCITY_BUS",
+            "TROLLEYBUS",
+            "SHARE_TAXI",
+            "COACH",
+            "FERRY",
+            "CABLE_CAR",
+            "GONDOLA_LIFT",
+            "FUNICULAR",
+            "SPECIAL",
+            "HORSE_CARRIAGE",
+            "AIRPLANE"
+          ],
+          "enumDescriptions": [
+            "Default value when vehicle type is not specified.",
+            "Rail.",
+            "Metro rail.",
+            "Subway.",
+            "Tram.",
+            "Monorail.",
+            "Heavy rail.",
+            "Commuter train.",
+            "High speed train.",
+            "Long distance train.",
+            "Bus.",
+            "Intercity bus.",
+            "Trolleybus.",
+            "Share taxi.",
+            "Coach.",
+            "Ferry.",
+            "Cable car.",
+            "Gondola lift.",
+            "Funicular.",
+            "Special.",
+            "Horse carriage.",
+            "Airplane."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1TransitStation": {
+      "description": "Represents transit-specific information for a place.",
+      "id": "GoogleMapsPlacesV1TransitStation",
+      "properties": {
+        "agencies": {
+          "description": "The transit agencies that serve this station.",
+          "items": {
+            "$ref": "GoogleMapsPlacesV1TransitAgency"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "The name of the station in the local language."
+        },
+        "stops": {
+          "description": "Transit stops at this station.",
+          "items": {
+            "$ref": "GoogleMapsPlacesV1TransitStop"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1TransitStop": {
+      "description": "Represents a transit stop within a station. This is a specific location where passengers board and alight transit vehicles, such as a platform or bus bay. This is distinct from a `Departure`, which is an event of a vehicle leaving a stop at a specific time.",
+      "id": "GoogleMapsPlacesV1TransitStop",
+      "properties": {
+        "displayName": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "The name of the stop."
+        },
+        "id": {
+          "description": "The id of the transit stop that can be used to uniquely identify the stop among other transit stops in the same transit station. This identifier is not guaranteed to be stable across different responses.",
+          "type": "string"
+        },
+        "location": {
+          "$ref": "GoogleTypeLatLng",
+          "description": "The stop's location."
+        },
+        "platformCode": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "The platform code represented by this stop. It can be formatted in any way. (eg: \"2\", \"Platform 2\", \"2-4\", or \"1x\")."
+        },
+        "signageText": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "The verbatim text written on the signboard for this platform, e.g. \"Towards Central\" or \"East side & Brooklyn\". When `platform_code` is absent, this field is potentially the only identifier for the platform; however, both `platform_code` and `signage_text` may be set simultaneously."
+        },
+        "stopCode": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "Human readable identifier of the stop, used by transit agencies to distinguish stops with the same name."
+        },
+        "wheelchairAccessibleEntrance": {
+          "description": "Wheelchair accessibility of this stop. This field indicates whether there is an accessible path from outside the station to the stop. It does not indicate whether it is possible to board a vehicle from the stop.",
+          "type": "boolean"
         }
       },
       "type": "object"
