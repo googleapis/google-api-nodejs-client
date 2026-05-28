@@ -4843,7 +4843,8 @@
               ]
             },
             "cancel": {
-              "description": "Cancels a user's subscription purchase. The subscription remains valid until its expiration time. Newer version is available at purchases.subscriptionsv2.cancel for better client library support.",
+              "deprecated": true,
+              "description": "Deprecated: Use purchases.subscriptionsv2.cancel instead. Cancels a user's subscription purchase. The subscription remains valid until its expiration time. Newer version is available at purchases.subscriptionsv2.cancel for better client library support.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel",
               "httpMethod": "POST",
               "id": "androidpublisher.purchases.subscriptions.cancel",
@@ -4878,7 +4879,8 @@
               ]
             },
             "defer": {
-              "description": "Defers a user's subscription purchase until a specified future expiration time.",
+              "deprecated": true,
+              "description": "Deprecated: Use purchases.subscriptionsv2.defer instead. Defers a user's subscription purchase until a specified future expiration time.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:defer",
               "httpMethod": "POST",
               "id": "androidpublisher.purchases.subscriptions.defer",
@@ -5637,7 +5639,7 @@
       }
     }
   },
-  "revision": "20260506",
+  "revision": "20260519",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -6308,7 +6310,7 @@
         },
         "recurringPrice": {
           "$ref": "Money",
-          "description": "The current recurring price of the auto renewing plan. Note that the price does not take into account discounts and does not include taxes for tax-exclusive pricing, please call orders.get API instead if transaction details are needed."
+          "description": "The current recurring price of the auto renewing plan. Note that the price does not take into account discounts and does not include taxes. For tax-exclusive pricing, please call orders.get API instead if transaction details are needed."
         }
       },
       "type": "object"
@@ -8555,6 +8557,17 @@
       },
       "type": "object"
     },
+    "InGracePeriodStateContext": {
+      "description": "Additional context around subscriptions in IN_GRACE_PERIOD state.",
+      "id": "InGracePeriodStateContext",
+      "properties": {
+        "renewalDeclined": {
+          "$ref": "RenewalDeclinedContext",
+          "description": "Optional. The payment for the renewal was declined."
+        }
+      },
+      "type": "object"
+    },
     "InappproductsBatchDeleteRequest": {
       "description": "Request to delete multiple in-app products.",
       "id": "InappproductsBatchDeleteRequest",
@@ -9465,6 +9478,17 @@
         "tag": {
           "description": "Must conform with RFC-1034. That is, this string can only contain lower-case letters (a-z), numbers (0-9), and hyphens (-), and be at most 20 characters.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OnHoldStateContext": {
+      "description": "Additional context around subscriptions in ON_HOLD state.",
+      "id": "OnHoldStateContext",
+      "properties": {
+        "renewalDeclined": {
+          "$ref": "RenewalDeclinedContext",
+          "description": "Optional. The payment for the renewal was declined."
         }
       },
       "type": "object"
@@ -11172,6 +11196,17 @@
       },
       "type": "object"
     },
+    "RenewalDeclinedContext": {
+      "description": "Context related to renewal declined scenario.",
+      "id": "RenewalDeclinedContext",
+      "properties": {
+        "pendingOrderId": {
+          "description": "Required. The ID of the pending or failed order causing the state.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RentOfferDetails": {
       "description": "Offer details information related to a rental line item.",
       "id": "RentOfferDetails",
@@ -11636,7 +11671,8 @@
           "type": "string"
         },
         "offerPhase": {
-          "description": "The pricing phase for the billing period funded by this order. Deprecated. Use offer_phase_details instead.",
+          "deprecated": true,
+          "description": "Deprecated: Use offer_phase_details instead. The pricing phase for the billing period funded by this order.",
           "enum": [
             "OFFER_PHASE_UNSPECIFIED",
             "BASE",
@@ -11872,7 +11908,8 @@
       "type": "object"
     },
     "SubscriptionPurchase": {
-      "description": "A SubscriptionPurchase resource indicates the status of a user's subscription purchase.",
+      "deprecated": true,
+      "description": "Deprecated: Use SubscriptionPurchaseV2 instead. A SubscriptionPurchase resource indicates the status of a user's subscription purchase.",
       "id": "SubscriptionPurchase",
       "properties": {
         "acknowledgementState": {
@@ -12086,6 +12123,10 @@
           "$ref": "ExternalAccountIdentifiers",
           "description": "User account identifier in the third-party service."
         },
+        "inGracePeriodStateContext": {
+          "$ref": "InGracePeriodStateContext",
+          "description": "Optional. Additional context around subscriptions in IN_GRACE_PERIOD state. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_IN_GRACE_PERIOD."
+        },
         "kind": {
           "description": "This kind represents a SubscriptionPurchaseV2 object in the androidpublisher service.",
           "type": "string"
@@ -12105,6 +12146,10 @@
         "linkedPurchaseToken": {
           "description": "The purchase token of the old subscription if this subscription is one of the following: * Re-signup of a canceled but non-lapsed subscription * Upgrade/downgrade from a previous subscription. * Convert from prepaid to auto renewing subscription. * Convert from an auto renewing subscription to prepaid. * Topup a prepaid subscription.",
           "type": "string"
+        },
+        "onHoldStateContext": {
+          "$ref": "OnHoldStateContext",
+          "description": "Optional. Additional context around subscriptions in ON_HOLD state. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_ON_HOLD."
         },
         "outOfAppPurchaseContext": {
           "$ref": "OutOfAppPurchaseContext",
@@ -12982,11 +13027,15 @@
               "CAN_MANAGE_APP_CONTENT_GLOBAL",
               "CAN_VIEW_NON_FINANCIAL_DATA_GLOBAL",
               "CAN_VIEW_APP_QUALITY_GLOBAL",
-              "CAN_MANAGE_DEEPLINKS_GLOBAL"
+              "CAN_MANAGE_DEEPLINKS_GLOBAL",
+              "CAN_VIEW_CONNECTED_APPS_GLOBAL",
+              "CAN_EDIT_CONNECTED_APPS_GLOBAL"
             ],
             "enumDeprecated": [
               false,
               true,
+              false,
+              false,
               false,
               false,
               false,
@@ -13024,7 +13073,9 @@
               "Manage policy related pages on all apps for the developer.",
               "View app information and download bulk reports (read-only).",
               "View app quality information for all apps for the developer.",
-              "Manage the deep links setup for all apps for the developer."
+              "Manage the deep links setup for all apps for the developer.",
+              "Allows viewing connected apps in the Google Play Console.",
+              "Allows editing connected apps in the Google Play Console."
             ],
             "type": "string"
           },
