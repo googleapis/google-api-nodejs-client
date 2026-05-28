@@ -2519,6 +2519,15 @@ export namespace chromemanagement_v1 {
     subjectPublicKeyInfo?: string | null;
   }
   /**
+   * Response from checking the enablement status of insights for the customer.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1CheckEnablementStatusResponse {
+    /**
+     * The state of the insights feature.
+     */
+    insightsState?: string | null;
+  }
+  /**
    * A representation of a Chrome browser profile.
    */
   export interface Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfile {
@@ -2903,6 +2912,37 @@ export namespace chromemanagement_v1 {
      * Required. List of URLs allowed to be part of the attestation flow to get the set of signals from the machine. URLs must have HTTPS scheme, e.g. "https://example.com". Wildcards, *, are allowed. For detailed information on valid URL patterns, please see https://cloud.google.com/docs/chrome-enterprise/policies/url-patterns.
      */
     urlMatchers?: string[] | null;
+  }
+  /**
+   * Request to disable insights for the customer.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1DisableInsightsRequest {}
+  /**
+   * Response from disabling insights for the customer.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1DisableInsightsResponse {
+    /**
+     * The state of the insights feature.
+     */
+    insightsState?: string | null;
+  }
+  /**
+   * Request to enable insights for the customer.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1EnableInsightsRequest {
+    /**
+     * Optional. The Organizational Units to set up required connectors for. Organizational Units are provided as paths relative to root. If this field is not set, connectors will be set up at root OU (as if it were set to ["/"]). Example: ["/corp/sales", "/eng"]
+     */
+    targetOus?: string[] | null;
+  }
+  /**
+   * Response from enabling insights for the customer.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1EnableInsightsResponse {
+    /**
+     * The state of the insights feature.
+     */
+    insightsState?: string | null;
   }
   /**
    * Describes a generic Certificate Authority Connection.
@@ -3467,6 +3507,7 @@ export namespace chromemanagement_v1 {
     apps: Resource$Customers$Apps;
     certificateProvisioningProcesses: Resource$Customers$Certificateprovisioningprocesses;
     connectorConfigs: Resource$Customers$Connectorconfigs;
+    enterprise: Resource$Customers$Enterprise;
     profiles: Resource$Customers$Profiles;
     reports: Resource$Customers$Reports;
     telemetry: Resource$Customers$Telemetry;
@@ -3479,6 +3520,7 @@ export namespace chromemanagement_v1 {
       this.connectorConfigs = new Resource$Customers$Connectorconfigs(
         this.context
       );
+      this.enterprise = new Resource$Customers$Enterprise(this.context);
       this.profiles = new Resource$Customers$Profiles(this.context);
       this.reports = new Resource$Customers$Reports(this.context);
       this.telemetry = new Resource$Customers$Telemetry(this.context);
@@ -6425,6 +6467,516 @@ export namespace chromemanagement_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleChromeManagementVersionsV1ConnectorConfig;
+  }
+
+  export class Resource$Customers$Enterprise {
+    context: APIRequestContext;
+    securityInsights: Resource$Customers$Enterprise$Securityinsights;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.securityInsights =
+        new Resource$Customers$Enterprise$Securityinsights(this.context);
+    }
+  }
+
+  export class Resource$Customers$Enterprise$Securityinsights {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the setting state of the insights feature for the customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.enterprise.securityInsights.checkEnablementStatus(
+     *       {
+     *         // Required. The customer to check the enablement status for. Format: customers/{customer_id\}
+     *         customer: 'customers/my-customer',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "insightsState": "my_insightsState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    checkEnablementStatus(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Checkenablementstatus,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    checkEnablementStatus(
+      params?: Params$Resource$Customers$Enterprise$Securityinsights$Checkenablementstatus,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1CheckEnablementStatusResponse>
+    >;
+    checkEnablementStatus(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Checkenablementstatus,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkEnablementStatus(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Checkenablementstatus,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1CheckEnablementStatusResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1CheckEnablementStatusResponse>
+    ): void;
+    checkEnablementStatus(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Checkenablementstatus,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1CheckEnablementStatusResponse>
+    ): void;
+    checkEnablementStatus(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1CheckEnablementStatusResponse>
+    ): void;
+    checkEnablementStatus(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Enterprise$Securityinsights$Checkenablementstatus
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1CheckEnablementStatusResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1CheckEnablementStatusResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1CheckEnablementStatusResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1CheckEnablementStatusResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Enterprise$Securityinsights$Checkenablementstatus;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Enterprise$Securityinsights$Checkenablementstatus;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+customer}/enterprise/securityInsights:checkEnablementStatus'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1CheckEnablementStatusResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1CheckEnablementStatusResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Disables insights for the customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.enterprise.securityInsights.disable({
+     *       // Required. The customer to disable insights for. Format: customers/{customer\}
+     *       customer: 'customers/my-customer',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "insightsState": "my_insightsState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    disable(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Disable,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    disable(
+      params?: Params$Resource$Customers$Enterprise$Securityinsights$Disable,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1DisableInsightsResponse>
+    >;
+    disable(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Disable,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    disable(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Disable,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1DisableInsightsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1DisableInsightsResponse>
+    ): void;
+    disable(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Disable,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1DisableInsightsResponse>
+    ): void;
+    disable(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1DisableInsightsResponse>
+    ): void;
+    disable(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Enterprise$Securityinsights$Disable
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1DisableInsightsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1DisableInsightsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1DisableInsightsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1DisableInsightsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Enterprise$Securityinsights$Disable;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Enterprise$Securityinsights$Disable;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/enterprise/securityInsights:disable'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1DisableInsightsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1DisableInsightsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Enables insights for the customer and sets up required chrome connectors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.enterprise.securityInsights.enable({
+     *       // Required. The customer to enable insights for. Format: customers/{customer\}
+     *       customer: 'customers/my-customer',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "targetOus": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "insightsState": "my_insightsState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enable(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Enable,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    enable(
+      params?: Params$Resource$Customers$Enterprise$Securityinsights$Enable,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1EnableInsightsResponse>
+    >;
+    enable(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Enable,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enable(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Enable,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnableInsightsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnableInsightsResponse>
+    ): void;
+    enable(
+      params: Params$Resource$Customers$Enterprise$Securityinsights$Enable,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnableInsightsResponse>
+    ): void;
+    enable(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnableInsightsResponse>
+    ): void;
+    enable(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Enterprise$Securityinsights$Enable
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnableInsightsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnableInsightsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1EnableInsightsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1EnableInsightsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Enterprise$Securityinsights$Enable;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Enterprise$Securityinsights$Enable;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/enterprise/securityInsights:enable'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1EnableInsightsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1EnableInsightsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Enterprise$Securityinsights$Checkenablementstatus extends StandardParameters {
+    /**
+     * Required. The customer to check the enablement status for. Format: customers/{customer_id\}
+     */
+    customer?: string;
+  }
+  export interface Params$Resource$Customers$Enterprise$Securityinsights$Disable extends StandardParameters {
+    /**
+     * Required. The customer to disable insights for. Format: customers/{customer\}
+     */
+    customer?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChromeManagementVersionsV1DisableInsightsRequest;
+  }
+  export interface Params$Resource$Customers$Enterprise$Securityinsights$Enable extends StandardParameters {
+    /**
+     * Required. The customer to enable insights for. Format: customers/{customer\}
+     */
+    customer?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChromeManagementVersionsV1EnableInsightsRequest;
   }
 
   export class Resource$Customers$Profiles {
