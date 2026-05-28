@@ -1406,7 +1406,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Identifier. Name of the KmsConfig. Format: `projects/{project}/locations/{location}/kmsConfigs/{kms_config}`",
+                      "description": "Identifier. Name of the `KmsConfig`. Format: `projects/{project}/locations/{location}/kmsConfigs/{kms_config}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/kmsConfigs/[^/]+$",
                       "required": true,
@@ -1753,6 +1753,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "restoreVolume": {
+                  "description": "Restores a backup to an ONTAP-mode volume.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/storagePools/{storagePoolsId}:restoreVolume",
+                  "httpMethod": "POST",
+                  "id": "netapp.projects.locations.storagePools.restoreVolume",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the ONTAP mode storage pool, in the format of `projects/{project}/locations/{location}/storagePools/{storage_pool}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/storagePools/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:restoreVolume",
+                  "request": {
+                    "$ref": "RestoreVolumeRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "switch": {
                   "description": "This operation will switch the active/replica zone for a regional storagePool.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/storagePools/{storagePoolsId}:switch",
@@ -1773,6 +1801,34 @@
                   "path": "v1/{+name}:switch",
                   "request": {
                     "$ref": "SwitchActiveReplicaZoneRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "updateBackupConfig": {
+                  "description": "Updates the backup configuration for an ONTAP-mode volume.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/storagePools/{storagePoolsId}:updateBackupConfig",
+                  "httpMethod": "POST",
+                  "id": "netapp.projects.locations.storagePools.updateBackupConfig",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the StoragePool, in the format: projects/{projectNumber}/locations/{locationId}/storagePools/{poolId}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/storagePools/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:updateBackupConfig",
+                  "request": {
+                    "$ref": "UpdateBackupConfigRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -1811,10 +1867,60 @@
                 }
               },
               "resources": {
+                "backupConfigs": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists backup configurations for all volumes in an ONTAP-mode Storage Pool.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/storagePools/{storagePoolsId}/backupConfigs",
+                      "httpMethod": "GET",
+                      "id": "netapp.projects.locations.storagePools.backupConfigs.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. The standard list filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Sort results. Supported values are \"volume_id\" or \"\"",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of items to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified or set to 0, a default of 50 will be used.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The next_page_token value to use if there are additional results to retrieve for this list request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The ONTAP StoragePool for which to retrieve backup configuration information, in the format `projects/{project}/locations/{location}/storagePools/{storage_pool}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/storagePools/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/backupConfigs",
+                      "response": {
+                        "$ref": "ListBackupConfigsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "ontap": {
                   "methods": {
                     "executeOntapDelete": {
-                      "description": "`ExecuteOntapDelete` dispatches the ONTAP `DELETE` request to the `StoragePool` cluster.",
+                      "description": "`ExecuteOntapDelete` sends the ONTAP `DELETE` request to the `StoragePool` cluster.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/storagePools/{storagePoolsId}/ontap/{ontapId}",
                       "httpMethod": "DELETE",
                       "id": "netapp.projects.locations.storagePools.ontap.executeOntapDelete",
@@ -1839,7 +1945,7 @@
                       ]
                     },
                     "executeOntapGet": {
-                      "description": "`ExecuteOntapGet` dispatches the ONTAP `GET` request to the `StoragePool` cluster.",
+                      "description": "`ExecuteOntapGet` sends the ONTAP `GET` request to the `StoragePool` cluster.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/storagePools/{storagePoolsId}/ontap/{ontapId}",
                       "httpMethod": "GET",
                       "id": "netapp.projects.locations.storagePools.ontap.executeOntapGet",
@@ -1864,7 +1970,7 @@
                       ]
                     },
                     "executeOntapPatch": {
-                      "description": "`ExecuteOntapPatch` dispatches the ONTAP `PATCH` request to the `StoragePool` cluster.",
+                      "description": "`ExecuteOntapPatch` sends the ONTAP `PATCH` request to the `StoragePool` cluster.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/storagePools/{storagePoolsId}/ontap/{ontapId}",
                       "httpMethod": "PATCH",
                       "id": "netapp.projects.locations.storagePools.ontap.executeOntapPatch",
@@ -1892,7 +1998,7 @@
                       ]
                     },
                     "executeOntapPost": {
-                      "description": "`ExecuteOntapPost` dispatches the ONTAP `POST` request to the `StoragePool` cluster.",
+                      "description": "`ExecuteOntapPost` sends the ONTAP `POST` request to the `StoragePool` cluster.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/storagePools/{storagePoolsId}/ontap/{ontapId}",
                       "httpMethod": "POST",
                       "id": "netapp.projects.locations.storagePools.ontap.executeOntapPost",
@@ -1901,7 +2007,7 @@
                       ],
                       "parameters": {
                         "ontapPath": {
-                          "description": "Required. The resource path of the ONTAP resource. Format: `projects/{project_number}/locations/{location_id}/storagePools/{storage_pool_id}/ontap/{ontap_resource_path}`. For example: `projects/123456789/locations/us-central1/storagePools/my-storage-pool/ontap/api/storage/volumes`.",
+                          "description": "Required. The path of the ONTAP resource. Format: `projects/{project_number}/locations/{location_id}/storagePools/{storage_pool_id}/ontap/{ontap_resource_path}`. For example: `projects/123456789/locations/us-central1/storagePools/my-storage-pool/ontap/api/storage/volumes`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/storagePools/[^/]+/ontap/.*$",
                           "required": true,
@@ -2827,7 +2933,7 @@
       }
     }
   },
-  "revision": "20260426",
+  "revision": "20260518",
   "rootUrl": "https://netapp.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
@@ -3018,6 +3124,10 @@
           "description": "Identifier. The resource name of the backup. Format: `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}`.",
           "type": "string"
         },
+        "ontapSource": {
+          "$ref": "OntapSource",
+          "description": "Optional. Represents source details for ONTAP backups. Either source_volume or ontap_source should be provided."
+        },
         "satisfiesPzi": {
           "description": "Output only. Reserved for future use",
           "readOnly": true,
@@ -3033,7 +3143,7 @@
           "type": "string"
         },
         "sourceVolume": {
-          "description": "Volume full name of this backup belongs to. Either source_volume or ontap_source should be provided. Format: `projects/{projects_id}/locations/{location}/volumes/{volume_id}`",
+          "description": "The resource name of the volume that this backup belongs to. You must provide either `source_volume` or `ontap_source`. Format: `projects/{project_id}/locations/{location}/volumes/{volume_id}`",
           "type": "string"
         },
         "state": {
@@ -3199,6 +3309,24 @@
         "weeklyBackupImmutable": {
           "description": "Optional. Indicates if the weekly backups are immutable. At least one of daily_backup_immutable, weekly_backup_immutable, monthly_backup_immutable and manual_backup_immutable must be true.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "BackupSource": {
+      "description": "Represents the backup source of the restore operation.",
+      "id": "BackupSource",
+      "properties": {
+        "backup": {
+          "description": "Required. The backup resource name.",
+          "type": "string"
+        },
+        "fileList": {
+          "description": "Optional. List of files to be restored in the form of their absolute path as in source volume. If provided, only these files will be restored. If not provided, the entire backup will be restored (Full Backup Restore)",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3616,7 +3744,7 @@
           "type": "string"
         },
         "peerIpAddresses": {
-          "description": "Optional. List of IPv4 ip addresses to be used for peering.",
+          "description": "Optional. List of IPv4 IP addresses to be used for peering.",
           "items": {
             "type": "string"
           },
@@ -4002,7 +4130,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Identifier. Name of the KmsConfig. Format: `projects/{project}/locations/{location}/kmsConfigs/{kms_config}`",
+          "description": "Identifier. Name of the `KmsConfig`. Format: `projects/{project}/locations/{location}/kmsConfigs/{kms_config}`",
           "type": "string"
         },
         "serviceAccount": {
@@ -4052,7 +4180,7 @@
       "type": "object"
     },
     "LargeCapacityConfig": {
-      "description": "Configuration for a Large Capacity Volume. A Large Capacity Volume supports sizes ranging from 4.8 TiB to 20 PiB, it is composed of multiple internal constituents, and must be created in a large capacity pool.",
+      "description": "Configuration for a Large Capacity Volume. A Large Capacity Volume supports sizes ranging from 4.8 TiB to 20 PiB; it is composed of multiple internal constituents, and must be created in a large capacity pool.",
       "id": "LargeCapacityConfig",
       "properties": {
         "constituentCount": {
@@ -4082,6 +4210,31 @@
           "description": "Locations that could not be reached.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListBackupConfigsResponse": {
+      "description": "Message for response to listing BackupConfigs in an ONTAP StoragePool.",
+      "id": "ListBackupConfigsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The token you can use to retrieve the next page of results. Not returned if there are no more results in the list.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "volumeBackupConfigs": {
+          "description": "A list of backup configurations for volumes in the pool.",
+          "items": {
+            "$ref": "VolumeBackupConfig"
           },
           "type": "array"
         }
@@ -4526,15 +4679,51 @@
             "NFSV3",
             "NFSV4",
             "SMB",
-            "ISCSI"
+            "ISCSI",
+            "NVME"
           ],
           "enumDescriptions": [
             "Unspecified protocol",
             "NFS V3 protocol",
             "NFS V4 protocol",
             "SMB protocol",
-            "ISCSI protocol"
+            "ISCSI protocol",
+            "NVMe protocol"
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OntapSource": {
+      "description": "Represents ONTAP source details.",
+      "id": "OntapSource",
+      "properties": {
+        "snapshotUuid": {
+          "description": "Optional. The UUID of the ONTAP source snapshot.",
+          "type": "string"
+        },
+        "storagePool": {
+          "description": "Required. Name of the storage pool. This must be specified for creating backups for ONTAP mode volumes. Format: `projects/{projects_id}/locations/{location}/storagePools/{storage_pool_id}`",
+          "type": "string"
+        },
+        "volumeUuid": {
+          "description": "Required. The UUID of the ONTAP source volume.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OntapVolumeTarget": {
+      "description": "Represents the ONTAP volume target of the restore operation.",
+      "id": "OntapVolumeTarget",
+      "properties": {
+        "restoreDestinationPath": {
+          "description": "Optional. Absolute directory path in the destination volume.",
+          "type": "string"
+        },
+        "volumeUuid": {
+          "description": "Required. The UUID of the ONTAP volume to restore to.",
           "type": "string"
         }
       },
@@ -4904,12 +5093,27 @@
       "id": "RestoreParameters",
       "properties": {
         "sourceBackup": {
-          "description": "Full name of the backup resource. Format for standard backup: projects/{project}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id} Format for BackupDR backup: projects/{project}/locations/{location}/backupVaults/{backup_vault}/dataSources/{data_source}/backups/{backup}",
+          "description": "Full name of the backup resource. Format for standard backup: projects/{project}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}. Format for BackupDR backup: projects/{project}/locations/{location}/backupVaults/{backup_vault}/dataSources/{data_source}/backups/{backup}",
           "type": "string"
         },
         "sourceSnapshot": {
           "description": "Full name of the snapshot resource. Format: projects/{project}/locations/{location}/volumes/{volume}/snapshots/{snapshot}",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RestoreVolumeRequest": {
+      "description": "Request message for `RestoreVolume` API.",
+      "id": "RestoreVolumeRequest",
+      "properties": {
+        "backupSource": {
+          "$ref": "BackupSource",
+          "description": "The backup source of the restore operation."
+        },
+        "ontapVolumeTarget": {
+          "$ref": "OntapVolumeTarget",
+          "description": "The ONTAP volume target of the restore operation."
         }
       },
       "type": "object"
@@ -5242,7 +5446,7 @@
           "type": "boolean"
         },
         "mode": {
-          "description": "Optional. Mode of the storage pool. This field is used to control whether the user can perform the ONTAP operations on the storage pool using the GCNV ONTAP Mode APIs. If not specified during creation, it defaults to `DEFAULT`.",
+          "description": "Optional. Mode of the storage pool. This field is used to control whether the user can perform ONTAP operations on the storage pool using the GCNV ONTAP Mode APIs. If not specified during creation, it defaults to `DEFAULT`.",
           "enum": [
             "MODE_UNSPECIFIED",
             "DEFAULT",
@@ -5488,6 +5692,26 @@
       },
       "type": "object"
     },
+    "UpdateBackupConfigRequest": {
+      "description": "Request message for UpdateBackupConfig",
+      "id": "UpdateBackupConfigRequest",
+      "properties": {
+        "backupConfig": {
+          "$ref": "BackupConfig",
+          "description": "Required. Backup configuration to apply."
+        },
+        "updateMask": {
+          "description": "Required. Field mask is used to specify the fields to be overwritten in the BackupConfig for the Volume. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask.",
+          "format": "google-fieldmask",
+          "type": "string"
+        },
+        "volumeUuid": {
+          "description": "Required. The UUID of the ONTAP-mode volume.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "UserCommands": {
       "description": "UserCommands contains the commands to be executed by the customer.",
       "id": "UserCommands",
@@ -5692,14 +5916,16 @@
               "NFSV3",
               "NFSV4",
               "SMB",
-              "ISCSI"
+              "ISCSI",
+              "NVME"
             ],
             "enumDescriptions": [
               "Unspecified protocol",
               "NFS V3 protocol",
               "NFS V4 protocol",
               "SMB protocol",
-              "ISCSI protocol"
+              "ISCSI protocol",
+              "NVMe protocol"
             ],
             "type": "string"
           },
@@ -5875,6 +6101,21 @@
         "zone": {
           "description": "Output only. Specifies the active zone for regional volume.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VolumeBackupConfig": {
+      "description": "Backup configuration for a volume in a pool.",
+      "id": "VolumeBackupConfig",
+      "properties": {
+        "backupConfig": {
+          "$ref": "BackupConfig",
+          "description": "Backup configuration for the volume."
+        },
+        "volumeUuid": {
+          "description": "Provides the Ontap UUID of the volume within the pool.",
           "type": "string"
         }
       },

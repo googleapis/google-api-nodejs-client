@@ -254,6 +254,10 @@ export namespace netapp_v1 {
      */
     name?: string | null;
     /**
+     * Optional. Represents source details for ONTAP backups. Either source_volume or ontap_source should be provided.
+     */
+    ontapSource?: Schema$OntapSource;
+    /**
      * Output only. Reserved for future use
      */
     satisfiesPzi?: boolean | null;
@@ -266,7 +270,7 @@ export namespace netapp_v1 {
      */
     sourceSnapshot?: string | null;
     /**
-     * Volume full name of this backup belongs to. Either source_volume or ontap_source should be provided. Format: `projects/{projects_id\}/locations/{location\}/volumes/{volume_id\}`
+     * The resource name of the volume that this backup belongs to. You must provide either `source_volume` or `ontap_source`. Format: `projects/{project_id\}/locations/{location\}/volumes/{volume_id\}`
      */
     sourceVolume?: string | null;
     /**
@@ -372,6 +376,19 @@ export namespace netapp_v1 {
      * Optional. Indicates if the weekly backups are immutable. At least one of daily_backup_immutable, weekly_backup_immutable, monthly_backup_immutable and manual_backup_immutable must be true.
      */
     weeklyBackupImmutable?: boolean | null;
+  }
+  /**
+   * Represents the backup source of the restore operation.
+   */
+  export interface Schema$BackupSource {
+    /**
+     * Required. The backup resource name.
+     */
+    backup?: string | null;
+    /**
+     * Optional. List of files to be restored in the form of their absolute path as in source volume. If provided, only these files will be restored. If not provided, the entire backup will be restored (Full Backup Restore)
+     */
+    fileList?: string[] | null;
   }
   /**
    * A NetApp BackupVault.
@@ -643,7 +660,7 @@ export namespace netapp_v1 {
      */
     peerClusterName?: string | null;
     /**
-     * Optional. List of IPv4 ip addresses to be used for peering.
+     * Optional. List of IPv4 IP addresses to be used for peering.
      */
     peerIpAddresses?: string[] | null;
     /**
@@ -879,7 +896,7 @@ export namespace netapp_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Identifier. Name of the KmsConfig. Format: `projects/{project\}/locations/{location\}/kmsConfigs/{kms_config\}`
+     * Identifier. Name of the `KmsConfig`. Format: `projects/{project\}/locations/{location\}/kmsConfigs/{kms_config\}`
      */
     name?: string | null;
     /**
@@ -896,7 +913,7 @@ export namespace netapp_v1 {
     stateDetails?: string | null;
   }
   /**
-   * Configuration for a Large Capacity Volume. A Large Capacity Volume supports sizes ranging from 4.8 TiB to 20 PiB, it is composed of multiple internal constituents, and must be created in a large capacity pool.
+   * Configuration for a Large Capacity Volume. A Large Capacity Volume supports sizes ranging from 4.8 TiB to 20 PiB; it is composed of multiple internal constituents, and must be created in a large capacity pool.
    */
   export interface Schema$LargeCapacityConfig {
     /**
@@ -920,6 +937,23 @@ export namespace netapp_v1 {
      * Locations that could not be reached.
      */
     unreachable?: string[] | null;
+  }
+  /**
+   * Message for response to listing BackupConfigs in an ONTAP StoragePool.
+   */
+  export interface Schema$ListBackupConfigsResponse {
+    /**
+     * The token you can use to retrieve the next page of results. Not returned if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unordered list. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+    /**
+     * A list of backup configurations for volumes in the pool.
+     */
+    volumeBackupConfigs?: Schema$VolumeBackupConfig[];
   }
   /**
    * ListBackupPoliciesResponse contains all the backup policies requested.
@@ -1214,6 +1248,36 @@ export namespace netapp_v1 {
     protocol?: string | null;
   }
   /**
+   * Represents ONTAP source details.
+   */
+  export interface Schema$OntapSource {
+    /**
+     * Optional. The UUID of the ONTAP source snapshot.
+     */
+    snapshotUuid?: string | null;
+    /**
+     * Required. Name of the storage pool. This must be specified for creating backups for ONTAP mode volumes. Format: `projects/{projects_id\}/locations/{location\}/storagePools/{storage_pool_id\}`
+     */
+    storagePool?: string | null;
+    /**
+     * Required. The UUID of the ONTAP source volume.
+     */
+    volumeUuid?: string | null;
+  }
+  /**
+   * Represents the ONTAP volume target of the restore operation.
+   */
+  export interface Schema$OntapVolumeTarget {
+    /**
+     * Optional. Absolute directory path in the destination volume.
+     */
+    restoreDestinationPath?: string | null;
+    /**
+     * Required. The UUID of the ONTAP volume to restore to.
+     */
+    volumeUuid?: string | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -1411,13 +1475,26 @@ export namespace netapp_v1 {
    */
   export interface Schema$RestoreParameters {
     /**
-     * Full name of the backup resource. Format for standard backup: projects/{project\}/locations/{location\}/backupVaults/{backup_vault_id\}/backups/{backup_id\} Format for BackupDR backup: projects/{project\}/locations/{location\}/backupVaults/{backup_vault\}/dataSources/{data_source\}/backups/{backup\}
+     * Full name of the backup resource. Format for standard backup: projects/{project\}/locations/{location\}/backupVaults/{backup_vault_id\}/backups/{backup_id\}. Format for BackupDR backup: projects/{project\}/locations/{location\}/backupVaults/{backup_vault\}/dataSources/{data_source\}/backups/{backup\}
      */
     sourceBackup?: string | null;
     /**
      * Full name of the snapshot resource. Format: projects/{project\}/locations/{location\}/volumes/{volume\}/snapshots/{snapshot\}
      */
     sourceSnapshot?: string | null;
+  }
+  /**
+   * Request message for `RestoreVolume` API.
+   */
+  export interface Schema$RestoreVolumeRequest {
+    /**
+     * The backup source of the restore operation.
+     */
+    backupSource?: Schema$BackupSource;
+    /**
+     * The ONTAP volume target of the restore operation.
+     */
+    ontapVolumeTarget?: Schema$OntapVolumeTarget;
   }
   /**
    * ResumeReplicationRequest resumes a stopped replication.
@@ -1646,7 +1723,7 @@ export namespace netapp_v1 {
      */
     ldapEnabled?: boolean | null;
     /**
-     * Optional. Mode of the storage pool. This field is used to control whether the user can perform the ONTAP operations on the storage pool using the GCNV ONTAP Mode APIs. If not specified during creation, it defaults to `DEFAULT`.
+     * Optional. Mode of the storage pool. This field is used to control whether the user can perform ONTAP operations on the storage pool using the GCNV ONTAP Mode APIs. If not specified during creation, it defaults to `DEFAULT`.
      */
     mode?: string | null;
     /**
@@ -1779,6 +1856,23 @@ export namespace netapp_v1 {
      * Time when progress was updated last.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Request message for UpdateBackupConfig
+   */
+  export interface Schema$UpdateBackupConfigRequest {
+    /**
+     * Required. Backup configuration to apply.
+     */
+    backupConfig?: Schema$BackupConfig;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the BackupConfig for the Volume. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask.
+     */
+    updateMask?: string | null;
+    /**
+     * Required. The UUID of the ONTAP-mode volume.
+     */
+    volumeUuid?: string | null;
   }
   /**
    * UserCommands contains the commands to be executed by the customer.
@@ -1999,6 +2093,19 @@ export namespace netapp_v1 {
      * Output only. Specifies the active zone for regional volume.
      */
     zone?: string | null;
+  }
+  /**
+   * Backup configuration for a volume in a pool.
+   */
+  export interface Schema$VolumeBackupConfig {
+    /**
+     * Backup configuration for the volume.
+     */
+    backupConfig?: Schema$BackupConfig;
+    /**
+     * Provides the Ontap UUID of the volume within the pool.
+     */
+    volumeUuid?: string | null;
   }
   /**
    * Make a snapshot every week e.g. at Monday 04:00, Wednesday 05:20, Sunday 23:50
@@ -4956,6 +5063,7 @@ export namespace netapp_v1 {
      *       //   "enforcedRetentionEndTime": "my_enforcedRetentionEndTime",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "ontapSource": {},
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
      *       //   "sourceSnapshot": "my_sourceSnapshot",
@@ -5259,6 +5367,7 @@ export namespace netapp_v1 {
      *   //   "enforcedRetentionEndTime": "my_enforcedRetentionEndTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "ontapSource": {},
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
      *   //   "sourceSnapshot": "my_sourceSnapshot",
@@ -5559,6 +5668,7 @@ export namespace netapp_v1 {
      *       //   "enforcedRetentionEndTime": "my_enforcedRetentionEndTime",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "ontapSource": {},
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
      *       //   "sourceSnapshot": "my_sourceSnapshot",
@@ -7325,7 +7435,7 @@ export namespace netapp_v1 {
      *
      *   // Do the magic
      *   const res = await netapp.projects.locations.kmsConfigs.patch({
-     *     // Identifier. Name of the KmsConfig. Format: `projects/{project\}/locations/{location\}/kmsConfigs/{kms_config\}`
+     *     // Identifier. Name of the `KmsConfig`. Format: `projects/{project\}/locations/{location\}/kmsConfigs/{kms_config\}`
      *     name: 'projects/my-project/locations/my-location/kmsConfigs/my-kmsConfig',
      *     // Required. Field mask is used to specify the fields to be overwritten in the KmsConfig resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
@@ -7659,7 +7769,7 @@ export namespace netapp_v1 {
   }
   export interface Params$Resource$Projects$Locations$Kmsconfigs$Patch extends StandardParameters {
     /**
-     * Identifier. Name of the KmsConfig. Format: `projects/{project\}/locations/{location\}/kmsConfigs/{kms_config\}`
+     * Identifier. Name of the `KmsConfig`. Format: `projects/{project\}/locations/{location\}/kmsConfigs/{kms_config\}`
      */
     name?: string;
     /**
@@ -8296,9 +8406,14 @@ export namespace netapp_v1 {
 
   export class Resource$Projects$Locations$Storagepools {
     context: APIRequestContext;
+    backupConfigs: Resource$Projects$Locations$Storagepools$Backupconfigs;
     ontap: Resource$Projects$Locations$Storagepools$Ontap;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.backupConfigs =
+        new Resource$Projects$Locations$Storagepools$Backupconfigs(
+          this.context
+        );
       this.ontap = new Resource$Projects$Locations$Storagepools$Ontap(
         this.context
       );
@@ -9124,6 +9239,157 @@ export namespace netapp_v1 {
     }
 
     /**
+     * Restores a backup to an ONTAP-mode volume.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/netapp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const netapp = google.netapp('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await netapp.projects.locations.storagePools.restoreVolume({
+     *     // Required. The resource name of the ONTAP mode storage pool, in the format of `projects/{project\}/locations/{location\}/storagePools/{storage_pool\}`
+     *     name: 'projects/my-project/locations/my-location/storagePools/my-storagePool',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backupSource": {},
+     *       //   "ontapVolumeTarget": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    restoreVolume(
+      params: Params$Resource$Projects$Locations$Storagepools$Restorevolume,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    restoreVolume(
+      params?: Params$Resource$Projects$Locations$Storagepools$Restorevolume,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    restoreVolume(
+      params: Params$Resource$Projects$Locations$Storagepools$Restorevolume,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restoreVolume(
+      params: Params$Resource$Projects$Locations$Storagepools$Restorevolume,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restoreVolume(
+      params: Params$Resource$Projects$Locations$Storagepools$Restorevolume,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restoreVolume(callback: BodyResponseCallback<Schema$Operation>): void;
+    restoreVolume(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Storagepools$Restorevolume
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Storagepools$Restorevolume;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Storagepools$Restorevolume;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://netapp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:restoreVolume').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * This operation will switch the active/replica zone for a regional storagePool.
      * @example
      * ```js
@@ -9247,6 +9513,158 @@ export namespace netapp_v1 {
         options: Object.assign(
           {
             url: (rootUrl + '/v1/{+name}:switch').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Updates the backup configuration for an ONTAP-mode volume.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/netapp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const netapp = google.netapp('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await netapp.projects.locations.storagePools.updateBackupConfig({
+     *     // Required. The resource name of the StoragePool, in the format: projects/{projectNumber\}/locations/{locationId\}/storagePools/{poolId\}
+     *     name: 'projects/my-project/locations/my-location/storagePools/my-storagePool',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backupConfig": {},
+     *       //   "updateMask": "my_updateMask",
+     *       //   "volumeUuid": "my_volumeUuid"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateBackupConfig(
+      params: Params$Resource$Projects$Locations$Storagepools$Updatebackupconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    updateBackupConfig(
+      params?: Params$Resource$Projects$Locations$Storagepools$Updatebackupconfig,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    updateBackupConfig(
+      params: Params$Resource$Projects$Locations$Storagepools$Updatebackupconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateBackupConfig(
+      params: Params$Resource$Projects$Locations$Storagepools$Updatebackupconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateBackupConfig(
+      params: Params$Resource$Projects$Locations$Storagepools$Updatebackupconfig,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateBackupConfig(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateBackupConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Storagepools$Updatebackupconfig
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Storagepools$Updatebackupconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Storagepools$Updatebackupconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://netapp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:updateBackupConfig').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
             apiVersion: '',
           },
@@ -9485,6 +9903,17 @@ export namespace netapp_v1 {
      */
     requestBody?: Schema$StoragePool;
   }
+  export interface Params$Resource$Projects$Locations$Storagepools$Restorevolume extends StandardParameters {
+    /**
+     * Required. The resource name of the ONTAP mode storage pool, in the format of `projects/{project\}/locations/{location\}/storagePools/{storage_pool\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RestoreVolumeRequest;
+  }
   export interface Params$Resource$Projects$Locations$Storagepools$Switch extends StandardParameters {
     /**
      * Required. Name of the storage pool
@@ -9495,6 +9924,17 @@ export namespace netapp_v1 {
      * Request body metadata
      */
     requestBody?: Schema$SwitchActiveReplicaZoneRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Storagepools$Updatebackupconfig extends StandardParameters {
+    /**
+     * Required. The resource name of the StoragePool, in the format: projects/{projectNumber\}/locations/{locationId\}/storagePools/{poolId\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpdateBackupConfigRequest;
   }
   export interface Params$Resource$Projects$Locations$Storagepools$Validatedirectoryservice extends StandardParameters {
     /**
@@ -9508,6 +9948,189 @@ export namespace netapp_v1 {
     requestBody?: Schema$ValidateDirectoryServiceRequest;
   }
 
+  export class Resource$Projects$Locations$Storagepools$Backupconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists backup configurations for all volumes in an ONTAP-mode Storage Pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/netapp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const netapp = google.netapp('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await netapp.projects.locations.storagePools.backupConfigs.list({
+     *     // Optional. The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // Optional. Sort results. Supported values are "volume_id" or ""
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of items to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified or set to 0, a default of 50 will be used.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value to use if there are additional results to retrieve for this list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The ONTAP StoragePool for which to retrieve backup configuration information, in the format `projects/{project\}/locations/{location\}/storagePools/{storage_pool\}`.
+     *     parent:
+     *       'projects/my-project/locations/my-location/storagePools/my-storagePool',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": [],
+     *   //   "volumeBackupConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Storagepools$Backupconfigs$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Storagepools$Backupconfigs$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListBackupConfigsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Storagepools$Backupconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Storagepools$Backupconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBackupConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListBackupConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Storagepools$Backupconfigs$List,
+      callback: BodyResponseCallback<Schema$ListBackupConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListBackupConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Storagepools$Backupconfigs$List
+        | BodyResponseCallback<Schema$ListBackupConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBackupConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBackupConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListBackupConfigsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Storagepools$Backupconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Storagepools$Backupconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://netapp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/backupConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBackupConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBackupConfigsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Storagepools$Backupconfigs$List extends StandardParameters {
+    /**
+     * Optional. The standard list filter.
+     */
+    filter?: string;
+    /**
+     * Optional. Sort results. Supported values are "volume_id" or ""
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of items to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified or set to 0, a default of 50 will be used.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value to use if there are additional results to retrieve for this list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The ONTAP StoragePool for which to retrieve backup configuration information, in the format `projects/{project\}/locations/{location\}/storagePools/{storage_pool\}`.
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Storagepools$Ontap {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -9515,7 +10138,7 @@ export namespace netapp_v1 {
     }
 
     /**
-     * `ExecuteOntapDelete` dispatches the ONTAP `DELETE` request to the `StoragePool` cluster.
+     * `ExecuteOntapDelete` sends the ONTAP `DELETE` request to the `StoragePool` cluster.
      * @example
      * ```js
      * // Before running the sample:
@@ -9656,7 +10279,7 @@ export namespace netapp_v1 {
     }
 
     /**
-     * `ExecuteOntapGet` dispatches the ONTAP `GET` request to the `StoragePool` cluster.
+     * `ExecuteOntapGet` sends the ONTAP `GET` request to the `StoragePool` cluster.
      * @example
      * ```js
      * // Before running the sample:
@@ -9797,7 +10420,7 @@ export namespace netapp_v1 {
     }
 
     /**
-     * `ExecuteOntapPatch` dispatches the ONTAP `PATCH` request to the `StoragePool` cluster.
+     * `ExecuteOntapPatch` sends the ONTAP `PATCH` request to the `StoragePool` cluster.
      * @example
      * ```js
      * // Before running the sample:
@@ -9946,7 +10569,7 @@ export namespace netapp_v1 {
     }
 
     /**
-     * `ExecuteOntapPost` dispatches the ONTAP `POST` request to the `StoragePool` cluster.
+     * `ExecuteOntapPost` sends the ONTAP `POST` request to the `StoragePool` cluster.
      * @example
      * ```js
      * // Before running the sample:
@@ -9977,7 +10600,7 @@ export namespace netapp_v1 {
      *   // Do the magic
      *   const res =
      *     await netapp.projects.locations.storagePools.ontap.executeOntapPost({
-     *       // Required. The resource path of the ONTAP resource. Format: `projects/{project_number\}/locations/{location_id\}/storagePools/{storage_pool_id\}/ontap/{ontap_resource_path\}`. For example: `projects/123456789/locations/us-central1/storagePools/my-storage-pool/ontap/api/storage/volumes`.
+     *       // Required. The path of the ONTAP resource. Format: `projects/{project_number\}/locations/{location_id\}/storagePools/{storage_pool_id\}/ontap/{ontap_resource_path\}`. For example: `projects/123456789/locations/us-central1/storagePools/my-storage-pool/ontap/api/storage/volumes`.
      *       ontapPath:
      *         'projects/my-project/locations/my-location/storagePools/my-storagePool/ontap/.*',
      *
@@ -10120,7 +10743,7 @@ export namespace netapp_v1 {
   }
   export interface Params$Resource$Projects$Locations$Storagepools$Ontap$Executeontappost extends StandardParameters {
     /**
-     * Required. The resource path of the ONTAP resource. Format: `projects/{project_number\}/locations/{location_id\}/storagePools/{storage_pool_id\}/ontap/{ontap_resource_path\}`. For example: `projects/123456789/locations/us-central1/storagePools/my-storage-pool/ontap/api/storage/volumes`.
+     * Required. The path of the ONTAP resource. Format: `projects/{project_number\}/locations/{location_id\}/storagePools/{storage_pool_id\}/ontap/{ontap_resource_path\}`. For example: `projects/123456789/locations/us-central1/storagePools/my-storage-pool/ontap/api/storage/volumes`.
      */
     ontapPath?: string;
 
