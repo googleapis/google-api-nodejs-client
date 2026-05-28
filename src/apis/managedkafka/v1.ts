@@ -938,6 +938,19 @@ export namespace managedkafka_v1 {
     name?: string | null;
   }
   /**
+   * Subject defines the evolution scope of schemas as a holder of schema versions.
+   */
+  export interface Schema$SchemaSubject {
+    /**
+     * Identifier. The name of the subject. Structured like: `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/subjects/{subject\}` or `projects/{project\}/locations/{location\}/schemaRegistries/{schema_registry\}/contexts/{context\}/subjects/{subject\}` Subject name {subject\} can contain the following: * Up to 255 UTF-8 bytes. * Allowed characters: letters (uppercase or lowercase), numbers, and the following special characters: `.`, `-`, `_`, `+`, `%`, and `~`.
+     */
+    name?: string | null;
+    /**
+     * Optional. The versions of the subject.
+     */
+    versions?: string[] | null;
+  }
+  /**
    * Version of a schema.
    */
   export interface Schema$SchemaVersion {
