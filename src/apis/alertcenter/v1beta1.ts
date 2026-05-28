@@ -1144,6 +1144,10 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$RuleViolationInfo {
     /**
+     * Optional. Agent type that triggered the rule.
+     */
+    agentType?: string | null;
+    /**
      * Source of the data.
      */
     dataSource?: string | null;
