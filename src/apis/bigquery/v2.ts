@@ -911,6 +911,15 @@ export namespace bigquery_v2 {
     dataMaskingApplied?: boolean | null;
   }
   /**
+   * A list of data policy options. For more information, see [Mask data by applying data policies to a column](https://docs.cloud.google.com/bigquery/docs/column-data-masking#data-policies-on-column).
+   */
+  export interface Schema$DataPolicyList {
+    /**
+     * Contains a list of data policy options. At most 9 data policies are allowed per field.
+     */
+    dataPolicies?: Schema$DataPolicyOption[];
+  }
+  /**
    * Data policy option. For more information, see [Mask data by applying data policies to a column](https://docs.cloud.google.com/bigquery/docs/column-data-masking#data-policies-on-column).
    */
   export interface Schema$DataPolicyOption {
@@ -1695,6 +1704,10 @@ export namespace bigquery_v2 {
      */
     containerMemory?: string | null;
     /**
+     * Optional. Maximum number of requests that a Cloud Run instance can handle concurrently. If absent or if `0`, a default concurrency is used.
+     */
+    containerRequestConcurrency?: string | null;
+    /**
      * Optional. Maximum number of rows in each batch sent to the external runtime. If absent or if 0, BigQuery dynamically decides the number of rows in a batch.
      */
     maxBatchingRows?: string | null;
@@ -1785,6 +1798,15 @@ export namespace bigquery_v2 {
     errors?: string[] | null;
   }
   /**
+   * Provides cache statistics for a GenAi function call.
+   */
+  export interface Schema$GenAiFunctionCacheStats {
+    /**
+     * Number of rows served from cache.
+     */
+    numCacheHitRows?: string | null;
+  }
+  /**
    * Provides cost optimization statistics for a GenAi function call.
    */
   export interface Schema$GenAiFunctionCostOptimizationStats {
@@ -1814,6 +1836,10 @@ export namespace bigquery_v2 {
    * Provides statistics for each Ai function call within a query.
    */
   export interface Schema$GenAiFunctionStats {
+    /**
+     * Cache stats for the function.
+     */
+    cacheStats?: Schema$GenAiFunctionCacheStats;
     /**
      * Cost optimization stats if applied on the rows processed by the function.
      */
@@ -3451,6 +3477,19 @@ export namespace bigquery_v2 {
     refreshWatermark?: string | null;
   }
   /**
+   * Column Metadata Index staleness detailed infnormation.
+   */
+  export interface Schema$MetadataCacheStalenessInsight {
+    /**
+     * Output only. Average column metadata index staleness of previous runs with the same query hash.
+     */
+    avgPreviousStalenessMs?: string | null;
+    /**
+     * Output only. The percent increase in staleness between the current job and the average staleness of previous jobs with the same query hash.
+     */
+    stalenessPercentageIncrease?: number | null;
+  }
+  /**
    * Statistics for metadata caching in queried tables.
    */
   export interface Schema$MetadataCacheStatistics {
@@ -3683,6 +3722,10 @@ export namespace bigquery_v2 {
      * Output only. Standalone query stage performance insights, for exploring potential improvements.
      */
     stagePerformanceStandaloneInsights?: Schema$StagePerformanceStandaloneInsight[];
+    /**
+     * Output only. Performance insights for table-level attributes that changed compared to previous runs.
+     */
+    tableChangeInsights?: Schema$TableChangeInsight[];
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
@@ -5081,6 +5124,23 @@ export namespace bigquery_v2 {
     v?: any | null;
   }
   /**
+   * Table-level performance insights compared to previous runs. These insights don't apply to specific query stages, rather they apply to the whole table.
+   */
+  export interface Schema$TableChangeInsight {
+    /**
+     * Output only. True if the table's column metadata index was not used in the current job, but was used in a previous job with the same query hash.
+     */
+    metadataCacheNotUsedButUsedPreviously?: boolean | null;
+    /**
+     * Output only. If present, indicates that the table's metadata column index staleness has increased significantly compared to previous jobs with the same query hash.
+     */
+    metadataCacheStalenessInsight?: Schema$MetadataCacheStalenessInsight;
+    /**
+     * Output only. The table that was queried.
+     */
+    tableReference?: Schema$TableReference;
+  }
+  /**
    * The TableConstraints defines the primary key and foreign key.
    */
   export interface Schema$TableConstraints {
@@ -5178,9 +5238,19 @@ export namespace bigquery_v2 {
      */
     collation?: string | null;
     /**
+     * Optional. Specifies the data governance tags on this field. This field works with other column-level security fields as follows: - Precedence: If a data governance tag is attached to a column, it takes precedence over the policy tag attached to the column. However, if a data policy is attached to a column, it takes precedence over the data governance tag. - Patching behavior (how this field behaves during a `Table.patch` schema update): - Unset: If the `data_governance_tags_info` field is omitted from the update request, the existing tags on the column are preserved. - Empty Field: To clear data governance tags from a column, send the `data_governance_tags_info` field as an empty object. This will remove all tags from the column. - Updating tags: To replace existing tag, send the field with the new tag.
+     */
+    dataGovernanceTagsInfo?: {
+      dataGovernanceTags?: {[key: string]: string};
+    } | null;
+    /**
      * Optional. Data policies attached to this field, used for field-level access control.
      */
     dataPolicies?: Schema$DataPolicyOption[];
+    /**
+     * Optional. Specifies data policies attached to this field, used for field-level access control. When set, this will be the source of truth for data policy information.
+     */
+    dataPolicyList?: Schema$DataPolicyList;
     /**
      * Optional. A SQL expression to specify the [default value] (https://cloud.google.com/bigquery/docs/default-values) for this field.
      */
