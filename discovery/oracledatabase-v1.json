@@ -2013,6 +2013,799 @@
                 }
               }
             },
+            "goldengateConnectionAssignments": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new GoldengateConnectionAssignment in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateConnectionAssignments",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.goldengateConnectionAssignments.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "goldengateConnectionAssignmentId": {
+                      "description": "Required. The ID of the GoldengateConnectionAssignment to create.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource where this GoldengateConnectionAssignment will be created. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/goldengateConnectionAssignments",
+                  "request": {
+                    "$ref": "GoldengateConnectionAssignment"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single GoldengateConnectionAssignment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateConnectionAssignments/{goldengateConnectionAssignmentsId}",
+                  "httpMethod": "DELETE",
+                  "id": "oracledatabase.projects.locations.goldengateConnectionAssignments.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the GoldengateConnectionAssignment to delete. Format: projects/{project}/locations/{location}/goldengateConnectionAssignments/{goldengate_connection_assignment}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateConnectionAssignments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single GoldengateConnectionAssignment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateConnectionAssignments/{goldengateConnectionAssignmentsId}",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.goldengateConnectionAssignments.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the GoldengateConnectionAssignment to retrieve. Format: projects/{project}/locations/{location}/goldengateConnectionAssignments/{goldengate_connection_assignment}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateConnectionAssignments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoldengateConnectionAssignment"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists GoldengateConnectionAssignments in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateConnectionAssignments",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.goldengateConnectionAssignments.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A filter expression that filters GoldengateConnectionAssignments listed in the response.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. A comma-separated list of fields to order by, sorted in ascending order. Use \"DESC\" after a field name for descending.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of GoldengateConnectionAssignments to return. The service may return fewer than this value. If unspecified, at most 50 GoldengateConnectionAssignments will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListGoldengateConnectionAssignments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListGoldengateConnectionAssignments` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent value for the GoldengateConnectionAssignments. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/goldengateConnectionAssignments",
+                  "response": {
+                    "$ref": "ListGoldengateConnectionAssignmentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "test": {
+                  "description": "Tests a single GoldengateConnectionAssignment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateConnectionAssignments/{goldengateConnectionAssignmentsId}:test",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.goldengateConnectionAssignments.test",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the connection assignment for which to test connection. projects/{project}/locations/{region}/goldengateConnectionAssignments/{goldengate_connection_assignment}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateConnectionAssignments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:test",
+                  "request": {
+                    "$ref": "TestGoldengateConnectionAssignmentRequest"
+                  },
+                  "response": {
+                    "$ref": "TestGoldengateConnectionAssignmentResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "goldengateConnectionTypes": {
+              "methods": {
+                "get": {
+                  "description": "Gets details of a single GoldengateConnectionType.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateConnectionTypes/{goldengateConnectionTypesId}",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.goldengateConnectionTypes.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource in the format: projects/{project}/locations/{location}/goldengateConnectionTypes/{goldengate_connection_type}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateConnectionTypes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoldengateConnectionType"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists GoldengateConnectionTypes in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateConnectionTypes",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.goldengateConnectionTypes.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request. The connection_type field must be specified in the format: `connection_type=\"ORACLE\"`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListGoldengateConnectionTypesRequest Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/goldengateConnectionTypes",
+                  "response": {
+                    "$ref": "ListGoldengateConnectionTypesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "goldengateConnections": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new GoldengateConnection in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateConnections",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.goldengateConnections.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "goldengateConnectionId": {
+                      "description": "Required. The ID of the GoldengateConnection to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The value for parent of the GoldengateConnection in the following format: projects/{project}/locations/{location}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/goldengateConnections",
+                  "request": {
+                    "$ref": "GoldengateConnection"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single GoldengateConnection.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateConnections/{goldengateConnectionsId}",
+                  "httpMethod": "DELETE",
+                  "id": "oracledatabase.projects.locations.goldengateConnections.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the GoldengateConnection in the following format: projects/{project}/locations/{location}/goldengateConnections/{goldengate_connection}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateConnections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single GoldengateConnection.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateConnections/{goldengateConnectionsId}",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.goldengateConnections.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the GoldengateConnection in the following format: projects/{project}/locations/{location}/goldengateConnections/{goldengate_connection}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateConnections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoldengateConnection"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all the GoldengateConnections for the given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateConnections",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.goldengateConnections.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. An expression for ordering the results of the request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return. If unspecified, at most 50 GoldengateConnections will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous ListGoldengateConnections call. Provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent value for GoldengateConnections in the following format: projects/{project}/locations/{location}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/goldengateConnections",
+                  "response": {
+                    "$ref": "ListGoldengateConnectionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "goldengateDeploymentEnvironments": {
+              "methods": {
+                "get": {
+                  "description": "Gets details of a single GoldengateDeploymentEnvironment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeploymentEnvironments/{goldengateDeploymentEnvironmentsId}",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.goldengateDeploymentEnvironments.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource with the format: projects/{project}/locations/{location}/goldengateDeploymentEnvironments/{goldengate_deployment_environment}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateDeploymentEnvironments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoldengateDeploymentEnvironment"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists GoldengateDeploymentEnvironments in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeploymentEnvironments",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.goldengateDeploymentEnvironments.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return. If unspecified, at most 50 deployment environments will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent, which owns this collection of GoldengateDeploymentEnvironments. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/goldengateDeploymentEnvironments",
+                  "response": {
+                    "$ref": "ListGoldengateDeploymentEnvironmentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "goldengateDeploymentTypes": {
+              "methods": {
+                "get": {
+                  "description": "Gets details of a single GoldenGateDeploymentType.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeploymentTypes/{goldengateDeploymentTypesId}",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.goldengateDeploymentTypes.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the GoldengateDeploymentType to retrieve. Format: projects/{project}/locations/{location}/goldengateDeploymentTypes/{goldengate_deployment_type}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateDeploymentTypes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoldengateDeploymentType"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists GoldenGateDeploymentTypes in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeploymentTypes",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.goldengateDeploymentTypes.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request. Either the deployment_type and ogg_version fields must be specified in the format: `deployment_type=\"DATABASE_ORACLE\"` or `ogg_version=\"version\"`. Allowed values for deployment_type are: `DATABASE_ORACLE`, `BIGDATA`, `DATABASE_MICROSOFT_SQLSERVER`, `DATABASE_MYSQL`, `DATABASE_POSTGRESQL`, `DATABASE_DB2ZOS`, `DATABASE_DB2I`, `GGSA`, `DATA_TRANSFORMS`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/goldengateDeploymentTypes",
+                  "response": {
+                    "$ref": "ListGoldengateDeploymentTypesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "goldengateDeploymentVersions": {
+              "methods": {
+                "get": {
+                  "description": "Gets details of a single GoldengateDeploymentVersion.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeploymentVersions/{goldengateDeploymentVersionsId}",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.goldengateDeploymentVersions.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the GoldengateDeploymentVersion to retrieve. Format: projects/{project}/locations/{location}/goldengateDeploymentVersions/{goldengate_deployment_version}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateDeploymentVersions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoldengateDeploymentVersion"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists GoldengateDeploymentVersions in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeploymentVersions",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.goldengateDeploymentVersions.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request. Either the deployment_id and deployment_type fields must be specified in the format: `deployment_id=\"id\"` or `deployment_type=\"DATABASE_ORACLE\"`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListGoldengateDeploymentVersionsRequest Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/goldengateDeploymentVersions",
+                  "response": {
+                    "$ref": "ListGoldengateDeploymentVersionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "goldengateDeployments": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new GoldengateDeployment in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeployments",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.goldengateDeployments.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "goldengateDeploymentId": {
+                      "description": "Required. The ID of the GoldengateDeployment to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The value for parent of the GoldengateDeployment in the following format: projects/{project}/locations/{location}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/goldengateDeployments",
+                  "request": {
+                    "$ref": "GoldengateDeployment"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single GoldengateDeployment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeployments/{goldengateDeploymentsId}",
+                  "httpMethod": "DELETE",
+                  "id": "oracledatabase.projects.locations.goldengateDeployments.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the GoldengateDeployment in the following format: projects/{project}/locations/{location}/goldengateDeployments/{goldengate_deployment}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateDeployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single GoldengateDeployment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeployments/{goldengateDeploymentsId}",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.goldengateDeployments.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the GoldengateDeployment in the following format: projects/{project}/locations/{location}/goldengateDeployments/{goldengate_deployment}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateDeployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoldengateDeployment"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all the GoldengateDeployments for the given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeployments",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.goldengateDeployments.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. An expression for ordering the results of the request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return. If unspecified, at most 50 GoldengateDeployments will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous ListGoldengateDeployments call. Provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent value for GoldengateDeployments in the following format: projects/{project}/locations/{location}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/goldengateDeployments",
+                  "response": {
+                    "$ref": "ListGoldengateDeploymentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "start": {
+                  "description": "Starts a single GoldengateDeployment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeployments/{goldengateDeploymentsId}:start",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.goldengateDeployments.start",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Goldengate Deployment in the following format: projects/{project}/locations/{location}/goldengateDeployments/{goldengate_deployment}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateDeployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:start",
+                  "request": {
+                    "$ref": "StartGoldengateDeploymentRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "stop": {
+                  "description": "Stops a single GoldengateDeployment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeployments/{goldengateDeploymentsId}:stop",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.goldengateDeployments.stop",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Goldengate Deployment in the following format: projects/{project}/locations/{location}/goldengateDeployments/{goldengate_deployment}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateDeployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:stop",
+                  "request": {
+                    "$ref": "StopGoldengateDeploymentRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "odbNetworks": {
               "methods": {
                 "create": {
@@ -2504,7 +3297,7 @@
       }
     }
   },
-  "revision": "20260427",
+  "revision": "20260526",
   "rootUrl": "https://oracledatabase.googleapis.com/",
   "schemas": {
     "AllConnectionStrings": {
@@ -2524,6 +3317,47 @@
         "medium": {
           "description": "Output only. The database service provides a lower level of resources to each SQL statement.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AmazonS3IcebergStorage": {
+      "description": "The Amazon S3 Iceberg storage.",
+      "id": "AmazonS3IcebergStorage",
+      "properties": {
+        "accessKeyId": {
+          "description": "Required. The access key ID of Amazon S3.",
+          "type": "string"
+        },
+        "bucket": {
+          "description": "Required. The bucket of Amazon S3.",
+          "type": "string"
+        },
+        "endpoint": {
+          "description": "Optional. The endpoint of Amazon S3.",
+          "type": "string"
+        },
+        "region": {
+          "description": "Required. The region of Amazon S3.",
+          "type": "string"
+        },
+        "schemeType": {
+          "description": "Required. The scheme type of Amazon S3.",
+          "enum": [
+            "SCHEME_TYPE_UNSPECIFIED",
+            "S3",
+            "S3A"
+          ],
+          "enumDescriptions": [
+            "Scheme type not specified.",
+            "S3 scheme.",
+            "S3A scheme."
+          ],
+          "type": "string"
+        },
+        "secretAccessKeySecret": {
+          "description": "Optional. The secret access key of Amazon S3.",
           "type": "string"
         }
       },
@@ -3601,6 +4435,29 @@
       },
       "type": "object"
     },
+    "AzureDataLakeStorageIcebergStorage": {
+      "description": "The Azure Data Lake Storage Iceberg storage.",
+      "id": "AzureDataLakeStorageIcebergStorage",
+      "properties": {
+        "accountKeySecret": {
+          "description": "Optional. The account key of Azure Data Lake Storage.",
+          "type": "string"
+        },
+        "azureAccount": {
+          "description": "Required. The account of Azure Data Lake Storage.",
+          "type": "string"
+        },
+        "container": {
+          "description": "Required. The container of Azure Data Lake Storage.",
+          "type": "string"
+        },
+        "endpoint": {
+          "description": "Optional. The endpoint of Azure Data Lake Storage.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BackupDestinationDetails": {
       "description": "The details of the database backup destination.",
       "id": "BackupDestinationDetails",
@@ -4125,15 +4982,13 @@
           "type": "array"
         },
         "scanListenerPortTcp": {
-          "description": "Output only. SCAN listener port - TCP",
+          "description": "Optional. SCAN listener port - TCP",
           "format": "int32",
-          "readOnly": true,
           "type": "integer"
         },
         "scanListenerPortTcpSsl": {
-          "description": "Output only. SCAN listener port - TLS",
+          "description": "Optional. SCAN listener port - TLS",
           "format": "int32",
-          "readOnly": true,
           "type": "integer"
         },
         "shape": {
@@ -5083,7 +5938,7 @@
           ],
           "enumDescriptions": [
             "The storage management is unspecified.",
-            "Automatic storage management.",
+            "Automatic storage management. This option is not supported. Only LVM is supported.",
             "Logical Volume management."
           ],
           "type": "string"
@@ -5376,6 +6231,57 @@
           },
           "description": "The tags within the namespace.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "DeploymentDiagnosticData": {
+      "description": "The deployment diagnostic data.",
+      "id": "DeploymentDiagnosticData",
+      "properties": {
+        "bucket": {
+          "description": "Output only. The bucket name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "diagnosticEndTime": {
+          "description": "Output only. The time diagnostic end.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "diagnosticStartTime": {
+          "description": "Output only. The time diagnostic start.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "diagnosticState": {
+          "description": "Output only. The diagnostic state.",
+          "enum": [
+            "DIAGNOSTIC_STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The diagnostic state is unspecified.",
+            "The diagnostic is in progress.",
+            "The diagnostic completed successfully.",
+            "The diagnostic failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Output only. The namespace name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "object": {
+          "description": "Output only. The object name.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -5907,6 +6813,2963 @@
       },
       "type": "object"
     },
+    "GlueIcebergCatalog": {
+      "description": "The Glue Iceberg catalog.",
+      "id": "GlueIcebergCatalog",
+      "properties": {
+        "glueId": {
+          "description": "Required. The catalog ID of Glue.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateAmazonKinesisConnectionProperties": {
+      "description": "The properties of GoldengateAmazonKinesisConnection.",
+      "id": "GoldengateAmazonKinesisConnectionProperties",
+      "properties": {
+        "accessKeyId": {
+          "description": "Optional. Access key ID to access the Amazon Kinesis.",
+          "type": "string"
+        },
+        "awsRegion": {
+          "description": "Optional. The name of the AWS region. If not provided, Goldengate will default to 'us-west-1'.",
+          "type": "string"
+        },
+        "endpoint": {
+          "description": "Optional. The endpoint URL of the Amazon Kinesis service. e.g.: 'https://kinesis.us-east-1.amazonaws.com' If not provided, Goldengate will default to 'https://kinesis..amazonaws.com'.",
+          "type": "string"
+        },
+        "secretAccessKeySecret": {
+          "description": "Optional. Secret access key to access the Amazon Kinesis.",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of AmazonKinesisConnection.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateAmazonRedshiftConnectionProperties": {
+      "description": "The properties of GoldengateAmazonRedshiftConnection.",
+      "id": "GoldengateAmazonRedshiftConnectionProperties",
+      "properties": {
+        "connectionUrl": {
+          "description": "Optional. Connection URL. e.g.: 'jdbc:redshift://aws-redshift-instance.aaaaaaaaaaaa.us-east-2.redshift.amazonaws.com:5439/mydb'",
+          "type": "string"
+        },
+        "password": {
+          "description": "Optional. Input only. The password Oracle Goldengate uses for Amazon Redshift connection in plain text.",
+          "type": "string"
+        },
+        "passwordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses for Amazon Redshift connection. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of AmazonRedshiftConnection.",
+          "type": "string"
+        },
+        "username": {
+          "description": "Optional. The username Oracle Goldengate uses to connect the associated system of the given technology.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateAmazonS3ConnectionProperties": {
+      "description": "The properties of GoldengateAmazonS3Connection.",
+      "id": "GoldengateAmazonS3ConnectionProperties",
+      "properties": {
+        "accessKeyId": {
+          "description": "Optional. Access key ID to access the Amazon S3 bucket.",
+          "type": "string"
+        },
+        "endpoint": {
+          "description": "Optional. The Amazon Endpoint for S3.",
+          "type": "string"
+        },
+        "region": {
+          "description": "Optional. The name of the AWS region where the bucket is created.",
+          "type": "string"
+        },
+        "secretAccessKeySecret": {
+          "description": "Optional. Secret access key to access the Amazon S3 bucket.",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of AmazonS3Connection.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateAzureDataLakeStorageConnectionProperties": {
+      "description": "The properties of GoldengateAzureDataLakeStorageConnection.",
+      "id": "GoldengateAzureDataLakeStorageConnectionProperties",
+      "properties": {
+        "account": {
+          "description": "Optional. Sets the Azure storage account name.",
+          "type": "string"
+        },
+        "accountKeySecret": {
+          "description": "Optional. Azure storage account key. This property is required when 'authentication_type' is set to 'SHARED_KEY'.",
+          "type": "string"
+        },
+        "authenticationType": {
+          "description": "Optional. Authentication mechanism to access Azure Data Lake Storage.",
+          "enum": [
+            "AUTHENTICATION_TYPE_UNSPECIFIED",
+            "SHARED_KEY",
+            "SHARED_ACCESS_SIGNATURE",
+            "AZURE_ACTIVE_DIRECTORY"
+          ],
+          "enumDescriptions": [
+            "Authentication type not specified.",
+            "Shared key authentication.",
+            "Shared access signature authentication.",
+            "Azure active directory authentication."
+          ],
+          "type": "string"
+        },
+        "azureAuthorityHost": {
+          "description": "Optional. The endpoint used for authentication with Microsoft Entra ID (formerly Azure Active Directory). Default value: https://login.microsoftonline.com",
+          "type": "string"
+        },
+        "azureTenantId": {
+          "description": "Optional. Azure tenant ID of the application. This property is required when 'authentication_type' is set to 'AZURE_ACTIVE_DIRECTORY'.",
+          "type": "string"
+        },
+        "clientId": {
+          "description": "Optional. Azure client ID of the application. This property is required when 'authentication_type' is set to 'AZURE_ACTIVE_DIRECTORY'.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "Optional. Azure client secret (aka application password) for authentication.",
+          "type": "string"
+        },
+        "endpoint": {
+          "description": "Optional. Azure Storage service endpoint. e.g: https://test.blob.core.windows.net",
+          "type": "string"
+        },
+        "sasTokenSecret": {
+          "description": "Optional. Credential that uses a shared access signature (SAS) to authenticate to an Azure Service.",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of AzureDataLakeStorageConnection.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateAzureSynapseAnalyticsConnectionProperties": {
+      "description": "The properties of GoldengateAzureSynapseAnalyticsConnection.",
+      "id": "GoldengateAzureSynapseAnalyticsConnectionProperties",
+      "properties": {
+        "connectionString": {
+          "description": "Optional. JDBC connection string. e.g.: 'jdbc:sqlserver://.sql.azuresynapse.net:1433;database=;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.sql.azuresynapse.net;loginTimeout=300;'",
+          "type": "string"
+        },
+        "password": {
+          "description": "Optional. Input only. The password Oracle Goldengate uses for Azure Synapse Analytics connection in plain text.",
+          "type": "string"
+        },
+        "passwordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses for Azure Synapse Analytics connection. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of AzureSynapseAnalyticsConnection.",
+          "type": "string"
+        },
+        "username": {
+          "description": "Optional. The username Oracle Goldengate uses to connect the associated system of the given technology.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateBackupSchedule": {
+      "description": "The backup schedule of the GoldengateDeployment.",
+      "id": "GoldengateBackupSchedule",
+      "properties": {
+        "backupScheduledTime": {
+          "description": "Output only. The timestamp of when the backup was scheduled.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "bucket": {
+          "description": "Output only. The bucket name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "compartmentId": {
+          "description": "Output only. The compartment id.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "frequencyBackupScheduled": {
+          "description": "Output only. The frequency backup scheduled.",
+          "enum": [
+            "FREQUENCY_BACKUP_SCHEDULED_UNSPECIFIED",
+            "DAILY",
+            "WEEKLY",
+            "MONTHLY"
+          ],
+          "enumDescriptions": [
+            "The frequency backup scheduled is unspecified.",
+            "The frequency backup scheduled is daily.",
+            "The frequency backup scheduled is weekly.",
+            "The frequency backup scheduled is monthly."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "metadataOnly": {
+          "description": "Output only. If metadata only.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "namespace": {
+          "description": "Output only. The namespace name.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateConnection": {
+      "description": "Details of the GoldengateConnection resource.",
+      "id": "GoldengateConnection",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The date and time that the GoldengateConnection was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "entitlementId": {
+          "description": "Output only. The ID of the subscription entitlement associated with the GoldengateConnection.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "gcpOracleZone": {
+          "description": "Optional. The GCP Oracle zone where Oracle GoldengateConnection is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels or tags associated with the GoldengateConnection.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The name of the GoldengateConnection resource in the following format: projects/{project}/locations/{region}/goldengateConnections/{goldengate_connection}",
+          "type": "string"
+        },
+        "ociUrl": {
+          "description": "Output only. HTTPS link to OCI resources exposed to Customer via UI Interface.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "odbNetwork": {
+          "description": "Optional. The name of the OdbNetwork associated with the GoldengateConnection. The format is projects/{project}/locations/{location}/odbNetworks/{odb_network}. It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.",
+          "type": "string"
+        },
+        "odbSubnet": {
+          "description": "Optional. The name of the OdbSubnet associated with the GoldengateConnection for IP allocation. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
+          "type": "string"
+        },
+        "properties": {
+          "$ref": "GoldengateConnectionProperties",
+          "description": "Required. The properties of the GoldengateConnection."
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateConnectionAssignment": {
+      "description": "Represents the metadata of a Goldengate Connection Assignment.",
+      "id": "GoldengateConnectionAssignment",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the connection assignment was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. The display name for the GoldengateConnectionAssignment.",
+          "type": "string"
+        },
+        "entitlementId": {
+          "description": "Output only. The OCID of the entitlement linked to this resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels or tags associated with the GoldengateConnectionAssignment.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The name of the GoldengateConnectionAssignment resource in the following format: projects/{project}/locations/{region}/goldengateConnectionAssignments/{goldengate_connection_assignment}",
+          "type": "string"
+        },
+        "properties": {
+          "$ref": "GoldengateConnectionAssignmentProperties",
+          "description": "Required. The properties of the GoldengateConnectionAssignment."
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateConnectionAssignmentProperties": {
+      "description": "The properties of a GoldengateConnectionAssignment.",
+      "id": "GoldengateConnectionAssignmentProperties",
+      "properties": {
+        "alias": {
+          "description": "Output only. Credential store alias.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "goldengateConnection": {
+          "description": "Required. The GoldengateConnection resource to be assigned. Format: projects/{project}/locations/{location}/goldengateConnections/{goldengate_connection}",
+          "type": "string"
+        },
+        "goldengateDeployment": {
+          "description": "Required. The GoldenGateDeployment to assign the connection to. Format: projects/{project}/locations/{location}/goldengateDeployments/{goldengate_deployment}",
+          "type": "string"
+        },
+        "ocid": {
+          "description": "Output only. The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the connection assignment being referenced.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The lifecycle state of the connection assignment.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "FAILED",
+            "UPDATING",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Lifecycle state is unspecified.",
+            "Connection assignment is being created.",
+            "Connection assignment is active.",
+            "Connection assignment failed.",
+            "Connection assignment is being updated.",
+            "Connection assignment is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateConnectionProperties": {
+      "description": "The properties of a GoldengateConnection.",
+      "id": "GoldengateConnectionProperties",
+      "properties": {
+        "amazonKinesisConnectionProperties": {
+          "$ref": "GoldengateAmazonKinesisConnectionProperties",
+          "description": "Properties for an Amazon Kinesis connection."
+        },
+        "amazonRedshiftConnectionProperties": {
+          "$ref": "GoldengateAmazonRedshiftConnectionProperties",
+          "description": "Properties for an Amazon Redshift connection."
+        },
+        "amazonS3ConnectionProperties": {
+          "$ref": "GoldengateAmazonS3ConnectionProperties",
+          "description": "Properties for an Amazon S3 connection."
+        },
+        "azureDataLakeStorageConnectionProperties": {
+          "$ref": "GoldengateAzureDataLakeStorageConnectionProperties",
+          "description": "Properties for an Azure Data Lake Storage Connection."
+        },
+        "azureSynapseAnalyticsConnectionProperties": {
+          "$ref": "GoldengateAzureSynapseAnalyticsConnectionProperties",
+          "description": "Properties for an Azure Synapse Analytics connection."
+        },
+        "connectionType": {
+          "description": "Required. The connection type.",
+          "enum": [
+            "GOLDENGATE_CONNECTION_TYPE_UNSPECIFIED",
+            "GOLDENGATE",
+            "KAFKA",
+            "KAFKA_SCHEMA_REGISTRY",
+            "MYSQL",
+            "JAVA_MESSAGE_SERVICE",
+            "MICROSOFT_SQLSERVER",
+            "OCI_OBJECT_STORAGE",
+            "ORACLE",
+            "AZURE_DATA_LAKE_STORAGE",
+            "POSTGRESQL",
+            "AZURE_SYNAPSE_ANALYTICS",
+            "SNOWFLAKE",
+            "AMAZON_S3",
+            "HDFS",
+            "ORACLE_AI_DATA_PLATFORM",
+            "ORACLE_NOSQL",
+            "MONGODB",
+            "AMAZON_KINESIS",
+            "AMAZON_REDSHIFT",
+            "DB2",
+            "REDIS",
+            "ELASTICSEARCH",
+            "GENERIC",
+            "GOOGLE_CLOUD_STORAGE",
+            "GOOGLE_BIGQUERY",
+            "DATABRICKS",
+            "GOOGLE_PUBSUB",
+            "MICROSOFT_FABRIC",
+            "ICEBERG"
+          ],
+          "enumDescriptions": [
+            "Connection type unspecified.",
+            "Goldengate connection type.",
+            "Kafka connection type.",
+            "Kafka schema registry connection type.",
+            "MySQL connection type.",
+            "Java message service connection type.",
+            "Microsoft SQL Server connection type.",
+            "OCI object storage connection type.",
+            "Oracle connection type.",
+            "Azure data lake storage connection type.",
+            "PostgreSQL connection type.",
+            "Azure synapse analytics connection type.",
+            "Snowflake connection type.",
+            "Amazon S3 connection type.",
+            "HDFS connection type.",
+            "Oracle AI data platform connection type.",
+            "Oracle NoSQL connection type.",
+            "MongoDB connection type.",
+            "Amazon Kinesis connection type.",
+            "Amazon Redshift connection type.",
+            "DB2 connection type.",
+            "Redis connection type.",
+            "Elasticsearch connection type.",
+            "Generic connection type.",
+            "Google Cloud Storage connection type.",
+            "Google BigQuery connection type.",
+            "Databricks connection type.",
+            "Google Pub/Sub connection type.",
+            "Microsoft Fabric connection type.",
+            "Iceberg connection type."
+          ],
+          "type": "string"
+        },
+        "databricksConnectionProperties": {
+          "$ref": "GoldengateDatabricksConnectionProperties",
+          "description": "Properties for a Databricks connection."
+        },
+        "db2ConnectionProperties": {
+          "$ref": "GoldengateDb2ConnectionProperties",
+          "description": "Properties for a DB2 connection."
+        },
+        "description": {
+          "description": "Optional. Metadata about this specific object.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. An object's Display Name.",
+          "type": "string"
+        },
+        "elasticsearchConnectionProperties": {
+          "$ref": "GoldengateElasticsearchConnectionProperties",
+          "description": "Properties for an Elasticsearch connection."
+        },
+        "genericConnectionProperties": {
+          "$ref": "GoldengateGenericConnectionProperties",
+          "description": "Properties for a Generic Connection."
+        },
+        "goldengateConnectionProperties": {
+          "$ref": "GoldengateGoldengateConnectionProperties",
+          "description": "Properties for a Goldengate Connection."
+        },
+        "googleBigQueryConnectionProperties": {
+          "$ref": "GoldengateGoogleBigQueryConnectionProperties",
+          "description": "Properties for a Google BigQuery Connection."
+        },
+        "googleCloudStorageConnectionProperties": {
+          "$ref": "GoldengateGoogleCloudStorageConnectionProperties",
+          "description": "Properties for a Google Cloud Storage Connection."
+        },
+        "googlePubsubConnectionProperties": {
+          "$ref": "GoldengateGooglePubsubConnectionProperties",
+          "description": "Properties for a Google Pub/Sub connection."
+        },
+        "hdfsConnectionProperties": {
+          "$ref": "GoldengateHdfsConnectionProperties",
+          "description": "Properties for an HDFS connection."
+        },
+        "icebergConnectionProperties": {
+          "$ref": "GoldengateIcebergConnectionProperties",
+          "description": "Properties for an Iceberg connection."
+        },
+        "ingressIpAddresses": {
+          "description": "Output only. The Ingress IPs of the GoldengateConnection.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "javaMessageServiceConnectionProperties": {
+          "$ref": "GoldengateJavaMessageServiceConnectionProperties",
+          "description": "Properties for a Java Message Service connection."
+        },
+        "kafkaConnectionProperties": {
+          "$ref": "GoldengateKafkaConnectionProperties",
+          "description": "Properties for a Kafka Connection."
+        },
+        "kafkaSchemaRegistryConnectionProperties": {
+          "$ref": "GoldengateKafkaSchemaRegistryConnectionProperties",
+          "description": "Properties for a Kafka Schema Registry Connection."
+        },
+        "lifecycleDetails": {
+          "description": "Output only. Describes the object's current state in detail. For example, it can be used to provide actionable information for a resource in a Failed state.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lifecycleState": {
+          "description": "Output only. The lifecycle state of the connection.",
+          "enum": [
+            "GOLDENGATE_CONNECTION_LIFECYCLE_STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING",
+            "DELETED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Indicates that the resource is in provisioning state.",
+            "Indicates that the resource is in active state.",
+            "Indicates that the resource is in updating state.",
+            "Indicates that the resource is in deleting state.",
+            "Indicates that the resource is in deleted state.",
+            "Indicates that the resource is in failed state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "microsoftFabricConnectionProperties": {
+          "$ref": "GoldengateMicrosoftFabricConnectionProperties",
+          "description": "Properties for a Microsoft Fabric connection."
+        },
+        "microsoftSqlserverConnectionProperties": {
+          "$ref": "GoldengateMicrosoftSqlserverConnectionProperties",
+          "description": "Properties for a Microsoft SQL Server connection."
+        },
+        "mongodbConnectionProperties": {
+          "$ref": "GoldengateMongodbConnectionProperties",
+          "description": "Properties for a MongoDB connection."
+        },
+        "mysqlConnectionProperties": {
+          "$ref": "GoldengateMysqlConnectionProperties",
+          "description": "Properties for a Mysql Connection."
+        },
+        "ociObjectStorageConnectionProperties": {
+          "$ref": "GoldengateOciObjectStorageConnectionProperties",
+          "description": "Properties for an OCI Object Storage Connection."
+        },
+        "ocid": {
+          "description": "Output only. The [OCID] of the connection being referenced.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "oracleAiDataPlatformConnectionProperties": {
+          "$ref": "GoldengateOracleAIDataPlatformConnectionProperties",
+          "description": "Properties for an Oracle AI Data Platform connection."
+        },
+        "oracleConnectionProperties": {
+          "$ref": "GoldengateOracleConnectionProperties",
+          "description": "Properties for an Oracle Database Connection."
+        },
+        "oracleNosqlConnectionProperties": {
+          "$ref": "GoldengateOracleNosqlConnectionProperties",
+          "description": "Properties for an Oracle NoSQL connection."
+        },
+        "postgresqlConnectionProperties": {
+          "$ref": "GoldengatePostgresqlConnectionProperties",
+          "description": "Properties for a PostgreSQL connection."
+        },
+        "redisConnectionProperties": {
+          "$ref": "GoldengateRedisConnectionProperties",
+          "description": "Properties for a Redis connection."
+        },
+        "routingMethod": {
+          "description": "Optional. The routing method for the GoldengateConnection.",
+          "enum": [
+            "GOLDENGATE_CONNECTION_ROUTING_METHOD_UNSPECIFIED",
+            "SHARED_DEPLOYMENT_ENDPOINT",
+            "DEDICATED_ENDPOINT"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Network traffic flows from the assigned deployment's private endpoint through the deployment's subnet.",
+            "A dedicated private endpoint is created in the target VCN subnet for the connection."
+          ],
+          "type": "string"
+        },
+        "snowflakeConnectionProperties": {
+          "$ref": "GoldengateSnowflakeConnectionProperties",
+          "description": "Properties for a Snowflake connection."
+        },
+        "updateTime": {
+          "description": "Output only. The time the resource was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateConnectionType": {
+      "description": "Details of the Goldengate Connection Type resource.",
+      "id": "GoldengateConnectionType",
+      "properties": {
+        "connectionType": {
+          "description": "Output only. The connection type of the Goldengate Connection Type resource.",
+          "enum": [
+            "CONNECTION_TYPE_UNSPECIFIED",
+            "GOLDENGATE",
+            "KAFKA",
+            "KAFKA_SCHEMA_REGISTRY",
+            "MYSQL",
+            "JAVA_MESSAGE_SERVICE",
+            "MICROSOFT_SQLSERVER",
+            "OCI_OBJECT_STORAGE",
+            "ORACLE",
+            "AZURE_DATA_LAKE_STORAGE",
+            "POSTGRESQL",
+            "AZURE_SYNAPSE_ANALYTICS",
+            "SNOWFLAKE",
+            "AMAZON_S3",
+            "HDFS",
+            "ORACLE_AI_DATA_PLATFORM",
+            "ORACLE_NOSQL",
+            "MONGODB",
+            "AMAZON_KINESIS",
+            "AMAZON_REDSHIFT",
+            "DB2",
+            "REDIS",
+            "ELASTICSEARCH",
+            "GENERIC",
+            "GOOGLE_CLOUD_STORAGE",
+            "GOOGLE_BIGQUERY",
+            "DATABRICKS",
+            "GOOGLE_PUBSUB",
+            "MICROSOFT_FABRIC",
+            "ICEBERG"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Goldengate Connection Type category is GOLDENGATE.",
+            "Goldengate Connection Type category is KAFKA.",
+            "Goldengate Connection Type category is KAFKA_SCHEMA_REGISTRY.",
+            "Goldengate Connection Type category is MYSQL.",
+            "Goldengate Connection Type category is JAVA_MESSAGE_SERVICE.",
+            "Goldengate Connection Type category is MICROSOFT_SQLSERVER.",
+            "Goldengate Connection Type category is OCI_OBJECT_STORAGE.",
+            "Goldengate Connection Type category is ORACLE.",
+            "Goldengate Connection Type category is AZURE_DATA_LAKE_STORAGE.",
+            "Goldengate Connection Type category is POSTGRESQL.",
+            "Goldengate Connection Type category is AZURE_SYNAPSE_ANALYTICS.",
+            "Goldengate Connection Type category is SNOWFLAKE.",
+            "Goldengate Connection Type category is AMAZON_S3.",
+            "Goldengate Connection Type category is HDFS.",
+            "Goldengate Connection Type category is ORACLE_AI_DATA_PLATFORM.",
+            "Goldengate Connection Type category is ORACLE_NOSQL.",
+            "Goldengate Connection Type category is MONGODB.",
+            "Goldengate Connection Type category is AMAZON_KINESIS.",
+            "Goldengate Connection Type category is AMAZON_REDSHIFT.",
+            "Goldengate Connection Type category is DB2.",
+            "Goldengate Connection Type category is REDIS.",
+            "Goldengate Connection Type category is ELASTICSEARCH.",
+            "Goldengate Connection Type category is GENERIC.",
+            "Goldengate Connection Type category is GOOGLE_CLOUD_STORAGE.",
+            "Goldengate Connection Type category is GOOGLE_BIGQUERY.",
+            "Goldengate Connection Type category is DATABRICKS.",
+            "Goldengate Connection Type category is GOOGLE_PUBSUB.",
+            "Goldengate Connection Type category is MICROSOFT_FABRIC.",
+            "Goldengate Connection Type category is ICEBERG."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the Goldengate Connection Type resource with the format: projects/{project}/locations/{region}/goldengateConnectionTypes/{goldengate_connection_type}",
+          "type": "string"
+        },
+        "technologyTypes": {
+          "description": "Output only. The technology type of the Goldengate Connection Type resource.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateDatabricksConnectionProperties": {
+      "description": "The properties of GoldengateDatabricksConnection.",
+      "id": "GoldengateDatabricksConnectionProperties",
+      "properties": {
+        "authenticationType": {
+          "description": "Optional. Authentication type for Databricks.",
+          "enum": [
+            "DATABRICKS_AUTHENTICATION_TYPE_UNSPECIFIED",
+            "PERSONAL_ACCESS_TOKEN",
+            "OAUTH_M2M"
+          ],
+          "enumDescriptions": [
+            "Authentication type not specified.",
+            "Personal access token authentication.",
+            "OAuth M2M authentication."
+          ],
+          "type": "string"
+        },
+        "clientId": {
+          "description": "Optional. OAuth client id, only applicable for authentication_type == OAUTH_M2M",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "Optional. OAuth client secret, only applicable for authentication_type == OAUTH_M2M",
+          "type": "string"
+        },
+        "connectionUrl": {
+          "description": "Optional. Connection URL. e.g.: 'jdbc:databricks://adb-33934.4.azuredatabricks.net:443/default;transportMode=http;ssl=1;httpPath=sql/protocolv1/o/3393########44/0##3-7-hlrb'",
+          "type": "string"
+        },
+        "password": {
+          "description": "Optional. Input only. The password used to connect to Databricks in plain text.",
+          "type": "string"
+        },
+        "passwordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password used to connect to Databricks. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "storageCredential": {
+          "description": "Optional. External storage credential name to access files on object storage such as ADLS Gen2, S3 or Cloud Storage.",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of DatabricksConnection.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateDb2ConnectionProperties": {
+      "description": "The properties of GoldengateDb2Connection.",
+      "id": "GoldengateDb2ConnectionProperties",
+      "properties": {
+        "additionalAttributes": {
+          "description": "Optional. An array of name-value pair attribute entries. Used as additional parameters in connection string.",
+          "items": {
+            "$ref": "NameValuePair"
+          },
+          "type": "array"
+        },
+        "database": {
+          "description": "Optional. The name of the database.",
+          "type": "string"
+        },
+        "host": {
+          "description": "Optional. The name or address of a host.",
+          "type": "string"
+        },
+        "password": {
+          "description": "Optional. Input only. The password Oracle Goldengate uses for Db2 connection in plain text.",
+          "type": "string"
+        },
+        "passwordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses for Db2 connection. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "port": {
+          "description": "Optional. The port of an endpoint usually specified for a connection.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "securityProtocol": {
+          "description": "Optional. Security protocol for the DB2 database.",
+          "enum": [
+            "DB2_SECURITY_PROTOCOL_UNSPECIFIED",
+            "PLAIN",
+            "TLS"
+          ],
+          "enumDescriptions": [
+            "Security protocol not specified.",
+            "Plain text communication.",
+            "Transport Layer Security."
+          ],
+          "type": "string"
+        },
+        "sslClientKeystashFile": {
+          "description": "Optional. The keystash file which contains the encrypted password to the key database file. Not supported for IBM Db2 for i.",
+          "type": "string"
+        },
+        "sslClientKeystoredbFile": {
+          "description": "Optional. The keystore file created at the client containing the server certificate / CA root certificate. Not supported for IBM Db2 for i.",
+          "type": "string"
+        },
+        "sslServerCertificateFile": {
+          "description": "Optional. The file which contains the self-signed server certificate / Certificate Authority (CA) certificate.",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of Db2Connection.",
+          "type": "string"
+        },
+        "username": {
+          "description": "Optional. The username Oracle Goldengate uses to connect to the DB2 database.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateDeployment": {
+      "description": "GoldengateDeployment Goldengate Deployment resource model.",
+      "id": "GoldengateDeployment",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The date and time that the GoldengateDeployment was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name for the GoldengateDeployment.",
+          "type": "string"
+        },
+        "entitlementId": {
+          "description": "Output only. The ID of the subscription entitlement associated with the GoldengateDeployment",
+          "readOnly": true,
+          "type": "string"
+        },
+        "gcpOracleZone": {
+          "description": "Optional. The GCP Oracle zone where Oracle GoldengateDeployment is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels or tags associated with the GoldengateDeployment.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The name of the GoldengateDeployment resource in the following format: projects/{project}/locations/{region}/goldengateDeployments/{goldengate_deployment}",
+          "type": "string"
+        },
+        "ociUrl": {
+          "description": "Output only. HTTPS link to OCI resources exposed to Customer via UI Interface.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "odbNetwork": {
+          "description": "Optional. The name of the OdbNetwork associated with the GoldengateDeployment.",
+          "type": "string"
+        },
+        "odbSubnet": {
+          "description": "Required. The name of the OdbSubnet associated with the GoldengateDeployment for IP allocation.",
+          "type": "string"
+        },
+        "properties": {
+          "$ref": "GoldengateDeploymentProperties",
+          "description": "Required. The properties of the GoldengateDeployment."
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateDeploymentEnvironment": {
+      "description": "Details of the Goldengate Deployment Environment resource.",
+      "id": "GoldengateDeploymentEnvironment",
+      "properties": {
+        "autoScalingEnabled": {
+          "description": "Output only. Whether auto scaling is enabled by default for the Goldengate Deployment Environment resource.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "category": {
+          "description": "Output only. The category of the Goldengate Deployment Environment resource.",
+          "enum": [
+            "DEPLOYMENT_CATEGORY_UNSPECIFIED",
+            "DATA_REPLICATION_CATEGORY",
+            "DATA_TRANSFORMS_CATEGORY"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Goldengate Deployment Environment category is DATA_REPLICATION_CATEGORY.",
+            "Goldengate Deployment Environment category is DATA_TRANSFORMS_CATEGORY."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "defaultCpuCoreCount": {
+          "description": "Output only. The default CPU core count of the Goldengate Deployment Environment resource.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "displayName": {
+          "description": "The display name of the Goldengate Deployment Environment resource.",
+          "type": "string"
+        },
+        "environmentType": {
+          "description": "Output only. The environment type of the Goldengate Deployment Environment resource.",
+          "enum": [
+            "DEPLOYMENT_ENVIRONMENT_TYPE_UNSPECIFIED",
+            "PRODUCTION",
+            "DEVELOPMENT_OR_TESTING"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Goldengate Deployment Environment type is PRODUCTION.",
+            "Goldengate Deployment Environment type is DEVELOPMENT_OR_TESTING."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "maxCpuCoreCount": {
+          "description": "Output only. The max CPU core count of the Goldengate Deployment Environment resource.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "memoryGbPerCpuCore": {
+          "description": "Output only. The memory per CPU core in GBs of the Goldengate Deployment Environment resource.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "minCpuCoreCount": {
+          "description": "Output only. The min CPU core count of the Goldengate Deployment Environment resource.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "name": {
+          "description": "Identifier. The name of the Goldengate Deployment Environment resource with the format: projects/{project}/locations/{location}/goldengateDeploymentEnvironments/{goldengate_deployment_environment}",
+          "type": "string"
+        },
+        "networkBandwidthGbpsPerCpuCore": {
+          "description": "Output only. The network bandwidth per CPU core in Gbps of the Goldengate Deployment Environment resource.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "storageUsageLimitGbPerCpuCore": {
+          "description": "Output only. The storage usage limit per CPU core in GBs of the Goldengate Deployment Environment resource.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateDeploymentLock": {
+      "description": "The lock of the GoldengateDeployment.",
+      "id": "GoldengateDeploymentLock",
+      "properties": {
+        "compartmentId": {
+          "description": "Output only. The compartment id.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "message": {
+          "description": "Output only. The message.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "relatedResourceId": {
+          "description": "Output only. The related resource id.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The type of lock.",
+          "enum": [
+            "LOCK_TYPE_UNSPECIFIED",
+            "FULL",
+            "DELETE"
+          ],
+          "enumDescriptions": [
+            "The lock type is unspecified.",
+            "The lock type is full.",
+            "The lock type is delete."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateDeploymentProperties": {
+      "description": "Properties of GoldengateDeployment.",
+      "id": "GoldengateDeploymentProperties",
+      "properties": {
+        "backupSchedule": {
+          "$ref": "GoldengateBackupSchedule",
+          "description": "Output only. The backup schedule of the GoldengateDeployment.",
+          "readOnly": true
+        },
+        "category": {
+          "description": "Output only. The category of the GoldengateDeployment.",
+          "enum": [
+            "GOLDENGATE_DEPLOYMENT_CATEGORY_UNSPECIFIED",
+            "DATA_REPLICATION",
+            "DATA_TRANSFORMS"
+          ],
+          "enumDescriptions": [
+            "The category is unspecified.",
+            "The deployment is data replication.",
+            "The deployment is data transforms."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "cpuCoreCount": {
+          "description": "Optional. The Minimum number of OCPUs to be made available for this Deployment.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "deploymentBackupId": {
+          "description": "Output only. The deployment backup id of the GoldengateDeployment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deploymentDiagnosticData": {
+          "$ref": "DeploymentDiagnosticData",
+          "description": "Output only. The deployment diagnostic data of the GoldengateDeployment.",
+          "readOnly": true
+        },
+        "deploymentRole": {
+          "description": "Output only. The deployment role of the GoldengateDeployment.",
+          "enum": [
+            "GOLDENGATE_DEPLOYMENT_ROLE_TYPE_UNSPECIFIED",
+            "PRIMARY",
+            "STANDBY"
+          ],
+          "enumDescriptions": [
+            "The deployment role type is unspecified.",
+            "The deployment role type is primary.",
+            "The deployment role type is standby."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "deploymentType": {
+          "description": "Required. A valid Goldengate Deployment type. For a list of supported types, use the `ListGoldengateDeploymentTypes` operation.",
+          "type": "string"
+        },
+        "deploymentUrl": {
+          "description": "Output only. The deployment url of the GoldengateDeployment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. The description of the GoldengateDeployment.",
+          "type": "string"
+        },
+        "environmentType": {
+          "description": "Optional. The environment type of the GoldengateDeployment.",
+          "type": "string"
+        },
+        "fqdn": {
+          "description": "Output only. The Fully Qualified Domain Name of the GoldengateDeployment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "healthy": {
+          "description": "Output only. Whether the GoldengateDeployment is healthy.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "ingressIps": {
+          "description": "Output only. The ingress ips of the GoldengateDeployment.",
+          "items": {
+            "$ref": "IngressIp"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "isAutoScalingEnabled": {
+          "description": "Optional. Indicates if auto scaling is enabled for the Deployment's CPU core count.",
+          "type": "boolean"
+        },
+        "isLatestVersion": {
+          "description": "Output only. Whether the GoldengateDeployment is of the latest version.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isPublic": {
+          "description": "Output only. Whether the GoldengateDeployment is public.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isStorageUtilizationLimitExceeded": {
+          "description": "Output only. Whether storage utilization limit is exceeded of the GoldengateDeployment.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "lastBackupScheduleTime": {
+          "description": "Output only. The time last backup scheduled of the GoldengateDeployment.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "licenseModel": {
+          "description": "Optional. The Oracle license model that applies to a Deployment.",
+          "enum": [
+            "LICENSE_MODEL_UNSPECIFIED",
+            "LICENSE_INCLUDED",
+            "BRING_YOUR_OWN_LICENSE"
+          ],
+          "enumDescriptions": [
+            "The license model is unspecified.",
+            "The license model is included.",
+            "The license model is bring your own license."
+          ],
+          "type": "string"
+        },
+        "lifecycleDetails": {
+          "description": "Output only. The lifecycle details of the GoldengateDeployment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lifecycleState": {
+          "description": "Output only. State of the GoldengateDeployment.",
+          "enum": [
+            "GOLDENGATE_DEPLOYMENT_LIFECYCLE_STATE_UNSPECIFIED",
+            "CREATING",
+            "UPDATING",
+            "ACTIVE",
+            "INACTIVE",
+            "DELETING",
+            "DELETED",
+            "FAILED",
+            "NEEDS_ATTENTION",
+            "IN_PROGRESS",
+            "CANCELLING",
+            "CANCELLED",
+            "SUCCEEDED",
+            "WAITING"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "The deployment is being created.",
+            "The deployment is being updated.",
+            "The deployment is active.",
+            "The deployment is inactive.",
+            "The deployment is being deleted.",
+            "The deployment is deleted.",
+            "The deployment failed.",
+            "The deployment needs attention.",
+            "The deployment is in progress.",
+            "The deployment is canceling.",
+            "The deployment is canceled.",
+            "The deployment succeeded.",
+            "The deployment is waiting."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "lifecycleSubState": {
+          "description": "Output only. The lifecycle sub-state of the GoldengateDeployment.",
+          "enum": [
+            "GOLDENGATE_DEPLOYMENT_LIFECYCLE_SUB_STATE_UNSPECIFIED",
+            "RECOVERING",
+            "STARTING",
+            "STOPPING",
+            "MOVING",
+            "UPGRADING",
+            "RESTORING",
+            "BACKING_UP",
+            "ROLLING_BACK"
+          ],
+          "enumDescriptions": [
+            "The lifecycle sub-state is unspecified.",
+            "The deployment is recovering.",
+            "The deployment is starting.",
+            "The deployment is stopping.",
+            "The deployment is moving.",
+            "The deployment is upgrading.",
+            "The deployment is restoring.",
+            "The deployment is backing up.",
+            "The deployment is rolling back."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "loadBalancerId": {
+          "description": "Output only. The load balancer id of the GoldengateDeployment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "loadBalancerSubnetId": {
+          "description": "Output only. The load balancer subnet id of the GoldengateDeployment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "locks": {
+          "description": "Output only. The locks of the GoldengateDeployment.",
+          "items": {
+            "$ref": "GoldengateDeploymentLock"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "maintenanceConfig": {
+          "$ref": "GoldengateMaintenanceConfig",
+          "description": "Optional. The maintenance configuration of the GoldengateDeployment."
+        },
+        "maintenanceWindow": {
+          "$ref": "GoldengateMaintenanceWindow",
+          "description": "Optional. The maintenance window of the GoldengateDeployment."
+        },
+        "nextBackupScheduleTime": {
+          "description": "Output only. The time next backup scheduled of the GoldengateDeployment.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nextMaintenanceActionType": {
+          "description": "Output only. The next maintenance action type of the GoldengateDeployment.",
+          "enum": [
+            "NEXT_MAINTENANCE_ACTION_TYPE_UNSPECIFIED",
+            "UPGRADE"
+          ],
+          "enumDescriptions": [
+            "The next maintenance action type is unspecified.",
+            "The next maintenance action type is upgrade."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "nextMaintenanceDescription": {
+          "description": "Output only. The next maintenance description of the GoldengateDeployment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nextMaintenanceTime": {
+          "description": "Output only. The time of next maintenance of the GoldengateDeployment.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nsgIds": {
+          "description": "Output only. The nsg ids of the GoldengateDeployment.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "ocid": {
+          "description": "Output only. OCID of the GoldengateDeployment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "oggData": {
+          "$ref": "GoldengateOggDeployment",
+          "description": "Required. The ogg data of the GoldengateDeployment."
+        },
+        "oggVersionSupportEndTime": {
+          "description": "Output only. The time ogg version supported until of the GoldengateDeployment.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "placements": {
+          "description": "Output only. The placements of the GoldengateDeployment.",
+          "items": {
+            "$ref": "GoldengatePlacement"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "privateIpAddress": {
+          "description": "Output only. The private ip address of the GoldengateDeployment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "publicIpAddress": {
+          "description": "Output only. The public ip address of the GoldengateDeployment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "roleChangeTime": {
+          "description": "Output only. The time when the role of the GoldengateDeployment was changed.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "storageUtilizationBytes": {
+          "description": "Output only. The storage utilization in bytes of the GoldengateDeployment.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time the GoldengateDeployment was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "upgradeRequiredTime": {
+          "description": "Output only. The time upgrade required of the GoldengateDeployment.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateDeploymentType": {
+      "description": "Details of the Goldengate Deployment Type resource.",
+      "id": "GoldengateDeploymentType",
+      "properties": {
+        "category": {
+          "description": "Output only. The category of the Goldengate Deployment Type resource.",
+          "enum": [
+            "DEPLOYMENT_CATEGORY_UNSPECIFIED",
+            "DATA_REPLICATION_CATEGORY",
+            "DATA_TRANSFORMS_CATEGORY"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Goldengate Deployment Type category is DATA_REPLICATION_CATEGORY.",
+            "Goldengate Deployment Type category is DATA_TRANSFORMS_CATEGORY."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "connectionTypes": {
+          "description": "Output only. The connection types of the Goldengate Deployment Type resource.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "defaultUsername": {
+          "description": "Output only. The default username of the Goldengate Deployment Type resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deploymentType": {
+          "description": "Output only. The deployment type of the Goldengate Deployment Type resource.",
+          "enum": [
+            "DEPLOYMENT_TYPE_UNSPECIFIED",
+            "OGG",
+            "DATABASE_ORACLE",
+            "BIGDATA",
+            "DATABASE_MICROSOFT_SQLSERVER",
+            "DATABASE_MYSQL",
+            "DATABASE_POSTGRESQL",
+            "DATABASE_DB2ZOS",
+            "DATABASE_DB2I",
+            "GGSA",
+            "DATA_TRANSFORMS"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Goldengate Deployment Type category is OGG.",
+            "Goldengate Deployment Type category is DATABASE_ORACLE.",
+            "Goldengate Deployment Type category is BIGDATA.",
+            "Goldengate Deployment Type category is DATABASE_MICROSOFT_SQLSERVER.",
+            "Goldengate Deployment Type category is DATABASE_MYSQL.",
+            "Goldengate Deployment Type category is DATABASE_POSTGRESQL.",
+            "Goldengate Deployment Type category is DATABASE_DB2ZOS.",
+            "Goldengate Deployment Type category is DATABASE_DB2I.",
+            "Goldengate Deployment Type category is GGSA.",
+            "Goldengate Deployment Type category is DATA_TRANSFORMS."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. The display name of the Goldengate Deployment Type resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the Goldengate Deployment Type resource with the format: projects/{project}/locations/{region}/goldengateDeploymentTypes/{goldengate_deployment_type}",
+          "type": "string"
+        },
+        "oggVersion": {
+          "description": "Output only. The Ogg version of the Goldengate Deployment Type resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceTechnologies": {
+          "description": "Output only. The source technologies of the Goldengate Deployment Type resource.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "supportedCapabilities": {
+          "description": "Output only. The supported capabilities of the Goldengate Deployment Type resource.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "supportedTechnologiesUrl": {
+          "description": "Output only. The supported technologies URL of the Goldengate Deployment Type resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetTechnologies": {
+          "description": "Output only. The target technologies of the Goldengate Deployment Type resource.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateDeploymentVersion": {
+      "description": "Details of the Goldengate Deployment Version resource.",
+      "id": "GoldengateDeploymentVersion",
+      "properties": {
+        "name": {
+          "description": "Identifier. The name of the Goldengate Deployment Version resource with the format: projects/{project}/locations/{location}/goldengateDeploymentVersions/{goldengate_deployment_version}",
+          "type": "string"
+        },
+        "ocid": {
+          "description": "Output only. The deployment version ocid of the Goldengate Deployment Version resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "properties": {
+          "$ref": "GoldengateDeploymentVersionProperties",
+          "description": "Output only. The technology type of the Goldengate Deployment Version resource.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateDeploymentVersionProperties": {
+      "description": "Properties of GoldengateDeploymentVersion.",
+      "id": "GoldengateDeploymentVersionProperties",
+      "properties": {
+        "deploymentType": {
+          "description": "Output only. The deployment type of the Goldengate Deployment Version resource.",
+          "enum": [
+            "DEPLOYMENT_TYPE_UNSPECIFIED",
+            "OGG",
+            "DATABASE_ORACLE",
+            "BIGDATA",
+            "DATABASE_MICROSOFT_SQLSERVER",
+            "DATABASE_MYSQL",
+            "DATABASE_POSTGRESQL",
+            "DATABASE_DB2ZOS",
+            "DATABASE_DB2I",
+            "GGSA",
+            "DATA_TRANSFORMS"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Goldengate Deployment Type category is OGG.",
+            "Goldengate Deployment Type category is DATABASE_ORACLE.",
+            "Goldengate Deployment Type category is BIGDATA.",
+            "Goldengate Deployment Type category is DATABASE_MICROSOFT_SQLSERVER.",
+            "Goldengate Deployment Type category is DATABASE_MYSQL.",
+            "Goldengate Deployment Type category is DATABASE_POSTGRESQL.",
+            "Goldengate Deployment Type category is DATABASE_DB2ZOS.",
+            "Goldengate Deployment Type category is DATABASE_DB2I.",
+            "Goldengate Deployment Type category is GGSA.",
+            "Goldengate Deployment Type category is DATA_TRANSFORMS."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "oggVersion": {
+          "description": "Output only. The OGG version of the Goldengate Deployment Version resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "releaseTime": {
+          "description": "Output only. The release time of the Goldengate Deployment Version resource.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "releaseType": {
+          "description": "Output only. The release type of the Goldengate Deployment Version resource.",
+          "enum": [
+            "DEPLOYMENT_RELEASE_TYPE_UNSPECIFIED",
+            "MAJOR",
+            "BUNDLE",
+            "MINOR"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Goldengate Deployment Version release type is MAJOR.",
+            "Goldengate Deployment Version release type is BUNDLE.",
+            "Goldengate Deployment Version release type is MINOR."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "securityFix": {
+          "description": "Optional. Whether the Goldengate Deployment Version resource is a security fix.",
+          "type": "boolean"
+        },
+        "supportEndTime": {
+          "description": "Output only. The support end time of the Goldengate Deployment Version resource.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateElasticsearchConnectionProperties": {
+      "description": "The properties of GoldengateElasticsearchConnection.",
+      "id": "GoldengateElasticsearchConnectionProperties",
+      "properties": {
+        "authenticationType": {
+          "description": "Optional. Authentication type for Elasticsearch.",
+          "enum": [
+            "ELASTICSEARCH_AUTHENTICATION_TYPE_UNSPECIFIED",
+            "NONE",
+            "BASIC"
+          ],
+          "enumDescriptions": [
+            "Authentication type not specified.",
+            "No authentication.",
+            "Basic authentication."
+          ],
+          "type": "string"
+        },
+        "fingerprint": {
+          "description": "Optional. Fingerprint required by TLS security protocol. Eg.: '6152b2dfbff200f973c5074a5b91d06ab3b472c07c09a1ea57bb7fd406cdce9c'",
+          "type": "string"
+        },
+        "password": {
+          "description": "Optional. Input only. The password Oracle Goldengate uses for Elastic Search connection in plain text.",
+          "type": "string"
+        },
+        "passwordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses for Elastic Search connection. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "securityProtocol": {
+          "description": "Optional. Security protocol for Elasticsearch.",
+          "enum": [
+            "ELASTICSEARCH_SECURITY_PROTOCOL_UNSPECIFIED",
+            "PLAIN",
+            "TLS"
+          ],
+          "enumDescriptions": [
+            "Security protocol not specified.",
+            "Plain text communication.",
+            "Transport Layer Security."
+          ],
+          "type": "string"
+        },
+        "servers": {
+          "description": "Optional. Comma separated list of Elasticsearch server addresses, specified as host:port entries, where :port is optional. If port is not specified, it defaults to 9200. Example: \"server1.example.com:4000,server2.example.com:4000\"",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of ElasticsearchConnection.",
+          "type": "string"
+        },
+        "username": {
+          "description": "Optional. The username Oracle Goldengate uses to connect the associated system of the given technology.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateGenericConnectionProperties": {
+      "description": "The properties of GoldengateGenericConnectionProperties.",
+      "id": "GoldengateGenericConnectionProperties",
+      "properties": {
+        "host": {
+          "description": "Optional. The host of the GenericConnection.",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateGoldengateConnectionProperties": {
+      "description": "The properties of GoldengateGoldengateConnectionProperties.",
+      "id": "GoldengateGoldengateConnectionProperties",
+      "properties": {
+        "goldengateDeploymentId": {
+          "description": "Optional. The name of the GoldengateDeployment associated with the GoldengateConnection. Format: projects/{project}/locations/{location}/goldengateDeployments/{goldengate_deployment}",
+          "type": "string"
+        },
+        "host": {
+          "description": "Optional. The host of the GoldengateConnection.",
+          "type": "string"
+        },
+        "password": {
+          "description": "Optional. Input only. The password used to connect to the Oracle Goldengate in plain text.",
+          "type": "string"
+        },
+        "passwordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password used to connect to the Oracle Goldengate. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "port": {
+          "description": "Optional. The port of the GoldengateConnection.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type.",
+          "type": "string"
+        },
+        "username": {
+          "description": "Optional. The username credential.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateGoogleBigQueryConnectionProperties": {
+      "description": "The properties of GoldengateGoogleBigQueryConnectionProperties.",
+      "id": "GoldengateGoogleBigQueryConnectionProperties",
+      "properties": {
+        "serviceAccountKeyFile": {
+          "description": "Optional. The base64 encoded content of the service account key file containing the credentials required to use Google BigQuery.",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateGoogleCloudStorageConnectionProperties": {
+      "description": "The properties of GoldengateGoogleCloudStorageConnectionProperties.",
+      "id": "GoldengateGoogleCloudStorageConnectionProperties",
+      "properties": {
+        "serviceAccountKeyFile": {
+          "description": "Optional. The base64 encoded content of the service account key file containing the credentials required to use Google Cloud Storage.",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateGooglePubsubConnectionProperties": {
+      "description": "The properties of GoldengateGooglePubsubConnection.",
+      "id": "GoldengateGooglePubsubConnectionProperties",
+      "properties": {
+        "serviceAccountKeyFile": {
+          "description": "Optional. The base64 encoded content of the service account key file containing the credentials required to use Google Pub/Sub.",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of GooglePubsubConnection.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateGroupToRolesMapping": {
+      "description": "The group to roles mapping of the GoldengateDeployment.",
+      "id": "GoldengateGroupToRolesMapping",
+      "properties": {
+        "administratorGroupId": {
+          "description": "Output only. The administrator group id.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "operatorGroupId": {
+          "description": "Output only. The operator group id.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "securityGroupId": {
+          "description": "Output only. The security group id.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "userGroupId": {
+          "description": "Output only. The user group id.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateHdfsConnectionProperties": {
+      "description": "The properties of GoldengateHdfsConnection.",
+      "id": "GoldengateHdfsConnectionProperties",
+      "properties": {
+        "coreSiteXml": {
+          "description": "Optional. The content of the Hadoop Distributed File System configuration file (core-site.xml).",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of HdfsConnection.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateIcebergConnectionProperties": {
+      "description": "The properties of GoldengateIcebergConnection.",
+      "id": "GoldengateIcebergConnectionProperties",
+      "properties": {
+        "catalog": {
+          "$ref": "IcebergCatalog",
+          "description": "Required. The Iceberg catalog."
+        },
+        "storage": {
+          "$ref": "IcebergStorage",
+          "description": "Required. The Iceberg storage."
+        },
+        "technologyType": {
+          "description": "Required. The technology type of Iceberg connection.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateJavaMessageServiceConnectionProperties": {
+      "description": "The properties of GoldengateJavaMessageServiceConnection.",
+      "id": "GoldengateJavaMessageServiceConnectionProperties",
+      "properties": {
+        "authenticationType": {
+          "description": "Optional. Authentication type for Java Message Service.",
+          "enum": [
+            "JMS_AUTHENTICATION_TYPE_UNSPECIFIED",
+            "NONE",
+            "BASIC"
+          ],
+          "enumDescriptions": [
+            "Authentication type not specified.",
+            "No authentication.",
+            "Basic authentication."
+          ],
+          "type": "string"
+        },
+        "connectionFactory": {
+          "description": "Optional. The Java class implementing javax.jms.ConnectionFactory interface supplied by the JMS provider.",
+          "type": "string"
+        },
+        "connectionUrl": {
+          "description": "Optional. Connection URL of the Java Message Service, specifying the protocol, host, and port. e.g.: 'mq://myjms.host.domain:7676'",
+          "type": "string"
+        },
+        "jndiConnectionFactory": {
+          "description": "Optional. The Connection Factory can be looked up using this name. e.g.: 'ConnectionFactory'",
+          "type": "string"
+        },
+        "jndiInitialContextFactory": {
+          "description": "Optional. The implementation of javax.naming.spi.InitialContextFactory interface used to obtain initial naming context.",
+          "type": "string"
+        },
+        "jndiProviderUrl": {
+          "description": "Optional. The URL that Java Message Service will use to contact the JNDI provider. e.g.: 'tcp://myjms.host.domain:61616?jms.prefetchPolicy.all=1000'",
+          "type": "string"
+        },
+        "jndiSecurityCredentialsSecret": {
+          "description": "Optional. The password associated to the principal.",
+          "type": "string"
+        },
+        "jndiSecurityPrincipal": {
+          "description": "Optional. Specifies the identity of the principal (user) to be authenticated.",
+          "type": "string"
+        },
+        "keyStoreFile": {
+          "description": "Optional. The base64 encoded content of the KeyStore file.",
+          "type": "string"
+        },
+        "keyStorePassword": {
+          "description": "Optional. Input only. The KeyStore password in plain text.",
+          "type": "string"
+        },
+        "keyStorePasswordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the KeyStore password. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "password": {
+          "description": "Optional. Input only. The password Oracle Goldengate uses to connect the Java Message Service in plain text.",
+          "type": "string"
+        },
+        "passwordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses to connect the associated Java Message Service. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "securityProtocol": {
+          "description": "Optional. Security protocol for Java Message Service.",
+          "enum": [
+            "JMS_SECURITY_PROTOCOL_UNSPECIFIED",
+            "PLAIN",
+            "TLS",
+            "MTLS"
+          ],
+          "enumDescriptions": [
+            "Security protocol not specified.",
+            "Plain text communication.",
+            "Transport Layer Security.",
+            "Mutual Transport Layer Security."
+          ],
+          "type": "string"
+        },
+        "sslKeyPassword": {
+          "description": "Optional. Input only. The password for the cert inside of the KeyStore in plain text.",
+          "type": "string"
+        },
+        "sslKeyPasswordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password for the cert inside of the KeyStore. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of JavaMessageServiceConnection.",
+          "type": "string"
+        },
+        "trustStoreFile": {
+          "description": "Optional. The base64 encoded content of the TrustStore file.",
+          "type": "string"
+        },
+        "trustStorePassword": {
+          "description": "Optional. Input only. The TrustStore password in plain text.",
+          "type": "string"
+        },
+        "trustStorePasswordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the TrustStore password. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "useJndi": {
+          "description": "Optional. If set to true, Java Naming and Directory Interface (JNDI) properties should be provided.",
+          "type": "boolean"
+        },
+        "username": {
+          "description": "Optional. The username Oracle Goldengate uses to connect to the Java Message Service.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateKafkaConnectionProperties": {
+      "description": "The properties of GoldengateKafkaConnection.",
+      "id": "GoldengateKafkaConnectionProperties",
+      "properties": {
+        "bootstrapServers": {
+          "description": "Optional. Kafka bootstrap. Equivalent of bootstrap.servers configuration property in Kafka: list of KafkaBootstrapServer objects specified by host/port. Used for establishing the initial connection to the Kafka cluster. Example: \"server1.example.com:9092,server2.example.com:9092\"",
+          "items": {
+            "$ref": "KafkaBootstrapServer"
+          },
+          "type": "array"
+        },
+        "clusterId": {
+          "description": "Optional. The OCID of the Kafka cluster being referenced from OCI Streaming with Apache Kafka.",
+          "type": "string"
+        },
+        "consumerPropertiesFile": {
+          "description": "Optional. The base64 encoded content of the consumer.properties file.",
+          "type": "string"
+        },
+        "keyStoreFile": {
+          "description": "Optional. The base64 encoded content of the KeyStore file.",
+          "type": "string"
+        },
+        "keyStorePassword": {
+          "description": "Optional. Input only. The KeyStore password in plain text.",
+          "type": "string"
+        },
+        "keyStorePasswordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the KeyStore password. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "password": {
+          "description": "Optional. Input only. The password for Kafka basic/SASL auth in plain text.",
+          "type": "string"
+        },
+        "passwordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password for Kafka basic/SASL auth. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "producerPropertiesFile": {
+          "description": "Optional. The base64 encoded content of the producer.properties file.",
+          "type": "string"
+        },
+        "securityProtocol": {
+          "description": "Optional. Security Type for Kafka.",
+          "enum": [
+            "KAFKA_SECURITY_PROTOCOL_UNSPECIFIED",
+            "SSL",
+            "SASL_SSL",
+            "PLAINTEXT",
+            "SASL_PLAINTEXT"
+          ],
+          "enumDescriptions": [
+            "Security type not specified.",
+            "SSL security protocol.",
+            "SASL SSL security protocol.",
+            "Plaintext security protocol.",
+            "SASL Plaintext security protocol."
+          ],
+          "type": "string"
+        },
+        "sslKeyPassword": {
+          "description": "Optional. Input only. The password for the cert inside of the KeyStore in plain text.",
+          "type": "string"
+        },
+        "sslKeyPasswordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password for the cert inside of the KeyStore. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "streamPoolId": {
+          "description": "Optional. The OCID of the stream pool being referenced.",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of KafkaConnection.",
+          "type": "string"
+        },
+        "trustStoreFile": {
+          "description": "Optional. The base64 encoded content of the TrustStore file.",
+          "type": "string"
+        },
+        "trustStorePassword": {
+          "description": "Optional. Input only. The TrustStore password in plain text.",
+          "type": "string"
+        },
+        "trustStorePasswordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the TrustStore password. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "useResourcePrincipal": {
+          "description": "Optional. Specifies that the user intends to authenticate to the instance using a resource principal. Applicable only for OCI Streaming connections.",
+          "type": "boolean"
+        },
+        "username": {
+          "description": "Optional. The username Oracle Goldengate uses to connect the associated system of the given technology.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateKafkaSchemaRegistryConnectionProperties": {
+      "description": "The properties of GoldengateKafkaSchemaRegistryConnection.",
+      "id": "GoldengateKafkaSchemaRegistryConnectionProperties",
+      "properties": {
+        "authenticationType": {
+          "description": "Optional. Used authentication mechanism to access Schema Registry.",
+          "enum": [
+            "AUTHENTICATION_TYPE_UNSPECIFIED",
+            "NONE",
+            "BASIC",
+            "MUTUAL"
+          ],
+          "enumDescriptions": [
+            "Authentication type not specified.",
+            "No authentication.",
+            "Basic authentication.",
+            "Mutual authentication."
+          ],
+          "type": "string"
+        },
+        "keyStoreFile": {
+          "description": "Optional. The base64 encoded content of the KeyStore file.",
+          "type": "string"
+        },
+        "keyStorePassword": {
+          "description": "Optional. Input only. The KeyStore password in plain text.",
+          "type": "string"
+        },
+        "keyStorePasswordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the KeyStore password. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "password": {
+          "description": "Optional. Input only. The password to access Schema Registry in plain text.",
+          "type": "string"
+        },
+        "passwordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password to access Schema Registry using basic authentication. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "sslKeyPassword": {
+          "description": "Optional. Input only. The password for the cert inside the KeyStore in plain text.",
+          "type": "string"
+        },
+        "sslKeyPasswordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password for the cert inside the KeyStore. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of KafkaSchemaRegistryConnection.",
+          "type": "string"
+        },
+        "trustStoreFile": {
+          "description": "Optional. The base64 encoded content of the TrustStore file.",
+          "type": "string"
+        },
+        "trustStorePassword": {
+          "description": "Optional. Input only. The TrustStore password in plain text.",
+          "type": "string"
+        },
+        "trustStorePasswordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the TrustStore password. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "url": {
+          "description": "Optional. Kafka Schema Registry URL. e.g.: 'https://server1.us.oracle.com:8081'",
+          "type": "string"
+        },
+        "username": {
+          "description": "Optional. The username to access Schema Registry using basic authentication. This value is injected into 'schema.registry.basic.auth.user.info=user:password' configuration property.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateMaintenanceConfig": {
+      "description": "The maintenance configuration of the GoldengateDeployment.",
+      "id": "GoldengateMaintenanceConfig",
+      "properties": {
+        "bundleReleaseUpgradePeriodDays": {
+          "description": "Optional. Defines auto upgrade period for bundle releases. Manually configured period cannot be longer than service defined period for bundle releases. This period must be shorter or equal to major release upgrade period. Not passing this field during create will equate to using the service default.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "interimReleaseUpgradePeriodDays": {
+          "description": "Optional. Defines auto upgrade period for interim releases. This period must be shorter or equal to bundle release upgrade period.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "isInterimReleaseAutoUpgradeEnabled": {
+          "description": "Optional. By default auto upgrade for interim releases are not enabled. If auto-upgrade is enabled for interim release, you have to specify interim_release_upgrade_period_days too.",
+          "type": "boolean"
+        },
+        "majorReleaseUpgradePeriodDays": {
+          "description": "Optional. Defines auto upgrade period for major releases. Manually configured period cannot be longer than service defined period for major releases. Not passing this field during create will equate to using the service default.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "securityPatchUpgradePeriodDays": {
+          "description": "Optional. Defines auto upgrade period for releases with security fix. Manually configured period cannot be longer than service defined period for security releases. Not passing this field during create will equate to using the service default.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateMaintenanceWindow": {
+      "description": "The maintenance window of the GoldengateDeployment.",
+      "id": "GoldengateMaintenanceWindow",
+      "properties": {
+        "day": {
+          "description": "Required. Days of the week.",
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "enumDescriptions": [
+            "The day of the week is unspecified.",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "type": "string"
+        },
+        "startHour": {
+          "description": "Required. Start hour for maintenance period. Hour is in UTC.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateMicrosoftFabricConnectionProperties": {
+      "description": "The properties of GoldengateMicrosoftFabricConnection.",
+      "id": "GoldengateMicrosoftFabricConnectionProperties",
+      "properties": {
+        "clientId": {
+          "description": "Optional. Azure client ID of the application.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "Optional. Client secret associated with the client id.",
+          "type": "string"
+        },
+        "endpoint": {
+          "description": "Optional. Optional Microsoft Fabric service endpoint. Default value: https://onelake.dfs.fabric.microsoft.com",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of MicrosoftFabricConnection.",
+          "type": "string"
+        },
+        "tenantId": {
+          "description": "Optional. Azure tenant ID of the application.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateMicrosoftSqlserverConnectionProperties": {
+      "description": "The properties of GoldengateMicrosoftSqlserverConnection.",
+      "id": "GoldengateMicrosoftSqlserverConnectionProperties",
+      "properties": {
+        "additionalAttributes": {
+          "description": "Optional. An array of name-value pair attribute entries. Used as additional parameters in connection string.",
+          "items": {
+            "$ref": "NameValuePair"
+          },
+          "type": "array"
+        },
+        "database": {
+          "description": "Optional. The name of the database.",
+          "type": "string"
+        },
+        "host": {
+          "description": "Optional. The name or address of a host.",
+          "type": "string"
+        },
+        "password": {
+          "description": "Optional. Input only. The password Oracle Goldengate uses for Microsoft SQL Server connection in plain text.",
+          "type": "string"
+        },
+        "passwordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses for Microsoft SQL Server connection. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "port": {
+          "description": "Optional. The port of an endpoint usually specified for a connection.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "securityProtocol": {
+          "description": "Optional. Security Type for Microsoft SQL Server.",
+          "enum": [
+            "MICROSOFT_SQLSERVER_SECURITY_PROTOCOL_UNSPECIFIED",
+            "PLAIN",
+            "TLS"
+          ],
+          "enumDescriptions": [
+            "Security type not specified.",
+            "Plain text communication.",
+            "Transport Layer Security."
+          ],
+          "type": "string"
+        },
+        "serverCertificateValidationRequired": {
+          "description": "Optional. If set to true, the driver validates the certificate that is sent by the database server.",
+          "type": "boolean"
+        },
+        "sslCaFile": {
+          "description": "Optional. Database Certificate - The base64 encoded content of a .pem or .crt file containing the server public key (for 1-way SSL).",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of MicrosoftSqlserverConnection.",
+          "type": "string"
+        },
+        "username": {
+          "description": "Optional. The username Oracle Goldengate uses to connect to the Microsoft SQL Server.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateMongodbConnectionProperties": {
+      "description": "The properties of GoldengateMongodbConnection.",
+      "id": "GoldengateMongodbConnectionProperties",
+      "properties": {
+        "connectionString": {
+          "description": "Optional. MongoDB connection string. e.g.: 'mongodb://mongodb0.example.com:27017/recordsrecords'",
+          "type": "string"
+        },
+        "databaseId": {
+          "description": "Optional. The OCID of the Oracle Autonomous Json Database.",
+          "type": "string"
+        },
+        "password": {
+          "description": "Optional. Input only. The password Oracle Goldengate uses to connect the Mongodb connection in plain text.",
+          "type": "string"
+        },
+        "passwordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses to connect the Mongodb connection. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "securityProtocol": {
+          "description": "Optional. Security Type for MongoDB.",
+          "enum": [
+            "MONGODB_SECURITY_PROTOCOL_UNSPECIFIED",
+            "PLAIN",
+            "TLS",
+            "MTLS"
+          ],
+          "enumDescriptions": [
+            "Security type not specified.",
+            "Plain text communication.",
+            "Transport Layer Security.",
+            "Mutual Transport Layer Security."
+          ],
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of MongodbConnection.",
+          "type": "string"
+        },
+        "tlsCaFile": {
+          "description": "Optional. Database Certificate - The base64 encoded content of a .pem file, containing the server public key (for 1 and 2-way SSL).",
+          "type": "string"
+        },
+        "tlsCertificateKeyFile": {
+          "description": "Optional. Client Certificate - The base64 encoded content of a .pem file, containing the client public key (for 2-way SSL).",
+          "type": "string"
+        },
+        "tlsCertificateKeyFilePassword": {
+          "description": "Optional. Input only. The Client Certificate key file password in plain text.",
+          "type": "string"
+        },
+        "tlsCertificateKeyFilePasswordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the Client Certificate key file password in Secret Manager. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "username": {
+          "description": "Optional. The username Oracle Goldengate uses to connect to the database.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateMysqlConnectionProperties": {
+      "description": "Properties of GoldengateMysqlConnection.",
+      "id": "GoldengateMysqlConnectionProperties",
+      "properties": {
+        "additionalAttributes": {
+          "description": "Optional. An array of name-value pair attribute entries. Used as additional parameters in connection string.",
+          "items": {
+            "$ref": "NameValuePair"
+          },
+          "type": "array"
+        },
+        "database": {
+          "description": "Optional. The name of the database.",
+          "type": "string"
+        },
+        "dbSystemId": {
+          "description": "Optional. The OCID of the database system being referenced.",
+          "type": "string"
+        },
+        "host": {
+          "description": "Optional. The name or address of a host.",
+          "type": "string"
+        },
+        "password": {
+          "description": "Optional. Input only. The password Oracle Goldengate uses to connect to MySQL in plain text.",
+          "type": "string"
+        },
+        "passwordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses to connect to MySQL. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "port": {
+          "description": "Optional. The port of an endpoint usually specified for a connection.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "securityProtocol": {
+          "description": "Optional. Security Type for MySQL.",
+          "enum": [
+            "MYSQL_SECURITY_PROTOCOL_UNSPECIFIED",
+            "PLAIN",
+            "TLS",
+            "MTLS"
+          ],
+          "enumDescriptions": [
+            "Security type not specified.",
+            "Plain text communication.",
+            "Transport Layer Security.",
+            "Mutual Transport Layer Security."
+          ],
+          "type": "string"
+        },
+        "sslCaFile": {
+          "description": "Optional. Database Certificate - The base64 encoded content of a .pem or .crt file containing the server public key (for 1 and 2-way SSL).",
+          "type": "string"
+        },
+        "sslCertFile": {
+          "description": "Optional. Client Certificate - The base64 encoded content of a .pem or .crt file containing the client public key (for 2-way SSL).",
+          "type": "string"
+        },
+        "sslCrlFile": {
+          "description": "Optional. The base64 encoded list of certificates revoked by the trusted certificate authorities (Trusted CA).",
+          "type": "string"
+        },
+        "sslKeyFile": {
+          "description": "Optional. Client Key - The base64 encoded content of a .pem or .crt file containing the client private key (for 2-way SSL).",
+          "type": "string"
+        },
+        "sslMode": {
+          "description": "Optional. SSL modes for MySQL.",
+          "enum": [
+            "SSL_MODE_UNSPECIFIED",
+            "DISABLED",
+            "PREFERRED",
+            "REQUIRED",
+            "VERIFY_CA",
+            "VERIFY_IDENTITY"
+          ],
+          "enumDescriptions": [
+            "SSL mode not specified.",
+            "SSL is disabled.",
+            "SSL is preferred.",
+            "SSL is required.",
+            "SSL is required and certificate is verified.",
+            "SSL is required and certificate and hostname are verified."
+          ],
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of MysqlConnection.",
+          "type": "string"
+        },
+        "username": {
+          "description": "Optional. The username Oracle Goldengate uses to connect the associated system of the given technology.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateOciObjectStorageConnectionProperties": {
+      "description": "The properties of GoldengateOciObjectStorageConnection.",
+      "id": "GoldengateOciObjectStorageConnectionProperties",
+      "properties": {
+        "privateKeyFile": {
+          "description": "Optional. The content of the private key file (PEM file) corresponding to the API key of the fingerprint.",
+          "type": "string"
+        },
+        "privateKeyPassphraseSecret": {
+          "description": "Optional. The passphrase of the private key.",
+          "type": "string"
+        },
+        "publicKeyFingerprint": {
+          "description": "Optional. The fingerprint of the API Key of the user specified by the userId.",
+          "type": "string"
+        },
+        "region": {
+          "description": "Optional. The name of the region of OCI Object Storage. e.g.: us-ashburn-1 If the region is not provided, backend will default to the default region.",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of OciObjectStorageConnection.",
+          "type": "string"
+        },
+        "tenancyId": {
+          "description": "Optional. The OCID of the related OCI tenancy.",
+          "type": "string"
+        },
+        "useResourcePrincipal": {
+          "description": "Optional. Specifies that the user intends to authenticate to the instance using a resource principal.",
+          "type": "boolean"
+        },
+        "userId": {
+          "description": "Optional. The OCID of the OCI user who will access the Object Storage. The user must have write access to the bucket they want to connect to.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateOggDeployment": {
+      "description": "The Ogg data of the GoldengateDeployment.",
+      "id": "GoldengateOggDeployment",
+      "properties": {
+        "adminPassword": {
+          "description": "Optional. The Goldengate deployment console password in plain text.",
+          "type": "string"
+        },
+        "adminPasswordSecretVersion": {
+          "description": "Optional. Input only. The Goldengate deployment console password secret version.",
+          "type": "string"
+        },
+        "adminUsername": {
+          "description": "Required. The Goldengate deployment console username.",
+          "type": "string"
+        },
+        "certificate": {
+          "description": "Output only. The certificate of the GoldengateDeployment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "credentialStore": {
+          "description": "Output only. The credential store of the GoldengateDeployment.",
+          "enum": [
+            "CREDENTIAL_STORE_UNSPECIFIED",
+            "GOLDENGATE",
+            "IAM"
+          ],
+          "enumDescriptions": [
+            "The credential store is unspecified.",
+            "The credential store is Goldengate.",
+            "The credential store is IAM."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "deployment": {
+          "description": "Required. The name given to the Goldengate service deployment. The name must be 1 to 32 characters long, must contain only alphanumeric characters and must start with a letter.",
+          "type": "string"
+        },
+        "groupRolesMapping": {
+          "$ref": "GoldengateGroupToRolesMapping",
+          "description": "Output only. The group to roles mapping of the GoldengateDeployment.",
+          "readOnly": true
+        },
+        "identityDomainId": {
+          "description": "Output only. The identity domain id of the GoldengateDeployment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "oggVersion": {
+          "description": "Optional. Version of OGG",
+          "type": "string"
+        },
+        "passwordSecretId": {
+          "description": "Output only. The password secret id of the GoldengateDeployment.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateOracleAIDataPlatformConnectionProperties": {
+      "description": "The properties of GoldengateOracleAIDataPlatformConnection.",
+      "id": "GoldengateOracleAIDataPlatformConnectionProperties",
+      "properties": {
+        "connectionUrl": {
+          "description": "Optional. Connection URL. It must start with 'jdbc:spark://'",
+          "type": "string"
+        },
+        "privateKeyFile": {
+          "description": "Optional. The content of the private key file (PEM file) corresponding to the API key of the fingerprint.",
+          "type": "string"
+        },
+        "privateKeyPassphraseSecret": {
+          "description": "Optional. The passphrase of the private key.",
+          "type": "string"
+        },
+        "publicKeyFingerprint": {
+          "description": "Optional. The fingerprint of the API Key of the user specified by the user_id.",
+          "type": "string"
+        },
+        "region": {
+          "description": "Optional. The name of the region. e.g.: us-ashburn-1",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of OracleAiDataPlatformConnection.",
+          "type": "string"
+        },
+        "tenancyId": {
+          "description": "Optional. The OCID of the related OCI tenancy.",
+          "type": "string"
+        },
+        "useResourcePrincipal": {
+          "description": "Optional. Specifies that the user intends to authenticate to the instance using a resource principal.",
+          "type": "boolean"
+        },
+        "userId": {
+          "description": "Optional. The OCID of the OCI user who will access.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateOracleConnectionProperties": {
+      "description": "The properties of Goldengate Oracle Database Connection.",
+      "id": "GoldengateOracleConnectionProperties",
+      "properties": {
+        "authenticationMode": {
+          "description": "Optional. Authentication mode.",
+          "enum": [
+            "ORACLE_AUTHENTICATION_MODE_UNSPECIFIED",
+            "TLS",
+            "MTLS"
+          ],
+          "enumDescriptions": [
+            "Authentication mode not specified.",
+            "TLS authentication mode.",
+            "MTLS authentication mode."
+          ],
+          "type": "string"
+        },
+        "connectionString": {
+          "description": "Optional. Connect descriptor or Easy Connect Naming method used to connect to a database.",
+          "type": "string"
+        },
+        "gcpOracleDatabaseId": {
+          "description": "Optional. Database instance id of database in Oracle Database @ Google Cloud. If gcp_oracle_database_id is provided, connection_string must be empty.",
+          "type": "string"
+        },
+        "password": {
+          "description": "Optional. Input only. The password Oracle Goldengate uses in plain text.",
+          "type": "string"
+        },
+        "passwordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "sessionMode": {
+          "description": "Optional. The mode of the database connection session to be established by the data client.",
+          "enum": [
+            "SESSION_MODE_UNSPECIFIED",
+            "DIRECT",
+            "REDIRECT"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Indicates that the resource is using direct session mode.",
+            "Indicates that the resource is using redirect session mode."
+          ],
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type.",
+          "type": "string"
+        },
+        "username": {
+          "description": "Optional. The username Oracle Goldengate uses to connect.",
+          "type": "string"
+        },
+        "walletFile": {
+          "description": "Optional. The wallet contents Oracle Goldengate uses to make connections to a database. This attribute is expected to be base64 encoded.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateOracleNosqlConnectionProperties": {
+      "description": "The properties of GoldengateOracleNosqlConnection.",
+      "id": "GoldengateOracleNosqlConnectionProperties",
+      "properties": {
+        "privateKeyFile": {
+          "description": "Optional. The content of the private key file (PEM file) corresponding to the API key of the fingerprint.",
+          "type": "string"
+        },
+        "privateKeyPassphraseSecret": {
+          "description": "Optional. The passphrase of the private key.",
+          "type": "string"
+        },
+        "publicKeyFingerprint": {
+          "description": "Optional. The fingerprint of the API Key of the user specified by the userId.",
+          "type": "string"
+        },
+        "region": {
+          "description": "Optional. The name of the region. e.g.: us-ashburn-1",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of OracleNosqlConnection.",
+          "type": "string"
+        },
+        "tenancyId": {
+          "description": "Optional. The OCID of the OCI tenancy.",
+          "type": "string"
+        },
+        "useResourcePrincipal": {
+          "description": "Optional. Specifies that the user intends to authenticate to the instance using a resource principal.",
+          "type": "boolean"
+        },
+        "userId": {
+          "description": "Optional. The OCID of the OCI user who will access the Oracle NoSQL database.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengatePlacement": {
+      "description": "The placement of the GoldengateDeployment.",
+      "id": "GoldengatePlacement",
+      "properties": {
+        "availabilityDomain": {
+          "description": "Output only. The availability domain.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "faultDomain": {
+          "description": "Output only. The fault domain.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengatePostgresqlConnectionProperties": {
+      "description": "The properties of GoldengatePostgresqlConnection.",
+      "id": "GoldengatePostgresqlConnectionProperties",
+      "properties": {
+        "additionalAttributes": {
+          "description": "Optional. An array of name-value pair attribute entries. Used as additional parameters in connection string.",
+          "items": {
+            "$ref": "NameValuePair"
+          },
+          "type": "array"
+        },
+        "database": {
+          "description": "Optional. The name of the database.",
+          "type": "string"
+        },
+        "dbSystemId": {
+          "description": "Optional. The OCID of the database system being referenced.",
+          "type": "string"
+        },
+        "host": {
+          "description": "Optional. The name or address of a host.",
+          "type": "string"
+        },
+        "password": {
+          "description": "Optional. Input only. The password Oracle Goldengate uses for PostgreSQL connection in plain text.",
+          "type": "string"
+        },
+        "passwordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses for PostgreSQL connection. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "port": {
+          "description": "Optional. The port of an endpoint usually specified for a connection.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "securityProtocol": {
+          "description": "Optional. Security protocol for PostgreSQL.",
+          "enum": [
+            "POSTGRESQL_SECURITY_PROTOCOL_UNSPECIFIED",
+            "PLAIN",
+            "TLS",
+            "MTLS"
+          ],
+          "enumDescriptions": [
+            "Security protocol not specified.",
+            "Plain text communication.",
+            "Transport Layer Security.",
+            "Mutual Transport Layer Security."
+          ],
+          "type": "string"
+        },
+        "sslCaFile": {
+          "description": "Optional. The base64 encoded certificate of the trusted certificate authorities (Trusted CA) for PostgreSQL.",
+          "type": "string"
+        },
+        "sslCertFile": {
+          "description": "Optional. The base64 encoded certificate of the PostgreSQL server.",
+          "type": "string"
+        },
+        "sslCrlFile": {
+          "description": "Optional. The base64 encoded list of certificates revoked by the trusted certificate authorities (Trusted CA).",
+          "type": "string"
+        },
+        "sslKeyFile": {
+          "description": "Optional. The base64 encoded private key of the PostgreSQL server.",
+          "type": "string"
+        },
+        "sslMode": {
+          "description": "Optional. SSL modes for PostgreSQL.",
+          "enum": [
+            "POSTGRESQL_SSL_MODE_UNSPECIFIED",
+            "PREFER",
+            "REQUIRE",
+            "VERIFY_CA",
+            "VERIFY_FULL"
+          ],
+          "enumDescriptions": [
+            "SSL mode not specified.",
+            "Prefer SSL.",
+            "Require SSL.",
+            "Verify Certificate Authority.",
+            "Verify Full."
+          ],
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of PostgresqlConnection.",
+          "type": "string"
+        },
+        "username": {
+          "description": "Optional. The username Oracle Goldengate uses to connect the associated system of the given technology.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateRedisConnectionProperties": {
+      "description": "The properties of GoldengateRedisConnection.",
+      "id": "GoldengateRedisConnectionProperties",
+      "properties": {
+        "authenticationType": {
+          "description": "Optional. Authentication type for Redis.",
+          "enum": [
+            "REDIS_AUTHENTICATION_TYPE_UNSPECIFIED",
+            "NONE",
+            "BASIC"
+          ],
+          "enumDescriptions": [
+            "Authentication type not specified.",
+            "No authentication.",
+            "Basic authentication."
+          ],
+          "type": "string"
+        },
+        "keyStoreFile": {
+          "description": "Optional. The base64 encoded content of the KeyStore file.",
+          "type": "string"
+        },
+        "keyStorePassword": {
+          "description": "Optional. Input only. The KeyStore password in plain text.",
+          "type": "string"
+        },
+        "keyStorePasswordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the KeyStore password. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "password": {
+          "description": "Optional. Input only. The password Oracle Goldengate uses for Redis connection in plain text.",
+          "type": "string"
+        },
+        "passwordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses for Redis connection. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "redisClusterId": {
+          "description": "Optional. The OCID of the Redis cluster.",
+          "type": "string"
+        },
+        "securityProtocol": {
+          "description": "Optional. Security protocol for Redis.",
+          "enum": [
+            "REDIS_SECURITY_PROTOCOL_UNSPECIFIED",
+            "PLAIN",
+            "TLS",
+            "MTLS"
+          ],
+          "enumDescriptions": [
+            "Security protocol not specified.",
+            "Plain text communication.",
+            "Transport Layer Security.",
+            "Mutual Transport Layer Security."
+          ],
+          "type": "string"
+        },
+        "servers": {
+          "description": "Optional. Comma separated list of Redis server addresses, specified as host:port entries, where :port is optional. If port is not specified, it defaults to 6379. Example: \"server1.example.com:6379,server2.example.com:6379\"",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of RedisConnection.",
+          "type": "string"
+        },
+        "trustStoreFile": {
+          "description": "Optional. The base64 encoded content of the TrustStore file.",
+          "type": "string"
+        },
+        "trustStorePassword": {
+          "description": "Optional. Input only. The TrustStore password in plain text.",
+          "type": "string"
+        },
+        "trustStorePasswordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the TrustStore password. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "username": {
+          "description": "Optional. The username Oracle Goldengate uses to connect the associated system of the given technology.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoldengateSnowflakeConnectionProperties": {
+      "description": "The properties of GoldengateSnowflakeConnection.",
+      "id": "GoldengateSnowflakeConnectionProperties",
+      "properties": {
+        "authenticationType": {
+          "description": "Optional. Used authentication mechanism to access Snowflake.",
+          "enum": [
+            "AUTHENTICATION_TYPE_UNSPECIFIED",
+            "BASIC",
+            "KEY_PAIR"
+          ],
+          "enumDescriptions": [
+            "Authentication type not specified.",
+            "Basic authentication.",
+            "Key pair authentication."
+          ],
+          "type": "string"
+        },
+        "connectionUrl": {
+          "description": "Optional. JDBC connection URL. e.g.: 'jdbc:snowflake://.snowflakecomputing.com/?warehouse=&db='",
+          "type": "string"
+        },
+        "password": {
+          "description": "Optional. Input only. The password Oracle Goldengate uses to connect to Snowflake platform in plain text.",
+          "type": "string"
+        },
+        "passwordSecretVersion": {
+          "description": "Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses to connect to Snowflake platform. Format: projects/{project}/secrets/{secret}/versions/{version}.",
+          "type": "string"
+        },
+        "privateKeyFile": {
+          "description": "Optional. The content of private key file in PEM format.",
+          "type": "string"
+        },
+        "privateKeyPassphraseSecret": {
+          "description": "Optional. Password if the private key file is encrypted.",
+          "type": "string"
+        },
+        "technologyType": {
+          "description": "Optional. The technology type of SnowflakeConnection.",
+          "type": "string"
+        },
+        "username": {
+          "description": "Optional. The username Oracle Goldengate uses to connect to Snowflake.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudStorageIcebergStorage": {
+      "description": "The Google Cloud Storage Iceberg storage.",
+      "id": "GoogleCloudStorageIcebergStorage",
+      "properties": {
+        "bucket": {
+          "description": "Required. The bucket of Google Cloud Storage.",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "Required. The project ID of Google Cloud Storage.",
+          "type": "string"
+        },
+        "serviceAccountKeyFile": {
+          "description": "Optional. The base64 encoded content of the service account key file of Google Cloud Storage.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IcebergCatalog": {
+      "description": "The Iceberg catalog details.",
+      "id": "IcebergCatalog",
+      "properties": {
+        "catalogType": {
+          "description": "Required. The type of Iceberg catalog.",
+          "enum": [
+            "CATALOG_TYPE_UNSPECIFIED",
+            "GLUE",
+            "HADOOP",
+            "NESSIE",
+            "POLARIS",
+            "REST"
+          ],
+          "enumDescriptions": [
+            "Catalog type not specified.",
+            "Glue catalog.",
+            "Hadoop catalog.",
+            "Nessie catalog.",
+            "Polaris catalog.",
+            "REST catalog."
+          ],
+          "type": "string"
+        },
+        "glueIcebergCatalog": {
+          "$ref": "GlueIcebergCatalog",
+          "description": "The Glue Iceberg catalog."
+        },
+        "nessieIcebergCatalog": {
+          "$ref": "NessieIcebergCatalog",
+          "description": "The Nessie Iceberg catalog."
+        },
+        "polarisIcebergCatalog": {
+          "$ref": "PolarisIcebergCatalog",
+          "description": "The Polaris Iceberg catalog."
+        },
+        "restIcebergCatalog": {
+          "$ref": "RestIcebergCatalog",
+          "description": "The REST Iceberg catalog."
+        }
+      },
+      "type": "object"
+    },
+    "IcebergStorage": {
+      "description": "The Iceberg storage details.",
+      "id": "IcebergStorage",
+      "properties": {
+        "amazonS3IcebergStorage": {
+          "$ref": "AmazonS3IcebergStorage",
+          "description": "The Amazon S3 Iceberg storage."
+        },
+        "azureDataLakeStorageIcebergStorage": {
+          "$ref": "AzureDataLakeStorageIcebergStorage",
+          "description": "The Azure Data Lake Storage Iceberg storage."
+        },
+        "googleCloudStorageIcebergStorage": {
+          "$ref": "GoogleCloudStorageIcebergStorage",
+          "description": "The Google Cloud Storage Iceberg storage."
+        },
+        "storageType": {
+          "description": "Required. The type of Iceberg storage.",
+          "enum": [
+            "STORAGE_TYPE_UNSPECIFIED",
+            "AMAZON_S3",
+            "GOOGLE_CLOUD_STORAGE",
+            "AZURE_DATA_LAKE_STORAGE"
+          ],
+          "enumDescriptions": [
+            "Storage type not specified.",
+            "Amazon S3 storage.",
+            "Google Cloud Storage storage.",
+            "Azure Data Lake Storage storage."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "IdentityConnector": {
       "description": "The identity connector details which will allow OCI to securely access the resources in the customer project.",
       "id": "IdentityConnector",
@@ -5933,6 +9796,38 @@
         "serviceAgentEmail": {
           "description": "Output only. A google managed service account on which customers can grant roles to access resources in the customer project. Example: `p176944527254-55-75119d87fd8f@gcp-sa-oci.iam.gserviceaccount.com`",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IngressIp": {
+      "description": "The ingress IPs of the GoldengateDeployment.",
+      "id": "IngressIp",
+      "properties": {
+        "ingressIpAddress": {
+          "description": "Output only. The ingress IP.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "KafkaBootstrapServer": {
+      "description": "Represents a Kafka bootstrap server with host name, optional port defaults to 9092, and an optional private ip.",
+      "id": "KafkaBootstrapServer",
+      "properties": {
+        "host": {
+          "description": "Required. The name or address of a host.",
+          "type": "string"
+        },
+        "port": {
+          "description": "Optional. The port of an endpoint usually specified for a connection.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "privateIpAddress": {
+          "description": "Optional. The private IP address of the connection's endpoint in the customer's VCN, typically a database endpoint or a big data endpoint (e.g. Kafka bootstrap server). In case the privateIp is provided, the subnetId must also be provided. In case the privateIp (and the subnetId) is not provided it is assumed the datasource is publicly accessible. In case the connection is accessible only privately, the lack of privateIp will result in not being able to access the connection.",
           "type": "string"
         }
       },
@@ -6304,6 +10199,181 @@
       },
       "type": "object"
     },
+    "ListGoldengateConnectionAssignmentsResponse": {
+      "description": "Response message for listing GoldengateConnectionAssignments.",
+      "id": "ListGoldengateConnectionAssignmentsResponse",
+      "properties": {
+        "goldengateConnectionAssignments": {
+          "description": "The list of GoldengateConnectionAssignments.",
+          "items": {
+            "$ref": "GoldengateConnectionAssignment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unreachable locations when listing resources across all locations using wildcard location '-'.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListGoldengateConnectionTypesResponse": {
+      "description": "Message for response to listing GoldengateConnectionTypes",
+      "id": "ListGoldengateConnectionTypesResponse",
+      "properties": {
+        "goldengateConnectionTypes": {
+          "description": "The list of GoldengateConnectionType",
+          "items": {
+            "$ref": "GoldengateConnectionType"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListGoldengateConnectionsResponse": {
+      "description": "The response for `GoldengateConnection.List`.",
+      "id": "ListGoldengateConnectionsResponse",
+      "properties": {
+        "goldengateConnections": {
+          "description": "The list of GoldengateConnections.",
+          "items": {
+            "$ref": "GoldengateConnection"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Optional. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListGoldengateDeploymentEnvironmentsResponse": {
+      "description": "Message for response to listing GoldengateDeploymentEnvironments",
+      "id": "ListGoldengateDeploymentEnvironmentsResponse",
+      "properties": {
+        "goldengateDeploymentEnvironments": {
+          "description": "The list of GoldengateDeploymentEnvironment",
+          "items": {
+            "$ref": "GoldengateDeploymentEnvironment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return. If this field is empty, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListGoldengateDeploymentTypesResponse": {
+      "description": "Message for response to listing GoldengateDeploymentTypes",
+      "id": "ListGoldengateDeploymentTypesResponse",
+      "properties": {
+        "goldengateDeploymentTypes": {
+          "description": "The list of GoldengateDeploymentType",
+          "items": {
+            "$ref": "GoldengateDeploymentType"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. The resource names of locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListGoldengateDeploymentVersionsResponse": {
+      "description": "Message for response to listing GoldengateDeploymentVersions",
+      "id": "ListGoldengateDeploymentVersionsResponse",
+      "properties": {
+        "goldengateDeploymentVersions": {
+          "description": "The list of GoldengateDeploymentVersion",
+          "items": {
+            "$ref": "GoldengateDeploymentVersion"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListGoldengateDeploymentsResponse": {
+      "description": "The response for `GoldengateDeployment.List`.",
+      "id": "ListGoldengateDeploymentsResponse",
+      "properties": {
+        "goldengateDeployments": {
+          "description": "The list of GoldengateDeployments.",
+          "items": {
+            "$ref": "GoldengateDeployment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Optional. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListLocationsResponse": {
       "description": "The response message for Locations.ListLocations.",
       "id": "ListLocationsResponse",
@@ -6625,6 +10695,36 @@
         },
         "version": {
           "description": "Optional. The valid Oracle grid infrastructure software version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NameValuePair": {
+      "description": "A name-value pair representing an attribute entry usable in a list of attributes.",
+      "id": "NameValuePair",
+      "properties": {
+        "key": {
+          "description": "Required. The name of the property entry.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The value of the property entry.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NessieIcebergCatalog": {
+      "description": "The Nessie Iceberg catalog.",
+      "id": "NessieIcebergCatalog",
+      "properties": {
+        "branch": {
+          "description": "Required. The Nessie branch.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Required. The Nessie uri.",
           "type": "string"
         }
       },
@@ -7036,6 +11136,33 @@
       },
       "type": "object"
     },
+    "PolarisIcebergCatalog": {
+      "description": "The Polaris Iceberg catalog.",
+      "id": "PolarisIcebergCatalog",
+      "properties": {
+        "clientId": {
+          "description": "Required. The Polaris client ID.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "description": "Optional. The Polaris client secret.",
+          "type": "string"
+        },
+        "polarisCatalog": {
+          "description": "Required. The catalog name within Polaris.",
+          "type": "string"
+        },
+        "principalRole": {
+          "description": "Required. The Polaris principal role.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Required. The Polaris uri.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RemoveVirtualMachineExadbVmClusterRequest": {
       "description": "The request for `ExadbVmCluster.RemoveVirtualMachine`.",
       "id": "RemoveVirtualMachineExadbVmClusterRequest",
@@ -7049,6 +11176,21 @@
         },
         "requestId": {
           "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RestIcebergCatalog": {
+      "description": "The REST Iceberg catalog.",
+      "id": "RestIcebergCatalog",
+      "properties": {
+        "properties": {
+          "description": "Optional. The base64 encoded content of the configuration file containing additional properties for the REST catalog.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Required. The REST uri.",
           "type": "string"
         }
       },
@@ -7135,6 +11277,12 @@
       "properties": {},
       "type": "object"
     },
+    "StartGoldengateDeploymentRequest": {
+      "description": "The request for `GoldengateDeployment.Start`.",
+      "id": "StartGoldengateDeploymentRequest",
+      "properties": {},
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -7168,6 +11316,12 @@
       "properties": {},
       "type": "object"
     },
+    "StopGoldengateDeploymentRequest": {
+      "description": "The request for `GoldengateDeployment.Stop`.",
+      "id": "StopGoldengateDeploymentRequest",
+      "properties": {},
+      "type": "object"
+    },
     "StorageSizeDetails": {
       "description": "The initial storage size, in gigabytes, that is applicable for virtual machine DBSystem.",
       "id": "StorageSizeDetails",
@@ -7193,6 +11347,82 @@
       "properties": {
         "peerAutonomousDatabase": {
           "description": "Optional. The peer database name to switch over to. Required for cross-region standby, and must be omitted for in-region Data Guard.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TestConnectionAssignmentError": {
+      "description": "Error details for TestGoldengateConnectionAssignment.",
+      "id": "TestConnectionAssignmentError",
+      "properties": {
+        "action": {
+          "description": "The text describing the action required to fix the issue.",
+          "type": "string"
+        },
+        "code": {
+          "description": "A short error code that defines the error, meant for programmatic parsing.",
+          "type": "string"
+        },
+        "issue": {
+          "description": "The text describing the root cause of the reported issue.",
+          "type": "string"
+        },
+        "message": {
+          "description": "A human-readable error message.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TestGoldengateConnectionAssignmentRequest": {
+      "description": "Request message for TestGoldengateConnectionAssignment.",
+      "id": "TestGoldengateConnectionAssignmentRequest",
+      "properties": {
+        "type": {
+          "description": "Optional. The type of the test of the assigned connection. The only type actually supported is DEFAULT.",
+          "enum": [
+            "TEST_TYPE_UNSPECIFIED",
+            "DEFAULT"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is unused.",
+            "The default connection test."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TestGoldengateConnectionAssignmentResponse": {
+      "description": "The result of the connectivity test performed between the Goldengate deployment and the associated database / service.",
+      "id": "TestGoldengateConnectionAssignmentResponse",
+      "properties": {
+        "error": {
+          "$ref": "TestConnectionAssignmentError",
+          "description": "Error details if test connection failed."
+        },
+        "errors": {
+          "description": "List of test connection assignment error objects.",
+          "items": {
+            "$ref": "TestConnectionAssignmentError"
+          },
+          "type": "array"
+        },
+        "resultType": {
+          "description": "Type of the result i.e. Success, Failure or Timeout.",
+          "enum": [
+            "RESULT_TYPE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED",
+            "TIMED_OUT"
+          ],
+          "enumDescriptions": [
+            "Result type is unspecified.",
+            "Test connection succeeded.",
+            "Test connection failed.",
+            "Test connection timed out."
+          ],
           "type": "string"
         }
       },
