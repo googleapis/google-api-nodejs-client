@@ -651,11 +651,11 @@ export namespace dataform_v1 {
    */
   export interface Schema$DirectoryEntry {
     /**
-     * A child directory in the directory.
+     * A child directory in the directory. The path is returned including the full folder structure from the root.
      */
     directory?: string | null;
     /**
-     * A file in the directory.
+     * A file in the directory. The path is returned including the full folder structure from the root.
      */
     file?: string | null;
     /**
@@ -857,9 +857,13 @@ export namespace dataform_v1 {
      */
     authenticationTokenSecretVersion?: string | null;
     /**
-     * Required. The Git remote's default branch name. If not set, `main` will be used and stored for the repository.
+     * Optional. The Git remote's default branch name. If not set `main` will be used.
      */
     defaultBranch?: string | null;
+    /**
+     * Output only. The Git remote's effective default branch name. This is the default branch name of the Git remote if it is set, otherwise it is `main`.
+     */
+    effectiveDefaultBranch?: string | null;
     /**
      * Optional. Authentication fields for remote uris using SSH protocol.
      */
@@ -16211,7 +16215,7 @@ export namespace dataform_v1 {
      *     location: 'projects/my-project/locations/my-location',
      *     // Optional. Field to additionally sort results by. Supported keywords: `display_name` (default), `create_time`, `last_modified_time`. Examples: * `orderBy="display_name"` * `orderBy="display_name desc"`
      *     orderBy: 'placeholder-value',
-     *     // Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     *     // Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick a default of page_size = 50.
      *     pageSize: 'placeholder-value',
      *     // Optional. Page token received from a previous `SearchTeamFolders` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchTeamFolders`, with the exception of `page_size`, must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
@@ -16726,7 +16730,7 @@ export namespace dataform_v1 {
      */
     orderBy?: string;
     /**
-     * Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     * Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick a default of page_size = 50.
      */
     pageSize?: number;
     /**

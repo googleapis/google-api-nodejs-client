@@ -1087,6 +1087,35 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "deleteLongRunning": {
+                  "description": "Deletes a single Repository asynchronously.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:deleteLongRunning",
+                  "httpMethod": "POST",
+                  "id": "dataform.projects.locations.repositories.deleteLongRunning",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The repository's name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:deleteLongRunning",
+                  "request": {
+                    "$ref": "DeleteRepositoryLongRunningRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "fetchHistory": {
                   "description": "Fetches a Repository's history of commits. The Repository must not have a value for `git_remote_settings.url`.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:fetchHistory",
@@ -3162,7 +3191,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.",
+                      "description": "Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick a default of page_size = 50.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -3247,7 +3276,7 @@
       }
     }
   },
-  "revision": "20260430",
+  "revision": "20260515",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -3894,6 +3923,17 @@
       },
       "type": "object"
     },
+    "DeleteRepositoryLongRunningRequest": {
+      "description": "`DeleteRepositoryLongRunning` request message.",
+      "id": "DeleteRepositoryLongRunningRequest",
+      "properties": {
+        "force": {
+          "description": "Optional. If set to true, child resources of this repository (compilation results and workflow invocations) will also be deleted. Otherwise, the request will only succeed if the repository has no child resources. **Note:** *This flag doesn't support deletion of workspaces, release configs or workflow configs. If any of such resources exists in the repository, the request will fail.*",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "DeleteTeamFolderTreeRequest": {
       "description": "`DeleteTeamFolderTree` request message.",
       "id": "DeleteTeamFolderTreeRequest",
@@ -3910,11 +3950,11 @@
       "id": "DirectoryEntry",
       "properties": {
         "directory": {
-          "description": "A child directory in the directory.",
+          "description": "A child directory in the directory. The path is returned including the full folder structure from the root.",
           "type": "string"
         },
         "file": {
-          "description": "A file in the directory.",
+          "description": "A file in the directory. The path is returned including the full folder structure from the root.",
           "type": "string"
         },
         "metadata": {
@@ -4169,7 +4209,12 @@
           "type": "string"
         },
         "defaultBranch": {
-          "description": "Required. The Git remote's default branch name. If not set, `main` will be used and stored for the repository.",
+          "description": "Optional. The Git remote's default branch name. If not set `main` will be used.",
+          "type": "string"
+        },
+        "effectiveDefaultBranch": {
+          "description": "Output only. The Git remote's effective default branch name. This is the default branch name of the Git remote if it is set, otherwise it is `main`.",
+          "readOnly": true,
           "type": "string"
         },
         "sshAuthenticationConfig": {
