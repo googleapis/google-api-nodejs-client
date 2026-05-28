@@ -2548,7 +2548,7 @@
       }
     }
   },
-  "revision": "20260423",
+  "revision": "20260521",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -3667,6 +3667,13 @@
             "Hyperdisk balanced high availability disk type."
           ],
           "type": "string"
+        },
+        "disks": {
+          "description": "Optional. The details of each disk to create.",
+          "items": {
+            "$ref": "PersistentDiskDefaults"
+          },
+          "type": "array"
         },
         "enableIntegrityMonitoring": {
           "description": "Optional. Defines whether the instance has integrity monitoring enabled. This can be set to true only if the VM boot option is EFI, and vTPM is enabled.",
@@ -5960,12 +5967,14 @@
       "id": "PersistentDisk",
       "properties": {
         "diskUri": {
-          "description": "The URI of the Persistent Disk.",
+          "description": "Output only. The URI of the Persistent Disk.",
+          "readOnly": true,
           "type": "string"
         },
         "sourceDiskNumber": {
-          "description": "The ordinal number of the source VM disk.",
+          "description": "Output only. The ordinal number of the source VM disk.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
