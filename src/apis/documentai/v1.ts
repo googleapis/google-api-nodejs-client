@@ -2625,6 +2625,10 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1Document {
     /**
+     * Optional. The blob assets in this document. This is used to store the content of the inline blobs in this document, for example, image bytes, such that it can be referenced by other fields in the document via asset id.
+     */
+    blobAssets?: Schema$GoogleCloudDocumentaiV1DocumentBlobAsset[];
+    /**
      * Document chunked based on chunking config.
      */
     chunkedDocument?: Schema$GoogleCloudDocumentaiV1DocumentChunkedDocument;
@@ -2698,6 +2702,32 @@ export namespace documentai_v1 {
     uri?: string | null;
   }
   /**
+   * Represents the annotation of a block or a chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DocumentAnnotations {
+    /**
+     * The description of the content with this annotation.
+     */
+    description?: string | null;
+  }
+  /**
+   * Represents a blob asset. It's used to store the content of the inline blob in this document, for example, image bytes, such that it can be referenced by other fields in the document via asset ID.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DocumentBlobAsset {
+    /**
+     * Optional. The id of the blob asset.
+     */
+    assetId?: string | null;
+    /**
+     * Optional. The content of the blob asset, for example, image bytes.
+     */
+    content?: string | null;
+    /**
+     * The mime type of the blob asset. An IANA published [media type (MIME type)](https://www.iana.org/assignments/media-types/media-types.xhtml).
+     */
+    mimeType?: string | null;
+  }
+  /**
    * Represents the chunks that the document is divided into.
    */
   export interface Schema$GoogleCloudDocumentaiV1DocumentChunkedDocument {
@@ -2710,6 +2740,10 @@ export namespace documentai_v1 {
    * Represents a chunk.
    */
   export interface Schema$GoogleCloudDocumentaiV1DocumentChunkedDocumentChunk {
+    /**
+     * Chunk fields inside this chunk.
+     */
+    chunkFields?: Schema$GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkField[];
     /**
      * ID of the chunk.
      */
@@ -2734,6 +2768,19 @@ export namespace documentai_v1 {
      * Unused.
      */
     sourceBlockIds?: string[] | null;
+  }
+  /**
+   * The chunk field in the chunk. A chunk field could be one of the various types (for example, image, table) supported.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkField {
+    /**
+     * The image chunk field in the chunk.
+     */
+    imageChunkField?: Schema$GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkImageChunkField;
+    /**
+     * The table chunk field in the chunk.
+     */
+    tableChunkField?: Schema$GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkTableChunkField;
   }
   /**
    * Represents the page footer associated with the chunk.
@@ -2775,6 +2822,36 @@ export namespace documentai_v1 {
     pageStart?: number | null;
   }
   /**
+   * The image chunk field in the chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkImageChunkField {
+    /**
+     * Annotation of the image chunk field.
+     */
+    annotations?: Schema$GoogleCloudDocumentaiV1DocumentAnnotations;
+    /**
+     * Optional. Asset id of the inline image. If set, find the image content in the blob_assets field.
+     */
+    blobAssetId?: string | null;
+    /**
+     * Optional. Data uri of the image. It is composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,
+     */
+    dataUri?: string | null;
+    /**
+     * Optional. Google Cloud Storage uri of the image.
+     */
+    gcsUri?: string | null;
+  }
+  /**
+   * The table chunk field in the chunk.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkTableChunkField {
+    /**
+     * Annotation of the table chunk field.
+     */
+    annotations?: Schema$GoogleCloudDocumentaiV1DocumentAnnotations;
+  }
+  /**
    * Represents the parsed layout of a document as a collection of blocks that the document is divided into.
    */
   export interface Schema$GoogleCloudDocumentaiV1DocumentDocumentLayout {
@@ -2796,6 +2873,10 @@ export namespace documentai_v1 {
      */
     boundingBox?: Schema$GoogleCloudDocumentaiV1BoundingPoly;
     /**
+     * Block consisting of image content.
+     */
+    imageBlock?: Schema$GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutImageBlock;
+    /**
      * Block consisting of list content/structure.
      */
     listBlock?: Schema$GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock;
@@ -2811,6 +2892,35 @@ export namespace documentai_v1 {
      * Block consisting of text content.
      */
     textBlock?: Schema$GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock;
+  }
+  /**
+   * Represents an image type block.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutImageBlock {
+    /**
+     * Annotation of the image block.
+     */
+    annotations?: Schema$GoogleCloudDocumentaiV1DocumentAnnotations;
+    /**
+     * Optional. Asset id of the inline image. If set, find the image content in the blob_assets field.
+     */
+    blobAssetId?: string | null;
+    /**
+     * Optional. Data uri of the image. It is composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,
+     */
+    dataUri?: string | null;
+    /**
+     * Optional. Google Cloud Storage uri of the image.
+     */
+    gcsUri?: string | null;
+    /**
+     * Text extracted from the image using OCR or alt text describing the image.
+     */
+    imageText?: string | null;
+    /**
+     * Mime type of the image. An IANA published [media type (MIME type)] (https://www.iana.org/assignments/media-types/media-types.xhtml).
+     */
+    mimeType?: string | null;
   }
   /**
    * Represents a list type block.
@@ -2851,6 +2961,10 @@ export namespace documentai_v1 {
    * Represents a table type block.
    */
   export interface Schema$GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock {
+    /**
+     * Annotation of the table block.
+     */
+    annotations?: Schema$GoogleCloudDocumentaiV1DocumentAnnotations;
     /**
      * Body rows containing main table content.
      */
@@ -2894,6 +3008,10 @@ export namespace documentai_v1 {
    * Represents a text type block.
    */
   export interface Schema$GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock {
+    /**
+     * Annotation of the text block.
+     */
+    annotations?: Schema$GoogleCloudDocumentaiV1DocumentAnnotations;
     /**
      * A text block could further have child blocks. Repeated blocks support further hierarchies and nested blocks.
      */
@@ -5842,7 +5960,7 @@ export namespace documentai_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
+     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
      * @example
      * ```js
      * // Before running the sample:
@@ -5872,7 +5990,7 @@ export namespace documentai_v1 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -6012,7 +6130,7 @@ export namespace documentai_v1 {
   }
   export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**

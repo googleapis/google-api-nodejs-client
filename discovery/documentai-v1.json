@@ -231,7 +231,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+              "description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "documentai.projects.locations.list",
@@ -240,7 +240,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1436,7 +1436,7 @@
       }
     }
   },
-  "revision": "20260325",
+  "revision": "20260503",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
@@ -3727,6 +3727,13 @@
       "description": "Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.",
       "id": "GoogleCloudDocumentaiV1Document",
       "properties": {
+        "blobAssets": {
+          "description": "Optional. The blob assets in this document. This is used to store the content of the inline blobs in this document, for example, image bytes, such that it can be referenced by other fields in the document via asset id.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentBlobAsset"
+          },
+          "type": "array"
+        },
         "chunkedDocument": {
           "$ref": "GoogleCloudDocumentaiV1DocumentChunkedDocument",
           "description": "Document chunked based on chunking config."
@@ -3825,6 +3832,37 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1DocumentAnnotations": {
+      "description": "Represents the annotation of a block or a chunk.",
+      "id": "GoogleCloudDocumentaiV1DocumentAnnotations",
+      "properties": {
+        "description": {
+          "description": "The description of the content with this annotation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentBlobAsset": {
+      "description": "Represents a blob asset. It's used to store the content of the inline blob in this document, for example, image bytes, such that it can be referenced by other fields in the document via asset ID.",
+      "id": "GoogleCloudDocumentaiV1DocumentBlobAsset",
+      "properties": {
+        "assetId": {
+          "description": "Optional. The id of the blob asset.",
+          "type": "string"
+        },
+        "content": {
+          "description": "Optional. The content of the blob asset, for example, image bytes.",
+          "format": "byte",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "The mime type of the blob asset. An IANA published [media type (MIME type)](https://www.iana.org/assignments/media-types/media-types.xhtml).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1DocumentChunkedDocument": {
       "description": "Represents the chunks that the document is divided into.",
       "id": "GoogleCloudDocumentaiV1DocumentChunkedDocument",
@@ -3843,6 +3881,13 @@
       "description": "Represents a chunk.",
       "id": "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunk",
       "properties": {
+        "chunkFields": {
+          "description": "Chunk fields inside this chunk.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkField"
+          },
+          "type": "array"
+        },
         "chunkId": {
           "description": "ID of the chunk.",
           "type": "string"
@@ -3875,6 +3920,21 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkField": {
+      "description": "The chunk field in the chunk. A chunk field could be one of the various types (for example, image, table) supported.",
+      "id": "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkChunkField",
+      "properties": {
+        "imageChunkField": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkImageChunkField",
+          "description": "The image chunk field in the chunk."
+        },
+        "tableChunkField": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkTableChunkField",
+          "description": "The table chunk field in the chunk."
         }
       },
       "type": "object"
@@ -3926,6 +3986,40 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkImageChunkField": {
+      "description": "The image chunk field in the chunk.",
+      "id": "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkImageChunkField",
+      "properties": {
+        "annotations": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentAnnotations",
+          "description": "Annotation of the image chunk field."
+        },
+        "blobAssetId": {
+          "description": "Optional. Asset id of the inline image. If set, find the image content in the blob_assets field.",
+          "type": "string"
+        },
+        "dataUri": {
+          "description": "Optional. Data uri of the image. It is composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,",
+          "type": "string"
+        },
+        "gcsUri": {
+          "description": "Optional. Google Cloud Storage uri of the image.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkTableChunkField": {
+      "description": "The table chunk field in the chunk.",
+      "id": "GoogleCloudDocumentaiV1DocumentChunkedDocumentChunkTableChunkField",
+      "properties": {
+        "annotations": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentAnnotations",
+          "description": "Annotation of the table chunk field."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1DocumentDocumentLayout": {
       "description": "Represents the parsed layout of a document as a collection of blocks that the document is divided into.",
       "id": "GoogleCloudDocumentaiV1DocumentDocumentLayout",
@@ -3952,6 +4046,10 @@
           "$ref": "GoogleCloudDocumentaiV1BoundingPoly",
           "description": "Identifies the bounding box for the block."
         },
+        "imageBlock": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutImageBlock",
+          "description": "Block consisting of image content."
+        },
         "listBlock": {
           "$ref": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock",
           "description": "Block consisting of list content/structure."
@@ -3967,6 +4065,37 @@
         "textBlock": {
           "$ref": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock",
           "description": "Block consisting of text content."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutImageBlock": {
+      "description": "Represents an image type block.",
+      "id": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutImageBlock",
+      "properties": {
+        "annotations": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentAnnotations",
+          "description": "Annotation of the image block."
+        },
+        "blobAssetId": {
+          "description": "Optional. Asset id of the inline image. If set, find the image content in the blob_assets field.",
+          "type": "string"
+        },
+        "dataUri": {
+          "description": "Optional. Data uri of the image. It is composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,",
+          "type": "string"
+        },
+        "gcsUri": {
+          "description": "Optional. Google Cloud Storage uri of the image.",
+          "type": "string"
+        },
+        "imageText": {
+          "description": "Text extracted from the image using OCR or alt text describing the image.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "Mime type of the image. An IANA published [media type (MIME type)] (https://www.iana.org/assignments/media-types/media-types.xhtml).",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4024,6 +4153,10 @@
       "description": "Represents a table type block.",
       "id": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock",
       "properties": {
+        "annotations": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentAnnotations",
+          "description": "Annotation of the table block."
+        },
         "bodyRows": {
           "description": "Body rows containing main table content.",
           "items": {
@@ -4087,6 +4220,10 @@
       "description": "Represents a text type block.",
       "id": "GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock",
       "properties": {
+        "annotations": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentAnnotations",
+          "description": "Annotation of the text block."
+        },
         "blocks": {
           "description": "A text block could further have child blocks. Repeated blocks support further hierarchies and nested blocks.",
           "items": {
