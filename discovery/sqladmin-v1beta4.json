@@ -3022,7 +3022,7 @@
       }
     }
   },
-  "revision": "20260424",
+  "revision": "20260510",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -8116,16 +8116,18 @@
           "type": "array"
         },
         "edition": {
-          "description": "Optional. The edition of the instance.",
+          "description": "Optional. The edition type of the Cloud SQL instance.",
           "enum": [
             "EDITION_UNSPECIFIED",
             "ENTERPRISE",
-            "ENTERPRISE_PLUS"
+            "ENTERPRISE_PLUS",
+            "DEVELOPER"
           ],
           "enumDescriptions": [
             "The instance did not specify the edition.",
             "The instance is an enterprise edition.",
-            "The instance is an Enterprise Plus edition."
+            "The instance is an Enterprise Plus edition.",
+            "This instance is a Cloud SQL developer edition instance."
           ],
           "type": "string"
         },
