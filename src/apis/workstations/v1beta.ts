@@ -994,6 +994,10 @@ export namespace workstations_v1beta {
      */
     name?: string | null;
     /**
+     * Optional. Directories to persist across workstation sessions.
+     */
+    persistentDirectories?: Schema$WorkstationPersistentDirectory[];
+    /**
      * Output only. Indicates whether this workstation is currently being updated to match its intended state.
      */
     reconciling?: boolean | null;
@@ -1264,6 +1268,36 @@ export namespace workstations_v1beta {
      * Output only. Time when this workstation configuration was most recently updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * A Persistent Directory backed by a Compute Engine regional persistent disk within the workstation.
+   */
+  export interface Schema$WorkstationGceRegionalPersistentDisk {
+    /**
+     * The name of the persistent directory.
+     */
+    name?: string | null;
+    /**
+     * Required. The desired size of the persistent directory in GB.
+     */
+    sizeGb?: number | null;
+  }
+  /**
+   * A directory to persist across workstation sessions. Updates to this field will only take effect on this workstation after it is restarted.
+   */
+  export interface Schema$WorkstationPersistentDirectory {
+    /**
+     * A PersistentDirectory backed by a Compute Engine persistent disk.
+     */
+    gcePd?: Schema$WorkstationGceRegionalPersistentDisk;
+    /**
+     * Optional. The mount path of the persistent directory.
+     */
+    mountPath?: string | null;
+    /**
+     * Optional. Size of the persistent directory in GB. If specified in an update request, this is the desired size of the directory.
+     */
+    sizeGb?: number | null;
   }
 
   export class Resource$Projects {
@@ -4466,6 +4500,7 @@ export namespace workstations_v1beta {
      *           //   "kmsKey": "my_kmsKey",
      *           //   "labels": {},
      *           //   "name": "my_name",
+     *           //   "persistentDirectories": [],
      *           //   "reconciling": false,
      *           //   "runtimeHost": {},
      *           //   "satisfiesPzi": false,
@@ -4943,6 +4978,7 @@ export namespace workstations_v1beta {
      *   //   "kmsKey": "my_kmsKey",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "persistentDirectories": [],
      *   //   "reconciling": false,
      *   //   "runtimeHost": {},
      *   //   "satisfiesPzi": false,
@@ -5559,6 +5595,7 @@ export namespace workstations_v1beta {
      *           //   "kmsKey": "my_kmsKey",
      *           //   "labels": {},
      *           //   "name": "my_name",
+     *           //   "persistentDirectories": [],
      *           //   "reconciling": false,
      *           //   "runtimeHost": {},
      *           //   "satisfiesPzi": false,
