@@ -498,7 +498,7 @@
       }
     }
   },
-  "revision": "20260429",
+  "revision": "20260506",
   "rootUrl": "https://hypercomputecluster.googleapis.com/",
   "schemas": {
     "BootDisk": {
@@ -1793,7 +1793,7 @@
       "type": "object"
     },
     "StorageResource": {
-      "description": "A resource representing a form of persistent storage that is accessible to compute resources in the cluster.",
+      "description": "A resource representing a form of persistent storage that can be mounted onto compute resources in the cluster.",
       "id": "StorageResource",
       "properties": {
         "bucket": {

@@ -1059,7 +1059,7 @@ export namespace hypercomputecluster_v1 {
     localMount?: string | null;
   }
   /**
-   * A resource representing a form of persistent storage that is accessible to compute resources in the cluster.
+   * A resource representing a form of persistent storage that can be mounted onto compute resources in the cluster.
    */
   export interface Schema$StorageResource {
     /**
