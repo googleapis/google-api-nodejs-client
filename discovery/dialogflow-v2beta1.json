@@ -8431,7 +8431,7 @@
       }
     }
   },
-  "revision": "20260509",
+  "revision": "20260518",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -14285,6 +14285,13 @@
     "GoogleCloudDialogflowV2KnowledgeAssistDebugInfo": {
       "id": "GoogleCloudDialogflowV2KnowledgeAssistDebugInfo",
       "properties": {
+        "cesDebugInfo": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "type": "object"
+        },
         "datastoreResponseReason": {
           "enum": [
             "DATASTORE_RESPONSE_REASON_UNSPECIFIED",
@@ -14332,6 +14339,9 @@
             ""
           ],
           "type": "string"
+        },
+        "queryGenerationDebugInfo": {
+          "$ref": "GoogleCloudDialogflowV2KnowledgeAssistDebugInfoQueryGenerationDebugInfo"
         },
         "queryGenerationFailureReason": {
           "enum": [
@@ -14422,6 +14432,24 @@
         },
         "useTranslatedMessage": {
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2KnowledgeAssistDebugInfoQueryGenerationDebugInfo": {
+      "id": "GoogleCloudDialogflowV2KnowledgeAssistDebugInfoQueryGenerationDebugInfo",
+      "properties": {
+        "candidatesTokenCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "promptTokenCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalTokenCount": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -16580,6 +16608,9 @@
         },
         "securitySettings": {
           "type": "string"
+        },
+        "sipConfig": {
+          "$ref": "GoogleCloudDialogflowV2beta1SipConfig"
         },
         "sttConfig": {
           "$ref": "GoogleCloudDialogflowV2beta1SpeechToTextConfig"
@@ -19520,6 +19551,13 @@
     "GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfo": {
       "id": "GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfo",
       "properties": {
+        "cesDebugInfo": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "type": "object"
+        },
         "datastoreResponseReason": {
           "enum": [
             "DATASTORE_RESPONSE_REASON_UNSPECIFIED",
@@ -19567,6 +19605,9 @@
             ""
           ],
           "type": "string"
+        },
+        "queryGenerationDebugInfo": {
+          "$ref": "GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoQueryGenerationDebugInfo"
         },
         "queryGenerationFailureReason": {
           "enum": [
@@ -19657,6 +19698,24 @@
         },
         "useTranslatedMessage": {
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoQueryGenerationDebugInfo": {
+      "id": "GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoQueryGenerationDebugInfo",
+      "properties": {
+        "candidatesTokenCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "promptTokenCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalTokenCount": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -21125,6 +21184,37 @@
         },
         "suggestionFeatureConfig": {
           "$ref": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1SipConfig": {
+      "id": "GoogleCloudDialogflowV2beta1SipConfig",
+      "properties": {
+        "allowVirtualAgentInteraction": {
+          "type": "boolean"
+        },
+        "copyInboundCallLegHeaders": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "createConversationOnTheFly": {
+          "type": "boolean"
+        },
+        "ignoreReinviteMediaDirection": {
+          "type": "boolean"
+        },
+        "inactiveStart": {
+          "type": "boolean"
+        },
+        "keepConversationRunning": {
+          "type": "boolean"
+        },
+        "maxAudioRecordingDuration": {
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"
