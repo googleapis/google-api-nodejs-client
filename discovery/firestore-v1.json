@@ -2435,7 +2435,7 @@
       }
     }
   },
-  "revision": "20260427",
+  "revision": "20260507",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -4185,7 +4185,7 @@
         },
         "searchIndexOptions": {
           "$ref": "GoogleFirestoreAdminV1SearchIndexOptions",
-          "description": "Optional. Options for search indexes that are at the index definition level. This field is only currently supported for indexes with MONGODB_COMPATIBLE_API ApiScope."
+          "description": "Optional. Options for search indexes that are at the index definition level."
         },
         "shardCount": {
           "description": "Optional. The number of shards for the index.",
@@ -4632,7 +4632,7 @@
       "id": "GoogleFirestoreAdminV1SearchGeoSpec",
       "properties": {
         "geoJsonIndexingDisabled": {
-          "description": "Optional. Disables geoJSON indexing for the field. By default, geoJSON points are indexed.",
+          "description": "Optional. Disables geoJSON indexing for the field. By default, geoJSON points are indexed. Firestore GeoPoints are indexed regardless of this value.",
           "type": "boolean"
         }
       },
@@ -4647,7 +4647,7 @@
           "type": "string"
         },
         "textLanguageOverrideFieldPath": {
-          "description": "Optional. The field in the document that specifies which language to use for that specific document. For indexes with MONGODB_COMPATIBLE_API ApiScope: if unspecified, the language is taken from the \"language\" field if it exists or from `text_language` if it does not.",
+          "description": "Optional. The field in the document that specifies which language to use for that specific document. If unspecified, the language is taken from the \"language\" field if it exists or from `text_language` if it does not.",
           "type": "string"
         }
       },
@@ -4665,7 +4665,7 @@
           ],
           "enumDescriptions": [
             "The index type is unspecified. Not a valid option.",
-            "Field values are tokenized. This is the only way currently supported for MONGODB_COMPATIBLE_API."
+            "Field values are tokenized."
           ],
           "type": "string"
         },
@@ -4677,7 +4677,7 @@
           ],
           "enumDescriptions": [
             "The match type is unspecified. Not a valid option.",
-            "Match on any indexed field. This is the only way currently supported for MONGODB_COMPATIBLE_API."
+            "Match on any indexed field."
           ],
           "type": "string"
         }
