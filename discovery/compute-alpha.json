@@ -55121,7 +55121,7 @@
       }
     }
   },
-  "revision": "20260427",
+  "revision": "20260501",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -55977,7 +55977,7 @@
             "A private network IP address that can be used to configure Private\nService Connect. This purpose can be specified only forGLOBAL addresses of Type INTERNAL",
             "A regional internal IP address range reserved for Serverless.",
             "A private network IP address that can be shared by multiple Internal\nLoad Balancer forwarding rules.",
-            "A regional internal IP address that is reserved and managed by Google\nCloud. It can not be assigned to Google Cloud compute resources such as\nVM and internal load balancer.",
+            "A regional internal IP address that is reserved and managed internally.\nIt can not be assigned to compute resources such as VM and internal load\nbalancer.",
             "IP range for peer networks."
           ],
           "type": "string"
@@ -57068,7 +57068,6 @@
           "type": "string"
         },
         "diskType": {
-          "description": "Specifies the disk type to use to create the instance. If not specified,\nthe default is pd-standard, specified using the full URL.\nFor example:\n\nhttps://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard\n\n\nFor a full list of acceptable values, seePersistent disk\ntypes. If you specify this field when creating a VM, you can provide\neither the full or partial URL. For example, the following values are\nvalid:\n   \n   \n     - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType \n   - projects/project/zones/zone/diskTypes/diskType \n   - zones/zone/diskTypes/diskType\n\n\nIf you specify this field when creating or updating an instance template\nor all-instances configuration, specify the type of the disk, not the\nURL. For example: pd-standard.",
           "type": "string"
         },
         "enableConfidentialCompute": {
@@ -63483,12 +63482,14 @@
         "confidentialInstanceType": {
           "description": "Defines the type of technology used by the confidential instance.",
           "enum": [
+            "CCA",
             "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED",
             "SEV",
             "SEV_SNP",
             "TDX"
           ],
           "enumDescriptions": [
+            "Arm Confidential Compute Architecture.",
             "No type specified. Do not use this value.",
             "AMD Secure Encrypted Virtualization.",
             "AMD Secure Encrypted Virtualization - Secure Nested Paging.",
@@ -70748,6 +70749,7 @@
           "description": "The ID of a supported feature. To add multiple values, use commas to\nseparate values. Set to one or more of the following values:\n   \n   - VIRTIO_SCSI_MULTIQUEUE\n   - WINDOWS\n   - MULTI_IP_SUBNET\n   - UEFI_COMPATIBLE\n   - GVNIC\n   - SEV_CAPABLE\n   - SUSPEND_RESUME_COMPATIBLE\n   - SEV_LIVE_MIGRATABLE_V2\n   - SEV_SNP_CAPABLE\n   - TDX_CAPABLE\n   - IDPF\n   - SNP_SVSM_CAPABLE\n   - CCA_CAPABLE\n\n\nFor more information, see\nEnabling guest operating system features.",
           "enum": [
             "BARE_METAL_LINUX_COMPATIBLE",
+            "CCA_CAPABLE",
             "FEATURE_TYPE_UNSPECIFIED",
             "GVNIC",
             "IDPF",
@@ -70764,6 +70766,7 @@
             "WINDOWS"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -92096,7 +92099,7 @@
           "type": "string"
         },
         "network": {
-          "description": "The URL of the network to which all network endpoints in the NEG belong.\nUses default project network if unspecified.",
+          "description": "The URL of the network to which all network endpoints in the NEG belong.\nFor networkEndpointType GCE_VM_IP_PORT,GCE_VM_IP_PORTMAP or NON_GCP_PRIVATE_IP_PORT,\nif this field is not specified, a default network will be used.\nThis field cannot be set for NEGs with networkEndpointType set toSERVERLESS or PRIVATE_SERVICE_CONNECT and for\nglobal NEGs.\nFor all other network endpoint types, this field is required.",
           "type": "string"
         },
         "networkEndpointType": {
@@ -92410,7 +92413,7 @@
         },
         "network": {
           "deprecated": true,
-          "description": "The URL of the network to which all network endpoints in the NEG belong.\nUses default project network if unspecified.\n[Deprecated] This field is deprecated.",
+          "description": "The URL of the network to which all network endpoints in the NEG belong.\nFor networkEndpointType GCE_VM_IP_PORT,GCE_VM_IP_PORTMAP or NON_GCP_PRIVATE_IP_PORT,\nif this field is not specified, a default network will be used.\nThis field cannot be set for NEGs with networkEndpointType set toSERVERLESS or PRIVATE_SERVICE_CONNECT and for\nglobal NEGs.\nFor all other network endpoint types, this field is required.\n [Deprecated] This field is deprecated.",
           "type": "string"
         },
         "subnetwork": {
@@ -94623,7 +94626,7 @@
               "A private network IP address that can be used to configure Private\nService Connect. This purpose can be specified only forGLOBAL addresses of Type INTERNAL",
               "A regional internal IP address range reserved for Serverless.",
               "A private network IP address that can be shared by multiple Internal\nLoad Balancer forwarding rules.",
-              "A regional internal IP address that is reserved and managed by Google\nCloud. It can not be assigned to Google Cloud compute resources such as\nVM and internal load balancer.",
+              "A regional internal IP address that is reserved and managed internally.\nIt can not be assigned to compute resources such as VM and internal load\nbalancer.",
               "IP range for peer networks."
             ],
             "type": "string"

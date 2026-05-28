@@ -41037,6 +41037,51 @@
     },
     "rollouts": {
       "methods": {
+        "advance": {
+          "description": "Advances a Rollout to the next wave, or completes it if no waves remain.",
+          "flatPath": "projects/{project}/global/rollouts/{rollout}/advance",
+          "httpMethod": "POST",
+          "id": "compute.rollouts.advance",
+          "parameterOrder": [
+            "project",
+            "rollout"
+          ],
+          "parameters": {
+            "currentWaveNumber": {
+              "description": "Required. Wave number of the current wave.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "rollout": {
+              "description": "Required. Name of the Rollout resource to advance.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/rollouts/{rollout}/advance",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
         "cancel": {
           "description": "Cancels a Rollout.",
           "flatPath": "projects/{project}/global/rollouts/{rollout}",
@@ -41208,6 +41253,94 @@
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/compute",
             "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "pause": {
+          "description": "Pauses a Rollout.",
+          "flatPath": "projects/{project}/global/rollouts/{rollout}/pause",
+          "httpMethod": "POST",
+          "id": "compute.rollouts.pause",
+          "parameterOrder": [
+            "project",
+            "rollout"
+          ],
+          "parameters": {
+            "etag": {
+              "description": "The etag of the Rollout.\nIf this is provided, the request will only succeed if the etag matches\nthe current etag of the Rollout.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "rollout": {
+              "description": "Required. Name of the Rollout resource to pause.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/rollouts/{rollout}/pause",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "resume": {
+          "description": "Resumes a Rollout.",
+          "flatPath": "projects/{project}/global/rollouts/{rollout}/resume",
+          "httpMethod": "POST",
+          "id": "compute.rollouts.resume",
+          "parameterOrder": [
+            "project",
+            "rollout"
+          ],
+          "parameters": {
+            "etag": {
+              "description": "The etag of the Rollout.\nIf this is provided, the request will only succeed if the etag matches\nthe current etag of the Rollout.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so\nthat if you must retry your request, the server will know to ignore the\nrequest if it has already been completed.\n\nFor example, consider a situation where you make an initial request and\nthe request times out. If you make the request again with the same\nrequest ID, the server can check if original operation with the same\nrequest ID was received, and if so, will ignore the second request. This\nprevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be\na valid UUID with the exception that zero UUID is not supported\n(00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "rollout": {
+              "description": "Required. Name of the Rollout resource to resume.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/rollouts/{rollout}/resume",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
           ]
         }
       }
@@ -51797,7 +51930,7 @@
       }
     }
   },
-  "revision": "20260427",
+  "revision": "20260501",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AWSV4Signature": {
@@ -52618,6 +52751,7 @@
             "PRIVATE_SERVICE_CONNECT",
             "SERVERLESS",
             "SHARED_LOADBALANCER_VIP",
+            "SYSTEM_MANAGED",
             "VPC_PEERING"
           ],
           "enumDescriptions": [
@@ -52630,6 +52764,7 @@
             "A private network IP address that can be used to configure Private\nService Connect. This purpose can be specified only forGLOBAL addresses of Type INTERNAL",
             "A regional internal IP address range reserved for Serverless.",
             "A private network IP address that can be shared by multiple Internal\nLoad Balancer forwarding rules.",
+            "A regional internal IP address that is reserved and managed internally.\nIt can not be assigned to compute resources such as VM and internal load\nbalancer.",
             "IP range for peer networks."
           ],
           "type": "string"
@@ -53667,7 +53802,6 @@
           "type": "string"
         },
         "diskType": {
-          "description": "Specifies the disk type to use to create the instance. If not specified,\nthe default is pd-standard, specified using the full URL.\nFor example:\n\nhttps://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard\n\n\nFor a full list of acceptable values, seePersistent disk\ntypes. If you specify this field when creating a VM, you can provide\neither the full or partial URL. For example, the following values are\nvalid:\n   \n   \n     - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType \n   - projects/project/zones/zone/diskTypes/diskType \n   - zones/zone/diskTypes/diskType\n\n\nIf you specify this field when creating or updating an instance template\nor all-instances configuration, specify the type of the disk, not the\nURL. For example: pd-standard.",
           "type": "string"
         },
         "enableConfidentialCompute": {
@@ -59746,12 +59880,14 @@
         "confidentialInstanceType": {
           "description": "Defines the type of technology used by the confidential instance.",
           "enum": [
+            "CCA",
             "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED",
             "SEV",
             "SEV_SNP",
             "TDX"
           ],
           "enumDescriptions": [
+            "Arm Confidential Compute Architecture.",
             "No type specified. Do not use this value.",
             "AMD Secure Encrypted Virtualization.",
             "AMD Secure Encrypted Virtualization - Secure Nested Paging.",
@@ -60487,6 +60623,23 @@
         },
         "sourceInstantSnapshotId": {
           "description": "Output only. [Output Only] The unique ID of the instant snapshot used to create this\ndisk. This value identifies the exact instant snapshot that was used to\ncreate this persistent disk. For example, if you created the persistent\ndisk from an instant snapshot that was later deleted and recreated under\nthe same name, the source instant snapshot ID would identify the exact\nversion of the instant snapshot that was used.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceMachineImage": {
+          "description": "The machine image to create the disk from. You can provide this as a\npartial or full URL to the resource. For example, the following are valid\nvalues:\n   \n   \n     - https://www.googleapis.com/compute/v1/projects/project/global/machineImages/machineImage \n   - projects/project/global/machineImages/machineImage\n     - global/machineImages/machineImage",
+          "type": "string"
+        },
+        "sourceMachineImageDiskDeviceName": {
+          "description": "The device name of a disk within a given machine image. The\nsource_machine_image must be specified.",
+          "type": "string"
+        },
+        "sourceMachineImageEncryptionKey": {
+          "$ref": "CustomerEncryptionKey",
+          "description": "Thecustomer-supplied\nencryption key of the source machine image. Required if the source\nmachine image is protected by a customer-supplied encryption key."
+        },
+        "sourceMachineImageId": {
+          "description": "Output only. [Output Only] The unique ID of the machine image used to create this disk.\nThis value identifies the exact machine image that was used to create this\npersistent disk. For example, if you created the persistent disk from a\nmachine image that was later deleted and recreated under the same name, the\nsource machine image ID would identify the exact version of the machine\nimage that was used.",
           "readOnly": true,
           "type": "string"
         },
@@ -66408,6 +66561,7 @@
           "description": "The ID of a supported feature. To add multiple values, use commas to\nseparate values. Set to one or more of the following values:\n   \n   - VIRTIO_SCSI_MULTIQUEUE\n   - WINDOWS\n   - MULTI_IP_SUBNET\n   - UEFI_COMPATIBLE\n   - GVNIC\n   - SEV_CAPABLE\n   - SUSPEND_RESUME_COMPATIBLE\n   - SEV_LIVE_MIGRATABLE_V2\n   - SEV_SNP_CAPABLE\n   - TDX_CAPABLE\n   - IDPF\n   - SNP_SVSM_CAPABLE\n   - CCA_CAPABLE\n\n\nFor more information, see\nEnabling guest operating system features.",
           "enum": [
             "BARE_METAL_LINUX_COMPATIBLE",
+            "CCA_CAPABLE",
             "FEATURE_TYPE_UNSPECIFIED",
             "GVNIC",
             "IDPF",
@@ -66424,6 +66578,7 @@
             "WINDOWS"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -76772,6 +76927,11 @@
           "description": "An optional description of this resource. Provide this property when you\ncreate the resource.",
           "type": "string"
         },
+        "effectiveLocation": {
+          "description": "Output only. [Output Only] URL of the InterconnectLocation object that represents where\nthis connection is to be provisioned. By default it will be the same as the\nlocation field.",
+          "readOnly": true,
+          "type": "string"
+        },
         "expectedOutages": {
           "description": "Output only. [Output Only] A list of outages expected for this Interconnect.",
           "items": {
@@ -81792,6 +81952,20 @@
       "description": "Machine Image parameters",
       "id": "MachineImageParams",
       "properties": {
+        "excludedDisks": {
+          "description": "Input only. [Input Only] Specifies the list of disk device names that must be\nexcluded from the new machine image.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includedDisks": {
+          "description": "Input only. [Input Only] Specifies the list of disk device names that must be\nincluded with the new machine image.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "resourceManagerTags": {
           "additionalProperties": {
             "type": "string"
@@ -84685,7 +84859,7 @@
           "type": "string"
         },
         "network": {
-          "description": "The URL of the network to which all network endpoints in the NEG belong.\nUses default project network if unspecified.",
+          "description": "The URL of the network to which all network endpoints in the NEG belong.\nFor networkEndpointType GCE_VM_IP_PORT,GCE_VM_IP_PORTMAP or NON_GCP_PRIVATE_IP_PORT,\nif this field is not specified, a default network will be used.\nThis field cannot be set for NEGs with networkEndpointType set toSERVERLESS or PRIVATE_SERVICE_CONNECT and for\nglobal NEGs.\nFor all other network endpoint types, this field is required.",
           "type": "string"
         },
         "networkEndpointType": {
@@ -84982,7 +85156,7 @@
         },
         "network": {
           "deprecated": true,
-          "description": "The URL of the network to which all network endpoints in the NEG belong.\nUses default project network if unspecified.\n[Deprecated] This field is deprecated.",
+          "description": "The URL of the network to which all network endpoints in the NEG belong.\nFor networkEndpointType GCE_VM_IP_PORT,GCE_VM_IP_PORTMAP or NON_GCP_PRIVATE_IP_PORT,\nif this field is not specified, a default network will be used.\nThis field cannot be set for NEGs with networkEndpointType set toSERVERLESS or PRIVATE_SERVICE_CONNECT and for\nglobal NEGs.\nFor all other network endpoint types, this field is required.\n [Deprecated] This field is deprecated.",
           "type": "string"
         },
         "subnetwork": {
@@ -87112,6 +87286,7 @@
               "PRIVATE_SERVICE_CONNECT",
               "SERVERLESS",
               "SHARED_LOADBALANCER_VIP",
+              "SYSTEM_MANAGED",
               "VPC_PEERING"
             ],
             "enumDescriptions": [
@@ -87124,6 +87299,7 @@
               "A private network IP address that can be used to configure Private\nService Connect. This purpose can be specified only forGLOBAL addresses of Type INTERNAL",
               "A regional internal IP address range reserved for Serverless.",
               "A private network IP address that can be shared by multiple Internal\nLoad Balancer forwarding rules.",
+              "A regional internal IP address that is reserved and managed internally.\nIt can not be assigned to compute resources such as VM and internal load\nbalancer.",
               "IP range for peer networks."
             ],
             "type": "string"
