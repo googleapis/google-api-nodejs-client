@@ -2756,7 +2756,7 @@
           ],
           "parameters": {
             "channelId": {
-              "description": "Filter on resources belonging to this channelId.",
+              "description": "Filter on resources belonging to this channelId. (Force TAP rebuild)",
               "location": "query",
               "type": "string"
             },
@@ -4176,7 +4176,7 @@
       }
     }
   },
-  "revision": "20260430",
+  "revision": "20260525",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -10578,7 +10578,7 @@
           "$ref": "TokenPagination"
         },
         "visitorId": {
-          "description": "The visitorId identifies the visitor.",
+          "description": "The visitor ID identifies the visitor.",
           "type": "string"
         }
       },

@@ -3500,7 +3500,7 @@ export namespace youtube_v3 {
     regionCode?: string | null;
     tokenPagination?: Schema$TokenPagination;
     /**
-     * The visitorId identifies the visitor.
+     * The visitor ID identifies the visitor.
      */
     visitorId?: string | null;
   }
@@ -15030,7 +15030,7 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.search.list({
-     *     // Filter on resources belonging to this channelId.
+     *     // Filter on resources belonging to this channelId. (Force TAP rebuild)
      *     channelId: 'placeholder-value',
      *     // Add a filter on the channel search.
      *     channelType: 'placeholder-value',
@@ -15204,7 +15204,7 @@ export namespace youtube_v3 {
 
   export interface Params$Resource$Search$List extends StandardParameters {
     /**
-     * Filter on resources belonging to this channelId.
+     * Filter on resources belonging to this channelId. (Force TAP rebuild)
      */
     channelId?: string;
     /**
