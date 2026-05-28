@@ -15,6 +15,13 @@
   "description": "OS management tools that can be used for patch management, patch compliance, and configuration management on VM instances.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/compute/docs/osconfig/rest",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://osconfig.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -1072,7 +1079,7 @@
       }
     }
   },
-  "revision": "20260423",
+  "revision": "20260507",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {

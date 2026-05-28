@@ -10465,7 +10465,7 @@
       }
     }
   },
-  "revision": "20260326",
+  "revision": "20260511",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -12993,7 +12993,8 @@
             "CREATIVE_AUTHORING_SOURCE_TYPEFACE_AI",
             "CREATIVE_AUTHORING_SOURCE_REMBRAND",
             "CREATIVE_AUTHORING_SOURCE_TRACKTO_STUDIO",
-            "CREATIVE_AUTHORING_SOURCE_BORNLOGIC"
+            "CREATIVE_AUTHORING_SOURCE_BORNLOGIC",
+            "CREATIVE_AUTHORING_SOURCE_BEGEN_AI"
           ],
           "enumDescriptions": [
             "DCM-UI or external API used to author the creative.",
@@ -13005,7 +13006,8 @@
             "Creative authoring source is Typeface.ai.",
             "Creative authoring source is Rembrand.",
             "Creative authoring source is Trackto.",
-            "Creative authoring source is Bornlogic."
+            "Creative authoring source is Bornlogic.",
+            "Creative authoring source is BEGEN_AI."
           ],
           "type": "string"
         },

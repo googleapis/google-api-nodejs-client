@@ -148,7 +148,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -5171,7 +5171,7 @@
       }
     }
   },
-  "revision": "20260421",
+  "revision": "20260512",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "AccessDeterminationLogConfig": {
@@ -5628,6 +5628,10 @@
         "until": {
           "description": "Optional. If provided, only resources updated before or atthis time are deleted. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.",
           "type": "string"
+        },
+        "validateOnly": {
+          "description": "Optional. If set to true, the request will only perform a dry run. By default (once the behavior change is fully rolled out), this will default to true. During the transition period, the default depends on the Mendel flag status for the project.",
+          "type": "boolean"
         },
         "versionConfig": {
           "description": "Optional. Specifies which version of the resources to delete.",

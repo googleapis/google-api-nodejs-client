@@ -4,6 +4,12 @@
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
+        },
+        "https://www.googleapis.com/auth/datalineage.read-write": {
+          "description": "See, edit, configure, and delete your Google Cloud Data Lineage data and see the email address for your Google Account"
+        },
+        "https://www.googleapis.com/auth/datalineage.readonly": {
+          "description": "See your Google Cloud Data Lineage data and the email address of your Google Account"
         }
       }
     }
@@ -581,7 +587,9 @@
                 "$ref": "GoogleCloudDatacatalogLineageV1SearchLineageStreamingResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/datalineage.read-write",
+                "https://www.googleapis.com/auth/datalineage.readonly"
               ]
             },
             "searchLinks": {
@@ -1275,7 +1283,7 @@
       }
     }
   },
-  "revision": "20260506",
+  "revision": "20260515",
   "rootUrl": "https://datalineage.googleapis.com/",
   "schemas": {
     "GoogleCloudDatacatalogLineageConfigmanagementV1Config": {
@@ -1375,7 +1383,7 @@
           "type": "integer"
         },
         "pageToken": {
-          "description": "The page token received from a previous `BatchSearchLinkProcesses` call. Use it to get the next page. When requesting subsequent pages of a response, remember that all parameters must match the values you provided in the original request.",
+          "description": "Optional. The page token received from a previous `BatchSearchLinkProcesses` call. Use it to get the next page. When requesting subsequent pages of a response, remember that all parameters must match the values you provided in the original request.",
           "type": "string"
         }
       },
