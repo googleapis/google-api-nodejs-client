@@ -786,7 +786,7 @@
       }
     }
   },
-  "revision": "20260426",
+  "revision": "20260505",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -1203,7 +1203,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Optional. Enumerated string value that indicates the identity of the bot, formatted in kebab-case.",
+          "description": "Optional. Enumerated string value that indicates the identity of the bot, formatted in kebab-case. Current example values include the following: * google-agent * browser-base * chat-gpt * aws-bedrock * cybaa-bot * cloudflare * payhawk Ensure that your applications can handle identifier values not explicitly listed here. Deprecated values might take some time to stop showing up in responses. New values can be pushed so this list should be taken as non exhaustive.",
           "type": "string"
         }
       },
