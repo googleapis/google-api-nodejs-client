@@ -490,7 +490,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+              "description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "artifactregistry.projects.locations.list",
@@ -499,7 +499,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -667,6 +667,35 @@
             },
             "repositories": {
               "methods": {
+                "checkPrewarmedArtifact": {
+                  "description": "Checks an artifact streaming.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:checkPrewarmedArtifact",
+                  "httpMethod": "POST",
+                  "id": "artifactregistry.projects.locations.repositories.checkPrewarmedArtifact",
+                  "parameterOrder": [
+                    "repository"
+                  ],
+                  "parameters": {
+                    "repository": {
+                      "description": "Required. The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. If the package or version ID parts contain slashes, the slashes are escaped.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+repository}:checkPrewarmedArtifact",
+                  "request": {
+                    "$ref": "CheckPrewarmedArtifactRequest"
+                  },
+                  "response": {
+                    "$ref": "CheckPrewarmedArtifactResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
                 "create": {
                   "description": "Creates a repository. The returned Operation will finish once the repository has been created. Its response will be the created Repository.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories",
@@ -890,6 +919,64 @@
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "prewarmArtifact": {
+                  "description": "Prewarms an artifact for streaming.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:prewarmArtifact",
+                  "httpMethod": "POST",
+                  "id": "artifactregistry.projects.locations.repositories.prewarmArtifact",
+                  "parameterOrder": [
+                    "repository"
+                  ],
+                  "parameters": {
+                    "repository": {
+                      "description": "Required. The repository name, for example: `projects/p1/locations/us-central1/repositories/repo1`. If the package or version ID parts contain slashes, the slashes are escaped.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+repository}:prewarmArtifact",
+                  "request": {
+                    "$ref": "PrewarmArtifactRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "removePrewarmedArtifact": {
+                  "description": "Removes an artifact from streaming.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:removePrewarmedArtifact",
+                  "httpMethod": "POST",
+                  "id": "artifactregistry.projects.locations.repositories.removePrewarmedArtifact",
+                  "parameterOrder": [
+                    "repository"
+                  ],
+                  "parameters": {
+                    "repository": {
+                      "description": "Required. The repository name, for example: `projects/p1/locations/us-central1/repositories/repo1`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+repository}:removePrewarmedArtifact",
+                  "request": {
+                    "$ref": "RemovePrewarmedArtifactRequest"
+                  },
+                  "response": {
+                    "$ref": "RemovePrewarmedArtifactResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
                   ]
                 },
                 "setIamPolicy": {
@@ -2276,6 +2363,52 @@
                     }
                   }
                 },
+                "prewarmedArtifacts": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists all streamed artifacts in a repository.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/prewarmedArtifacts",
+                      "httpMethod": "GET",
+                      "id": "artifactregistry.projects.locations.repositories.prewarmedArtifacts.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filter should only support The location of the prewarmed artifacts. multi-region is not supported for this field.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of prewarmed artifacts to return. Maximum page size is 1,000. Default page size is 100.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The next_page_token value returned from a previous list request, if any.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The repository of the artifact to list. Format: projects/{project}/locations/{location}/repositories/{repository}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/prewarmedArtifacts",
+                      "response": {
+                        "$ref": "ListPrewarmedArtifactsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    }
+                  }
+                },
                 "pythonPackages": {
                   "methods": {
                     "get": {
@@ -2581,7 +2714,7 @@
       }
     }
   },
-  "revision": "20260320",
+  "revision": "20260522",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -2759,6 +2892,36 @@
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "CheckPrewarmedArtifactRequest": {
+      "description": "The request for checking an artifact for streaming.",
+      "id": "CheckPrewarmedArtifactRequest",
+      "properties": {
+        "streamLocation": {
+          "description": "Optional. The location of the prewarmed artifact. multi-region is not supported for this field.",
+          "type": "string"
+        },
+        "tag": {
+          "description": "Optional. The artifact tag Format:projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/tags/{tag}",
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. The artifact version Format: projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/versions/{version}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CheckPrewarmedArtifactResponse": {
+      "description": "The response for checking an artifact for streaming.",
+      "id": "CheckPrewarmedArtifactResponse",
+      "properties": {
+        "prewarmedArtifact": {
+          "$ref": "PrewarmedArtifact",
+          "description": "The prewarmed artifact that was checked."
+        }
+      },
       "type": "object"
     },
     "CleanupPolicy": {
@@ -3790,6 +3953,24 @@
       },
       "type": "object"
     },
+    "ListPrewarmedArtifactsResponse": {
+      "description": "The response for listing artifacts for streaming.",
+      "id": "ListPrewarmedArtifactsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The token to retrieve the next page of prewarmed artifacts, or empty if there are no more streamings to return.",
+          "type": "string"
+        },
+        "prewarmedArtifacts": {
+          "description": "The prewarmed artifacts.",
+          "items": {
+            "$ref": "PrewarmedArtifact"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListPythonPackagesResponse": {
       "description": "The response from listing python packages.",
       "id": "ListPythonPackagesResponse",
@@ -4206,6 +4387,65 @@
       },
       "type": "object"
     },
+    "PrewarmArtifactRequest": {
+      "description": "The request for prewarming an artifact for streaming.",
+      "id": "PrewarmArtifactRequest",
+      "properties": {
+        "force": {
+          "description": "Optional. If true, old artifact will be evicted to make room for the new artifact.",
+          "type": "boolean"
+        },
+        "retentionDays": {
+          "description": "Optional. The retention days of the prewarmed artifact. If not specified, the artifact will be cached for 3 days.",
+          "format": "int64",
+          "type": "string"
+        },
+        "streamLocation": {
+          "description": "Optional. The location to cache the artifact in. If not specified, the artifact will be cached in the same location as the artifact. multi-region is not supported for this field.",
+          "type": "string"
+        },
+        "tag": {
+          "description": "Optional. The artifact tag Format:projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/tags/{tag}",
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. The artifact version Format: projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/versions/{version}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PrewarmArtifactResponse": {
+      "description": "The response for prewarming an artifact for streaming.",
+      "id": "PrewarmArtifactResponse",
+      "properties": {
+        "prewarmedArtifact": {
+          "$ref": "PrewarmedArtifact",
+          "description": "The prewarmed artifact that was prewarmed."
+        }
+      },
+      "type": "object"
+    },
+    "PrewarmedArtifact": {
+      "description": "PrewarmedArtifact represents a streamed artifact.",
+      "id": "PrewarmedArtifact",
+      "properties": {
+        "expirationTime": {
+          "description": "The expiration time of the prewarmed artifact.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "location": {
+          "description": "The location of the prewarmed artifact.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URL to access the image. Example: us-west4-docker.pkg.dev/test-project/test-repo/nginx@sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ProjectConfig": {
       "description": "The Artifact Registry logging configurations that apply to a Project.",
       "id": "ProjectConfig",
@@ -4366,6 +4606,36 @@
         "yumRepository": {
           "$ref": "YumRepository",
           "description": "Specific settings for a Yum remote repository."
+        }
+      },
+      "type": "object"
+    },
+    "RemovePrewarmedArtifactRequest": {
+      "description": "The request for removing an artifact from streaming.",
+      "id": "RemovePrewarmedArtifactRequest",
+      "properties": {
+        "streamLocation": {
+          "description": "Optional. The location of the prewarmed artifact. multi-region is not supported for this field.",
+          "type": "string"
+        },
+        "tag": {
+          "description": "Optional. The artifact tag Format:projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/tags/{tag}",
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. The artifact version Format: projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/versions/{version}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RemovePrewarmedArtifactResponse": {
+      "description": "The response for removing an artifact from streaming.",
+      "id": "RemovePrewarmedArtifactResponse",
+      "properties": {
+        "prewarmedArtifact": {
+          "$ref": "PrewarmedArtifact",
+          "description": "The prewarmed artifact that was removed."
         }
       },
       "type": "object"
