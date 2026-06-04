@@ -228,6 +228,10 @@ export namespace aiplatform_v1 {
      */
     numDiffusionSteps?: number | null;
     /**
+     * The original REST API request JSON sent by the user, in the instances/parameters format. Preserved for saving alongside output artifacts so users can reproduce their requests. This field is populated by the API handler and is not user-settable.
+     */
+    originalRequestJson?: string | null;
+    /**
      * Prompt chunks for "ProModel" prompting. If set, the prompt will not be rewritten, and top-level prompt ignored.
      */
     promptInputs?: Schema$CloudAiLargeModelsVisionPromptInputs;
@@ -2832,6 +2836,15 @@ export namespace aiplatform_v1 {
   export interface Schema$GoogleCloudAiplatformV1CreateRegistryFeatureOperationMetadata {
     /**
      * Operation metadata for Feature.
+     */
+    genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
+  }
+  /**
+   * Runtime operation metadata for ServingProfileService.CreateServingProfile.
+   */
+  export interface Schema$GoogleCloudAiplatformV1CreateServingProfileOperationMetadata {
+    /**
+     * Output only. The standard operation metadata for Vertex AI.
      */
     genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
   }
@@ -13526,7 +13539,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1PauseScheduleRequest {}
   /**
-   * Represents the spec of persistent disk options.
+   * Represents the spec of persistent disk and hyperdisk options.
    */
   export interface Schema$GoogleCloudAiplatformV1PersistentDiskSpec {
     /**
@@ -13534,7 +13547,7 @@ export namespace aiplatform_v1 {
      */
     diskSizeGb?: string | null;
     /**
-     * Type of the disk (default is "pd-standard"). Valid values: "pd-ssd" (Persistent Disk Solid State Drive) "pd-standard" (Persistent Disk Hard Disk Drive) "pd-balanced" (Balanced Persistent Disk) "pd-extreme" (Extreme Persistent Disk)
+     * Type of the disk (default is "pd-standard"). Valid values: "pd-ssd" (Persistent Disk Solid State Drive) "pd-standard" (Persistent Disk Hard Disk Drive) "pd-balanced" (Balanced Persistent Disk) "pd-extreme" (Extreme Persistent Disk) "hyperdisk-balanced" (Hyperdisk Balanced) "hyperdisk-extreme" (Hyperdisk Extreme) "hyperdisk-balanced-high-availability" (Hyperdisk Balanced High Availability) "hyperdisk-ml" (Hyperdisk ML) "hyperdisk-throughput" (Hyperdisk Throughput)
      */
     diskType?: string | null;
   }
@@ -17191,6 +17204,10 @@ export namespace aiplatform_v1 {
      * Required. The category of the default container image.
      */
     defaultContainerCategory?: string | null;
+    /**
+     * Optional. Resource requests and limits for the default container.
+     */
+    resources?: Schema$GoogleCloudAiplatformV1SandboxEnvironmentTemplateResourceRequirements;
   }
   /**
    * Configuration for egress control of sandbox instances.
@@ -22246,6 +22263,10 @@ export namespace aiplatform_v1 {
      */
     enterpriseWebSearch?: Schema$GoogleCloudAiplatformV1EnterpriseWebSearch;
     /**
+     * Optional. Uses Exa.ai to search for information to answer user queries. The search results will be grounded on Exa.ai and presented to the model for response generation
+     */
+    exaAiSearch?: Schema$GoogleCloudAiplatformV1ToolExaAiSearch;
+    /**
      * Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 512 function declarations can be provided.
      */
     functionDeclarations?: Schema$GoogleCloudAiplatformV1FunctionDeclaration[];
@@ -22364,6 +22385,19 @@ export namespace aiplatform_v1 {
      * Optional. Retrieval config.
      */
     retrievalConfig?: Schema$GoogleCloudAiplatformV1RetrievalConfig;
+  }
+  /**
+   * ExaAiSearch tool type. A tool that uses the Exa.ai search engine for grounding.
+   */
+  export interface Schema$GoogleCloudAiplatformV1ToolExaAiSearch {
+    /**
+     * Required. The API key for ExaAiSearch.
+     */
+    apiKey?: string | null;
+    /**
+     * Optional. This field can be used to pass any parameter from the Exa.ai Search API.
+     */
+    customConfigs?: {[key: string]: any} | null;
   }
   /**
    * GoogleSearch tool type. Tool to support Google Search in Model. Powered by Google.
@@ -138906,7 +138940,7 @@ export namespace aiplatform_v1 {
      *     await aiplatform.projects.locations.reasoningEngines.memories.patch({
      *       // Identifier. Represents the resource name of the Memory. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/memories/{memory\}`
      *       name: 'projects/my-project/locations/my-location/reasoningEngines/my-reasoningEngine/memories/my-memorie',
-     *       // Optional. Mask specifying which fields to update. Supported fields: * `display_name` * `description` * `fact`
+     *       // Optional. Mask specifying which fields to update. The following fields are immutable: * `scope` * `memory_type`
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -139584,7 +139618,7 @@ export namespace aiplatform_v1 {
      */
     name?: string;
     /**
-     * Optional. Mask specifying which fields to update. Supported fields: * `display_name` * `description` * `fact`
+     * Optional. Mask specifying which fields to update. The following fields are immutable: * `scope` * `memory_type`
      */
     updateMask?: string;
 
