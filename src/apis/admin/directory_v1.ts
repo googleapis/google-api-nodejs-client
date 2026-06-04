@@ -2243,6 +2243,10 @@ export namespace admin_directory_v1 {
      */
     aliases?: string[] | null;
     /**
+     * Output only. User's account archival time. (Read-only)
+     */
+    archivalTime?: string | null;
+    /**
      * Indicates if user is archived.
      */
     archived?: boolean | null;
@@ -2407,6 +2411,10 @@ export namespace admin_directory_v1 {
      * Output only. Has the reason a user account is suspended either by the administrator or by Google at the time of suspension. The property is returned only if the `suspended` property is `true`.
      */
     suspensionReason?: string | null;
+    /**
+     * Output only. User's account suspension time. (Read-only)
+     */
+    suspensionTime?: string | null;
     /**
      * Output only. ETag of the user's photo (Read-only)
      */
@@ -20743,6 +20751,7 @@ export namespace admin_directory_v1 {
      *   //   "addresses": {},
      *   //   "agreedToTerms": false,
      *   //   "aliases": [],
+     *   //   "archivalTime": "my_archivalTime",
      *   //   "archived": false,
      *   //   "changePasswordAtNextLogin": false,
      *   //   "creationTime": "my_creationTime",
@@ -20785,6 +20794,7 @@ export namespace admin_directory_v1 {
      *   //   "sshPublicKeys": {},
      *   //   "suspended": false,
      *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "suspensionTime": "my_suspensionTime",
      *   //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
      *   //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
      *   //   "websites": {}
@@ -21065,6 +21075,7 @@ export namespace admin_directory_v1 {
      *   //   "addresses": {},
      *   //   "agreedToTerms": false,
      *   //   "aliases": [],
+     *   //   "archivalTime": "my_archivalTime",
      *   //   "archived": false,
      *   //   "changePasswordAtNextLogin": false,
      *   //   "creationTime": "my_creationTime",
@@ -21107,6 +21118,7 @@ export namespace admin_directory_v1 {
      *   //   "sshPublicKeys": {},
      *   //   "suspended": false,
      *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "suspensionTime": "my_suspensionTime",
      *   //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
      *   //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
      *   //   "websites": {}
@@ -21248,6 +21260,7 @@ export namespace admin_directory_v1 {
      *       //   "addresses": {},
      *       //   "agreedToTerms": false,
      *       //   "aliases": [],
+     *       //   "archivalTime": "my_archivalTime",
      *       //   "archived": false,
      *       //   "changePasswordAtNextLogin": false,
      *       //   "creationTime": "my_creationTime",
@@ -21290,6 +21303,7 @@ export namespace admin_directory_v1 {
      *       //   "sshPublicKeys": {},
      *       //   "suspended": false,
      *       //   "suspensionReason": "my_suspensionReason",
+     *       //   "suspensionTime": "my_suspensionTime",
      *       //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
      *       //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
      *       //   "websites": {}
@@ -21303,6 +21317,7 @@ export namespace admin_directory_v1 {
      *   //   "addresses": {},
      *   //   "agreedToTerms": false,
      *   //   "aliases": [],
+     *   //   "archivalTime": "my_archivalTime",
      *   //   "archived": false,
      *   //   "changePasswordAtNextLogin": false,
      *   //   "creationTime": "my_creationTime",
@@ -21345,6 +21360,7 @@ export namespace admin_directory_v1 {
      *   //   "sshPublicKeys": {},
      *   //   "suspended": false,
      *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "suspensionTime": "my_suspensionTime",
      *   //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
      *   //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
      *   //   "websites": {}
@@ -21788,6 +21804,7 @@ export namespace admin_directory_v1 {
      *       //   "addresses": {},
      *       //   "agreedToTerms": false,
      *       //   "aliases": [],
+     *       //   "archivalTime": "my_archivalTime",
      *       //   "archived": false,
      *       //   "changePasswordAtNextLogin": false,
      *       //   "creationTime": "my_creationTime",
@@ -21830,6 +21847,7 @@ export namespace admin_directory_v1 {
      *       //   "sshPublicKeys": {},
      *       //   "suspended": false,
      *       //   "suspensionReason": "my_suspensionReason",
+     *       //   "suspensionTime": "my_suspensionTime",
      *       //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
      *       //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
      *       //   "websites": {}
@@ -21843,6 +21861,7 @@ export namespace admin_directory_v1 {
      *   //   "addresses": {},
      *   //   "agreedToTerms": false,
      *   //   "aliases": [],
+     *   //   "archivalTime": "my_archivalTime",
      *   //   "archived": false,
      *   //   "changePasswordAtNextLogin": false,
      *   //   "creationTime": "my_creationTime",
@@ -21885,6 +21904,7 @@ export namespace admin_directory_v1 {
      *   //   "sshPublicKeys": {},
      *   //   "suspended": false,
      *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "suspensionTime": "my_suspensionTime",
      *   //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
      *   //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
      *   //   "websites": {}
@@ -22290,6 +22310,7 @@ export namespace admin_directory_v1 {
      *       //   "addresses": {},
      *       //   "agreedToTerms": false,
      *       //   "aliases": [],
+     *       //   "archivalTime": "my_archivalTime",
      *       //   "archived": false,
      *       //   "changePasswordAtNextLogin": false,
      *       //   "creationTime": "my_creationTime",
@@ -22332,6 +22353,7 @@ export namespace admin_directory_v1 {
      *       //   "sshPublicKeys": {},
      *       //   "suspended": false,
      *       //   "suspensionReason": "my_suspensionReason",
+     *       //   "suspensionTime": "my_suspensionTime",
      *       //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
      *       //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
      *       //   "websites": {}
@@ -22345,6 +22367,7 @@ export namespace admin_directory_v1 {
      *   //   "addresses": {},
      *   //   "agreedToTerms": false,
      *   //   "aliases": [],
+     *   //   "archivalTime": "my_archivalTime",
      *   //   "archived": false,
      *   //   "changePasswordAtNextLogin": false,
      *   //   "creationTime": "my_creationTime",
@@ -22387,6 +22410,7 @@ export namespace admin_directory_v1 {
      *   //   "sshPublicKeys": {},
      *   //   "suspended": false,
      *   //   "suspensionReason": "my_suspensionReason",
+     *   //   "suspensionTime": "my_suspensionTime",
      *   //   "thumbnailPhotoEtag": "my_thumbnailPhotoEtag",
      *   //   "thumbnailPhotoUrl": "my_thumbnailPhotoUrl",
      *   //   "websites": {}
