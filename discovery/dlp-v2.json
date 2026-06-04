@@ -5128,7 +5128,7 @@
       }
     }
   },
-  "revision": "20260516",
+  "revision": "20260528",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -5508,6 +5508,29 @@
         "allAssetInventoryAssets": {
           "description": "All AWS assets stored in Asset Inventory that didn't match other AWS discovery configs.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2BatchContentItem": {
+      "description": "Represents a batch of content to inspect or redact.",
+      "id": "GooglePrivacyDlpV2BatchContentItem",
+      "properties": {
+        "stringValueBatch": {
+          "$ref": "GooglePrivacyDlpV2StringValueBatch",
+          "description": "Optional. Represents a batch of string values to inspect or redact."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2BatchContentLocation": {
+      "description": "Location within a batch of content.",
+      "id": "GooglePrivacyDlpV2BatchContentLocation",
+      "properties": {
+        "itemIndex": {
+          "description": "Matches an index of a batch item in the batch provided in the request.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -6523,6 +6546,10 @@
       "description": "Type of content to inspect.",
       "id": "GooglePrivacyDlpV2ContentItem",
       "properties": {
+        "batchContentItem": {
+          "$ref": "GooglePrivacyDlpV2BatchContentItem",
+          "description": "Represents a batch of items to inspect."
+        },
         "byteItem": {
           "$ref": "GooglePrivacyDlpV2ByteContentItem",
           "description": "Content data to inspect or redact. Replaces `type` and `data`."
@@ -6550,6 +6577,10 @@
       "description": "Precise location of the finding within a document, record, image, or metadata container.",
       "id": "GooglePrivacyDlpV2ContentLocation",
       "properties": {
+        "batchContentLocation": {
+          "$ref": "GooglePrivacyDlpV2BatchContentLocation",
+          "description": "Location within a batch of content."
+        },
         "containerName": {
           "description": "Name of the container where the finding is located. The top level name is the source file name or table name. Names of some common storage containers are formatted as follows: * BigQuery tables: `{project_id}:{dataset_id}.{table_id}` * Cloud Storage files: `gs://{bucket}/{path}` * Datastore namespace: {namespace} Nested names could be absent if the embedded object has no string identifier (for example, an image contained within a document).",
           "type": "string"
@@ -12344,6 +12375,20 @@
         "name": {
           "description": "Resource name of the requested `StoredInfoType`, for example `organizations/433245324/storedInfoTypes/432452342` or `projects/project-id/storedInfoTypes/432452342`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2StringValueBatch": {
+      "description": "Represents a batch of string values to inspect or redact.",
+      "id": "GooglePrivacyDlpV2StringValueBatch",
+      "properties": {
+        "values": {
+          "description": "Optional. Represents string data to inspect or redact.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
