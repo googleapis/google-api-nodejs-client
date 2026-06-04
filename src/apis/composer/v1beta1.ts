@@ -1210,6 +1210,10 @@ export namespace composer_v1beta1 {
      * Identifier. The resource name of the Secret, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}/userWorkloadsSecrets/{userWorkloadsSecretId\}"
      */
     name?: string | null;
+    /**
+     * Optional. The "type" field of Kubernetes Secret. For details see: https://kubernetes.io/docs/concepts/configuration/secret/#secret-types
+     */
+    type?: string | null;
   }
   /**
    * The configuration settings for the Airflow web server App Engine instance. Supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.
@@ -4508,7 +4512,8 @@ export namespace composer_v1beta1 {
      *         // request body parameters
      *         // {
      *         //   "data": {},
-     *         //   "name": "my_name"
+     *         //   "name": "my_name",
+     *         //   "type": "my_type"
      *         // }
      *       },
      *     });
@@ -4517,7 +4522,8 @@ export namespace composer_v1beta1 {
      *   // Example response
      *   // {
      *   //   "data": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "type": "my_type"
      *   // }
      * }
      *
@@ -4798,7 +4804,8 @@ export namespace composer_v1beta1 {
      *   // Example response
      *   // {
      *   //   "data": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "type": "my_type"
      *   // }
      * }
      *
@@ -5097,7 +5104,8 @@ export namespace composer_v1beta1 {
      *         // request body parameters
      *         // {
      *         //   "data": {},
-     *         //   "name": "my_name"
+     *         //   "name": "my_name",
+     *         //   "type": "my_type"
      *         // }
      *       },
      *     });
@@ -5106,7 +5114,8 @@ export namespace composer_v1beta1 {
      *   // Example response
      *   // {
      *   //   "data": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "type": "my_type"
      *   // }
      * }
      *
