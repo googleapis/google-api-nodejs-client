@@ -569,6 +569,10 @@ export namespace networkmanagement_v1 {
      */
     cloudFunction?: Schema$CloudFunctionEndpoint;
     /**
+     * A [Cloud Run](https://cloud.google.com/run) [job](https://docs.cloud.google.com/run/docs/reference/rest/v2/projects.locations.jobs#Job) URI. Applicable only to source endpoint. The format is: projects/{project\}/locations/{location\}/jobs/{job\}
+     */
+    cloudRunJob?: string | null;
+    /**
      * A [Cloud Run](https://cloud.google.com/run) [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get) Applicable only to source endpoint.
      */
     cloudRunRevision?: Schema$CloudRunRevisionEndpoint;
