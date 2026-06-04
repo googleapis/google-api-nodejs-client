@@ -20,21 +20,6 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://threatintelligence.us-central1.rep.googleapis.com/",
       "location": "us-central1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://threatintelligence.us-east5.rep.googleapis.com/",
-      "location": "us-east5"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://threatintelligence.us-west2.rep.googleapis.com/",
-      "location": "us-west2"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://threatintelligence.us.rep.googleapis.com/",
-      "location": "us"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -832,7 +817,7 @@
       }
     }
   },
-  "revision": "20260513",
+  "revision": "20260527",
   "rootUrl": "https://threatintelligence.googleapis.com/",
   "schemas": {
     "Alert": {
@@ -1120,6 +1105,10 @@
         "displayName": {
           "description": "Output only. Human readable name for the configuration.",
           "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "If included when updating a configuration, this should be set to the current etag of the configuration. If the etags do not match, the update will be rejected and an ABORTED error will be returned.",
           "type": "string"
         },
         "name": {

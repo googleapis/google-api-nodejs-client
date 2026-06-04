@@ -326,6 +326,10 @@ export namespace threatintelligence_v1beta {
      */
     displayName?: string | null;
     /**
+     * If included when updating a configuration, this should be set to the current etag of the configuration. If the etags do not match, the update will be rejected and an ABORTED error will be returned.
+     */
+    etag?: string | null;
+    /**
      * Identifier. Server generated name for the configuration. format is projects/{project\}/configurations/{configuration\}
      */
     name?: string | null;
@@ -3526,6 +3530,7 @@ export namespace threatintelligence_v1beta {
      *   //   "description": "my_description",
      *   //   "detail": {},
      *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "provider": "my_provider",
      *   //   "state": "my_state",
@@ -3821,6 +3826,7 @@ export namespace threatintelligence_v1beta {
      *       //   "description": "my_description",
      *       //   "detail": {},
      *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
      *       //   "name": "my_name",
      *       //   "provider": "my_provider",
      *       //   "state": "my_state",
