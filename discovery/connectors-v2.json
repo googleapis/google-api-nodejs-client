@@ -999,6 +999,12 @@
                           "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "toolNames": {
+                          "description": "List of tool names for selective tool fetching.",
+                          "location": "query",
+                          "repeated": true,
+                          "type": "string"
                         }
                       },
                       "path": "v2/{+parent}/tools",
@@ -1018,7 +1024,7 @@
       }
     }
   },
-  "revision": "20260427",
+  "revision": "20260527",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AccessCredentials": {

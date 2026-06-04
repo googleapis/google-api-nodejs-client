@@ -194,11 +194,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudtrace.us-central2.rep.googleapis.com/",
-      "location": "us-central2"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://cloudtrace.us-east1.rep.googleapis.com/",
       "location": "us-east1"
     },
@@ -494,7 +489,7 @@
       }
     }
   },
-  "revision": "20260508",
+  "revision": "20260529",
   "rootUrl": "https://cloudtrace.googleapis.com/",
   "schemas": {
     "Empty": {

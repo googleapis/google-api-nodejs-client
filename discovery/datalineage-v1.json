@@ -1283,7 +1283,7 @@
       }
     }
   },
-  "revision": "20260515",
+  "revision": "20260522",
   "rootUrl": "https://datalineage.googleapis.com/",
   "schemas": {
     "GoogleCloudDatacatalogLineageConfigmanagementV1Config": {
@@ -1955,7 +1955,7 @@
           "description": "Optional. Limits for the search."
         },
         "locations": {
-          "description": "Required. The locations to search in.",
+          "description": "Required. The locations to search in. This list should contain the location from the `parent` field.",
           "items": {
             "type": "string"
           },
