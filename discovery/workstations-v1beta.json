@@ -1175,7 +1175,7 @@
       }
     }
   },
-  "revision": "20260506",
+  "revision": "20260526",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -2732,31 +2732,10 @@
       },
       "type": "object"
     },
-    "WorkstationGceRegionalPersistentDisk": {
-      "description": "A Persistent Directory backed by a Compute Engine regional persistent disk within the workstation.",
-      "id": "WorkstationGceRegionalPersistentDisk",
-      "properties": {
-        "name": {
-          "description": "The name of the persistent directory.",
-          "type": "string"
-        },
-        "sizeGb": {
-          "description": "Required. The desired size of the persistent directory in GB.",
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
     "WorkstationPersistentDirectory": {
       "description": "A directory to persist across workstation sessions. Updates to this field will only take effect on this workstation after it is restarted.",
       "id": "WorkstationPersistentDirectory",
       "properties": {
-        "gcePd": {
-          "$ref": "WorkstationGceRegionalPersistentDisk",
-          "deprecated": true,
-          "description": "A PersistentDirectory backed by a Compute Engine persistent disk."
-        },
         "mountPath": {
           "description": "Optional. The mount path of the persistent directory.",
           "type": "string"

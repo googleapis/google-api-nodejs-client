@@ -1270,26 +1270,9 @@ export namespace workstations_v1beta {
     updateTime?: string | null;
   }
   /**
-   * A Persistent Directory backed by a Compute Engine regional persistent disk within the workstation.
-   */
-  export interface Schema$WorkstationGceRegionalPersistentDisk {
-    /**
-     * The name of the persistent directory.
-     */
-    name?: string | null;
-    /**
-     * Required. The desired size of the persistent directory in GB.
-     */
-    sizeGb?: number | null;
-  }
-  /**
    * A directory to persist across workstation sessions. Updates to this field will only take effect on this workstation after it is restarted.
    */
   export interface Schema$WorkstationPersistentDirectory {
-    /**
-     * A PersistentDirectory backed by a Compute Engine persistent disk.
-     */
-    gcePd?: Schema$WorkstationGceRegionalPersistentDisk;
     /**
      * Optional. The mount path of the persistent directory.
      */
