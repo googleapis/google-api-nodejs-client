@@ -2297,9 +2297,13 @@ export namespace alloydb_v1alpha {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 32
+   * Common model for database resource instance metadata. Next ID: 35
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata {
+    /**
+     * Field to ingest additional metadata whichd does not support proto format.
+     */
+    additionalMetadata?: {[key: string]: any} | null;
     /**
      * Availability configuration for this instance
      */
@@ -2352,6 +2356,14 @@ export namespace alloydb_v1alpha {
      * The type of the instance. Specified at creation time.
      */
     instanceType?: string | null;
+    /**
+     * Field to ingest additional metadata which support proto format.
+     */
+    internalAdditionalMetadata?: {[key: string]: any} | null;
+    /**
+     * Optional. Private and public IP address of the resource.
+     */
+    ipAddress?: Schema$StorageDatabasecenterPartnerapiV1mainIpAddress;
     /**
      * Optional. Whether deletion protection is enabled for this resource.
      */
@@ -2539,6 +2551,19 @@ export namespace alloydb_v1alpha {
      * Required. internal resource name for spanner this will be database name e.g."spanner.googleapis.com/projects/123/abc/instances/inst1/databases/db1"
      */
     resourceName?: string | null;
+  }
+  /**
+   * Used to send IP address information for a database resource.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainIpAddress {
+    /**
+     * The private IP address assigned to the resource within a Virtual Private Cloud (VPC). This IP is only reachable from within the same VPC network. Stored in standard string format (e.g., "10.0.0.2").
+     */
+    privateIp?: string | null;
+    /**
+     * The public IP address assigned to the resource. This IP is reachable from the internet. Stored in standard string format (e.g., "34.72.1.1").
+     */
+    publicIp?: string | null;
   }
   /**
    * MachineConfiguration describes the configuration of a machine specific to Database Resource.
