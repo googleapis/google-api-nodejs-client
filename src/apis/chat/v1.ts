@@ -2131,6 +2131,10 @@ export namespace chat_v1 {
    */
   export interface Schema$Membership {
     /**
+     * Output only. A user's relationship to the Workspace organization that owns the space. In spaces owned by consumer accounts, the affiliation of all members is `EXTERNAL`.
+     */
+    affiliation?: string | null;
+    /**
      * Optional. Immutable. The creation time of the membership, such as when a member joined or was invited to join a space. This field is output only, except when used to import historical memberships in import mode spaces.
      */
     createTime?: string | null;
@@ -5920,6 +5924,7 @@ export namespace chat_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "affiliation": "my_affiliation",
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "groupMember": {},
@@ -5934,6 +5939,7 @@ export namespace chat_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "affiliation": "my_affiliation",
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "groupMember": {},
@@ -6085,6 +6091,7 @@ export namespace chat_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "affiliation": "my_affiliation",
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "groupMember": {},
@@ -6234,6 +6241,7 @@ export namespace chat_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "affiliation": "my_affiliation",
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "groupMember": {},
@@ -6543,6 +6551,7 @@ export namespace chat_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "affiliation": "my_affiliation",
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "groupMember": {},
@@ -6557,6 +6566,7 @@ export namespace chat_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "affiliation": "my_affiliation",
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "groupMember": {},

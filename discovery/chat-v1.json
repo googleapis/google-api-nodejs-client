@@ -964,7 +964,7 @@
                   "enumDescriptions": [
                     "Default behavior. Notification behavior is similar to when the human user sends the message using the Chat UI: no notification is sent to the human sender.",
                     "Force notify recipients. This bypasses users' space notification settings and [Chat Do Not Disturb settings](https://support.google.com/chat/answer/9093489). This option does not bypass device-level Do Not Disturb settings. Requires [app authentication] (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).",
-                    "Silence the notification as if the recipients have [Chat Do Not Disturb](https://support.google.com/chat/answer/9093489) enabled or have muted the space. Requires [app authentication] (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)."
+                    "Do not notify recipients, and do not mark the message as unread. This behaves similarly to the user muting the conversation or enabling [Chat Do Not Disturb](https://support.google.com/chat/answer/9093489). Requires [app authentication] (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)."
                   ],
                   "location": "query",
                   "type": "string"
@@ -1849,7 +1849,7 @@
       }
     }
   },
-  "revision": "20260510",
+  "revision": "20260530",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessSettings": {
@@ -4895,6 +4895,23 @@
       "description": "Represents a membership relation in Google Chat, such as whether a user or Chat app is invited to, part of, or absent from a space.",
       "id": "Membership",
       "properties": {
+        "affiliation": {
+          "description": "Output only. A user's relationship to the Workspace organization that owns the space. In spaces owned by consumer accounts, the affiliation of all members is `EXTERNAL`.",
+          "enum": [
+            "AFFILIATION_UNSPECIFIED",
+            "INTERNAL",
+            "EXTERNAL",
+            "MANAGED_EXTERNAL"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "An account managed by the same Google Workspace organization that owns the space.",
+            "An account external to the Google Workspace organization that owns the space (e.g., a consumer account, or an account managed by a different Workspace organization).",
+            "An account managed by the Workspace organization that owns the space, but provisioned for a user who is external to the organization (e.g., a Guest user). To learn more about guests, see https://support.google.com/chat/answer/16997417."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "createTime": {
           "description": "Optional. Immutable. The creation time of the membership, such as when a member joined or was invited to join a space. This field is output only, except when used to import historical memberships in import mode spaces.",
           "format": "google-datetime",
