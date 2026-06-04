@@ -1795,7 +1795,7 @@
       }
     }
   },
-  "revision": "20260520",
+  "revision": "20260527",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -2820,6 +2820,10 @@
         "cloudFunction": {
           "$ref": "CloudFunctionEndpoint",
           "description": "A [Cloud Function](https://cloud.google.com/functions). Applicable only to source endpoint."
+        },
+        "cloudRunJob": {
+          "description": "A [Cloud Run](https://cloud.google.com/run) [job](https://docs.cloud.google.com/run/docs/reference/rest/v2/projects.locations.jobs#Job) URI. Applicable only to source endpoint. The format is: projects/{project}/locations/{location}/jobs/{job}",
+          "type": "string"
         },
         "cloudRunRevision": {
           "$ref": "CloudRunRevisionEndpoint",
