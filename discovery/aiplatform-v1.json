@@ -22751,7 +22751,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Optional. Mask specifying which fields to update. Supported fields: * `display_name` * `description` * `fact`",
+                          "description": "Optional. Mask specifying which fields to update. The following fields are immutable: * `scope` * `memory_type`",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -32357,7 +32357,7 @@
       }
     }
   },
-  "revision": "20260509",
+  "revision": "20260523",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoExperiments": {
@@ -32397,6 +32397,10 @@
           "description": "Number of diffusion steps",
           "format": "int32",
           "type": "integer"
+        },
+        "originalRequestJson": {
+          "description": "The original REST API request JSON sent by the user, in the instances/parameters format. Preserved for saving alongside output artifacts so users can reproduce their requests. This field is populated by the API handler and is not user-settable.",
+          "type": "string"
         },
         "promptInputs": {
           "$ref": "CloudAiLargeModelsVisionPromptInputs",
@@ -36059,6 +36063,18 @@
         "genericMetadata": {
           "$ref": "GoogleCloudAiplatformV1GenericOperationMetadata",
           "description": "Operation metadata for Feature."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1CreateServingProfileOperationMetadata": {
+      "description": "Runtime operation metadata for ServingProfileService.CreateServingProfile.",
+      "id": "GoogleCloudAiplatformV1CreateServingProfileOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1GenericOperationMetadata",
+          "description": "Output only. The standard operation metadata for Vertex AI.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -50959,7 +50975,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1PersistentDiskSpec": {
-      "description": "Represents the spec of persistent disk options.",
+      "description": "Represents the spec of persistent disk and hyperdisk options.",
       "id": "GoogleCloudAiplatformV1PersistentDiskSpec",
       "properties": {
         "diskSizeGb": {
@@ -50968,7 +50984,7 @@
           "type": "string"
         },
         "diskType": {
-          "description": "Type of the disk (default is \"pd-standard\"). Valid values: \"pd-ssd\" (Persistent Disk Solid State Drive) \"pd-standard\" (Persistent Disk Hard Disk Drive) \"pd-balanced\" (Balanced Persistent Disk) \"pd-extreme\" (Extreme Persistent Disk)",
+          "description": "Type of the disk (default is \"pd-standard\"). Valid values: \"pd-ssd\" (Persistent Disk Solid State Drive) \"pd-standard\" (Persistent Disk Hard Disk Drive) \"pd-balanced\" (Balanced Persistent Disk) \"pd-extreme\" (Extreme Persistent Disk) \"hyperdisk-balanced\" (Hyperdisk Balanced) \"hyperdisk-extreme\" (Hyperdisk Extreme) \"hyperdisk-balanced-high-availability\" (Hyperdisk Balanced High Availability) \"hyperdisk-ml\" (Hyperdisk ML) \"hyperdisk-throughput\" (Hyperdisk Throughput)",
           "type": "string"
         }
       },
@@ -55998,6 +56014,10 @@
             "The default container image for Computer Use."
           ],
           "type": "string"
+        },
+        "resources": {
+          "$ref": "GoogleCloudAiplatformV1SandboxEnvironmentTemplateResourceRequirements",
+          "description": "Optional. Resource requests and limits for the default container."
         }
       },
       "type": "object"
@@ -63186,6 +63206,10 @@
           "$ref": "GoogleCloudAiplatformV1EnterpriseWebSearch",
           "description": "Optional. Tool to support searching public web data, powered by Vertex AI Search and Sec4 compliance."
         },
+        "exaAiSearch": {
+          "$ref": "GoogleCloudAiplatformV1ToolExaAiSearch",
+          "description": "Optional. Uses Exa.ai to search for information to answer user queries. The search results will be grounded on Exa.ai and presented to the model for response generation"
+        },
         "functionDeclarations": {
           "description": "Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 512 function declarations can be provided.",
           "items": {
@@ -63346,6 +63370,25 @@
         "retrievalConfig": {
           "$ref": "GoogleCloudAiplatformV1RetrievalConfig",
           "description": "Optional. Retrieval config."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ToolExaAiSearch": {
+      "description": "ExaAiSearch tool type. A tool that uses the Exa.ai search engine for grounding.",
+      "id": "GoogleCloudAiplatformV1ToolExaAiSearch",
+      "properties": {
+        "apiKey": {
+          "description": "Required. The API key for ExaAiSearch.",
+          "type": "string"
+        },
+        "customConfigs": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. This field can be used to pass any parameter from the Exa.ai Search API.",
+          "type": "object"
         }
       },
       "type": "object"

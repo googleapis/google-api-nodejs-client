@@ -8951,6 +8951,31 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "getSemanticGovernancePolicyEngine": {
+              "description": "Gets a SemanticGovernancePolicyEngine. A SemanticGovernancePolicyEngine is a singleton resource that is created when its parent is created, and deleted when its parent is deleted. This method retrieves the current state of the Semantic Governance Policy Engine.",
+              "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicyEngine",
+              "httpMethod": "GET",
+              "id": "aiplatform.projects.locations.getSemanticGovernancePolicyEngine",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the SemanticGovernancePolicyEngine to retrieve. Format: projects/{project}/locations/{location}/semanticGovernancePolicyEngine",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicyEngine$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudAiplatformV1beta1SemanticGovernancePolicyEngine"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "list": {
               "description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
               "flatPath": "v1beta1/projects/{projectsId}/locations",
@@ -9081,13 +9106,47 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "updateSemanticGovernancePolicyEngine": {
+              "description": "Updates a SemanticGovernancePolicyEngine. This method performs an upsert operation. If the SemanticGovernancePolicyEngine resource does not exist, it will be created. Otherwise, it will be updated.",
+              "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicyEngine",
+              "httpMethod": "PATCH",
+              "id": "aiplatform.projects.locations.updateSemanticGovernancePolicyEngine",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The resource name of the SemanticGovernancePolicyEngine. Format: projects/{project}/locations/{location}/semanticGovernancePolicyEngine",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicyEngine$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. Specifies the fields to be overwritten in the SemanticGovernancePolicyEngine resource by the update. The fields specified in the update_mask are relative to the resource itself. If no update_mask is provided, all fields are overwritten.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudAiplatformV1beta1SemanticGovernancePolicyEngine"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           },
           "resources": {
             "agents": {
               "methods": {
                 "create": {
-                  "description": "Creates a new Agent in a given location.",
+                  "description": "Creates an agent.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/agents",
                   "httpMethod": "POST",
                   "id": "aiplatform.projects.locations.agents.create",
@@ -9115,7 +9174,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes the specific Agent.",
+                  "description": "Deletes an agent.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}",
                   "httpMethod": "DELETE",
                   "id": "aiplatform.projects.locations.agents.delete",
@@ -9124,7 +9183,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the agent. Format: `projects/{project}/locations/{location}/agents/{agent}`",
+                      "description": "Required. The resource name of the agent to delete. Format: `projects/{project}/locations/{location}/agents/{agent}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
                       "required": true,
@@ -9140,7 +9199,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of the specific Agent.",
+                  "description": "Retrieves an agent.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}",
                   "httpMethod": "GET",
                   "id": "aiplatform.projects.locations.agents.get",
@@ -9149,7 +9208,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the agent. Format: `projects/{project}/locations/{location}/agents/{agent}`.",
+                      "description": "Required. The resource name of the agent to retrieve. Format: `projects/{project}/locations/{location}/agents/{agent}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
                       "required": true,
@@ -9165,7 +9224,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists Agents in a given location.",
+                  "description": "Lists agents in a location.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/agents",
                   "httpMethod": "GET",
                   "id": "aiplatform.projects.locations.agents.list",
@@ -9174,23 +9233,23 @@
                   ],
                   "parameters": {
                     "orderBy": {
-                      "description": "Optional. A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `create_time` * `update_time` Example: `create_time desc`.",
+                      "description": "Optional. A comma-separated list of fields to order by. Supported fields: * `create_time` * `update_time` Use `desc` after a field name for descending order. Example: `create_time desc`.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. The maximum number of agents to return. The service may return fewer than this value. If unspecified, at most 100 agents will be returned.",
+                      "description": "Optional. The maximum number of agents to return. The service may return fewer than this value. The maximum page size is 100; values above 100 will be coerced to 100. If unspecified, the default page size is 10.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. The next_page_token value returned from a previous list AgentService.ListAgents call.",
+                      "description": "Optional. A page token, received from a previous AgentService.ListAgents call. Provide this to retrieve the subsequent page.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the location to list agents from. Format: `projects/{project}/locations/{location}",
+                      "description": "Required. The resource name of the location to list agents from. Format: `projects/{project}/locations/{location}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -9206,7 +9265,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates the specific Agent.",
+                  "description": "Updates an agent.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}",
                   "httpMethod": "PATCH",
                   "id": "aiplatform.projects.locations.agents.patch",
@@ -9215,14 +9274,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Identifier. The resource name of the Agent. Format: `projects/{project}/locations/{location}/agents/{agent}`.",
+                      "description": "Identifier. The resource name of the agent. Format: `projects/{project}/locations/{location}/agents/{agent}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Optional. Field mask is used to control which fields get updated. If the mask is not present, all fields will be updated.",
+                      "description": "Optional. The list of fields to update. If not present, all fields are updated.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -31168,7 +31227,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Optional. Mask specifying which fields to update. Supported fields: * `display_name` * `description` * `fact`",
+                          "description": "Optional. Mask specifying which fields to update. The following fields are immutable: * `scope` * `memory_type`",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -34511,6 +34570,166 @@
               }
             },
             "semanticGovernancePolicies": {
+              "methods": {
+                "create": {
+                  "description": "Creates a SemanticGovernancePolicy.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicies",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.semanticGovernancePolicies.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The resource name of the Location into which to create the SemanticGovernancePolicy. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "semanticGovernancePolicyId": {
+                      "description": "Required. The ID to use for the SemanticGovernancePolicy, which will become the final component of the SemanticGovernancePolicy's resource name. This value may be up to 63 characters, and valid characters are `[a-z0-9-]`. The first character cannot be a number or hyphen. The last character must be a letter or a number.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/semanticGovernancePolicies",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1SemanticGovernancePolicy"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a SemanticGovernancePolicy.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicies/{semanticGovernancePoliciesId}",
+                  "httpMethod": "DELETE",
+                  "id": "aiplatform.projects.locations.semanticGovernancePolicies.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. The etag of the SemanticGovernancePolicy. If an etag is provided and does not match the current etag of the SemanticGovernancePolicy, deletion will be blocked and an ABORTED error will be returned.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the SemanticGovernancePolicy resource to be deleted. Format: `projects/{project}/locations/{location}/semanticGovernancePolicies/{semantic_governance_policy}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a SemanticGovernancePolicy.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicies/{semanticGovernancePoliciesId}",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.semanticGovernancePolicies.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the SemanticGovernancePolicy resource. Format: `projects/{project}/locations/{location}/semanticGovernancePolicies/{semantic_governance_policy}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1SemanticGovernancePolicy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists SemanticGovernancePolicies in a given location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicies",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.semanticGovernancePolicies.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The list page size. If zero, a default page size of 10 is used.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The standard list page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the Location from which to list the SemanticGovernancePolicies. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/semanticGovernancePolicies",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1ListSemanticGovernancePoliciesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a SemanticGovernancePolicy.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicies/{semanticGovernancePoliciesId}",
+                  "httpMethod": "PATCH",
+                  "id": "aiplatform.projects.locations.semanticGovernancePolicies.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Resource name of the SemanticGovernancePolicy.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. `update_mask` is used to specify the fields to be overwritten in the SemanticGovernancePolicy resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the mask is not present, then all fields that are populated in the request message will be overwritten. Set the `update_mask` to `*` to override all fields.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1SemanticGovernancePolicy"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "operations": {
                   "methods": {
@@ -34671,162 +34890,34 @@
               }
             },
             "semanticGovernancePolicyEngine": {
-              "resources": {
-                "operations": {
-                  "methods": {
-                    "cancel": {
-                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicyEngine/operations/{operationsId}:cancel",
-                      "httpMethod": "POST",
-                      "id": "aiplatform.projects.locations.semanticGovernancePolicyEngine.operations.cancel",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "The name of the operation resource to be cancelled.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicyEngine/operations/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta1/{+name}:cancel",
-                      "response": {
-                        "$ref": "GoogleProtobufEmpty"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "delete": {
-                      "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicyEngine/operations/{operationsId}",
-                      "httpMethod": "DELETE",
-                      "id": "aiplatform.projects.locations.semanticGovernancePolicyEngine.operations.delete",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "The name of the operation resource to be deleted.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicyEngine/operations/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta1/{+name}",
-                      "response": {
-                        "$ref": "GoogleProtobufEmpty"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "get": {
-                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicyEngine/operations/{operationsId}",
-                      "httpMethod": "GET",
-                      "id": "aiplatform.projects.locations.semanticGovernancePolicyEngine.operations.get",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "The name of the operation resource.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicyEngine/operations/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta1/{+name}",
-                      "response": {
-                        "$ref": "GoogleLongrunningOperation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "list": {
-                      "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicyEngine/operations",
-                      "httpMethod": "GET",
-                      "id": "aiplatform.projects.locations.semanticGovernancePolicyEngine.operations.list",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "filter": {
-                          "description": "The standard list filter.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "name": {
-                          "description": "The name of the operation's parent resource.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicyEngine$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "pageSize": {
-                          "description": "The standard list page size.",
-                          "format": "int32",
-                          "location": "query",
-                          "type": "integer"
-                        },
-                        "pageToken": {
-                          "description": "The standard list page token.",
-                          "location": "query",
-                          "type": "string"
-                        },
-                        "returnPartialSuccess": {
-                          "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
-                          "location": "query",
-                          "type": "boolean"
-                        }
-                      },
-                      "path": "v1beta1/{+name}/operations",
-                      "response": {
-                        "$ref": "GoogleLongrunningListOperationsResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "wait": {
-                      "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicyEngine/operations/{operationsId}:wait",
-                      "httpMethod": "POST",
-                      "id": "aiplatform.projects.locations.semanticGovernancePolicyEngine.operations.wait",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "The name of the operation resource to wait on.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicyEngine/operations/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        },
-                        "timeout": {
-                          "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
-                          "format": "google-duration",
-                          "location": "query",
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta1/{+name}:wait",
-                      "response": {
-                        "$ref": "GoogleLongrunningOperation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
+              "methods": {
+                "deprovision": {
+                  "description": "Deprovisions the SemanticGovernancePolicyEngine, tearing down the associated tenant project, GKE cluster, and PSC service attachments. This operation is irreversible. Returns a long-running operation; poll for completion. The response contains the SemanticGovernancePolicyEngine in DEPROVISIONING state.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/semanticGovernancePolicyEngine:deprovision",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.semanticGovernancePolicyEngine.deprovision",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the SemanticGovernancePolicyEngine to deprovision. Format: projects/{project}/locations/{location}/semanticGovernancePolicyEngine",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/semanticGovernancePolicyEngine$",
+                      "required": true,
+                      "type": "string"
                     }
-                  }
+                  },
+                  "path": "v1beta1/{+name}:deprovision",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1DeprovisionSemanticGovernancePolicyEngineRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
@@ -35009,7 +35100,7 @@
                       "type": "string"
                     },
                     "skillId": {
-                      "description": "Optional. The ID to use for the Skill, which will become the final component of the Skill's resource name. If not provided, a system-generated ID will be used. This value must be 1-63 characters. Valid characters are lowercase letters, numbers, and hyphens. The first character must be a lowercase letter, and the last character must be a lowercase letter or a number. Specifically, the ID must match the regular expression: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$` See [AIP-122](https://aip.dev/122#resource-id-segments) for more details.",
+                      "description": "Required. The ID to use for the Skill, which will become the final component of the Skill's resource name. If not provided, a system-generated ID will be used. This value must be 1-63 characters. Valid characters are lowercase letters, numbers, and hyphens. The first character must be a lowercase letter, and the last character must be a lowercase letter or a number. Specifically, the ID must match the regular expression: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$` See [AIP-122](https://aip.dev/122#resource-id-segments) for more details.",
                       "location": "query",
                       "type": "string"
                     }
@@ -38668,6 +38759,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "processData": {
+                  "description": "Processes data from a user's Cloud Storage bucket and saves the result to a destination Cloud Storage bucket. This method returns a long-running operation, and the `ProcessDataResponse` will be returned upon completion.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tuningJobs:processData",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.tuningJobs.processData",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The resource name of the Location to process the data in. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/tuningJobs:processData",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1ProcessDataRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "rebaseTunedModel": {
                   "description": "Rebase a tuned model. A rebase operation takes a model that was previously tuned on a base model version, and retunes it on a new base model version. The rebase operation creates a new tuning job and a new tuned model.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tuningJobs:rebaseTunedModel",
@@ -41300,7 +41419,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Optional. Mask specifying which fields to update. Supported fields: * `display_name` * `description` * `fact`",
+                  "description": "Optional. Mask specifying which fields to update. The following fields are immutable: * `scope` * `memory_type`",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -44495,166 +44614,6 @@
         }
       }
     },
-    "semanticGovernancePolicyEngine": {
-      "resources": {
-        "operations": {
-          "methods": {
-            "cancel": {
-              "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
-              "flatPath": "v1beta1/semanticGovernancePolicyEngine/operations/{operationsId}:cancel",
-              "httpMethod": "POST",
-              "id": "aiplatform.semanticGovernancePolicyEngine.operations.cancel",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "The name of the operation resource to be cancelled.",
-                  "location": "path",
-                  "pattern": "^semanticGovernancePolicyEngine/operations/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1beta1/{+name}:cancel",
-              "response": {
-                "$ref": "GoogleProtobufEmpty"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            },
-            "delete": {
-              "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-              "flatPath": "v1beta1/semanticGovernancePolicyEngine/operations/{operationsId}",
-              "httpMethod": "DELETE",
-              "id": "aiplatform.semanticGovernancePolicyEngine.operations.delete",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "The name of the operation resource to be deleted.",
-                  "location": "path",
-                  "pattern": "^semanticGovernancePolicyEngine/operations/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1beta1/{+name}",
-              "response": {
-                "$ref": "GoogleProtobufEmpty"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            },
-            "get": {
-              "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-              "flatPath": "v1beta1/semanticGovernancePolicyEngine/operations/{operationsId}",
-              "httpMethod": "GET",
-              "id": "aiplatform.semanticGovernancePolicyEngine.operations.get",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "The name of the operation resource.",
-                  "location": "path",
-                  "pattern": "^semanticGovernancePolicyEngine/operations/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1beta1/{+name}",
-              "response": {
-                "$ref": "GoogleLongrunningOperation"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            },
-            "list": {
-              "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
-              "flatPath": "v1beta1/semanticGovernancePolicyEngine/operations",
-              "httpMethod": "GET",
-              "id": "aiplatform.semanticGovernancePolicyEngine.operations.list",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "filter": {
-                  "description": "The standard list filter.",
-                  "location": "query",
-                  "type": "string"
-                },
-                "name": {
-                  "description": "The name of the operation's parent resource.",
-                  "location": "path",
-                  "pattern": "^semanticGovernancePolicyEngine$",
-                  "required": true,
-                  "type": "string"
-                },
-                "pageSize": {
-                  "description": "The standard list page size.",
-                  "format": "int32",
-                  "location": "query",
-                  "type": "integer"
-                },
-                "pageToken": {
-                  "description": "The standard list page token.",
-                  "location": "query",
-                  "type": "string"
-                },
-                "returnPartialSuccess": {
-                  "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
-                  "location": "query",
-                  "type": "boolean"
-                }
-              },
-              "path": "v1beta1/{+name}/operations",
-              "response": {
-                "$ref": "GoogleLongrunningListOperationsResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            },
-            "wait": {
-              "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
-              "flatPath": "v1beta1/semanticGovernancePolicyEngine/operations/{operationsId}:wait",
-              "httpMethod": "POST",
-              "id": "aiplatform.semanticGovernancePolicyEngine.operations.wait",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "The name of the operation resource to wait on.",
-                  "location": "path",
-                  "pattern": "^semanticGovernancePolicyEngine/operations/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                },
-                "timeout": {
-                  "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
-                  "format": "google-duration",
-                  "location": "query",
-                  "type": "string"
-                }
-              },
-              "path": "v1beta1/{+name}:wait",
-              "response": {
-                "$ref": "GoogleLongrunningOperation"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            }
-          }
-        }
-      }
-    },
     "servingProfiles": {
       "resources": {
         "operations": {
@@ -46515,7 +46474,7 @@
       }
     }
   },
-  "revision": "20260515",
+  "revision": "20260523",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoExperiments": {
@@ -46555,6 +46514,10 @@
           "description": "Number of diffusion steps",
           "format": "int32",
           "type": "integer"
+        },
+        "originalRequestJson": {
+          "description": "The original REST API request JSON sent by the user, in the instances/parameters format. Preserved for saving alongside output artifacts so users can reproduce their requests. This field is populated by the API handler and is not user-settable.",
+          "type": "string"
         },
         "promptInputs": {
           "$ref": "CloudAiLargeModelsVisionPromptInputs",
@@ -47213,7 +47176,7 @@
     "GenaiVertexV1beta1ArgumentsDelta": {
       "id": "GenaiVertexV1beta1ArgumentsDelta",
       "properties": {
-        "partial_arguments": {
+        "arguments": {
           "type": "string"
         }
       },
@@ -47355,12 +47318,12 @@
           "enum": [
             "DELIVERY_UNSPECIFIED",
             "INLINE",
-            "URL"
+            "URI"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
             "Audio data is returned inline in the response.",
-            "Audio data is returned as a URL."
+            "Audio data is returned as a URI."
           ],
           "type": "string"
         },
@@ -47791,6 +47754,107 @@
       },
       "type": "object"
     },
+    "GenaiVertexV1beta1EnvironmentConfig": {
+      "description": "Configuration for a custom environment.",
+      "id": "GenaiVertexV1beta1EnvironmentConfig",
+      "properties": {
+        "networkAllowlist": {
+          "$ref": "GenaiVertexV1beta1EnvironmentConfigEnvironmentNetworkEgressAllowlist",
+          "description": "Allow only specific domains."
+        },
+        "networkMode": {
+          "description": "Network egress mode.",
+          "enum": [
+            "NETWORK_MODE_UNSPECIFIED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Default value. Unused.",
+            "All network egress is blocked."
+          ],
+          "type": "string"
+        },
+        "sources": {
+          "items": {
+            "$ref": "GenaiVertexV1beta1EnvironmentConfigSource"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1EnvironmentConfigEgressRule": {
+      "description": "A network egress rule that controls which external domains the environment is allowed to reach. Each rule identifies a target domain and, optionally, a set of HTTP headers to inject into every matching outbound request.",
+      "id": "GenaiVertexV1beta1EnvironmentConfigEgressRule",
+      "properties": {
+        "domain": {
+          "description": "The domain pattern to match for this rule. Use an exact hostname (e.g., `github.com`), a wildcard prefix (e.g., `*.googleapis.com`), or `*` to match all domains.",
+          "type": "string"
+        },
+        "transform": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Headers to inject into requests matching this rule. Key: header name (e.g., \"Authorization\"). Value: header value (e.g., \"Bearer your-token\").",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1EnvironmentConfigEnvironmentNetworkEgressAllowlist": {
+      "description": "Network egress configuration for the environment.",
+      "id": "GenaiVertexV1beta1EnvironmentConfigEnvironmentNetworkEgressAllowlist",
+      "properties": {
+        "allowlist": {
+          "description": "List of allowed domains and their configurations.",
+          "items": {
+            "$ref": "GenaiVertexV1beta1EnvironmentConfigEgressRule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1EnvironmentConfigSource": {
+      "description": "A source to be mounted into the environment.",
+      "id": "GenaiVertexV1beta1EnvironmentConfigSource",
+      "properties": {
+        "content": {
+          "description": "The inline content if `type` is `INLINE`.",
+          "type": "string"
+        },
+        "encoding": {
+          "description": "Optional encoding for inline content (e.g. `base64`).",
+          "type": "string"
+        },
+        "source": {
+          "description": "The source of the environment. For GCS, this is the GCS path. For GitHub, this is the GitHub path.",
+          "type": "string"
+        },
+        "target": {
+          "description": "Where the source should appear in the environment.",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "GCS",
+            "INLINE",
+            "REPOSITORY",
+            "SKILL_REGISTRY"
+          ],
+          "enumDescriptions": [
+            "",
+            "A GCS bucket.",
+            "Inline content.",
+            "A generic repository. The protocol prefix in the source URL identifies the provider (e.g., github://, gcs://).",
+            "A skill resource from the Skill Registry Service. Skill: projects/{project}/locations/{location}/skills/{skill} SkillRevision: projects/{project}/locations/{location}/skills/{skill}/revisions/{revision} Support mounting all skills under a project: projects/{project}/locations/{location}/skills."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GenaiVertexV1beta1Error": {
       "description": "Error message from an interaction.",
       "id": "GenaiVertexV1beta1Error",
@@ -48085,6 +48149,7 @@
       "properties": {
         "image_config": {
           "$ref": "GenaiVertexV1beta1ImageConfig",
+          "deprecated": true,
           "description": "Configuration for image interaction."
         },
         "max_output_tokens": {
@@ -48747,12 +48812,12 @@
           "enum": [
             "DELIVERY_UNSPECIFIED",
             "INLINE",
-            "URL"
+            "URI"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
             "Image data is returned inline in the response.",
-            "Image data is returned as a URL."
+            "Image data is returned as a URI."
           ],
           "type": "string"
         },
@@ -48811,6 +48876,15 @@
           "readOnly": true,
           "type": "string"
         },
+        "env_id": {
+          "description": "The environment ID for the interaction. Can be 'remote' for default environment.",
+          "type": "string"
+        },
+        "environment_id": {
+          "description": "Output only. The environment ID for the interaction. Only populated if environment config is set in the request.",
+          "readOnly": true,
+          "type": "string"
+        },
         "id": {
           "description": "Required. Output only. A unique identifier for the interaction completion.",
           "readOnly": true,
@@ -48833,6 +48907,9 @@
           "description": "The ID of the previous interaction, if any.",
           "type": "string"
         },
+        "remoteEnvironment": {
+          "$ref": "GenaiVertexV1beta1EnvironmentConfig"
+        },
         "responseFormatList": {
           "$ref": "GenaiVertexV1beta1ResponseFormatList"
         },
@@ -48845,6 +48922,7 @@
           "description": "Enforces that the generated response is a JSON object that complies with the JSON schema specified in this field."
         },
         "response_mime_type": {
+          "deprecated": true,
           "description": "The mime type of the response. This is required if response_format is set.",
           "type": "string"
         },
@@ -48886,7 +48964,8 @@
             "COMPLETED",
             "FAILED",
             "CANCELLED",
-            "INCOMPLETE"
+            "INCOMPLETE",
+            "BUDGET_EXCEEDED"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -48895,7 +48974,8 @@
             "The interaction is completed.",
             "The interaction failed.",
             "The interaction was cancelled.",
-            "The interaction is completed, but contains incomplete results (e.g. hitting max_tokens)."
+            "The interaction is completed, but contains incomplete results (e.g. hitting max_tokens).",
+            "The interaction was halted because the token budget was exceeded."
           ],
           "readOnly": true,
           "type": "string"
@@ -48905,7 +48985,7 @@
           "description": "Input only. The steps for the interaction."
         },
         "steps": {
-          "description": "Output only. The steps that make up the interaction.",
+          "description": "Required. Output only. The steps that make up the interaction.",
           "items": {
             "$ref": "GenaiVertexV1beta1Step"
           },
@@ -48999,7 +49079,8 @@
             "COMPLETED",
             "FAILED",
             "CANCELLED",
-            "INCOMPLETE"
+            "INCOMPLETE",
+            "BUDGET_EXCEEDED"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -49008,7 +49089,8 @@
             "The interaction is completed.",
             "The interaction failed.",
             "The interaction was cancelled.",
-            "The interaction is completed, but contains incomplete results (e.g. hitting max_tokens)."
+            "The interaction is completed, but contains incomplete results (e.g. hitting max_tokens).",
+            "The interaction was halted because the token budget was exceeded."
           ],
           "type": "string"
         }
@@ -49059,6 +49141,10 @@
         "interactionStatusUpdate": {
           "$ref": "GenaiVertexV1beta1InteractionStatusUpdate",
           "description": "The interaction status data, used for interaction.status_update events."
+        },
+        "metadata": {
+          "$ref": "GenaiVertexV1beta1StreamMetadata",
+          "description": "Optional metadata accompanying ANY streamed event."
         },
         "stepDelta": {
           "$ref": "GenaiVertexV1beta1StepDelta",
@@ -49427,9 +49513,6 @@
         },
         "text": {
           "$ref": "GenaiVertexV1beta1TextResponseFormat"
-        },
-        "video": {
-          "$ref": "GenaiVertexV1beta1VideoResponseFormat"
         }
       },
       "type": "object"
@@ -49487,6 +49570,64 @@
         "url": {
           "description": "A link that corresponds to the user review on Google Maps.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ServerToolCallDelta": {
+      "id": "GenaiVertexV1beta1ServerToolCallDelta",
+      "properties": {
+        "codeExecutionCall": {
+          "$ref": "GenaiVertexV1beta1CodeExecutionCallDelta"
+        },
+        "fileSearchCall": {
+          "$ref": "GenaiVertexV1beta1FileSearchCallDelta"
+        },
+        "googleMapsCall": {
+          "$ref": "GenaiVertexV1beta1GoogleMapsCallDelta"
+        },
+        "googleSearchCall": {
+          "$ref": "GenaiVertexV1beta1GoogleSearchCallDelta"
+        },
+        "mcpServerToolCall": {
+          "$ref": "GenaiVertexV1beta1McpServerToolCallDelta"
+        },
+        "signature": {
+          "description": "A signature hash for backend validation.",
+          "format": "byte",
+          "type": "string"
+        },
+        "urlContextCall": {
+          "$ref": "GenaiVertexV1beta1UrlContextCallDelta"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1ServerToolResultDelta": {
+      "id": "GenaiVertexV1beta1ServerToolResultDelta",
+      "properties": {
+        "codeExecutionResult": {
+          "$ref": "GenaiVertexV1beta1CodeExecutionResultDelta"
+        },
+        "fileSearchResult": {
+          "$ref": "GenaiVertexV1beta1FileSearchResultDelta"
+        },
+        "googleMapsResult": {
+          "$ref": "GenaiVertexV1beta1GoogleMapsResultDelta"
+        },
+        "googleSearchResult": {
+          "$ref": "GenaiVertexV1beta1GoogleSearchResultDelta"
+        },
+        "mcpServerToolResult": {
+          "$ref": "GenaiVertexV1beta1McpServerToolResultDelta"
+        },
+        "signature": {
+          "description": "A signature hash for backend validation.",
+          "format": "byte",
+          "type": "string"
+        },
+        "urlContextResult": {
+          "$ref": "GenaiVertexV1beta1UrlContextResultDelta"
         }
       },
       "type": "object"
@@ -49557,8 +49698,17 @@
         "document": {
           "$ref": "GenaiVertexV1beta1DocumentDelta"
         },
+        "functionResult": {
+          "$ref": "GenaiVertexV1beta1FunctionResultDelta"
+        },
         "image": {
           "$ref": "GenaiVertexV1beta1ImageDelta"
+        },
+        "serverToolCall": {
+          "$ref": "GenaiVertexV1beta1ServerToolCallDelta"
+        },
+        "serverToolResult": {
+          "$ref": "GenaiVertexV1beta1ServerToolResultDelta"
         },
         "text": {
           "$ref": "GenaiVertexV1beta1TextDelta"
@@ -49611,6 +49761,15 @@
         "index": {
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GenaiVertexV1beta1StreamMetadata": {
+      "id": "GenaiVertexV1beta1StreamMetadata",
+      "properties": {
+        "usage": {
+          "$ref": "GenaiVertexV1beta1InteractionUsage"
         }
       },
       "type": "object"
@@ -50280,11 +50439,13 @@
       "description": "Input provided by the user.",
       "id": "GenaiVertexV1beta1UserInputStep",
       "properties": {
-        "content": {
-          "items": {
-            "$ref": "GenaiVertexV1beta1Content"
-          },
-          "type": "array"
+        "contentList": {
+          "$ref": "GenaiVertexV1beta1ContentList",
+          "description": "The content of the step. An array of Content objects."
+        },
+        "contentString": {
+          "description": "The content of the step. A single string.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -50425,12 +50586,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "GenaiVertexV1beta1VideoResponseFormat": {
-      "description": "Configuration for video output format.",
-      "id": "GenaiVertexV1beta1VideoResponseFormat",
-      "properties": {},
       "type": "object"
     },
     "GoogleApiHttpBody": {
@@ -50684,15 +50839,15 @@
       "id": "GoogleCloudAiplatformV1beta1Agent",
       "properties": {
         "base_agent": {
-          "description": "Required. The base agent of the agent. Supported values: - \"antigravity-preview-05-2026\"",
+          "description": "Required. The base agent for the agent. Supported values: * `antigravity-preview-05-2026`",
           "type": "string"
         },
         "base_environment": {
-          "description": "Optional. The environment config of the agent. Valid types are: - string value for environment_id, or 'remote' for default - struct value for EnvironmentConfig.",
+          "description": "Optional. The base environment configuration for the agent. Valid types: * A string value for the environment ID, or `remote` for the default. * A struct value for the `environment_config`.",
           "type": "any"
         },
         "created": {
-          "description": "Output only. Timestamp when the agent was created.",
+          "description": "Output only. The time the agent was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -50702,38 +50857,38 @@
           "type": "string"
         },
         "id": {
-          "description": "Immutable. The ID to use for agent, which will become the final component of the agent resource name. If not provided, Vertex AI will generate a value for this ID. This value may be up to 63 characters, and valid characters are `[a-z0-9-]`. The first character must be a letter, the last character must be a letter or number.",
+          "description": "Immutable. The user-specified ID for the agent. This ID becomes the final component of the agent resource name. If not provided, Vertex AI will generate a value for this ID. The ID can be up to 63 characters and must match the regular expression `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.",
           "type": "string"
         },
         "metadata": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. The metadata of the agent.",
+          "description": "Optional. The metadata for the agent.",
           "type": "object"
         },
         "name": {
-          "description": "Identifier. The resource name of the Agent. Format: `projects/{project}/locations/{location}/agents/{agent}`.",
+          "description": "Identifier. The resource name of the agent. Format: `projects/{project}/locations/{location}/agents/{agent}`.",
           "type": "string"
         },
         "object": {
-          "description": "Output only. The object type of this resource. Always set to \"agent\" in this case.",
+          "description": "Output only. The object type of the resource. For agents, the value is `agent`.",
           "readOnly": true,
           "type": "string"
         },
         "system_instruction": {
-          "description": "Optional. The detailed struction that the agent should follow. The instruction is passed to LLM as system instruction.",
+          "description": "Optional. The instructions for the agent to follow. These instructions are passed to the LLM as a system instruction.",
           "type": "string"
         },
         "tools": {
-          "description": "Optional. A list of tools that are available for the agent during the process of execucting the task.",
+          "description": "Optional. The tools available to the agent.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1beta1AgentTool"
           },
           "type": "array"
         },
         "updated": {
-          "description": "Output only. Timestamp when the agent was last updated.",
+          "description": "Output only. The time the agent was last updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -50835,26 +50990,26 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1AgentTool": {
-      "description": "A tool provides a list of actions that are available for the Agent during the process of executing the task.",
+      "description": "A tool provides a list of actions available to the Agent during the process of executing a task.",
       "id": "GoogleCloudAiplatformV1beta1AgentTool",
       "properties": {
         "headers": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Headers for the MCP server (e.g., authentication). Only applicable when `type` is \"mcp\".",
+          "description": "Optional. The headers for the MCP server, such as for authentication. Only applicable when `type` is `mcp_server`.",
           "type": "object"
         },
         "name": {
-          "description": "Optional. The name of the MCP server. Only applicable when `type` is \"mcp\".",
+          "description": "Optional. The name of the MCP server. Only applicable when `type` is `mcp_server`.",
           "type": "string"
         },
         "type": {
-          "description": "Required. Type of the tool. Supported types: - \"code_execution\" - \"filesystem\" - \"google_search\" - \"mcp\" - \"url_context\"",
+          "description": "Required. The type of the tool. Supported types: * `code_execution` * `filesystem` * `google_search` * `mcp_server` * `url_context`",
           "type": "string"
         },
         "url": {
-          "description": "Optional. The full URL for the MCP server endpoint. Only applicable when `type` is \"mcp\".",
+          "description": "Optional. The URL for the MCP server endpoint. Only applicable when `type` is `mcp_server`.",
           "type": "string"
         }
       },
@@ -56003,6 +56158,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1DeprovisionSemanticGovernancePolicyEngineRequest": {
+      "description": "Request message for SemanticGovernancePolicyEngineService.DeprovisionSemanticGovernancePolicyEngine.",
+      "id": "GoogleCloudAiplatformV1beta1DeprovisionSemanticGovernancePolicyEngineRequest",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1DestinationFeatureSetting": {
@@ -62408,6 +62569,61 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1GatewayConfig": {
+      "description": "Configuration for a single gateway.",
+      "id": "GoogleCloudAiplatformV1beta1GatewayConfig",
+      "properties": {
+        "dnsRecord": {
+          "description": "Output only. The fully qualified record name of the created A-record in Cloud DNS.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dnsZoneName": {
+          "description": "Optional. FQDN of the private DNS zone to create DNS record set for PSC endpoint.",
+          "type": "string"
+        },
+        "ipAddress": {
+          "description": "Output only. The private IP address of the PSC endpoint.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "network": {
+          "description": "Optional. The URI of the network resource where PSC-E will be provisioned. if not provided `default` network will be used. Format: projects/{project}/global/networks/{network}",
+          "type": "string"
+        },
+        "pscEndpoint": {
+          "description": "Output only. The self-link or name of the Private Service Connect endpoint forwarding rule.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the Gateway configuration.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "ACTIVE",
+            "DEPROVISIONING",
+            "INACTIVE",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "The Gateway is being provisioned.",
+            "The Gateway is active and ready to use.",
+            "The Gateway is being de-provisioned.",
+            "The Gateway is inactive.",
+            "The Gateway failed to be provisioned."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "subnetwork": {
+          "description": "Optional. The URI of the subnetwork resource where PSC-E will be provisioned. if not provided `default` subnet will be used from the same {location} Format: projects/{project}/regions/{region}/subnetworks/{subnetwork}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1GcsDestination": {
       "description": "The Google Cloud Storage location where the output is to be written to.",
       "id": "GoogleCloudAiplatformV1beta1GcsDestination",
@@ -65483,14 +65699,14 @@
       "id": "GoogleCloudAiplatformV1beta1ListAgentsResponse",
       "properties": {
         "agents": {
-          "description": "A list of agents matching the request.",
+          "description": "The agents matching the request.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1beta1Agent"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token, which can be sent as ListAgentsRequest.page_token to retrieve the next page. Absence of this field indicates there are no subsequent pages.",
+          "description": "A token to retrieve the next page of results. Pass this value as ListAgentsRequest.page_token in a subsequent call.",
           "type": "string"
         }
       },
@@ -66661,6 +66877,24 @@
           "description": "List of Schedules in the requested page.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1beta1Schedule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ListSemanticGovernancePoliciesResponse": {
+      "description": "Response message for SemanticGovernancePolicyService.ListSemanticGovernancePolicies.",
+      "id": "GoogleCloudAiplatformV1beta1ListSemanticGovernancePoliciesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass to ListSemanticGovernancePoliciesRequest.page_token to obtain that page.",
+          "type": "string"
+        },
+        "semanticGovernancePolicies": {
+          "description": "The list of SemanticGovernancePolicies.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1SemanticGovernancePolicy"
           },
           "type": "array"
         }
@@ -72587,7 +72821,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1PersistentDiskSpec": {
-      "description": "Represents the spec of persistent disk options.",
+      "description": "Represents the spec of persistent disk and hyperdisk options.",
       "id": "GoogleCloudAiplatformV1beta1PersistentDiskSpec",
       "properties": {
         "diskSizeGb": {
@@ -72596,7 +72830,7 @@
           "type": "string"
         },
         "diskType": {
-          "description": "Type of the disk (default is \"pd-standard\"). Valid values: \"pd-ssd\" (Persistent Disk Solid State Drive) \"pd-standard\" (Persistent Disk Hard Disk Drive) \"pd-balanced\" (Balanced Persistent Disk) \"pd-extreme\" (Extreme Persistent Disk)",
+          "description": "Type of the disk (default is \"pd-standard\"). Valid values: \"pd-ssd\" (Persistent Disk Solid State Drive) \"pd-standard\" (Persistent Disk Hard Disk Drive) \"pd-balanced\" (Balanced Persistent Disk) \"pd-extreme\" (Extreme Persistent Disk) \"hyperdisk-balanced\" (Hyperdisk Balanced) \"hyperdisk-extreme\" (Hyperdisk Extreme) \"hyperdisk-balanced-high-availability\" (Hyperdisk Balanced High Availability) \"hyperdisk-ml\" (Hyperdisk ML) \"hyperdisk-throughput\" (Hyperdisk Throughput)",
           "type": "string"
         }
       },
@@ -74026,6 +74260,44 @@
           "description": "Number of the port to access on the container. Number must be in the range 1 to 65535.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ProcessDataRequest": {
+      "description": "Request message for GenAiTuningService.ProcessData.",
+      "id": "GoogleCloudAiplatformV1beta1ProcessDataRequest",
+      "properties": {
+        "gcsDestination": {
+          "$ref": "GoogleCloudAiplatformV1beta1GcsDestination",
+          "description": "Optional. The GCS bucket to store the processed videos and captions data."
+        },
+        "gcsSource": {
+          "$ref": "GoogleCloudAiplatformV1beta1GcsSource",
+          "description": "Optional. A JSONL file containing a list of files to process stored in the user's GCS bucket."
+        },
+        "veoSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1ProcessDataRequestVeoSpec",
+          "description": "Optional. Spec for Veo data processing."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ProcessDataRequestVeoSpec": {
+      "description": "Spec for Veo data processing.",
+      "id": "GoogleCloudAiplatformV1beta1ProcessDataRequestVeoSpec",
+      "properties": {
+        "processType": {
+          "description": "Optional. The type of data processing to perform.",
+          "enum": [
+            "VEO_V1_AND_V2_DEFAULT",
+            "VEO_V3"
+          ],
+          "enumDescriptions": [
+            "Process type for Veo 1 and 2.",
+            "Process type for Veo 3."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -78919,6 +79191,10 @@
             "The default container image for Computer Use."
           ],
           "type": "string"
+        },
+        "resources": {
+          "$ref": "GoogleCloudAiplatformV1beta1SandboxEnvironmentTemplateResourceRequirements",
+          "description": "Optional. Resource requests and limits for the default container."
         }
       },
       "type": "object"
@@ -84063,6 +84339,149 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1SemanticGovernancePolicy": {
+      "description": "Represents a governance policy applied to a specific Agent and optionally a specific Tool within that Agent.",
+      "id": "GoogleCloudAiplatformV1beta1SemanticGovernancePolicy",
+      "properties": {
+        "agent": {
+          "description": "Required. The name of the agent in Agent Registry that is affected by this policy.",
+          "type": "string"
+        },
+        "agentIdentity": {
+          "description": "Output only. Represents the principal of the agent, used by the Policy Decision Point (PDP) for governance checks. For more information, see https://docs.cloud.google.com/agent-builder/agent-engine/agent-identity Format: `principal://TRUST_DOMAIN/NAMESPACE/AGENT_NAME` Example: `principal://agents.global.org-ORGANIZATION_ID.system.id.goog/resources/aiplatform/projects/PROJECT_NUMBER/locations/LOCATION/reasoningEngines/AGENT_ENGINE_ID`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Timestamp when this SemanticGovernancePolicy was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. The description of the SemanticGovernancePolicy.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. The user-defined name of the SemanticGovernancePolicy.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. Used to perform consistent read-modify-write transactions. If provided, the request will only succeed if the etag matches the current value. Otherwise, an ABORTED error will be returned.",
+          "type": "string"
+        },
+        "mcpTools": {
+          "description": "Optional. The McpTools that are affected by this policy.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1SemanticGovernancePolicyMcpTool"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Identifier. Resource name of the SemanticGovernancePolicy.",
+          "type": "string"
+        },
+        "naturalLanguageConstraint": {
+          "description": "Required. The natural language constraint of the SemanticGovernancePolicy.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when this SemanticGovernancePolicy was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1SemanticGovernancePolicyEngine": {
+      "description": "Define a singleton SemanticGovernancePolicyEngine resource under a project and location.",
+      "id": "GoogleCloudAiplatformV1beta1SemanticGovernancePolicyEngine",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp when this SemanticGovernancePolicyEngine was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "gatewayConfigs": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudAiplatformV1beta1GatewayConfig"
+          },
+          "description": "Optional. Configurations for gateways. The keys are user-defined names for each gateway.",
+          "type": "object"
+        },
+        "ipAddress": {
+          "description": "Output only. The private IPv4 address of the PSC endpoint.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the SemanticGovernancePolicyEngine. Format: projects/{project}/locations/{location}/semanticGovernancePolicyEngine",
+          "type": "string"
+        },
+        "pscForwardingRule": {
+          "description": "Output only. The URI of the PSC endpoint resource created in customer project. Format: projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pscServiceAttachment": {
+          "description": "Output only. URI of the PSC attachment resource provided by SGP. Format: projects/{project}/regions/{region}/serviceAttachments/{service_attachment}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the SemanticGovernancePolicyEngine.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "ACTIVE",
+            "DEPROVISIONING",
+            "INACTIVE",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "A provisioning operation is in progress. The engine will transition to ACTIVE on success or FAILED on failure.",
+            "The engine and all of its gateway configurations are provisioned and ready to serve traffic.",
+            "A deprovisioning operation is in progress. The engine will transition to INACTIVE on success or FAILED on failure.",
+            "The engine has no provisioned infrastructure: either never provisioned, or successfully deprovisioned.",
+            "The most recent provisioning or deprovisioning operation failed. The engine may have partial infrastructure that needs explicit deprovision; the engine may be either re-provisioned or deprovisioned to recover."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetProject": {
+          "description": "Optional. The project where network, subnetwork and dns resources are located. If not provided, it is assumed to be the same project of SemanticGovernancePolicyEngine. This field is for Shared VPC scenarios, where network resources may be in a target project and SGP engine in a service project.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when this SemanticGovernancePolicyEngine was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1SemanticGovernancePolicyMcpTool": {
+      "description": "Represents a governance policy applied to MCP tools used by an Agent.",
+      "id": "GoogleCloudAiplatformV1beta1SemanticGovernancePolicyMcpTool",
+      "properties": {
+        "mcpServer": {
+          "description": "Required. The resource name of the McpServer in Agent Registry that is affected by this policy. Format: `projects/{project}/locations/{location}/mcpServers/{mcp_server}`",
+          "type": "string"
+        },
+        "tools": {
+          "description": "Optional. The resource names of the McpTools used by the Agent that is affected by this policy. If not specified, the policy applies to all McpTools in the McpServer.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1ServiceAccountSpec": {
       "description": "Configuration for the use of custom service account to run the workloads.",
       "id": "GoogleCloudAiplatformV1beta1ServiceAccountSpec",
@@ -84391,7 +84810,7 @@
         },
         "skill": {
           "$ref": "GoogleCloudAiplatformV1beta1Skill",
-          "description": "Output only. The state of the Skill at this revision. TODO(b/503772996) Use a different proto for skill data included in skill revision",
+          "description": "Output only. The state of the Skill at this revision.",
           "readOnly": true
         },
         "state": {
@@ -87035,6 +87454,10 @@
           "$ref": "GoogleCloudAiplatformV1beta1EnterpriseWebSearch",
           "description": "Optional. Tool to support searching public web data, powered by Vertex AI Search and Sec4 compliance."
         },
+        "exaAiSearch": {
+          "$ref": "GoogleCloudAiplatformV1beta1ToolExaAiSearch",
+          "description": "Optional. Uses Exa.ai to search for information to answer user queries. The search results will be grounded on Exa.ai and presented to the model for response generation"
+        },
         "functionDeclarations": {
           "description": "Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 512 function declarations can be provided.",
           "items": {
@@ -87195,6 +87618,25 @@
         "retrievalConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1RetrievalConfig",
           "description": "Optional. Retrieval config."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ToolExaAiSearch": {
+      "description": "ExaAiSearch tool type. A tool that uses the Exa.ai search engine for grounding.",
+      "id": "GoogleCloudAiplatformV1beta1ToolExaAiSearch",
+      "properties": {
+        "apiKey": {
+          "description": "Required. The API key for ExaAiSearch.",
+          "type": "string"
+        },
+        "customConfigs": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. This field can be used to pass any parameter from the Exa.ai Search API.",
+          "type": "object"
         }
       },
       "type": "object"
