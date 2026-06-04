@@ -15,18 +15,30 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {searchads360_v0} from './v0';
+import {searchads360_v23} from './v23';
 
 export const VERSIONS = {
   v0: searchads360_v0.Searchads360,
+  v23: searchads360_v23.Searchads360,
 };
 
 export function searchads360(version: 'v0'): searchads360_v0.Searchads360;
 export function searchads360(
   options: searchads360_v0.Options
 ): searchads360_v0.Searchads360;
-export function searchads360<T = searchads360_v0.Searchads360>(
+export function searchads360(version: 'v23'): searchads360_v23.Searchads360;
+export function searchads360(
+  options: searchads360_v23.Options
+): searchads360_v23.Searchads360;
+export function searchads360<
+  T = searchads360_v0.Searchads360 | searchads360_v23.Searchads360,
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v0' | searchads360_v0.Options
+  versionOrOptions:
+    | 'v0'
+    | searchads360_v0.Options
+    | 'v23'
+    | searchads360_v23.Options
 ) {
   return getAPI<T>('searchads360', versionOrOptions, VERSIONS, this);
 }
@@ -34,6 +46,7 @@ export function searchads360<T = searchads360_v0.Searchads360>(
 const auth = new AuthPlus();
 export {auth};
 export {searchads360_v0};
+export {searchads360_v23};
 export {
   AuthPlus,
   GlobalOptions,
