@@ -354,6 +354,8 @@ export namespace storage_v1 {
           matchesSuffix?: string[];
           noncurrentTimeBefore?: string;
           numNewerVersions?: number;
+          sizeAboveBytes?: string;
+          sizeBelowBytes?: string;
         };
       }>;
     } | null;
