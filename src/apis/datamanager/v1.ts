@@ -156,6 +156,14 @@ export namespace datamanager_v1 {
    */
   export interface Schema$AdIdentifiers {
     /**
+     * Optional. The display click ID associated with this event.
+     */
+    dclid?: string | null;
+    /**
+     * Optional. Any number of encrypted user IDs.
+     */
+    encryptedUserIds?: Schema$EncryptedUserId[];
+    /**
      * Optional. The click identifier for clicks associated with app events and originating from iOS devices starting with iOS14.
      */
     gbraid?: string | null;
@@ -164,9 +172,17 @@ export namespace datamanager_v1 {
      */
     gclid?: string | null;
     /**
+     * Optional. The impression ID associated with this event.
+     */
+    impressionId?: string | null;
+    /**
      * Optional. Information gathered about the device being used (if any) at the time of landing onto the advertiser’s site after interacting with the ad.
      */
     landingPageDeviceInfo?: Schema$DeviceInfo;
+    /**
+     * Optional. The match ID field used to join this event with a previous event.
+     */
+    matchId?: string | null;
     /**
      * Optional. The mobile identifier for advertisers. This would be IDFA on iOS, AdID on Android, or other platforms’ identifiers for advertisers.
      */
@@ -184,6 +200,10 @@ export namespace datamanager_v1 {
    * The audience member to be operated on.
    */
   export interface Schema$AudienceMember {
+    /**
+     * Group of multiple identifier types.
+     */
+    compositeData?: Schema$CompositeData;
     /**
      * Optional. The consent setting for the user.
      */
@@ -277,6 +297,19 @@ export namespace datamanager_v1 {
     transactionDiscount?: number | null;
   }
   /**
+   * Composite data holding identifiers and associated data for a user. At least one of `user_data` or `ip_data` is required.
+   */
+  export interface Schema$CompositeData {
+    /**
+     * Optional. IP address data representing customer interaction used to build the audience.
+     */
+    ipData?: Schema$IpData[];
+    /**
+     * Optional. User-provided data that identifies the user.
+     */
+    userData?: Schema$UserData;
+  }
+  /**
    * [Digital Markets Act (DMA)](//digital-markets-act.ec.europa.eu/index_en) consent settings for the user.
    */
   export interface Schema$Consent {
@@ -318,6 +351,19 @@ export namespace datamanager_v1 {
      * Optional. The name of the custom variable to set. If the variable is not found for the given destination, it will be ignored.
      */
     variable?: string | null;
+  }
+  /**
+   * The count for a specific data type.
+   */
+  export interface Schema$DataTypeCount {
+    /**
+     * The count for this data type.
+     */
+    count?: string | null;
+    /**
+     * The type of data.
+     */
+    type?: string | null;
   }
   /**
    * The Google product you're sending data to. For example, a Google Ads account.
@@ -402,6 +448,27 @@ export namespace datamanager_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * A user identifier issued to be used for attribution. All fields are required if this is used.
+   */
+  export interface Schema$EncryptedUserId {
+    /**
+     * Required. The alphanumeric encrypted id.
+     */
+    encryptedId?: string | null;
+    /**
+     * Required. The encryption entity ID. This should match the encryption configuration for ad serving or Data Transfer.
+     */
+    entityId?: string | null;
+    /**
+     * Required. The encryption entity type. This should match the encryption configuration for ad serving or Data Transfer.
+     */
+    entityType?: string | null;
+    /**
+     * Required. Describes whether the encrypted cookie was received from ad serving (the %m macro) or from Data Transfer.
+     */
+    source?: string | null;
+  }
+  /**
    * Encryption information for the data being ingested.
    */
   export interface Schema$EncryptionInfo {
@@ -464,6 +531,10 @@ export namespace datamanager_v1 {
      * Optional. Information about whether the associated user has provided different types of consent.
      */
     consent?: Schema$Consent;
+    /**
+     * Optional. The conversion quantity associated with the event, for counting-based conversions.
+     */
+    conversionCount?: number | null;
     /**
      * Optional. The conversion value associated with the event, for value-based conversions.
      */
@@ -652,6 +723,10 @@ export namespace datamanager_v1 {
    */
   export interface Schema$IngestAudienceMembersStatus {
     /**
+     * The status of the composite data ingestion to the destination.
+     */
+    compositeDataIngestionStatus?: Schema$IngestCompositeDataStatus;
+    /**
      * The status of the mobile data ingestion to the destination.
      */
     mobileDataIngestionStatus?: Schema$IngestMobileDataStatus;
@@ -671,6 +746,23 @@ export namespace datamanager_v1 {
      * The status of the user id data ingestion to the destination.
      */
     userIdDataIngestionStatus?: Schema$IngestUserIdDataStatus;
+  }
+  /**
+   * The status of the composite data ingestion to the destination containing stats related to the ingestion.
+   */
+  export interface Schema$IngestCompositeDataStatus {
+    /**
+     * The total count of data types sent in the upload request for the destination, broken down by data type. Includes all data types in the request, regardless of whether they were successfully ingested or not.
+     */
+    dataTypeCounts?: Schema$DataTypeCount[];
+    /**
+     * The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.
+     */
+    recordCount?: string | null;
+    /**
+     * The match rate range of the upload.
+     */
+    uploadMatchRateRange?: string | null;
   }
   /**
    * Represents a user list that is populated by user provided data.
@@ -820,6 +912,23 @@ export namespace datamanager_v1 {
      * The total count of user ids sent in the upload request for the destination. Includes all user ids in the request, regardless of whether they were successfully ingested or not.
      */
     userIdCount?: string | null;
+  }
+  /**
+   * IP address information for a user. We recommend including observe_start_time and observe_end_time to help improve Customer Match match rates.
+   */
+  export interface Schema$IpData {
+    /**
+     * Required. IP address captured at the time of customer interaction. Accepts standard string formats for both IPv4 and IPv6.
+     */
+    ipAddress?: string | null;
+    /**
+     * Optional. Last recorded interaction time from this IP address in a session.
+     */
+    observeEndTime?: string | null;
+    /**
+     * Optional. First recorded interaction time from this IP address in a session.
+     */
+    observeStartTime?: string | null;
   }
   /**
    * Represents an item in the cart associated with the event.
@@ -1163,6 +1272,10 @@ export namespace datamanager_v1 {
    */
   export interface Schema$RemoveAudienceMembersStatus {
     /**
+     * The status of the composite data removal from the destination.
+     */
+    compositeDataRemovalStatus?: Schema$RemoveCompositeDataStatus;
+    /**
      * The status of the mobile data removal from the destination.
      */
     mobileDataRemovalStatus?: Schema$RemoveMobileDataStatus;
@@ -1182,6 +1295,19 @@ export namespace datamanager_v1 {
      * The status of the user id data removal from the destination.
      */
     userIdDataRemovalStatus?: Schema$RemoveUserIdDataStatus;
+  }
+  /**
+   * The status of the composite data removal from the destination.
+   */
+  export interface Schema$RemoveCompositeDataStatus {
+    /**
+     * The total count of data types sent in the removal request, broken down by data type. Includes all data types in the request, regardless of whether they were successfully removed or not.
+     */
+    dataTypeCounts?: Schema$DataTypeCount[];
+    /**
+     * The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.
+     */
+    recordCount?: string | null;
   }
   /**
    * The status of the mobile data removal from the destination.
