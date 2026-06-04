@@ -384,6 +384,24 @@ export namespace dlp_v2 {
     allAssetInventoryAssets?: boolean | null;
   }
   /**
+   * Represents a batch of content to inspect or redact.
+   */
+  export interface Schema$GooglePrivacyDlpV2BatchContentItem {
+    /**
+     * Optional. Represents a batch of string values to inspect or redact.
+     */
+    stringValueBatch?: Schema$GooglePrivacyDlpV2StringValueBatch;
+  }
+  /**
+   * Location within a batch of content.
+   */
+  export interface Schema$GooglePrivacyDlpV2BatchContentLocation {
+    /**
+     * Matches an index of a batch item in the batch provided in the request.
+     */
+    itemIndex?: number | null;
+  }
+  /**
    * Target used to match against for discovery with BigQuery tables
    */
   export interface Schema$GooglePrivacyDlpV2BigQueryDiscoveryTarget {
@@ -1013,6 +1031,10 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2ContentItem {
     /**
+     * Represents a batch of items to inspect.
+     */
+    batchContentItem?: Schema$GooglePrivacyDlpV2BatchContentItem;
+    /**
      * Content data to inspect or redact. Replaces `type` and `data`.
      */
     byteItem?: Schema$GooglePrivacyDlpV2ByteContentItem;
@@ -1037,6 +1059,10 @@ export namespace dlp_v2 {
    * Precise location of the finding within a document, record, image, or metadata container.
    */
   export interface Schema$GooglePrivacyDlpV2ContentLocation {
+    /**
+     * Location within a batch of content.
+     */
+    batchContentLocation?: Schema$GooglePrivacyDlpV2BatchContentLocation;
     /**
      * Name of the container where the finding is located. The top level name is the source file name or table name. Names of some common storage containers are formatted as follows: * BigQuery tables: `{project_id\}:{dataset_id\}.{table_id\}` * Cloud Storage files: `gs://{bucket\}/{path\}` * Datastore namespace: {namespace\} Nested names could be absent if the embedded object has no string identifier (for example, an image contained within a document).
      */
@@ -5020,6 +5046,15 @@ export namespace dlp_v2 {
      * Resource name of the requested `StoredInfoType`, for example `organizations/433245324/storedInfoTypes/432452342` or `projects/project-id/storedInfoTypes/432452342`.
      */
     name?: string | null;
+  }
+  /**
+   * Represents a batch of string values to inspect or redact.
+   */
+  export interface Schema$GooglePrivacyDlpV2StringValueBatch {
+    /**
+     * Optional. Represents string data to inspect or redact.
+     */
+    values?: string[] | null;
   }
   /**
    * A collection that informs the user the number of times a particular `TransformationResultCode` and error details occurred.
