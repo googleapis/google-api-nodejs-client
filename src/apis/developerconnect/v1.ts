@@ -249,6 +249,10 @@ export namespace developerconnect_v1 {
      */
     id?: string | null;
     /**
+     * Output only. The URIs of the source code, if available. For Cloud Run source deploy for example: `gs://my-bucket/my-folder/1234567890.abcde-fdbe.zip#1234567890`
+     */
+    sourceCodeUris?: string[] | null;
+    /**
      * Output only. The source commits at which this artifact was built. Extracted from provenance.
      */
     sourceCommitUris?: string[] | null;
