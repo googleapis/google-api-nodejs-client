@@ -4066,6 +4066,14 @@ export namespace compute_v1 {
      */
     enable?: boolean | null;
     /**
+     * The list of request headers that will be logged to Stackdriver.
+     */
+    loggingHttpRequestHeaders?: Schema$BackendServiceLogConfigLoggingHttpHeader[];
+    /**
+     * The list of response headers that will be logged to Stackdriver.
+     */
+    loggingHttpResponseHeaders?: Schema$BackendServiceLogConfigLoggingHttpHeader[];
+    /**
      * This field can only be specified if logging is enabled for this backend
      * service and "logConfig.optionalMode" was set to CUSTOM. Contains a list
      * of optional fields you want to include in the logs. For example:
@@ -4088,6 +4096,15 @@ export namespace compute_v1 {
      * default value is 1.0.
      */
     sampleRate?: number | null;
+  }
+  /**
+   * Determines which HTTP headers will be logged to Stackdriver.
+   */
+  export interface Schema$BackendServiceLogConfigLoggingHttpHeader {
+    /**
+     * The name of the header to be logged.
+     */
+    headerName?: string | null;
   }
   export interface Schema$BackendServiceNetworkPassThroughLbTrafficPolicy {
     /**
@@ -5970,6 +5987,79 @@ export namespace compute_v1 {
     /**
      * Year of the date. Must be from 1 to 9999, or 0 to specify a date without
      * a year.
+     */
+    year?: number | null;
+  }
+  /**
+   * Represents civil time (or occasionally physical time).
+   *
+   * This type can represent a civil time in one of a few possible ways:
+   *
+   *  * When utc_offset is set and time_zone is unset: a civil time on a calendar
+   *    day with a particular offset from UTC.
+   *  * When time_zone is set and utc_offset is unset: a civil time on a calendar
+   *    day in a particular time zone.
+   *  * When neither time_zone nor utc_offset is set: a civil time on a calendar
+   *    day in local time.
+   *
+   * The date is relative to the Proleptic Gregorian Calendar.
+   *
+   * If year, month, or day are 0, the DateTime is considered not to have a
+   * specific year, month, or day respectively.
+   *
+   * This type may also be used to represent a physical time if all the date and
+   * time fields are set and either case of the `time_offset` oneof is set.
+   * Consider using `Timestamp` message for physical time instead. If your use
+   * case also would like to store the user's timezone, that can be done in
+   * another field.
+   *
+   * This type is more flexible than some applications may want. Make sure to
+   * document and validate your application's limitations.
+   */
+  export interface Schema$DateTime {
+    /**
+     * Optional. Day of month. Must be from 1 to 31 and valid for the year and
+     * month, or 0 if specifying a datetime without a day.
+     */
+    day?: number | null;
+    /**
+     * Optional. Hours of day in 24 hour format. Should be from 0 to 23, defaults
+     * to 0 (midnight). An API may choose to allow the value "24:00:00" for
+     * scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Optional. Minutes of hour of day. Must be from 0 to 59, defaults to 0.
+     */
+    minutes?: number | null;
+    /**
+     * Optional. Month of year. Must be from 1 to 12, or 0 if specifying a
+     * datetime without a month.
+     */
+    month?: number | null;
+    /**
+     * Optional. Fractions of seconds in nanoseconds. Must be from 0 to
+     * 999,999,999, defaults to 0.
+     */
+    nanos?: number | null;
+    /**
+     * Optional. Seconds of minutes of the time. Must normally be from 0 to 59,
+     * defaults to 0. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
+    /**
+     * Time zone.
+     */
+    timeZone?: Schema$TimeZone;
+    /**
+     * UTC offset. Must be whole seconds, between -18 hours and +18 hours.
+     * For example, a UTC offset of -4:00 would be represented as
+     * { seconds: -14400 \}.
+     */
+    utcOffset?: string | null;
+    /**
+     * Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a
+     * datetime without a year.
      */
     year?: number | null;
   }
@@ -8091,6 +8181,10 @@ export namespace compute_v1 {
      */
     allPorts?: boolean | null;
     /**
+     * Output only. [Output Only]. The extensions that are attached to this ForwardingRule.
+     */
+    attachedExtensions?: Schema$ForwardingRuleAttachedExtension[];
+    /**
      * Identifies the backend service to which the forwarding rule sends traffic.
      * Required for internal and external passthrough Network Load Balancers;
      * must be omitted for all other load balancer types.
@@ -8517,6 +8611,15 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  /**
+   * Reference to an extension resource that is attached to this ForwardingRule.
+   */
+  export interface Schema$ForwardingRuleAttachedExtension {
+    /**
+     * Output only. The resource name.
+     */
+    reference?: string | null;
   }
   /**
    * Contains a list of ForwardingRule resources.
@@ -14187,34 +14290,33 @@ export namespace compute_v1 {
   }
   export interface Schema$InstanceManagedByIgmError {
     /**
-     * Output only. [Output Only] Contents of the error.
+     * Output only. Contents of the error.
      */
     error?: Schema$InstanceManagedByIgmErrorManagedInstanceError;
     /**
-     * Output only. [Output Only] Details of the instance action that triggered this error.
+     * Output only. Details of the instance action that triggered this error.
      * May be null, if the error was not caused by an action on an instance.
      * This field is optional.
      */
     instanceActionDetails?: Schema$InstanceManagedByIgmErrorInstanceActionDetails;
     /**
-     * Output only. [Output Only] The time that this error occurred.
-     * This value is in RFC3339 text format.
+     * Output only. The time that this error occurred. This value is in RFC3339 text format.
      */
     timestamp?: string | null;
   }
   export interface Schema$InstanceManagedByIgmErrorInstanceActionDetails {
     /**
-     * Output only. [Output Only] Action that managed instance group was executing on
-     * the instance when the error occurred. Possible values:
+     * Output only. Action that managed instance group was executing on the instance when the
+     * error occurred. Possible values:
      */
     action?: string | null;
     /**
-     * Output only. [Output Only] The URL of the instance.
-     * The URL can be set even if the instance has not yet been created.
+     * Output only. The URL of the instance. The URL can be set even if the instance has not
+     * yet been created.
      */
     instance?: string | null;
     /**
-     * Output only. [Output Only] Version this instance was created from, or was being
+     * Output only. Version this instance was created from, or was being
      * created from, but the creation failed. Corresponds to one of the versions
      * that were set on the Instance Group Manager resource at the time this
      * instance was being created.
@@ -14223,11 +14325,11 @@ export namespace compute_v1 {
   }
   export interface Schema$InstanceManagedByIgmErrorManagedInstanceError {
     /**
-     * Output only. [Output Only] Error code.
+     * Output only. Error code.
      */
     code?: string | null;
     /**
-     * Output only. [Output Only] Error message.
+     * Output only. Error message.
      */
     message?: string | null;
   }
@@ -22263,6 +22365,33 @@ export namespace compute_v1 {
     status?: string | null;
   }
   /**
+   * The periodic partial maintenance schedule includes 52 weeks worth of
+   * maintenance windows.
+   * LINT.IfChange(PeriodicPartialMaintenanceSchedule)
+   */
+  export interface Schema$PeriodicPartialMaintenanceSchedule {
+    /**
+     * The maintenance type in which the zone is during the given window.
+     */
+    subType?: string | null;
+    /**
+     * The target resource that the maintenance window is for.
+     * For example, "projects/my-project/zones/us-central1-a".
+     */
+    targetResource?: string | null;
+    type?: string | null;
+    /**
+     * The end civil timestamp of the window (not inclusive).
+     * This contains a time zone.
+     */
+    windowEndTime?: Schema$DateTime;
+    /**
+     * The start civil timestamp of the window.
+     * This contains a time zone.
+     */
+    windowStartTime?: Schema$DateTime;
+  }
+  /**
    * An Identity and Access Management (IAM) policy, which specifies access
    * controls for Google Cloud resources.
    *
@@ -25412,6 +25541,10 @@ export namespace compute_v1 {
    */
   export interface Schema$ResourceStatusPhysicalHostTopology {
     /**
+     * Output only. [Output Only] Additional location information of the running instance.
+     */
+    additionalAttributes?: Schema$ResourceStatusPhysicalHostTopologyAdditionalAttributes;
+    /**
      * [Output Only] The ID of the block in which the running instance is
      * located. Instances within the same block experience low network latency.
      */
@@ -25433,6 +25566,18 @@ export namespace compute_v1 {
      * than instances in the same block.
      */
     subblock?: string | null;
+  }
+  /**
+   * Additional location information of the running instance.
+   */
+  export interface Schema$ResourceStatusPhysicalHostTopologyAdditionalAttributes {
+    /**
+     * Output only. The IDs of the accelerator topologies the instance belongs to. For
+     * example
+     * The key will be topologies like "4x4", "2x2x2" and the value will be
+     * the location ID of the topologies.
+     */
+    acceleratorTopologyIds?: {[key: string]: string} | null;
   }
   /**
    * Reservation consumption information that the instance is consuming from.
@@ -25508,6 +25653,14 @@ export namespace compute_v1 {
      * the last character, which cannot be a dash.
      */
     name?: string | null;
+    /**
+     * Output only. The timestamp at which the Rollout was paused.
+     */
+    pauseTime?: string | null;
+    /**
+     * Output only. The timestamp at which the Rollout was resumed.
+     */
+    resumeTime?: string | null;
     /**
      * Required. The resource being rolled out.
      */
@@ -26311,6 +26464,10 @@ export namespace compute_v1 {
      * A list of NAT services created in this router.
      */
     nats?: Schema$RouterNat[];
+    /**
+     * URI of the ncc_gateway to which this router associated.
+     */
+    nccGateway?: string | null;
     /**
      * URI of the network to which this router belongs.
      */
@@ -27233,6 +27390,10 @@ export namespace compute_v1 {
     bestRoutesForRouter?: Schema$Route[];
     bgpPeerStatus?: Schema$RouterStatusBgpPeerStatus[];
     natStatus?: Schema$RouterStatusNatStatus[];
+    /**
+     * URI of the ncc_gateway to which this router associated.
+     */
+    nccGateway?: string | null;
     /**
      * URI of the network to which this router belongs.
      */
@@ -33035,6 +33196,20 @@ export namespace compute_v1 {
      */
     permissions?: string[] | null;
   }
+  /**
+   * Represents a time zone from the
+   * [IANA Time Zone Database](https://www.iana.org/time-zones).
+   */
+  export interface Schema$TimeZone {
+    /**
+     * IANA Time Zone Database time zone. For example "America/New_York".
+     */
+    id?: string | null;
+    /**
+     * Optional. IANA Time Zone Database version number. For example "2019a".
+     */
+    version?: string | null;
+  }
   export interface Schema$Uint128 {
     high?: string | null;
     low?: string | null;
@@ -35104,6 +35279,7 @@ export namespace compute_v1 {
      * [Output Only] Full URL reference to the region which hosts the zone.
      */
     region?: string | null;
+    resourceStatus?: Schema$ZoneResourceStatus;
     /**
      * [Output Only] Server-defined URL for the resource.
      */
@@ -35153,6 +35329,12 @@ export namespace compute_v1 {
       data?: Array<{key?: string; value?: string}>;
       message?: string;
     } | null;
+  }
+  export interface Schema$ZoneResourceStatus {
+    /**
+     * Output only. [Output Only] The upcoming maintenance schedule.
+     */
+    upcomingMaintenances?: Schema$PeriodicPartialMaintenanceSchedule[];
   }
   export interface Schema$ZoneSetLabelsRequest {
     /**
@@ -61654,6 +61836,8 @@ export namespace compute_v1 {
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
      *     // Name of the region scoping this request.
      *     region: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
+     *
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -61664,6 +61848,7 @@ export namespace compute_v1 {
      *   //   "allPorts": false,
      *   //   "allowGlobalAccess": false,
      *   //   "allowPscGlobalAccess": false,
+     *   //   "attachedExtensions": [],
      *   //   "backendService": "my_backendService",
      *   //   "baseForwardingRule": "my_baseForwardingRule",
      *   //   "creationTimestamp": "my_creationTimestamp",
@@ -61859,6 +62044,7 @@ export namespace compute_v1 {
      *       //   "allPorts": false,
      *       //   "allowGlobalAccess": false,
      *       //   "allowPscGlobalAccess": false,
+     *       //   "attachedExtensions": [],
      *       //   "backendService": "my_backendService",
      *       //   "baseForwardingRule": "my_baseForwardingRule",
      *       //   "creationTimestamp": "my_creationTimestamp",
@@ -62331,6 +62517,7 @@ export namespace compute_v1 {
      *       //   "allPorts": false,
      *       //   "allowGlobalAccess": false,
      *       //   "allowPscGlobalAccess": false,
+     *       //   "attachedExtensions": [],
      *       //   "backendService": "my_backendService",
      *       //   "baseForwardingRule": "my_baseForwardingRule",
      *       //   "creationTimestamp": "my_creationTimestamp",
@@ -63049,6 +63236,10 @@ export namespace compute_v1 {
      * Name of the region scoping this request.
      */
     region?: string;
+    /**
+     *
+     */
+    view?: string;
   }
   export interface Params$Resource$Forwardingrules$Insert extends StandardParameters {
     /**
@@ -66944,6 +67135,8 @@ export namespace compute_v1 {
      *     // Project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -66954,6 +67147,7 @@ export namespace compute_v1 {
      *   //   "allPorts": false,
      *   //   "allowGlobalAccess": false,
      *   //   "allowPscGlobalAccess": false,
+     *   //   "attachedExtensions": [],
      *   //   "backendService": "my_backendService",
      *   //   "baseForwardingRule": "my_baseForwardingRule",
      *   //   "creationTimestamp": "my_creationTimestamp",
@@ -67147,6 +67341,7 @@ export namespace compute_v1 {
      *       //   "allPorts": false,
      *       //   "allowGlobalAccess": false,
      *       //   "allowPscGlobalAccess": false,
+     *       //   "attachedExtensions": [],
      *       //   "backendService": "my_backendService",
      *       //   "baseForwardingRule": "my_baseForwardingRule",
      *       //   "creationTimestamp": "my_creationTimestamp",
@@ -67613,6 +67808,7 @@ export namespace compute_v1 {
      *       //   "allPorts": false,
      *       //   "allowGlobalAccess": false,
      *       //   "allowPscGlobalAccess": false,
+     *       //   "attachedExtensions": [],
      *       //   "backendService": "my_backendService",
      *       //   "baseForwardingRule": "my_baseForwardingRule",
      *       //   "creationTimestamp": "my_creationTimestamp",
@@ -68186,6 +68382,10 @@ export namespace compute_v1 {
      * Project ID for this request.
      */
     project?: string;
+    /**
+     *
+     */
+    view?: string;
   }
   export interface Params$Resource$Globalforwardingrules$Insert extends StandardParameters {
     /**
@@ -224304,6 +224504,190 @@ export namespace compute_v1 {
     }
 
     /**
+     * Advances a Rollout to the next wave, or completes it if no waves remain.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.rollouts.advance({
+     *     // Required. Wave number of the current wave.
+     *     currentWaveNumber: 'placeholder-value',
+     *     // Required. Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Name of the Rollout resource to advance.
+     *     rollout: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    advance(
+      params: Params$Resource$Rollouts$Advance,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    advance(
+      params?: Params$Resource$Rollouts$Advance,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    advance(
+      params: Params$Resource$Rollouts$Advance,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    advance(
+      params: Params$Resource$Rollouts$Advance,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    advance(
+      params: Params$Resource$Rollouts$Advance,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    advance(callback: BodyResponseCallback<Schema$Operation>): void;
+    advance(
+      paramsOrCallback?:
+        | Params$Resource$Rollouts$Advance
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Rollouts$Advance;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rollouts$Advance;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/global/rollouts/{rollout}/advance'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'rollout'],
+        pathParams: ['project', 'rollout'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Cancels a Rollout.
      * @example
      * ```js
@@ -224726,6 +225110,8 @@ export namespace compute_v1 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "pauseTime": "my_pauseTime",
+     *   //   "resumeTime": "my_resumeTime",
      *   //   "rolloutEntity": {},
      *   //   "rolloutPlan": "my_rolloutPlan",
      *   //   "selfLink": "my_selfLink",
@@ -225064,8 +225450,410 @@ export namespace compute_v1 {
         return createAPIRequest<Schema$RolloutsListResponse>(parameters);
       }
     }
+
+    /**
+     * Pauses a Rollout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.rollouts.pause({
+     *     // The etag of the Rollout.
+     *     // If this is provided, the request will only succeed if the etag matches
+     *     // the current etag of the Rollout.
+     *     etag: 'placeholder-value',
+     *     // Required. Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Name of the Rollout resource to pause.
+     *     rollout: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    pause(
+      params: Params$Resource$Rollouts$Pause,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    pause(
+      params?: Params$Resource$Rollouts$Pause,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    pause(
+      params: Params$Resource$Rollouts$Pause,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    pause(
+      params: Params$Resource$Rollouts$Pause,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    pause(
+      params: Params$Resource$Rollouts$Pause,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    pause(callback: BodyResponseCallback<Schema$Operation>): void;
+    pause(
+      paramsOrCallback?:
+        | Params$Resource$Rollouts$Pause
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Rollouts$Pause;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rollouts$Pause;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/global/rollouts/{rollout}/pause'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'rollout'],
+        pathParams: ['project', 'rollout'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Resumes a Rollout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.rollouts.resume({
+     *     // The etag of the Rollout.
+     *     // If this is provided, the request will only succeed if the etag matches
+     *     // the current etag of the Rollout.
+     *     etag: 'placeholder-value',
+     *     // Required. Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Name of the Rollout resource to resume.
+     *     rollout: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resume(
+      params: Params$Resource$Rollouts$Resume,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    resume(
+      params?: Params$Resource$Rollouts$Resume,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    resume(
+      params: Params$Resource$Rollouts$Resume,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resume(
+      params: Params$Resource$Rollouts$Resume,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resume(
+      params: Params$Resource$Rollouts$Resume,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resume(callback: BodyResponseCallback<Schema$Operation>): void;
+    resume(
+      paramsOrCallback?:
+        | Params$Resource$Rollouts$Resume
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Rollouts$Resume;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rollouts$Resume;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/v1/projects/{project}/global/rollouts/{rollout}/resume'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'rollout'],
+        pathParams: ['project', 'rollout'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Rollouts$Advance extends StandardParameters {
+    /**
+     * Required. Wave number of the current wave.
+     */
+    currentWaveNumber?: string;
+    /**
+     * Required. Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Name of the Rollout resource to advance.
+     */
+    rollout?: string;
+  }
   export interface Params$Resource$Rollouts$Cancel extends StandardParameters {
     /**
      * Project ID for this request.
@@ -225238,6 +226026,70 @@ export namespace compute_v1 {
      * with an error code.
      */
     returnPartialSuccess?: boolean;
+  }
+  export interface Params$Resource$Rollouts$Pause extends StandardParameters {
+    /**
+     * The etag of the Rollout.
+     * If this is provided, the request will only succeed if the etag matches
+     * the current etag of the Rollout.
+     */
+    etag?: string;
+    /**
+     * Required. Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Name of the Rollout resource to pause.
+     */
+    rollout?: string;
+  }
+  export interface Params$Resource$Rollouts$Resume extends StandardParameters {
+    /**
+     * The etag of the Rollout.
+     * If this is provided, the request will only succeed if the etag matches
+     * the current etag of the Rollout.
+     */
+    etag?: string;
+    /**
+     * Required. Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Name of the Rollout resource to resume.
+     */
+    rollout?: string;
   }
 
   export class Resource$Routers {
@@ -225928,6 +226780,7 @@ export namespace compute_v1 {
      *   //   "md5AuthenticationKeys": [],
      *   //   "name": "my_name",
      *   //   "nats": [],
+     *   //   "nccGateway": "my_nccGateway",
      *   //   "network": "my_network",
      *   //   "params": {},
      *   //   "region": "my_region",
@@ -226806,6 +227659,7 @@ export namespace compute_v1 {
      *       //   "md5AuthenticationKeys": [],
      *       //   "name": "my_name",
      *       //   "nats": [],
+     *       //   "nccGateway": "my_nccGateway",
      *       //   "network": "my_network",
      *       //   "params": {},
      *       //   "region": "my_region",
@@ -227757,6 +228611,7 @@ export namespace compute_v1 {
      *       //   "md5AuthenticationKeys": [],
      *       //   "name": "my_name",
      *       //   "nats": [],
+     *       //   "nccGateway": "my_nccGateway",
      *       //   "network": "my_network",
      *       //   "params": {},
      *       //   "region": "my_region",
@@ -228148,6 +229003,7 @@ export namespace compute_v1 {
      *       //   "md5AuthenticationKeys": [],
      *       //   "name": "my_name",
      *       //   "nats": [],
+     *       //   "nccGateway": "my_nccGateway",
      *       //   "network": "my_network",
      *       //   "params": {},
      *       //   "region": "my_region",
@@ -228335,6 +229191,7 @@ export namespace compute_v1 {
      *       //   "md5AuthenticationKeys": [],
      *       //   "name": "my_name",
      *       //   "nats": [],
+     *       //   "nccGateway": "my_nccGateway",
      *       //   "network": "my_network",
      *       //   "params": {},
      *       //   "region": "my_region",
@@ -272165,6 +273022,7 @@ export namespace compute_v1 {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
      *   //   "region": "my_region",
+     *   //   "resourceStatus": {},
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
      *   //   "supportsPzs": false
