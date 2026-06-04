@@ -1687,6 +1687,10 @@ export namespace logging_v2 {
      * The truncation granularity when grouping by a time/date field. This will be used to truncate the field to the granularity specified. This can be either a date or a time granularity found at https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_trunc_granularity_date and https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_trunc_granularity_time respectively.
      */
     truncationGranularity?: string | null;
+    /**
+     * Optional. A virtual field definition, used in place of field to define a field that is computed from other fields rather than being directly present in the data schema.For example, a virtual field can be defined using COALESCE to select the first non-null value from a list of fields.If virtual_field is set, field must not be set.
+     */
+    virtualField?: Schema$VirtualField;
   }
   /**
    * Defines a structured query configuration that can be used instead of writing raw SQL. This configuration represents the components of a SQL query (FROM, SELECT, WHERE, ORDER BY, LIMIT) and is typically converted into an executable query (e.g., BigQuery SQL) by the backend service to retrieve data for analysis or visualization.
@@ -2112,6 +2116,19 @@ export namespace logging_v2 {
      * Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days
      */
     updateMask?: string | null;
+  }
+  /**
+   * A virtual field is a field that is not physically present in the underlying data schema, but is created through specific operations within the query builder model based on other fields in the schema.
+   */
+  export interface Schema$VirtualField {
+    /**
+     * The field sources that will be used to create the virtual field, based on the semantics of the virtual field type.The field sources must follow these rules, based on the virtual field type: - For VIRTUAL_FIELD_TYPE_UNSPECIFIED, this field must be empty. - For COALESCE, this field must be non-empty and include a minimum of two field sources. The underlying field sources must be actual projected fields that represent actual schema fields and that must not be transformed and aggregated in any way, except for casting. The type of all the underlying field sources must be equivalent so that picking one of them would result in the same value type.
+     */
+    underlyingFieldSources?: Schema$FieldSource[];
+    /**
+     * Required. The type of the virtual field.
+     */
+    virtualFieldType?: string | null;
   }
   /**
    * The parameters to WriteLogEntries.
