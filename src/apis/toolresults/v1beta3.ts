@@ -732,6 +732,10 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$LauncherActivityNotFound {}
   /**
+   * Licensing protection termination (Pairip) was detected.
+   */
+  export interface Schema$LicensingProtectionTermination {}
+  /**
    * Response message for EnvironmentService.ListEnvironments.
    */
   export interface Schema$ListEnvironmentsResponse {
