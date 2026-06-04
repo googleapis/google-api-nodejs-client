@@ -9167,7 +9167,7 @@
       }
     }
   },
-  "revision": "20260501",
+  "revision": "20260522",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "AppHub": {
@@ -11429,6 +11429,10 @@
         "truncationGranularity": {
           "description": "The truncation granularity when grouping by a time/date field. This will be used to truncate the field to the granularity specified. This can be either a date or a time granularity found at https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_trunc_granularity_date and https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_trunc_granularity_time respectively.",
           "type": "string"
+        },
+        "virtualField": {
+          "$ref": "VirtualField",
+          "description": "Optional. A virtual field definition, used in place of field to define a field that is computed from other fields rather than being directly present in the data schema.For example, a virtual field can be defined using COALESCE to select the first non-null value from a list of fields.If virtual_field is set, field must not be set."
         }
       },
       "type": "object"
@@ -11985,6 +11989,32 @@
         "updateMask": {
           "description": "Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see: https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=retention_days",
           "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VirtualField": {
+      "description": "A virtual field is a field that is not physically present in the underlying data schema, but is created through specific operations within the query builder model based on other fields in the schema.",
+      "id": "VirtualField",
+      "properties": {
+        "underlyingFieldSources": {
+          "description": "The field sources that will be used to create the virtual field, based on the semantics of the virtual field type.The field sources must follow these rules, based on the virtual field type: - For VIRTUAL_FIELD_TYPE_UNSPECIFIED, this field must be empty. - For COALESCE, this field must be non-empty and include a minimum of two field sources. The underlying field sources must be actual projected fields that represent actual schema fields and that must not be transformed and aggregated in any way, except for casting. The type of all the underlying field sources must be equivalent so that picking one of them would result in the same value type.",
+          "items": {
+            "$ref": "FieldSource"
+          },
+          "type": "array"
+        },
+        "virtualFieldType": {
+          "description": "Required. The type of the virtual field.",
+          "enum": [
+            "VIRTUAL_FIELD_TYPE_UNSPECIFIED",
+            "COALESCE"
+          ],
+          "enumDescriptions": [
+            "Invalid value, do not use.",
+            "Creates a virtual field by selecting the first non-null value from the list of fields specified in underlying_field_sources, similar to a COALESCE function in SQL."
+          ],
           "type": "string"
         }
       },
