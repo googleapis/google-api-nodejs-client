@@ -3986,7 +3986,7 @@
       }
     }
   },
-  "revision": "20260511",
+  "revision": "20260527",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -6593,12 +6593,14 @@
           "enum": [
             "decimalSeparatorTypeUnspecified",
             "period",
-            "comma"
+            "comma",
+            "automatic"
           ],
           "enumDescriptions": [
             "",
             "The option to convert a variable value to a number with a period as the decimal separator.",
-            "The option to convert a variable value to a number with a comma as the decimal separator."
+            "The option to convert a variable value to a number with a comma as the decimal separator.",
+            "The option to convert a variable value to a number with automatic decimal separator detection."
           ],
           "type": "string"
         },

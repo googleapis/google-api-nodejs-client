@@ -362,21 +362,6 @@
       "version": "v1"
     },
     {
-      "description": "The Analytics API provides access to Analytics configuration and report data.",
-      "discoveryRestUrl": "https://analytics.googleapis.com/$discovery/rest?version=v3",
-      "documentationLink": "http://code.google.com/apis/analytics/docs/mgmt/home.html",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "id": "analytics:v3",
-      "kind": "discovery#directoryItem",
-      "name": "analytics",
-      "preferred": true,
-      "title": "Google Analytics API",
-      "version": "v3"
-    },
-    {
       "description": "Manage properties in Google Analytics. Warning: Creating multiple Customer Applications, Accounts, or Projects to simulate or act as a single Customer Application, Account, or Project (respectively) or to circumvent Service-specific usage limits or quotas is a direct violation of Google Cloud Platform Terms of Service as well as Google APIs Terms of Service. These actions can result in immediate termination of your GCP project(s) without any warning.",
       "discoveryRestUrl": "https://analyticsadmin.googleapis.com/$discovery/rest?version=v1alpha",
       "documentationLink": "http://code.google.com/apis/analytics/docs/mgmt/home.html",

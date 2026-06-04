@@ -2454,7 +2454,7 @@
       }
     }
   },
-  "revision": "20260511",
+  "revision": "20260525",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -6833,13 +6833,23 @@
             "STATE_REASON_TYPE_UNSPECIFIED",
             "PAUSED_BY_USER",
             "PAUSED_BY_SYSTEM_CONFIG",
-            "PAUSED_WAITING_FOR_NEXT_STAGE"
+            "PAUSED_WAITING_FOR_NEXT_STAGE",
+            "CANCELLED_BY_USER",
+            "CANCELLED_PAUSED_TOO_LONG",
+            "CANCELLED_SUPERSEDED",
+            "CANCELLED_INCOMPATIBLE_ROLLOUT_SEQUENCE",
+            "CANCELLED_SUPERSEDED_BY_USER_ROLLOUT"
           ],
           "enumDescriptions": [
             "Unspecified state reason.",
             "Paused by the user.",
-            "Paused by the RSv2 Orchestrator due to system config(ex. GKE freeze).",
-            "Paused waiting for the next stage to start."
+            "Paused by system config (ex. GKE freeze).",
+            "Paused waiting for the next stage to start.",
+            "Cancelled by the user.",
+            "Cancelled by the system because it was paused too long.",
+            "Cancelled by the system because the version is too old.",
+            "Cancelled by the system because the rollout sequence is incompatible, for example it has different number of stages, fleet projects or label selectors than the rollout.",
+            "Cancelled because of a new user-triggered rollout."
           ],
           "readOnly": true,
           "type": "string"
@@ -7030,13 +7040,22 @@
             "FORCED_SOAKING",
             "PAUSED"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false
+          ],
           "enumDescriptions": [
             "Default value.",
-            "The stage is pending.",
-            "The stage is running.",
-            "The stage is soaking.",
+            "The stage is waiting for previous stages to complete.",
+            "The stage targets are being upgraded.",
+            "The stage is waiting for a predetermined time before next stage.",
             "The stage is completed.",
-            "The stage is force soaking.",
+            "Deprecated: use SOAKING instead.",
             "The stage is paused."
           ],
           "readOnly": true,

@@ -198,11 +198,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://clouderrorreporting.us-central2.rep.googleapis.com/",
-      "location": "us-central2"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://clouderrorreporting.us-east1.rep.googleapis.com/",
       "location": "us-east1"
     },
@@ -215,11 +210,6 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://clouderrorreporting.us-east5.rep.googleapis.com/",
       "location": "us-east5"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://clouderrorreporting.us-east7.rep.googleapis.com/",
-      "location": "us-east7"
     },
     {
       "description": "Regional Endpoint",
@@ -245,11 +235,6 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://clouderrorreporting.us-west4.rep.googleapis.com/",
       "location": "us-west4"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://clouderrorreporting.us-west8.rep.googleapis.com/",
-      "location": "us-west8"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -965,7 +950,7 @@
       }
     }
   },
-  "revision": "20260508",
+  "revision": "20260529",
   "rootUrl": "https://clouderrorreporting.googleapis.com/",
   "schemas": {
     "DeleteEventsResponse": {

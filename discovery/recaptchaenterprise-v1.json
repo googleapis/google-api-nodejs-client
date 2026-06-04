@@ -786,7 +786,7 @@
       }
     }
   },
-  "revision": "20260505",
+  "revision": "20260517",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -833,13 +833,15 @@
             "RISK_REASON_UNSPECIFIED",
             "CLIENT_HISTORICAL_BOT_ACTIVITY",
             "ACCOUNT_IN_LARGE_RELATED_GROUP",
-            "CLIENT_ACCESSED_MANY_ACCOUNTS"
+            "CLIENT_ACCESSED_MANY_ACCOUNTS",
+            "DISPOSABLE_EMAIL_DOMAIN"
           ],
           "enumDescriptions": [
             "Default unspecified type.",
             "The client has been observed sending bot-like traffic to this site in the past. This reason incorporates historical reputation and indicates that the client is known to use bots, even if the current request is being made by a human.",
             "The account is part of a large group of related accounts, indicating that it may be part of a fraudulent network. Related accounts are identified based on having similar traffic patterns and request characteristics.",
-            "The client has been observed accessing many accounts on this site."
+            "The client has been observed accessing many accounts on this site.",
+            "This email domain is a suspected provider of disposable email addresses."
           ],
           "readOnly": true,
           "type": "string"

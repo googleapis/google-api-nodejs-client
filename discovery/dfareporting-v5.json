@@ -10091,7 +10091,7 @@
       }
     }
   },
-  "revision": "20260511",
+  "revision": "20260527",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -16494,27 +16494,18 @@
             "CONVERSION_CATEGORY_SIGNUP",
             "CONVERSION_CATEGORY_PAGE_VIEW",
             "CONVERSION_CATEGORY_DOWNLOAD",
-            "CONVERSION_CATEGORY_BOOM_EVENT",
             "CONVERSION_CATEGORY_ADD_TO_CART",
             "CONVERSION_CATEGORY_BEGIN_CHECKOUT",
             "CONVERSION_CATEGORY_SUBSCRIBE_PAID",
-            "CONVERSION_CATEGORY_SUBSCRIBE_FREE",
-            "CONVERSION_CATEGORY_PHONE_CALL_LEAD",
-            "CONVERSION_CATEGORY_IMPORTED_LEAD",
             "CONVERSION_CATEGORY_SUBMIT_LEAD_FORM",
             "CONVERSION_CATEGORY_BOOK_APPOINTMENT",
             "CONVERSION_CATEGORY_REQUEST_QUOTE",
             "CONVERSION_CATEGORY_GET_DIRECTIONS",
             "CONVERSION_CATEGORY_OUTBOUND_CLICK",
             "CONVERSION_CATEGORY_CONTACT",
-            "CONVERSION_CATEGORY_VIEW_KEY_PAGE",
-            "CONVERSION_CATEGORY_ENGAGEMENT",
-            "CONVERSION_CATEGORY_STORE_VISIT",
-            "CONVERSION_CATEGORY_STORE_SALE",
             "CONVERSION_CATEGORY_QUALIFIED_LEAD",
             "CONVERSION_CATEGORY_CONVERTED_LEAD",
-            "CONVERSION_CATEGORY_IN_APP_AD_REVENUE",
-            "CONVERSION_CATEGORY_MESSAGE_LEAD"
+            "CONVERSION_CATEGORY_IN_APP_AD_REVENUE"
           ],
           "enumDescriptions": [
             "Unspecified category (called \"Other\" externally).",
@@ -16522,27 +16513,18 @@
             "Signup user action.",
             "User visiting a page.",
             "Software download action (as for an app). A conversion type that is created as a download type may not have its category changed.",
-            "Boom event (for user list creation). This is an internal-only category.",
             ". The addition of items to a shopping cart or bag on an advertiser site.",
             "When someone enters the checkout flow on an advertiser site.",
             "The start of a paid subscription for a product or service.",
-            "The start of a free subscription for a product or service.",
-            "A call to indicate interesting in an advertiser's offering. Note: this is different from support calls.",
-            "A lead conversion imported from an external source into Google Ads.",
             "A submission of a form on an advertiser site indicating business interest.",
             "A booking of an appointment with an advertiser's business.",
             "A quote or price estimate request.",
             "A search for an advertiser's business location.",
             "A click to an advertiser's partner site, e.g. a referral.",
             "A call, SMS, email, chat or other type of contact to an advertiser.",
-            "Key page views (ex: product page, article).",
-            "A website engagement event",
-            "A visit to a physical store location.",
-            "A sale occurring in a physical store.",
             "A lead conversion imported from an external source into Google Ads, that has been further qualified by the advertiser.",
             "A lead conversion imported from an external source into Google Ads, that has further completed a desired stage as defined by the lead gen advertiser.",
-            "Conversion event that provides the revenue value of impressions that were shown in-app to users.",
-            "Message exchanges which indicate an interest in an advertiser's offering."
+            "Conversion event that provides the revenue value of impressions that were shown in-app to users."
           ],
           "type": "string"
         },
