@@ -1795,7 +1795,7 @@
       }
     }
   },
-  "revision": "20260426",
+  "revision": "20260527",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "AccountConnector": {
@@ -1953,6 +1953,14 @@
           "description": "Output only. Unique identifier of `ArtifactDeployment`.",
           "readOnly": true,
           "type": "string"
+        },
+        "sourceCodeUris": {
+          "description": "Output only. The URIs of the source code, if available. For Cloud Run source deploy for example: `gs://my-bucket/my-folder/1234567890.abcde-fdbe.zip#1234567890`",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "sourceCommitUris": {
           "description": "Output only. The source commits at which this artifact was built. Extracted from provenance.",
