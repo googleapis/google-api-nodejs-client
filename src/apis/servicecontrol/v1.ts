@@ -284,6 +284,10 @@ export namespace servicecontrol_v1 {
      */
     claims?: {[key: string]: any} | null;
     /**
+     * Identifies the client credential id used for authentication. credential_id is in the format of AUTH_METHOD:IDENTIFIER, e.g. "serviceaccount:XXXXX, apikey:XXXXX" where the format of the IDENTIFIER can vary for different AUTH_METHODs.
+     */
+    credentialId?: string | null;
+    /**
      * Attributes of the OAuth token associated with the request.
      */
     oauth?: Schema$Oauth;
