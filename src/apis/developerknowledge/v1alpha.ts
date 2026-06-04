@@ -134,6 +134,31 @@ export namespace developerknowledge_v1alpha {
      * Contains the text of the answer.
      */
     answerText?: string | null;
+    /**
+     * Output only. Contains citations for the answer.
+     */
+    citations?: Schema$AnswerCitation[];
+    /**
+     * Output only. Contains references for the answer.
+     */
+    references?: Schema$AnswerReference[];
+  }
+  /**
+   * Citation info for a segment.
+   */
+  export interface Schema$AnswerCitation {
+    /**
+     * Output only. Indicates the end of the segment, measured in bytes (UTF-8 unicode), exclusive. If there are multi-byte characters, such as non-ASCII characters, the index measurement is longer than the string length.
+     */
+    endIndex?: number | null;
+    /**
+     * Output only. Contains citation sources for the attributed segment.
+     */
+    sources?: Schema$CitationSource[];
+    /**
+     * Output only. Indicates the start of the segment, measured in bytes (UTF-8 unicode), inclusive. If there are multi-byte characters, such as non-ASCII characters, the index measurement is longer than the string length.
+     */
+    startIndex?: number | null;
   }
   /**
    * Request message for DeveloperKnowledge.AnswerQuery.
@@ -154,6 +179,15 @@ export namespace developerknowledge_v1alpha {
     answer?: Schema$Answer;
   }
   /**
+   * Represents a reference to a source.
+   */
+  export interface Schema$AnswerReference {
+    /**
+     * Output only. The reference document.
+     */
+    documentReference?: Schema$DocumentReference;
+  }
+  /**
    * Response message for DeveloperKnowledge.BatchGetDocuments.
    */
   export interface Schema$BatchGetDocumentsResponse {
@@ -161,6 +195,15 @@ export namespace developerknowledge_v1alpha {
      * Contains the documents requested.
      */
     documents?: Schema$Document[];
+  }
+  /**
+   * Citation source.
+   */
+  export interface Schema$CitationSource {
+    /**
+     * Output only. Contains the index of the Answer.AnswerReference in the `references` repeated field.
+     */
+    referenceIndex?: number | null;
   }
   /**
    * A Document represents a piece of content from the Developer Knowledge corpus.
@@ -221,6 +264,15 @@ export namespace developerknowledge_v1alpha {
     parent?: string | null;
   }
   /**
+   * Represents a reference to a document.
+   */
+  export interface Schema$DocumentReference {
+    /**
+     * Output only. Contains the document chunk. The `document_chunk.id` field is not set and will be empty.
+     */
+    documentChunk?: Schema$DocumentChunk;
+  }
+  /**
    * Response message for DeveloperKnowledge.SearchDocumentChunks.
    */
   export interface Schema$SearchDocumentChunksResponse {
@@ -271,7 +323,7 @@ export namespace developerknowledge_v1alpha {
      *
      *   // Do the magic
      *   const res = await developerknowledge.documents.batchGet({
-     *     // Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` If you are changing the batch size, consider the value of `maxConcurrentGCSFetches` constant in the service implementation: http://cs///depot/google3/devrel/boq/developerknowledge/service/developerknowledge.go
+     *     // Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
      *     names: 'placeholder-value',
      *     // Optional. Specifies the DocumentView of the document. If unspecified, DeveloperKnowledge.BatchGetDocuments defaults to `DOCUMENT_VIEW_CONTENT`.
      *     view: 'placeholder-value',
@@ -681,7 +733,7 @@ export namespace developerknowledge_v1alpha {
 
   export interface Params$Resource$Documents$Batchget extends StandardParameters {
     /**
-     * Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` If you are changing the batch size, consider the value of `maxConcurrentGCSFetches` constant in the service implementation: http://cs///depot/google3/devrel/boq/developerknowledge/service/developerknowledge.go
+     * Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
      */
     names?: string[];
     /**
