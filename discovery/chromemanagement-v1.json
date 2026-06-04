@@ -1152,6 +1152,52 @@
                 "https://www.googleapis.com/auth/chrome.management.reports.readonly"
               ]
             },
+            "countChromeProfileVersions": {
+              "description": "Generate report of installed Chrome versions on managed profiles.",
+              "flatPath": "v1/customers/{customersId}/reports:countChromeProfileVersions",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.countChromeProfileVersions",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. Customer id or \"my_customer\" to use the customer associated to the account making the request.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Optional. Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * last_active_date",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orgUnitId": {
+                  "description": "The ID of the organizational unit. If omitted, all data will be returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Maximum number of results to return. Maximum and default are 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Token to specify the page of the request to be returned.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/reports:countChromeProfileVersions",
+              "response": {
+                "$ref": "GoogleChromeManagementV1CountChromeProfileVersionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
+            },
             "countChromeVersions": {
               "description": "Generate report of installed Chrome versions.",
               "flatPath": "v1/customers/{customersId}/reports:countChromeVersions",
@@ -2085,7 +2131,7 @@
       }
     }
   },
-  "revision": "20260520",
+  "revision": "20260601",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -2984,6 +3030,29 @@
             "$ref": "GoogleChromeManagementV1DeviceHardwareCountReport"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1CountChromeProfileVersionsResponse": {
+      "description": "Response containing requested managed profile versions details and counts.",
+      "id": "GoogleChromeManagementV1CountChromeProfileVersionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to specify the next page of the request.",
+          "type": "string"
+        },
+        "profileBrowserVersions": {
+          "description": "List of all browser versions reported for profiles and their install counts.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1BrowserVersion"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "Total number browser versions matching request.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -3927,6 +3996,12 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "profileCount": {
+          "description": "Output only. Count of Chrome Profiles with this app installed.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         },
         "riskAssessment": {
           "$ref": "GoogleChromeManagementV1RiskAssessmentData",
