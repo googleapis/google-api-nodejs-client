@@ -4,6 +4,12 @@
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
+        },
+        "https://www.googleapis.com/auth/container": {
+          "description": "See, edit, configure, and delete your Google Kubernetes Engine data and see the email address for your Google Account"
+        },
+        "https://www.googleapis.com/auth/container.read-only": {
+          "description": "See your Google Kubernetes Engine data and the email address of your Google Account"
         }
       }
     }
@@ -149,7 +155,9 @@
                     "$ref": "ListUsableSubnetworksResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container",
+                    "https://www.googleapis.com/auth/container.read-only"
                   ]
                 }
               }
@@ -192,7 +200,9 @@
                 "$ref": "ServerConfig"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/container",
+                "https://www.googleapis.com/auth/container.read-only"
               ]
             },
             "list": {
@@ -217,7 +227,8 @@
                 "$ref": "ListLocationsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/container"
               ]
             }
           },
@@ -246,7 +257,9 @@
                     "$ref": "CheckAutopilotCompatibilityResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container",
+                    "https://www.googleapis.com/auth/container.read-only"
                   ]
                 },
                 "completeControlPlaneUpgrade": {
@@ -274,7 +287,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "completeIpRotation": {
@@ -302,7 +316,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "create": {
@@ -330,7 +345,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "delete": {
@@ -373,7 +389,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "fetchClusterUpgradeInfo": {
@@ -403,7 +420,9 @@
                     "$ref": "ClusterUpgradeInfo"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container",
+                    "https://www.googleapis.com/auth/container.read-only"
                   ]
                 },
                 "get": {
@@ -446,7 +465,9 @@
                     "$ref": "Cluster"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container",
+                    "https://www.googleapis.com/auth/container.read-only"
                   ]
                 },
                 "getJwks": {
@@ -505,7 +526,9 @@
                     "$ref": "ListClustersResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container",
+                    "https://www.googleapis.com/auth/container.read-only"
                   ]
                 },
                 "setAddons": {
@@ -533,7 +556,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "setLegacyAbac": {
@@ -561,7 +585,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "setLocations": {
@@ -590,7 +615,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "setLogging": {
@@ -618,7 +644,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "setMaintenancePolicy": {
@@ -646,7 +673,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "setMasterAuth": {
@@ -674,7 +702,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "setMonitoring": {
@@ -702,7 +731,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "setNetworkPolicy": {
@@ -730,7 +760,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "setResourceLabels": {
@@ -758,7 +789,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "startIpRotation": {
@@ -786,7 +818,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "update": {
@@ -814,7 +847,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "updateMaster": {
@@ -842,7 +876,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 }
               },
@@ -874,7 +909,8 @@
                         "$ref": "Empty"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container"
                       ]
                     },
                     "create": {
@@ -902,7 +938,8 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container"
                       ]
                     },
                     "delete": {
@@ -951,7 +988,8 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container"
                       ]
                     },
                     "fetchNodePoolUpgradeInfo": {
@@ -981,7 +1019,9 @@
                         "$ref": "NodePoolUpgradeInfo"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container",
+                        "https://www.googleapis.com/auth/container.read-only"
                       ]
                     },
                     "get": {
@@ -1030,7 +1070,9 @@
                         "$ref": "NodePool"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container",
+                        "https://www.googleapis.com/auth/container.read-only"
                       ]
                     },
                     "list": {
@@ -1073,7 +1115,9 @@
                         "$ref": "ListNodePoolsResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container",
+                        "https://www.googleapis.com/auth/container.read-only"
                       ]
                     },
                     "rollback": {
@@ -1101,7 +1145,8 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container"
                       ]
                     },
                     "setAutoscaling": {
@@ -1129,7 +1174,8 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container"
                       ]
                     },
                     "setManagement": {
@@ -1157,7 +1203,8 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container"
                       ]
                     },
                     "setSize": {
@@ -1185,7 +1232,8 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container"
                       ]
                     },
                     "update": {
@@ -1213,7 +1261,8 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container"
                       ]
                     }
                   }
@@ -1273,7 +1322,8 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "get": {
@@ -1316,7 +1366,9 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container",
+                    "https://www.googleapis.com/auth/container.read-only"
                   ]
                 },
                 "list": {
@@ -1353,7 +1405,9 @@
                     "$ref": "ListOperationsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container",
+                    "https://www.googleapis.com/auth/container.read-only"
                   ]
                 }
               }
@@ -1395,7 +1449,9 @@
                 "$ref": "ServerConfig"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/container",
+                "https://www.googleapis.com/auth/container.read-only"
               ]
             }
           },
@@ -1440,7 +1496,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "completeControlPlaneUpgrade": {
@@ -1468,7 +1525,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "completeIpRotation": {
@@ -1509,7 +1567,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "create": {
@@ -1543,7 +1602,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "delete": {
@@ -1586,7 +1646,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "fetchClusterUpgradeInfo": {
@@ -1616,7 +1677,9 @@
                     "$ref": "ClusterUpgradeInfo"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container",
+                    "https://www.googleapis.com/auth/container.read-only"
                   ]
                 },
                 "get": {
@@ -1659,7 +1722,9 @@
                     "$ref": "Cluster"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container",
+                    "https://www.googleapis.com/auth/container.read-only"
                   ]
                 },
                 "legacyAbac": {
@@ -1700,7 +1765,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "list": {
@@ -1736,7 +1802,9 @@
                     "$ref": "ListClustersResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container",
+                    "https://www.googleapis.com/auth/container.read-only"
                   ]
                 },
                 "locations": {
@@ -1778,7 +1846,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "logging": {
@@ -1819,7 +1888,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "master": {
@@ -1860,7 +1930,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "monitoring": {
@@ -1901,7 +1972,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "resourceLabels": {
@@ -1942,7 +2014,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "setMaintenancePolicy": {
@@ -1983,7 +2056,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "setMasterAuth": {
@@ -2024,7 +2098,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "setNetworkPolicy": {
@@ -2065,7 +2140,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "startIpRotation": {
@@ -2106,7 +2182,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "update": {
@@ -2147,7 +2224,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 }
               },
@@ -2199,7 +2277,8 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container"
                       ]
                     },
                     "create": {
@@ -2240,7 +2319,8 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container"
                       ]
                     },
                     "delete": {
@@ -2290,7 +2370,8 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container"
                       ]
                     },
                     "fetchNodePoolUpgradeInfo": {
@@ -2320,7 +2401,9 @@
                         "$ref": "NodePoolUpgradeInfo"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container",
+                        "https://www.googleapis.com/auth/container.read-only"
                       ]
                     },
                     "get": {
@@ -2370,7 +2453,9 @@
                         "$ref": "NodePool"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container",
+                        "https://www.googleapis.com/auth/container.read-only"
                       ]
                     },
                     "list": {
@@ -2413,7 +2498,9 @@
                         "$ref": "ListNodePoolsResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container",
+                        "https://www.googleapis.com/auth/container.read-only"
                       ]
                     },
                     "rollback": {
@@ -2461,7 +2548,8 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container"
                       ]
                     },
                     "setManagement": {
@@ -2509,7 +2597,8 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container"
                       ]
                     },
                     "setSize": {
@@ -2557,7 +2646,8 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container"
                       ]
                     },
                     "update": {
@@ -2605,7 +2695,8 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/container"
                       ]
                     }
                   }
@@ -2652,7 +2743,8 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container"
                   ]
                 },
                 "get": {
@@ -2695,7 +2787,9 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container",
+                    "https://www.googleapis.com/auth/container.read-only"
                   ]
                 },
                 "list": {
@@ -2731,7 +2825,9 @@
                     "$ref": "ListOperationsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/container",
+                    "https://www.googleapis.com/auth/container.read-only"
                   ]
                 }
               }
@@ -2741,7 +2837,7 @@
       }
     }
   },
-  "revision": "20260507",
+  "revision": "20260519",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -4393,6 +4489,14 @@
           "$ref": "IdentityServiceConfig",
           "description": "The desired Identity Service component configuration."
         },
+        "desiredImage": {
+          "description": "The desired name of the image to use for this node. This is used to create clusters using a custom image.",
+          "type": "string"
+        },
+        "desiredImageProject": {
+          "description": "The project containing the desired image to use for this node. This is used to create clusters using a custom image.",
+          "type": "string"
+        },
         "desiredImageType": {
           "description": "The desired image type for the node pool. NOTE: Set the \"desired_node_pool\" field as well.",
           "type": "string"
@@ -5040,6 +5144,25 @@
       },
       "type": "object"
     },
+    "CustomImageConfig": {
+      "description": "CustomImageConfig contains the information r",
+      "id": "CustomImageConfig",
+      "properties": {
+        "image": {
+          "description": "The name of the image to use for this node.",
+          "type": "string"
+        },
+        "imageFamily": {
+          "description": "The name of the image family to use for this node.",
+          "type": "string"
+        },
+        "imageProject": {
+          "description": "The project containing the image to use for this node.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CustomNodeInit": {
       "description": "Support for running custom init code while bootstrapping nodes.",
       "id": "CustomNodeInit",
@@ -5202,6 +5325,27 @@
             "Secrets in etcd are encrypted.",
             "Secrets in etcd are stored in plain text (at etcd level) - this is unrelated to Compute Engine level full disk encryption.",
             "Encryption of all objects in the storage is enabled. There is no guarantee that all objects in the storage are encrypted, but eventually they will be."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataplaneV2Config": {
+      "description": "DataplaneV2Config is the configuration for DPv2.",
+      "id": "DataplaneV2Config",
+      "properties": {
+        "scalabilityMode": {
+          "description": "Optional. Scalability mode for the cluster.",
+          "enum": [
+            "SCALABILITY_MODE_UNSPECIFIED",
+            "DISABLED",
+            "SCALE_OPTIMIZED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Disables the scale optimized mode for DPv2.",
+            "Enables the scale optimized mode for DPv2."
           ],
           "type": "string"
         }
@@ -6465,7 +6609,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_mtu_probing net.ipv4.tcp_max_orphans net.ipv4.tcp_max_tw_buckets net.ipv4.tcp_syn_retries net.ipv4.tcp_ecn net.ipv4.tcp_congestion_control net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.shmmni kernel.shmmax kernel.shmall kernel.perf_event_paranoid kernel.sched_rt_runtime_us kernel.softlockup_panic kernel.yama.ptrace_scope kernel.kptr_restrict kernel.dmesg_restrict kernel.sysrq fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_background_bytes vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_bytes vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes",
+          "description": "The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.neigh.default.gc_thresh1 net.ipv4.neigh.default.gc_thresh2 net.ipv4.neigh.default.gc_thresh3 net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_mtu_probing net.ipv4.tcp_max_orphans net.ipv4.tcp_max_tw_buckets net.ipv4.tcp_syn_retries net.ipv4.tcp_ecn net.ipv4.tcp_congestion_control net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.keys.maxkeys kernel.keys.maxbytes kernel.shmmni kernel.shmmax kernel.shmall kernel.perf_event_paranoid kernel.sched_rt_runtime_us kernel.softlockup_panic kernel.yama.ptrace_scope kernel.kptr_restrict kernel.dmesg_restrict kernel.sysrq fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_background_bytes vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_bytes vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes",
           "type": "object"
         },
         "transparentHugepageDefrag": {
@@ -7091,6 +7235,10 @@
           ],
           "type": "string"
         },
+        "dataplaneV2Config": {
+          "$ref": "DataplaneV2Config",
+          "description": "Optional. DataplaneV2Config specifies the DPv2 configuration."
+        },
         "defaultEnablePrivateNodes": {
           "description": "Controls whether by default nodes have private IP addresses only. It is invalid to specify both PrivateClusterConfig.enablePrivateNodes and this field at the same time. To update the default setting, use ClusterUpdate.desired_default_enable_private_nodes",
           "type": "boolean"
@@ -7482,6 +7630,10 @@
           "description": "Setting this field will assign instances of this pool to run on the specified node group. This is useful for running workloads on [sole tenant nodes](https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes).",
           "type": "string"
         },
+        "nodeImageConfig": {
+          "$ref": "CustomImageConfig",
+          "description": "The node image configuration to use for this node pool. Note that this is only applicable for node pools using image_type=CUSTOM."
+        },
         "oauthScopes": {
           "description": "The set of Google API scopes to be made available on all of the node VMs under the \"default\" service account. The following scopes are recommended, but not required, and by default are not included: * `https://www.googleapis.com/auth/compute` is required for mounting persistent storage on your nodes. * `https://www.googleapis.com/auth/devstorage.read_only` is required for communicating with **gcr.io** (the [Artifact Registry](https://cloud.google.com/artifact-registry/)). If unspecified, no scopes are added, unless Cloud Logging or Cloud Monitoring are enabled, in which case their required scopes will be added.",
           "items": {
@@ -7837,6 +7989,10 @@
         "enablePrivateNodes": {
           "description": "Whether nodes have internal IP addresses only. If enable_private_nodes is not specified, then the value is derived from Cluster.NetworkConfig.default_enable_private_nodes",
           "type": "boolean"
+        },
+        "network": {
+          "description": "Optional. Immutable. The VPC network for the node pool.",
+          "type": "string"
         },
         "networkPerformanceConfig": {
           "$ref": "NetworkPerformanceConfig",
@@ -10398,6 +10554,14 @@
         "gvnic": {
           "$ref": "VirtualNIC",
           "description": "Enable or disable gvnic on the node pool."
+        },
+        "image": {
+          "description": "The desired name of the image name to use for this node. This is used to create clusters using a custom image.",
+          "type": "string"
+        },
+        "imageProject": {
+          "description": "The project containing the desired image to use for this node pool. This is used to create clusters using a custom image.",
+          "type": "string"
         },
         "imageType": {
           "description": "Required. The desired image type for the node pool. Please see https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for available image types.",
