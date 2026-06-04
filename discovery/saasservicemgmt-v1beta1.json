@@ -1799,6 +1799,208 @@
                 }
               }
             },
+            "saasReleases": {
+              "methods": {
+                "create": {
+                  "description": "Create a new saas release.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/saasReleases",
+                  "httpMethod": "POST",
+                  "id": "saasservicemgmt.projects.locations.saasReleases.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent of the saas release.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "An optional request ID to identify requests.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "saasReleaseId": {
+                      "description": "Required. The ID value for the new saas release.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "If \"validate_only\" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/saasReleases",
+                  "request": {
+                    "$ref": "SaasRelease"
+                  },
+                  "response": {
+                    "$ref": "SaasRelease"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete a single saas release.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/saasReleases/{saasReleasesId}",
+                  "httpMethod": "DELETE",
+                  "id": "saasservicemgmt.projects.locations.saasReleases.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "The etag known to the client for the expected state of the saas release.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The resource name of the resource within a service.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/saasReleases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "An optional request ID to identify requests.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "If \"validate_only\" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieve a single saas release.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/saasReleases/{saasReleasesId}",
+                  "httpMethod": "GET",
+                  "id": "saasservicemgmt.projects.locations.saasReleases.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the resource within a service.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/saasReleases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "SaasRelease"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Retrieve a collection of saas releases.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/saasReleases",
+                  "httpMethod": "GET",
+                  "id": "saasservicemgmt.projects.locations.saasReleases.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Filter the list as specified in https://google.aip.dev/160.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Order results as specified in https://google.aip.dev/132.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of saas releases to send per page.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The page token: If the next_page_token from a previous response is provided, this request will send the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent of the saas releases.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/saasReleases",
+                  "response": {
+                    "$ref": "ListSaasReleasesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update a single saas release.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/saasReleases/{saasReleasesId}",
+                  "httpMethod": "PATCH",
+                  "id": "saasservicemgmt.projects.locations.saasReleases.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name (full URI of the resource) following the standard naming scheme: \"projects/{project}/locations/{location}/saasReleases/{saasRelease}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/saasReleases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "An optional request ID to identify requests.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Field mask is used to specify the fields to be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "If \"validate_only\" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "SaasRelease"
+                  },
+                  "response": {
+                    "$ref": "SaasRelease"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "tenants": {
               "methods": {
                 "create": {
@@ -1994,6 +2196,410 @@
                   },
                   "response": {
                     "$ref": "Tenant"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "unitGroupOperations": {
+              "methods": {
+                "create": {
+                  "description": "Create a new unit group operation.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitGroupOperations",
+                  "httpMethod": "POST",
+                  "id": "saasservicemgmt.projects.locations.unitGroupOperations.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent of the unit group operation.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "unitGroupOperationId": {
+                      "description": "Required. The ID value for the new unit group operation.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If \"validate_only\" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/unitGroupOperations",
+                  "request": {
+                    "$ref": "UnitGroupOperation"
+                  },
+                  "response": {
+                    "$ref": "UnitGroupOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete a single unit group operation.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitGroupOperations/{unitGroupOperationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "saasservicemgmt.projects.locations.unitGroupOperations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. The etag known to the client for the expected state of the unit group operation. This is used with state-changing methods to prevent accidental overwrites when multiple user agents might be acting in parallel on the same resource. An etag wildcard provide optimistic concurrency based on the expected existence of the unit group operation. The Any wildcard (`*`) requires that the resource must already exists, and the Not Any wildcard (`!*`) requires that it must not.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The resource name of the resource within a service.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/unitGroupOperations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If \"validate_only\" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieve a single unit group operation.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitGroupOperations/{unitGroupOperationsId}",
+                  "httpMethod": "GET",
+                  "id": "saasservicemgmt.projects.locations.unitGroupOperations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the resource within a service.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/unitGroupOperations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "UnitGroupOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Retrieve a collection of unit group operations.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitGroupOperations",
+                  "httpMethod": "GET",
+                  "id": "saasservicemgmt.projects.locations.unitGroupOperations.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Filter the list as specified in https://google.aip.dev/160.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Order results as specified in https://google.aip.dev/132.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of unit group operations to send per page.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The page token: If the next_page_token from a previous response is provided, this request will send the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent of the unit group operation.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/unitGroupOperations",
+                  "response": {
+                    "$ref": "ListUnitGroupOperationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update a single unit group operation.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitGroupOperations/{unitGroupOperationsId}",
+                  "httpMethod": "PATCH",
+                  "id": "saasservicemgmt.projects.locations.unitGroupOperations.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name (full URI of the resource) following the standard naming scheme: \"projects/{project}/locations/{location}/unitGroupOperations/{unitGroupOperation}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/unitGroupOperations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the UnitGroupOperation resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields in the UnitGroupOperation will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If \"validate_only\" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "UnitGroupOperation"
+                  },
+                  "response": {
+                    "$ref": "UnitGroupOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "unitGroups": {
+              "methods": {
+                "create": {
+                  "description": "Create a new unit group.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitGroups",
+                  "httpMethod": "POST",
+                  "id": "saasservicemgmt.projects.locations.unitGroups.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent of the unit group.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "An optional request ID to identify requests.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "unitGroupId": {
+                      "description": "Required. The ID value for the new unit group.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "If \"validate_only\" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/unitGroups",
+                  "request": {
+                    "$ref": "UnitGroup"
+                  },
+                  "response": {
+                    "$ref": "UnitGroup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete a single unit group.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitGroups/{unitGroupsId}",
+                  "httpMethod": "DELETE",
+                  "id": "saasservicemgmt.projects.locations.unitGroups.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "The etag known to the client for the expected state of the unit group.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The resource name of the resource within a service.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/unitGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "An optional request ID to identify requests.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "If \"validate_only\" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieve a single unit group.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitGroups/{unitGroupsId}",
+                  "httpMethod": "GET",
+                  "id": "saasservicemgmt.projects.locations.unitGroups.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the resource within a service.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/unitGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "UnitGroup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Retrieve a collection of unit groups.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitGroups",
+                  "httpMethod": "GET",
+                  "id": "saasservicemgmt.projects.locations.unitGroups.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Filter the list as specified in https://google.aip.dev/160.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Order results as specified in https://google.aip.dev/132.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of unit groups to send per page.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The page token: If the next_page_token from a previous response is provided, this request will send the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent of the unit group.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/unitGroups",
+                  "response": {
+                    "$ref": "ListUnitGroupsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update a single unit group.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/unitGroups/{unitGroupsId}",
+                  "httpMethod": "PATCH",
+                  "id": "saasservicemgmt.projects.locations.unitGroups.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name (full URI of the resource) following the standard naming scheme: \"projects/{project}/locations/{location}/unitGroups/{unitGroup}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/unitGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "An optional request ID to identify requests.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Field mask is used to specify the fields to be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "If \"validate_only\" is set to true, the service will try to validate that this request would succeed, but will not actually make changes.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "UnitGroup"
+                  },
+                  "response": {
+                    "$ref": "UnitGroup"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2612,7 +3218,7 @@
       }
     }
   },
-  "revision": "20260505",
+  "revision": "20260526",
   "rootUrl": "https://saasservicemgmt.googleapis.com/",
   "schemas": {
     "Aggregate": {
@@ -2766,6 +3372,18 @@
     "Deprovision": {
       "description": "Deprovision is the unit operation that deprovision the underlying resources represented by a Unit. Can only execute if the Unit is currently provisioned.",
       "id": "Deprovision",
+      "properties": {},
+      "type": "object"
+    },
+    "DeprovisionUnitGroup": {
+      "description": "DeprovisionUnitGroup is the unit group operation that deprovisions the underlying resources represented by a UnitGroup.",
+      "id": "DeprovisionUnitGroup",
+      "properties": {},
+      "type": "object"
+    },
+    "DetachUnitGroup": {
+      "description": "DetachUnitGroup is the unit group operation that detaches a provisioned UnitGroup.",
+      "id": "DetachUnitGroup",
       "properties": {},
       "type": "object"
     },
@@ -3566,6 +4184,31 @@
       },
       "type": "object"
     },
+    "ListSaasReleasesResponse": {
+      "description": "The response structure for the ListSaasReleases method.",
+      "id": "ListSaasReleasesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "If present, the next page token can be provided to a subsequent ListSaasReleases call to list the next page. If empty, there are no more pages.",
+          "type": "string"
+        },
+        "saasReleases": {
+          "description": "The resulting saas releases.",
+          "items": {
+            "$ref": "SaasRelease"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListSaasResponse": {
       "description": "The response structure for the ListSaas method.",
       "id": "ListSaasResponse",
@@ -3603,6 +4246,56 @@
           "description": "The resulting tenants.",
           "items": {
             "$ref": "Tenant"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListUnitGroupOperationsResponse": {
+      "description": "The response structure for the ListUnitGroupOperations method.",
+      "id": "ListUnitGroupOperationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "If present, the next page token can be provided to a subsequent ListUnitGroupOperations call to list the next page. If empty, there are no more pages.",
+          "type": "string"
+        },
+        "unitGroupOperations": {
+          "description": "The resulting unit group operations.",
+          "items": {
+            "$ref": "UnitGroupOperation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListUnitGroupsResponse": {
+      "description": "The response structure for the ListUnitGroups method.",
+      "id": "ListUnitGroupsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "If present, the next page token can be provided to a subsequent ListUnitGroups call to list the next page. If empty, there are no more pages.",
+          "type": "string"
+        },
+        "unitGroups": {
+          "description": "The resulting unit groups.",
+          "items": {
+            "$ref": "UnitGroup"
           },
           "type": "array"
         },
@@ -3730,6 +4423,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "ProvisionUnitGroup": {
+      "description": "ProvisionUnitGroup is the unit group operation that provisions the underlying resources represented by a UnitGroup.",
+      "id": "ProvisionUnitGroup",
+      "properties": {},
       "type": "object"
     },
     "Release": {
@@ -4181,33 +4880,18 @@
           "type": "string"
         },
         "state": {
-          "description": "Output only. State of the Saas. It is always in ACTIVE state if the application_template is empty.",
+          "description": "Output only. State of the Saas. It is always in STATE_ACTIVE state if the application_template is empty.",
           "enum": [
             "STATE_TYPE_UNSPECIFIED",
             "STATE_ACTIVE",
             "STATE_RUNNING",
-            "STATE_FAILED",
-            "ACTIVE",
-            "RUNNING",
-            "FAILED"
-          ],
-          "enumDeprecated": [
-            false,
-            false,
-            false,
-            false,
-            true,
-            true,
-            true
+            "STATE_FAILED"
           ],
           "enumDescriptions": [
             "State type is unspecified.",
             "The Saas is ready",
             "In the process of importing, synchronizing or replicating ApplicationTemplates",
-            "Failure during process of importing, synchronizing or replicating ApplicationTemplate processing",
-            "Deprecated: Use STATE_ACTIVE.",
-            "Deprecated: Use STATE_RUNNING.",
-            "Deprecated: Use STATE_FAILED."
+            "Failure during process of importing, synchronizing or replicating ApplicationTemplate processing"
           ],
           "readOnly": true,
           "type": "string"
@@ -4276,6 +4960,67 @@
       },
       "type": "object"
     },
+    "SaasRelease": {
+      "description": "SaasRelease is a collection of Releases that are assigned to a UnitGroup. It allows provisioning and updates of UnitGroup, which contains multiple Units of different UnitKinds.",
+      "id": "SaasRelease",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Annotations is an unstructured key-value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/user-guide/annotations",
+          "type": "object"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. An opaque value that uniquely identifies a version or generation of a resource. It can be used to confirm that the client and server agree on the ordering of a resource being written.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels on the resource, which can be used for categorization. similar to Kubernetes resource labels.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The resource name (full URI of the resource) following the standard naming scheme: \"projects/{project}/locations/{location}/saasReleases/{saasRelease}\"",
+          "type": "string"
+        },
+        "releases": {
+          "description": "Required. The Releases that are assigned to this SaasRelease.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tierMappings": {
+          "description": "Required. A mapping between Tiers and UnitKinds that are part of this SaasRelease. While Tiers are defined as top-level resources, the mapping between Tiers and Unit Kinds is defined per SaasRelease.",
+          "items": {
+            "$ref": "TierMapping"
+          },
+          "type": "array"
+        },
+        "uid": {
+          "description": "Output only. The unique identifier of the resource. UID is unique in the time and space for this resource within the scope of the service. It is typically generated by the server on successful creation of a resource and must not be changed. UID is used to uniquely identify resources with resource name reuses. This should be a UUID4.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was last updated. Any change to the resource made by users must refresh this value. Changes to a resource made by the service should refresh this value.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Schedule": {
       "description": "A time specification to schedule the maintenance.",
       "id": "Schedule",
@@ -4297,23 +5042,12 @@
           "enum": [
             "TYPE_UNSPECIFIED",
             "TYPE_REGIONAL",
-            "TYPE_GLOBAL",
-            "REGIONAL",
-            "GLOBAL"
-          ],
-          "enumDeprecated": [
-            false,
-            false,
-            false,
-            true,
-            true
+            "TYPE_GLOBAL"
           ],
           "enumDescriptions": [
             "Unspecified type.",
             "Regional type.",
-            "Global type.",
-            "Deprecated: Use TYPE_REGIONAL.",
-            "Deprecated: Use TYPE_GLOBAL."
+            "Global type."
           ],
           "type": "string"
         }
@@ -4397,6 +5131,42 @@
           "description": "Output only. The timestamp when the resource was last updated. Any change to the resource made by users must refresh this value. Changes to a resource made by the service should refresh this value.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TierMapping": {
+      "description": "TierMapping describes the mapping between a Tier and its associated UnitKinds.",
+      "id": "TierMapping",
+      "properties": {
+        "tier": {
+          "description": "Required. The tier.",
+          "type": "string"
+        },
+        "unitKinds": {
+          "items": {
+            "$ref": "TierUnitKind"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TierUnitKind": {
+      "description": "A description of a single Unit Kind that is part of a Tier.",
+      "id": "TierUnitKind",
+      "properties": {
+        "inputVariables": {
+          "description": "Optional. Output only. Input variables for the UnitKind.",
+          "items": {
+            "$ref": "UnitVariable"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "unitKind": {
+          "description": "Required. Immutable. The unique identifier of the UnitKind.",
           "type": "string"
         }
       },
@@ -4623,6 +5393,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "unitGroup": {
+          "description": "Optional. Output only. Reference to the UnitGroup this unit belongs to.",
+          "readOnly": true,
+          "type": "string"
+        },
         "unitKind": {
           "description": "Optional. Reference to the UnitKind this Unit belongs to. Immutable once set.",
           "type": "string"
@@ -4709,6 +5484,147 @@
       },
       "type": "object"
     },
+    "UnitGroup": {
+      "description": "UnitGroup represents a set of Units to be used by a Tenant. In pooling scenarios, the UnitGroup may be created and provisioned before the Tenant is created.",
+      "id": "UnitGroup",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Annotations is an unstructured key-value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/user-guide/annotations",
+          "type": "object"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. An opaque value that uniquely identifies a version or generation of a resource. It can be used to confirm that the client and server agree on the ordering of a resource being written.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels on the resource, which can be used for categorization. similar to Kubernetes resource labels.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The resource name (full URI of the resource) following the standard naming scheme: \"projects/{project}/locations/{location}/unitGroups/{unitGroup}\"",
+          "type": "string"
+        },
+        "saas": {
+          "description": "Required. Immutable. The SaaS that this UnitGroup is created for.",
+          "type": "string"
+        },
+        "saasRelease": {
+          "description": "Required. Immutable. Current SaasRelease that the UnitGroup is provisioned with.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Optional. Output only. State of the UnitGroup.",
+          "enum": [
+            "UNIT_GROUP_STATE_UNSPECIFIED",
+            "UNIT_GROUP_STATE_NOT_PROVISIONED",
+            "UNIT_GROUP_STATE_PROVISIONING",
+            "UNIT_GROUP_STATE_UPDATING",
+            "UNIT_GROUP_STATE_DEPROVISIONING",
+            "UNIT_GROUP_STATE_READY",
+            "UNIT_GROUP_STATE_ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "UnitGroup is not provisioned.",
+            "UnitGroup is being provisioned.",
+            "UnitGroup is being updated.",
+            "UnitGroup is being deprovisioned.",
+            "UnitGroup has been provisioned and is ready for use.",
+            "UnitGroup has an error."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. The unique identifier of the resource. UID is unique in the time and space for this resource within the scope of the service. It is typically generated by the server on successful creation of a resource and must not be changed. UID is used to uniquely identify resources with resource name reuses. This should be a UUID4.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was last updated. Any change to the resource made by users must refresh this value. Changes to a resource made by the service should refresh this value.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UnitGroupOperation": {
+      "description": "UnitGroupOperation represents an operation on a UnitGroup.",
+      "id": "UnitGroupOperation",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Annotations is an unstructured key-value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/user-guide/annotations",
+          "type": "object"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deprovisionUnitGroup": {
+          "$ref": "DeprovisionUnitGroup",
+          "description": "Optional. Represents a deprovision operation on a UnitGroup."
+        },
+        "detachUnitGroup": {
+          "$ref": "DetachUnitGroup",
+          "description": "Optional. Represents a detach operation on a UnitGroup."
+        },
+        "etag": {
+          "description": "Output only. An opaque value that uniquely identifies a version or generation of a resource. It can be used to confirm that the client and server agree on the ordering of a resource being written.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels on the resource, which can be used for categorization. similar to Kubernetes resource labels.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The resource name (full URI of the resource) following the standard naming scheme: \"projects/{project}/locations/{location}/unitGroupOperations/{unitGroupOperation}\"",
+          "type": "string"
+        },
+        "provisionUnitGroup": {
+          "$ref": "ProvisionUnitGroup",
+          "description": "Optional. Represents a provision operation on a UnitGroup."
+        },
+        "tier": {
+          "description": "Optional. Tier represents the tier level of the UnitGroupOperation.",
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. The unique identifier of the resource. UID is unique in the time and space for this resource within the scope of the service. It is typically generated by the server on successful creation of a resource and must not be changed. UID is used to uniquely identify resources with resource name reuses. This should be a UUID4.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was last updated. Any change to the resource made by users must refresh this value. Changes to a resource made by the service should refresh this value.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "UnitKind": {
       "description": "Definition of a Unit. Units belonging to the same UnitKind are managed together; for example they follow the same release model (blueprints, versions etc.) and are typically rolled out together.",
       "id": "UnitKind",
@@ -4728,6 +5644,21 @@
           "$ref": "ComponentRef",
           "description": "Output only. Reference to component and revision in a composite ApplicationTemplate.",
           "readOnly": true
+        },
+        "boundaryType": {
+          "description": "Optional. Output only. BoundaryType describes the type of boundary the Unit Kind represents.",
+          "enum": [
+            "BOUNDARY_TYPE_UNSPECIFIED",
+            "BOUNDARY_TYPE_TENANT_PROJECT",
+            "BOUNDARY_TYPE_MANAGED_PROJECT"
+          ],
+          "enumDescriptions": [
+            "",
+            "Tenant project boundary.",
+            ""
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "createTime": {
           "description": "Output only. The timestamp when the resource was created.",
@@ -4889,7 +5820,8 @@
           "type": "string"
         },
         "provision": {
-          "$ref": "Provision"
+          "$ref": "Provision",
+          "description": "Optional. Provision operation."
         },
         "rollout": {
           "description": "Optional. Specifies which rollout created this Unit Operation. This cannot be modified and is used for filtering purposes only. If a dependent unit and unit operation are created as part of another unit operation, they will use the same rolloutId.",
