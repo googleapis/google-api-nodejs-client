@@ -344,7 +344,7 @@
       }
     }
   },
-  "revision": "20260511",
+  "revision": "20260601",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AISkillAnalysisOccurrence": {
@@ -360,6 +360,16 @@
         },
         "maxSeverity": {
           "description": "Maximum severity found among findings.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Unspecified severity.",
+            "Critical severity.",
+            "High severity."
+          ],
           "type": "string"
         },
         "skillName": {
@@ -1444,16 +1454,40 @@
           "description": "Category of the finding.",
           "type": "string"
         },
+        "details": {
+          "description": "Description of the finding category.",
+          "type": "string"
+        },
         "location": {
           "$ref": "FindingLocation",
           "description": "Location (path and line) where the finding was detected."
         },
         "scanner": {
           "description": "Scanner determines which engine (e.g. static, llm) emitted the finding.",
+          "enum": [
+            "SCANNER_UNSPECIFIED",
+            "STATIC",
+            "LLM"
+          ],
+          "enumDescriptions": [
+            "Unspecified scanner.",
+            "Static scanner.",
+            "LLM scanner."
+          ],
           "type": "string"
         },
         "severity": {
           "description": "Severity of the finding.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Unspecified severity.",
+            "Critical severity.",
+            "High severity."
+          ],
           "type": "string"
         }
       },
@@ -3407,6 +3441,10 @@
         "cvssV2": {
           "$ref": "CVSS",
           "description": "The cvss v2 score for the vulnerability."
+        },
+        "cvssV4": {
+          "$ref": "CVSS",
+          "description": "The cvss v4 score for the vulnerability."
         },
         "cvssVersion": {
           "description": "Output only. CVSS version used to populate cvss_score and severity.",
