@@ -1278,7 +1278,7 @@
       }
     }
   },
-  "revision": "20260423",
+  "revision": "20260525",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {
@@ -2809,6 +2809,10 @@
         },
         "name": {
           "description": "Identifier. The resource name of the Secret, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsSecrets/{userWorkloadsSecretId}\"",
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. The \"type\" field of Kubernetes Secret. For details see: https://kubernetes.io/docs/concepts/configuration/secret/#secret-types",
           "type": "string"
         }
       },
