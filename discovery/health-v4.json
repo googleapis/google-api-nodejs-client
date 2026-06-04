@@ -8,6 +8,9 @@
         "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly": {
           "description": "See your Google Health activity and fitness data"
         },
+        "https://www.googleapis.com/auth/googlehealth.ecg.readonly": {
+          "description": "See your Google Health ECG data"
+        },
         "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly": {
           "description": "See your Google Health health metrics and measurement data"
         },
@@ -335,7 +338,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. A filter to apply to the list of subscriptions. The filter syntax is described in https://google.aip.dev/160. The filter can be applied to the following fields: - `user` - `data_type` The `user` identifier (e.g., `user1` in `users/user1`) refers to the public `healthUserId` Example: user = \"users/user1\" Example: user = \"users/user1\" OR user = \"users/user2\" Example: user = \"users/user1\" AND (data_type = \"sleep\" OR data_type = \"weight\")",
+                      "description": "Optional. A filter to apply to the list of subscriptions. The filter syntax is described in https://google.aip.dev/160. The filter can be applied to the following fields: - `user` - `data_type` The `user` identifier (e.g., `user1` in `users/user1`) refers to the public `health_user_id` Example: user = \"users/user1\" Example: user = \"users/user1\" OR user = \"users/user2\" Example: user = \"users/user1\" AND (data_type = \"sleep\" OR data_type = \"weight\")",
                       "location": "query",
                       "type": "string"
                     },
@@ -431,7 +434,9 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly",
+            "https://www.googleapis.com/auth/googlehealth.ecg.readonly",
             "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly",
+            "https://www.googleapis.com/auth/googlehealth.irn.readonly",
             "https://www.googleapis.com/auth/googlehealth.profile.readonly",
             "https://www.googleapis.com/auth/googlehealth.settings.readonly",
             "https://www.googleapis.com/auth/googlehealth.sleep.readonly"
@@ -943,7 +948,7 @@
       }
     }
   },
-  "revision": "20260525",
+  "revision": "20260527",
   "rootUrl": "https://health.googleapis.com/",
   "schemas": {
     "ActiveEnergyBurned": {
@@ -2896,6 +2901,17 @@
       "properties": {
         "name": {
           "description": "Identifier. The resource name of the data type. Format: `users/{user}/dataTypes/{data_type}` See DataPoint.name for examples and possible values.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevicesandservicesHealthV4User": {
+      "description": "Represents a user in the Google Health API. It matches the parent resource of collections owned by the user. Clients currently do not need to interact with this resource directly.",
+      "id": "GoogleDevicesandservicesHealthV4User",
+      "properties": {
+        "name": {
+          "description": "Identifier. The resource name of the user. The `{user}` ID is a system-generated identifier, as described in Identity.health_user_id. Format: `users/{user}`",
           "type": "string"
         }
       },
@@ -5143,7 +5159,7 @@
       "id": "Subscription",
       "properties": {
         "dataTypes": {
-          "description": "Optional. Data types subscribed to. A subscriber will only receive notifications for data types that are declared here. A subscription can only subscribe to the data types of the subscriber. Supported data types are: \"altitude\", \"distance\", \"floors\", \"sleep\", \"steps\", \"weight\".",
+          "description": "Optional. Data types subscribed to. A subscriber will only receive notifications for data types that are declared here. A subscription can only subscribe to the data types of the subscriber. The values should be in the format \"users/{health_user_id}/dataTypes/{data_type}\" where `{data_type}` is one of \"altitude\", \"distance\", \"floors\", \"sleep\", \"steps\", \"weight\".",
           "items": {
             "type": "string"
           },

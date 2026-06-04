@@ -1420,6 +1420,15 @@ export namespace health_v4 {
     name?: string | null;
   }
   /**
+   * Represents a user in the Google Health API. It matches the parent resource of collections owned by the user. Clients currently do not need to interact with this resource directly.
+   */
+  export interface Schema$GoogleDevicesandservicesHealthV4User {
+    /**
+     * Identifier. The resource name of the user. The `{user\}` ID is a system-generated identifier, as described in Identity.health_user_id. Format: `users/{user\}`
+     */
+    name?: string | null;
+  }
+  /**
    * Log message for a webhook notification sent by the Google Health API to a subscriber's endpoint. Includes the HTTP response received from the endpoint.
    */
   export interface Schema$GoogleDevicesandservicesHealthV4WebhookNotificationCloudLog {
@@ -2881,7 +2890,7 @@ export namespace health_v4 {
    */
   export interface Schema$Subscription {
     /**
-     * Optional. Data types subscribed to. A subscriber will only receive notifications for data types that are declared here. A subscription can only subscribe to the data types of the subscriber. Supported data types are: "altitude", "distance", "floors", "sleep", "steps", "weight".
+     * Optional. Data types subscribed to. A subscriber will only receive notifications for data types that are declared here. A subscription can only subscribe to the data types of the subscriber. The values should be in the format "users/{health_user_id\}/dataTypes/{data_type\}" where `{data_type\}` is one of "altitude", "distance", "floors", "sleep", "steps", "weight".
      */
     dataTypes?: string[] | null;
     /**
@@ -4102,7 +4111,7 @@ export namespace health_v4 {
      *
      *   // Do the magic
      *   const res = await health.projects.subscribers.subscriptions.list({
-     *     // Optional. A filter to apply to the list of subscriptions. The filter syntax is described in https://google.aip.dev/160. The filter can be applied to the following fields: - `user` - `data_type` The `user` identifier (e.g., `user1` in `users/user1`) refers to the public `healthUserId` Example: user = "users/user1" Example: user = "users/user1" OR user = "users/user2" Example: user = "users/user1" AND (data_type = "sleep" OR data_type = "weight")
+     *     // Optional. A filter to apply to the list of subscriptions. The filter syntax is described in https://google.aip.dev/160. The filter can be applied to the following fields: - `user` - `data_type` The `user` identifier (e.g., `user1` in `users/user1`) refers to the public `health_user_id` Example: user = "users/user1" Example: user = "users/user1" OR user = "users/user2" Example: user = "users/user1" AND (data_type = "sleep" OR data_type = "weight")
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 50 subscriptions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
@@ -4391,7 +4400,7 @@ export namespace health_v4 {
   }
   export interface Params$Resource$Projects$Subscribers$Subscriptions$List extends StandardParameters {
     /**
-     * Optional. A filter to apply to the list of subscriptions. The filter syntax is described in https://google.aip.dev/160. The filter can be applied to the following fields: - `user` - `data_type` The `user` identifier (e.g., `user1` in `users/user1`) refers to the public `healthUserId` Example: user = "users/user1" Example: user = "users/user1" OR user = "users/user2" Example: user = "users/user1" AND (data_type = "sleep" OR data_type = "weight")
+     * Optional. A filter to apply to the list of subscriptions. The filter syntax is described in https://google.aip.dev/160. The filter can be applied to the following fields: - `user` - `data_type` The `user` identifier (e.g., `user1` in `users/user1`) refers to the public `health_user_id` Example: user = "users/user1" Example: user = "users/user1" OR user = "users/user2" Example: user = "users/user1" AND (data_type = "sleep" OR data_type = "weight")
      */
     filter?: string;
     /**
@@ -4457,7 +4466,9 @@ export namespace health_v4 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.ecg.readonly',
      *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.irn.readonly',
      *       'https://www.googleapis.com/auth/googlehealth.profile.readonly',
      *       'https://www.googleapis.com/auth/googlehealth.settings.readonly',
      *       'https://www.googleapis.com/auth/googlehealth.sleep.readonly',
