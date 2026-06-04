@@ -227,7 +227,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or `projects/{PROJECT_NUMBER}/autokeyConfig`.",
+              "description": "Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`, `projects/{PROJECT_NUMBER}/autokeyConfig`, or `projects/{PROJECT_ID}/autokeyConfig`.",
               "location": "path",
               "pattern": "^folders/[^/]+/autokeyConfig$",
               "required": true,
@@ -279,7 +279,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or `projects/{PROJECT_NUMBER}/autokeyConfig`.",
+              "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`, `projects/{PROJECT_NUMBER}/autokeyConfig`, or `projects/{PROJECT_ID}/autokeyConfig`.",
               "location": "path",
               "pattern": "^folders/[^/]+/autokeyConfig$",
               "required": true,
@@ -418,7 +418,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or `projects/{PROJECT_NUMBER}/autokeyConfig`.",
+              "description": "Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`, `projects/{PROJECT_NUMBER}/autokeyConfig`, or `projects/{PROJECT_ID}/autokeyConfig`.",
               "location": "path",
               "pattern": "^projects/[^/]+/autokeyConfig$",
               "required": true,
@@ -548,7 +548,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or `projects/{PROJECT_NUMBER}/autokeyConfig`.",
+              "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`, `projects/{PROJECT_NUMBER}/autokeyConfig`, or `projects/{PROJECT_ID}/autokeyConfig`.",
               "location": "path",
               "pattern": "^projects/[^/]+/autokeyConfig$",
               "required": true,
@@ -2967,7 +2967,7 @@
       }
     }
   },
-  "revision": "20260514",
+  "revision": "20260522",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AddQuorumMember": {
@@ -3212,7 +3212,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or `projects/{PROJECT_NUMBER}/autokeyConfig`.",
+          "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`, `projects/{PROJECT_NUMBER}/autokeyConfig`, or `projects/{PROJECT_ID}/autokeyConfig`.",
           "type": "string"
         },
         "state": {
@@ -3221,13 +3221,22 @@
             "STATE_UNSPECIFIED",
             "ACTIVE",
             "KEY_PROJECT_DELETED",
-            "UNINITIALIZED"
+            "UNINITIALIZED",
+            "KEY_PROJECT_PERMISSION_DENIED"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            true
           ],
           "enumDescriptions": [
             "The state of the AutokeyConfig is unspecified.",
             "The AutokeyConfig is currently active.",
             "A previously configured key project has been deleted and the current AutokeyConfig is unusable.",
-            "The AutokeyConfig is not yet initialized or has been reset to its default uninitialized state."
+            "The AutokeyConfig is not yet initialized or has been reset to its default uninitialized state.",
+            "Deprecated: This state is not returned by the backend."
           ],
           "readOnly": true,
           "type": "string"

@@ -281,7 +281,7 @@ export namespace cloudkms_v1 {
      */
     keyProjectResolutionMode?: string | null;
     /**
-     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`, `projects/{PROJECT_NUMBER\}/autokeyConfig`, or `projects/{PROJECT_ID\}/autokeyConfig`.
      */
     name?: string | null;
     /**
@@ -1895,7 +1895,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.folders.getAutokeyConfig({
-     *     // Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     *     // Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`, `projects/{PROJECT_NUMBER\}/autokeyConfig`, or `projects/{PROJECT_ID\}/autokeyConfig`.
      *     name: 'folders/my-folder/autokeyConfig',
      *   });
      *   console.log(res.data);
@@ -2187,7 +2187,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.folders.updateAutokeyConfig({
-     *     // Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     *     // Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`, `projects/{PROJECT_NUMBER\}/autokeyConfig`, or `projects/{PROJECT_ID\}/autokeyConfig`.
      *     name: 'folders/my-folder/autokeyConfig',
      *     // Required. Masks which fields of the AutokeyConfig to update, e.g. `keyProject`.
      *     updateMask: 'placeholder-value',
@@ -2474,7 +2474,7 @@ export namespace cloudkms_v1 {
 
   export interface Params$Resource$Folders$Getautokeyconfig extends StandardParameters {
     /**
-     * Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     * Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`, `projects/{PROJECT_NUMBER\}/autokeyConfig`, or `projects/{PROJECT_ID\}/autokeyConfig`.
      */
     name?: string;
   }
@@ -2486,7 +2486,7 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Folders$Updateautokeyconfig extends StandardParameters {
     /**
-     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`, `projects/{PROJECT_NUMBER\}/autokeyConfig`, or `projects/{PROJECT_ID\}/autokeyConfig`.
      */
     name?: string;
     /**
@@ -2896,7 +2896,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.getAutokeyConfig({
-     *     // Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     *     // Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`, `projects/{PROJECT_NUMBER\}/autokeyConfig`, or `projects/{PROJECT_ID\}/autokeyConfig`.
      *     name: 'projects/my-project/autokeyConfig',
      *   });
      *   console.log(res.data);
@@ -3646,7 +3646,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.updateAutokeyConfig({
-     *     // Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     *     // Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`, `projects/{PROJECT_NUMBER\}/autokeyConfig`, or `projects/{PROJECT_ID\}/autokeyConfig`.
      *     name: 'projects/my-project/autokeyConfig',
      *     // Required. Masks which fields of the AutokeyConfig to update, e.g. `keyProject`.
      *     updateMask: 'placeholder-value',
@@ -3933,7 +3933,7 @@ export namespace cloudkms_v1 {
 
   export interface Params$Resource$Projects$Getautokeyconfig extends StandardParameters {
     /**
-     * Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     * Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`, `projects/{PROJECT_NUMBER\}/autokeyConfig`, or `projects/{PROJECT_ID\}/autokeyConfig`.
      */
     name?: string;
   }
@@ -3963,7 +3963,7 @@ export namespace cloudkms_v1 {
   }
   export interface Params$Resource$Projects$Updateautokeyconfig extends StandardParameters {
     /**
-     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` or `projects/{PROJECT_NUMBER\}/autokeyConfig`.
+     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`, `projects/{PROJECT_NUMBER\}/autokeyConfig`, or `projects/{PROJECT_ID\}/autokeyConfig`.
      */
     name?: string;
     /**
