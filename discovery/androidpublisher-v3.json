@@ -5639,7 +5639,7 @@
       }
     }
   },
-  "revision": "20260519",
+  "revision": "20260528",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -8094,7 +8094,7 @@
       "type": "object"
     },
     "GeneratedApksPerSigningKey": {
-      "description": "Download metadata for split, standalone and universal APKs, as well as asset pack slices, signed with a given key. Next ID: 10",
+      "description": "Download metadata for split, standalone and universal APKs, as well as asset pack slices, signed with a given key.",
       "id": "GeneratedApksPerSigningKey",
       "properties": {
         "certificateSha256Hash": {
