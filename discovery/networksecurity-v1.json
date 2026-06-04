@@ -6131,7 +6131,7 @@
       }
     }
   },
-  "revision": "20260518",
+  "revision": "20260524",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -8428,7 +8428,7 @@
           "type": "string"
         },
         "unreachable": {
-          "description": "Locations that could not be reached.",
+          "description": "Unordered list. Locations that could not be reached. See https://google.aip.dev/217 for more details.",
           "items": {
             "type": "string"
           },
