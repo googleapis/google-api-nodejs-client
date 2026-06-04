@@ -865,6 +865,10 @@ export namespace dataform_v1 {
      */
     effectiveDefaultBranch?: string | null;
     /**
+     * Optional. Resource name for the GitRepositoryLink used for machine credentials. Must be in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`
+     */
+    gitRepositoryLink?: string | null;
+    /**
      * Optional. Authentication fields for remote uris using SSH protocol.
      */
     sshAuthenticationConfig?: Schema$SshAuthenticationConfig;
