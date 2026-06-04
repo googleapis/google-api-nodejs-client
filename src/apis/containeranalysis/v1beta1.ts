@@ -1690,23 +1690,27 @@ export namespace containeranalysis_v1beta1 {
     path?: string | null;
   }
   /**
-   * Common Vulnerability Scoring System. This message is compatible with CVSS v2 and v3. For CVSS v2 details, see https://www.first.org/cvss/v2/guide CVSS v2 calculator: https://nvd.nist.gov/vuln-metrics/cvss/v2-calculator For CVSS v3 details, see https://www.first.org/cvss/specification-document CVSS v3 calculator: https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator
+   * Common Vulnerability Scoring System. This message is compatible with CVSS v2, v3, and v4. For CVSS v2 details, see https://www.first.org/cvss/v2/guide CVSS v2 calculator: https://nvd.nist.gov/vuln-metrics/cvss/v2-calculator For CVSS v3 details, see https://www.first.org/cvss/specification-document CVSS v3 calculator: https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator For CVSS v4 details, see https://www.first.org/cvss/v4.0/user-guide CVSS v4 calculator: https://nvd.nist.gov/vuln-metrics/cvss/v4-calculator
    */
   export interface Schema$CVSS {
     /**
-     * Defined in CVSS v3, CVSS v2
+     * Attack Complexity (AC). Defined in CVSS v2, v3, v4.
      */
     attackComplexity?: string | null;
     /**
-     * Base Metrics Represents the intrinsic characteristics of a vulnerability that are constant over time and across user environments. Defined in CVSS v3, CVSS v2
+     * Attack Requirements (AT). Defined in CVSS v4.
+     */
+    attackRequirements?: string | null;
+    /**
+     * Attack Vector (AV). Defined in CVSS v2, v3, v4.
      */
     attackVector?: string | null;
     /**
-     * Defined in CVSS v2
+     * Authentication (Au). Defined in CVSS v2.
      */
     authentication?: string | null;
     /**
-     * Defined in CVSS v3, CVSS v2
+     * Availability Impact (A). Defined in CVSS v2, v3.
      */
     availabilityImpact?: string | null;
     /**
@@ -1714,27 +1718,51 @@ export namespace containeranalysis_v1beta1 {
      */
     baseScore?: number | null;
     /**
-     * Defined in CVSS v3, CVSS v2
+     * Confidentiality Impact (C). Defined in CVSS v2, v3.
      */
     confidentialityImpact?: string | null;
     exploitabilityScore?: number | null;
     impactScore?: number | null;
     /**
-     * Defined in CVSS v3, CVSS v2
+     * Integrity Impact (I). Defined in CVSS v2, v3.
      */
     integrityImpact?: string | null;
     /**
-     * Defined in CVSS v3
+     * Privileges Required (PR). Defined in CVSS v3, v4.
      */
     privilegesRequired?: string | null;
     /**
-     * Defined in CVSS v3
+     * Scope (S). Defined in CVSS v3.
      */
     scope?: string | null;
     /**
-     * Defined in CVSS v3
+     * Subsequent System Availability Impact (SA). Defined in CVSS v4.
+     */
+    subsequentSystemAvailabilityImpact?: string | null;
+    /**
+     * Subsequent System Confidentiality Impact (SC). Defined in CVSS v4.
+     */
+    subsequentSystemConfidentialityImpact?: string | null;
+    /**
+     * Subsequent System Integrity Impact (SI). Defined in CVSS v4.
+     */
+    subsequentSystemIntegrityImpact?: string | null;
+    /**
+     * User Interaction (UI). Defined in CVSS v3, v4.
      */
     userInteraction?: string | null;
+    /**
+     * Vulnerable System Availability Impact (VA). Defined in CVSS v4.
+     */
+    vulnerableSystemAvailabilityImpact?: string | null;
+    /**
+     * Vulnerable System Confidentiality Impact (VC). Defined in CVSS v4.
+     */
+    vulnerableSystemConfidentialityImpact?: string | null;
+    /**
+     * Vulnerable System Integrity Impact (VI). Defined in CVSS v4.
+     */
+    vulnerableSystemIntegrityImpact?: string | null;
   }
   /**
    * Deprecated. Common Vulnerability Scoring System version 3. For details, see https://www.first.org/cvss/specification-document
