@@ -4082,30 +4082,6 @@
     "youtube": {
       "resources": {
         "v3": {
-          "methods": {
-            "updateCommentThreads": {
-              "description": "Updates an existing resource.",
-              "flatPath": "youtube/v3/commentThreads",
-              "httpMethod": "PUT",
-              "id": "youtube.youtube.v3.updateCommentThreads",
-              "parameterOrder": [],
-              "parameters": {
-                "part": {
-                  "description": "The *part* parameter specifies a comma-separated list of commentThread resource properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.",
-                  "location": "query",
-                  "repeated": true,
-                  "type": "string"
-                }
-              },
-              "path": "youtube/v3/commentThreads",
-              "request": {
-                "$ref": "CommentThread"
-              },
-              "response": {
-                "$ref": "CommentThread"
-              }
-            }
-          },
           "resources": {
             "liveChat": {
               "resources": {
@@ -4176,7 +4152,7 @@
       }
     }
   },
-  "revision": "20260525",
+  "revision": "20260602",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
