@@ -2083,7 +2083,7 @@
       }
     }
   },
-  "revision": "20260507",
+  "revision": "20260520",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -5806,9 +5806,17 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata": {
-      "description": "Common model for database resource instance metadata. Next ID: 32",
+      "description": "Common model for database resource instance metadata. Next ID: 35",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata",
       "properties": {
+        "additionalMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Field to ingest additional metadata whichd does not support proto format.",
+          "type": "object"
+        },
         "availabilityConfiguration": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainAvailabilityConfiguration",
           "description": "Availability configuration for this instance"
@@ -5961,6 +5969,18 @@
             "For rest of the other categories."
           ],
           "type": "string"
+        },
+        "internalAdditionalMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Field to ingest additional metadata which support proto format.",
+          "type": "object"
+        },
+        "ipAddress": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainIpAddress",
+          "description": "Optional. Private and public IP address of the resource."
         },
         "isDeletionProtectionEnabled": {
           "description": "Optional. Whether deletion protection is enabled for this resource.",
@@ -6624,6 +6644,21 @@
       },
       "type": "object"
     },
+    "StorageDatabasecenterPartnerapiV1mainIpAddress": {
+      "description": "Used to send IP address information for a database resource.",
+      "id": "StorageDatabasecenterPartnerapiV1mainIpAddress",
+      "properties": {
+        "privateIp": {
+          "description": "The private IP address assigned to the resource within a Virtual Private Cloud (VPC). This IP is only reachable from within the same VPC network. Stored in standard string format (e.g., \"10.0.0.2\").",
+          "type": "string"
+        },
+        "publicIp": {
+          "description": "The public IP address assigned to the resource. This IP is reachable from the internet. Stored in standard string format (e.g., \"34.72.1.1\").",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "StorageDatabasecenterPartnerapiV1mainMachineConfiguration": {
       "description": "MachineConfiguration describes the configuration of a machine specific to Database Resource.",
       "id": "StorageDatabasecenterPartnerapiV1mainMachineConfiguration",
@@ -7028,6 +7063,7 @@
             "ENGINE_CLOUD_SPANNER_WITH_GOOGLESQL_DIALECT",
             "ENGINE_MEMORYSTORE_FOR_REDIS",
             "ENGINE_MEMORYSTORE_FOR_REDIS_CLUSTER",
+            "ENGINE_MEMORSTORE_FOR_VALKEY",
             "ENGINE_OTHER",
             "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
             "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
@@ -7054,6 +7090,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -7070,6 +7107,7 @@
             "Cloud Spanner with Google SQL dialect.",
             "Memorystore with Redis dialect.",
             "Memorystore with Redis cluster dialect.",
+            "Memorystore with Valkey dialect.",
             "Other refers to rest of other database engine. This is to be when engine is known, but it is not present in this enum.",
             "Firestore with native mode.",
             "Firestore with datastore mode.",
