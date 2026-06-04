@@ -382,7 +382,12 @@ export namespace adexchangebuyer2_v2beta1 {
   /**
    * Request message for indicating that the proposal's setup step is complete.
    */
-  export interface Schema$CompleteSetupRequest {}
+  export interface Schema$CompleteSetupRequest {
+    /**
+     * The external deal ids of the deals to mark as setup completed. If empty, all the deals in the proposal will be marked as setup completed.
+     */
+    externalDealIds?: string[] | null;
+  }
   /**
    * Contains information on how a buyer or seller can be reached.
    */
@@ -6907,7 +6912,9 @@ export namespace adexchangebuyer2_v2beta1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "externalDealIds": []
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
