@@ -3235,7 +3235,7 @@
       }
     }
   },
-  "revision": "20260515",
+  "revision": "20260529",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -4163,6 +4163,10 @@
         "effectiveDefaultBranch": {
           "description": "Output only. The Git remote's effective default branch name. This is the default branch name of the Git remote if it is set, otherwise it is `main`.",
           "readOnly": true,
+          "type": "string"
+        },
+        "gitRepositoryLink": {
+          "description": "Optional. Resource name for the GitRepositoryLink used for machine credentials. Must be in the format `projects/*/locations/*/connections/*/gitRepositoryLinks/*`",
           "type": "string"
         },
         "sshAuthenticationConfig": {
