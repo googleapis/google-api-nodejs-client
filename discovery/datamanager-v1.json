@@ -820,13 +820,24 @@
       }
     }
   },
-  "revision": "20260507",
+  "revision": "20260527",
   "rootUrl": "https://datamanager.googleapis.com/",
   "schemas": {
     "AdIdentifiers": {
       "description": "Identifiers and other information used to match the conversion event with other online activity (such as ad clicks).",
       "id": "AdIdentifiers",
       "properties": {
+        "dclid": {
+          "description": "Optional. The display click ID associated with this event.",
+          "type": "string"
+        },
+        "encryptedUserIds": {
+          "description": "Optional. Any number of encrypted user IDs.",
+          "items": {
+            "$ref": "EncryptedUserId"
+          },
+          "type": "array"
+        },
         "gbraid": {
           "description": "Optional. The click identifier for clicks associated with app events and originating from iOS devices starting with iOS14.",
           "type": "string"
@@ -835,9 +846,17 @@
           "description": "Optional. The Google click ID (gclid) associated with this event.",
           "type": "string"
         },
+        "impressionId": {
+          "description": "Optional. The impression ID associated with this event.",
+          "type": "string"
+        },
         "landingPageDeviceInfo": {
           "$ref": "DeviceInfo",
           "description": "Optional. Information gathered about the device being used (if any) at the time of landing onto the advertiser’s site after interacting with the ad."
+        },
+        "matchId": {
+          "description": "Optional. The match ID field used to join this event with a previous event.",
+          "type": "string"
         },
         "mobileDeviceId": {
           "description": "Optional. The mobile identifier for advertisers. This would be IDFA on iOS, AdID on Android, or other platforms’ identifiers for advertisers.",
@@ -881,6 +900,10 @@
       "description": "The audience member to be operated on.",
       "id": "AudienceMember",
       "properties": {
+        "compositeData": {
+          "$ref": "CompositeData",
+          "description": "Group of multiple identifier types."
+        },
         "consent": {
           "$ref": "Consent",
           "description": "Optional. The consent setting for the user."
@@ -999,6 +1022,24 @@
       },
       "type": "object"
     },
+    "CompositeData": {
+      "description": "Composite data holding identifiers and associated data for a user. At least one of `user_data` or `ip_data` is required.",
+      "id": "CompositeData",
+      "properties": {
+        "ipData": {
+          "description": "Optional. IP address data representing customer interaction used to build the audience.",
+          "items": {
+            "$ref": "IpData"
+          },
+          "type": "array"
+        },
+        "userData": {
+          "$ref": "UserData",
+          "description": "Optional. User-provided data that identifies the user."
+        }
+      },
+      "type": "object"
+    },
     "Consent": {
       "description": "[Digital Markets Act (DMA)](//digital-markets-act.ec.europa.eu/index_en) consent settings for the user.",
       "id": "Consent",
@@ -1082,6 +1123,36 @@
         },
         "variable": {
           "description": "Optional. The name of the custom variable to set. If the variable is not found for the given destination, it will be ignored.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataTypeCount": {
+      "description": "The count for a specific data type.",
+      "id": "DataTypeCount",
+      "properties": {
+        "count": {
+          "description": "The count for this data type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of data.",
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "EMAIL",
+            "PHONE_NUMBER",
+            "ADDRESS",
+            "IP_ADDRESS"
+          ],
+          "enumDescriptions": [
+            "The data type is unspecified.",
+            "The data is an email address.",
+            "The data is a phone number.",
+            "The data is a physical address.",
+            "The data is an IP address."
+          ],
           "type": "string"
         }
       },
@@ -1177,6 +1248,58 @@
       "properties": {},
       "type": "object"
     },
+    "EncryptedUserId": {
+      "description": "A user identifier issued to be used for attribution. All fields are required if this is used.",
+      "id": "EncryptedUserId",
+      "properties": {
+        "encryptedId": {
+          "description": "Required. The alphanumeric encrypted id.",
+          "type": "string"
+        },
+        "entityId": {
+          "description": "Required. The encryption entity ID. This should match the encryption configuration for ad serving or Data Transfer.",
+          "format": "int64",
+          "type": "string"
+        },
+        "entityType": {
+          "description": "Required. The encryption entity type. This should match the encryption configuration for ad serving or Data Transfer.",
+          "enum": [
+            "ENCRYPTION_ENTITY_TYPE_UNSPECIFIED",
+            "CAMPAIGN_MANAGER_ACCOUNT",
+            "CAMPAIGN_MANAGER_ADVERTISER",
+            "DISPLAY_VIDEO_PARTNER",
+            "DISPLAY_VIDEO_ADVERTISER",
+            "GOOGLE_ADS_CUSTOMER",
+            "GOOGLE_AD_MANAGER_NETWORK_CODE"
+          ],
+          "enumDescriptions": [
+            "Unspecified encryption entity type.",
+            "Campaign Manager 360 account.",
+            "Campaign Manager 360 advertiser.",
+            "Display & Video 360 partner.",
+            "Display & Video 360 advertiser.",
+            "Google Ads customer.",
+            "Google Ad Manager network code."
+          ],
+          "type": "string"
+        },
+        "source": {
+          "description": "Required. Describes whether the encrypted cookie was received from ad serving (the %m macro) or from Data Transfer.",
+          "enum": [
+            "ENCRYPTION_SOURCE_UNSPECIFIED",
+            "AD_SERVING",
+            "DATA_TRANSFER"
+          ],
+          "enumDescriptions": [
+            "Unspecified encryption source.",
+            "Ad serving encryption source.",
+            "Data transfer encryption source."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EncryptionInfo": {
       "description": "Encryption information for the data being ingested.",
       "id": "EncryptionInfo",
@@ -1227,7 +1350,22 @@
             "PROCESSING_ERROR_REASON_AWS_AUTH_FAILED",
             "PROCESSING_ERROR_REASON_USER_IDENTIFIER_DECRYPTION_ERROR",
             "PROCESSING_ERROR_OPERATING_ACCOUNT_MISMATCH_FOR_AD_IDENTIFIER",
-            "PROCESSING_ERROR_REASON_ONE_PER_CLICK_CONVERSION_ACTION_NOT_PERMITTED_WITH_BRAID"
+            "PROCESSING_ERROR_REASON_ONE_PER_CLICK_CONVERSION_ACTION_NOT_PERMITTED_WITH_BRAID",
+            "PROCESSING_ERROR_REASON_MATCH_ID_NOT_FOUND",
+            "PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_MATCH_ID",
+            "PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_GCLID",
+            "PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_DCLID",
+            "PROCESSING_ERROR_REASON_INVALID_AD_IDENTIFIERS",
+            "PROCESSING_ERROR_REASON_INVALID_MOBILE_ID_FORMAT",
+            "PROCESSING_ERROR_REASON_ORIGINAL_CONVERSIONS_NOT_FOUND",
+            "PROCESSING_ERROR_REASON_EVENT_ID_DECODE_ERROR",
+            "PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_IMPRESSION_ID",
+            "PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND",
+            "PROCESSING_ERROR_REASON_CONVERSION_PRECEDES_CLICK",
+            "PROCESSING_ERROR_REASON_TOO_RECENT_CLICK",
+            "PROCESSING_ERROR_REASON_INVALID_CLICK",
+            "PROCESSING_ERROR_REASON_INVALID_OPERATING_ACCOUNT_FOR_CLICK",
+            "PROCESSING_ERROR_REASON_CLICK_NOT_FOUND"
           ],
           "enumDescriptions": [
             "The processing error reason is unknown.",
@@ -1258,7 +1396,22 @@
             "The system failed to authenticate with AWS.",
             "Failed to decrypt the UserIdentifier data using the DEK.",
             "The user attempted to ingest events with an ad identifier that isn't from the operating account's ads.",
-            "One-per-click conversion actions cannot be used with BRAIDs."
+            "One-per-click conversion actions cannot be used with BRAIDs.",
+            "The match ID can not be found.",
+            "The user ID can not be found for the match ID.",
+            "The user ID can not be found for the GCLID.",
+            "The user ID can not be found for the DCLID.",
+            "There are ad identifiers that are invalid.",
+            "The mobile ID format is invalid.",
+            "The original conversions can't be found.",
+            "The event ID (dclid or impression ID) cannot be decoded.",
+            "The user ID cannot be found for the given impression ID.",
+            "The user ID cannot be found.",
+            "The event timestamp on the event was earlier than the associated click.",
+            "The click occurred too recently.",
+            "The event can't be attributed to a click (GCLID). This may be because the click did not come from a Google Ads campaign, for example.",
+            "The click from the event isn't associated with the `operating_account` of the destination.",
+            "A corresponding click can't be found that matches the provided attributes."
           ],
           "type": "string"
         },
@@ -1314,6 +1467,11 @@
         "consent": {
           "$ref": "Consent",
           "description": "Optional. Information about whether the associated user has provided different types of consent."
+        },
+        "conversionCount": {
+          "description": "Optional. The conversion quantity associated with the event, for counting-based conversions.",
+          "format": "double",
+          "type": "number"
         },
         "conversionValue": {
           "description": "Optional. The conversion value associated with the event, for value-based conversions.",
@@ -1570,6 +1728,10 @@
       "description": "The status of the ingest audience members request.",
       "id": "IngestAudienceMembersStatus",
       "properties": {
+        "compositeDataIngestionStatus": {
+          "$ref": "IngestCompositeDataStatus",
+          "description": "The status of the composite data ingestion to the destination."
+        },
         "mobileDataIngestionStatus": {
           "$ref": "IngestMobileDataStatus",
           "description": "The status of the mobile data ingestion to the destination."
@@ -1589,6 +1751,55 @@
         "userIdDataIngestionStatus": {
           "$ref": "IngestUserIdDataStatus",
           "description": "The status of the user id data ingestion to the destination."
+        }
+      },
+      "type": "object"
+    },
+    "IngestCompositeDataStatus": {
+      "description": "The status of the composite data ingestion to the destination containing stats related to the ingestion.",
+      "id": "IngestCompositeDataStatus",
+      "properties": {
+        "dataTypeCounts": {
+          "description": "The total count of data types sent in the upload request for the destination, broken down by data type. Includes all data types in the request, regardless of whether they were successfully ingested or not.",
+          "items": {
+            "$ref": "DataTypeCount"
+          },
+          "type": "array"
+        },
+        "recordCount": {
+          "description": "The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.",
+          "format": "int64",
+          "type": "string"
+        },
+        "uploadMatchRateRange": {
+          "description": "The match rate range of the upload.",
+          "enum": [
+            "MATCH_RATE_RANGE_UNKNOWN",
+            "MATCH_RATE_RANGE_NOT_ELIGIBLE",
+            "MATCH_RATE_RANGE_LESS_THAN_20",
+            "MATCH_RATE_RANGE_20_TO_30",
+            "MATCH_RATE_RANGE_31_TO_40",
+            "MATCH_RATE_RANGE_41_TO_50",
+            "MATCH_RATE_RANGE_51_TO_60",
+            "MATCH_RATE_RANGE_61_TO_70",
+            "MATCH_RATE_RANGE_71_TO_80",
+            "MATCH_RATE_RANGE_81_TO_90",
+            "MATCH_RATE_RANGE_91_TO_100"
+          ],
+          "enumDescriptions": [
+            "The match rate range is unknown.",
+            "The match rate range is not eligible.",
+            "The match rate range is less than 20% (in the interval `[0, 20)`).",
+            "The match rate range is between 20% and 30% (in the interval `[20, 31)`).",
+            "The match rate range is between 31% and 40% (in the interval `[31, 41)`).",
+            "The match rate range is between 41% and 50% (in the interval `[41, 51)`).",
+            "The match rate range is between 51% and 60% (in the interval `[51, 61)`.",
+            "The match rate range is between 61% and 70% (in the interval `[61, 71)`).",
+            "The match rate range is between 71% and 80% (in the interval `[71, 81)`).",
+            "The match rate range is between 81% and 90% (in the interval `[81, 91)`).",
+            "The match rate range is between 91% and 100% (in the interval `[91, 100]`)."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1828,6 +2039,27 @@
         "userIdInfo": {
           "$ref": "UserIdInfo",
           "description": "Optional. Additional information when `USER_ID` is one of the `upload_key_types`."
+        }
+      },
+      "type": "object"
+    },
+    "IpData": {
+      "description": "IP address information for a user. We recommend including observe_start_time and observe_end_time to help improve Customer Match match rates.",
+      "id": "IpData",
+      "properties": {
+        "ipAddress": {
+          "description": "Required. IP address captured at the time of customer interaction. Accepts standard string formats for both IPv4 and IPv6.",
+          "type": "string"
+        },
+        "observeEndTime": {
+          "description": "Optional. Last recorded interaction time from this IP address in a session.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "observeStartTime": {
+          "description": "Optional. First recorded interaction time from this IP address in a session.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2285,7 +2517,8 @@
             "DISPLAY_VIDEO_ADVERTISER",
             "DATA_PARTNER",
             "GOOGLE_ANALYTICS_PROPERTY",
-            "GOOGLE_AD_MANAGER_AUDIENCE_LINK"
+            "GOOGLE_AD_MANAGER_AUDIENCE_LINK",
+            "FLOODLIGHT_CONFIG"
           ],
           "enumDescriptions": [
             "Unspecified product. Should never be used.",
@@ -2294,7 +2527,8 @@
             "Display & Video 360 advertiser.",
             "Data Partner.",
             "Google Analytics.",
-            "Google Ad Manager audience link."
+            "Google Ad Manager audience link.",
+            "Floodlight configuration."
           ],
           "type": "string"
         },
@@ -2407,6 +2641,10 @@
       "description": "The status of the remove audience members request.",
       "id": "RemoveAudienceMembersStatus",
       "properties": {
+        "compositeDataRemovalStatus": {
+          "$ref": "RemoveCompositeDataStatus",
+          "description": "The status of the composite data removal from the destination."
+        },
         "mobileDataRemovalStatus": {
           "$ref": "RemoveMobileDataStatus",
           "description": "The status of the mobile data removal from the destination."
@@ -2426,6 +2664,25 @@
         "userIdDataRemovalStatus": {
           "$ref": "RemoveUserIdDataStatus",
           "description": "The status of the user id data removal from the destination."
+        }
+      },
+      "type": "object"
+    },
+    "RemoveCompositeDataStatus": {
+      "description": "The status of the composite data removal from the destination.",
+      "id": "RemoveCompositeDataStatus",
+      "properties": {
+        "dataTypeCounts": {
+          "description": "The total count of data types sent in the removal request, broken down by data type. Includes all data types in the request, regardless of whether they were successfully removed or not.",
+          "items": {
+            "$ref": "DataTypeCount"
+          },
+          "type": "array"
+        },
+        "recordCount": {
+          "description": "The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
