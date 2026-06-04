@@ -686,6 +686,23 @@ export namespace chromemanagement_v1 {
     storageReports?: Schema$GoogleChromeManagementV1DeviceHardwareCountReport[];
   }
   /**
+   * Response containing requested managed profile versions details and counts.
+   */
+  export interface Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse {
+    /**
+     * Token to specify the next page of the request.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of all browser versions reported for profiles and their install counts.
+     */
+    profileBrowserVersions?: Schema$GoogleChromeManagementV1BrowserVersion[];
+    /**
+     * Total number browser versions matching request.
+     */
+    totalSize?: number | null;
+  }
+  /**
    * Response containing requested browser versions details and counts.
    */
   export interface Schema$GoogleChromeManagementV1CountChromeVersionsResponse {
@@ -1288,6 +1305,10 @@ export namespace chromemanagement_v1 {
      * Output only. Permissions of the installed app.
      */
     permissions?: string[] | null;
+    /**
+     * Output only. Count of Chrome Profiles with this app installed.
+     */
+    profileCount?: string | null;
     /**
      * Output only. If available, the risk assessment data about this extension.
      */
@@ -8966,6 +8987,167 @@ export namespace chromemanagement_v1 {
     }
 
     /**
+     * Generate report of installed Chrome versions on managed profiles.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.reports.countChromeProfileVersions({
+     *       // Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     *       customer: 'customers/my-customer',
+     *       // Optional. Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * last_active_date
+     *       filter: 'placeholder-value',
+     *       // The ID of the organizational unit. If omitted, all data will be returned.
+     *       orgUnitId: 'placeholder-value',
+     *       // Optional. Maximum number of results to return. Maximum and default are 100.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Token to specify the page of the request to be returned.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "profileBrowserVersions": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    countChromeProfileVersions(
+      params: Params$Resource$Customers$Reports$Countchromeprofileversions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    countChromeProfileVersions(
+      params?: Params$Resource$Customers$Reports$Countchromeprofileversions,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>
+    >;
+    countChromeProfileVersions(
+      params: Params$Resource$Customers$Reports$Countchromeprofileversions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    countChromeProfileVersions(
+      params: Params$Resource$Customers$Reports$Countchromeprofileversions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>
+    ): void;
+    countChromeProfileVersions(
+      params: Params$Resource$Customers$Reports$Countchromeprofileversions,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>
+    ): void;
+    countChromeProfileVersions(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>
+    ): void;
+    countChromeProfileVersions(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Reports$Countchromeprofileversions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Reports$Countchromeprofileversions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Customers$Reports$Countchromeprofileversions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/reports:countChromeProfileVersions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1CountChromeProfileVersionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Generate report of installed Chrome versions.
      * @example
      * ```js
@@ -10517,6 +10699,28 @@ export namespace chromemanagement_v1 {
      * Required. Mask of the fields that should be populated in the returned report.
      */
     readMask?: string;
+  }
+  export interface Params$Resource$Customers$Reports$Countchromeprofileversions extends StandardParameters {
+    /**
+     * Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     */
+    customer?: string;
+    /**
+     * Optional. Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * last_active_date
+     */
+    filter?: string;
+    /**
+     * The ID of the organizational unit. If omitted, all data will be returned.
+     */
+    orgUnitId?: string;
+    /**
+     * Optional. Maximum number of results to return. Maximum and default are 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token to specify the page of the request to be returned.
+     */
+    pageToken?: string;
   }
   export interface Params$Resource$Customers$Reports$Countchromeversions extends StandardParameters {
     /**
