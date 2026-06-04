@@ -1863,7 +1863,7 @@ export namespace androidpublisher_v3 {
     generatedApks?: Schema$GeneratedApksPerSigningKey[];
   }
   /**
-   * Download metadata for split, standalone and universal APKs, as well as asset pack slices, signed with a given key. Next ID: 10
+   * Download metadata for split, standalone and universal APKs, as well as asset pack slices, signed with a given key.
    */
   export interface Schema$GeneratedApksPerSigningKey {
     /**
