@@ -321,7 +321,7 @@
       }
     }
   },
-  "revision": "20260303",
+  "revision": "20260527",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "DataSource": {
@@ -942,11 +942,13 @@
           "description": "The resource that changed, in this case it will always be `Product`.",
           "enum": [
             "RESOURCE_UNSPECIFIED",
-            "PRODUCT"
+            "PRODUCT",
+            "ACCOUNT_SERVICE"
           ],
           "enumDescriptions": [
             "Unspecified resource",
-            "Resource type : product"
+            "Resource type : product",
+            "Account service"
           ],
           "type": "string"
         }

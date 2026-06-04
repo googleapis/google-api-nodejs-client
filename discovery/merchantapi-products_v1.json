@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20260520",
+  "revision": "20260602",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AutomatedDiscounts": {
@@ -2005,7 +2005,7 @@
           "type": "array"
         },
         "questionsAndAnswers": {
-          "description": "Optional. Contains user-, merchant-, and manufacturer-authored [questions and answers](https://support.google.com/merchants/answer/17085211) about the product. Max 30 question and answer pairs. Max 5000 characters total. Each question can have max 1000 characters. Each answer can have max 1000 characters.",
+          "description": "Optional. Contains user-, merchant-, and manufacturer-authored [questions and answers](https://support.google.com/merchants/answer/17085211) about the product. Max 30 question and answer pairs. Max 10000 characters total. Each question can have max 1000 characters. Each answer can have max 1000 characters.",
           "items": {
             "$ref": "QuestionAndAnswer"
           },
@@ -2657,11 +2657,13 @@
           "description": "The resource that changed, in this case it will always be `Product`.",
           "enum": [
             "RESOURCE_UNSPECIFIED",
-            "PRODUCT"
+            "PRODUCT",
+            "ACCOUNT_SERVICE"
           ],
           "enumDescriptions": [
             "Unspecified resource",
-            "Resource type : product"
+            "Resource type : product",
+            "Account service"
           ],
           "type": "string"
         }
