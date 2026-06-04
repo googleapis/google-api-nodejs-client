@@ -1604,7 +1604,7 @@
       }
     }
   },
-  "revision": "20260423",
+  "revision": "20260526",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -3317,9 +3317,17 @@
       "type": "object"
     },
     "DatabaseResourceMetadata": {
-      "description": "Common model for database resource instance metadata. Next ID: 32",
+      "description": "Common model for database resource instance metadata. Next ID: 35",
       "id": "DatabaseResourceMetadata",
       "properties": {
+        "additionalMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Field to ingest additional metadata whichd does not support proto format.",
+          "type": "object"
+        },
         "availabilityConfiguration": {
           "$ref": "AvailabilityConfiguration",
           "description": "Availability configuration for this instance"
@@ -3472,6 +3480,18 @@
             "For rest of the other categories."
           ],
           "type": "string"
+        },
+        "internalAdditionalMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Field to ingest additional metadata which support proto format.",
+          "type": "object"
+        },
+        "ipAddress": {
+          "$ref": "IpAddress",
+          "description": "Optional. Private and public IP address of the resource."
         },
         "isDeletionProtectionEnabled": {
           "description": "Optional. Whether deletion protection is enabled for this resource.",
@@ -4706,6 +4726,21 @@
       },
       "type": "object"
     },
+    "IpAddress": {
+      "description": "Used to send IP address information for a database resource.",
+      "id": "IpAddress",
+      "properties": {
+        "privateIp": {
+          "description": "The private IP address assigned to the resource within a Virtual Private Cloud (VPC). This IP is only reachable from within the same VPC network. Stored in standard string format (e.g., \"10.0.0.2\").",
+          "type": "string"
+        },
+        "publicIp": {
+          "description": "The public IP address assigned to the resource. This IP is reachable from the internet. Stored in standard string format (e.g., \"34.72.1.1\").",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListAclPoliciesResponse": {
       "description": "Response for `ListAclPolicies`.",
       "id": "ListAclPoliciesResponse",
@@ -5376,6 +5411,7 @@
             "ENGINE_CLOUD_SPANNER_WITH_GOOGLESQL_DIALECT",
             "ENGINE_MEMORYSTORE_FOR_REDIS",
             "ENGINE_MEMORYSTORE_FOR_REDIS_CLUSTER",
+            "ENGINE_MEMORSTORE_FOR_VALKEY",
             "ENGINE_OTHER",
             "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
             "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
@@ -5402,6 +5438,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -5418,6 +5455,7 @@
             "Cloud Spanner with Google SQL dialect.",
             "Memorystore with Redis dialect.",
             "Memorystore with Redis cluster dialect.",
+            "Memorystore with Valkey dialect.",
             "Other refers to rest of other database engine. This is to be when engine is known, but it is not present in this enum.",
             "Firestore with native mode.",
             "Firestore with datastore mode.",
@@ -5911,6 +5949,13 @@
         "maintenanceVersion": {
           "description": "Optional. Current Maintenance version of the database resource. Example: \"MYSQL_8_0_41.R20250531.01_15\"",
           "type": "string"
+        },
+        "nextAvailableMaintenanceVersions": {
+          "description": "Optional. List of next available maintenance versions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "upcomingMaintenance": {
           "$ref": "UpcomingMaintenance",
