@@ -153,6 +153,10 @@ export namespace datastream_v1 {
      */
     postgresqlExcludedObjects?: Schema$PostgresqlRdbms;
     /**
+     * Source catalog data source objects to avoid backfilling. This is mainly used to represent SaaS applications objects.
+     */
+    saasExcludedObjects?: Schema$SourceCatalog;
+    /**
      * Salesforce data source objects to avoid backfilling
      */
     salesforceExcludedObjects?: Schema$SalesforceOrg;
@@ -350,6 +354,10 @@ export namespace datastream_v1 {
      */
     createTime?: string | null;
     /**
+     * Profile for connecting to a Dataverse source.
+     */
+    dataverseProfile?: Schema$DataverseProfile;
+    /**
      * Required. Display name.
      */
     displayName?: string | null;
@@ -390,6 +398,10 @@ export namespace datastream_v1 {
      */
     privateConnectivity?: Schema$PrivateConnectivity;
     /**
+     * Profile for connecting to a Salesforce Marketing Cloud source.
+     */
+    salesforceMarketingCloudProfile?: Schema$SalesforceMarketingCloudProfile;
+    /**
      * Profile for connecting to a Salesforce source.
      */
     salesforceProfile?: Schema$SalesforceProfile;
@@ -401,6 +413,10 @@ export namespace datastream_v1 {
      * Output only. Reserved for future use.
      */
     satisfiesPzs?: boolean | null;
+    /**
+     * Profile for connecting to a ServiceNow source.
+     */
+    serviceNowProfile?: Schema$ServiceNowProfile;
     /**
      * Profile for connecting to a Spanner source.
      */
@@ -447,6 +463,40 @@ export namespace datastream_v1 {
      * Required. The geographic location where the dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.
      */
     location?: string | null;
+  }
+  /**
+   * Profile for connecting to a Dataverse source.
+   */
+  export interface Schema$DataverseProfile {
+    /**
+     * Required. Environment URL of the Microsoft Dataverse instance. Example: `.crm.dynamics.com`
+     */
+    environmentUrl?: string | null;
+    /**
+     * Required. Credentials for authenticating with the Dataverse API.
+     */
+    oauthClientCredentials?: Schema$OauthClientCredentials;
+    /**
+     * Required. Tenant id of the Microsoft Dataverse instance.
+     */
+    tenantId?: string | null;
+  }
+  /**
+   * Configuration for syncing data from a Dataverse source.
+   */
+  export interface Schema$DataverseSourceConfig {
+    /**
+     * Optional. The objects to exclude from the stream.
+     */
+    excludeObjects?: Schema$SourceCatalog;
+    /**
+     * Optional. The objects to retrieve from the source.
+     */
+    includeObjects?: Schema$SourceCatalog;
+    /**
+     * Required. Incremental sync polling interval for all objects. If not set, a default value of `5 minutes` is used. The duration must be from `5 minutes` to `24 hours`, inclusive.
+     */
+    pollingInterval?: string | null;
   }
   /**
    * Describes additional debugging info.
@@ -519,6 +569,10 @@ export namespace datastream_v1 {
      */
     salesforceOrg?: Schema$SalesforceOrg;
     /**
+     * Optional. Source catalog to enrich with child data objects and metadata. This is mainly used to represent SaaS sources databases.
+     */
+    sourceCatalog?: Schema$SourceCatalog;
+    /**
      * Optional. Spanner database to enrich with child data objects and metadata.
      */
     spannerDatabase?: Schema$SpannerDatabase;
@@ -551,6 +605,10 @@ export namespace datastream_v1 {
      * Enriched Salesforce organization.
      */
     salesforceOrg?: Schema$SalesforceOrg;
+    /**
+     * Enriched source catalog. This is mainly used to represent SaaS sources databases.
+     */
+    sourceCatalog?: Schema$SourceCatalog;
     /**
      * Enriched Spanner database.
      */
@@ -1379,6 +1437,19 @@ export namespace datastream_v1 {
     secretManagerStoredClientSecret?: string | null;
   }
   /**
+   * OAuth Client Credentials.
+   */
+  export interface Schema$OauthClientCredentials {
+    /**
+     * Required. Client ID for OAuth Client Credentials.
+     */
+    clientId?: string | null;
+    /**
+     * Required. Client secret for OAuth Client Credentials.
+     */
+    clientSecret?: Schema$Secret;
+  }
+  /**
    * Object filter to apply the rules to.
    */
   export interface Schema$ObjectFilter {
@@ -2098,6 +2169,40 @@ export namespace datastream_v1 {
     nillable?: boolean | null;
   }
   /**
+   * Profile for connecting to a Salesforce Marketing Cloud source.
+   */
+  export interface Schema$SalesforceMarketingCloudProfile {
+    /**
+     * Required. Input only. Credentials for authenticating with the Salesforce Marketing Cloud API.
+     */
+    oauthClientCredentials?: Schema$OauthClientCredentials;
+    /**
+     * Required. Subdomain for the Salesforce Marketing Cloud connection. Example: if your specific endpoint is `https://{your-specific-subdomain\}.rest.marketingcloudapis.com/`, the subdomain is `{your-specific-subdomain\}`. Must be 1-63 characters, start and end with an alphanumeric character, and contain only lowercase letters, numbers, and hyphens (-).
+     */
+    subdomain?: string | null;
+  }
+  /**
+   * Configuration for syncing data from a Salesforce Marketing Cloud source.
+   */
+  export interface Schema$SalesforceMarketingCloudSourceConfig {
+    /**
+     * Optional. The objects to exclude from the stream.
+     */
+    excludeObjects?: Schema$SourceCatalog;
+    /**
+     * Required. Specifies the polling interval for a full refresh of objects that do not support incremental sync. If not set, a default value of 24 hours is used. The duration must be between 1 and 24 hours, inclusive.
+     */
+    fullRefreshPollingInterval?: string | null;
+    /**
+     * Optional. The objects to retrieve from the source.
+     */
+    includeObjects?: Schema$SourceCatalog;
+    /**
+     * Required. Incremental sync polling interval for all objects. If not set, a default value of `5 minutes` is used. The duration must be from `5 minutes` to `24 hours`, inclusive.
+     */
+    pollingInterval?: string | null;
+  }
+  /**
    * Salesforce object.
    */
   export interface Schema$SalesforceObject {
@@ -2163,6 +2268,19 @@ export namespace datastream_v1 {
     pollingInterval?: string | null;
   }
   /**
+   * A confidential piece of information where the actual value is either directly specified in the message as a raw string or stored in GCP secret manager.
+   */
+  export interface Schema$Secret {
+    /**
+     * Optional. Input only. The actual raw value of the secret as plain text.
+     */
+    rawValue?: string | null;
+    /**
+     * Optional. A Secret Manager resource name storing the actual value of the secret. Supported formats: * projects/{project\}/locations/{location\}/secrets/{secret\}/versions/{version\} * projects/{project\}/secrets/{secret\}/versions/{version\}
+     */
+    secretVersion?: string | null;
+  }
+  /**
    * Message represents the option where Datastream will enforce the encryption and authenticate the server identity as well as the client identity. ca_certificate, client_certificate and client_key must be set if user selects this option.
    */
   export interface Schema$ServerAndClientVerification {
@@ -2197,6 +2315,40 @@ export namespace datastream_v1 {
     serverCertificateHostname?: string | null;
   }
   /**
+   * Profile for connecting to a ServiceNow source.
+   */
+  export interface Schema$ServiceNowProfile {
+    /**
+     * Required. The instance of the ServiceNow account. This is the `` part of the URL `https://.service-now.com`.
+     */
+    instance?: string | null;
+    /**
+     * Credentials for authenticating with the ServiceNow API.
+     */
+    oauthClientCredentials?: Schema$OauthClientCredentials;
+    /**
+     * User-password authentication.
+     */
+    userPasswordCredentials?: Schema$UserPasswordCredentials;
+  }
+  /**
+   * Configuration for syncing data from a ServiceNow source.
+   */
+  export interface Schema$ServiceNowSourceConfig {
+    /**
+     * Optional. The objects to exclude from the stream.
+     */
+    excludeObjects?: Schema$SourceCatalog;
+    /**
+     * Optional. The objects to retrieve from the source.
+     */
+    includeObjects?: Schema$SourceCatalog;
+    /**
+     * Required. Incremental sync polling interval for all objects. If not set, a default value of `5 minutes` is used. The duration must be from `5 minutes` to `24 hours`, inclusive.
+     */
+    pollingInterval?: string | null;
+  }
+  /**
    * A single target dataset to which all data will be streamed.
    */
   export interface Schema$SingleTargetDataset {
@@ -2206,9 +2358,22 @@ export namespace datastream_v1 {
     datasetId?: string | null;
   }
   /**
+   * Source catalog.
+   */
+  export interface Schema$SourceCatalog {
+    /**
+     * Optional. Source objects in the catalog.
+     */
+    objects?: Schema$SourceObject[];
+  }
+  /**
    * The configuration of the stream source.
    */
   export interface Schema$SourceConfig {
+    /**
+     * Dataverse data source configuration.
+     */
+    dataverseSourceConfig?: Schema$DataverseSourceConfig;
     /**
      * MongoDB data source configuration.
      */
@@ -2226,9 +2391,17 @@ export namespace datastream_v1 {
      */
     postgresqlSourceConfig?: Schema$PostgresqlSourceConfig;
     /**
+     * Salesforce Marketing Cloud data source configuration.
+     */
+    salesforceMarketingCloudSourceConfig?: Schema$SalesforceMarketingCloudSourceConfig;
+    /**
      * Salesforce data source configuration.
      */
     salesforceSourceConfig?: Schema$SalesforceSourceConfig;
+    /**
+     * ServiceNow data source configuration.
+     */
+    serviceNowSourceConfig?: Schema$ServiceNowSourceConfig;
     /**
      * Required. Source connection profile resource. Format: `projects/{project\}/locations/{location\}/connectionProfiles/{name\}`
      */
@@ -2254,6 +2427,19 @@ export namespace datastream_v1 {
      * Optional. The project id of the BigQuery dataset. If not specified, the project will be inferred from the stream resource.
      */
     projectId?: string | null;
+  }
+  /**
+   * Source object.
+   */
+  export interface Schema$SourceObject {
+    /**
+     * Required. The object name.
+     */
+    objectName?: string | null;
+    /**
+     * Optional. Source properties. When unspecified as part of include objects, includes everything, when unspecified as part of exclude objects, excludes nothing.
+     */
+    properties?: Schema$SourceProperty[];
   }
   /**
    * Represents an identifier of an object in the data source.
@@ -2287,6 +2473,23 @@ export namespace datastream_v1 {
      * SQLServer data source object identifier.
      */
     sqlServerIdentifier?: Schema$SqlServerObjectIdentifier;
+  }
+  /**
+   * Source property.
+   */
+  export interface Schema$SourceProperty {
+    /**
+     * Optional. Whether or not the property is a primary key.
+     */
+    primaryKey?: boolean | null;
+    /**
+     * Optional. Source properties. When specified, it means that the current property contains nested properties of its own. When unspecified as part of include objects, includes everything, when unspecified as part of exclude objects, excludes nothing.
+     */
+    properties?: Schema$SourceProperty[];
+    /**
+     * Required. The property name.
+     */
+    propertyName?: string | null;
   }
   /**
    * Represents a position in a Spanner change stream from which to start replicating.
@@ -2836,6 +3039,19 @@ export namespace datastream_v1 {
     securityToken?: string | null;
     /**
      * Required. Username for the Salesforce connection.
+     */
+    username?: string | null;
+  }
+  /**
+   * User-password credentials.
+   */
+  export interface Schema$UserPasswordCredentials {
+    /**
+     * Required. Password for the connection.
+     */
+    password?: Schema$Secret;
+    /**
+     * Required. Username for the connection.
      */
     username?: string | null;
   }
@@ -3461,6 +3677,7 @@ export namespace datastream_v1 {
      *       // {
      *       //   "bigqueryProfile": {},
      *       //   "createTime": "my_createTime",
+     *       //   "dataverseProfile": {},
      *       //   "displayName": "my_displayName",
      *       //   "forwardSshConnectivity": {},
      *       //   "gcsProfile": {},
@@ -3471,9 +3688,11 @@ export namespace datastream_v1 {
      *       //   "oracleProfile": {},
      *       //   "postgresqlProfile": {},
      *       //   "privateConnectivity": {},
+     *       //   "salesforceMarketingCloudProfile": {},
      *       //   "salesforceProfile": {},
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
+     *       //   "serviceNowProfile": {},
      *       //   "spannerProfile": {},
      *       //   "sqlServerProfile": {},
      *       //   "staticServiceIpConnectivity": {},
@@ -3777,6 +3996,7 @@ export namespace datastream_v1 {
      *       //   "oracleRdbms": {},
      *       //   "postgresqlRdbms": {},
      *       //   "salesforceOrg": {},
+     *       //   "sourceCatalog": {},
      *       //   "spannerDatabase": {},
      *       //   "sqlServerRdbms": {}
      *       // }
@@ -3791,6 +4011,7 @@ export namespace datastream_v1 {
      *   //   "oracleRdbms": {},
      *   //   "postgresqlRdbms": {},
      *   //   "salesforceOrg": {},
+     *   //   "sourceCatalog": {},
      *   //   "spannerDatabase": {},
      *   //   "sqlServerRdbms": {}
      *   // }
@@ -3941,6 +4162,7 @@ export namespace datastream_v1 {
      *   // {
      *   //   "bigqueryProfile": {},
      *   //   "createTime": "my_createTime",
+     *   //   "dataverseProfile": {},
      *   //   "displayName": "my_displayName",
      *   //   "forwardSshConnectivity": {},
      *   //   "gcsProfile": {},
@@ -3951,9 +4173,11 @@ export namespace datastream_v1 {
      *   //   "oracleProfile": {},
      *   //   "postgresqlProfile": {},
      *   //   "privateConnectivity": {},
+     *   //   "salesforceMarketingCloudProfile": {},
      *   //   "salesforceProfile": {},
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
+     *   //   "serviceNowProfile": {},
      *   //   "spannerProfile": {},
      *   //   "sqlServerProfile": {},
      *   //   "staticServiceIpConnectivity": {},
@@ -4256,6 +4480,7 @@ export namespace datastream_v1 {
      *       // {
      *       //   "bigqueryProfile": {},
      *       //   "createTime": "my_createTime",
+     *       //   "dataverseProfile": {},
      *       //   "displayName": "my_displayName",
      *       //   "forwardSshConnectivity": {},
      *       //   "gcsProfile": {},
@@ -4266,9 +4491,11 @@ export namespace datastream_v1 {
      *       //   "oracleProfile": {},
      *       //   "postgresqlProfile": {},
      *       //   "privateConnectivity": {},
+     *       //   "salesforceMarketingCloudProfile": {},
      *       //   "salesforceProfile": {},
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
+     *       //   "serviceNowProfile": {},
      *       //   "spannerProfile": {},
      *       //   "sqlServerProfile": {},
      *       //   "staticServiceIpConnectivity": {},

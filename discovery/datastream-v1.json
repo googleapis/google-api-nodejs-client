@@ -1503,7 +1503,7 @@
       }
     }
   },
-  "revision": "20260503",
+  "revision": "20260531",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -1537,6 +1537,10 @@
         "postgresqlExcludedObjects": {
           "$ref": "PostgresqlRdbms",
           "description": "PostgreSQL data source objects to avoid backfilling."
+        },
+        "saasExcludedObjects": {
+          "$ref": "SourceCatalog",
+          "description": "Source catalog data source objects to avoid backfilling. This is mainly used to represent SaaS applications objects."
         },
         "salesforceExcludedObjects": {
           "$ref": "SalesforceOrg",
@@ -1828,6 +1832,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "dataverseProfile": {
+          "$ref": "DataverseProfile",
+          "description": "Profile for connecting to a Dataverse source."
+        },
         "displayName": {
           "description": "Required. Display name.",
           "type": "string"
@@ -1872,6 +1880,10 @@
           "$ref": "PrivateConnectivity",
           "description": "Private connectivity."
         },
+        "salesforceMarketingCloudProfile": {
+          "$ref": "SalesforceMarketingCloudProfile",
+          "description": "Profile for connecting to a Salesforce Marketing Cloud source."
+        },
         "salesforceProfile": {
           "$ref": "SalesforceProfile",
           "description": "Profile for connecting to a Salesforce source."
@@ -1885,6 +1897,10 @@
           "description": "Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "serviceNowProfile": {
+          "$ref": "ServiceNowProfile",
+          "description": "Profile for connecting to a ServiceNow source."
         },
         "spannerProfile": {
           "$ref": "SpannerProfile",
@@ -1936,6 +1952,45 @@
         },
         "location": {
           "description": "Required. The geographic location where the dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataverseProfile": {
+      "description": "Profile for connecting to a Dataverse source.",
+      "id": "DataverseProfile",
+      "properties": {
+        "environmentUrl": {
+          "description": "Required. Environment URL of the Microsoft Dataverse instance. Example: `.crm.dynamics.com`",
+          "type": "string"
+        },
+        "oauthClientCredentials": {
+          "$ref": "OauthClientCredentials",
+          "description": "Required. Credentials for authenticating with the Dataverse API."
+        },
+        "tenantId": {
+          "description": "Required. Tenant id of the Microsoft Dataverse instance.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataverseSourceConfig": {
+      "description": "Configuration for syncing data from a Dataverse source.",
+      "id": "DataverseSourceConfig",
+      "properties": {
+        "excludeObjects": {
+          "$ref": "SourceCatalog",
+          "description": "Optional. The objects to exclude from the stream."
+        },
+        "includeObjects": {
+          "$ref": "SourceCatalog",
+          "description": "Optional. The objects to retrieve from the source."
+        },
+        "pollingInterval": {
+          "description": "Required. Incremental sync polling interval for all objects. If not set, a default value of `5 minutes` is used. The duration must be from `5 minutes` to `24 hours`, inclusive.",
+          "format": "google-duration",
           "type": "string"
         }
       },
@@ -2019,6 +2074,10 @@
           "$ref": "SalesforceOrg",
           "description": "Optional. Salesforce organization to enrich with child data objects and metadata."
         },
+        "sourceCatalog": {
+          "$ref": "SourceCatalog",
+          "description": "Optional. Source catalog to enrich with child data objects and metadata. This is mainly used to represent SaaS sources databases."
+        },
         "spannerDatabase": {
           "$ref": "SpannerDatabase",
           "description": "Optional. Spanner database to enrich with child data objects and metadata."
@@ -2053,6 +2112,10 @@
         "salesforceOrg": {
           "$ref": "SalesforceOrg",
           "description": "Enriched Salesforce organization."
+        },
+        "sourceCatalog": {
+          "$ref": "SourceCatalog",
+          "description": "Enriched source catalog. This is mainly used to represent SaaS sources databases."
         },
         "spannerDatabase": {
           "$ref": "SpannerDatabase",
@@ -3138,6 +3201,21 @@
       },
       "type": "object"
     },
+    "OauthClientCredentials": {
+      "description": "OAuth Client Credentials.",
+      "id": "OauthClientCredentials",
+      "properties": {
+        "clientId": {
+          "description": "Required. Client ID for OAuth Client Credentials.",
+          "type": "string"
+        },
+        "clientSecret": {
+          "$ref": "Secret",
+          "description": "Required. Client secret for OAuth Client Credentials."
+        }
+      },
+      "type": "object"
+    },
     "ObjectFilter": {
       "description": "Object filter to apply the rules to.",
       "id": "ObjectFilter",
@@ -4039,6 +4117,46 @@
       },
       "type": "object"
     },
+    "SalesforceMarketingCloudProfile": {
+      "description": "Profile for connecting to a Salesforce Marketing Cloud source.",
+      "id": "SalesforceMarketingCloudProfile",
+      "properties": {
+        "oauthClientCredentials": {
+          "$ref": "OauthClientCredentials",
+          "description": "Required. Input only. Credentials for authenticating with the Salesforce Marketing Cloud API."
+        },
+        "subdomain": {
+          "description": "Required. Subdomain for the Salesforce Marketing Cloud connection. Example: if your specific endpoint is `https://{your-specific-subdomain}.rest.marketingcloudapis.com/`, the subdomain is `{your-specific-subdomain}`. Must be 1-63 characters, start and end with an alphanumeric character, and contain only lowercase letters, numbers, and hyphens (-).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SalesforceMarketingCloudSourceConfig": {
+      "description": "Configuration for syncing data from a Salesforce Marketing Cloud source.",
+      "id": "SalesforceMarketingCloudSourceConfig",
+      "properties": {
+        "excludeObjects": {
+          "$ref": "SourceCatalog",
+          "description": "Optional. The objects to exclude from the stream."
+        },
+        "fullRefreshPollingInterval": {
+          "description": "Required. Specifies the polling interval for a full refresh of objects that do not support incremental sync. If not set, a default value of 24 hours is used. The duration must be between 1 and 24 hours, inclusive.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "includeObjects": {
+          "$ref": "SourceCatalog",
+          "description": "Optional. The objects to retrieve from the source."
+        },
+        "pollingInterval": {
+          "description": "Required. Incremental sync polling interval for all objects. If not set, a default value of `5 minutes` is used. The duration must be from `5 minutes` to `24 hours`, inclusive.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SalesforceObject": {
       "description": "Salesforce object.",
       "id": "SalesforceObject",
@@ -4121,6 +4239,21 @@
       },
       "type": "object"
     },
+    "Secret": {
+      "description": "A confidential piece of information where the actual value is either directly specified in the message as a raw string or stored in GCP secret manager.",
+      "id": "Secret",
+      "properties": {
+        "rawValue": {
+          "description": "Optional. Input only. The actual raw value of the secret as plain text.",
+          "type": "string"
+        },
+        "secretVersion": {
+          "description": "Optional. A Secret Manager resource name storing the actual value of the secret. Supported formats: * projects/{project}/locations/{location}/secrets/{secret}/versions/{version} * projects/{project}/secrets/{secret}/versions/{version}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ServerAndClientVerification": {
       "description": "Message represents the option where Datastream will enforce the encryption and authenticate the server identity as well as the client identity. ca_certificate, client_certificate and client_key must be set if user selects this option.",
       "id": "ServerAndClientVerification",
@@ -4159,6 +4292,45 @@
       },
       "type": "object"
     },
+    "ServiceNowProfile": {
+      "description": "Profile for connecting to a ServiceNow source.",
+      "id": "ServiceNowProfile",
+      "properties": {
+        "instance": {
+          "description": "Required. The instance of the ServiceNow account. This is the `` part of the URL `https://.service-now.com`.",
+          "type": "string"
+        },
+        "oauthClientCredentials": {
+          "$ref": "OauthClientCredentials",
+          "description": "Credentials for authenticating with the ServiceNow API."
+        },
+        "userPasswordCredentials": {
+          "$ref": "UserPasswordCredentials",
+          "description": "User-password authentication."
+        }
+      },
+      "type": "object"
+    },
+    "ServiceNowSourceConfig": {
+      "description": "Configuration for syncing data from a ServiceNow source.",
+      "id": "ServiceNowSourceConfig",
+      "properties": {
+        "excludeObjects": {
+          "$ref": "SourceCatalog",
+          "description": "Optional. The objects to exclude from the stream."
+        },
+        "includeObjects": {
+          "$ref": "SourceCatalog",
+          "description": "Optional. The objects to retrieve from the source."
+        },
+        "pollingInterval": {
+          "description": "Required. Incremental sync polling interval for all objects. If not set, a default value of `5 minutes` is used. The duration must be from `5 minutes` to `24 hours`, inclusive.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SingleTargetDataset": {
       "description": "A single target dataset to which all data will be streamed.",
       "id": "SingleTargetDataset",
@@ -4170,10 +4342,28 @@
       },
       "type": "object"
     },
+    "SourceCatalog": {
+      "description": "Source catalog.",
+      "id": "SourceCatalog",
+      "properties": {
+        "objects": {
+          "description": "Optional. Source objects in the catalog.",
+          "items": {
+            "$ref": "SourceObject"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "SourceConfig": {
       "description": "The configuration of the stream source.",
       "id": "SourceConfig",
       "properties": {
+        "dataverseSourceConfig": {
+          "$ref": "DataverseSourceConfig",
+          "description": "Dataverse data source configuration."
+        },
         "mongodbSourceConfig": {
           "$ref": "MongodbSourceConfig",
           "description": "MongoDB data source configuration."
@@ -4190,9 +4380,17 @@
           "$ref": "PostgresqlSourceConfig",
           "description": "PostgreSQL data source configuration."
         },
+        "salesforceMarketingCloudSourceConfig": {
+          "$ref": "SalesforceMarketingCloudSourceConfig",
+          "description": "Salesforce Marketing Cloud data source configuration."
+        },
         "salesforceSourceConfig": {
           "$ref": "SalesforceSourceConfig",
           "description": "Salesforce data source configuration."
+        },
+        "serviceNowSourceConfig": {
+          "$ref": "ServiceNowSourceConfig",
+          "description": "ServiceNow data source configuration."
         },
         "sourceConnectionProfile": {
           "description": "Required. Source connection profile resource. Format: `projects/{project}/locations/{location}/connectionProfiles/{name}`",
@@ -4220,6 +4418,24 @@
         "projectId": {
           "description": "Optional. The project id of the BigQuery dataset. If not specified, the project will be inferred from the stream resource.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SourceObject": {
+      "description": "Source object.",
+      "id": "SourceObject",
+      "properties": {
+        "objectName": {
+          "description": "Required. The object name.",
+          "type": "string"
+        },
+        "properties": {
+          "description": "Optional. Source properties. When unspecified as part of include objects, includes everything, when unspecified as part of exclude objects, excludes nothing.",
+          "items": {
+            "$ref": "SourceProperty"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4255,6 +4471,28 @@
         "sqlServerIdentifier": {
           "$ref": "SqlServerObjectIdentifier",
           "description": "SQLServer data source object identifier."
+        }
+      },
+      "type": "object"
+    },
+    "SourceProperty": {
+      "description": "Source property.",
+      "id": "SourceProperty",
+      "properties": {
+        "primaryKey": {
+          "description": "Optional. Whether or not the property is a primary key.",
+          "type": "boolean"
+        },
+        "properties": {
+          "description": "Optional. Source properties. When specified, it means that the current property contains nested properties of its own. When unspecified as part of include objects, includes everything, when unspecified as part of exclude objects, excludes nothing.",
+          "items": {
+            "$ref": "SourceProperty"
+          },
+          "type": "array"
+        },
+        "propertyName": {
+          "description": "Required. The property name.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4989,6 +5227,21 @@
         },
         "username": {
           "description": "Required. Username for the Salesforce connection.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserPasswordCredentials": {
+      "description": "User-password credentials.",
+      "id": "UserPasswordCredentials",
+      "properties": {
+        "password": {
+          "$ref": "Secret",
+          "description": "Required. Password for the connection."
+        },
+        "username": {
+          "description": "Required. Username for the connection.",
           "type": "string"
         }
       },
