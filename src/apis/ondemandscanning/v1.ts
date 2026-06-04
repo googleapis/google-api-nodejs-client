@@ -718,6 +718,10 @@ export namespace ondemandscanning_v1 {
      */
     category?: string | null;
     /**
+     * Description of the finding category.
+     */
+    details?: string | null;
+    /**
      * Location (path and line) where the finding was detected.
      */
     location?: Schema$FindingLocation;
@@ -1971,6 +1975,10 @@ export namespace ondemandscanning_v1 {
      * The cvss v3 score for the vulnerability.
      */
     cvssv3?: Schema$CVSS;
+    /**
+     * The cvss v4 score for the vulnerability.
+     */
+    cvssV4?: Schema$CVSS;
     /**
      * Output only. CVSS version used to populate cvss_score and severity.
      */
