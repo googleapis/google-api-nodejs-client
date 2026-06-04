@@ -688,6 +688,106 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
+              },
+              "resources": {
+                "wildfireVerdictChangeRequests": {
+                  "methods": {
+                    "create": {
+                      "description": "Create WildfireVerdictChangeRequest in a given Firewall Endpoint in an organization and location.",
+                      "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}/wildfireVerdictChangeRequests",
+                      "httpMethod": "POST",
+                      "id": "networksecurity.organizations.locations.firewallEndpoints.wildfireVerdictChangeRequests.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. Parent value for CreateWildfireVerdictChangeRequestRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization}/locations/{location}/firewallEndpoints/{firewall_endpoint}",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/[^/]+/firewallEndpoints/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/wildfireVerdictChangeRequests",
+                      "request": {
+                        "$ref": "WildfireVerdictChangeRequest"
+                      },
+                      "response": {
+                        "$ref": "WildfireVerdictChangeRequest"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Get WildfireVerdictChangeRequest in a given Firewall Endpoint in an organization and location.",
+                      "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}/wildfireVerdictChangeRequests/{wildfireVerdictChangeRequestsId}",
+                      "httpMethod": "GET",
+                      "id": "networksecurity.organizations.locations.firewallEndpoints.wildfireVerdictChangeRequests.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the WildfireVerdictChangeRequest to retrieve. Format: organizations|projects/{project_or_organization}/locations/{location}/firewallEndpoints/{firewall_endpoint}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id} Where {wildfire_verdict_change_request_id} is the ID in the format: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/[^/]+/firewallEndpoints/[^/]+/wildfireVerdictChangeRequests/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "WildfireVerdictChangeRequest"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists WildfireVerdictChangeRequests in a given Firewall Endpoint in an organization and location.",
+                      "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}/wildfireVerdictChangeRequests",
+                      "httpMethod": "GET",
+                      "id": "networksecurity.organizations.locations.firewallEndpoints.wildfireVerdictChangeRequests.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filter expression to filter the results. See AIP-160 for filtering syntax. Supported fields are: - `sha256` (string, equality only, e.g. `sha256 = \"...\"`) - `state` (enum, equality only, e.g. `state = \"ACTIVE\"`) - `create_time` (timestamp, comparisons, e.g. `create_time > \"2026-01-01T00:00:00Z\"`)",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A token identifying a page of results the server should return.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Parent value for ListWildfireVerdictChangeRequestsRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization}/locations/{location}/firewallEndpoints/{firewall_endpoint}",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/[^/]+/firewallEndpoints/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/wildfireVerdictChangeRequests",
+                      "response": {
+                        "$ref": "ListWildfireVerdictChangeRequestsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
               }
             },
             "operations": {
@@ -3045,6 +3145,106 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                }
+              },
+              "resources": {
+                "wildfireVerdictChangeRequests": {
+                  "methods": {
+                    "create": {
+                      "description": "Create WildfireVerdictChangeRequest in a given Firewall Endpoint in a project and location.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}/wildfireVerdictChangeRequests",
+                      "httpMethod": "POST",
+                      "id": "networksecurity.projects.locations.firewallEndpoints.wildfireVerdictChangeRequests.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. Parent value for CreateWildfireVerdictChangeRequestRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization}/locations/{location}/firewallEndpoints/{firewall_endpoint}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/firewallEndpoints/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/wildfireVerdictChangeRequests",
+                      "request": {
+                        "$ref": "WildfireVerdictChangeRequest"
+                      },
+                      "response": {
+                        "$ref": "WildfireVerdictChangeRequest"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Get WildfireVerdictChangeRequest in a given Firewall Endpoint in a project and location.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}/wildfireVerdictChangeRequests/{wildfireVerdictChangeRequestsId}",
+                      "httpMethod": "GET",
+                      "id": "networksecurity.projects.locations.firewallEndpoints.wildfireVerdictChangeRequests.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the WildfireVerdictChangeRequest to retrieve. Format: organizations|projects/{project_or_organization}/locations/{location}/firewallEndpoints/{firewall_endpoint}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id} Where {wildfire_verdict_change_request_id} is the ID in the format: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/firewallEndpoints/[^/]+/wildfireVerdictChangeRequests/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "WildfireVerdictChangeRequest"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists WildfireVerdictChangeRequests in a given Firewall Endpoint in a project and location.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/firewallEndpoints/{firewallEndpointsId}/wildfireVerdictChangeRequests",
+                      "httpMethod": "GET",
+                      "id": "networksecurity.projects.locations.firewallEndpoints.wildfireVerdictChangeRequests.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filter expression to filter the results. See AIP-160 for filtering syntax. Supported fields are: - `sha256` (string, equality only, e.g. `sha256 = \"...\"`) - `state` (enum, equality only, e.g. `state = \"ACTIVE\"`) - `create_time` (timestamp, comparisons, e.g. `create_time > \"2026-01-01T00:00:00Z\"`)",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A token identifying a page of results the server should return.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Parent value for ListWildfireVerdictChangeRequestsRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization}/locations/{location}/firewallEndpoints/{firewall_endpoint}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/firewallEndpoints/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/wildfireVerdictChangeRequests",
+                      "response": {
+                        "$ref": "ListWildfireVerdictChangeRequestsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -6131,7 +6331,7 @@
       }
     }
   },
-  "revision": "20260518",
+  "revision": "20260524",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -7160,6 +7360,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "wildfireSettings": {
+          "$ref": "FirewallEndpointWildfireSettings",
+          "description": "Optional. Settings for WildFire analysis."
         }
       },
       "type": "object"
@@ -7257,9 +7461,167 @@
       "description": "Settings for the endpoint.",
       "id": "FirewallEndpointEndpointSettings",
       "properties": {
+        "contentCloudRegion": {
+          "description": "Optional. The content cloud region of the endpoint.",
+          "enum": [
+            "CONTENT_CLOUD_REGION_UNSPECIFIED",
+            "US_CENTRAL",
+            "APAC",
+            "INDIA",
+            "UK",
+            "FRANCE",
+            "JAPAN",
+            "AUSTRALIA",
+            "CANADA",
+            "SWITZERLAND",
+            "NETHERLANDS",
+            "INDONESIA",
+            "QATAR",
+            "TAIWAN",
+            "POLAND",
+            "SOUTH_KOREA",
+            "SAUDI_ARABIA",
+            "ITALY"
+          ],
+          "enumDescriptions": [
+            "PAN content cloud region not specified.",
+            "us.hawkeye.services-edge.paloaltonetworks.com",
+            "APAC content cloud portal: apac.hawkeye.services-edge.paloaltonetworks.com",
+            "India content cloud portal: in.hawkeye.services-edge.paloaltonetworks.com",
+            "UK content cloud portal: uk.hawkeye.services-edge.paloaltonetworks.com",
+            "France content cloud portal: fr.hawkeye.services-edge.paloaltonetworks.com",
+            "Japan content cloud portal: jp.hawkeye.services-edge.paloaltonetworks.com",
+            "Australia content cloud portal: au.hawkeye.services-edge.paloaltonetworks.com",
+            "Canada content cloud portal: ca.hawkeye.services-edge.paloaltonetworks.com",
+            "Switzerland content cloud portal: ch.hawkeye.services-edge.paloaltonetworks.com",
+            "Netherlands content cloud portal: nl.hawkeye.services-edge.paloaltonetworks.com",
+            "Indonesia content cloud portal: id.hawkeye.services-edge.paloaltonetworks.com",
+            "Qatar content cloud portal: qa.hawkeye.services-edge.paloaltonetworks.com",
+            "Taiwan content cloud portal: tw.hawkeye.services-edge.paloaltonetworks.com",
+            "Poland content cloud portal: pl.hawkeye.services-edge.paloaltonetworks.com",
+            "South Korea content cloud portal: kr.hawkeye.services-edge.paloaltonetworks.com",
+            "Saudi Arabia content cloud portal: sa.hawkeye.services-edge.paloaltonetworks.com",
+            "Italy content cloud portal: it.hawkeye.services-edge.paloaltonetworks.com"
+          ],
+          "type": "string"
+        },
+        "httpPartialResponseBlocked": {
+          "description": "Optional. Whether to block HTTP partial responses for the endpoint. When this is true, resumption of blocked malicious HTTP file downloads will be blocked by the firewall. False provides maximum availability, true provides maximum security.",
+          "type": "boolean"
+        },
         "jumboFramesEnabled": {
           "description": "Optional. Immutable. Indicates whether Jumbo Frames are enabled. Default value is false.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "FirewallEndpointWildfireSettings": {
+      "description": "Settings for WildFire analysis.",
+      "id": "FirewallEndpointWildfireSettings",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Indicates whether WildFire analysis is enabled. Default value is false.",
+          "type": "boolean"
+        },
+        "wildfireInlineCloudAnalysisSettings": {
+          "$ref": "FirewallEndpointWildfireSettingsWildfireInlineCloudAnalysisSettings",
+          "description": "Optional. Settings for WildFire inline cloud analysis."
+        },
+        "wildfireRealtimeLookupDuration": {
+          "description": "Optional. Duration in milliseconds on a file being held while the WildFire real time signature cloud performs a signature lookup. Value between 1 to 5000 is valid. Default value is 1000.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "wildfireRealtimeLookupTimeoutAction": {
+          "description": "Optional. Action to take on WildFire real time signature lookup timeout. Default value is ALLOW.",
+          "enum": [
+            "WILDFIRE_REALTIME_SIGNATURE_LOOKUP_TIMEOUT_ACTION_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "WildFire real time signature lookup timeout action not specified.",
+            "The files that timed out in the signature lookup will be allowed to transmit.",
+            "The files that timed out in the signature lookup will be denied to transmit."
+          ],
+          "type": "string"
+        },
+        "wildfireRegion": {
+          "description": "Optional. The region where WildFire analysis will be performed. PAN supports regions: https://docs.paloaltonetworks.com/advanced-wildfire/administration/advanced-wildfire-overview/advanced-wildfire-deployments/advanced-wildfire-global-cloud",
+          "enum": [
+            "WILDFIRE_REGION_UNSPECIFIED",
+            "CANADA",
+            "UNITED_STATES",
+            "JAPAN",
+            "SINGAPORE",
+            "UNITED_KINGDOM",
+            "AUSTRALIA",
+            "GERMANY",
+            "INDIA",
+            "SWITZERLAND",
+            "POLAND",
+            "INDONESIA",
+            "TAIWAN",
+            "FRANCE",
+            "QATAR",
+            "SOUTH_KOREA",
+            "ISRAEL",
+            "SAUDI_ARABIA",
+            "SPAIN"
+          ],
+          "enumDescriptions": [
+            "WildFire region not specified.",
+            "Canada cloud portal: ca.wildfire.paloaltonetworks.com",
+            "United States cloud portal: us-native.wildfire.paloaltonetworks.com",
+            "Japan cloud portal: jp.wildfire.paloaltonetworks.com",
+            "Singapore cloud portal: sg.wildfire.paloaltonetworks.com",
+            "United Kingdom cloud portal: uk.wildfire.paloaltonetworks.com",
+            "Australia cloud portal: au.wildfire.paloaltonetworks.com",
+            "Germany cloud portal: de.wildfire.paloaltonetworks.com",
+            "India cloud portal: in.wildfire.paloaltonetworks.com",
+            "Switzerland cloud portal: ch.wildfire.paloaltonetworks.com",
+            "Poland cloud portal: pl.wildfire.paloaltonetworks.com",
+            "Indonesia cloud portal: id.wildfire.paloaltonetworks.com",
+            "Taiwan cloud portal: tw.wildfire.paloaltonetworks.com",
+            "France cloud portal: fr.wildfire.paloaltonetworks.com",
+            "Qatar cloud portal: qatar.wildfire.paloaltonetworks.com",
+            "South Korea cloud portal: kr.wildfire.paloaltonetworks.com",
+            "Israel cloud portal: il.wildfire.paloaltonetworks.com",
+            "Saudi Arabia cloud portal: sa.wildfire.paloaltonetworks.com",
+            "Spain cloud portal: es.wildfire.paloaltonetworks.com"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FirewallEndpointWildfireSettingsWildfireInlineCloudAnalysisSettings": {
+      "description": "Settings for WildFire inline cloud analysis.",
+      "id": "FirewallEndpointWildfireSettingsWildfireInlineCloudAnalysisSettings",
+      "properties": {
+        "maxAnalysisDuration": {
+          "description": "Optional. Timeout in milliseconds on a file being held while WildFire inline cloud analysis is performed. Value between 1 to 240000 is valid. Default value is 30000.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "submissionTimeoutLoggingDisabled": {
+          "description": "Optional. Whether to disable WildFire submission log generation for files that timeout during WildFire inline cloud analysis.",
+          "type": "boolean"
+        },
+        "timeoutAction": {
+          "description": "Optional. Action to take when WildFire inline cloud analysis times out. Default value is ALLOW.",
+          "enum": [
+            "WILDFIRE_INLINE_CLOUD_ANALYSIS_TIMEOUT_ACTION_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "WildFire inline cloud analysis timeout action not specified.",
+            "The files that timed out will be allowed to transmit.",
+            "The files that timed out will be denied to transmit."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -8428,7 +8790,7 @@
           "type": "string"
         },
         "unreachable": {
-          "description": "Locations that could not be reached.",
+          "description": "Unordered list. Locations that could not be reached. See https://google.aip.dev/217 for more details.",
           "items": {
             "type": "string"
           },
@@ -8653,6 +9015,31 @@
           "description": "List of UrlList resources.",
           "items": {
             "$ref": "UrlList"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListWildfireVerdictChangeRequestsResponse": {
+      "description": "Message for response to listing WildfireVerdictChangeRequests.",
+      "id": "ListWildfireVerdictChangeRequestsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "wildfireVerdictChangeRequests": {
+          "description": "The list of WildfireVerdictChangeRequests",
+          "items": {
+            "$ref": "WildfireVerdictChangeRequest"
           },
           "type": "array"
         }
@@ -9593,14 +9980,16 @@
             "THREAT_PREVENTION",
             "CUSTOM_MIRRORING",
             "CUSTOM_INTERCEPT",
-            "URL_FILTERING"
+            "URL_FILTERING",
+            "WILDFIRE_ANALYSIS"
           ],
           "enumDescriptions": [
             "Profile type not specified.",
             "Profile type for threat prevention.",
             "Profile type for packet mirroring v2",
             "Profile type for TPPI.",
-            "Profile type for URL filtering."
+            "Profile type for URL filtering.",
+            "Profile type for WildFire Analysis."
           ],
           "type": "string"
         },
@@ -9613,6 +10002,10 @@
         "urlFilteringProfile": {
           "$ref": "UrlFilteringProfile",
           "description": "The URL filtering configuration for the SecurityProfile."
+        },
+        "wildfireAnalysisProfile": {
+          "$ref": "WildfireAnalysisProfile",
+          "description": "The WildFire Analysis configurations for SecurityProfile."
         }
       },
       "type": "object"
@@ -9673,6 +10066,10 @@
         },
         "urlFilteringProfile": {
           "description": "Optional. Reference to a SecurityProfile with the UrlFiltering configuration.",
+          "type": "string"
+        },
+        "wildfireAnalysisProfile": {
+          "description": "Optional. Reference to a SecurityProfile with the WildFire configuration.",
           "type": "string"
         }
       },
@@ -10069,6 +10466,567 @@
         "grpcEndpoint": {
           "$ref": "GoogleCloudNetworksecurityV1beta1GrpcEndpoint",
           "description": "gRPC specific configuration to access the gRPC server to obtain the CA certificate."
+        }
+      },
+      "type": "object"
+    },
+    "WildfireAnalysisProfile": {
+      "description": "WildfireAnalysisProfile defines Palo Alto Networks WildFire behavior.",
+      "id": "WildfireAnalysisProfile",
+      "properties": {
+        "wildfireInlineCloudAnalysisRules": {
+          "description": "Optional. Configuration for WildFire inline cloud analysis.",
+          "items": {
+            "$ref": "WildfireInlineCloudAnalysisRule"
+          },
+          "type": "array"
+        },
+        "wildfireInlineMlOverrides": {
+          "description": "Optional. Configuration for overriding inline ML WildFire actions per protocol.",
+          "items": {
+            "$ref": "WildfireInlineMlOverride"
+          },
+          "type": "array"
+        },
+        "wildfireInlineMlSetting": {
+          "$ref": "WildfireInlineMlSettings",
+          "description": "Optional. Settings for WildFire Inline ML analysis."
+        },
+        "wildfireInlineMlSettings": {
+          "deprecated": true,
+          "description": "Optional. Settings for WildFire Inline ML analysis.",
+          "items": {
+            "$ref": "WildfireInlineMlSettings"
+          },
+          "type": "array"
+        },
+        "wildfireOverrides": {
+          "description": "Optional. Configuration for overriding WildFire actions per protocol.",
+          "items": {
+            "$ref": "WildfireOverride"
+          },
+          "type": "array"
+        },
+        "wildfireRealtimeLookup": {
+          "description": "Optional. Whether to hold the transfer of a file while the WildFire real-time signature cloud performs a signature lookup. Default value is false.",
+          "type": "boolean"
+        },
+        "wildfireSubmissionRules": {
+          "description": "Optional. Configurations for WildFire file submissions.",
+          "items": {
+            "$ref": "WildfireSubmissionRule"
+          },
+          "type": "array"
+        },
+        "wildfireThreatOverrides": {
+          "description": "Optional. Configuration for overriding WildFire threats action by threat_id match.",
+          "items": {
+            "$ref": "WildfireThreatOverride"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "WildfireInlineCloudAnalysisRule": {
+      "description": "The list of file type configurations to be scanned by WildFire Inline Cloud Analysis.",
+      "id": "WildfireInlineCloudAnalysisRule",
+      "properties": {
+        "action": {
+          "description": "Required. Action to take when a threat is detected using WildFire Inline Cloud Analysis. The default Value is DENY.",
+          "enum": [
+            "WILDFIRE_INLINE_CLOUD_ANALYSIS_ACTION_UNSPECIFIED",
+            "ALLOW",
+            "DENY",
+            "ALERT"
+          ],
+          "enumDescriptions": [
+            "WildFire Inline Cloud Analysis action not specified.",
+            "The files caught by WildFire Inline Cloud Analysis will be allowed to transmit.",
+            "The files caught by WildFire Inline Cloud Analysis will be denied to transmit.",
+            "The files caught by WildFire Inline Cloud Analysis will be allowed to transmit, but a wildfire_submission_log entry will be sent to the consumer project."
+          ],
+          "type": "string"
+        },
+        "customFileTypes": {
+          "$ref": "WildfireInlineCloudAnalysisRuleCustomFileTypes",
+          "description": "Submit a custom list of file types for WildFire analysis."
+        },
+        "direction": {
+          "description": "Required. Direction for the file to be analyzed by WildFire Inline Cloud Analysis.",
+          "enum": [
+            "DIRECTION_UNSPECIFIED",
+            "UPLOAD",
+            "DOWNLOAD",
+            "BOTH"
+          ],
+          "enumDescriptions": [
+            "Direction not specified.",
+            "Upload direction.",
+            "Download direction.",
+            "Both upload and download directions."
+          ],
+          "type": "string"
+        },
+        "fileSelectionMode": {
+          "description": "Required. File selection mode for WildFire inline cloud analysis.",
+          "enum": [
+            "FILE_SELECTION_MODE_UNSPECIFIED",
+            "ALL_FILE_TYPES",
+            "CUSTOM_FILE_TYPES"
+          ],
+          "enumDescriptions": [
+            "File selection mode not specified.",
+            "Submit all the file types for scan.",
+            "Submit a custom list of file types for scan."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WildfireInlineCloudAnalysisRuleCustomFileTypes": {
+      "description": "The options to submit a custom list of file types for scan.",
+      "id": "WildfireInlineCloudAnalysisRuleCustomFileTypes",
+      "properties": {
+        "fileTypes": {
+          "description": "Required. File types to be submitted for WildFire inline cloud analysis.",
+          "items": {
+            "enum": [
+              "FILE_TYPE_UNSPECIFIED",
+              "PE"
+            ],
+            "enumDescriptions": [
+              "File type not specified.",
+              "Portable Executable (PE) files."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "WildfireInlineMlFileException": {
+      "description": "Defines the file to exclude from WildFire Inline ML analysis.",
+      "id": "WildfireInlineMlFileException",
+      "properties": {
+        "filename": {
+          "description": "Optional. Name of the file to exclude from WildFire Inline ML analysis.",
+          "type": "string"
+        },
+        "partialHash": {
+          "description": "Required. Machine learning partial hash of the file to exclude from WildFire Inline ML analysis.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WildfireInlineMlOverride": {
+      "description": "Defines what action to take for WildFire Inline ML threats per protocol.",
+      "id": "WildfireInlineMlOverride",
+      "properties": {
+        "action": {
+          "description": "Required. The action to take for WildFire Inline ML override.",
+          "enum": [
+            "WILDFIRE_THREAT_ACTION_UNSPECIFIED",
+            "WILDFIRE_DEFAULT_ACTION",
+            "WILDFIRE_ALLOW",
+            "WILDFIRE_ALERT",
+            "WILDFIRE_DENY"
+          ],
+          "enumDescriptions": [
+            "Threat action not specified.",
+            "The default action (as specified by the vendor) is taken.",
+            "The packet matching this rule will be allowed to transmit.",
+            "The packet matching this rule will be allowed to transmit, but a threat_log entry will be sent to the consumer project.",
+            "The packet matching this rule will be dropped, and a threat_log entry will be sent to the consumer project."
+          ],
+          "type": "string"
+        },
+        "protocol": {
+          "description": "Required. Protocol to match for WildFire Inline ML override.",
+          "enum": [
+            "WILDFIRE_PROTOCOL_UNSPECIFIED",
+            "WILDFIRE_SMTP",
+            "WILDFIRE_SMB",
+            "WILDFIRE_POP3",
+            "WILDFIRE_IMAP",
+            "WILDFIRE_HTTP2",
+            "WILDFIRE_HTTP",
+            "WILDFIRE_FTP"
+          ],
+          "enumDescriptions": [
+            "Protocol not specified.",
+            "SMTP protocol",
+            "SMB protocol",
+            "POP3 protocol",
+            "IMAP protocol",
+            "HTTP2 protocol",
+            "HTTP protocol",
+            "FTP protocol"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WildfireInlineMlSettings": {
+      "description": "Defines the settings for WildFire Inline ML analysis.",
+      "id": "WildfireInlineMlSettings",
+      "properties": {
+        "fileExceptions": {
+          "description": "Optional. List of files to exclude from WildFire Inline ML analysis.",
+          "items": {
+            "$ref": "WildfireInlineMlFileException"
+          },
+          "type": "array"
+        },
+        "inlineMlConfigs": {
+          "description": "Optional. List of Inline ML configs to enable in WildFire Inline ML analysis.",
+          "items": {
+            "$ref": "WildfireInlineMlSettingsInlineMlConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "WildfireInlineMlSettingsInlineMlConfig": {
+      "description": "Configuration for WildFire Inline ML analysis per file type.",
+      "id": "WildfireInlineMlSettingsInlineMlConfig",
+      "properties": {
+        "action": {
+          "description": "Required. Action to take when a threat is detected using Inline ML.",
+          "enum": [
+            "INLINE_ML_ACTION_UNSPECIFIED",
+            "DISABLE",
+            "ALERT",
+            "ENABLE"
+          ],
+          "enumDescriptions": [
+            "Inline ML threat action not specified.",
+            "Disable WildFire Inline ML for the associated file type.",
+            "Enable WildFire Inline ML for the associated file type. Overrides any protocol level settings with action stricter than ALERT to ALERT so that the malicious files detected generate a threat log to the consumer project but are not blocked.",
+            "Enable WildFire Inline ML for the associated file type, malicious files detected will be blocked."
+          ],
+          "type": "string"
+        },
+        "fileType": {
+          "description": "Required. File type to configure Inline ML for.",
+          "enum": [
+            "INLINE_ML_CONFIG_UNSPECIFIED",
+            "WINDOWS_EXECUTABLE",
+            "POWERSHELL_SCRIPT1",
+            "POWERSHELL_SCRIPT2",
+            "ELF",
+            "MS_OFFICE",
+            "SHELL",
+            "OOXML",
+            "MACHO"
+          ],
+          "enumDescriptions": [
+            "Inline ML config not specified.",
+            "Enable machine learning engine to dynamically detect malicious PE files.",
+            "Enable machine learning engine to dynamically identify malicious PowerShell scripts with known length.",
+            "Enable machine learning engine to dynamically identify malicious PowerShell script without known length.",
+            "Enable machine learning engine to dynamically detect malicious ELF files.",
+            "Enable machine learning engine to dynamically detect malicious MSOffice (97-03) files.",
+            "Enable machine learning engine to dynamically detect malicious Shell files.",
+            "Enable machine learning engine to dynamically detect malicious Open Office XML files.",
+            "Enable machine learning engine to dynamically detect malicious Mach-O files."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WildfireOverride": {
+      "description": "Defines what action to take for WildFire threats per protocol.",
+      "id": "WildfireOverride",
+      "properties": {
+        "action": {
+          "description": "Required. Threat action override. For some threat types, only a subset of actions applies.",
+          "enum": [
+            "WILDFIRE_THREAT_ACTION_UNSPECIFIED",
+            "WILDFIRE_DEFAULT_ACTION",
+            "WILDFIRE_ALLOW",
+            "WILDFIRE_ALERT",
+            "WILDFIRE_DENY"
+          ],
+          "enumDescriptions": [
+            "Threat action not specified.",
+            "The default action (as specified by the vendor) is taken.",
+            "The packet matching this rule will be allowed to transmit.",
+            "The packet matching this rule will be allowed to transmit, but a threat_log entry will be sent to the consumer project.",
+            "The packet matching this rule will be dropped, and a threat_log entry will be sent to the consumer project."
+          ],
+          "type": "string"
+        },
+        "protocol": {
+          "description": "Required. Protocol to match.",
+          "enum": [
+            "WILDFIRE_PROTOCOL_UNSPECIFIED",
+            "WILDFIRE_SMTP",
+            "WILDFIRE_SMB",
+            "WILDFIRE_POP3",
+            "WILDFIRE_IMAP",
+            "WILDFIRE_HTTP2",
+            "WILDFIRE_HTTP",
+            "WILDFIRE_FTP"
+          ],
+          "enumDescriptions": [
+            "Protocol not specified.",
+            "SMTP protocol",
+            "SMB protocol",
+            "POP3 protocol",
+            "IMAP protocol",
+            "HTTP2 protocol",
+            "HTTP protocol",
+            "FTP protocol"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WildfireSubmissionRule": {
+      "description": "Defines the file types to be submitted for WildFire analysis and the direction of the traffic.",
+      "id": "WildfireSubmissionRule",
+      "properties": {
+        "customFileTypes": {
+          "$ref": "WildfireSubmissionRuleCustomFileTypes",
+          "description": "Submit a custom list of file types for WildFire analysis."
+        },
+        "direction": {
+          "description": "Required. Direction for the files to be analyzed by WildFire.",
+          "enum": [
+            "DIRECTION_UNSPECIFIED",
+            "UPLOAD",
+            "DOWNLOAD",
+            "BOTH"
+          ],
+          "enumDescriptions": [
+            "Direction not specified.",
+            "Upload direction.",
+            "Download direction.",
+            "Both upload and download directions."
+          ],
+          "type": "string"
+        },
+        "fileSelectionMode": {
+          "description": "Required. File selection mode for WildFire analysis.",
+          "enum": [
+            "FILE_SELECTION_MODE_UNSPECIFIED",
+            "ALL_FILE_TYPES",
+            "CUSTOM_FILE_TYPES"
+          ],
+          "enumDescriptions": [
+            "File selection mode not specified.",
+            "Submit all the file types for scan.",
+            "Submit a custom list of file types for scan."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WildfireSubmissionRuleCustomFileTypes": {
+      "description": "The options to submit a custom list of file types for scan.",
+      "id": "WildfireSubmissionRuleCustomFileTypes",
+      "properties": {
+        "fileTypes": {
+          "description": "Required. File types to be submitted for WildFire analysis.",
+          "items": {
+            "enum": [
+              "FILE_TYPE_UNSPECIFIED",
+              "APK",
+              "ARCHIVE",
+              "EMAIL_LINK",
+              "FLASH",
+              "JAR",
+              "LINUX",
+              "MS_OFFICE",
+              "PDF",
+              "PE",
+              "SCRIPT"
+            ],
+            "enumDescriptions": [
+              "File type not specified.",
+              "Android Application Package (APK) files.",
+              "Roshal Archive (RAR) and 7-Zip (7z) archive files.",
+              "HTTP/HTTPS links contained in SMTP and POP3 email messages.",
+              "Adobe Flash applets and Flash content embedded in web pages.",
+              "Java applets (JAR/class files types).",
+              "Executable and Linkable Format (ELF) files.",
+              "Files used by Microsoft Office.",
+              "Portable Document Format (PDF) files.",
+              "Portable Executable (PE) files.",
+              "Various script files. Jscript (JS), VBScript (VBS), PowerShell Scripts (PS1), Batch (BAT), HTML Application (HTA)."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "WildfireThreatOverride": {
+      "description": "Defines what action to take for a specific WildFire threat_id match.",
+      "id": "WildfireThreatOverride",
+      "properties": {
+        "action": {
+          "description": "Required. Threat action override.",
+          "enum": [
+            "WILDFIRE_THREAT_ACTION_UNSPECIFIED",
+            "WILDFIRE_DEFAULT_ACTION",
+            "WILDFIRE_ALLOW",
+            "WILDFIRE_ALERT",
+            "WILDFIRE_DENY"
+          ],
+          "enumDescriptions": [
+            "Threat action not specified.",
+            "The default action (as specified by the vendor) is taken.",
+            "The packet matching this rule will be allowed to transmit.",
+            "The packet matching this rule will be allowed to transmit, but a threat_log entry will be sent to the consumer project.",
+            "The packet matching this rule will be dropped, and a threat_log entry will be sent to the consumer project."
+          ],
+          "type": "string"
+        },
+        "threatId": {
+          "description": "Required. Threat ID to match.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WildfireVerdictChangeRequest": {
+      "description": "Message for a WildfireVerdictChangeRequest.",
+      "id": "WildfireVerdictChangeRequest",
+      "properties": {
+        "comment": {
+          "description": "Required. The justification for the verdict change request. Max length 2048 characters.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the WildfireVerdictChangeRequest was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fileName": {
+          "description": "Output only. The file name of the Malware Sample.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fileType": {
+          "description": "Output only. The file type of the Malware Sample.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "finalVerdict": {
+          "description": "Output only. The final verdict of the Malware Sample.",
+          "enum": [
+            "WILDFIRE_SAMPLE_VERDICT_UNKNOWN",
+            "BENIGN",
+            "MALWARE",
+            "GRAYWARE",
+            "PHISHING"
+          ],
+          "enumDescriptions": [
+            "Default value. Malware is not yet classified.",
+            "Sample is safe and does not exhibit malicious behavior.",
+            "Sample is malware and poses a security threat.",
+            "Sample does not pose a direct security threat, but might display otherwise obtrusive behavior.",
+            "Link directs users to a phishing site and poses a security threat."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Identifier. The relative name of the WildfireVerdictChangeRequest. Output only. This is a unique identifier generated by the third party API. Format: organizations|projects/{project_or_organization}/locations/{location}/firewallEndpoints/{firewall_endpoint}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id} Where {wildfire_verdict_change_request_id} is the ID in the format: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "readOnly": true,
+          "type": "string"
+        },
+        "newVerdict": {
+          "description": "Required. The suggested verdict to apply to the Malware Sample.",
+          "enum": [
+            "WILDFIRE_SAMPLE_VERDICT_UNKNOWN",
+            "BENIGN",
+            "MALWARE",
+            "GRAYWARE",
+            "PHISHING"
+          ],
+          "enumDescriptions": [
+            "Default value. Malware is not yet classified.",
+            "Sample is safe and does not exhibit malicious behavior.",
+            "Sample is malware and poses a security threat.",
+            "Sample does not pose a direct security threat, but might display otherwise obtrusive behavior.",
+            "Link directs users to a phishing site and poses a security threat."
+          ],
+          "type": "string"
+        },
+        "oldVerdict": {
+          "description": "Output only. The original verdict of the Malware Sample.",
+          "enum": [
+            "WILDFIRE_SAMPLE_VERDICT_UNKNOWN",
+            "BENIGN",
+            "MALWARE",
+            "GRAYWARE",
+            "PHISHING"
+          ],
+          "enumDescriptions": [
+            "Default value. Malware is not yet classified.",
+            "Sample is safe and does not exhibit malicious behavior.",
+            "Sample is malware and poses a security threat.",
+            "Sample does not pose a direct security threat, but might display otherwise obtrusive behavior.",
+            "Link directs users to a phishing site and poses a security threat."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "resolutionTime": {
+          "description": "Output only. The timestamp when the WildfireVerdictChangeRequest was resolved.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sha256": {
+          "description": "Required. The SHA256 hash of the Malware Sample to change the verdict of.",
+          "type": "string"
+        },
+        "sourceRegion": {
+          "description": "Output only. The region of the file associated with the Malware Sample.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The review state of the WildfireVerdictChangeRequest.",
+          "enum": [
+            "VERDICT_CHANGE_REQUEST_STATE_UNSPECIFIED",
+            "OPEN",
+            "CLOSED",
+            "PENDING"
+          ],
+          "enumDescriptions": [
+            "Default value. Request does not have a state. This value is unused.",
+            "Request has been created and review has not started.",
+            "Malware Sample has been reviewed and the final verdict has been updated.",
+            "Malware Sample is currently being reviewed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the WildfireVerdictChangeRequest was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "wildfireVerdictChangeRequestId": {
+          "description": "Output only. The ID of the WildfireVerdictChangeRequest. This is a unique identifier generated by the third party API. Format: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

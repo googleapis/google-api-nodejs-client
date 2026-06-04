@@ -1598,7 +1598,7 @@ export namespace networksecurity_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached. See https://google.aip.dev/217 for more details.
      */
     unreachable?: string[] | null;
   }

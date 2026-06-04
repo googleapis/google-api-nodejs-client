@@ -781,6 +781,10 @@ export namespace networksecurity_v1beta1 {
      * Output only. Update time stamp
      */
     updateTime?: string | null;
+    /**
+     * Optional. Settings for WildFire analysis.
+     */
+    wildfireSettings?: Schema$FirewallEndpointWildfireSettings;
   }
   /**
    * Message describing Association object
@@ -845,9 +849,59 @@ export namespace networksecurity_v1beta1 {
    */
   export interface Schema$FirewallEndpointEndpointSettings {
     /**
+     * Optional. The content cloud region of the endpoint.
+     */
+    contentCloudRegion?: string | null;
+    /**
+     * Optional. Whether to block HTTP partial responses for the endpoint. When this is true, resumption of blocked malicious HTTP file downloads will be blocked by the firewall. False provides maximum availability, true provides maximum security.
+     */
+    httpPartialResponseBlocked?: boolean | null;
+    /**
      * Optional. Immutable. Indicates whether Jumbo Frames are enabled. Default value is false.
      */
     jumboFramesEnabled?: boolean | null;
+  }
+  /**
+   * Settings for WildFire analysis.
+   */
+  export interface Schema$FirewallEndpointWildfireSettings {
+    /**
+     * Optional. Indicates whether WildFire analysis is enabled. Default value is false.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. Settings for WildFire inline cloud analysis.
+     */
+    wildfireInlineCloudAnalysisSettings?: Schema$FirewallEndpointWildfireSettingsWildfireInlineCloudAnalysisSettings;
+    /**
+     * Optional. Duration in milliseconds on a file being held while the WildFire real time signature cloud performs a signature lookup. Value between 1 to 5000 is valid. Default value is 1000.
+     */
+    wildfireRealtimeLookupDuration?: string | null;
+    /**
+     * Optional. Action to take on WildFire real time signature lookup timeout. Default value is ALLOW.
+     */
+    wildfireRealtimeLookupTimeoutAction?: string | null;
+    /**
+     * Optional. The region where WildFire analysis will be performed. PAN supports regions: https://docs.paloaltonetworks.com/advanced-wildfire/administration/advanced-wildfire-overview/advanced-wildfire-deployments/advanced-wildfire-global-cloud
+     */
+    wildfireRegion?: string | null;
+  }
+  /**
+   * Settings for WildFire inline cloud analysis.
+   */
+  export interface Schema$FirewallEndpointWildfireSettingsWildfireInlineCloudAnalysisSettings {
+    /**
+     * Optional. Timeout in milliseconds on a file being held while WildFire inline cloud analysis is performed. Value between 1 to 240000 is valid. Default value is 30000.
+     */
+    maxAnalysisDuration?: string | null;
+    /**
+     * Optional. Whether to disable WildFire submission log generation for files that timeout during WildFire inline cloud analysis.
+     */
+    submissionTimeoutLoggingDisabled?: boolean | null;
+    /**
+     * Optional. Action to take when WildFire inline cloud analysis times out. Default value is ALLOW.
+     */
+    timeoutAction?: string | null;
   }
   /**
    * The GatewaySecurityPolicy resource contains a collection of GatewaySecurityPolicyRules and associated metadata.
@@ -1598,7 +1652,7 @@ export namespace networksecurity_v1beta1 {
      */
     nextPageToken?: string | null;
     /**
-     * Locations that could not be reached.
+     * Unordered list. Locations that could not be reached. See https://google.aip.dev/217 for more details.
      */
     unreachable?: string[] | null;
   }
@@ -1755,6 +1809,23 @@ export namespace networksecurity_v1beta1 {
      * List of UrlList resources.
      */
     urlLists?: Schema$UrlList[];
+  }
+  /**
+   * Message for response to listing WildfireVerdictChangeRequests.
+   */
+  export interface Schema$ListWildfireVerdictChangeRequestsResponse {
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unordered list. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+    /**
+     * The list of WildfireVerdictChangeRequests
+     */
+    wildfireVerdictChangeRequests?: Schema$WildfireVerdictChangeRequest[];
   }
   /**
    * A resource that represents a Google Cloud location.
@@ -2317,6 +2388,10 @@ export namespace networksecurity_v1beta1 {
      * The URL filtering configuration for the SecurityProfile.
      */
     urlFilteringProfile?: Schema$UrlFilteringProfile;
+    /**
+     * The WildFire Analysis configurations for SecurityProfile.
+     */
+    wildfireAnalysisProfile?: Schema$WildfireAnalysisProfile;
   }
   /**
    * SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes.
@@ -2366,6 +2441,10 @@ export namespace networksecurity_v1beta1 {
      * Optional. Reference to a SecurityProfile with the UrlFiltering configuration.
      */
     urlFilteringProfile?: string | null;
+    /**
+     * Optional. Reference to a SecurityProfile with the WildFire configuration.
+     */
+    wildfireAnalysisProfile?: string | null;
   }
   /**
    * ServerTlsPolicy is a resource that specifies how a server should authenticate incoming requests. This resource itself does not affect configuration unless it is attached to a target HTTPS proxy or endpoint config selector resource. ServerTlsPolicy in the form accepted by Application Load Balancers can be attached only to TargetHttpsProxy with an `EXTERNAL`, `EXTERNAL_MANAGED` or `INTERNAL_MANAGED` load balancing scheme. Traffic Director compatible ServerTlsPolicies can be attached to EndpointPolicy and TargetHttpsProxy with Traffic Director `INTERNAL_SELF_MANAGED` load balancing scheme.
@@ -2589,6 +2668,238 @@ export namespace networksecurity_v1beta1 {
      * gRPC specific configuration to access the gRPC server to obtain the CA certificate.
      */
     grpcEndpoint?: Schema$GoogleCloudNetworksecurityV1beta1GrpcEndpoint;
+  }
+  /**
+   * WildfireAnalysisProfile defines Palo Alto Networks WildFire behavior.
+   */
+  export interface Schema$WildfireAnalysisProfile {
+    /**
+     * Optional. Configuration for WildFire inline cloud analysis.
+     */
+    wildfireInlineCloudAnalysisRules?: Schema$WildfireInlineCloudAnalysisRule[];
+    /**
+     * Optional. Configuration for overriding inline ML WildFire actions per protocol.
+     */
+    wildfireInlineMlOverrides?: Schema$WildfireInlineMlOverride[];
+    /**
+     * Optional. Settings for WildFire Inline ML analysis.
+     */
+    wildfireInlineMlSetting?: Schema$WildfireInlineMlSettings;
+    /**
+     * Optional. Settings for WildFire Inline ML analysis.
+     */
+    wildfireInlineMlSettings?: Schema$WildfireInlineMlSettings[];
+    /**
+     * Optional. Configuration for overriding WildFire actions per protocol.
+     */
+    wildfireOverrides?: Schema$WildfireOverride[];
+    /**
+     * Optional. Whether to hold the transfer of a file while the WildFire real-time signature cloud performs a signature lookup. Default value is false.
+     */
+    wildfireRealtimeLookup?: boolean | null;
+    /**
+     * Optional. Configurations for WildFire file submissions.
+     */
+    wildfireSubmissionRules?: Schema$WildfireSubmissionRule[];
+    /**
+     * Optional. Configuration for overriding WildFire threats action by threat_id match.
+     */
+    wildfireThreatOverrides?: Schema$WildfireThreatOverride[];
+  }
+  /**
+   * The list of file type configurations to be scanned by WildFire Inline Cloud Analysis.
+   */
+  export interface Schema$WildfireInlineCloudAnalysisRule {
+    /**
+     * Required. Action to take when a threat is detected using WildFire Inline Cloud Analysis. The default Value is DENY.
+     */
+    action?: string | null;
+    /**
+     * Submit a custom list of file types for WildFire analysis.
+     */
+    customFileTypes?: Schema$WildfireInlineCloudAnalysisRuleCustomFileTypes;
+    /**
+     * Required. Direction for the file to be analyzed by WildFire Inline Cloud Analysis.
+     */
+    direction?: string | null;
+    /**
+     * Required. File selection mode for WildFire inline cloud analysis.
+     */
+    fileSelectionMode?: string | null;
+  }
+  /**
+   * The options to submit a custom list of file types for scan.
+   */
+  export interface Schema$WildfireInlineCloudAnalysisRuleCustomFileTypes {
+    /**
+     * Required. File types to be submitted for WildFire inline cloud analysis.
+     */
+    fileTypes?: string[] | null;
+  }
+  /**
+   * Defines the file to exclude from WildFire Inline ML analysis.
+   */
+  export interface Schema$WildfireInlineMlFileException {
+    /**
+     * Optional. Name of the file to exclude from WildFire Inline ML analysis.
+     */
+    filename?: string | null;
+    /**
+     * Required. Machine learning partial hash of the file to exclude from WildFire Inline ML analysis.
+     */
+    partialHash?: string | null;
+  }
+  /**
+   * Defines what action to take for WildFire Inline ML threats per protocol.
+   */
+  export interface Schema$WildfireInlineMlOverride {
+    /**
+     * Required. The action to take for WildFire Inline ML override.
+     */
+    action?: string | null;
+    /**
+     * Required. Protocol to match for WildFire Inline ML override.
+     */
+    protocol?: string | null;
+  }
+  /**
+   * Defines the settings for WildFire Inline ML analysis.
+   */
+  export interface Schema$WildfireInlineMlSettings {
+    /**
+     * Optional. List of files to exclude from WildFire Inline ML analysis.
+     */
+    fileExceptions?: Schema$WildfireInlineMlFileException[];
+    /**
+     * Optional. List of Inline ML configs to enable in WildFire Inline ML analysis.
+     */
+    inlineMlConfigs?: Schema$WildfireInlineMlSettingsInlineMlConfig[];
+  }
+  /**
+   * Configuration for WildFire Inline ML analysis per file type.
+   */
+  export interface Schema$WildfireInlineMlSettingsInlineMlConfig {
+    /**
+     * Required. Action to take when a threat is detected using Inline ML.
+     */
+    action?: string | null;
+    /**
+     * Required. File type to configure Inline ML for.
+     */
+    fileType?: string | null;
+  }
+  /**
+   * Defines what action to take for WildFire threats per protocol.
+   */
+  export interface Schema$WildfireOverride {
+    /**
+     * Required. Threat action override. For some threat types, only a subset of actions applies.
+     */
+    action?: string | null;
+    /**
+     * Required. Protocol to match.
+     */
+    protocol?: string | null;
+  }
+  /**
+   * Defines the file types to be submitted for WildFire analysis and the direction of the traffic.
+   */
+  export interface Schema$WildfireSubmissionRule {
+    /**
+     * Submit a custom list of file types for WildFire analysis.
+     */
+    customFileTypes?: Schema$WildfireSubmissionRuleCustomFileTypes;
+    /**
+     * Required. Direction for the files to be analyzed by WildFire.
+     */
+    direction?: string | null;
+    /**
+     * Required. File selection mode for WildFire analysis.
+     */
+    fileSelectionMode?: string | null;
+  }
+  /**
+   * The options to submit a custom list of file types for scan.
+   */
+  export interface Schema$WildfireSubmissionRuleCustomFileTypes {
+    /**
+     * Required. File types to be submitted for WildFire analysis.
+     */
+    fileTypes?: string[] | null;
+  }
+  /**
+   * Defines what action to take for a specific WildFire threat_id match.
+   */
+  export interface Schema$WildfireThreatOverride {
+    /**
+     * Required. Threat action override.
+     */
+    action?: string | null;
+    /**
+     * Required. Threat ID to match.
+     */
+    threatId?: string | null;
+  }
+  /**
+   * Message for a WildfireVerdictChangeRequest.
+   */
+  export interface Schema$WildfireVerdictChangeRequest {
+    /**
+     * Required. The justification for the verdict change request. Max length 2048 characters.
+     */
+    comment?: string | null;
+    /**
+     * Output only. The timestamp when the WildfireVerdictChangeRequest was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The file name of the Malware Sample.
+     */
+    fileName?: string | null;
+    /**
+     * Output only. The file type of the Malware Sample.
+     */
+    fileType?: string | null;
+    /**
+     * Output only. The final verdict of the Malware Sample.
+     */
+    finalVerdict?: string | null;
+    /**
+     * Output only. Identifier. The relative name of the WildfireVerdictChangeRequest. Output only. This is a unique identifier generated by the third party API. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\} Where {wildfire_verdict_change_request_id\} is the ID in the format: ^[0-9a-fA-F]{8\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{12\}$
+     */
+    name?: string | null;
+    /**
+     * Required. The suggested verdict to apply to the Malware Sample.
+     */
+    newVerdict?: string | null;
+    /**
+     * Output only. The original verdict of the Malware Sample.
+     */
+    oldVerdict?: string | null;
+    /**
+     * Output only. The timestamp when the WildfireVerdictChangeRequest was resolved.
+     */
+    resolutionTime?: string | null;
+    /**
+     * Required. The SHA256 hash of the Malware Sample to change the verdict of.
+     */
+    sha256?: string | null;
+    /**
+     * Output only. The region of the file associated with the Malware Sample.
+     */
+    sourceRegion?: string | null;
+    /**
+     * Output only. The review state of the WildfireVerdictChangeRequest.
+     */
+    state?: string | null;
+    /**
+     * Output only. The timestamp when the WildfireVerdictChangeRequest was last updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. The ID of the WildfireVerdictChangeRequest. This is a unique identifier generated by the third party API. Format: ^[0-9a-fA-F]{8\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{12\}$
+     */
+    wildfireVerdictChangeRequestId?: string | null;
   }
 
   export class Resource$Organizations {
@@ -4629,8 +4940,13 @@ export namespace networksecurity_v1beta1 {
 
   export class Resource$Organizations$Locations$Firewallendpoints {
     context: APIRequestContext;
+    wildfireVerdictChangeRequests: Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.wildfireVerdictChangeRequests =
+        new Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests(
+          this.context
+        );
     }
 
     /**
@@ -4688,7 +5004,8 @@ export namespace networksecurity_v1beta1 {
      *         //   "satisfiesPzi": false,
      *         //   "satisfiesPzs": false,
      *         //   "state": "my_state",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "wildfireSettings": {}
      *         // }
      *       },
      *     });
@@ -4995,7 +5312,8 @@ export namespace networksecurity_v1beta1 {
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
      *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "wildfireSettings": {}
      *   // }
      * }
      *
@@ -5304,7 +5622,8 @@ export namespace networksecurity_v1beta1 {
      *         //   "satisfiesPzi": false,
      *         //   "satisfiesPzs": false,
      *         //   "state": "my_state",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "wildfireSettings": {}
      *         // }
      *       },
      *     });
@@ -5490,6 +5809,549 @@ export namespace networksecurity_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$FirewallEndpoint;
+  }
+
+  export class Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create WildfireVerdictChangeRequest in a given Firewall Endpoint in an organization and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networksecurity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networksecurity = google.networksecurity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networksecurity.organizations.locations.firewallEndpoints.wildfireVerdictChangeRequests.create(
+     *       {
+     *         // Required. Parent value for CreateWildfireVerdictChangeRequestRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}
+     *         parent:
+     *           'organizations/my-organization/locations/my-location/firewallEndpoints/my-firewallEndpoint',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "comment": "my_comment",
+     *           //   "createTime": "my_createTime",
+     *           //   "fileName": "my_fileName",
+     *           //   "fileType": "my_fileType",
+     *           //   "finalVerdict": "my_finalVerdict",
+     *           //   "name": "my_name",
+     *           //   "newVerdict": "my_newVerdict",
+     *           //   "oldVerdict": "my_oldVerdict",
+     *           //   "resolutionTime": "my_resolutionTime",
+     *           //   "sha256": "my_sha256",
+     *           //   "sourceRegion": "my_sourceRegion",
+     *           //   "state": "my_state",
+     *           //   "updateTime": "my_updateTime",
+     *           //   "wildfireVerdictChangeRequestId": "my_wildfireVerdictChangeRequestId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "comment": "my_comment",
+     *   //   "createTime": "my_createTime",
+     *   //   "fileName": "my_fileName",
+     *   //   "fileType": "my_fileType",
+     *   //   "finalVerdict": "my_finalVerdict",
+     *   //   "name": "my_name",
+     *   //   "newVerdict": "my_newVerdict",
+     *   //   "oldVerdict": "my_oldVerdict",
+     *   //   "resolutionTime": "my_resolutionTime",
+     *   //   "sha256": "my_sha256",
+     *   //   "sourceRegion": "my_sourceRegion",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "wildfireVerdictChangeRequestId": "my_wildfireVerdictChangeRequestId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WildfireVerdictChangeRequest>>;
+    create(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WildfireVerdictChangeRequest>,
+      callback: BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create,
+      callback: BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create
+        | BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WildfireVerdictChangeRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/wildfireVerdictChangeRequests'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WildfireVerdictChangeRequest>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WildfireVerdictChangeRequest>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Get WildfireVerdictChangeRequest in a given Firewall Endpoint in an organization and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networksecurity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networksecurity = google.networksecurity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networksecurity.organizations.locations.firewallEndpoints.wildfireVerdictChangeRequests.get(
+     *       {
+     *         // Required. Name of the WildfireVerdictChangeRequest to retrieve. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\} Where {wildfire_verdict_change_request_id\} is the ID in the format: ^[0-9a-fA-F]{8\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{12\}$
+     *         name: 'organizations/my-organization/locations/my-location/firewallEndpoints/my-firewallEndpoint/wildfireVerdictChangeRequests/my-wildfireVerdictChangeRequest',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "comment": "my_comment",
+     *   //   "createTime": "my_createTime",
+     *   //   "fileName": "my_fileName",
+     *   //   "fileType": "my_fileType",
+     *   //   "finalVerdict": "my_finalVerdict",
+     *   //   "name": "my_name",
+     *   //   "newVerdict": "my_newVerdict",
+     *   //   "oldVerdict": "my_oldVerdict",
+     *   //   "resolutionTime": "my_resolutionTime",
+     *   //   "sha256": "my_sha256",
+     *   //   "sourceRegion": "my_sourceRegion",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "wildfireVerdictChangeRequestId": "my_wildfireVerdictChangeRequestId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WildfireVerdictChangeRequest>>;
+    get(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WildfireVerdictChangeRequest>,
+      callback: BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get,
+      callback: BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get
+        | BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WildfireVerdictChangeRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WildfireVerdictChangeRequest>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WildfireVerdictChangeRequest>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists WildfireVerdictChangeRequests in a given Firewall Endpoint in an organization and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networksecurity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networksecurity = google.networksecurity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networksecurity.organizations.locations.firewallEndpoints.wildfireVerdictChangeRequests.list(
+     *       {
+     *         // Optional. Filter expression to filter the results. See AIP-160 for filtering syntax. Supported fields are: - `sha256` (string, equality only, e.g. `sha256 = "..."`) - `state` (enum, equality only, e.g. `state = "ACTIVE"`) - `create_time` (timestamp, comparisons, e.g. `create_time \> "2026-01-01T00:00:00Z"`)
+     *         filter: 'placeholder-value',
+     *         // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A token identifying a page of results the server should return.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Parent value for ListWildfireVerdictChangeRequestsRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}
+     *         parent:
+     *           'organizations/my-organization/locations/my-location/firewallEndpoints/my-firewallEndpoint',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": [],
+     *   //   "wildfireVerdictChangeRequests": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListWildfireVerdictChangeRequestsResponse>
+    >;
+    list(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWildfireVerdictChangeRequestsResponse>,
+      callback: BodyResponseCallback<Schema$ListWildfireVerdictChangeRequestsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$List,
+      callback: BodyResponseCallback<Schema$ListWildfireVerdictChangeRequestsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListWildfireVerdictChangeRequestsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$List
+        | BodyResponseCallback<Schema$ListWildfireVerdictChangeRequestsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWildfireVerdictChangeRequestsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWildfireVerdictChangeRequestsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListWildfireVerdictChangeRequestsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/wildfireVerdictChangeRequests'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWildfireVerdictChangeRequestsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListWildfireVerdictChangeRequestsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create extends StandardParameters {
+    /**
+     * Required. Parent value for CreateWildfireVerdictChangeRequestRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WildfireVerdictChangeRequest;
+  }
+  export interface Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get extends StandardParameters {
+    /**
+     * Required. Name of the WildfireVerdictChangeRequest to retrieve. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\} Where {wildfire_verdict_change_request_id\} is the ID in the format: ^[0-9a-fA-F]{8\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{12\}$
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Firewallendpoints$Wildfireverdictchangerequests$List extends StandardParameters {
+    /**
+     * Optional. Filter expression to filter the results. See AIP-160 for filtering syntax. Supported fields are: - `sha256` (string, equality only, e.g. `sha256 = "..."`) - `state` (enum, equality only, e.g. `state = "ACTIVE"`) - `create_time` (timestamp, comparisons, e.g. `create_time \> "2026-01-01T00:00:00Z"`)
+     */
+    filter?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListWildfireVerdictChangeRequestsRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}
+     */
+    parent?: string;
   }
 
   export class Resource$Organizations$Locations$Operations {
@@ -6168,7 +7030,8 @@ export namespace networksecurity_v1beta1 {
      *         //   "name": "my_name",
      *         //   "threatPreventionProfile": "my_threatPreventionProfile",
      *         //   "updateTime": "my_updateTime",
-     *         //   "urlFilteringProfile": "my_urlFilteringProfile"
+     *         //   "urlFilteringProfile": "my_urlFilteringProfile",
+     *         //   "wildfireAnalysisProfile": "my_wildfireAnalysisProfile"
      *         // }
      *       },
      *     });
@@ -6473,7 +7336,8 @@ export namespace networksecurity_v1beta1 {
      *   //   "name": "my_name",
      *   //   "threatPreventionProfile": "my_threatPreventionProfile",
      *   //   "updateTime": "my_updateTime",
-     *   //   "urlFilteringProfile": "my_urlFilteringProfile"
+     *   //   "urlFilteringProfile": "my_urlFilteringProfile",
+     *   //   "wildfireAnalysisProfile": "my_wildfireAnalysisProfile"
      *   // }
      * }
      *
@@ -6779,7 +7643,8 @@ export namespace networksecurity_v1beta1 {
      *         //   "name": "my_name",
      *         //   "threatPreventionProfile": "my_threatPreventionProfile",
      *         //   "updateTime": "my_updateTime",
-     *         //   "urlFilteringProfile": "my_urlFilteringProfile"
+     *         //   "urlFilteringProfile": "my_urlFilteringProfile",
+     *         //   "wildfireAnalysisProfile": "my_wildfireAnalysisProfile"
      *         // }
      *       },
      *     });
@@ -7008,7 +7873,8 @@ export namespace networksecurity_v1beta1 {
      *         //   "threatPreventionProfile": {},
      *         //   "type": "my_type",
      *         //   "updateTime": "my_updateTime",
-     *         //   "urlFilteringProfile": {}
+     *         //   "urlFilteringProfile": {},
+     *         //   "wildfireAnalysisProfile": {}
      *         // }
      *       },
      *     });
@@ -7313,7 +8179,8 @@ export namespace networksecurity_v1beta1 {
      *   //   "threatPreventionProfile": {},
      *   //   "type": "my_type",
      *   //   "updateTime": "my_updateTime",
-     *   //   "urlFilteringProfile": {}
+     *   //   "urlFilteringProfile": {},
+     *   //   "wildfireAnalysisProfile": {}
      *   // }
      * }
      *
@@ -7613,7 +8480,8 @@ export namespace networksecurity_v1beta1 {
      *         //   "threatPreventionProfile": {},
      *         //   "type": "my_type",
      *         //   "updateTime": "my_updateTime",
-     *         //   "urlFilteringProfile": {}
+     *         //   "urlFilteringProfile": {},
+     *         //   "wildfireAnalysisProfile": {}
      *         // }
      *       },
      *     });
@@ -16695,8 +17563,13 @@ export namespace networksecurity_v1beta1 {
 
   export class Resource$Projects$Locations$Firewallendpoints {
     context: APIRequestContext;
+    wildfireVerdictChangeRequests: Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.wildfireVerdictChangeRequests =
+        new Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests(
+          this.context
+        );
     }
 
     /**
@@ -16754,7 +17627,8 @@ export namespace networksecurity_v1beta1 {
      *         //   "satisfiesPzi": false,
      *         //   "satisfiesPzs": false,
      *         //   "state": "my_state",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "wildfireSettings": {}
      *         // }
      *       },
      *     },
@@ -17062,7 +17936,8 @@ export namespace networksecurity_v1beta1 {
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
      *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "wildfireSettings": {}
      *   // }
      * }
      *
@@ -17368,7 +18243,8 @@ export namespace networksecurity_v1beta1 {
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
      *       //   "state": "my_state",
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "wildfireSettings": {}
      *       // }
      *     },
      *   });
@@ -17554,6 +18430,549 @@ export namespace networksecurity_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$FirewallEndpoint;
+  }
+
+  export class Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create WildfireVerdictChangeRequest in a given Firewall Endpoint in a project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networksecurity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networksecurity = google.networksecurity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networksecurity.projects.locations.firewallEndpoints.wildfireVerdictChangeRequests.create(
+     *       {
+     *         // Required. Parent value for CreateWildfireVerdictChangeRequestRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}
+     *         parent:
+     *           'projects/my-project/locations/my-location/firewallEndpoints/my-firewallEndpoint',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "comment": "my_comment",
+     *           //   "createTime": "my_createTime",
+     *           //   "fileName": "my_fileName",
+     *           //   "fileType": "my_fileType",
+     *           //   "finalVerdict": "my_finalVerdict",
+     *           //   "name": "my_name",
+     *           //   "newVerdict": "my_newVerdict",
+     *           //   "oldVerdict": "my_oldVerdict",
+     *           //   "resolutionTime": "my_resolutionTime",
+     *           //   "sha256": "my_sha256",
+     *           //   "sourceRegion": "my_sourceRegion",
+     *           //   "state": "my_state",
+     *           //   "updateTime": "my_updateTime",
+     *           //   "wildfireVerdictChangeRequestId": "my_wildfireVerdictChangeRequestId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "comment": "my_comment",
+     *   //   "createTime": "my_createTime",
+     *   //   "fileName": "my_fileName",
+     *   //   "fileType": "my_fileType",
+     *   //   "finalVerdict": "my_finalVerdict",
+     *   //   "name": "my_name",
+     *   //   "newVerdict": "my_newVerdict",
+     *   //   "oldVerdict": "my_oldVerdict",
+     *   //   "resolutionTime": "my_resolutionTime",
+     *   //   "sha256": "my_sha256",
+     *   //   "sourceRegion": "my_sourceRegion",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "wildfireVerdictChangeRequestId": "my_wildfireVerdictChangeRequestId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WildfireVerdictChangeRequest>>;
+    create(
+      params: Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WildfireVerdictChangeRequest>,
+      callback: BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create,
+      callback: BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create
+        | BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WildfireVerdictChangeRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/wildfireVerdictChangeRequests'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WildfireVerdictChangeRequest>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WildfireVerdictChangeRequest>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Get WildfireVerdictChangeRequest in a given Firewall Endpoint in a project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networksecurity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networksecurity = google.networksecurity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networksecurity.projects.locations.firewallEndpoints.wildfireVerdictChangeRequests.get(
+     *       {
+     *         // Required. Name of the WildfireVerdictChangeRequest to retrieve. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\} Where {wildfire_verdict_change_request_id\} is the ID in the format: ^[0-9a-fA-F]{8\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{12\}$
+     *         name: 'projects/my-project/locations/my-location/firewallEndpoints/my-firewallEndpoint/wildfireVerdictChangeRequests/my-wildfireVerdictChangeRequest',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "comment": "my_comment",
+     *   //   "createTime": "my_createTime",
+     *   //   "fileName": "my_fileName",
+     *   //   "fileType": "my_fileType",
+     *   //   "finalVerdict": "my_finalVerdict",
+     *   //   "name": "my_name",
+     *   //   "newVerdict": "my_newVerdict",
+     *   //   "oldVerdict": "my_oldVerdict",
+     *   //   "resolutionTime": "my_resolutionTime",
+     *   //   "sha256": "my_sha256",
+     *   //   "sourceRegion": "my_sourceRegion",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "wildfireVerdictChangeRequestId": "my_wildfireVerdictChangeRequestId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WildfireVerdictChangeRequest>>;
+    get(
+      params: Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WildfireVerdictChangeRequest>,
+      callback: BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get,
+      callback: BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get
+        | BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WildfireVerdictChangeRequest>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WildfireVerdictChangeRequest>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WildfireVerdictChangeRequest>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WildfireVerdictChangeRequest>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists WildfireVerdictChangeRequests in a given Firewall Endpoint in a project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networksecurity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networksecurity = google.networksecurity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networksecurity.projects.locations.firewallEndpoints.wildfireVerdictChangeRequests.list(
+     *       {
+     *         // Optional. Filter expression to filter the results. See AIP-160 for filtering syntax. Supported fields are: - `sha256` (string, equality only, e.g. `sha256 = "..."`) - `state` (enum, equality only, e.g. `state = "ACTIVE"`) - `create_time` (timestamp, comparisons, e.g. `create_time \> "2026-01-01T00:00:00Z"`)
+     *         filter: 'placeholder-value',
+     *         // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A token identifying a page of results the server should return.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Parent value for ListWildfireVerdictChangeRequestsRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}
+     *         parent:
+     *           'projects/my-project/locations/my-location/firewallEndpoints/my-firewallEndpoint',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": [],
+     *   //   "wildfireVerdictChangeRequests": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListWildfireVerdictChangeRequestsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWildfireVerdictChangeRequestsResponse>,
+      callback: BodyResponseCallback<Schema$ListWildfireVerdictChangeRequestsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$List,
+      callback: BodyResponseCallback<Schema$ListWildfireVerdictChangeRequestsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListWildfireVerdictChangeRequestsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$List
+        | BodyResponseCallback<Schema$ListWildfireVerdictChangeRequestsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWildfireVerdictChangeRequestsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWildfireVerdictChangeRequestsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListWildfireVerdictChangeRequestsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/wildfireVerdictChangeRequests'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWildfireVerdictChangeRequestsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListWildfireVerdictChangeRequestsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Create extends StandardParameters {
+    /**
+     * Required. Parent value for CreateWildfireVerdictChangeRequestRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WildfireVerdictChangeRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$Get extends StandardParameters {
+    /**
+     * Required. Name of the WildfireVerdictChangeRequest to retrieve. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}/wildfireVerdictChangeRequests/{wildfire_verdict_change_request_id\} Where {wildfire_verdict_change_request_id\} is the ID in the format: ^[0-9a-fA-F]{8\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{4\}-[0-9a-fA-F]{12\}$
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Firewallendpoints$Wildfireverdictchangerequests$List extends StandardParameters {
+    /**
+     * Optional. Filter expression to filter the results. See AIP-160 for filtering syntax. Supported fields are: - `sha256` (string, equality only, e.g. `sha256 = "..."`) - `state` (enum, equality only, e.g. `state = "ACTIVE"`) - `create_time` (timestamp, comparisons, e.g. `create_time \> "2026-01-01T00:00:00Z"`)
+     */
+    filter?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListWildfireVerdictChangeRequestsRequest. The parent is a firewall endpoint resource. Format: organizations|projects/{project_or_organization\}/locations/{location\}/firewallEndpoints/{firewall_endpoint\}
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Gatewaysecuritypolicies {
@@ -28134,7 +29553,8 @@ export namespace networksecurity_v1beta1 {
      *         //   "name": "my_name",
      *         //   "threatPreventionProfile": "my_threatPreventionProfile",
      *         //   "updateTime": "my_updateTime",
-     *         //   "urlFilteringProfile": "my_urlFilteringProfile"
+     *         //   "urlFilteringProfile": "my_urlFilteringProfile",
+     *         //   "wildfireAnalysisProfile": "my_wildfireAnalysisProfile"
      *         // }
      *       },
      *     });
@@ -28439,7 +29859,8 @@ export namespace networksecurity_v1beta1 {
      *   //   "name": "my_name",
      *   //   "threatPreventionProfile": "my_threatPreventionProfile",
      *   //   "updateTime": "my_updateTime",
-     *   //   "urlFilteringProfile": "my_urlFilteringProfile"
+     *   //   "urlFilteringProfile": "my_urlFilteringProfile",
+     *   //   "wildfireAnalysisProfile": "my_wildfireAnalysisProfile"
      *   // }
      * }
      *
@@ -28745,7 +30166,8 @@ export namespace networksecurity_v1beta1 {
      *         //   "name": "my_name",
      *         //   "threatPreventionProfile": "my_threatPreventionProfile",
      *         //   "updateTime": "my_updateTime",
-     *         //   "urlFilteringProfile": "my_urlFilteringProfile"
+     *         //   "urlFilteringProfile": "my_urlFilteringProfile",
+     *         //   "wildfireAnalysisProfile": "my_wildfireAnalysisProfile"
      *         // }
      *       },
      *     });
@@ -28973,7 +30395,8 @@ export namespace networksecurity_v1beta1 {
      *       //   "threatPreventionProfile": {},
      *       //   "type": "my_type",
      *       //   "updateTime": "my_updateTime",
-     *       //   "urlFilteringProfile": {}
+     *       //   "urlFilteringProfile": {},
+     *       //   "wildfireAnalysisProfile": {}
      *       // }
      *     },
      *   });
@@ -29276,7 +30699,8 @@ export namespace networksecurity_v1beta1 {
      *   //   "threatPreventionProfile": {},
      *   //   "type": "my_type",
      *   //   "updateTime": "my_updateTime",
-     *   //   "urlFilteringProfile": {}
+     *   //   "urlFilteringProfile": {},
+     *   //   "wildfireAnalysisProfile": {}
      *   // }
      * }
      *
@@ -29572,7 +30996,8 @@ export namespace networksecurity_v1beta1 {
      *       //   "threatPreventionProfile": {},
      *       //   "type": "my_type",
      *       //   "updateTime": "my_updateTime",
-     *       //   "urlFilteringProfile": {}
+     *       //   "urlFilteringProfile": {},
+     *       //   "wildfireAnalysisProfile": {}
      *       // }
      *     },
      *   });
