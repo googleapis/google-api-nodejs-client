@@ -1,3 +1,6 @@
+permissions:
+  contents: read
+
 on:
   schedule:
     - cron: "0 1 * * *"
@@ -7,7 +10,7 @@ jobs:
   update-apis:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
           node-version: 22
       - run: gh repo fork googleapis/google-api-nodejs-client --fork-name google-api-nodejs-client-autodisco --clone
