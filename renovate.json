@@ -1,6 +1,6 @@
 {
   "extends": [
-    "config:base",
+    "config:best-practices",
     "docker:disable",
     ":disableDependencyDashboard"
   ],
