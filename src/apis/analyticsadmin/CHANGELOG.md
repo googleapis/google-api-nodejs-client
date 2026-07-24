@@ -1,5 +1,16 @@
 # Changelog
 
+## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v16.0.1...analyticsadmin-v17.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **analyticsadmin:** This release has breaking changes.
+
+### Features
+
+* **analyticsadmin:** update the API ([7e96bd5](https://github.com/googleapis/google-api-nodejs-client/commit/7e96bd548842ec4942e08f5c80d5f674dd0b99dd))
+
 ## [16.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v16.0.0...analyticsadmin-v16.0.1) (2025-12-05)
 
 

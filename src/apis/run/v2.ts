@@ -899,10 +899,6 @@ export namespace run_v2 {
      */
     terminalCondition?: Schema$GoogleCloudRunV2Condition;
     /**
-     * Optional. Duration the instance may be active before the system will shut it down.
-     */
-    timeout?: string | null;
-    /**
      * Output only. Server assigned unique identifier for the trigger. The value is a UUID4 string and guaranteed to remain unchanged until the resource is deleted.
      */
     uid?: string | null;
@@ -2824,7 +2820,7 @@ export namespace run_v2 {
      */
     pullTiming?: Schema$GoogleDevtoolsCloudbuildV1TimeSpan;
     /**
-     * Output only. Declaration of results for this build step.
+     * Declaration of results for this build step.
      */
     results?: Schema$GoogleDevtoolsCloudbuildV1StepResult[];
     /**
@@ -4736,7 +4732,6 @@ export namespace run_v2 {
      *       //   "satisfiesPzs": false,
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "terminalCondition": {},
-     *       //   "timeout": "my_timeout",
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime",
      *       //   "urls": [],
@@ -5079,7 +5074,6 @@ export namespace run_v2 {
      *   //   "satisfiesPzs": false,
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "terminalCondition": {},
-     *   //   "timeout": "my_timeout",
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime",
      *   //   "urls": [],
@@ -5569,7 +5563,6 @@ export namespace run_v2 {
      *       //   "satisfiesPzs": false,
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "terminalCondition": {},
-     *       //   "timeout": "my_timeout",
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime",
      *       //   "urls": [],

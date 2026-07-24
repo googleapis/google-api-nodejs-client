@@ -946,7 +946,7 @@
       }
     }
   },
-  "revision": "20260430",
+  "revision": "20260518",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "GdataBlobstore2Info": {
@@ -1366,6 +1366,11 @@
           "format": "byte",
           "type": "string"
         },
+        "sha512Hash": {
+          "description": "Scotty-provided SHA512 hash for an upload.",
+          "format": "byte",
+          "type": "string"
+        },
         "timestamp": {
           "description": "Time at which the media data was last updated, in milliseconds since UNIX epoch",
           "format": "uint64",
@@ -1413,7 +1418,8 @@
             "AAB_STATE_UNAVAILABLE",
             "PLAY_IAS_TERMS_NOT_ACCEPTED",
             "ADHOC_SHARING_KEY_NOT_GENERATED",
-            "ADHOC_SHARING_KEY_NOT_REGISTERED"
+            "ADHOC_SHARING_KEY_NOT_REGISTERED",
+            "PLAY_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND"
           ],
           "enumDescriptions": [
             "AAB integration state unspecified.",
@@ -1424,7 +1430,8 @@
             "Play App status is unavailable.",
             "Play in-app sharing terms not accepted.",
             "The ad-hoc sharing key has not been generated for this app.",
-            "The ad-hoc sharing key is not yet registered in ADI for this app."
+            "The ad-hoc sharing key is not yet registered in Android Developer Verification for this app.",
+            "The linked Play developer account was not found or is not fully set up in Android Developer Console."
           ],
           "type": "string"
         },

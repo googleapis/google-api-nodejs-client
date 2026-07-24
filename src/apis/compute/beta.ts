@@ -1441,29 +1441,6 @@ export namespace compute_beta {
      * is 500 GB.
      */
     diskSizeGb?: string | null;
-    /**
-     * Specifies the disk type to use to create the instance. If not specified,
-     * the default is pd-standard, specified using the full URL.
-     * For example:
-     *
-     * https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard
-     *
-     *
-     * For a full list of acceptable values, seePersistent disk
-     * types. If you specify this field when creating a VM, you can provide
-     * either the full or partial URL. For example, the following values are
-     * valid:
-     *
-     *
-     *      - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
-     *    - projects/project/zones/zone/diskTypes/diskType
-     *    - zones/zone/diskTypes/diskType
-     *
-     *
-     * If you specify this field when creating or updating an instance template
-     * or all-instances configuration, specify the type of the disk, not the
-     * URL. For example: pd-standard.
-     */
     diskType?: string | null;
     /**
      * Whether this disk is using confidential compute mode.
@@ -6882,6 +6859,37 @@ export namespace compute_beta {
      * version of the instant snapshot that was used.
      */
     sourceInstantSnapshotId?: string | null;
+    /**
+     * The machine image to create the disk from. You can provide this as a
+     * partial or full URL to the resource. For example, the following are valid
+     * values:
+     *
+     *
+     *      - https://www.googleapis.com/compute/v1/projects/project/global/machineImages/machineImage
+     *    - projects/project/global/machineImages/machineImage
+     *      - global/machineImages/machineImage
+     */
+    sourceMachineImage?: string | null;
+    /**
+     * The device name of a disk within a given machine image. The
+     * source_machine_image must be specified.
+     */
+    sourceMachineImageDiskDeviceName?: string | null;
+    /**
+     * Thecustomer-supplied
+     * encryption key of the source machine image. Required if the source
+     * machine image is protected by a customer-supplied encryption key.
+     */
+    sourceMachineImageEncryptionKey?: Schema$CustomerEncryptionKey;
+    /**
+     * Output only. [Output Only] The unique ID of the machine image used to create this disk.
+     * This value identifies the exact machine image that was used to create this
+     * persistent disk. For example, if you created the persistent disk from a
+     * machine image that was later deleted and recreated under the same name, the
+     * source machine image ID would identify the exact version of the machine
+     * image that was used.
+     */
+    sourceMachineImageId?: string | null;
     /**
      * The source snapshot used to create this disk. You can provide this as a
      * partial or full URL to the resource. For example, the following are valid
@@ -16349,6 +16357,12 @@ export namespace compute_beta {
      */
     description?: string | null;
     /**
+     * Output only. [Output Only] URL of the InterconnectLocation object that represents where
+     * this connection is to be provisioned. By default it will be the same as the
+     * location field.
+     */
+    effectiveLocation?: string | null;
+    /**
      * Output only. [Output Only] A list of outages expected for this Interconnect.
      */
     expectedOutages?: Schema$InterconnectOutageNotification[];
@@ -19413,6 +19427,16 @@ export namespace compute_beta {
    */
   export interface Schema$MachineImageParams {
     /**
+     * Input only. [Input Only] Specifies the list of disk device names that must be
+     * excluded from the new machine image.
+     */
+    excludedDisks?: string[] | null;
+    /**
+     * Input only. [Input Only] Specifies the list of disk device names that must be
+     * included with the new machine image.
+     */
+    includedDisks?: string[] | null;
+    /**
      * Input only. Resource manager tags to be bound to the machine image. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
@@ -20814,7 +20838,11 @@ export namespace compute_beta {
     name?: string | null;
     /**
      * The URL of the network to which all network endpoints in the NEG belong.
-     * Uses default project network if unspecified.
+     * For networkEndpointType GCE_VM_IP_PORT,GCE_VM_IP_PORTMAP or NON_GCP_PRIVATE_IP_PORT,
+     * if this field is not specified, a default network will be used.
+     * This field cannot be set for NEGs with networkEndpointType set toSERVERLESS or PRIVATE_SERVICE_CONNECT and for
+     * global NEGs.
+     * For all other network endpoint types, this field is required.
      */
     network?: string | null;
     /**
@@ -21033,8 +21061,12 @@ export namespace compute_beta {
     defaultPort?: number | null;
     /**
      * The URL of the network to which all network endpoints in the NEG belong.
-     * Uses default project network if unspecified.
-     * [Deprecated] This field is deprecated.
+     * For networkEndpointType GCE_VM_IP_PORT,GCE_VM_IP_PORTMAP or NON_GCP_PRIVATE_IP_PORT,
+     * if this field is not specified, a default network will be used.
+     * This field cannot be set for NEGs with networkEndpointType set toSERVERLESS or PRIVATE_SERVICE_CONNECT and for
+     * global NEGs.
+     * For all other network endpoint types, this field is required.
+     *  [Deprecated] This field is deprecated.
      */
     network?: string | null;
     /**
@@ -53277,6 +53309,10 @@ export namespace compute_beta {
      *   //   "sourceImageId": "my_sourceImageId",
      *   //   "sourceInstantSnapshot": "my_sourceInstantSnapshot",
      *   //   "sourceInstantSnapshotId": "my_sourceInstantSnapshotId",
+     *   //   "sourceMachineImage": "my_sourceMachineImage",
+     *   //   "sourceMachineImageDiskDeviceName": "my_sourceMachineImageDiskDeviceName",
+     *   //   "sourceMachineImageEncryptionKey": {},
+     *   //   "sourceMachineImageId": "my_sourceMachineImageId",
      *   //   "sourceSnapshot": "my_sourceSnapshot",
      *   //   "sourceSnapshotEncryptionKey": {},
      *   //   "sourceSnapshotId": "my_sourceSnapshotId",
@@ -53645,6 +53681,10 @@ export namespace compute_beta {
      *       //   "sourceImageId": "my_sourceImageId",
      *       //   "sourceInstantSnapshot": "my_sourceInstantSnapshot",
      *       //   "sourceInstantSnapshotId": "my_sourceInstantSnapshotId",
+     *       //   "sourceMachineImage": "my_sourceMachineImage",
+     *       //   "sourceMachineImageDiskDeviceName": "my_sourceMachineImageDiskDeviceName",
+     *       //   "sourceMachineImageEncryptionKey": {},
+     *       //   "sourceMachineImageId": "my_sourceMachineImageId",
      *       //   "sourceSnapshot": "my_sourceSnapshot",
      *       //   "sourceSnapshotEncryptionKey": {},
      *       //   "sourceSnapshotId": "my_sourceSnapshotId",
@@ -55610,6 +55650,10 @@ export namespace compute_beta {
      *       //   "sourceImageId": "my_sourceImageId",
      *       //   "sourceInstantSnapshot": "my_sourceInstantSnapshot",
      *       //   "sourceInstantSnapshotId": "my_sourceInstantSnapshotId",
+     *       //   "sourceMachineImage": "my_sourceMachineImage",
+     *       //   "sourceMachineImageDiskDeviceName": "my_sourceMachineImageDiskDeviceName",
+     *       //   "sourceMachineImageEncryptionKey": {},
+     *       //   "sourceMachineImageId": "my_sourceMachineImageId",
      *       //   "sourceSnapshot": "my_sourceSnapshot",
      *       //   "sourceSnapshotEncryptionKey": {},
      *       //   "sourceSnapshotId": "my_sourceSnapshotId",
@@ -125314,6 +125358,7 @@ export namespace compute_beta {
      *   //   "creationTimestamp": "my_creationTimestamp",
      *   //   "customerName": "my_customerName",
      *   //   "description": "my_description",
+     *   //   "effectiveLocation": "my_effectiveLocation",
      *   //   "expectedOutages": [],
      *   //   "googleIpAddress": "my_googleIpAddress",
      *   //   "googleReferenceId": "my_googleReferenceId",
@@ -125824,6 +125869,7 @@ export namespace compute_beta {
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "customerName": "my_customerName",
      *       //   "description": "my_description",
+     *       //   "effectiveLocation": "my_effectiveLocation",
      *       //   "expectedOutages": [],
      *       //   "googleIpAddress": "my_googleIpAddress",
      *       //   "googleReferenceId": "my_googleReferenceId",
@@ -126286,6 +126332,7 @@ export namespace compute_beta {
      *       //   "creationTimestamp": "my_creationTimestamp",
      *       //   "customerName": "my_customerName",
      *       //   "description": "my_description",
+     *       //   "effectiveLocation": "my_effectiveLocation",
      *       //   "expectedOutages": [],
      *       //   "googleIpAddress": "my_googleIpAddress",
      *       //   "googleReferenceId": "my_googleReferenceId",
@@ -177378,6 +177425,10 @@ export namespace compute_beta {
      *   //   "sourceImageId": "my_sourceImageId",
      *   //   "sourceInstantSnapshot": "my_sourceInstantSnapshot",
      *   //   "sourceInstantSnapshotId": "my_sourceInstantSnapshotId",
+     *   //   "sourceMachineImage": "my_sourceMachineImage",
+     *   //   "sourceMachineImageDiskDeviceName": "my_sourceMachineImageDiskDeviceName",
+     *   //   "sourceMachineImageEncryptionKey": {},
+     *   //   "sourceMachineImageId": "my_sourceMachineImageId",
      *   //   "sourceSnapshot": "my_sourceSnapshot",
      *   //   "sourceSnapshotEncryptionKey": {},
      *   //   "sourceSnapshotId": "my_sourceSnapshotId",
@@ -177743,6 +177794,10 @@ export namespace compute_beta {
      *       //   "sourceImageId": "my_sourceImageId",
      *       //   "sourceInstantSnapshot": "my_sourceInstantSnapshot",
      *       //   "sourceInstantSnapshotId": "my_sourceInstantSnapshotId",
+     *       //   "sourceMachineImage": "my_sourceMachineImage",
+     *       //   "sourceMachineImageDiskDeviceName": "my_sourceMachineImageDiskDeviceName",
+     *       //   "sourceMachineImageEncryptionKey": {},
+     *       //   "sourceMachineImageId": "my_sourceMachineImageId",
      *       //   "sourceSnapshot": "my_sourceSnapshot",
      *       //   "sourceSnapshotEncryptionKey": {},
      *       //   "sourceSnapshotId": "my_sourceSnapshotId",
@@ -179710,6 +179765,10 @@ export namespace compute_beta {
      *       //   "sourceImageId": "my_sourceImageId",
      *       //   "sourceInstantSnapshot": "my_sourceInstantSnapshot",
      *       //   "sourceInstantSnapshotId": "my_sourceInstantSnapshotId",
+     *       //   "sourceMachineImage": "my_sourceMachineImage",
+     *       //   "sourceMachineImageDiskDeviceName": "my_sourceMachineImageDiskDeviceName",
+     *       //   "sourceMachineImageEncryptionKey": {},
+     *       //   "sourceMachineImageId": "my_sourceMachineImageId",
      *       //   "sourceSnapshot": "my_sourceSnapshot",
      *       //   "sourceSnapshotEncryptionKey": {},
      *       //   "sourceSnapshotId": "my_sourceSnapshotId",
@@ -240632,6 +240691,190 @@ export namespace compute_beta {
     }
 
     /**
+     * Advances a Rollout to the next wave, or completes it if no waves remain.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.rollouts.advance({
+     *     // Required. Wave number of the current wave.
+     *     currentWaveNumber: 'placeholder-value',
+     *     // Required. Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Name of the Rollout resource to advance.
+     *     rollout: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    advance(
+      params: Params$Resource$Rollouts$Advance,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    advance(
+      params?: Params$Resource$Rollouts$Advance,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    advance(
+      params: Params$Resource$Rollouts$Advance,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    advance(
+      params: Params$Resource$Rollouts$Advance,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    advance(
+      params: Params$Resource$Rollouts$Advance,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    advance(callback: BodyResponseCallback<Schema$Operation>): void;
+    advance(
+      paramsOrCallback?:
+        | Params$Resource$Rollouts$Advance
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Rollouts$Advance;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rollouts$Advance;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/global/rollouts/{rollout}/advance'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'rollout'],
+        pathParams: ['project', 'rollout'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Cancels a Rollout.
      * @example
      * ```js
@@ -241392,8 +241635,410 @@ export namespace compute_beta {
         return createAPIRequest<Schema$RolloutsListResponse>(parameters);
       }
     }
+
+    /**
+     * Pauses a Rollout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.rollouts.pause({
+     *     // The etag of the Rollout.
+     *     // If this is provided, the request will only succeed if the etag matches
+     *     // the current etag of the Rollout.
+     *     etag: 'placeholder-value',
+     *     // Required. Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Name of the Rollout resource to pause.
+     *     rollout: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    pause(
+      params: Params$Resource$Rollouts$Pause,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    pause(
+      params?: Params$Resource$Rollouts$Pause,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    pause(
+      params: Params$Resource$Rollouts$Pause,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    pause(
+      params: Params$Resource$Rollouts$Pause,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    pause(
+      params: Params$Resource$Rollouts$Pause,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    pause(callback: BodyResponseCallback<Schema$Operation>): void;
+    pause(
+      paramsOrCallback?:
+        | Params$Resource$Rollouts$Pause
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Rollouts$Pause;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rollouts$Pause;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/global/rollouts/{rollout}/pause'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'rollout'],
+        pathParams: ['project', 'rollout'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Resumes a Rollout.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/compute.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const compute = google.compute('beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await compute.rollouts.resume({
+     *     // The etag of the Rollout.
+     *     // If this is provided, the request will only succeed if the etag matches
+     *     // the current etag of the Rollout.
+     *     etag: 'placeholder-value',
+     *     // Required. Project ID for this request.
+     *     project:
+     *       '(?:(?:[-a-z0-9]{1,63}&#92;.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // An optional request ID to identify requests. Specify a unique request ID so
+     *     // that if you must retry your request, the server will know to ignore the
+     *     // request if it has already been completed.
+     *     //
+     *     // For example, consider a situation where you make an initial request and
+     *     // the request times out. If you make the request again with the same
+     *     // request ID, the server can check if original operation with the same
+     *     // request ID was received, and if so, will ignore the second request. This
+     *     // prevents clients from accidentally creating duplicate commitments.
+     *     //
+     *     // The request ID must be
+     *     // a valid UUID with the exception that zero UUID is not supported
+     *     // (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Name of the Rollout resource to resume.
+     *     rollout: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientOperationId": "my_clientOperationId",
+     *   //   "creationTimestamp": "my_creationTimestamp",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "getVersionOperationMetadata": {},
+     *   //   "httpErrorMessage": "my_httpErrorMessage",
+     *   //   "httpErrorStatusCode": 0,
+     *   //   "id": "my_id",
+     *   //   "insertTime": "my_insertTime",
+     *   //   "instancesBulkInsertOperationMetadata": {},
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "operationGroupId": "my_operationGroupId",
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": 0,
+     *   //   "region": "my_region",
+     *   //   "selfLink": "my_selfLink",
+     *   //   "setCommonInstanceMetadataOperationMetadata": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetId": "my_targetId",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "user": "my_user",
+     *   //   "warnings": [],
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resume(
+      params: Params$Resource$Rollouts$Resume,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    resume(
+      params?: Params$Resource$Rollouts$Resume,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    resume(
+      params: Params$Resource$Rollouts$Resume,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resume(
+      params: Params$Resource$Rollouts$Resume,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resume(
+      params: Params$Resource$Rollouts$Resume,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resume(callback: BodyResponseCallback<Schema$Operation>): void;
+    resume(
+      paramsOrCallback?:
+        | Params$Resource$Rollouts$Resume
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Rollouts$Resume;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rollouts$Resume;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://compute.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/compute/beta/projects/{project}/global/rollouts/{rollout}/resume'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'rollout'],
+        pathParams: ['project', 'rollout'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Rollouts$Advance extends StandardParameters {
+    /**
+     * Required. Wave number of the current wave.
+     */
+    currentWaveNumber?: string;
+    /**
+     * Required. Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Name of the Rollout resource to advance.
+     */
+    rollout?: string;
+  }
   export interface Params$Resource$Rollouts$Cancel extends StandardParameters {
     /**
      * Project ID for this request.
@@ -241566,6 +242211,70 @@ export namespace compute_beta {
      * with an error code.
      */
     returnPartialSuccess?: boolean;
+  }
+  export interface Params$Resource$Rollouts$Pause extends StandardParameters {
+    /**
+     * The etag of the Rollout.
+     * If this is provided, the request will only succeed if the etag matches
+     * the current etag of the Rollout.
+     */
+    etag?: string;
+    /**
+     * Required. Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Name of the Rollout resource to pause.
+     */
+    rollout?: string;
+  }
+  export interface Params$Resource$Rollouts$Resume extends StandardParameters {
+    /**
+     * The etag of the Rollout.
+     * If this is provided, the request will only succeed if the etag matches
+     * the current etag of the Rollout.
+     */
+    etag?: string;
+    /**
+     * Required. Project ID for this request.
+     */
+    project?: string;
+    /**
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     *
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     *
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Name of the Rollout resource to resume.
+     */
+    rollout?: string;
   }
 
   export class Resource$Routers {

@@ -55,6 +55,36 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://gkehub.us-east7.rep.googleapis.com/",
       "location": "us-east7"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://gkehub.us-south1.rep.googleapis.com/",
+      "location": "us-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://gkehub.us-west1.rep.googleapis.com/",
+      "location": "us-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://gkehub.us-west2.rep.googleapis.com/",
+      "location": "us-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://gkehub.us-west3.rep.googleapis.com/",
+      "location": "us-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://gkehub.us-west4.rep.googleapis.com/",
+      "location": "us-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://gkehub.us-west8.rep.googleapis.com/",
+      "location": "us-west8"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -2424,7 +2454,7 @@
       }
     }
   },
-  "revision": "20260429",
+  "revision": "20260511",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -6054,6 +6084,62 @@
       },
       "type": "object"
     },
+    "OperationalState": {
+      "description": "Operational state of the Rollout Sequence.",
+      "id": "OperationalState",
+      "properties": {
+        "reasons": {
+          "description": "Output only. Reasons for the Rollout Sequence state.",
+          "items": {
+            "enum": [
+              "REASON_UNSPECIFIED",
+              "FLEET_FEATURE_DELETED_ERROR",
+              "FLEET_DELETED_ERROR",
+              "EMPTY_STAGE_WARNING",
+              "MIXED_RELEASE_CHANNELS_WARNING",
+              "INTERNAL_ERROR"
+            ],
+            "enumDescriptions": [
+              "Default unspecified value.",
+              "A fleet feature is deleted.",
+              "A fleet is deleted.",
+              "A stage is empty.",
+              "Mixed release channels in the sequence.",
+              "Internal error, for example when host project is soft-deleted."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. State of the Rollout Sequence.",
+          "enum": [
+            "STATE_CODE_UNSPECIFIED",
+            "ACTIVE",
+            "WARNING",
+            "ERROR",
+            "INITIALIZING"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "The Rollout Sequence is active.",
+            "The Rollout Sequence has warnings. It is still functioning but performance may be degraded.",
+            "The Rollout Sequence has errors and is not functioning.",
+            "The Rollout Sequence is being initialized."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateChangeTime": {
+          "description": "Output only. The timestamp at which the operational state was last changed. Used to track how long it has been in the current state.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Origin": {
       "description": "Origin defines where this MembershipFeatureSpec originated from.",
       "id": "Origin",
@@ -6880,17 +6966,17 @@
           "description": "Identifier. Name of the rollout sequence in the format of: projects/{PROJECT_ID}/locations/global/rolloutSequences/{NAME}",
           "type": "string"
         },
+        "operationalState": {
+          "$ref": "OperationalState",
+          "description": "Output only. Operational state of the Rollout Sequence.",
+          "readOnly": true
+        },
         "stages": {
           "description": "Required. Ordered list of stages that constitutes this Rollout.",
           "items": {
             "$ref": "Stage"
           },
           "type": "array"
-        },
-        "state": {
-          "$ref": "RolloutSequenceState",
-          "description": "Output only. State of the Rollout Sequence as a whole.",
-          "readOnly": true
         },
         "uid": {
           "description": "Output only. Google-generated UUID for this resource. This is unique across all Rollout Sequence resources. If a Rollout Sequence resource is deleted and another resource with the same name is created, it gets a different uid.",
@@ -6902,62 +6988,6 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "RolloutSequenceState": {
-      "description": "State and reasons of the Rollout Sequence.",
-      "id": "RolloutSequenceState",
-      "properties": {
-        "lastStateChangeTime": {
-          "description": "Output only. The timestamp at which the LifecycleState was last changed. Used to track how long it has been in the current state.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "lifecycleState": {
-          "description": "Output only. Lifecycle state of the Rollout Sequence.",
-          "enum": [
-            "LIFECYCLE_STATE_UNSPECIFIED",
-            "LIFECYCLE_STATE_ACTIVE",
-            "LIFECYCLE_STATE_WARNING",
-            "LIFECYCLE_STATE_ERROR",
-            "LIFECYCLE_STATE_INITIALIZING"
-          ],
-          "enumDescriptions": [
-            "The default value. This value is used if the state is omitted.",
-            "The Rollout Sequence is active.",
-            "The Rollout Sequence has warnings.",
-            "The Rollout Sequence has errors.",
-            "The Rollout Sequence is being initialized."
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
-        "stateReasons": {
-          "description": "Output only. StateReason represents the reason for the Rollout Sequence state.",
-          "items": {
-            "enum": [
-              "STATE_REASON_UNSPECIFIED",
-              "FLEET_FEATURE_DELETED_ERROR",
-              "FLEET_DELETED_ERROR",
-              "EMPTY_STAGE_WARNING",
-              "MIXED_RELEASE_CHANNELS_WARNING",
-              "INTERNAL_ERROR"
-            ],
-            "enumDescriptions": [
-              "Default unspecified value.",
-              "A fleet feature is deleted.",
-              "A fleet is deleted.",
-              "A stage is empty.",
-              "Mixed release channels in the sequence.",
-              "Internal error, for example when host project is soft-deleted."
-            ],
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
         }
       },
       "type": "object"

@@ -2727,6 +2727,23 @@ export namespace gkehub_v1alpha {
     response?: {[key: string]: any} | null;
   }
   /**
+   * Operational state of the Rollout Sequence.
+   */
+  export interface Schema$OperationalState {
+    /**
+     * Output only. Reasons for the Rollout Sequence state.
+     */
+    reasons?: string[] | null;
+    /**
+     * Output only. State of the Rollout Sequence.
+     */
+    state?: string | null;
+    /**
+     * Output only. The timestamp at which the operational state was last changed. Used to track how long it has been in the current state.
+     */
+    stateChangeTime?: string | null;
+  }
+  /**
    * Represents the metadata of the long-running operation.
    */
   export interface Schema$OperationMetadata {
@@ -3271,13 +3288,13 @@ export namespace gkehub_v1alpha {
      */
     name?: string | null;
     /**
+     * Output only. Operational state of the Rollout Sequence.
+     */
+    operationalState?: Schema$OperationalState;
+    /**
      * Required. Ordered list of stages that constitutes this Rollout.
      */
     stages?: Schema$Stage[];
-    /**
-     * Output only. State of the Rollout Sequence as a whole.
-     */
-    state?: Schema$RolloutSequenceState;
     /**
      * Output only. Google-generated UUID for this resource. This is unique across all Rollout Sequence resources. If a Rollout Sequence resource is deleted and another resource with the same name is created, it gets a different uid.
      */
@@ -3286,23 +3303,6 @@ export namespace gkehub_v1alpha {
      * Output only. The timestamp at which the Rollout Sequence was last updated.
      */
     updateTime?: string | null;
-  }
-  /**
-   * State and reasons of the Rollout Sequence.
-   */
-  export interface Schema$RolloutSequenceState {
-    /**
-     * Output only. The timestamp at which the LifecycleState was last changed. Used to track how long it has been in the current state.
-     */
-    lastStateChangeTime?: string | null;
-    /**
-     * Output only. Lifecycle state of the Rollout Sequence.
-     */
-    lifecycleState?: string | null;
-    /**
-     * Output only. StateReason represents the reason for the Rollout Sequence state.
-     */
-    stateReasons?: string[] | null;
   }
   /**
    * Stage represents a single stage in the Rollout.
@@ -11716,8 +11716,8 @@ export namespace gkehub_v1alpha {
      *       //   "ignoredClustersSelector": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "operationalState": {},
      *       //   "stages": [],
-     *       //   "state": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -12017,8 +12017,8 @@ export namespace gkehub_v1alpha {
      *   //   "ignoredClustersSelector": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "operationalState": {},
      *   //   "stages": [],
-     *   //   "state": {},
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -12315,8 +12315,8 @@ export namespace gkehub_v1alpha {
      *       //   "ignoredClustersSelector": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "operationalState": {},
      *       //   "stages": [],
-     *       //   "state": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }

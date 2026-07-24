@@ -5994,9 +5994,9 @@ export namespace eventarc_v1 {
      *
      *   // Do the magic
      *   const res = await eventarc.projects.locations.googleApiSources.delete({
-     *     // Optional. If set to true, and the MessageBus is not found, the request will succeed but no action will be taken on the server.
+     *     // Optional. If set to true, and the GoogleApiSource is not found, the request will succeed but no action will be taken on the server.
      *     allowMissing: 'placeholder-value',
-     *     // Optional. If provided, the MessageBus will only be deleted if the etag matches the current etag on the resource.
+     *     // Optional. If provided, the GoogleApiSource will only be deleted if the etag matches the current etag on the resource.
      *     etag: 'placeholder-value',
      *     // Required. The name of the GoogleApiSource to be deleted.
      *     name: 'projects/my-project/locations/my-location/googleApiSources/my-googleApiSource',
@@ -7049,11 +7049,11 @@ export namespace eventarc_v1 {
   }
   export interface Params$Resource$Projects$Locations$Googleapisources$Delete extends StandardParameters {
     /**
-     * Optional. If set to true, and the MessageBus is not found, the request will succeed but no action will be taken on the server.
+     * Optional. If set to true, and the GoogleApiSource is not found, the request will succeed but no action will be taken on the server.
      */
     allowMissing?: boolean;
     /**
-     * Optional. If provided, the MessageBus will only be deleted if the etag matches the current etag on the resource.
+     * Optional. If provided, the GoogleApiSource will only be deleted if the etag matches the current etag on the resource.
      */
     etag?: string;
     /**

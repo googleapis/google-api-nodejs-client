@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/meet-v4.0.1...meet-v4.1.0) (2026-05-19)
+
+
+### Features
+
+* **meet:** update the API ([9c94320](https://github.com/googleapis/google-api-nodejs-client/commit/9c94320568e0c87b7bcb4e4edeedd3d6481aff0d))
+
 ## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/meet-v4.0.0...meet-v4.0.1) (2025-12-05)
 
 

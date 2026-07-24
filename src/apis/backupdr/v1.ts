@@ -775,7 +775,7 @@ export namespace backupdr_v1 {
      */
     backupVaultServiceAccount?: string | null;
     /**
-     * Optional. Defines optional properties specific to backups of disk-based resources, such as Compute Engine. This includes settings like whether to perform a guest flush.
+     * Optional. Defines optional properties specific to backups of compute instance-based resources, such as Compute Engine. This includes settings like whether to perform a guest flush.
      */
     computeInstanceBackupPlanProperties?: Schema$ComputeInstanceBackupPlanProperties;
     /**
@@ -1139,7 +1139,7 @@ export namespace backupdr_v1 {
     edition?: string | null;
   }
   /**
-   * --- ComputeInstanceBackupPlanProperties Message ---
+   * Properties for a compute instance backup plan.
    */
   export interface Schema$ComputeInstanceBackupPlanProperties {
     /**
@@ -1350,6 +1350,10 @@ export namespace backupdr_v1 {
      * Required. Target project for the Compute Engine instance.
      */
     project?: string | null;
+    /**
+     * Optional. Whether to use the project service account for the Compute Engine instance.
+     */
+    useProjectServiceAccount?: boolean | null;
     /**
      * Required. The zone of the Compute Engine instance.
      */
@@ -1592,7 +1596,7 @@ export namespace backupdr_v1 {
     totalStoredBytes?: string | null;
   }
   /**
-   * --- DiskBackupPlanProperties Message ---
+   * Properties for a disk backup plan.
    */
   export interface Schema$DiskBackupPlanProperties {
     /**
@@ -1779,6 +1783,10 @@ export namespace backupdr_v1 {
      * Required. Target project for the disk.
      */
     project?: string | null;
+    /**
+     * Optional. Whether to use the project service account for the disk.
+     */
+    useProjectServiceAccount?: boolean | null;
     /**
      * Required. Target zone for the disk.
      */
@@ -2742,6 +2750,10 @@ export namespace backupdr_v1 {
      * Required. Target URLs of the replica zones for the disk.
      */
     replicaZones?: string[] | null;
+    /**
+     * Optional. Whether to use the project service account for the disk.
+     */
+    useProjectServiceAccount?: boolean | null;
   }
   /**
    * Message for deleting a DataSource.

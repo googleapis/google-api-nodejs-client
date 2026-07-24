@@ -219,7 +219,7 @@ export namespace bigtableadmin_v2 {
      */
     frequency?: string | null;
     /**
-     * Optional. A list of Cloud Bigtable zones where automated backups are allowed to be created. If empty, automated backups will be created in all zones of the instance. Locations are in the format `projects/{project\}/locations/{zone\}`. This field can only set for tables in Enterprise Plus instances.
+     * Optional. A list of Cloud Bigtable zones where automated backups are allowed to be created. If empty, automated backups will be created in all zones of the instance. Locations are in the format `projects/{project\}/locations/{zone\}`. You can set this field only for tables in Enterprise Plus instances.
      */
     locations?: string[] | null;
     /**
@@ -1823,7 +1823,7 @@ export namespace bigtableadmin_v2 {
     version?: number | null;
   }
   /**
-   * Represents a protobuf schema.
+   * Represents a collection of protobuf schemas.
    */
   export interface Schema$ProtoSchema {
     /**

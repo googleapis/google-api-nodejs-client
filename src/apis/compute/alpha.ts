@@ -1523,29 +1523,6 @@ export namespace compute_alpha {
      * is 500 GB.
      */
     diskSizeGb?: string | null;
-    /**
-     * Specifies the disk type to use to create the instance. If not specified,
-     * the default is pd-standard, specified using the full URL.
-     * For example:
-     *
-     * https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard
-     *
-     *
-     * For a full list of acceptable values, seePersistent disk
-     * types. If you specify this field when creating a VM, you can provide
-     * either the full or partial URL. For example, the following values are
-     * valid:
-     *
-     *
-     *      - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
-     *    - projects/project/zones/zone/diskTypes/diskType
-     *    - zones/zone/diskTypes/diskType
-     *
-     *
-     * If you specify this field when creating or updating an instance template
-     * or all-instances configuration, specify the type of the disk, not the
-     * URL. For example: pd-standard.
-     */
     diskType?: string | null;
     /**
      * Whether this disk is using confidential compute mode.
@@ -23163,7 +23140,11 @@ export namespace compute_alpha {
     name?: string | null;
     /**
      * The URL of the network to which all network endpoints in the NEG belong.
-     * Uses default project network if unspecified.
+     * For networkEndpointType GCE_VM_IP_PORT,GCE_VM_IP_PORTMAP or NON_GCP_PRIVATE_IP_PORT,
+     * if this field is not specified, a default network will be used.
+     * This field cannot be set for NEGs with networkEndpointType set toSERVERLESS or PRIVATE_SERVICE_CONNECT and for
+     * global NEGs.
+     * For all other network endpoint types, this field is required.
      */
     network?: string | null;
     /**
@@ -23390,8 +23371,12 @@ export namespace compute_alpha {
     defaultPort?: number | null;
     /**
      * The URL of the network to which all network endpoints in the NEG belong.
-     * Uses default project network if unspecified.
-     * [Deprecated] This field is deprecated.
+     * For networkEndpointType GCE_VM_IP_PORT,GCE_VM_IP_PORTMAP or NON_GCP_PRIVATE_IP_PORT,
+     * if this field is not specified, a default network will be used.
+     * This field cannot be set for NEGs with networkEndpointType set toSERVERLESS or PRIVATE_SERVICE_CONNECT and for
+     * global NEGs.
+     * For all other network endpoint types, this field is required.
+     *  [Deprecated] This field is deprecated.
      */
     network?: string | null;
     /**

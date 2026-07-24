@@ -872,6 +872,13 @@ export namespace calendar_v3 {
      */
     additionalGuests?: number | null;
     /**
+     * If present, indicates the status of an asynchronous operation ongoing for this attendee (e.g. listing of members of large attendee groups). Read-only. The default is to not be present.
+     * Possible values are:
+     * - "inProgress" - The asynchronous operation is in progress.
+     * - (not present) - Otherwise.
+     */
+    asyncOperation?: string | null;
+    /**
      * The attendee's response comment. Optional.
      */
     comment?: string | null;

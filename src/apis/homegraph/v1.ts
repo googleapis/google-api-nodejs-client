@@ -236,6 +236,15 @@ export namespace homegraph_v1 {
     swVersion?: string | null;
   }
   /**
+   * Metadata for traits of a single device.
+   */
+  export interface Schema$DeviceMetadata {
+    /**
+     * Map from the Trait ID (e.g., "action.devices.traits.OnOff") to its last Spanner commit timestamp.
+     */
+    traitCommitTimestamps?: {[key: string]: string} | null;
+  }
+  /**
    * Identifiers used to describe the device.
    */
   export interface Schema$DeviceNames {
@@ -321,6 +330,10 @@ export namespace homegraph_v1 {
      */
     agentUserId?: string | null;
     /**
+     * Optional. If true, the response will include device metadata in the device_metadata field.
+     */
+    includeDeviceMetadata?: boolean | null;
+    /**
      * Required. Inputs containing third-party device IDs for which to get the device states.
      */
     inputs?: Schema$QueryRequestInput[];
@@ -364,6 +377,10 @@ export namespace homegraph_v1 {
    * Payload containing device states information.
    */
   export interface Schema$QueryResponsePayload {
+    /**
+     * Map from the Trait ID (e.g., "action.devices.traits.OnOff") to its last Spanner commit timestamp. If a trait has no recorded timestamp, it will be omitted from this map.
+     */
+    deviceMetadata?: {[key: string]: Schema$DeviceMetadata} | null;
     /**
      * States of the devices. Map of third-party device ID to struct of device states.
      */
@@ -494,7 +511,7 @@ export namespace homegraph_v1 {
    */
   export interface Schema$TraitData {
     /**
-     * Optional. The Home API trait payload.
+     * The Provider Home API trait payload.
      */
     trait?: {[key: string]: any} | null;
   }
@@ -693,6 +710,7 @@ export namespace homegraph_v1 {
      *       // request body parameters
      *       // {
      *       //   "agentUserId": "my_agentUserId",
+     *       //   "includeDeviceMetadata": false,
      *       //   "inputs": [],
      *       //   "requestId": "my_requestId"
      *       // }

@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamanager-v3.2.0...datamanager-v4.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **datamanager:** update the API ([3e72d23](https://github.com/googleapis/google-api-nodejs-client/commit/3e72d231777638aefa1c4ea8d4eee6f168afe412))
+* **datamanager:** update the API ([b850550](https://github.com/googleapis/google-api-nodejs-client/commit/b8505503649882a04168a9449be5e0fad96cf3c5))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+
 ## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamanager-v3.1.1...datamanager-v3.2.0) (2026-01-09)
 
 

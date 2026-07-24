@@ -1,5 +1,13 @@
 # Changelog
 
+## [21.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v21.2.0...storage-v21.3.0) (2026-05-19)
+
+
+### Features
+
+* **storage:** update the API ([0bad37c](https://github.com/googleapis/google-api-nodejs-client/commit/0bad37c810e5e246ab2bee5f7568b317dc91c98e))
+* **storage:** update the API ([e3e5bf0](https://github.com/googleapis/google-api-nodejs-client/commit/e3e5bf03a56404ae09ad78556c0609176dfb65eb))
+
 ## [21.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v21.1.0...storage-v21.2.0) (2026-02-05)
 
 

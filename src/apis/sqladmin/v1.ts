@@ -2697,7 +2697,7 @@ export namespace sqladmin_v1 {
      */
     denyMaintenancePeriods?: Schema$DenyMaintenancePeriod[];
     /**
-     * Optional. The edition of the instance.
+     * Optional. The edition type of the Cloud SQL instance.
      */
     edition?: string | null;
     /**

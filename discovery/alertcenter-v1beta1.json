@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20260427",
+  "revision": "20260525",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AbuseDetected": {
@@ -1852,6 +1852,18 @@
       "description": "Common alert information about violated rules that are configured by Google Workspace administrators.",
       "id": "RuleViolationInfo",
       "properties": {
+        "agentType": {
+          "description": "Optional. Agent type that triggered the rule.",
+          "enum": [
+            "AGENT_TYPE_UNSPECIFIED",
+            "STUDIO"
+          ],
+          "enumDescriptions": [
+            "Unspecified agent type.",
+            "Studio agent type."
+          ],
+          "type": "string"
+        },
         "dataSource": {
           "description": "Source of the data.",
           "enum": [
@@ -1995,7 +2007,8 @@
             "CHROME_PAGE_PRINT",
             "CHROME_URL_VISITED",
             "CHROMEOS_FILE_TRANSFER",
-            "GEMINI_ACCESS"
+            "GEMINI_ACCESS",
+            "AGENT_EXECUTION"
           ],
           "enumDescriptions": [
             "Trigger is unspecified.",
@@ -2009,7 +2022,8 @@
             "A page is being printed by Chrome.",
             "A URL is visited within Chrome.",
             "A file being transferred (copy or moved) between different file systems on ChromeOS.",
-            "Gemini access."
+            "Gemini access.",
+            "Agent execution."
           ],
           "type": "string"
         },

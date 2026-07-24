@@ -1,5 +1,24 @@
 # Changelog
 
+## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/container-v24.4.0...container-v25.0.0) (2026-05-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+
+## [24.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/container-v24.3.0...container-v24.4.0) (2026-05-19)
+
+
+### Features
+
+* **container:** update the API ([f480bd7](https://github.com/googleapis/google-api-nodejs-client/commit/f480bd71c71c82d5f850f1cb071c2ac79695efd4))
+* **container:** update the API ([78a3763](https://github.com/googleapis/google-api-nodejs-client/commit/78a37639bd640353d31be5b157816b9212a0dfe6))
+
 ## [24.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/container-v24.2.0...container-v24.3.0) (2026-01-30)
 
 

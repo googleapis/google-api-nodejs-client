@@ -2913,6 +2913,10 @@ export namespace discoveryengine_v1 {
      */
     connectorModes?: string[] | null;
     /**
+     * Optional. If set, this value instead of `data_source` is used to fetch the corresponding connector source.
+     */
+    connectorSourceId?: string | null;
+    /**
      * Output only. The type of connector. Each source can only map to one type. For example, salesforce, confluence and jira have THIRD_PARTY connector type. It is not mutable once set by system.
      */
     connectorType?: string | null;
@@ -3842,7 +3846,7 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills` * `enable-end-user-sharing-with-groups`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -4262,7 +4266,7 @@ export namespace discoveryengine_v1 {
      */
     schemaOrgPaths?: string[] | null;
     /**
-     * Optional. Specifies the importance of the field when `searchable_option` is `SEARCHABLE_ENABLED`. If `searchable_option` is `SEARCHABLE_DISABLED`, this field is ignored. If `searchable_option` is `SEARCHABLE_ENABLED` and this is `SEARCHABLE_FIELD_IMPORTANCE_UNSPECIFIED`, it behaves as `DEFAULT_IMPORTANCE`.
+     * Optional. Specifies the importance of the field when `searchable_option` is `SEARCHABLE_ENABLED`. If `searchable_option` is `SEARCHABLE_DISABLED`, this field is ignored. If `searchable_option` is `SEARCHABLE_ENABLED` and this is `SEARCHABLE_FIELD_IMPORTANCE_UNSPECIFIED`, it behaves as `DEFAULT_IMPORTANCE`. For more information, see [Weight searchable fields](https://cloud.google.com/generative-ai-app-builder/docs/configure-field-settings#weight-search).
      */
     searchableFieldImportance?: string | null;
     /**
@@ -4669,7 +4673,7 @@ export namespace discoveryengine_v1 {
      */
     filter?: string | null;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` * `display_name` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string | null;
     /**
@@ -5101,6 +5105,10 @@ export namespace discoveryengine_v1 {
    * Defines a user inputed query.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaQuery {
+    /**
+     * Output only. The time at which the server accepted this query.
+     */
+    createTime?: string | null;
     /**
      * Query content parts.
      */
@@ -5570,7 +5578,7 @@ export namespace discoveryengine_v1 {
      */
     queryExpansionSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestQueryExpansionSpec;
     /**
-     * Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double \> 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `document_age`: The time in hours elapsed since the document was last updated, a floating-point number (e.g., 0.25 means 15 minutes). * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result
+     * Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double \> 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `document_age`: The time in hours elapsed since the document was last updated, a floating-point number (e.g., 0.25 means 15 minutes). * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result * `media_actor_match`: whether the media actor matches the query * `media_director_match`: whether the media director matches the query * `media_genre_match`: whether the media genre matches the query * `media_language_match`: whether the media language matches the query * `media_title_match`: whether the media title matches the query * `media_prefix_similarity_rank`: prefix similarity rank for media results * `media_semantic_similarity_rank`: semantic similarity rank for media results
      */
     rankingExpression?: string | null;
     /**
@@ -6150,6 +6158,10 @@ export namespace discoveryengine_v1 {
      */
     name?: string | null;
     /**
+     * Output only. Full resource name of an in-progress AsyncAssist operation for this session, e.g. `projects/x/locations/x/collections/x/engines/x/sessions/x/operations/x`. Set when the operation starts and cleared when it finishes.
+     */
+    pendingAsyncAssistOperationId?: string | null;
+    /**
      * Output only. The time the session started.
      */
     startTime?: string | null;
@@ -6549,7 +6561,7 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaWorkspaceConfig {
     /**
-     * Obfuscated Dasher customer ID.
+     * Output only. Obfuscated Dasher customer ID. Derived by the server from the project's GCP organization at data store creation time; any value supplied in the request payload is ignored.
      */
     dasherCustomerId?: string | null;
     /**
@@ -8949,7 +8961,7 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills` * `enable-end-user-sharing-with-groups`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -10096,7 +10108,7 @@ export namespace discoveryengine_v1 {
      */
     queryExpansionSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestQueryExpansionSpec;
     /**
-     * Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double \> 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `document_age`: The time in hours elapsed since the document was last updated, a floating-point number (e.g., 0.25 means 15 minutes). * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result
+     * Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double \> 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `document_age`: The time in hours elapsed since the document was last updated, a floating-point number (e.g., 0.25 means 15 minutes). * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result * `media_actor_match`: whether the media actor matches the query * `media_director_match`: whether the media director matches the query * `media_genre_match`: whether the media genre matches the query * `media_language_match`: whether the media language matches the query * `media_title_match`: whether the media title matches the query * `media_prefix_similarity_rank`: prefix similarity rank for media results * `media_semantic_similarity_rank`: semantic similarity rank for media results
      */
     rankingExpression?: string | null;
     /**
@@ -10949,7 +10961,7 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaWorkspaceConfig {
     /**
-     * Obfuscated Dasher customer ID.
+     * Output only. Obfuscated Dasher customer ID. Derived by the server from the project's GCP organization at data store creation time; any value supplied in the request payload is ignored.
      */
     dasherCustomerId?: string | null;
     /**
@@ -11968,6 +11980,10 @@ export namespace discoveryengine_v1 {
      */
     connectorModes?: string[] | null;
     /**
+     * Optional. If set, this value instead of `data_source` is used to fetch the corresponding connector source.
+     */
+    connectorSourceId?: string | null;
+    /**
      * Output only. The type of connector. Each source can only map to one type. For example, salesforce, confluence and jira have THIRD_PARTY connector type. It is not mutable once set by system.
      */
     connectorType?: string | null;
@@ -12983,7 +12999,7 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills` * `enable-end-user-sharing-with-groups`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -14008,6 +14024,19 @@ export namespace discoveryengine_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for LicenseConfigService.ListLicenseConfigs method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsResponse {
+    /**
+     * All the customer's LicenseConfigs.
+     */
+    licenseConfigs?: Schema$GoogleCloudDiscoveryengineV1LicenseConfig[];
+    /**
+     * Not supported.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for UserLicenseService.ListLicenseConfigsUsageStats method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsUsageStatsResponse {
@@ -14927,7 +14956,7 @@ export namespace discoveryengine_v1 {
      */
     queryExpansionSpec?: Schema$GoogleCloudDiscoveryengineV1SearchRequestQueryExpansionSpec;
     /**
-     * Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double \> 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `document_age`: The time in hours elapsed since the document was last updated, a floating-point number (e.g., 0.25 means 15 minutes). * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result
+     * Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double \> 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `document_age`: The time in hours elapsed since the document was last updated, a floating-point number (e.g., 0.25 means 15 minutes). * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result * `media_actor_match`: whether the media actor matches the query * `media_director_match`: whether the media director matches the query * `media_genre_match`: whether the media genre matches the query * `media_language_match`: whether the media language matches the query * `media_title_match`: whether the media title matches the query * `media_prefix_similarity_rank`: prefix similarity rank for media results * `media_semantic_similarity_rank`: semantic similarity rank for media results
      */
     rankingExpression?: string | null;
     /**
@@ -15977,6 +16006,10 @@ export namespace discoveryengine_v1 {
      */
     name?: string | null;
     /**
+     * Output only. Full resource name of an in-progress AsyncAssist operation for this session, e.g. `projects/x/locations/x/collections/x/engines/x/sessions/x/operations/x`. Set when the operation starts and cleared when it finishes.
+     */
+    pendingAsyncAssistOperationId?: string | null;
+    /**
      * Output only. The time the session started.
      */
     startTime?: string | null;
@@ -16213,9 +16246,26 @@ export namespace discoveryengine_v1 {
      */
     invocationTools?: string[] | null;
     /**
+     * The skills executed during the turn.
+     */
+    invokedSkills?: Schema$GoogleCloudDiscoveryengineV1StreamAssistResponseInvokedSkill[];
+    /**
      * Session information. Only included in the final StreamAssistResponse of the response stream.
      */
     sessionInfo?: Schema$GoogleCloudDiscoveryengineV1StreamAssistResponseSessionInfo;
+  }
+  /**
+   * Represents a skill used during the assist call.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1StreamAssistResponseInvokedSkill {
+    /**
+     * The display name of the skill.
+     */
+    displayName?: string | null;
+    /**
+     * The resource name of the skill.
+     */
+    name?: string | null;
   }
   /**
    * Information about the session.
@@ -17114,7 +17164,7 @@ export namespace discoveryengine_v1 {
      */
     enableVisualContentSummary?: boolean | null;
     /**
-     * Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills`
+     * Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `disable-mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `disable-canvas-workspace` * `disable-skills` * `enable-end-user-sharing-with-groups`
      */
     features?: {[key: string]: string} | null;
     /**
@@ -17184,7 +17234,7 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1WorkspaceConfig {
     /**
-     * Obfuscated Dasher customer ID.
+     * Output only. Obfuscated Dasher customer ID. Derived by the server from the project's GCP organization at data store creation time; any value supplied in the request payload is ignored.
      */
     dasherCustomerId?: string | null;
     /**
@@ -18632,6 +18682,7 @@ export namespace discoveryengine_v1 {
      *       //   "blockingReasons": [],
      *       //   "cliConfig": {},
      *       //   "connectorModes": [],
+     *       //   "connectorSourceId": "my_connectorSourceId",
      *       //   "connectorType": "my_connectorType",
      *       //   "createEuaSaas": false,
      *       //   "createTime": "my_createTime",
@@ -20055,6 +20106,7 @@ export namespace discoveryengine_v1 {
      *   //   "blockingReasons": [],
      *   //   "cliConfig": {},
      *   //   "connectorModes": [],
+     *   //   "connectorSourceId": "my_connectorSourceId",
      *   //   "connectorType": "my_connectorType",
      *   //   "createEuaSaas": false,
      *   //   "createTime": "my_createTime",
@@ -20251,6 +20303,7 @@ export namespace discoveryengine_v1 {
      *         //   "blockingReasons": [],
      *         //   "cliConfig": {},
      *         //   "connectorModes": [],
+     *         //   "connectorSourceId": "my_connectorSourceId",
      *         //   "connectorType": "my_connectorType",
      *         //   "createEuaSaas": false,
      *         //   "createTime": "my_createTime",
@@ -20301,6 +20354,7 @@ export namespace discoveryengine_v1 {
      *   //   "blockingReasons": [],
      *   //   "cliConfig": {},
      *   //   "connectorModes": [],
+     *   //   "connectorSourceId": "my_connectorSourceId",
      *   //   "connectorType": "my_connectorType",
      *   //   "createEuaSaas": false,
      *   //   "createTime": "my_createTime",
@@ -31214,6 +31268,7 @@ export namespace discoveryengine_v1 {
      *           //   "isPinned": false,
      *           //   "labels": [],
      *           //   "name": "my_name",
+     *           //   "pendingAsyncAssistOperationId": "my_pendingAsyncAssistOperationId",
      *           //   "startTime": "my_startTime",
      *           //   "state": "my_state",
      *           //   "turns": [],
@@ -31231,6 +31286,7 @@ export namespace discoveryengine_v1 {
      *   //   "isPinned": false,
      *   //   "labels": [],
      *   //   "name": "my_name",
+     *   //   "pendingAsyncAssistOperationId": "my_pendingAsyncAssistOperationId",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "turns": [],
@@ -31540,6 +31596,7 @@ export namespace discoveryengine_v1 {
      *   //   "isPinned": false,
      *   //   "labels": [],
      *   //   "name": "my_name",
+     *   //   "pendingAsyncAssistOperationId": "my_pendingAsyncAssistOperationId",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "turns": [],
@@ -31691,7 +31748,7 @@ export namespace discoveryengine_v1 {
      *       {
      *         // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"` * `collaborative_project = "projects/123/locations/global/collections/default_collection/engines/" "default_engine/collaborative_projects/cp1"`
      *         filter: 'placeholder-value',
-     *         // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
+     *         // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` * `display_name` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *         orderBy: 'placeholder-value',
      *         // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
      *         pageSize: 'placeholder-value',
@@ -31870,6 +31927,7 @@ export namespace discoveryengine_v1 {
      *           //   "isPinned": false,
      *           //   "labels": [],
      *           //   "name": "my_name",
+     *           //   "pendingAsyncAssistOperationId": "my_pendingAsyncAssistOperationId",
      *           //   "startTime": "my_startTime",
      *           //   "state": "my_state",
      *           //   "turns": [],
@@ -31887,6 +31945,7 @@ export namespace discoveryengine_v1 {
      *   //   "isPinned": false,
      *   //   "labels": [],
      *   //   "name": "my_name",
+     *   //   "pendingAsyncAssistOperationId": "my_pendingAsyncAssistOperationId",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "turns": [],
@@ -32036,7 +32095,7 @@ export namespace discoveryengine_v1 {
      */
     filter?: string;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` * `display_name` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string;
     /**
@@ -38065,7 +38124,7 @@ export namespace discoveryengine_v1 {
     }
 
     /**
-     * Sets the IAM access control policy for an Engine. A `NOT_FOUND` error is returned if the resource does not exist. **Important:** When setting a policy directly on an Engine resource, the only recommended roles in the bindings are: `roles/discoveryengine.user` and `roles/discoveryengine.agentspaceUser`. Attempting to grant any other role will result in a warning in logging.
+     * Sets the IAM access control policy for an Engine. A `NOT_FOUND` error is returned if the resource does not exist. **Important:** When setting a policy directly on an Engine resource, the only recommended roles in the bindings are: `roles/discoveryengine.admin`, `roles/discoveryengine.agentspaceAdmin`, `roles/discoveryengine.user`, `roles/discoveryengine.agentspaceUser`, `roles/discoveryengine.viewer`, `roles/discoveryengine.agentspaceViewer`. Attempting to grant any other role will result in a warning in logging.
      * @example
      * ```js
      * // Before running the sample:
@@ -39212,6 +39271,7 @@ export namespace discoveryengine_v1 {
      *   //   "answer": {},
      *   //   "assistToken": "my_assistToken",
      *   //   "invocationTools": [],
+     *   //   "invokedSkills": [],
      *   //   "sessionInfo": {}
      *   // }
      * }
@@ -46037,6 +46097,7 @@ export namespace discoveryengine_v1 {
      *           //   "isPinned": false,
      *           //   "labels": [],
      *           //   "name": "my_name",
+     *           //   "pendingAsyncAssistOperationId": "my_pendingAsyncAssistOperationId",
      *           //   "startTime": "my_startTime",
      *           //   "state": "my_state",
      *           //   "turns": [],
@@ -46054,6 +46115,7 @@ export namespace discoveryengine_v1 {
      *   //   "isPinned": false,
      *   //   "labels": [],
      *   //   "name": "my_name",
+     *   //   "pendingAsyncAssistOperationId": "my_pendingAsyncAssistOperationId",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "turns": [],
@@ -46361,6 +46423,7 @@ export namespace discoveryengine_v1 {
      *   //   "isPinned": false,
      *   //   "labels": [],
      *   //   "name": "my_name",
+     *   //   "pendingAsyncAssistOperationId": "my_pendingAsyncAssistOperationId",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "turns": [],
@@ -46511,7 +46574,7 @@ export namespace discoveryengine_v1 {
      *     await discoveryengine.projects.locations.collections.engines.sessions.list({
      *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"` * `collaborative_project = "projects/123/locations/global/collections/default_collection/engines/" "default_engine/collaborative_projects/cp1"`
      *       filter: 'placeholder-value',
-     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
+     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` * `display_name` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
      *       // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
      *       pageSize: 'placeholder-value',
@@ -46689,6 +46752,7 @@ export namespace discoveryengine_v1 {
      *           //   "isPinned": false,
      *           //   "labels": [],
      *           //   "name": "my_name",
+     *           //   "pendingAsyncAssistOperationId": "my_pendingAsyncAssistOperationId",
      *           //   "startTime": "my_startTime",
      *           //   "state": "my_state",
      *           //   "turns": [],
@@ -46706,6 +46770,7 @@ export namespace discoveryengine_v1 {
      *   //   "isPinned": false,
      *   //   "labels": [],
      *   //   "name": "my_name",
+     *   //   "pendingAsyncAssistOperationId": "my_pendingAsyncAssistOperationId",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "turns": [],
@@ -46855,7 +46920,7 @@ export namespace discoveryengine_v1 {
      */
     filter?: string;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` * `display_name` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string;
     /**
@@ -57282,6 +57347,7 @@ export namespace discoveryengine_v1 {
      *         //   "isPinned": false,
      *         //   "labels": [],
      *         //   "name": "my_name",
+     *         //   "pendingAsyncAssistOperationId": "my_pendingAsyncAssistOperationId",
      *         //   "startTime": "my_startTime",
      *         //   "state": "my_state",
      *         //   "turns": [],
@@ -57298,6 +57364,7 @@ export namespace discoveryengine_v1 {
      *   //   "isPinned": false,
      *   //   "labels": [],
      *   //   "name": "my_name",
+     *   //   "pendingAsyncAssistOperationId": "my_pendingAsyncAssistOperationId",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "turns": [],
@@ -57602,6 +57669,7 @@ export namespace discoveryengine_v1 {
      *   //   "isPinned": false,
      *   //   "labels": [],
      *   //   "name": "my_name",
+     *   //   "pendingAsyncAssistOperationId": "my_pendingAsyncAssistOperationId",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "turns": [],
@@ -57752,7 +57820,7 @@ export namespace discoveryengine_v1 {
      *     {
      *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` * `collaborative_project` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"` * `collaborative_project = "projects/123/locations/global/collections/default_collection/engines/" "default_engine/collaborative_projects/cp1"`
      *       filter: 'placeholder-value',
-     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
+     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` * `display_name` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
      *       // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
      *       pageSize: 'placeholder-value',
@@ -57930,6 +57998,7 @@ export namespace discoveryengine_v1 {
      *         //   "isPinned": false,
      *         //   "labels": [],
      *         //   "name": "my_name",
+     *         //   "pendingAsyncAssistOperationId": "my_pendingAsyncAssistOperationId",
      *         //   "startTime": "my_startTime",
      *         //   "state": "my_state",
      *         //   "turns": [],
@@ -57946,6 +58015,7 @@ export namespace discoveryengine_v1 {
      *   //   "isPinned": false,
      *   //   "labels": [],
      *   //   "name": "my_name",
+     *   //   "pendingAsyncAssistOperationId": "my_pendingAsyncAssistOperationId",
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "turns": [],
@@ -58095,7 +58165,7 @@ export namespace discoveryengine_v1 {
      */
     filter?: string;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` * `display_name` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string;
     /**
@@ -64078,6 +64148,165 @@ export namespace discoveryengine_v1 {
     }
 
     /**
+     * Lists all the LicenseConfigs associated with the project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/discoveryengine.readwrite',
+     *       'https://www.googleapis.com/auth/discoveryengine.serving.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.licenseConfigs.list({
+     *     // Optional. The filter to apply to the list results. The supported fields are: * `subscription_tier` * `state` Examples: * `subscription_tier=SUBSCRIPTION_TIER_SEARCH,state=ACTIVE` - Lists all active search license configs. * `state=ACTIVE` - Lists all active license configs. The filter string should be a comma-separated list of field=value pairs.
+     *     filter: 'placeholder-value',
+     *     // Optional. Not supported.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Not supported.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "licenseConfigs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Licenseconfigs$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Licenseconfigs$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Licenseconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Licenseconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Licenseconfigs$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Licenseconfigs$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Licenseconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Licenseconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/licenseConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1ListLicenseConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates the LicenseConfig
      * @example
      * ```js
@@ -64279,6 +64508,24 @@ export namespace discoveryengine_v1 {
      * Required. Full resource name of LicenseConfig, such as `projects/{project\}/locations/{location\}/licenseConfigs/x`. If the caller does not have permission to access the LicenseConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested LicenseConfig does not exist, a NOT_FOUND error is returned.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Licenseconfigs$List extends StandardParameters {
+    /**
+     * Optional. The filter to apply to the list results. The supported fields are: * `subscription_tier` * `state` Examples: * `subscription_tier=SUBSCRIPTION_TIER_SEARCH,state=ACTIVE` - Lists all active search license configs. * `state=ACTIVE` - Lists all active license configs. The filter string should be a comma-separated list of field=value pairs.
+     */
+    filter?: string;
+    /**
+     * Optional. Not supported.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Not supported.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Licenseconfigs$Patch extends StandardParameters {
     /**

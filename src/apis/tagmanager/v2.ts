@@ -265,6 +265,10 @@ export namespace tagmanager_v2 {
      */
     workspaceId?: string | null;
   }
+  export interface Schema$CompilerErrorLite {
+    errorMessage?: string | null;
+    errorType?: string | null;
+  }
   /**
    * Represents a predicate.
    */
@@ -579,6 +583,10 @@ export namespace tagmanager_v2 {
      * Compiler errors or not.
      */
     compilerError?: boolean | null;
+    /**
+     * Compiler error details.
+     */
+    compilerErrors?: Schema$CompilerErrorLite[];
     /**
      * The container version created.
      */
@@ -1211,6 +1219,10 @@ export namespace tagmanager_v2 {
      */
     compilerError?: boolean | null;
     /**
+     * Compiler error details.
+     */
+    compilerErrors?: Schema$CompilerErrorLite[];
+    /**
      * The container version created.
      */
     containerVersion?: Schema$ContainerVersion;
@@ -1223,6 +1235,10 @@ export namespace tagmanager_v2 {
      * Were there compiler errors or not.
      */
     compilerError?: boolean | null;
+    /**
+     * Compiler error details.
+     */
+    compilerErrors?: Schema$CompilerErrorLite[];
     /**
      * The quick previewed container version.
      */
@@ -5926,6 +5942,7 @@ export namespace tagmanager_v2 {
      *   // Example response
      *   // {
      *   //   "compilerError": false,
+     *   //   "compilerErrors": [],
      *   //   "containerVersion": {}
      *   // }
      * }
@@ -7334,6 +7351,7 @@ export namespace tagmanager_v2 {
      *   // Example response
      *   // {
      *   //   "compilerError": false,
+     *   //   "compilerErrors": [],
      *   //   "containerVersion": {},
      *   //   "newWorkspacePath": "my_newWorkspacePath",
      *   //   "syncStatus": {}
@@ -8050,6 +8068,7 @@ export namespace tagmanager_v2 {
      *   // Example response
      *   // {
      *   //   "compilerError": false,
+     *   //   "compilerErrors": [],
      *   //   "containerVersion": {},
      *   //   "syncStatus": {}
      *   // }

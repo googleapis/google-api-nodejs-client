@@ -1585,6 +1585,7 @@ export namespace dialogflow_v2beta1 {
     newRecognitionResultNotificationConfig?: Schema$GoogleCloudDialogflowV2beta1NotificationConfig;
     notificationConfig?: Schema$GoogleCloudDialogflowV2beta1NotificationConfig;
     securitySettings?: string | null;
+    sipConfig?: Schema$GoogleCloudDialogflowV2beta1SipConfig;
     sttConfig?: Schema$GoogleCloudDialogflowV2beta1SpeechToTextConfig;
     timeZone?: string | null;
     ttsConfig?: Schema$GoogleCloudDialogflowV2beta1SynthesizeSpeechConfig;
@@ -2340,10 +2341,12 @@ export namespace dialogflow_v2beta1 {
     queryText?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfo {
+    cesDebugInfo?: {[key: string]: any} | null;
     datastoreResponseReason?: string | null;
     ingestedContextReferenceDebugInfo?: Schema$GoogleCloudDialogflowV2beta1IngestedContextReferenceDebugInfo;
     knowledgeAssistBehavior?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoKnowledgeAssistBehavior;
     queryCategorizationFailureReason?: string | null;
+    queryGenerationDebugInfo?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoQueryGenerationDebugInfo;
     queryGenerationFailureReason?: string | null;
     serviceLatency?: Schema$GoogleCloudDialogflowV2beta1ServiceLatency;
   }
@@ -2365,6 +2368,11 @@ export namespace dialogflow_v2beta1 {
     useCustomSafetyFilterLevel?: boolean | null;
     usePubsubDelivery?: boolean | null;
     useTranslatedMessage?: boolean | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoQueryGenerationDebugInfo {
+    candidatesTokenCount?: number | null;
+    promptTokenCount?: number | null;
+    totalTokenCount?: number | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeBase {
     displayName?: string | null;
@@ -2702,6 +2710,15 @@ export namespace dialogflow_v2beta1 {
   export interface Schema$GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigRequest {
     participantRole?: string | null;
     suggestionFeatureConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1SipConfig {
+    allowVirtualAgentInteraction?: boolean | null;
+    copyInboundCallLegHeaders?: string[] | null;
+    createConversationOnTheFly?: boolean | null;
+    ignoreReinviteMediaDirection?: boolean | null;
+    inactiveStart?: boolean | null;
+    keepConversationRunning?: boolean | null;
+    maxAudioRecordingDuration?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1SipTrunk {
     connections?: Schema$GoogleCloudDialogflowV2beta1Connection[];
@@ -3498,10 +3515,12 @@ export namespace dialogflow_v2beta1 {
     queryText?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistDebugInfo {
+    cesDebugInfo?: {[key: string]: any} | null;
     datastoreResponseReason?: string | null;
     ingestedContextReferenceDebugInfo?: Schema$GoogleCloudDialogflowV2IngestedContextReferenceDebugInfo;
     knowledgeAssistBehavior?: Schema$GoogleCloudDialogflowV2KnowledgeAssistDebugInfoKnowledgeAssistBehavior;
     queryCategorizationFailureReason?: string | null;
+    queryGenerationDebugInfo?: Schema$GoogleCloudDialogflowV2KnowledgeAssistDebugInfoQueryGenerationDebugInfo;
     queryGenerationFailureReason?: string | null;
     serviceLatency?: Schema$GoogleCloudDialogflowV2ServiceLatency;
   }
@@ -3523,6 +3542,11 @@ export namespace dialogflow_v2beta1 {
     useCustomSafetyFilterLevel?: boolean | null;
     usePubsubDelivery?: boolean | null;
     useTranslatedMessage?: boolean | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistDebugInfoQueryGenerationDebugInfo {
+    candidatesTokenCount?: number | null;
+    promptTokenCount?: number | null;
+    totalTokenCount?: number | null;
   }
   export interface Schema$GoogleCloudDialogflowV2KnowledgeOperationMetadata {
     doneTime?: string | null;
@@ -17190,6 +17214,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "newRecognitionResultNotificationConfig": {},
      *       //   "notificationConfig": {},
      *       //   "securitySettings": "my_securitySettings",
+     *       //   "sipConfig": {},
      *       //   "sttConfig": {},
      *       //   "timeZone": "my_timeZone",
      *       //   "ttsConfig": {},
@@ -17214,6 +17239,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "newRecognitionResultNotificationConfig": {},
      *   //   "notificationConfig": {},
      *   //   "securitySettings": "my_securitySettings",
+     *   //   "sipConfig": {},
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
      *   //   "ttsConfig": {},
@@ -17511,6 +17537,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "newRecognitionResultNotificationConfig": {},
      *   //   "notificationConfig": {},
      *   //   "securitySettings": "my_securitySettings",
+     *   //   "sipConfig": {},
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
      *   //   "ttsConfig": {},
@@ -17827,6 +17854,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "newRecognitionResultNotificationConfig": {},
      *       //   "notificationConfig": {},
      *       //   "securitySettings": "my_securitySettings",
+     *       //   "sipConfig": {},
      *       //   "sttConfig": {},
      *       //   "timeZone": "my_timeZone",
      *       //   "ttsConfig": {},
@@ -17851,6 +17879,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "newRecognitionResultNotificationConfig": {},
      *   //   "notificationConfig": {},
      *   //   "securitySettings": "my_securitySettings",
+     *   //   "sipConfig": {},
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
      *   //   "ttsConfig": {},
@@ -36286,6 +36315,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "newRecognitionResultNotificationConfig": {},
      *       //   "notificationConfig": {},
      *       //   "securitySettings": "my_securitySettings",
+     *       //   "sipConfig": {},
      *       //   "sttConfig": {},
      *       //   "timeZone": "my_timeZone",
      *       //   "ttsConfig": {},
@@ -36310,6 +36340,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "newRecognitionResultNotificationConfig": {},
      *   //   "notificationConfig": {},
      *   //   "securitySettings": "my_securitySettings",
+     *   //   "sipConfig": {},
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
      *   //   "ttsConfig": {},
@@ -36609,6 +36640,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "newRecognitionResultNotificationConfig": {},
      *   //   "notificationConfig": {},
      *   //   "securitySettings": "my_securitySettings",
+     *   //   "sipConfig": {},
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
      *   //   "ttsConfig": {},
@@ -36927,6 +36959,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "newRecognitionResultNotificationConfig": {},
      *       //   "notificationConfig": {},
      *       //   "securitySettings": "my_securitySettings",
+     *       //   "sipConfig": {},
      *       //   "sttConfig": {},
      *       //   "timeZone": "my_timeZone",
      *       //   "ttsConfig": {},
@@ -36951,6 +36984,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "newRecognitionResultNotificationConfig": {},
      *   //   "notificationConfig": {},
      *   //   "securitySettings": "my_securitySettings",
+     *   //   "sipConfig": {},
      *   //   "sttConfig": {},
      *   //   "timeZone": "my_timeZone",
      *   //   "ttsConfig": {},

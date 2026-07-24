@@ -1,5 +1,23 @@
 # Changelog
 
+## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v19.1.1...vmmigration-v20.0.0) (2026-05-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+
+## [19.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v19.1.0...vmmigration-v19.1.1) (2026-05-19)
+
+
+### Bug Fixes
+
+* **vmmigration:** update the API ([aca497f](https://github.com/googleapis/google-api-nodejs-client/commit/aca497fb49709c1e1ae34fbd54f8a4788fca0aa7))
+
 ## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v19.0.0...vmmigration-v19.1.0) (2026-02-05)
 
 

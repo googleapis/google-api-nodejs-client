@@ -1175,7 +1175,7 @@
       }
     }
   },
-  "revision": "20260413",
+  "revision": "20260506",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -2355,6 +2355,13 @@
           "description": "Identifier. Full name of this workstation.",
           "type": "string"
         },
+        "persistentDirectories": {
+          "description": "Optional. Directories to persist across workstation sessions.",
+          "items": {
+            "$ref": "WorkstationPersistentDirectory"
+          },
+          "type": "array"
+        },
         "reconciling": {
           "description": "Output only. Indicates whether this workstation is currently being updated to match its intended state.",
           "readOnly": true,
@@ -2721,6 +2728,43 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkstationGceRegionalPersistentDisk": {
+      "description": "A Persistent Directory backed by a Compute Engine regional persistent disk within the workstation.",
+      "id": "WorkstationGceRegionalPersistentDisk",
+      "properties": {
+        "name": {
+          "description": "The name of the persistent directory.",
+          "type": "string"
+        },
+        "sizeGb": {
+          "description": "Required. The desired size of the persistent directory in GB.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "WorkstationPersistentDirectory": {
+      "description": "A directory to persist across workstation sessions. Updates to this field will only take effect on this workstation after it is restarted.",
+      "id": "WorkstationPersistentDirectory",
+      "properties": {
+        "gcePd": {
+          "$ref": "WorkstationGceRegionalPersistentDisk",
+          "deprecated": true,
+          "description": "A PersistentDirectory backed by a Compute Engine persistent disk."
+        },
+        "mountPath": {
+          "description": "Optional. The mount path of the persistent directory.",
+          "type": "string"
+        },
+        "sizeGb": {
+          "description": "Optional. Size of the persistent directory in GB. If specified in an update request, this is the desired size of the directory.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"

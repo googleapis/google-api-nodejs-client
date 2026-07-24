@@ -241,7 +241,6 @@
     "src/apis/metastore": {},
     "src/apis/managedidentities": {},
     "src/apis/apikeys": {},
-    "src/apis/lifesciences": {},
     "src/apis/contentwarehouse": {},
     "src/apis/config": {},
     "src/apis/essentialcontacts": {},
@@ -326,6 +325,8 @@
     "src/apis/ces": {},
     "src/apis/agentregistry": {},
     "src/apis/developerknowledge": {},
-    "src/apis/health": {}
+    "src/apis/health": {},
+    "src/apis/webcontentpublisher": {},
+    "src/apis/cloudnumberregistry": {}
   }
 }

@@ -657,6 +657,10 @@ export namespace alloydb_v1alpha {
    */
   export interface Schema$ConnectionPoolConfig {
     /**
+     * Output only. The number of running AuthProxy poolers per instance.
+     */
+    authproxyPoolerCount?: number | null;
+    /**
      * Optional. Whether to enable Managed Connection Pool (MCP).
      */
     enabled?: boolean | null;

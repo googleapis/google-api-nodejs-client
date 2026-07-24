@@ -408,7 +408,7 @@
               ]
             },
             "list": {
-              "description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+              "description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
               "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "datamigration.projects.locations.list",
@@ -417,7 +417,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2587,7 +2587,7 @@
       }
     }
   },
-  "revision": "20260406",
+  "revision": "20260511",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -4175,13 +4175,15 @@
             "ISSUE_TYPE_UNSPECIFIED",
             "ISSUE_TYPE_DDL",
             "ISSUE_TYPE_APPLY",
-            "ISSUE_TYPE_CONVERT"
+            "ISSUE_TYPE_CONVERT",
+            "ISSUE_TYPE_PULL_SCHEMA"
           ],
           "enumDescriptions": [
             "Unspecified issue type.",
             "Issue originated from the DDL",
             "Issue originated during the apply process",
-            "Issue originated during the convert process"
+            "Issue originated during the convert process",
+            "Issue originated during the pull schema process"
           ],
           "type": "string"
         }
@@ -6430,7 +6432,7 @@
       "id": "QuotaFailureViolation",
       "properties": {
         "apiService": {
-          "description": "The API Service from which the `QuotaFailure.Violation` orginates. In some cases, Quota issues originate from an API Service other than the one that was called. In other words, a dependency of the called API Service could be the cause of the `QuotaFailure`, and this field would have the dependency API service name. For example, if the called API is Kubernetes Engine API (container.googleapis.com), and a quota violation occurs in the Kubernetes Engine API itself, this field would be \"container.googleapis.com\". On the other hand, if the quota violation occurs when the Kubernetes Engine API creates VMs in the Compute Engine API (compute.googleapis.com), this field would be \"compute.googleapis.com\".",
+          "description": "The API Service from which the `QuotaFailure.Violation` originates. In some cases, Quota issues originate from an API Service other than the one that was called. In other words, a dependency of the called API Service could be the cause of the `QuotaFailure`, and this field would have the dependency API service name. For example, if the called API is Kubernetes Engine API (container.googleapis.com), and a quota violation occurs in the Kubernetes Engine API itself, this field would be \"container.googleapis.com\". On the other hand, if the quota violation occurs when the Kubernetes Engine API creates VMs in the Compute Engine API (compute.googleapis.com), this field would be \"compute.googleapis.com\".",
           "type": "string"
         },
         "description": {

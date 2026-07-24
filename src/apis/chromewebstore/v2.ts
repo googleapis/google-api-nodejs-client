@@ -211,6 +211,10 @@ export namespace chromewebstore_v2 {
    */
   export interface Schema$PublishItemRequest {
     /**
+     * Optional. When set to true the request will fail if there are any warnings during validation and the details will be included in the error_details. Otherwise warnings are treated as non-blocking and will be ignored for validation but will be included in the response for inspection. Defaults to `false` if unset.
+     */
+    blockOnWarnings?: boolean | null;
+    /**
      * Optional. Additional deploy information including the desired initial percentage rollout. Defaults to the current value saved in the developer dashboard if unset.
      */
     deployInfos?: Schema$DeployInfo[];
@@ -239,6 +243,10 @@ export namespace chromewebstore_v2 {
      * Output only. The current state of the submission.
      */
     state?: string | null;
+    /**
+     * Output only. Non-blocking warnings encountered during the request.
+     */
+    warningInfo?: Schema$WarningsInfo;
   }
   /**
    * Request message for SetPublishedDeployPercentage.
@@ -277,6 +285,28 @@ export namespace chromewebstore_v2 {
      * Output only. The state of the upload. If `upload_state` is `UPLOAD_IN_PROGRESS`, you can poll for updates using the fetchStatus method.
      */
     uploadState?: string | null;
+  }
+  /**
+   * Represents a single warning encountered during the request.
+   */
+  export interface Schema$Warning {
+    /**
+     * A description of the warning. Developers should use this message to understand the warning and take appropriate action to resolve the issue.
+     */
+    description?: string | null;
+    /**
+     * The reason for the warning. This is a constant value that identifies the proximate cause of the warning. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.
+     */
+    reason?: string | null;
+  }
+  /**
+   * Message containing details on warnings encountered during PublishItem.
+   */
+  export interface Schema$WarningsInfo {
+    /**
+     * All warnings encountered during the request.
+     */
+    warnings?: Schema$Warning[];
   }
 
   export class Resource$Media {
@@ -819,6 +849,7 @@ export namespace chromewebstore_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "blockOnWarnings": false,
      *       //   "deployInfos": [],
      *       //   "publishType": "my_publishType",
      *       //   "skipReview": false
@@ -831,7 +862,8 @@ export namespace chromewebstore_v2 {
      *   // {
      *   //   "itemId": "my_itemId",
      *   //   "name": "my_name",
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "warningInfo": {}
      *   // }
      * }
      *

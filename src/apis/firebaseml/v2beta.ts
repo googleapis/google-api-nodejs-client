@@ -582,6 +582,10 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1FunctionDeclaration {
     /**
+     * Optional. Specifies the function Behavior. If not specified, the system keeps the current function call behavior. This field is currently only supported by the BidiGenerateContent method.
+     */
+    behavior?: string | null;
+    /**
      * Optional. Description and purpose of the function. Model uses it to decide how and whether to call the function.
      */
     description?: string | null;
@@ -1831,6 +1835,10 @@ export namespace firebaseml_v2beta {
      */
     enterpriseWebSearch?: Schema$GoogleCloudAiplatformV1beta1EnterpriseWebSearch;
     /**
+     * Optional. Uses Exa.ai to search for information to answer user queries. The search results will be grounded on Exa.ai and presented to the model for response generation
+     */
+    exaAiSearch?: Schema$GoogleCloudAiplatformV1beta1ToolExaAiSearch;
+    /**
      * Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 512 function declarations can be provided.
      */
     functionDeclarations?: Schema$GoogleCloudAiplatformV1beta1FunctionDeclaration[];
@@ -1888,6 +1896,19 @@ export namespace firebaseml_v2beta {
      * Optional. Retrieval config.
      */
     retrievalConfig?: Schema$GoogleCloudAiplatformV1beta1RetrievalConfig;
+  }
+  /**
+   * ExaAiSearch tool type. A tool that uses the Exa.ai search engine for grounding.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ToolExaAiSearch {
+    /**
+     * Required. The API key for ExaAiSearch.
+     */
+    apiKey?: string | null;
+    /**
+     * Optional. This field can be used to pass any parameter from the Exa.ai Search API.
+     */
+    customConfigs?: {[key: string]: any} | null;
   }
   /**
    * GoogleSearch tool type. Tool to support Google Search in Model. Powered by Google.

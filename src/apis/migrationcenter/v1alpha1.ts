@@ -292,6 +292,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     awsAppSyncGraphqlApiDetails?: Schema$AwsAppSyncGraphqlApiDetails;
     /**
+     * Output only. Asset information specific for AwsAthenaWorkGroupDetails
+     */
+    awsAthenaWorkGroupDetails?: Schema$AwsAthenaWorkGroupDetails;
+    /**
      * Output only. Asset information specific for AwsAutoscalingGroupDetails
      */
     awsAutoscalingGroupDetails?: Schema$AwsAutoscalingGroupDetails;
@@ -340,9 +344,25 @@ export namespace migrationcenter_v1alpha1 {
      */
     awsElbLoadBalancerDetails?: Schema$AwsElbLoadBalancerDetails;
     /**
+     * Output only. Asset information specific for AwsEmrClusterDetails
+     */
+    awsEmrClusterDetails?: Schema$AwsEmrClusterDetails;
+    /**
+     * Output only. Asset information specific for AwsFirehoseDetails
+     */
+    awsFirehoseDetails?: Schema$AwsFirehoseDetails;
+    /**
+     * Output only. Asset information specific for AwsGlueJobDetails
+     */
+    awsGlueJobDetails?: Schema$AwsGlueJobDetails;
+    /**
      * Output only. Asset information specific for AWS Internet Gateways.
      */
     awsInternetGatewayDetails?: Schema$AwsInternetGatewayDetails;
+    /**
+     * Output only. Asset information specific for AwsKinesisStreamDetails
+     */
+    awsKinesisStreamDetails?: Schema$AwsKinesisStreamDetails;
     /**
      * Output only. Asset information specific for AWS Lambda functions.
      */
@@ -461,6 +481,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     awsAppSyncGraphqlApiDetails?: Schema$AwsAppSyncGraphqlApiDetails;
     /**
+     * Optional. Asset information specific for AwsAthenaWorkGroupDetails
+     */
+    awsAthenaWorkGroupDetails?: Schema$AwsAthenaWorkGroupDetails;
+    /**
      * Optional. Asset information specific for AwsAutoscalingGroupDetails
      */
     awsAutoscalingGroupDetails?: Schema$AwsAutoscalingGroupDetails;
@@ -509,9 +533,25 @@ export namespace migrationcenter_v1alpha1 {
      */
     awsElbLoadBalancerDetails?: Schema$AwsElbLoadBalancerDetails;
     /**
+     * Optional. Asset information specific for AwsEmrClusterDetails
+     */
+    awsEmrClusterDetails?: Schema$AwsEmrClusterDetails;
+    /**
+     * Optional. Asset information specific for AwsFirehoseDetails
+     */
+    awsFirehoseDetails?: Schema$AwsFirehoseDetails;
+    /**
+     * Optional. Asset information specific for AwsGlueJobDetails
+     */
+    awsGlueJobDetails?: Schema$AwsGlueJobDetails;
+    /**
      * Optional. Asset information specific for AWS Internet Gateways.
      */
     awsInternetGatewayDetails?: Schema$AwsInternetGatewayDetails;
+    /**
+     * Optional. Asset information specific for AwsKinesisStreamDetails
+     */
+    awsKinesisStreamDetails?: Schema$AwsKinesisStreamDetails;
     /**
      * Asset information specific for AWS Lambda functions.
      */
@@ -737,6 +777,10 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$AwsAppSyncGraphqlApiDetails {}
   /**
+   * Contains details for an AWS Athena Work Group asset.
+   */
+  export interface Schema$AwsAthenaWorkGroupDetails {}
+  /**
    * Asset information specific for AWS Autoscaling Group.
    */
   export interface Schema$AwsAutoscalingGroupDetails {}
@@ -802,9 +846,25 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$AwsElbLoadBalancerDetails {}
   /**
+   * Contains details for an AWS EMR Cluster asset.
+   */
+  export interface Schema$AwsEmrClusterDetails {}
+  /**
+   * Contains details for an AWS Firehose asset.
+   */
+  export interface Schema$AwsFirehoseDetails {}
+  /**
+   * Contains details for an AWS Glue Job asset.
+   */
+  export interface Schema$AwsGlueJobDetails {}
+  /**
    * Asset information specific for AWS Internet Gateways.
    */
   export interface Schema$AwsInternetGatewayDetails {}
+  /**
+   * Contains details for an AWS Kinesis Stream asset.
+   */
+  export interface Schema$AwsKinesisStreamDetails {}
   /**
    * Asset information specific for AWS Lambda functions.
    */
@@ -6420,6 +6480,7 @@ export namespace migrationcenter_v1alpha1 {
      *   //   "awsApiGatewayRestApiDetails": {},
      *   //   "awsAppSyncGraphqlApiDetails": {},
      *   //   "awsApplicationLoadBalancerDetails": {},
+     *   //   "awsAthenaWorkGroupDetails": {},
      *   //   "awsAutoscalingGroupDetails": {},
      *   //   "awsBatchComputeEnvironmentDetails": {},
      *   //   "awsCloudFrontDistributionDetails": {},
@@ -6432,7 +6493,11 @@ export namespace migrationcenter_v1alpha1 {
      *   //   "awsElasticIpAddressDetails": {},
      *   //   "awsElasticNetworkInterfaceDetails": {},
      *   //   "awsElbLoadBalancerDetails": {},
+     *   //   "awsEmrClusterDetails": {},
+     *   //   "awsFirehoseDetails": {},
+     *   //   "awsGlueJobDetails": {},
      *   //   "awsInternetGatewayDetails": {},
+     *   //   "awsKinesisStreamDetails": {},
      *   //   "awsLambdaFunctionDetails": {},
      *   //   "awsNatGatewayDetails": {},
      *   //   "awsRedshiftDetails": {},
@@ -6752,6 +6817,7 @@ export namespace migrationcenter_v1alpha1 {
      *       //   "awsApiGatewayRestApiDetails": {},
      *       //   "awsAppSyncGraphqlApiDetails": {},
      *       //   "awsApplicationLoadBalancerDetails": {},
+     *       //   "awsAthenaWorkGroupDetails": {},
      *       //   "awsAutoscalingGroupDetails": {},
      *       //   "awsBatchComputeEnvironmentDetails": {},
      *       //   "awsCloudFrontDistributionDetails": {},
@@ -6764,7 +6830,11 @@ export namespace migrationcenter_v1alpha1 {
      *       //   "awsElasticIpAddressDetails": {},
      *       //   "awsElasticNetworkInterfaceDetails": {},
      *       //   "awsElbLoadBalancerDetails": {},
+     *       //   "awsEmrClusterDetails": {},
+     *       //   "awsFirehoseDetails": {},
+     *       //   "awsGlueJobDetails": {},
      *       //   "awsInternetGatewayDetails": {},
+     *       //   "awsKinesisStreamDetails": {},
      *       //   "awsLambdaFunctionDetails": {},
      *       //   "awsNatGatewayDetails": {},
      *       //   "awsRedshiftDetails": {},
@@ -6801,6 +6871,7 @@ export namespace migrationcenter_v1alpha1 {
      *   //   "awsApiGatewayRestApiDetails": {},
      *   //   "awsAppSyncGraphqlApiDetails": {},
      *   //   "awsApplicationLoadBalancerDetails": {},
+     *   //   "awsAthenaWorkGroupDetails": {},
      *   //   "awsAutoscalingGroupDetails": {},
      *   //   "awsBatchComputeEnvironmentDetails": {},
      *   //   "awsCloudFrontDistributionDetails": {},
@@ -6813,7 +6884,11 @@ export namespace migrationcenter_v1alpha1 {
      *   //   "awsElasticIpAddressDetails": {},
      *   //   "awsElasticNetworkInterfaceDetails": {},
      *   //   "awsElbLoadBalancerDetails": {},
+     *   //   "awsEmrClusterDetails": {},
+     *   //   "awsFirehoseDetails": {},
+     *   //   "awsGlueJobDetails": {},
      *   //   "awsInternetGatewayDetails": {},
+     *   //   "awsKinesisStreamDetails": {},
      *   //   "awsLambdaFunctionDetails": {},
      *   //   "awsNatGatewayDetails": {},
      *   //   "awsRedshiftDetails": {},

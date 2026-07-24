@@ -1741,6 +1741,21 @@
       "version": "v1"
     },
     {
+      "description": "",
+      "discoveryRestUrl": "https://cloudnumberregistry.googleapis.com/$discovery/rest?version=v1alpha",
+      "documentationLink": "https://docs.cloud.google.com/number-registry/reference/rest",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "cloudnumberregistry:v1alpha",
+      "kind": "discovery#directoryItem",
+      "name": "cloudnumberregistry",
+      "preferred": true,
+      "title": "Cloud Number Registry API",
+      "version": "v1alpha"
+    },
+    {
       "description": "Manages continuous profiling information.",
       "discoveryRestUrl": "https://cloudprofiler.googleapis.com/$discovery/rest?version=v2",
       "documentationLink": "https://cloud.google.com/profiler/",
@@ -6787,7 +6802,7 @@
       "version": "v1"
     },
     {
-      "description": "API for Cloud SQL database instance management",
+      "description": "Cloud SQL Admin API",
       "discoveryRestUrl": "https://sqladmin.googleapis.com/$discovery/rest?version=v1beta4",
       "documentationLink": "https://cloud.google.com/sql/docs",
       "icons": {
@@ -6802,7 +6817,7 @@
       "version": "v1beta4"
     },
     {
-      "description": "API for Cloud SQL database instance management",
+      "description": "Cloud SQL Admin API",
       "discoveryRestUrl": "https://sqladmin.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://cloud.google.com/sql/docs",
       "icons": {
@@ -7459,6 +7474,21 @@
       "name": "walletobjects",
       "preferred": true,
       "title": "Google Wallet API",
+      "version": "v1"
+    },
+    {
+      "description": "webcontentpublisher.googleapis.com API, a service for web content publishers.",
+      "discoveryRestUrl": "https://webcontentpublisher.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://developers.google.com/news/subscribe",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "webcontentpublisher:v1",
+      "kind": "discovery#directoryItem",
+      "name": "webcontentpublisher",
+      "preferred": true,
+      "title": "Web Content Publisher API",
       "version": "v1"
     },
     {

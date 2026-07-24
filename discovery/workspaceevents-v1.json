@@ -44,6 +44,12 @@
         "https://www.googleapis.com/auth/chat.spaces.readonly": {
           "description": "View chat and spaces in Google Chat"
         },
+        "https://www.googleapis.com/auth/chat.users.availability": {
+          "description": "See and change your availability status in Google Chat."
+        },
+        "https://www.googleapis.com/auth/chat.users.availability.readonly": {
+          "description": "See your availability status in Google Chat."
+        },
         "https://www.googleapis.com/auth/chat.users.readstate": {
           "description": "View and modify last read time for Google Chat conversations"
         },
@@ -223,6 +229,8 @@
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
             "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/chat.users.availability",
+            "https://www.googleapis.com/auth/chat.users.availability.readonly",
             "https://www.googleapis.com/auth/chat.users.readstate",
             "https://www.googleapis.com/auth/chat.users.readstate.readonly",
             "https://www.googleapis.com/auth/drive",
@@ -272,6 +280,8 @@
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
             "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/chat.users.availability",
+            "https://www.googleapis.com/auth/chat.users.availability.readonly",
             "https://www.googleapis.com/auth/chat.users.readstate",
             "https://www.googleapis.com/auth/chat.users.readstate.readonly",
             "https://www.googleapis.com/auth/drive",
@@ -329,6 +339,8 @@
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
             "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/chat.users.availability",
+            "https://www.googleapis.com/auth/chat.users.availability.readonly",
             "https://www.googleapis.com/auth/chat.users.readstate",
             "https://www.googleapis.com/auth/chat.users.readstate.readonly",
             "https://www.googleapis.com/auth/drive",
@@ -371,6 +383,8 @@
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
             "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/chat.users.availability",
+            "https://www.googleapis.com/auth/chat.users.availability.readonly",
             "https://www.googleapis.com/auth/chat.users.readstate",
             "https://www.googleapis.com/auth/chat.users.readstate.readonly",
             "https://www.googleapis.com/auth/drive",
@@ -420,6 +434,8 @@
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
             "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/chat.users.availability",
+            "https://www.googleapis.com/auth/chat.users.availability.readonly",
             "https://www.googleapis.com/auth/chat.users.readstate",
             "https://www.googleapis.com/auth/chat.users.readstate.readonly",
             "https://www.googleapis.com/auth/drive",
@@ -480,6 +496,8 @@
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
             "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/chat.users.availability",
+            "https://www.googleapis.com/auth/chat.users.availability.readonly",
             "https://www.googleapis.com/auth/chat.users.readstate",
             "https://www.googleapis.com/auth/chat.users.readstate.readonly",
             "https://www.googleapis.com/auth/drive",
@@ -529,6 +547,8 @@
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
             "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/chat.users.availability",
+            "https://www.googleapis.com/auth/chat.users.availability.readonly",
             "https://www.googleapis.com/auth/chat.users.readstate",
             "https://www.googleapis.com/auth/chat.users.readstate.readonly",
             "https://www.googleapis.com/auth/drive",
@@ -765,7 +785,7 @@
       }
     }
   },
-  "revision": "20260422",
+  "revision": "20260517",
   "rootUrl": "https://workspaceevents.googleapis.com/",
   "schemas": {
     "Artifact": {
@@ -847,6 +867,17 @@
             "type": "any"
           },
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "DriveOptions": {
+      "description": "Additional supported options for serving Drive events.",
+      "id": "DriveOptions",
+      "properties": {
+        "includeDescendants": {
+          "description": "Optional. Immutable. For subscriptions to Google Drive events, whether to receive events about Drive files that are children of the target folder or shared drive. * If `false`, the subscription only receives events about changes to the folder or shared drive that's specified as the `targetResource`. * If `true`, the `mimeType` field of the `file` resource must be set to `application/vnd.google-apps.folder`. For details, see [Google Drive event types](https://developers.google.com/workspace/events/guides/events-drive#event-types).",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1196,6 +1227,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "driveOptions": {
+          "$ref": "DriveOptions",
+          "description": "Optional. Features that are supported only for subscriptions on Drive resources."
         },
         "etag": {
           "description": "Optional. This checksum is computed by the server based on the value of other fields, and might be sent on update requests to ensure the client has an up-to-date value before proceeding.",

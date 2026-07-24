@@ -3890,7 +3890,7 @@
     "users": {
       "methods": {
         "createGuest": {
-          "description": "Create a guest user with access to a [subset of Workspace capabilities](https://support.google.com/a/answer/16558545). This feature is currently in Alpha. Please reach out to support if you are interested in trying this feature.",
+          "description": "Create a guest user with access to a [subset of Workspace capabilities](https://support.google.com/a/answer/16558545). This feature is currently in Open Beta.",
           "flatPath": "admin/directory/v1/users:createGuest",
           "httpMethod": "POST",
           "id": "directory.users.createGuest",
@@ -4729,7 +4729,7 @@
       }
     }
   },
-  "revision": "20260421",
+  "revision": "20260522",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -6429,11 +6429,11 @@
       "id": "DirectoryUsersCreateGuestRequest",
       "properties": {
         "customer": {
-          "description": "Optional. Immutable ID of the Google Workspace account.",
+          "description": "Optional. Immutable ID of the Google Workspace account. Only required when request is created by a service account. Defaults to the authenticated user's customer ID otherwise.",
           "type": "string"
         },
         "primaryGuestEmail": {
-          "description": "Immutable. External email of the guest user being created.",
+          "description": "Required. External email of the guest user being created.",
           "type": "string"
         }
       },

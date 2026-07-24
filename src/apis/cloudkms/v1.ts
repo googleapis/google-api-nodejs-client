@@ -885,6 +885,10 @@ export namespace cloudkms_v1 {
      */
     publicKey?: Schema$WrappingPublicKey;
     /**
+     * Output only. Specifies the WrappingPublicKey format provided by the customer in the KeyManagementService.GetImportJob request.
+     */
+    publicKeyFormat?: string | null;
+    /**
      * Output only. The current state of the ImportJob, indicating if it can be used.
      */
     state?: string | null;
@@ -1842,7 +1846,11 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$WrappingPublicKey {
     /**
-     * The public key, encoded in PEM format. For more information, see the [RFC 7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13).
+     * Output only. Contains the public key, formatted according to the PublicKey.PublicKeyFormat specified in the KeyManagementService.GetImportJob request.
+     */
+    data?: string | null;
+    /**
+     * The public key, encoded in PEM format. For more information, see the [RFC 7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13). This field gets populated by default for RSA-based import methods, if no public_key_format is specified in the request. If you want to retrieve the wrapping key of an ImportJob in some other format, use KeyManagementService.GetImportJob and set the public_key_format to the desired public key format.
      */
     pem?: string | null;
   }
@@ -12827,6 +12835,7 @@ export namespace cloudkms_v1 {
      *       //   "name": "my_name",
      *       //   "protectionLevel": "my_protectionLevel",
      *       //   "publicKey": {},
+     *       //   "publicKeyFormat": "my_publicKeyFormat",
      *       //   "state": "my_state"
      *       // }
      *     },
@@ -12845,6 +12854,7 @@ export namespace cloudkms_v1 {
      *   //   "name": "my_name",
      *   //   "protectionLevel": "my_protectionLevel",
      *   //   "publicKey": {},
+     *   //   "publicKeyFormat": "my_publicKeyFormat",
      *   //   "state": "my_state"
      *   // }
      * }
@@ -12981,6 +12991,8 @@ export namespace cloudkms_v1 {
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.get({
      *     // Required. The name of the ImportJob to get.
      *     name: 'projects/my-project/locations/my-location/keyRings/my-keyRing/importJobs/my-importJob',
+     *     // Optional. Specifies the WrappingPublicKey format. If not specified: * For RSA-based import methods, the wrapping key will be returned in PEM format * For pure ML-KEM-based import methods, the wrapping key will be returned in the raw bytes format specified in FIPS-203 * For X-Wing-based import methods, the wrapping key will be returned in the raw bytes format specified in https://datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem.
+     *     publicKeyFormat: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -12996,6 +13008,7 @@ export namespace cloudkms_v1 {
      *   //   "name": "my_name",
      *   //   "protectionLevel": "my_protectionLevel",
      *   //   "publicKey": {},
+     *   //   "publicKeyFormat": "my_publicKeyFormat",
      *   //   "state": "my_state"
      *   // }
      * }
@@ -13725,6 +13738,10 @@ export namespace cloudkms_v1 {
      * Required. The name of the ImportJob to get.
      */
     name?: string;
+    /**
+     * Optional. Specifies the WrappingPublicKey format. If not specified: * For RSA-based import methods, the wrapping key will be returned in PEM format * For pure ML-KEM-based import methods, the wrapping key will be returned in the raw bytes format specified in FIPS-203 * For X-Wing-based import methods, the wrapping key will be returned in the raw bytes format specified in https://datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem.
+     */
+    publicKeyFormat?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy extends StandardParameters {
     /**

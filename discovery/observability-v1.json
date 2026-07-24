@@ -33,6 +33,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://observability.asia-northeast1.rep.googleapis.com/",
+      "location": "asia-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://observability.asia-northeast2.rep.googleapis.com/",
       "location": "asia-northeast2"
     },
@@ -53,6 +58,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://observability.asia-southeast1.rep.googleapis.com/",
+      "location": "asia-southeast1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://observability.asia-southeast2.rep.googleapis.com/",
       "location": "asia-southeast2"
     },
@@ -63,8 +73,23 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://observability.australia-southeast1.rep.googleapis.com/",
+      "location": "australia-southeast1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://observability.australia-southeast2.rep.googleapis.com/",
       "location": "australia-southeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://observability.europe-central2.rep.googleapis.com/",
+      "location": "europe-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://observability.europe-north1.rep.googleapis.com/",
+      "location": "europe-north1"
     },
     {
       "description": "Regional Endpoint",
@@ -73,8 +98,28 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://observability.europe-southwest1.rep.googleapis.com/",
+      "location": "europe-southwest1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://observability.europe-west1.rep.googleapis.com/",
       "location": "europe-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://observability.europe-west10.rep.googleapis.com/",
+      "location": "europe-west10"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://observability.europe-west12.rep.googleapis.com/",
+      "location": "europe-west12"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://observability.europe-west2.rep.googleapis.com/",
+      "location": "europe-west2"
     },
     {
       "description": "Regional Endpoint",
@@ -103,6 +148,21 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://observability.me-central2.rep.googleapis.com/",
+      "location": "me-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://observability.me-west1.rep.googleapis.com/",
+      "location": "me-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://observability.northamerica-northeast1.rep.googleapis.com/",
+      "location": "northamerica-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://observability.northamerica-northeast2.rep.googleapis.com/",
       "location": "northamerica-northeast2"
     },
@@ -110,6 +170,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://observability.northamerica-south1.rep.googleapis.com/",
       "location": "northamerica-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://observability.southamerica-east1.rep.googleapis.com/",
+      "location": "southamerica-east1"
     },
     {
       "description": "Regional Endpoint",
@@ -123,8 +188,18 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://observability.us-central2.rep.googleapis.com/",
+      "location": "us-central2"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://observability.us-east1.rep.googleapis.com/",
       "location": "us-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://observability.us-east4.rep.googleapis.com/",
+      "location": "us-east4"
     },
     {
       "description": "Regional Endpoint",
@@ -150,6 +225,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://observability.us-west3.rep.googleapis.com/",
       "location": "us-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://observability.us-west4.rep.googleapis.com/",
+      "location": "us-west4"
     },
     {
       "description": "Regional Endpoint",
@@ -1646,7 +1726,7 @@
       }
     }
   },
-  "revision": "20260423",
+  "revision": "20260514",
   "rootUrl": "https://observability.googleapis.com/",
   "schemas": {
     "Bucket": {

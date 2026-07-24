@@ -4602,13 +4602,25 @@ export namespace dataproc_v1 {
    */
   export interface Schema$UsageMetrics {
     /**
-     * Optional. DEPRECATED Accelerator type being used, if any
+     * Optional. Accelerator type being used, if any Deprecated: This field is only used in runtime versions below 3.0.
      */
     acceleratorType?: string | null;
     /**
-     * Optional. DEPRECATED Accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+     * Optional. Accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)). Deprecated: This field is only used in runtime versions below 3.0.
      */
     milliAcceleratorSeconds?: string | null;
+    /**
+     * Optional. A100-40 accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+     */
+    milliAcceleratorSecondsA10040?: string | null;
+    /**
+     * Optional. A100-80 accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+     */
+    milliAcceleratorSecondsA10080?: string | null;
+    /**
+     * Optional. L4 accelerator usage in (milliAccelerator x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
+     */
+    milliAcceleratorSecondsL4?: string | null;
     /**
      * Optional. DCU (Dataproc Compute Units) usage in (milliDCU x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
      */
@@ -4627,13 +4639,25 @@ export namespace dataproc_v1 {
    */
   export interface Schema$UsageSnapshot {
     /**
-     * Optional. Accelerator type being used, if any
+     * Optional. Accelerator type being used, if any Deprecated: This field is only used in runtime versions below 3.0.
      */
     acceleratorType?: string | null;
     /**
-     * Optional. Milli (one-thousandth) accelerator. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
+     * Optional. Milli (one-thousandth) accelerator. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)) Deprecated: This field is only used in runtime versions below 3.0.
      */
     milliAccelerator?: string | null;
+    /**
+     * Optional. Milli (one-thousandth) accelerator for A100-40 accelerators. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
+     */
+    milliAcceleratorA10040?: string | null;
+    /**
+     * Optional. Milli (one-thousandth) accelerator for A100-80 accelerators. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
+     */
+    milliAcceleratorA10080?: string | null;
+    /**
+     * Optional. Milli (one-thousandth) accelerator for L4 accelerators. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))
+     */
+    milliAcceleratorL4?: string | null;
     /**
      * Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).
      */

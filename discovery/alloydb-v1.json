@@ -1879,7 +1879,7 @@
       }
     }
   },
-  "revision": "20260423",
+  "revision": "20260507",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -2701,6 +2701,12 @@
       "description": "Configuration for Managed Connection Pool (MCP).",
       "id": "ConnectionPoolConfig",
       "properties": {
+        "authproxyPoolerCount": {
+          "description": "Output only. The number of running AuthProxy poolers per instance.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "enabled": {
           "description": "Optional. Whether to enable Managed Connection Pool (MCP).",
           "type": "boolean"

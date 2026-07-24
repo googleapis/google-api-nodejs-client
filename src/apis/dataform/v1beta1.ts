@@ -638,6 +638,15 @@ export namespace dataform_v1beta1 {
     force?: boolean | null;
   }
   /**
+   * `DeleteRepositoryLongRunning` request message.
+   */
+  export interface Schema$DeleteRepositoryLongRunningRequest {
+    /**
+     * Optional. If set to true, child resources of this repository (compilation results and workflow invocations) will also be deleted. Otherwise, the request will only succeed if the repository has no child resources. **Note:** *This flag doesn't support deletion of workspaces, release configs or workflow configs. If any of such resources exists in the repository, the request will fail.*
+     */
+    force?: boolean | null;
+  }
+  /**
    * `DeleteTeamFolderTree` request message.
    */
   export interface Schema$DeleteTeamFolderTreeRequest {
@@ -651,11 +660,11 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$DirectoryEntry {
     /**
-     * A child directory in the directory.
+     * A child directory in the directory. The path is returned including the full folder structure from the root.
      */
     directory?: string | null;
     /**
-     * A file in the directory.
+     * A file in the directory. The path is returned including the full folder structure from the root.
      */
     file?: string | null;
     /**
@@ -857,9 +866,13 @@ export namespace dataform_v1beta1 {
      */
     authenticationTokenSecretVersion?: string | null;
     /**
-     * Required. The Git remote's default branch name. If not set, `main` will be used and stored for the repository.
+     * Optional. The Git remote's default branch name. If not set `main` will be used.
      */
     defaultBranch?: string | null;
+    /**
+     * Output only. The Git remote's effective default branch name. This is the default branch name of the Git remote if it is set, otherwise it is `main`.
+     */
+    effectiveDefaultBranch?: string | null;
     /**
      * Optional. Authentication fields for remote uris using SSH protocol.
      */
@@ -5974,6 +5987,159 @@ export namespace dataform_v1beta1 {
     }
 
     /**
+     * Deletes a single Repository asynchronously.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataform = google.dataform('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataform.projects.locations.repositories.deleteLongRunning({
+     *     // Required. The repository's name.
+     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "force": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deleteLongRunning(
+      params: Params$Resource$Projects$Locations$Repositories$Deletelongrunning,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    deleteLongRunning(
+      params?: Params$Resource$Projects$Locations$Repositories$Deletelongrunning,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    deleteLongRunning(
+      params: Params$Resource$Projects$Locations$Repositories$Deletelongrunning,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteLongRunning(
+      params: Params$Resource$Projects$Locations$Repositories$Deletelongrunning,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    deleteLongRunning(
+      params: Params$Resource$Projects$Locations$Repositories$Deletelongrunning,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    deleteLongRunning(callback: BodyResponseCallback<Schema$Operation>): void;
+    deleteLongRunning(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Deletelongrunning
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Deletelongrunning;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Deletelongrunning;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:deleteLongRunning').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Fetches a Repository's history of commits. The Repository must not have a value for `git_remote_settings.url`.
      * @example
      * ```js
@@ -7703,6 +7869,17 @@ export namespace dataform_v1beta1 {
      * Required. The repository's name.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Deletelongrunning extends StandardParameters {
+    /**
+     * Required. The repository's name.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeleteRepositoryLongRunningRequest;
   }
   export interface Params$Resource$Projects$Locations$Repositories$Fetchhistory extends StandardParameters {
     /**
@@ -16249,7 +16426,7 @@ export namespace dataform_v1beta1 {
      *     location: 'projects/my-project/locations/my-location',
      *     // Optional. Field to additionally sort results by. Supported keywords: `display_name` (default), `create_time`, `last_modified_time`. Examples: * `orderBy="display_name"` * `orderBy="display_name desc"`
      *     orderBy: 'placeholder-value',
-     *     // Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     *     // Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick a default of page_size = 50.
      *     pageSize: 'placeholder-value',
      *     // Optional. Page token received from a previous `SearchTeamFolders` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchTeamFolders`, with the exception of `page_size`, must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
@@ -16768,7 +16945,7 @@ export namespace dataform_v1beta1 {
      */
     orderBy?: string;
     /**
-     * Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
+     * Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick a default of page_size = 50.
      */
     pageSize?: number;
     /**

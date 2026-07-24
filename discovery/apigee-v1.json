@@ -11964,7 +11964,7 @@
       }
     }
   },
-  "revision": "20260430",
+  "revision": "20260511",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -12780,6 +12780,11 @@
           "description": "Time that the API proxy revision was last modified in milliseconds since epoch.",
           "format": "int64",
           "type": "string"
+        },
+        "mcp": {
+          "description": "Output only. Whether this proxy revision is detected as an MCP (Model Context Protocol) proxy. A proxy revision is identified as MCP if it has a proxy endpoint with the `/mcp` base path that routes to the MCP target URL.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "name": {
           "description": "Name of the API proxy.",

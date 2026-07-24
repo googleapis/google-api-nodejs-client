@@ -1144,11 +1144,11 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$DirectoryUsersCreateGuestRequest {
     /**
-     * Optional. Immutable ID of the Google Workspace account.
+     * Optional. Immutable ID of the Google Workspace account. Only required when request is created by a service account. Defaults to the authenticated user's customer ID otherwise.
      */
     customer?: string | null;
     /**
-     * Immutable. External email of the guest user being created.
+     * Required. External email of the guest user being created.
      */
     primaryGuestEmail?: string | null;
   }
@@ -20697,7 +20697,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Create a guest user with access to a [subset of Workspace capabilities](https://support.google.com/a/answer/16558545). This feature is currently in Alpha. Please reach out to support if you are interested in trying this feature.
+     * Create a guest user with access to a [subset of Workspace capabilities](https://support.google.com/a/answer/16558545). This feature is currently in Open Beta.
      * @example
      * ```js
      * // Before running the sample:

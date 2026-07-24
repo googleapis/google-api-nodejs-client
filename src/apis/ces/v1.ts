@@ -339,6 +339,10 @@ export namespace ces_v1 {
      */
     inputVariableMapping?: {[key: string]: string} | null;
     /**
+     * Optional. The name of the variable that contains the language code to be used for the Dialogflow session. If unspecified, the default language code of the Dialogflow agent will be used.
+     */
+    languageCodeVariable?: string | null;
+    /**
      * Optional. The mapping of the Dialogflow session parameters names to the app variables names to be sent back to the CES agent after the Dialogflow agent execution ends.
      */
     outputVariableMapping?: {[key: string]: string} | null;
@@ -2237,6 +2241,244 @@ export namespace ces_v1 {
     supportedLanguageCodes?: string[] | null;
   }
   /**
+   * Artifacts represent task outputs.
+   */
+  export interface Schema$LfA2aV1Artifact {
+    /**
+     * Required. Unique identifier (e.g. UUID) for the artifact. It must be unique within a task.
+     */
+    artifactId?: string | null;
+    /**
+     * Optional. A human readable description of the artifact.
+     */
+    description?: string | null;
+    /**
+     * The URIs of extensions that are present or contributed to this Artifact.
+     */
+    extensions?: string[] | null;
+    /**
+     * Optional. Metadata included with the artifact.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * A human readable name for the artifact.
+     */
+    name?: string | null;
+    /**
+     * Required. The content of the artifact. Must contain at least one part.
+     */
+    parts?: Schema$LfA2aV1Part[];
+  }
+  /**
+   * Defines authentication details, used for push notifications.
+   */
+  export interface Schema$LfA2aV1AuthenticationInfo {
+    /**
+     * Push Notification credentials. Format depends on the scheme (e.g., token for Bearer).
+     */
+    credentials?: string | null;
+    /**
+     * Required. HTTP Authentication Scheme from the [IANA registry](https://www.iana.org/assignments/http-authschemes/). Examples: `Bearer`, `Basic`, `Digest`. Scheme names are case-insensitive per [RFC 9110 Section 11.1](https://www.rfc-editor.org/rfc/rfc9110#section-11.1).
+     */
+    scheme?: string | null;
+  }
+  /**
+   * `Message` is one unit of communication between client and server. It can be associated with a context and/or a task. For server messages, `context_id` must be provided, and `task_id` only if a task was created. For client messages, both fields are optional, with the caveat that if both are provided, they have to match (the `context_id` has to be the one that is set on the task). If only `task_id` is provided, the server will infer `context_id` from it.
+   */
+  export interface Schema$LfA2aV1Message {
+    /**
+     * Optional. The context id of the message. If set, the message will be associated with the given context.
+     */
+    contextId?: string | null;
+    /**
+     * The URIs of extensions that are present or contributed to this Message.
+     */
+    extensions?: string[] | null;
+    /**
+     * Required. The unique identifier (e.g. UUID) of the message. This is created by the message creator.
+     */
+    messageId?: string | null;
+    /**
+     * Optional. Any metadata to provide along with the message.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * Required. Parts is the container of the message content.
+     */
+    parts?: Schema$LfA2aV1Part[];
+    /**
+     * A list of task IDs that this message references for additional context.
+     */
+    referenceTaskIds?: string[] | null;
+    /**
+     * Required. Identifies the sender of the message.
+     */
+    role?: string | null;
+    /**
+     * Optional. The task id of the message. If set, the message will be associated with the given task.
+     */
+    taskId?: string | null;
+  }
+  /**
+   * `Part` represents a container for a section of communication content. Parts can be purely textual, some sort of file (image, video, etc) or a structured data blob (i.e. JSON).
+   */
+  export interface Schema$LfA2aV1Part {
+    /**
+     * Arbitrary structured `data` as a JSON value (object, array, string, number, boolean, or null).
+     */
+    data?: any | null;
+    /**
+     * An optional `filename` for the file (e.g., "document.pdf").
+     */
+    filename?: string | null;
+    /**
+     * The `media_type` (MIME type) of the part content (e.g., "text/plain", "application/json", "image/png"). This field is available for all part types.
+     */
+    mediaType?: string | null;
+    /**
+     * Optional. metadata associated with this part.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * The `raw` byte content of a file. In JSON serialization, this is encoded as a base64 string.
+     */
+    raw?: string | null;
+    /**
+     * The string content of the `text` part.
+     */
+    text?: string | null;
+    /**
+     * A `url` pointing to the file's content.
+     */
+    url?: string | null;
+  }
+  /**
+   * Configuration of a send message request.
+   */
+  export interface Schema$LfA2aV1SendMessageConfiguration {
+    /**
+     * A list of media types the client is prepared to accept for response parts. Agents SHOULD use this to tailor their output.
+     */
+    acceptedOutputModes?: string[] | null;
+    /**
+     * The maximum number of most recent messages from the task's history to retrieve in the response. An unset value means the client does not impose any limit. A value of zero is a request to not include any messages. The server MUST NOT return more messages than the provided value, but MAY apply a lower limit.
+     */
+    historyLength?: number | null;
+    /**
+     * If `true`, the operation returns immediately after creating the task, even if processing is still in progress. If `false` (default), the operation MUST wait until the task reaches a terminal (`COMPLETED`, `FAILED`, `CANCELED`, `REJECTED`) or interrupted (`INPUT_REQUIRED`, `AUTH_REQUIRED`) state before returning.
+     */
+    returnImmediately?: boolean | null;
+    /**
+     * Configuration for the agent to send push notifications for task updates. Task id should be empty when sending this configuration in a `SendMessage` request.
+     */
+    taskPushNotificationConfig?: Schema$LfA2aV1TaskPushNotificationConfig;
+  }
+  /**
+   * Represents a request for the `SendMessage` method.
+   */
+  export interface Schema$LfA2aV1SendMessageRequest {
+    /**
+     * Configuration for the send request.
+     */
+    configuration?: Schema$LfA2aV1SendMessageConfiguration;
+    /**
+     * Required. The message to send to the agent.
+     */
+    message?: Schema$LfA2aV1Message;
+    /**
+     * A flexible key-value map for passing additional context or parameters.
+     */
+    metadata?: {[key: string]: any} | null;
+  }
+  /**
+   * Represents the response for the `SendMessage` method.
+   */
+  export interface Schema$LfA2aV1SendMessageResponse {
+    /**
+     * A message from the agent.
+     */
+    message?: Schema$LfA2aV1Message;
+    /**
+     * The task created or updated by the message.
+     */
+    task?: Schema$LfA2aV1Task;
+  }
+  /**
+   * `Task` is the core unit of action for A2A. It has a current status and when results are created for the task they are stored in the artifact. If there are multiple turns for a task, these are stored in history.
+   */
+  export interface Schema$LfA2aV1Task {
+    /**
+     * A set of output artifacts for a `Task`.
+     */
+    artifacts?: Schema$LfA2aV1Artifact[];
+    /**
+     * Unique identifier (e.g. UUID) for the contextual collection of interactions (tasks and messages).
+     */
+    contextId?: string | null;
+    /**
+     * protolint:disable REPEATED_FIELD_NAMES_PLURALIZED The history of interactions from a `Task`.
+     */
+    history?: Schema$LfA2aV1Message[];
+    /**
+     * Required. Unique identifier (e.g. UUID) for the task, generated by the server for a new task.
+     */
+    id?: string | null;
+    /**
+     * protolint:enable REPEATED_FIELD_NAMES_PLURALIZED A key/value object to store custom metadata about a task.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * Required. The current status of a `Task`, including `state` and a `message`.
+     */
+    status?: Schema$LfA2aV1TaskStatus;
+  }
+  /**
+   * A container associating a push notification configuration with a specific task.
+   */
+  export interface Schema$LfA2aV1TaskPushNotificationConfig {
+    /**
+     * Authentication information required to send the notification.
+     */
+    authentication?: Schema$LfA2aV1AuthenticationInfo;
+    /**
+     * The push notification configuration details. A unique identifier (e.g. UUID) for this push notification configuration.
+     */
+    id?: string | null;
+    /**
+     * The ID of the task this configuration is associated with.
+     */
+    taskId?: string | null;
+    /**
+     * Optional. Tenant ID.
+     */
+    tenant?: string | null;
+    /**
+     * A token unique for this task or session.
+     */
+    token?: string | null;
+    /**
+     * Required. The URL where the notification should be sent.
+     */
+    url?: string | null;
+  }
+  /**
+   * A container for the status of a task
+   */
+  export interface Schema$LfA2aV1TaskStatus {
+    /**
+     * A message associated with the status.
+     */
+    message?: Schema$LfA2aV1Message;
+    /**
+     * Required. The current state of this task.
+     */
+    state?: string | null;
+    /**
+     * ISO 8601 Timestamp when the status was recorded. Example: "2023-10-27T10:00:00Z"
+     */
+    timestamp?: string | null;
+  }
+  /**
    * Response message for AgentService.ListAgents.
    */
   export interface Schema$ListAgentsResponse {
@@ -2430,11 +2672,11 @@ export namespace ces_v1 {
    */
   export interface Schema$LoggingSettings {
     /**
-     * Optional. Configuration for how audio interactions should be recorded.
+     * Optional. Configuration for how audio interactions should be recorded. The audio is subject to redaction as configured in RedactionConfig.
      */
     audioRecordingConfig?: Schema$AudioRecordingConfig;
     /**
-     * Optional. Settings to describe the BigQuery export behaviors for the app. The conversation data will be exported to BigQuery tables if it is enabled.
+     * Optional. Configures the BigQuery export behaviors for the app. The conversation data is subject to redaction as configured in RedactionConfig.
      */
     bigqueryExportSettings?: Schema$BigQueryExportSettings;
     /**
@@ -2458,7 +2700,7 @@ export namespace ces_v1 {
      */
     redactionConfig?: Schema$RedactionConfig;
     /**
-     * Optional. Configures recording of unredacted audio. Use this to maintain a raw backup with restricted access when audio redaction is enabled, typically for auditing or monitoring purposes.
+     * Optional. Configures an additional recording of unredacted audio. This can be used to maintain a raw audio copy when audio redaction is enabled, typically for auditing or monitoring purposes.
      */
     unredactedAudioRecordingConfig?: Schema$AudioRecordingConfig;
   }
@@ -2487,6 +2729,10 @@ export namespace ces_v1 {
      */
     name?: string | null;
     /**
+     * Optional. The name override of the MCP tool. This is populated if the name was overridden by a Toolset override.
+     */
+    nameOverride?: string | null;
+    /**
      * Optional. The schema of the output arguments of the MCP tool.
      */
     outputSchema?: Schema$Schema;
@@ -2499,9 +2745,51 @@ export namespace ces_v1 {
      */
     serviceDirectoryConfig?: Schema$ServiceDirectoryConfig;
     /**
+     * Output only. The dynamic availability state of the tool on the external server.
+     */
+    state?: string | null;
+    /**
      * Optional. The TLS configuration. Includes the custom server certificates that the client should trust.
      */
     tlsConfig?: Schema$TlsConfig;
+  }
+  /**
+   * Container for a tool's core definition elements that are snapshot. Schemas in the snapshot are used as-is and cannot be overridden.
+   */
+  export interface Schema$McpToolDefinition {
+    /**
+     * Output only. The description of the MCP tool. This can be overridden by `description_override` in `McpToolOverride`.
+     */
+    description?: string | null;
+    /**
+     * Output only. The schema of the input arguments of the MCP tool.
+     */
+    inputSchema?: Schema$Schema;
+    /**
+     * Output only. The schema of the output arguments of the MCP tool.
+     */
+    outputSchema?: Schema$Schema;
+  }
+  /**
+   * Overrides associated with a given tool in a Toolset. This enables "pinning" or "overriding" of tool definitions from the external dynamic server.
+   */
+  export interface Schema$McpToolOverride {
+    /**
+     * Optional. If present, this tool uses this description instead of the original description from the server.
+     */
+    descriptionOverride?: string | null;
+    /**
+     * Optional. If present, this tool uses this name in the Agent instead of the original name. This is primarily used as an alias if the MCP server offers poorly named tools.
+     */
+    nameOverride?: string | null;
+    /**
+     * Output only. If present, this tool is "Pinned" and uses the snapshot values as fallbacks if the server becomes temporarily unavailable or if no Override is present.
+     */
+    snapshot?: Schema$McpToolDefinition;
+    /**
+     * Required. The original name of the tool as it is emitted by the MCP server.
+     */
+    tool?: string | null;
   }
   /**
    * A toolset that contains a list of tools that are offered by the MCP server.
@@ -2527,6 +2815,10 @@ export namespace ces_v1 {
      * Optional. The TLS configuration. Includes the custom server certificates that the client should trust.
      */
     tlsConfig?: Schema$TlsConfig;
+    /**
+     * Optional. Overrides for individual tools within this toolset. This allows overriding specific details like descriptions, names, or pinning the tools' states so they aren't fully dynamic.
+     */
+    toolOverrides?: Schema$McpToolOverride[];
   }
   /**
    * A message within a conversation.
@@ -2629,148 +2921,6 @@ export namespace ces_v1 {
      * Required. The token endpoint in the OAuth provider to exchange for an access token.
      */
     tokenEndpoint?: string | null;
-  }
-  /**
-   * Represents an Omnichannel resource.
-   */
-  export interface Schema$Omnichannel {
-    /**
-     * Output only. Timestamp when the omnichannel resource was created.
-     */
-    createTime?: string | null;
-    /**
-     * Optional. Human-readable description of the omnichannel resource.
-     */
-    description?: string | null;
-    /**
-     * Required. Display name of the omnichannel resource.
-     */
-    displayName?: string | null;
-    /**
-     * Output only. Etag used to ensure the object hasn't changed during a read-modify-write operation.
-     */
-    etag?: string | null;
-    /**
-     * Optional. The integration config for the omnichannel resource.
-     */
-    integrationConfig?: Schema$OmnichannelIntegrationConfig;
-    /**
-     * Identifier. The unique identifier of the omnichannel resource. Format: `projects/{project\}/locations/{location\}/omnichannels/{omnichannel\}`
-     */
-    name?: string | null;
-    /**
-     * Output only. Timestamp when the omnichannel resource was last updated.
-     */
-    updateTime?: string | null;
-  }
-  /**
-   * OmnichannelIntegrationConfig contains all App integration configs.
-   */
-  export interface Schema$OmnichannelIntegrationConfig {
-    /**
-     * Optional. Various of configuration for handling App events.
-     */
-    channelConfigs?: {
-      [key: string]: Schema$OmnichannelIntegrationConfigChannelConfig;
-    } | null;
-    /**
-     * Optional. The key of routing_configs is a key of `app_configs`, value is a `RoutingConfig`, which contains subscriber's key.
-     */
-    routingConfigs?: {
-      [key: string]: Schema$OmnichannelIntegrationConfigRoutingConfig;
-    } | null;
-    /**
-     * Optional. Various of subscribers configs.
-     */
-    subscriberConfigs?: {
-      [key: string]: Schema$OmnichannelIntegrationConfigSubscriberConfig;
-    } | null;
-  }
-  /**
-   * Configs for CES app.
-   */
-  export interface Schema$OmnichannelIntegrationConfigCesAppConfig {
-    /**
-     * The unique identifier of the CES app. Format: `projects/{project\}/locations/{location\}/apps/{app\}`
-     */
-    app?: string | null;
-  }
-  /**
-   * ChannelConfig contains config for various of app integration.
-   */
-  export interface Schema$OmnichannelIntegrationConfigChannelConfig {
-    /**
-     * WhatsApp config.
-     */
-    whatsappConfig?: Schema$OmnichannelIntegrationConfigWhatsappConfig;
-  }
-  /**
-   * Routing config specify how/who to route app events to a subscriber.
-   */
-  export interface Schema$OmnichannelIntegrationConfigRoutingConfig {
-    /**
-     * The key of the subscriber.
-     */
-    subscriberKey?: string | null;
-  }
-  /**
-   * Configs of subscribers.
-   */
-  export interface Schema$OmnichannelIntegrationConfigSubscriberConfig {
-    /**
-     * Ces app config.
-     */
-    cesAppConfig?: Schema$OmnichannelIntegrationConfigCesAppConfig;
-  }
-  /**
-   * How Omnichannel should receive/reply events from WhatsApp.
-   */
-  export interface Schema$OmnichannelIntegrationConfigWhatsappConfig {
-    /**
-     * The Meta Business Portfolio (MBP) ID. https://www.facebook.com/business/help/1710077379203657
-     */
-    metaBusinessPortfolioId?: string | null;
-    /**
-     * The phone number used for sending/receiving messages.
-     */
-    phoneNumber?: string | null;
-    /**
-     * The Phone Number ID associated with the WhatsApp Business Account.
-     */
-    phoneNumberId?: string | null;
-    /**
-     * The verify token configured in the Meta App Dashboard for webhook verification.
-     */
-    webhookVerifyToken?: string | null;
-    /**
-     * The customer's WhatsApp Business Account (WABA) ID.
-     */
-    whatsappBusinessAccountId?: string | null;
-    /**
-     * The access token for authenticating API calls to the WhatsApp Cloud API. https://developers.facebook.com/docs/whatsapp/business-management-api/get-started/#business-integration-system-user-access-tokens
-     */
-    whatsappBusinessToken?: string | null;
-  }
-  /**
-   * Represents the metadata of the long-running operation.
-   */
-  export interface Schema$OmnichannelOperationMetadata {
-    /**
-     * Output only. The time the operation was created.
-     */
-    createTime?: string | null;
-    /**
-     * Output only. The time the operation finished running.
-     */
-    endTime?: string | null;
-    /**
-     * Output only. Identifies whether the user has requested cancellation of the operation.
-     */
-    requestedCancellation?: boolean | null;
-    /**
-     * Output only. Human-readable status of the operation, if any.
-     */
-    statusMessage?: string | null;
   }
   /**
    * A remote API tool defined by an OpenAPI schema.
@@ -2922,6 +3072,10 @@ export namespace ces_v1 {
      * Optional. The Python code to execute for the tool.
      */
     pythonCode?: string | null;
+    /**
+     * Optional. Service Directory configuration for the tool.
+     */
+    serviceDirectoryConfig?: Schema$ServiceDirectoryConfig;
   }
   /**
    * Configuration to instruct how sensitive data should be handled.
@@ -2999,6 +3153,10 @@ export namespace ces_v1 {
    * Request message for ToolService.RetrieveTools.
    */
   export interface Schema$RetrieveToolsRequest {
+    /**
+     * Optional. If true, the returned tools will contain raw descriptions and schemas directly from the server, bypassing any stored persistence configurations (overrides/snapshots).
+     */
+    bypassPersistenceConfig?: boolean | null;
     /**
      * Optional. The identifiers of the tools to retrieve from the toolset. If empty, all tools in the toolset will be returned.
      */
@@ -4208,6 +4366,7 @@ export namespace ces_v1 {
     deployments: Resource$Projects$Locations$Apps$Deployments;
     examples: Resource$Projects$Locations$Apps$Examples;
     guardrails: Resource$Projects$Locations$Apps$Guardrails;
+    message: Resource$Projects$Locations$Apps$Message;
     sessions: Resource$Projects$Locations$Apps$Sessions;
     tools: Resource$Projects$Locations$Apps$Tools;
     toolsets: Resource$Projects$Locations$Apps$Toolsets;
@@ -4230,6 +4389,7 @@ export namespace ces_v1 {
       this.guardrails = new Resource$Projects$Locations$Apps$Guardrails(
         this.context
       );
+      this.message = new Resource$Projects$Locations$Apps$Message(this.context);
       this.sessions = new Resource$Projects$Locations$Apps$Sessions(
         this.context
       );
@@ -10260,6 +10420,180 @@ export namespace ces_v1 {
     requestBody?: Schema$Guardrail;
   }
 
+  export class Resource$Projects$Locations$Apps$Message {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Sends a message to an agent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/ces.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const ces = google.ces('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/ces',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await ces.projects.locations.apps.message.send({
+     *     // Optional. Tenant ID, provided as a path parameter.
+     *     tenant: 'projects/my-project/locations/my-location/apps/my-app',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "configuration": {},
+     *       //   "message": {},
+     *       //   "metadata": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "message": {},
+     *   //   "task": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    send(
+      params: Params$Resource$Projects$Locations$Apps$Message$Send,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    send(
+      params?: Params$Resource$Projects$Locations$Apps$Message$Send,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LfA2aV1SendMessageResponse>>;
+    send(
+      params: Params$Resource$Projects$Locations$Apps$Message$Send,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    send(
+      params: Params$Resource$Projects$Locations$Apps$Message$Send,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LfA2aV1SendMessageResponse>,
+      callback: BodyResponseCallback<Schema$LfA2aV1SendMessageResponse>
+    ): void;
+    send(
+      params: Params$Resource$Projects$Locations$Apps$Message$Send,
+      callback: BodyResponseCallback<Schema$LfA2aV1SendMessageResponse>
+    ): void;
+    send(
+      callback: BodyResponseCallback<Schema$LfA2aV1SendMessageResponse>
+    ): void;
+    send(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Apps$Message$Send
+        | BodyResponseCallback<Schema$LfA2aV1SendMessageResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LfA2aV1SendMessageResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LfA2aV1SendMessageResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LfA2aV1SendMessageResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Apps$Message$Send;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Apps$Message$Send;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ces.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+tenant}/message:send').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['tenant'],
+        pathParams: ['tenant'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LfA2aV1SendMessageResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LfA2aV1SendMessageResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Apps$Message$Send extends StandardParameters {
+    /**
+     * Optional. Tenant ID, provided as a path parameter.
+     */
+    tenant?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LfA2aV1SendMessageRequest;
+  }
+
   export class Resource$Projects$Locations$Apps$Sessions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -12485,6 +12819,7 @@ export namespace ces_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "bypassPersistenceConfig": false,
      *       //   "toolIds": []
      *       // }
      *     },

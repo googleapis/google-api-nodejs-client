@@ -162,6 +162,10 @@ export namespace firebaseapphosting_v1beta {
      */
     appId?: string | null;
     /**
+     * Optional. automatic_base_image_updates_disabled acts as a way for users to opt out of ABIU.
+     */
+    automaticBaseImageUpdatesDisabled?: boolean | null;
+    /**
      * Optional. If specified, the connection to an external source repository to watch for event-driven updates to the backend.
      */
     codebase?: Schema$Codebase;
@@ -214,6 +218,10 @@ export namespace firebaseapphosting_v1beta {
      */
     requestLogsDisabled?: boolean | null;
     /**
+     * Optional. The runtime that the backend will be built on. A default base_image will be chosen for a given runtime.
+     */
+    runtime?: Schema$BackendRuntime;
+    /**
      * Required. The name of the service account used for Cloud Build and Cloud Run. Should have the role roles/firebaseapphosting.computeRunner or equivalent permissions.
      */
     serviceAccount?: string | null;
@@ -233,6 +241,15 @@ export namespace firebaseapphosting_v1beta {
      * Output only. The primary URI to communicate with the backend.
      */
     uri?: string | null;
+  }
+  /**
+   * Runtime is a string that represents the runtime that is used to build the backend. Users can specify one of the following runtimes: nodejs20, nodejs22, nodejs24, nodejs. Runtime "nodejs" means that nodejs version will be determined at build time. If not specified or specified with a value that is not in the list above, the default runtime `nodejs` will be used and Automatic Base Image Updates will be disabled.
+   */
+  export interface Schema$BackendRuntime {
+    /**
+     * Optional. The value of the runtime.
+     */
+    value?: string | null;
   }
   /**
    * A single build for a backend, at a specific point codebase reference tag and point in time. Encapsulates several resources, including an Artifact Registry container image, a Cloud Build invocation that built the image, and the Cloud Run revision that uses that image.
@@ -1001,11 +1018,11 @@ export namespace firebaseapphosting_v1beta {
      */
     disabledTime?: string | null;
     /**
-     * Optional. A list of file paths patterns to exclude from triggering a rollout. Patterns in this list take precedence over required_paths. **Note**: All paths must be in the ignored_paths in order for the rollout to be skipped. Limited to 100 paths. Example: ignored_paths: { pattern: "foo/bar/excluded/x” type: GLOB \}
+     * Optional. A list of file paths patterns to exclude from triggering a rollout. Patterns in this list take precedence over required_paths. **Note**: All paths must be in the ignored_paths in order for the rollout to be skipped. Limited to 100 paths. Example: ``` ignored_paths: { pattern: "foo/bar/excluded/x", type: "GLOB" \} ```
      */
     ignoredPaths?: Schema$Path[];
     /**
-     * Optional. A list of file paths patterns that trigger a build and rollout if at least one of the changed files in the commit are present in this list. This field is optional; the rollout policy will default to triggering on all paths if not populated. Limited to 100 paths. Example: “required_paths: { pattern: "foo/bar/x” type: GLOB \}
+     * Optional. A list of file paths patterns that trigger a build and rollout if at least one of the changed files in the commit are present in this list. This field is optional; the rollout policy will default to triggering on all paths if both ignored_paths and required_paths are not populated. Limited to 100 paths. Example: ``` required_paths: { pattern: "foo/bar/x", type: "GLOB" \} ```
      */
     requiredPaths?: Schema$Path[];
   }
@@ -1610,6 +1627,7 @@ export namespace firebaseapphosting_v1beta {
      *       // {
      *       //   "annotations": {},
      *       //   "appId": "my_appId",
+     *       //   "automaticBaseImageUpdatesDisabled": false,
      *       //   "codebase": {},
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
@@ -1623,6 +1641,7 @@ export namespace firebaseapphosting_v1beta {
      *       //   "overrideEnv": [],
      *       //   "reconciling": false,
      *       //   "requestLogsDisabled": false,
+     *       //   "runtime": {},
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "servingLocality": "my_servingLocality",
      *       //   "uid": "my_uid",
@@ -1926,6 +1945,7 @@ export namespace firebaseapphosting_v1beta {
      *   // {
      *   //   "annotations": {},
      *   //   "appId": "my_appId",
+     *   //   "automaticBaseImageUpdatesDisabled": false,
      *   //   "codebase": {},
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
@@ -1939,6 +1959,7 @@ export namespace firebaseapphosting_v1beta {
      *   //   "overrideEnv": [],
      *   //   "reconciling": false,
      *   //   "requestLogsDisabled": false,
+     *   //   "runtime": {},
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "servingLocality": "my_servingLocality",
      *   //   "uid": "my_uid",
@@ -2240,6 +2261,7 @@ export namespace firebaseapphosting_v1beta {
      *       // {
      *       //   "annotations": {},
      *       //   "appId": "my_appId",
+     *       //   "automaticBaseImageUpdatesDisabled": false,
      *       //   "codebase": {},
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
@@ -2253,6 +2275,7 @@ export namespace firebaseapphosting_v1beta {
      *       //   "overrideEnv": [],
      *       //   "reconciling": false,
      *       //   "requestLogsDisabled": false,
+     *       //   "runtime": {},
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "servingLocality": "my_servingLocality",
      *       //   "uid": "my_uid",

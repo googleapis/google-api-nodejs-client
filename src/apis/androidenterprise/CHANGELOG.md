@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v13.0.1...androidenterprise-v13.0.2) (2026-05-19)
+
+
+### Bug Fixes
+
+* **androidenterprise:** update the API ([214aa96](https://github.com/googleapis/google-api-nodejs-client/commit/214aa960fe737bed2cbcd994d72e2e0f7619ef47))
+
 ## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v13.0.0...androidenterprise-v13.0.1) (2025-12-05)
 
 

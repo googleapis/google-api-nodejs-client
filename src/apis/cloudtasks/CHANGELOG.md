@@ -1,5 +1,18 @@
 # Changelog
 
+## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v20.0.3...cloudtasks-v21.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cloudtasks:** This release has breaking changes.
+
+### Features
+
+* **cloudtasks:** update the API ([51ba2a8](https://github.com/googleapis/google-api-nodejs-client/commit/51ba2a873311990ef6bb7d0d0b13a84266a4a860))
+* **cloudtasks:** update the API ([757a51a](https://github.com/googleapis/google-api-nodejs-client/commit/757a51ac61b7c68e4a36934b8f54855b12a882bc))
+* regenerate index files ([6e5b152](https://github.com/googleapis/google-api-nodejs-client/commit/6e5b152799ee21009bd9a3d20c52de6fa6a0e900))
+
 ## [20.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v20.0.2...cloudtasks-v20.0.3) (2026-01-28)
 
 

@@ -1,5 +1,27 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/travelimpactmodel-v7.0.0...travelimpactmodel-v8.0.0) (2026-05-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/travelimpactmodel-v6.1.0...travelimpactmodel-v7.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **travelimpactmodel:** This release has breaking changes.
+
+### Features
+
+* **travelimpactmodel:** update the API ([292c73c](https://github.com/googleapis/google-api-nodejs-client/commit/292c73c5968f16c1bd1ad7dc2770d4b8ef23e17e))
+
 ## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/travelimpactmodel-v6.0.2...travelimpactmodel-v6.1.0) (2026-01-28)
 
 

@@ -621,7 +621,7 @@ export namespace androidpublisher_v3 {
      */
     priceStepUpConsentDetails?: Schema$PriceStepUpConsentDetails;
     /**
-     * The current recurring price of the auto renewing plan. Note that the price does not take into account discounts and does not include taxes for tax-exclusive pricing, please call orders.get API instead if transaction details are needed.
+     * The current recurring price of the auto renewing plan. Note that the price does not take into account discounts and does not include taxes. For tax-exclusive pricing, please call orders.get API instead if transaction details are needed.
      */
     recurringPrice?: Schema$Money;
   }
@@ -2273,6 +2273,15 @@ export namespace androidpublisher_v3 {
     sku?: string | null;
   }
   /**
+   * Additional context around subscriptions in IN_GRACE_PERIOD state.
+   */
+  export interface Schema$InGracePeriodStateContext {
+    /**
+     * Optional. The payment for the renewal was declined.
+     */
+    renewalDeclined?: Schema$RenewalDeclinedContext;
+  }
+  /**
    * Information to a installment plan.
    */
   export interface Schema$InstallmentPlan {
@@ -3135,6 +3144,15 @@ export namespace androidpublisher_v3 {
     rentalDetails?: Schema$RentalDetails;
   }
   /**
+   * Additional context around subscriptions in ON_HOLD state.
+   */
+  export interface Schema$OnHoldStateContext {
+    /**
+     * Optional. The payment for the renewal was declined.
+     */
+    renewalDeclined?: Schema$RenewalDeclinedContext;
+  }
+  /**
    * The Order resource encapsulates comprehensive information about a transaction made on Google Play. It includes a variety of attributes that provide details about the order itself, the products purchased, and the history of events related to the order. The Orders APIs provide real-time access to your order data within the Google Play ecosystem. You can retrieve detailed information and metadata for both one-time and recurring orders, including transaction details like charges, taxes, and refunds, as well as metadata such as pricing phases for subscriptions. The Orders APIs let you automate tasks related to order management, reducing the need for manual checks via the Play Developer Console. The following are some of the use cases for this API: + Real-time order data retrieval - Get order details and metadata immediately after a purchase using an order ID. + Order update synchronization - Periodically sync order updates to maintain an up-to-date record of order information. Note: + The Orders API calls count towards your Play Developer API quota, which defaults to 200K daily, and may be insufficient to sync extensive order histories. + A maximum of 1000 orders can be retrieved per call. Using larger page sizes is recommended to minimize quota usage. Check your quota in the Cloud Console and request more if required.
    */
   export interface Schema$Order {
@@ -3952,6 +3970,15 @@ export namespace androidpublisher_v3 {
     versionCode?: string | null;
   }
   /**
+   * Context related to renewal declined scenario.
+   */
+  export interface Schema$RenewalDeclinedContext {
+    /**
+     * Required. The ID of the pending or failed order causing the state.
+     */
+    pendingOrderId?: string | null;
+  }
+  /**
    * Details of a rental purchase.
    */
   export interface Schema$RentalDetails {}
@@ -4294,7 +4321,7 @@ export namespace androidpublisher_v3 {
      */
     offerId?: string | null;
     /**
-     * The pricing phase for the billing period funded by this order. Deprecated. Use offer_phase_details instead.
+     * Deprecated: Use offer_phase_details instead. The pricing phase for the billing period funded by this order.
      */
     offerPhase?: string | null;
     /**
@@ -4445,7 +4472,7 @@ export namespace androidpublisher_v3 {
     state?: number | null;
   }
   /**
-   * A SubscriptionPurchase resource indicates the status of a user's subscription purchase.
+   * Deprecated: Use SubscriptionPurchaseV2 instead. A SubscriptionPurchase resource indicates the status of a user's subscription purchase.
    */
   export interface Schema$SubscriptionPurchase {
     /**
@@ -4666,6 +4693,10 @@ export namespace androidpublisher_v3 {
      */
     externalAccountIdentifiers?: Schema$ExternalAccountIdentifiers;
     /**
+     * Optional. Additional context around subscriptions in IN_GRACE_PERIOD state. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_IN_GRACE_PERIOD.
+     */
+    inGracePeriodStateContext?: Schema$InGracePeriodStateContext;
+    /**
      * This kind represents a SubscriptionPurchaseV2 object in the androidpublisher service.
      */
     kind?: string | null;
@@ -4681,6 +4712,10 @@ export namespace androidpublisher_v3 {
      * The purchase token of the old subscription if this subscription is one of the following: * Re-signup of a canceled but non-lapsed subscription * Upgrade/downgrade from a previous subscription. * Convert from prepaid to auto renewing subscription. * Convert from an auto renewing subscription to prepaid. * Topup a prepaid subscription.
      */
     linkedPurchaseToken?: string | null;
+    /**
+     * Optional. Additional context around subscriptions in ON_HOLD state. Only present if the subscription currently has subscription_state SUBSCRIPTION_STATE_ON_HOLD.
+     */
+    onHoldStateContext?: Schema$OnHoldStateContext;
     /**
      * Additional context for out of app purchases. This information is only present for re-subscription purchases (subscription purchases made after the previous subscription of the same product has expired) made through the Google Play subscriptions center. This field will be removed after you acknowledge the subscription.
      */
@@ -25417,7 +25452,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Cancels a user's subscription purchase. The subscription remains valid until its expiration time. Newer version is available at purchases.subscriptionsv2.cancel for better client library support.
+     * Deprecated: Use purchases.subscriptionsv2.cancel instead. Cancels a user's subscription purchase. The subscription remains valid until its expiration time. Newer version is available at purchases.subscriptionsv2.cancel for better client library support.
      * @example
      * ```js
      * // Before running the sample:
@@ -25552,7 +25587,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Defers a user's subscription purchase until a specified future expiration time.
+     * Deprecated: Use purchases.subscriptionsv2.defer instead. Defers a user's subscription purchase until a specified future expiration time.
      * @example
      * ```js
      * // Before running the sample:
@@ -26613,10 +26648,12 @@ export namespace androidpublisher_v3 {
      *   //   "canceledStateContext": {},
      *   //   "etag": "my_etag",
      *   //   "externalAccountIdentifiers": {},
+     *   //   "inGracePeriodStateContext": {},
      *   //   "kind": "my_kind",
      *   //   "latestOrderId": "my_latestOrderId",
      *   //   "lineItems": [],
      *   //   "linkedPurchaseToken": "my_linkedPurchaseToken",
+     *   //   "onHoldStateContext": {},
      *   //   "outOfAppPurchaseContext": {},
      *   //   "pausedStateContext": {},
      *   //   "regionCode": "my_regionCode",

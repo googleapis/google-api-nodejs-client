@@ -1,0 +1,2534 @@
+{
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/cloud-platform": {
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
+        }
+      }
+    }
+  },
+  "basePath": "",
+  "baseUrl": "https://cloudnumberregistry.googleapis.com/",
+  "batchPath": "batch",
+  "canonicalName": "Cloud Number Registry",
+  "description": "",
+  "discoveryVersion": "v1",
+  "documentationLink": "https://docs.cloud.google.com/number-registry/reference/rest",
+  "fullyEncodeReservedExpansion": true,
+  "icons": {
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+  },
+  "id": "cloudnumberregistry:v1alpha",
+  "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://cloudnumberregistry.mtls.googleapis.com/",
+  "name": "cloudnumberregistry",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "$.xgafv": {
+      "description": "V1 error format.",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "enumDescriptions": [
+        "v1 error format",
+        "v2 error format"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
+      "location": "query",
+      "type": "string"
+    },
+    "fields": {
+      "description": "Selector specifying which fields to include in a partial response.",
+      "location": "query",
+      "type": "string"
+    },
+    "key": {
+      "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
+      "location": "query",
+      "type": "string"
+    },
+    "prettyPrint": {
+      "default": "true",
+      "description": "Returns response with indentations and line breaks.",
+      "location": "query",
+      "type": "boolean"
+    },
+    "quotaUser": {
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "location": "query",
+      "type": "string"
+    },
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "projects": {
+      "resources": {
+        "locations": {
+          "methods": {
+            "get": {
+              "description": "Gets information about a location.",
+              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}",
+              "httpMethod": "GET",
+              "id": "cloudnumberregistry.projects.locations.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Resource name for the location.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "Location"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+              "flatPath": "v1alpha/projects/{projectsId}/locations",
+              "httpMethod": "GET",
+              "id": "cloudnumberregistry.projects.locations.list",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "extraLocationTypes": {
+                  "description": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "The resource that owns the locations collection, if applicable.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}/locations",
+              "response": {
+                "$ref": "ListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
+          "resources": {
+            "customRanges": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new CustomRange in a given project and location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/customRanges",
+                  "httpMethod": "POST",
+                  "id": "cloudnumberregistry.projects.locations.customRanges.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "customRangeId": {
+                      "description": "Required. Id of the requesting object.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Value for parent.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/customRanges",
+                  "request": {
+                    "$ref": "CustomRange"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single CustomRange.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/customRanges/{customRangesId}",
+                  "httpMethod": "DELETE",
+                  "id": "cloudnumberregistry.projects.locations.customRanges.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "force": {
+                      "description": "Optional. If set to true, all associated resources will be deleted.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/customRanges/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "findFreeIpRanges": {
+                  "description": "Finds free IP ranges in a single CustomRange.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/customRanges/{customRangesId}:findFreeIpRanges",
+                  "httpMethod": "GET",
+                  "id": "cloudnumberregistry.projects.locations.customRanges.findFreeIpRanges",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "cidrPrefixLength": {
+                      "description": "Required. The prefix length of the free IP ranges to find.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "name": {
+                      "description": "Required. Name of the CustomRange.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/customRanges/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "rangeCount": {
+                      "description": "Optional. The number of free IP ranges to find.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:findFreeIpRanges",
+                  "response": {
+                    "$ref": "FindCustomRangeFreeIpRangesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single CustomRange.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/customRanges/{customRangesId}",
+                  "httpMethod": "GET",
+                  "id": "cloudnumberregistry.projects.locations.customRanges.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/customRanges/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "CustomRange"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists CustomRanges in a given project and location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/customRanges",
+                  "httpMethod": "GET",
+                  "id": "cloudnumberregistry.projects.locations.customRanges.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListCustomRangesRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/customRanges",
+                  "response": {
+                    "$ref": "ListCustomRangesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single CustomRange.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/customRanges/{customRangesId}",
+                  "httpMethod": "PATCH",
+                  "id": "cloudnumberregistry.projects.locations.customRanges.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Identifier. name of resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/customRanges/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the CustomRange resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "CustomRange"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "showUtilization": {
+                  "description": "Gets the details of a single CustomRange and its utilization.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/customRanges/{customRangesId}:showUtilization",
+                  "httpMethod": "GET",
+                  "id": "cloudnumberregistry.projects.locations.customRanges.showUtilization",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/customRanges/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:showUtilization",
+                  "response": {
+                    "$ref": "ShowCustomRangeUtilizationResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "discoveredRanges": {
+              "methods": {
+                "findFreeIpRanges": {
+                  "description": "Finds free IP ranges in a single DiscoveredRange.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/discoveredRanges/{discoveredRangesId}:findFreeIpRanges",
+                  "httpMethod": "GET",
+                  "id": "cloudnumberregistry.projects.locations.discoveredRanges.findFreeIpRanges",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "cidrPrefixLength": {
+                      "description": "Required. The prefix length of the free IP ranges to find.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "name": {
+                      "description": "Required. Name of the DiscoveredRange.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/discoveredRanges/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "rangeCount": {
+                      "description": "Optional. The number of free IP ranges to find.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:findFreeIpRanges",
+                  "response": {
+                    "$ref": "FindDiscoveredRangeFreeIpRangesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single DiscoveredRange.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/discoveredRanges/{discoveredRangesId}",
+                  "httpMethod": "GET",
+                  "id": "cloudnumberregistry.projects.locations.discoveredRanges.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/discoveredRanges/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "DiscoveredRange"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists DiscoveredRanges in a given project and location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/discoveredRanges",
+                  "httpMethod": "GET",
+                  "id": "cloudnumberregistry.projects.locations.discoveredRanges.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListDiscoveredRangesRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/discoveredRanges",
+                  "response": {
+                    "$ref": "ListDiscoveredRangesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "showUtilization": {
+                  "description": "Gets the details of a single DiscoveredRange and its utilization.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/discoveredRanges/{discoveredRangesId}:showUtilization",
+                  "httpMethod": "GET",
+                  "id": "cloudnumberregistry.projects.locations.discoveredRanges.showUtilization",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/discoveredRanges/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:showUtilization",
+                  "response": {
+                    "$ref": "ShowDiscoveredRangeUtilizationResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "ipamAdminScopes": {
+              "methods": {
+                "checkAvailability": {
+                  "description": "Checks the availability of IPAM admin scopes in a given project and location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/ipamAdminScopes:checkAvailability",
+                  "httpMethod": "GET",
+                  "id": "cloudnumberregistry.projects.locations.ipamAdminScopes.checkAvailability",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Parent value for the IpamAdminScopes.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "scopes": {
+                      "description": "Required. The scopes of the IpamAdminScopes to look for.",
+                      "location": "query",
+                      "repeated": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/ipamAdminScopes:checkAvailability",
+                  "response": {
+                    "$ref": "CheckAvailabilityIpamAdminScopesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "cleanup": {
+                  "description": "Cleans up a single IpamAdminScope.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/ipamAdminScopes/{ipamAdminScopesId}:cleanup",
+                  "httpMethod": "POST",
+                  "id": "cloudnumberregistry.projects.locations.ipamAdminScopes.cleanup",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/ipamAdminScopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:cleanup",
+                  "request": {
+                    "$ref": "CleanupIpamAdminScopeRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "create": {
+                  "description": "Creates a new IpamAdminScope in a given project and location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/ipamAdminScopes",
+                  "httpMethod": "POST",
+                  "id": "cloudnumberregistry.projects.locations.ipamAdminScopes.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "ipamAdminScopeId": {
+                      "description": "Required. Id of the requesting object.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Value for parent.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/ipamAdminScopes",
+                  "request": {
+                    "$ref": "IpamAdminScope"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single IpamAdminScope.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/ipamAdminScopes/{ipamAdminScopesId}",
+                  "httpMethod": "DELETE",
+                  "id": "cloudnumberregistry.projects.locations.ipamAdminScopes.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "force": {
+                      "description": "Optional. If set to true, all associated resources will be deleted.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/ipamAdminScopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "disable": {
+                  "description": "Disables a single IpamAdminScope.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/ipamAdminScopes/{ipamAdminScopesId}:disable",
+                  "httpMethod": "POST",
+                  "id": "cloudnumberregistry.projects.locations.ipamAdminScopes.disable",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/ipamAdminScopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:disable",
+                  "request": {
+                    "$ref": "DisableIpamAdminScopeRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single IpamAdminScope.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/ipamAdminScopes/{ipamAdminScopesId}",
+                  "httpMethod": "GET",
+                  "id": "cloudnumberregistry.projects.locations.ipamAdminScopes.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/ipamAdminScopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "IpamAdminScope"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List all IPAM admin scopes in a given project and location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/ipamAdminScopes",
+                  "httpMethod": "GET",
+                  "id": "cloudnumberregistry.projects.locations.ipamAdminScopes.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListIpamAdminScopesRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/ipamAdminScopes",
+                  "response": {
+                    "$ref": "ListIpamAdminScopesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single IpamAdminScope.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/ipamAdminScopes/{ipamAdminScopesId}",
+                  "httpMethod": "PATCH",
+                  "id": "cloudnumberregistry.projects.locations.ipamAdminScopes.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Identifier. name of resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/ipamAdminScopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the IpamAdminScope resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "IpamAdminScope"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "operations": {
+              "methods": {
+                "cancel": {
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "httpMethod": "POST",
+                  "id": "cloudnumberregistry.projects.locations.operations.cancel",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be cancelled.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:cancel",
+                  "request": {
+                    "$ref": "CancelOperationRequest"
+                  },
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "cloudnumberregistry.projects.locations.operations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be deleted.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "cloudnumberregistry.projects.locations.operations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/operations",
+                  "httpMethod": "GET",
+                  "id": "cloudnumberregistry.projects.locations.operations.list",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The standard list filter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the operation's parent resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The standard list page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The standard list page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1alpha/{+name}/operations",
+                  "response": {
+                    "$ref": "ListOperationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "realms": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new Realm in a given project and location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/realms",
+                  "httpMethod": "POST",
+                  "id": "cloudnumberregistry.projects.locations.realms.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Value for parent.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "realmId": {
+                      "description": "Required. Id of the requesting object.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/realms",
+                  "request": {
+                    "$ref": "Realm"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single Realm.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}",
+                  "httpMethod": "DELETE",
+                  "id": "cloudnumberregistry.projects.locations.realms.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "force": {
+                      "description": "Optional. If set to true, all associated resources will be deleted.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single Realm.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}",
+                  "httpMethod": "GET",
+                  "id": "cloudnumberregistry.projects.locations.realms.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. The view of the Realm.",
+                      "enum": [
+                        "REALM_VIEW_UNSPECIFIED",
+                        "BASIC",
+                        "FULL",
+                        "AGGREGATE"
+                      ],
+                      "enumDescriptions": [
+                        "Unspecified view. Defaults to BASIC.",
+                        "Basic view.",
+                        "Full view. Includes the same data as the BASIC view.",
+                        "Aggregate includes data about the child resources of the Realm."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Realm"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Realms in a given project and location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/realms",
+                  "httpMethod": "GET",
+                  "id": "cloudnumberregistry.projects.locations.realms.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListRealmsRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. The view of the Realm.",
+                      "enum": [
+                        "REALM_VIEW_UNSPECIFIED",
+                        "BASIC",
+                        "FULL",
+                        "AGGREGATE"
+                      ],
+                      "enumDescriptions": [
+                        "Unspecified view. Defaults to BASIC.",
+                        "Basic view.",
+                        "Full view. Includes the same data as the BASIC view.",
+                        "Aggregate includes data about the child resources of the Realm."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/realms",
+                  "response": {
+                    "$ref": "ListRealmsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single Realm.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/realms/{realmsId}",
+                  "httpMethod": "PATCH",
+                  "id": "cloudnumberregistry.projects.locations.realms.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Identifier. Unique name/ID of the realm",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/realms/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the Realm resource by the update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "Realm"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "registryBooks": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new RegistryBook in a given project and location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/registryBooks",
+                  "httpMethod": "POST",
+                  "id": "cloudnumberregistry.projects.locations.registryBooks.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Value for parent.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "registryBookId": {
+                      "description": "Required. Id of the requesting object.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/registryBooks",
+                  "request": {
+                    "$ref": "RegistryBook"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single RegistryBook.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/registryBooks/{registryBooksId}",
+                  "httpMethod": "DELETE",
+                  "id": "cloudnumberregistry.projects.locations.registryBooks.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "force": {
+                      "description": "Optional. If set to true, all associated resources will be deleted.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/registryBooks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single RegistryBook.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/registryBooks/{registryBooksId}",
+                  "httpMethod": "GET",
+                  "id": "cloudnumberregistry.projects.locations.registryBooks.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/registryBooks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. The view of the RegistryBook.",
+                      "enum": [
+                        "REGISTRY_BOOK_VIEW_UNSPECIFIED",
+                        "BASIC",
+                        "FULL",
+                        "AGGREGATE"
+                      ],
+                      "enumDescriptions": [
+                        "Unspecified view. Defaults to BASIC.",
+                        "Basic view.",
+                        "Full view. Includes the same data as the BASIC view.",
+                        "Aggregate includes data about the child resources of the RegistryBook."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "RegistryBook"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists RegistryBooks in a given project and location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/registryBooks",
+                  "httpMethod": "GET",
+                  "id": "cloudnumberregistry.projects.locations.registryBooks.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListRegistryBooksRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. The view of the RegistryBook.",
+                      "enum": [
+                        "REGISTRY_BOOK_VIEW_UNSPECIFIED",
+                        "BASIC",
+                        "FULL",
+                        "AGGREGATE"
+                      ],
+                      "enumDescriptions": [
+                        "Unspecified view. Defaults to BASIC.",
+                        "Basic view.",
+                        "Full view. Includes the same data as the BASIC view.",
+                        "Aggregate includes data about the child resources of the RegistryBook."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/registryBooks",
+                  "response": {
+                    "$ref": "ListRegistryBooksResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single RegistryBook.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/registryBooks/{registryBooksId}",
+                  "httpMethod": "PATCH",
+                  "id": "cloudnumberregistry.projects.locations.registryBooks.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Identifier. name of resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/registryBooks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the RegistryBook resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "RegistryBook"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "searchIpResources": {
+                  "description": "Searches IP resources in a given RegistryBook.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/registryBooks/{registryBooksId}:searchIpResources",
+                  "httpMethod": "POST",
+                  "id": "cloudnumberregistry.projects.locations.registryBooks.searchIpResources",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the RegistryBook to search in.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/registryBooks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:searchIpResources",
+                  "request": {
+                    "$ref": "SearchIpResourcesRequest"
+                  },
+                  "response": {
+                    "$ref": "SearchIpResourcesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "revision": "20260506",
+  "rootUrl": "https://cloudnumberregistry.googleapis.com/",
+  "schemas": {
+    "AggregatedData": {
+      "description": "Aggregated data for the RegistryBook.",
+      "id": "AggregatedData",
+      "properties": {
+        "customRangesCount": {
+          "description": "Output only. Number of custom ranges in the RegistryBook.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "customRealmsCount": {
+          "description": "Output only. Number of custom realms in the RegistryBook.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "discoveredRangesCount": {
+          "description": "Output only. Number of discovered ranges in the RegistryBook.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "discoveredRealmsCount": {
+          "description": "Output only. Number of discovered realms in the RegistryBook.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "uniqueScopesCount": {
+          "description": "Output only. Number of scopes unique to the RegistryBook.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Attribute": {
+      "description": "Message describing Attribute object",
+      "id": "Attribute",
+      "properties": {
+        "key": {
+          "description": "Required. Key of attribute",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. Value of attribute",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CancelOperationRequest": {
+      "description": "The request message for Operations.CancelOperation.",
+      "id": "CancelOperationRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "CheckAvailabilityIpamAdminScopesResponse": {
+      "description": "Message for response to checking the availability of IpamAdminScopes",
+      "id": "CheckAvailabilityIpamAdminScopesResponse",
+      "properties": {
+        "scopeAvailabilities": {
+          "description": "The details of the requested scopes.",
+          "items": {
+            "$ref": "IpamAdminScopeAvailability"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CleanupIpamAdminScopeRequest": {
+      "description": "Message for cleaning up a IpamAdminScope",
+      "id": "CleanupIpamAdminScopeRequest",
+      "properties": {
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomRange": {
+      "description": "Message describing CustomRange object",
+      "id": "CustomRange",
+      "properties": {
+        "attributes": {
+          "description": "Optional. The attributes of the CustomRange.",
+          "items": {
+            "$ref": "Attribute"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Optional. Description of the CustomRange.",
+          "type": "string"
+        },
+        "ipv4CidrRange": {
+          "description": "Optional. The IPv4 CIDR range of the CustomRange.",
+          "type": "string"
+        },
+        "ipv6CidrRange": {
+          "description": "Optional. The IPv6 CIDR range of the CustomRange.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs",
+          "type": "object"
+        },
+        "name": {
+          "description": "Required. Identifier. name of resource",
+          "type": "string"
+        },
+        "parentRange": {
+          "description": "Optional. The parent range of the CustomRange. Do not allow setting parent range if realm is specified. Format must follow this pattern: projects/{project}/locations/{location}/customRanges/{custom_range}",
+          "type": "string"
+        },
+        "realm": {
+          "description": "Optional. The realm of the CustomRange. The realm must be in the same project as the custom range. Do not allow setting realm if parent range is specified, since the realm should be inherited from the parent range. Format must follow this pattern: projects/{project}/locations/{location}/realms/{realm}",
+          "type": "string"
+        },
+        "registryBook": {
+          "description": "Output only. The registry book of the CustomRange. This field is inherited from the realm or parent range depending on which one is specified.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DisableIpamAdminScopeRequest": {
+      "description": "Message for disabling a IpamAdminScope",
+      "id": "DisableIpamAdminScopeRequest",
+      "properties": {
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveredRange": {
+      "description": "Message describing DiscoveredRange object",
+      "id": "DiscoveredRange",
+      "properties": {
+        "attributes": {
+          "description": "Optional. The attributes of the DiscoveredRange.",
+          "items": {
+            "$ref": "Attribute"
+          },
+          "type": "array"
+        },
+        "childCidrOverlapAllowed": {
+          "description": "Output only. If true, allow child ranges of this range to overlap with each other.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "createTime": {
+          "description": "Output only. [Output only] Create time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the DiscoveredRange.",
+          "type": "string"
+        },
+        "discoveryMetadata": {
+          "$ref": "DiscoveryMetadata",
+          "description": "Output only. Owner metadata for this DiscoveredRange. A unique set of metadata is associated with each DiscoveredRange. If an IP range is shared by multiple resources (e.g., an Address resource and an Instance resource, or multiple ForwardingRules),separate DiscoveredRanges are created, each with a distinct owner. This ensures each DiscoveredRange has its own unique set of attributes, labels, create time and update time.",
+          "readOnly": true
+        },
+        "ipv4CidrRange": {
+          "description": "Optional. The IPv4 CIDR range of the DiscoveredRange.",
+          "type": "string"
+        },
+        "ipv6CidrRange": {
+          "description": "Optional. The IPv6 CIDR range of the DiscoveredRange.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs",
+          "type": "object"
+        },
+        "name": {
+          "description": "Required. Identifier. Name of the DiscoveredRange.",
+          "type": "string"
+        },
+        "parentRange": {
+          "description": "Optional. The parent range of the DiscoveredRange.",
+          "type": "string"
+        },
+        "realm": {
+          "description": "Optional. The realm of the DiscoveredRange.",
+          "type": "string"
+        },
+        "registryBook": {
+          "description": "Output only. The registry book of the DiscoveredRange.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. [Output only] Update time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiscoveryMetadata": {
+      "description": "Discovery metadata of the discovered resource.",
+      "id": "DiscoveryMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "eventTime": {
+          "description": "Output only. The time when the event happened.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resource": {
+          "description": "Output only. The resource name of the discovered resource, should be API-agnostic. Example: \"projects/{project_number}/networks/{network_id}\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceUri": {
+          "description": "Output only. The resource uri of the discovered resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceId": {
+          "description": "Output only. The canonical google.aip.dev/122 name of the source resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceSubId": {
+          "description": "Output only. A single source resource can be the source of multiple CNR resources. This sub_id is used to distinguish between the different CNR resources derived from the same upstream resource. For example, a single subnetwork can be the source of multiple ranges, one for each protocol. In this case, the sub_id could be \"private-ipv4\" or \"private-ipv6\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the resource.",
+          "enum": [
+            "RESOURCE_STATE_UNSPECIFIED",
+            "INVALID",
+            "EXISTS",
+            "DOES_NOT_EXIST",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "The resource is in an invalid state.",
+            "The resource exists in the backing store (is not tombstoned or completely missing) and there were no failures reading out the resource level metadata.",
+            "Resource does not exist or has been deleted or soft-deleted.",
+            "There was an error reading out the resource level metadata."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the resource was last modified.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
+      "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
+    "FindCustomRangeFreeIpRangesResponse": {
+      "description": "Message for the response to finding free IP ranges.",
+      "id": "FindCustomRangeFreeIpRangesResponse",
+      "properties": {
+        "freeIpCidrRanges": {
+          "description": "Output only. Free IP CIDR ranges found in the CustomRange.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FindDiscoveredRangeFreeIpRangesResponse": {
+      "description": "Message for the response to finding free IP ranges.",
+      "id": "FindDiscoveredRangeFreeIpRangesResponse",
+      "properties": {
+        "freeIpCidrRanges": {
+          "description": "Output only. Free IP CIDR ranges found in the DiscoveredRange.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "IpamAdminScope": {
+      "description": "Message describing IpamAdminScope object",
+      "id": "IpamAdminScope",
+      "properties": {
+        "createTime": {
+          "description": "Output only. [Output only] Create time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "enabledAddonPlatforms": {
+          "description": "Required. Addon platforms that are enabled for this IPAM admin scope. Cloud Number Registry only discovers the IP addresses from the enabled platforms.",
+          "items": {
+            "enum": [
+              "ADD_ON_PLATFORM_UNSPECIFIED",
+              "COMPUTE_ENGINE",
+              "GCE"
+            ],
+            "enumDeprecated": [
+              false,
+              false,
+              true
+            ],
+            "enumDescriptions": [
+              "Unspecified add-on platform.",
+              "Google Compute Engine.",
+              "Deprecated: Use COMPUTE_ENGINE instead."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs",
+          "type": "object"
+        },
+        "name": {
+          "description": "Required. Identifier. name of resource",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Required. Administrative scopes enabled for IP address discovery and management. For example, \"organizations/1234567890\". Minimum of 1 scope is required. In preview, only one organization scope is allowed.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. State of resource discovery pipeline.",
+          "enum": [
+            "DISCOVERY_PIPELINE_STATE_UNSPECIFIED",
+            "INTERNAL_FAILURE",
+            "FAILED",
+            "SETUP_IN_PROGRESS",
+            "READY_FOR_USE",
+            "DELETING_IN_PROGRESS",
+            "UPDATING",
+            "RECOVERING",
+            "DISABLED",
+            "DELETION_COMPLETED",
+            "CLEANUP_IN_PROGRESS",
+            "READY_FOR_DELETION"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "Internal failure.",
+            "Failure.",
+            "Setup in progress.",
+            "Ready for use.",
+            "Deleting in progress.",
+            "Updating.",
+            "Recovering.",
+            "Disabled.",
+            "Deleting completed.",
+            "Cleanup in progress.",
+            "Ready for deletion."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. [Output only] Update time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IpamAdminScopeAvailability": {
+      "description": "Message for the availability of an IpamAdminScope",
+      "id": "IpamAdminScopeAvailability",
+      "properties": {
+        "adminProject": {
+          "description": "The admin project of the IpamAdminScope if it exists.",
+          "format": "int64",
+          "type": "string"
+        },
+        "availability": {
+          "description": "The availability of the scope.",
+          "enum": [
+            "AVAILABILITY_UNSPECIFIED",
+            "AVAILABLE",
+            "UNAVAILABLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified availability.",
+            "The scope is available.",
+            "The scope is not available."
+          ],
+          "type": "string"
+        },
+        "scope": {
+          "description": "The scope of the IpamAdminScope.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListCustomRangesResponse": {
+      "description": "Message for response to listing CustomRanges",
+      "id": "ListCustomRangesResponse",
+      "properties": {
+        "customRanges": {
+          "description": "The list of CustomRange",
+          "items": {
+            "$ref": "CustomRange"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListDiscoveredRangesResponse": {
+      "description": "Message for response to listing DiscoveredRanges",
+      "id": "ListDiscoveredRangesResponse",
+      "properties": {
+        "discoveredRanges": {
+          "description": "The list of DiscoveredRange",
+          "items": {
+            "$ref": "DiscoveredRange"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListIpamAdminScopesResponse": {
+      "description": "Message for response to listing ipamAdminScopes",
+      "id": "ListIpamAdminScopesResponse",
+      "properties": {
+        "ipamAdminScopes": {
+          "description": "The list of IpamAdminScope",
+          "items": {
+            "$ref": "IpamAdminScope"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListLocationsResponse": {
+      "description": "The response message for Locations.ListLocations.",
+      "id": "ListLocationsResponse",
+      "properties": {
+        "locations": {
+          "description": "A list of locations that matches the specified filter in the request.",
+          "items": {
+            "$ref": "Location"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The standard List next-page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListOperationsResponse": {
+      "description": "The response message for Operations.ListOperations.",
+      "id": "ListOperationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The standard List next-page token.",
+          "type": "string"
+        },
+        "operations": {
+          "description": "A list of operations that matches the specified filter in the request.",
+          "items": {
+            "$ref": "Operation"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListRealmsResponse": {
+      "description": "Message for response to listing Realms",
+      "id": "ListRealmsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "realms": {
+          "description": "The list of Realm",
+          "items": {
+            "$ref": "Realm"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListRegistryBooksResponse": {
+      "description": "Message for response to listing RegistryBooks",
+      "id": "ListRegistryBooksResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "registryBooks": {
+          "description": "The list of RegistryBook",
+          "items": {
+            "$ref": "RegistryBook"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Location": {
+      "description": "A resource that represents a Google Cloud location.",
+      "id": "Location",
+      "properties": {
+        "displayName": {
+          "description": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\".",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}",
+          "type": "object"
+        },
+        "locationId": {
+          "description": "The canonical id for this location. For example: `\"us-east1\"`.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Service-specific metadata. For example the available capacity at the given location.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Operation": {
+      "description": "This resource represents a long-running operation that is the result of a network API call.",
+      "id": "Operation",
+      "properties": {
+        "done": {
+          "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
+          "type": "boolean"
+        },
+        "error": {
+          "$ref": "Status",
+          "description": "The error result of the operation in case of failure or cancellation."
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+          "type": "object"
+        },
+        "name": {
+          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
+          "type": "string"
+        },
+        "response": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "OperationMetadata": {
+      "description": "Represents the metadata of the long-running operation.",
+      "id": "OperationMetadata",
+      "properties": {
+        "apiVersion": {
+          "description": "Output only. API version used to start the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "requestedCancellation": {
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "statusMessage": {
+          "description": "Output only. Human-readable status of the operation, if any.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "target": {
+          "description": "Output only. Server-defined resource path for the target of the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "verb": {
+          "description": "Output only. Name of the verb executed by the operation.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Range": {
+      "description": "Message describing either a CustomRange or a DiscoveredRange.",
+      "id": "Range",
+      "properties": {
+        "customRange": {
+          "$ref": "CustomRange",
+          "description": "A custom range."
+        },
+        "discoveredRange": {
+          "$ref": "DiscoveredRange",
+          "description": "A discovered range."
+        },
+        "utilization": {
+          "$ref": "RangeUtilization",
+          "description": "The utilization of the range."
+        }
+      },
+      "type": "object"
+    },
+    "RangeUtilization": {
+      "description": "Message for the utilization of an IP range",
+      "id": "RangeUtilization",
+      "properties": {
+        "totalConsumed": {
+          "description": "Output only. The total number of IP addresses consumed in the range.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalProduced": {
+          "description": "Output only. The total number of IP addresses produced in the range.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "usage": {
+          "description": "Output only. The usage of the range as a percentage. This is marked as optional so that we have presence tracking and API responses show 0.0 instead of NULL.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "Realm": {
+      "description": "Message describing Realm object",
+      "id": "Realm",
+      "properties": {
+        "aggregatedData": {
+          "$ref": "RealmAggregatedData",
+          "description": "Output only. Aggregated data for the Realm. Populated only when the view is AGGREGATE.",
+          "readOnly": true
+        },
+        "createTime": {
+          "description": "Output only. [Output only] Create time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "discoveryMetadata": {
+          "$ref": "DiscoveryMetadata",
+          "description": "Output only. Discovery metadata of the realm.",
+          "readOnly": true
+        },
+        "ipVersion": {
+          "description": "Optional. IP version of the realm.",
+          "enum": [
+            "IP_VERSION_UNSPECIFIED",
+            "IPV4",
+            "IPV6"
+          ],
+          "enumDescriptions": [
+            "Unspecified IP version.",
+            "IPv4 IP version.",
+            "IPv6 IP version."
+          ],
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs",
+          "type": "object"
+        },
+        "managementType": {
+          "description": "Required. Management type of realm.",
+          "enum": [
+            "MANAGEMENT_TYPE_UNSPECIFIED",
+            "CNR",
+            "USER"
+          ],
+          "enumDescriptions": [
+            "Unspecified management type.",
+            "Managed by Cloud Number Registry.",
+            "Managed by User."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Identifier. Unique name/ID of the realm",
+          "type": "string"
+        },
+        "registryBook": {
+          "description": "Required. URI of the registry book that claims the realm.",
+          "type": "string"
+        },
+        "trafficType": {
+          "description": "Required. Traffic type of realm.",
+          "enum": [
+            "TRAFFIC_TYPE_UNSPECIFIED",
+            "UNSET",
+            "INTERNET",
+            "PRIVATE",
+            "LINKLOCAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified traffic type.",
+            "Unset traffic type.",
+            "Internet traffic.",
+            "Private traffic.",
+            "Linklocal traffic."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. [Output only] Update time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RealmAggregatedData": {
+      "description": "Aggregated data for the Realm.",
+      "id": "RealmAggregatedData",
+      "properties": {
+        "customRangesCount": {
+          "description": "Output only. Number of custom ranges in the Realm.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "discoveredRangesCount": {
+          "description": "Output only. Number of discovered ranges in the Realm.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "RegistryBook": {
+      "description": "Message describing RegistryBook object",
+      "id": "RegistryBook",
+      "properties": {
+        "aggregatedData": {
+          "$ref": "AggregatedData",
+          "description": "Output only. Aggregated data for the RegistryBook. Populated only when the view is AGGREGATE.",
+          "readOnly": true
+        },
+        "claimedScopes": {
+          "description": "Optional. List of scopes claimed by the RegistryBook. In Preview, Only project scope is supported. Each scope is in the format of projects/{project}. Each scope can only be claimed once.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. [Output only] Create time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "isDefault": {
+          "description": "Output only. Whether the RegistryBook is the default one.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs",
+          "type": "object"
+        },
+        "name": {
+          "description": "Required. Identifier. name of resource",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. [Output only] Update time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SearchIpResourcesRequest": {
+      "description": "Message for searching IP resources",
+      "id": "SearchIpResourcesRequest",
+      "properties": {
+        "orderBy": {
+          "description": "Optional. Hint for how to order the results",
+          "type": "string"
+        },
+        "pageSize": {
+          "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "Optional. A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "query": {
+          "description": "Optional. Search query. This string filters resources in an AIP-160-like format. It has some limitations. You can only specify top level conjunctions or attribute level negations. Each restriction can only be used once except the attribute restriction. The available restrictions for ranges are: - `realm`: The realm name to search in. - `ip_address`: The IP address to search for within ranges. - `ip_version`: The IP version to filter by (e.g., \"IPV4\", \"IPV6\"). - `parent_range`: The parent range of the range to search for. - `attribute_text`: The attribute text to search for within ranges. - `attribute`: The attribute key and value to filter by. The available restrictions for realms are: - `ip_version`: The IP version to search for. Only one of attribute_text or multiple attribute filters can be specified. Examples: - `realm=test-realm` - `realm=test-realm AND ip_address=10.0.0.0` - `realm=test-realm AND ip_version=IPV6` - `realm=test-realm AND attribute_text=test` - `ip_address=10.0.0.0 AND attribute:(key1=value1) AND attribute:(key2=value2)` - `attribute_text=test AND parent_range=projects/123/locations/global/discoveredRanges/test-parent-range`",
+          "type": "string"
+        },
+        "searchResourceTypes": {
+          "description": "Optional. The type of resources to search for. If not specified, the server will return ranges.",
+          "items": {
+            "enum": [
+              "SEARCH_RESOURCE_TYPE_UNSPECIFIED",
+              "RANGES",
+              "REALMS"
+            ],
+            "enumDescriptions": [
+              "Unspecified search type.",
+              "Search for ranges.",
+              "Search for realms."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "showUtilization": {
+          "description": "Optional. Whether to show the utilization of the ranges in the response.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SearchIpResourcesResponse": {
+      "description": "Message for response to searching IP resources",
+      "id": "SearchIpResourcesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "ranges": {
+          "deprecated": true,
+          "description": "Deprecated: Use results field instead. The list of ranges matching the search query.",
+          "items": {
+            "$ref": "Range"
+          },
+          "type": "array"
+        },
+        "results": {
+          "description": "The list of results matching the search query.",
+          "items": {
+            "$ref": "SearchIpResourcesResult"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SearchIpResourcesResult": {
+      "description": "A result matching the search query, which can be either a range or a realm.",
+      "id": "SearchIpResourcesResult",
+      "properties": {
+        "range": {
+          "$ref": "Range",
+          "description": "A range matching the search query."
+        },
+        "realm": {
+          "$ref": "Realm",
+          "description": "A realm matching the search query."
+        }
+      },
+      "type": "object"
+    },
+    "ShowCustomRangeUtilizationResponse": {
+      "description": "Message for the response to getting the utilization of a CustomRange",
+      "id": "ShowCustomRangeUtilizationResponse",
+      "properties": {
+        "customRange": {
+          "$ref": "CustomRange",
+          "description": "The CustomRange resource."
+        },
+        "rangeUtilization": {
+          "$ref": "RangeUtilization",
+          "description": "The utilization of the CustomRange."
+        }
+      },
+      "type": "object"
+    },
+    "ShowDiscoveredRangeUtilizationResponse": {
+      "description": "Message for the response to getting the utilization of a DiscoveredRange",
+      "id": "ShowDiscoveredRangeUtilizationResponse",
+      "properties": {
+        "discoveredRange": {
+          "$ref": "DiscoveredRange",
+          "description": "The DiscoveredRange resource."
+        },
+        "rangeUtilization": {
+          "$ref": "RangeUtilization",
+          "description": "The utilization of the DiscoveredRange."
+        }
+      },
+      "type": "object"
+    },
+    "Status": {
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "id": "Status",
+      "properties": {
+        "code": {
+          "description": "The status code, which should be an enum value of google.rpc.Code.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "details": {
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "servicePath": "",
+  "title": "Cloud Number Registry API",
+  "version": "v1alpha",
+  "version_module": true
+}

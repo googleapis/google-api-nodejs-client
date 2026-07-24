@@ -4,6 +4,27 @@
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
+        },
+        "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly": {
+          "description": "See your Google Health activity and fitness data"
+        },
+        "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly": {
+          "description": "See your Google Health health metrics and measurement data"
+        },
+        "https://www.googleapis.com/auth/googlehealth.irn.readonly": {
+          "description": "See your Google Health Irregular Rhythm Notifications data"
+        },
+        "https://www.googleapis.com/auth/googlehealth.location.readonly": {
+          "description": "See exercise GPS location data in Google Health"
+        },
+        "https://www.googleapis.com/auth/googlehealth.profile.readonly": {
+          "description": "See your Google Health profile data"
+        },
+        "https://www.googleapis.com/auth/googlehealth.settings.readonly": {
+          "description": "See your Google Health settings"
+        },
+        "https://www.googleapis.com/auth/googlehealth.sleep.readonly": {
+          "description": "See your Google Health sleep data"
         }
       }
     }
@@ -242,6 +263,145 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             }
+          },
+          "resources": {
+            "subscriptions": {
+              "methods": {
+                "create": {
+                  "description": "Creates a subscription for a specific user to a specific subscriber. This method requires the subscriber to have a `SubscriptionCreatePolicy` set to `MANUAL` for the given data types.",
+                  "flatPath": "v4/projects/{projectsId}/subscribers/{subscribersId}/subscriptions",
+                  "httpMethod": "POST",
+                  "id": "health.projects.subscribers.subscriptions.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent subscriber. Format: projects/{project}/subscribers/{subscriber} The {subscriber} ID is user-settable (4-36 characters, matching /[a-z]([a-z0-9-]{2,34}[a-z0-9])/) if provided during creation, or system-generated otherwise.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/subscribers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "subscriptionId": {
+                      "description": "Optional. The {subscription_id} is user-settable (4-36 chars, matching /[a-z]([a-z0-9-]{2,34}[a-z0-9])/) or system-generated otherwise. If provided, the ID must be unique within the parent subscriber.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v4/{+parent}/subscriptions",
+                  "request": {
+                    "$ref": "CreateSubscriptionPayload"
+                  },
+                  "response": {
+                    "$ref": "Subscription"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a specific user subscription, stopping notifications for this user to this subscriber.",
+                  "flatPath": "v4/projects/{projectsId}/subscribers/{subscribersId}/subscriptions/{subscriptionsId}",
+                  "httpMethod": "DELETE",
+                  "id": "health.projects.subscribers.subscriptions.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the subscription to delete. Format: `projects/{project}/subscribers/{subscriber}/subscriptions/{subscription}` Example: `projects/my-project/subscribers/my-subscriber-123/subscriptions/my-subscription-456` The {subscriber} ID is user-settable (4-36 characters, matching /[a-z]([a-z0-9-]{2,34}[a-z0-9])/) if provided during creation, or system-generated otherwise. The {subscription} ID is user-settable (4-36 characters, matching /[a-z]([a-z0-9-]{2,34}[a-z0-9])/) or system-generated if not provided during creation.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/subscribers/[^/]+/subscriptions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v4/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all active subscriptions for a given subscriber. This can be filtered, for example, by user or data type.",
+                  "flatPath": "v4/projects/{projectsId}/subscribers/{subscribersId}/subscriptions",
+                  "httpMethod": "GET",
+                  "id": "health.projects.subscribers.subscriptions.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A filter to apply to the list of subscriptions. The filter syntax is described in https://google.aip.dev/160. The filter can be applied to the following fields: - `user` - `data_type` The `user` identifier (e.g., `user1` in `users/user1`) refers to the public `healthUserId` Example: user = \"users/user1\" Example: user = \"users/user1\" OR user = \"users/user2\" Example: user = \"users/user1\" AND (data_type = \"sleep\" OR data_type = \"weight\")",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 50 subscriptions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscriptions` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent subscriber. Format: projects/{project}/subscribers/{subscriber} The {subscriber} ID is user-settable (4-36 characters, matching /[a-z]([a-z0-9-]{2,34}[a-z0-9])/) if provided during creation, or system-generated otherwise.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/subscribers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v4/{+parent}/subscriptions",
+                  "response": {
+                    "$ref": "ListSubscriptionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the data types for an existing user subscription.",
+                  "flatPath": "v4/projects/{projectsId}/subscribers/{subscribersId}/subscriptions/{subscriptionsId}",
+                  "httpMethod": "PATCH",
+                  "id": "health.projects.subscribers.subscriptions.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the Subscription. Format: `projects/{project}/subscribers/{subscriber}/subscriptions/{subscription}` Example: `projects/my-project/subscribers/my-subscriber-123/subscriptions/my-subscription-456` The {project} ID is mandatory (6-30 characters, matching /a-z{6,30}/) The {subscriber} ID is user-settable (4-36 characters, matching /[a-z]([a-z0-9-]{2,34}[a-z0-9])/) if provided during creation, or system-generated otherwise. The {subscription} ID is user-settable (4-36 chars, matching /[a-z]([a-z0-9-]{2,34}[a-z0-9])/) or system-generated otherwise.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/subscribers/[^/]+/subscriptions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v4/{+name}",
+                  "request": {
+                    "$ref": "Subscription"
+                  },
+                  "response": {
+                    "$ref": "Subscription"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
           }
         }
       }
@@ -268,7 +428,39 @@
           "path": "v4/{+name}",
           "response": {
             "$ref": "Identity"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly",
+            "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly",
+            "https://www.googleapis.com/auth/googlehealth.profile.readonly",
+            "https://www.googleapis.com/auth/googlehealth.settings.readonly",
+            "https://www.googleapis.com/auth/googlehealth.sleep.readonly"
+          ]
+        },
+        "getIrnProfile": {
+          "description": "Returns user's IRN Profile details.",
+          "flatPath": "v4/users/{usersId}/irnProfile",
+          "httpMethod": "GET",
+          "id": "health.users.getIrnProfile",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The resource name of the IRN Profile. Format: `users/{user}/irnProfile` Example: `users/1234567890/irnProfile` or `users/me/irnProfile` The {user} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.",
+              "location": "path",
+              "pattern": "^users/[^/]+/irnProfile$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v4/{+name}",
+          "response": {
+            "$ref": "IrnProfile"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/googlehealth.irn.readonly"
+          ]
         },
         "getProfile": {
           "description": "Returns user Profile details.",
@@ -290,7 +482,10 @@
           "path": "v4/{+name}",
           "response": {
             "$ref": "Profile"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/googlehealth.profile.readonly"
+          ]
         },
         "getSettings": {
           "description": "Returns user settings details.",
@@ -312,7 +507,10 @@
           "path": "v4/{+name}",
           "response": {
             "$ref": "Settings"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/googlehealth.settings.readonly"
+          ]
         },
         "updateProfile": {
           "description": "Updates the user's profile details.",
@@ -455,10 +653,16 @@
                   },
                   "response": {
                     "$ref": "DailyRollUpDataPointsResponse"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.location.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.sleep.readonly"
+                  ]
                 },
                 "exportExerciseTcx": {
-                  "description": "Exports exercise data in TCX format. Note: While the Authorization section below states that any one of the listed scopes is accepted, this specific method requires the user to provide both one of the `activity_and_fitness` scopes (`normal` or `readonly`) AND one of the `location` scopes (`normal` or `readonly`) in their access token to succeed.",
+                  "description": "Exports exercise data in TCX format. **IMPORTANT:** HTTP clients must append `?alt=media` to the request URL to download the raw TCX file. Example: `https://health.googleapis.com/v4/users/me/dataTypes/exercise/dataPoints/EXERCISE_ID:exportExerciseTcx?alt=media` Without `alt=media`, the server returns a JSON response (`ExportExerciseTcxResponse`) which is intended primarily for gRPC clients. **Note:** While the Authorization section below states that any one of the listed scopes is accepted, this specific method requires the user to provide both one of the `activity_and_fitness` scopes (`normal` or `readonly`) AND one of the `location` scopes (`normal` or `readonly`) in their access token to succeed.",
                   "flatPath": "v4/users/{usersId}/dataTypes/{dataTypesId}/dataPoints/{dataPointsId}:exportExerciseTcx",
                   "httpMethod": "GET",
                   "id": "health.users.dataTypes.dataPoints.exportExerciseTcx",
@@ -483,6 +687,10 @@
                   "response": {
                     "$ref": "ExportExerciseTcxResponse"
                   },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.location.readonly"
+                  ],
                   "supportsMediaDownload": true,
                   "useMediaDownloadService": true
                 },
@@ -506,7 +714,13 @@
                   "path": "v4/{+name}",
                   "response": {
                     "$ref": "DataPoint"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.location.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.sleep.readonly"
+                  ]
                 },
                 "list": {
                   "description": "Query user health and fitness data points.",
@@ -518,7 +732,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filter expression following https://google.aip.dev/160. A time range (either physical or civil) can be specified. The supported filter fields are: - Interval start time: - Pattern: `{interval_data_type}.interval.start_time` - Supported comparison operators: `>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `steps.interval.start_time >= \"2023-11-24T00:00:00Z\" AND steps.interval.start_time < \"2023-11-25T00:00:00Z\"` - `distance.interval.start_time >= \"2024-08-14T12:34:56Z\"` - Interval civil start time: - Pattern: `{interval_data_type}.interval.civil_start_time` - Supported comparison operators: `>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `steps.interval.civil_start_time >= \"2023-11-24\" AND steps.interval.civil_start_time < \"2023-11-25\"` - `distance.interval.civil_start_time >= \"2024-08-14T12:34:56\"` - Sample observation physical time: - Pattern: `{sample_data_type}.sample_time.physical_time` - Supported comparison operators: `>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `weight.sample_time.physical_time >= \"2023-11-24T00:00:00Z\" AND weight.sample_time.physical_time < \"2023-11-25T00:00:00Z\"` - `weight.sample_time.physical_time >= \"2024-08-14T12:34:56Z\"` - Sample observation civil time: - Pattern: `{sample_data_type}.sample_time.civil_time` - Supported comparison operators: `>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `weight.sample_time.civil_time >= \"2023-11-24\" AND weight.sample_time.civil_time < \"2023-11-25\"` - `weight.sample_time.civil_time >= \"2024-08-14T12:34:56\"` - Daily summary date: - Pattern: `{daily_summary_data_type}.date` - Supported comparison operators: `>=`, `<` - Date literal expected in ISO 8601 `YYYY-MM-DD` format - Supported logical operators: `AND` - Example: - `daily_heart_rate_variability.date < \"2024-08-15\"` - Session civil start time (**Excluding Sleep**): - Pattern: `{session_data_type}.interval.civil_start_time` - Supported comparison operators: `>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `exercise.interval.civil_start_time >= \"2023-11-24\" AND exercise.interval.civil_start_time < \"2023-11-25\"` - `exercise.interval.civil_start_time >= \"2024-08-14T12:34:56\"` - Session end time (**Sleep specific**): - Pattern: `sleep.interval.end_time` - Supported comparison operators: `>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.end_time >= \"2023-11-24T00:00:00Z\" AND sleep.interval.end_time < \"2023-11-25T00:00:00Z\"` - Session civil end time (**Sleep specific**): - Pattern: `sleep.interval.civil_end_time` - Supported comparison operators: `>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.civil_end_time >= \"2023-11-24\" AND sleep.interval.civil_end_time < \"2023-11-25\"` Data points in the response will be ordered by the interval start time in descending order.",
+                      "description": "Optional. Filter expression following https://google.aip.dev/160. A time range (either physical or civil) can be specified. The supported filter fields are: - Interval start time: - Pattern: `{interval_data_type}.interval.start_time` - Supported comparison operators: `>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `steps.interval.start_time >= \"2023-11-24T00:00:00Z\" AND steps.interval.start_time < \"2023-11-25T00:00:00Z\"` - `distance.interval.start_time >= \"2024-08-14T12:34:56Z\"` - Interval civil start time: - Pattern: `{interval_data_type}.interval.civil_start_time` - Supported comparison operators: `>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `steps.interval.civil_start_time >= \"2023-11-24\" AND steps.interval.civil_start_time < \"2023-11-25\"` - `distance.interval.civil_start_time >= \"2024-08-14T12:34:56\"` - Sample observation physical time: - Pattern: `{sample_data_type}.sample_time.physical_time` - Supported comparison operators: `>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND` - Example: - `weight.sample_time.physical_time >= \"2023-11-24T00:00:00Z\" AND weight.sample_time.physical_time < \"2023-11-25T00:00:00Z\"` - `weight.sample_time.physical_time >= \"2024-08-14T12:34:56Z\"` - Sample observation civil time: - Pattern: `{sample_data_type}.sample_time.civil_time` - Supported comparison operators: `>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `weight.sample_time.civil_time >= \"2023-11-24\" AND weight.sample_time.civil_time < \"2023-11-25\"` - `weight.sample_time.civil_time >= \"2024-08-14T12:34:56\"` - Daily summary date: - Pattern: `{daily_summary_data_type}.date` - Supported comparison operators: `>=`, `<` - Date literal expected in ISO 8601 `YYYY-MM-DD` format - Supported logical operators: `AND` - Example: - `daily_heart_rate_variability.date < \"2024-08-15\"` - Session civil start time (**Excluding Sleep and ECG**): - Pattern: `{session_data_type}.interval.civil_start_time` - Supported comparison operators: `>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND` - Example: - `exercise.interval.civil_start_time >= \"2023-11-24\" AND exercise.interval.civil_start_time < \"2023-11-25\"` - `exercise.interval.civil_start_time >= \"2024-08-14T12:34:56\"` - Session start time (**ECG specific**): - Pattern: `electrocardiogram.interval.start_time` - Supported comparison operators: `>=` - Timestamp literal expected in RFC-3339 format - Example: - `electrocardiogram.interval.start_time >= \"2024-08-14T12:34:56Z\"` - Note: Only filtering by start time is supported for ECG. Filtering by end time (e.g., `electrocardiogram.interval.end_time`) is not supported. - Session end time (**Sleep specific**): - Pattern: `sleep.interval.end_time` - Supported comparison operators: `>=`, `<` - Timestamp literal expected in RFC-3339 format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.end_time >= \"2023-11-24T00:00:00Z\" AND sleep.interval.end_time < \"2023-11-25T00:00:00Z\"` - Session civil end time (**Sleep specific**): - Pattern: `sleep.interval.civil_end_time` - Supported comparison operators: `>=`, `<` - Date with optional time literal expected in ISO 8601 `YYYY-MM-DD[THH:mm:ss]` format - Supported logical operators: `AND`, `OR` - Example: - `sleep.interval.civil_end_time >= \"2023-11-24\" AND sleep.interval.civil_end_time < \"2023-11-25\"` Data points in the response will be ordered by the interval start time in descending order.",
                       "location": "query",
                       "type": "string"
                     },
@@ -544,7 +758,13 @@
                   "path": "v4/{+parent}/dataPoints",
                   "response": {
                     "$ref": "ListDataPointsResponse"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.location.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.sleep.readonly"
+                  ]
                 },
                 "patch": {
                   "description": "Updates a single identifiable data point. If a data point with the specified `name` is not found, the request will fail.",
@@ -612,7 +832,13 @@
                   "path": "v4/{+parent}/dataPoints:reconcile",
                   "response": {
                     "$ref": "ReconcileDataPointsResponse"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.location.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.sleep.readonly"
+                  ]
                 },
                 "rollUp": {
                   "description": "Roll up data points over physical time intervals for supported data types.",
@@ -637,18 +863,118 @@
                   },
                   "response": {
                     "$ref": "RollUpDataPointsResponse"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.location.readonly",
+                    "https://www.googleapis.com/auth/googlehealth.sleep.readonly"
+                  ]
                 }
               }
+            }
+          }
+        },
+        "pairedDevices": {
+          "methods": {
+            "get": {
+              "description": "Returns user's Device.",
+              "flatPath": "v4/users/{usersId}/pairedDevices/{pairedDevicesId}",
+              "httpMethod": "GET",
+              "id": "health.users.pairedDevices.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the device to retrieve. Format: users/{user}/devices/{device}",
+                  "location": "path",
+                  "pattern": "^users/[^/]+/pairedDevices/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v4/{+name}",
+              "response": {
+                "$ref": "PairedDevice"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/googlehealth.settings.readonly"
+              ]
+            },
+            "list": {
+              "description": "Returns the user's list of paired 1P trackers and smartwatches.",
+              "flatPath": "v4/users/{usersId}/pairedDevices",
+              "httpMethod": "GET",
+              "id": "health.users.pairedDevices.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of devices to return. The service may return fewer than this value. If unspecified, at most 5 devices will be returned. The maximum value is 100. values above 100 will be coerced to 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListPairedDevices` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPairedDevices` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent, which owns this collection of devices. Format: users/{user}",
+                  "location": "path",
+                  "pattern": "^users/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v4/{+parent}/pairedDevices",
+              "response": {
+                "$ref": "ListPairedDevicesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/googlehealth.settings.readonly"
+              ]
             }
           }
         }
       }
     }
   },
-  "revision": "20260503",
+  "revision": "20260525",
   "rootUrl": "https://health.googleapis.com/",
   "schemas": {
+    "ActiveEnergyBurned": {
+      "description": "Energy burned as part of an activity, excluding the basal energy burn.",
+      "id": "ActiveEnergyBurned",
+      "properties": {
+        "interval": {
+          "$ref": "ObservationTimeInterval",
+          "description": "Required. Observed interval"
+        },
+        "kcal": {
+          "description": "Required. Energy burned during an activity, measured in kilocalories.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ActiveEnergyBurnedRollupValue": {
+      "description": "Represents the result of the rollup of active energy burned.",
+      "id": "ActiveEnergyBurnedRollupValue",
+      "properties": {
+        "kcalSum": {
+          "description": "Output only. Sum of the active energy burned in kilocalories.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "ActiveMinutes": {
       "description": "Record of active minutes in a given time interval.",
       "id": "ActiveMinutes",
@@ -864,6 +1190,54 @@
       },
       "type": "object"
     },
+    "AlertWindow": {
+      "description": "An analysis window evaluated for AFib. Note: The current version of the algorithm will only produce alerts if all windows are positive. So anything returned from the API will always have the positive bit set to true. Internally, windows can be negative, however. We never save \"inconclusive\" windows (they aren't produced by the algorithm).",
+      "id": "AlertWindow",
+      "properties": {
+        "civilEndTime": {
+          "$ref": "CivilDateTime",
+          "description": "Output only. Observed interval end time in civil time in the timezone the subject is in at the end of the observed interval",
+          "readOnly": true
+        },
+        "civilStartTime": {
+          "$ref": "CivilDateTime",
+          "description": "Output only. Observed interval start time in civil time in the timezone the subject is in at the start of the observed interval",
+          "readOnly": true
+        },
+        "endTime": {
+          "description": "Required. The end time of the analysis window.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "endUtcOffset": {
+          "description": "Required. The UTC offset of the user's timezone when the analysis window ended.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "heartBeats": {
+          "description": "Optional. All heart beats in the interval contained in this analysis window.",
+          "items": {
+            "$ref": "HeartBeat"
+          },
+          "type": "array"
+        },
+        "positive": {
+          "description": "Optional. Flag indicating whether the window was positive for AFib or not. A `true` value indicates that AFib was detected in this window. A `false` value means AFib was not detected, but does not guarantee the absence of AFib.",
+          "type": "boolean"
+        },
+        "startTime": {
+          "description": "Required. Observed interval. The start time of the analysis window.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startUtcOffset": {
+          "description": "Required. The UTC offset of the user's timezone when the analysis window started.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Altitude": {
       "description": "Captures the altitude gain (i.e. deltas), and not level above sea, for a user in millimeters.",
       "id": "Altitude",
@@ -940,6 +1314,116 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BloodGlucose": {
+      "description": "Represents a blood glucose level measurement. LINT: LEGACY_NAMES",
+      "id": "BloodGlucose",
+      "properties": {
+        "bloodGlucoseMilligramsPerDeciliter": {
+          "description": "Required. Blood glucose level concentration in mg/dL.",
+          "format": "double",
+          "type": "number"
+        },
+        "mealType": {
+          "description": "Optional. Meal type of the measurement.",
+          "enum": [
+            "MEAL_TYPE_UNSPECIFIED",
+            "BREAKFAST",
+            "LUNCH",
+            "DINNER",
+            "SNACK"
+          ],
+          "enumDescriptions": [
+            "Unspecified meal type.",
+            "Breakfast.",
+            "Lunch.",
+            "Dinner.",
+            "Snack."
+          ],
+          "type": "string"
+        },
+        "measurementSource": {
+          "description": "Optional. Source of the measurement.",
+          "enum": [
+            "MEASUREMENT_SOURCE_UNSPECIFIED",
+            "SELF_MONITORING_BLOOD_GLUCOSE",
+            "CONTINUOUS_GLUCOSE_MONITORING",
+            "LAB_TEST"
+          ],
+          "enumDescriptions": [
+            "Unspecified measurement source.",
+            "Self-monitoring of blood glucose (Blood glucose meter)",
+            "Continuous glucose monitoring device",
+            "Laboratory test"
+          ],
+          "type": "string"
+        },
+        "measurementTiming": {
+          "description": "Optional. Timing of the measurement.",
+          "enum": [
+            "MEASUREMENT_TIMING_UNSPECIFIED",
+            "AFTER_MEAL",
+            "BEFORE_MEAL",
+            "FASTING",
+            "GENERAL",
+            "BEFORE_BED",
+            "OVER_NIGHT"
+          ],
+          "enumDescriptions": [
+            "Unspecified measurement timing.",
+            "Measurement taken after meal.",
+            "Measurement taken before meal.",
+            "Measurement taken while fasting.",
+            "General measurement (not associated with a meal or time of day).",
+            "Measurement taken before bed.",
+            "Measurement taken over night."
+          ],
+          "type": "string"
+        },
+        "notes": {
+          "description": "Optional. Standard free-form notes captured at manual logging.",
+          "type": "string"
+        },
+        "sampleTime": {
+          "$ref": "ObservationSampleTime",
+          "description": "Required. The time at which blood glucose was measured."
+        },
+        "specimen": {
+          "description": "Optional. Type of body fluid used to measure the blood glucose.",
+          "enum": [
+            "SPECIMEN_UNSPECIFIED",
+            "CAPILLARY_BLOOD",
+            "INTERSTITIAL_FLUID",
+            "PLASMA",
+            "SERUM",
+            "TEARS",
+            "WHOLE_BLOOD"
+          ],
+          "enumDescriptions": [
+            "Unspecified specimen.",
+            "Capillary blood.",
+            "Interstitial fluid.",
+            "Plasma.",
+            "Serum.",
+            "Tears.",
+            "Whole blood."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BloodGlucoseRollupValue": {
+      "description": "Represents the result of the rollup of the blood glucose data type. LINT: LEGACY_NAMES",
+      "id": "BloodGlucoseRollupValue",
+      "properties": {
+        "bloodGlucoseMilligramsPerDeciliterAvg": {
+          "description": "Average blood glucose level in mg/dL.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -1046,6 +1530,92 @@
       },
       "type": "object"
     },
+    "CoreBodyTemperature": {
+      "description": "Core body temperature measurement, distinct from peripheral body temperature, reflects the temperature of the body's internal organs.",
+      "id": "CoreBodyTemperature",
+      "properties": {
+        "id": {
+          "description": "Optional. The unique identifier of the core body temperature measurement.",
+          "type": "string"
+        },
+        "measurementLocation": {
+          "description": "Optional. The location of the core body temperature measurement.",
+          "enum": [
+            "MEASUREMENT_LOCATION_UNSPECIFIED",
+            "OTHER",
+            "ARMPIT",
+            "BODY",
+            "EAR",
+            "FINGER",
+            "GASTRO_INTESTINAL",
+            "MOUTH",
+            "RECTUM",
+            "TOE",
+            "EAR_DRUM",
+            "TEMPORAL_ARTERY",
+            "FOREHEAD",
+            "URINARY_BLADDER",
+            "NASAL",
+            "NASOPHARYNGEAL",
+            "WRIST",
+            "VAGINA"
+          ],
+          "enumDescriptions": [
+            "Measurement location is unspecified.",
+            "Other measurement location.",
+            "Armpit measurement location.",
+            "Body measurement location.",
+            "Ear measurement location.",
+            "Finger measurement location.",
+            "Gastro-intestinal measurement location.",
+            "Mouth measurement location.",
+            "Rectum measurement location.",
+            "Toe measurement location.",
+            "Ear drum measurement location.",
+            "Temporal artery measurement location.",
+            "Forehead measurement location.",
+            "Urinary bladder measurement location.",
+            "Nasal measurement location.",
+            "Nasopharyngeal measurement location.",
+            "Wrist measurement location.",
+            "Vagina measurement location."
+          ],
+          "type": "string"
+        },
+        "sampleTime": {
+          "$ref": "ObservationSampleTime",
+          "description": "Required. The time at which core body temperature was measured."
+        },
+        "temperatureCelsius": {
+          "description": "Required. The core body temperature in Celsius.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "CoreBodyTemperatureRollupValue": {
+      "description": "Represents the result of the rollup of the core body temperature data type.",
+      "id": "CoreBodyTemperatureRollupValue",
+      "properties": {
+        "temperatureCelsiusAvg": {
+          "description": "Average core body temperature in Celsius.",
+          "format": "double",
+          "type": "number"
+        },
+        "temperatureCelsiusMax": {
+          "description": "Maximum core body temperature in Celsius.",
+          "format": "double",
+          "type": "number"
+        },
+        "temperatureCelsiusMin": {
+          "description": "Minimum core body temperature in Celsius.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "CreateSubscriberPayload": {
       "description": "Payload for creating a subscriber.",
       "id": "CreateSubscriberPayload",
@@ -1064,6 +1634,24 @@
             "$ref": "SubscriberConfig"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CreateSubscriptionPayload": {
+      "description": "Payload for creating a subscription.",
+      "id": "CreateSubscriptionPayload",
+      "properties": {
+        "dataTypes": {
+          "description": "Optional. Data types subscribed to.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "user": {
+          "description": "Required. Immutable. The resource name of the user for whom this subscription is active. Format: `users/{user}` where `{user}` is the public `healthUserId` as returned by the `GetIdentity` action in the profile PAPI (see `google.devicesandservices.health.v4main.HealthProfileService.GetIdentity`).",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1249,9 +1837,13 @@
       "type": "object"
     },
     "DailyRollupDataPoint": {
-      "description": "Value of a daily rollup for a single civil time interval (aggregation window)",
+      "description": "Value of a daily rollup for a single civil time interval (aggregation window) of reconciled data points from all data sources, excluding those data points that are identified as recorded by wearables in intervals when they were not actually worn.",
       "id": "DailyRollupDataPoint",
       "properties": {
+        "activeEnergyBurned": {
+          "$ref": "ActiveEnergyBurnedRollupValue",
+          "description": "Returned by default when rolling up data points from the `active-energy-burned` data type."
+        },
         "activeMinutes": {
           "$ref": "ActiveMinutesRollupValue",
           "description": "Returned by default when rolling up data points from the `active-minutes` data type, or when requested explicitly using the `active-minutes` rollup type identifier."
@@ -1268,6 +1860,10 @@
           "$ref": "AltitudeRollupValue",
           "description": "Returned by default when rolling up data points from the `altitude` data type, or when requested explicitly using the `altitude` rollup type identifier."
         },
+        "bloodGlucose": {
+          "$ref": "BloodGlucoseRollupValue",
+          "description": "Returned by default when rolling up data points from the `blood-glucose` data type."
+        },
         "bodyFat": {
           "$ref": "BodyFatRollupValue",
           "description": "Returned by default when rolling up data points from the `body-fat` data type, or when requested explicitly using the `body-fat` rollup type identifier."
@@ -1283,6 +1879,10 @@
         "civilStartTime": {
           "$ref": "CivilDateTime",
           "description": "Start time of the window this value aggregates over"
+        },
+        "coreBodyTemperature": {
+          "$ref": "CoreBodyTemperatureRollupValue",
+          "description": "Returned by default when rolling up data points from the `core-body-temperature` data type, or when requested explicitly using the `core-body-temperature` rollup type identifier."
         },
         "distance": {
           "$ref": "DistanceRollupValue",
@@ -1303,6 +1903,10 @@
         "hydrationLog": {
           "$ref": "HydrationLogRollupValue",
           "description": "Returned by default when rolling up data points from the `hydration-log` data type, or when requested explicitly using the `hydration-log` rollup type identifier."
+        },
+        "nutritionLog": {
+          "$ref": "NutritionLogRollupValue",
+          "description": "Returned by default when rolling up data points from the `nutrition-log` data type, or when requested explicitly using the `nutrition-log` rollup type identifier."
         },
         "restingHeartRatePersonalRange": {
           "$ref": "RestingHeartRatePersonalRangeRollupValue",
@@ -1416,6 +2020,10 @@
       "description": "A computed or recorded metric.",
       "id": "DataPoint",
       "properties": {
+        "activeEnergyBurned": {
+          "$ref": "ActiveEnergyBurned",
+          "description": "Optional. Data for points in the `active-energy-burned` interval data type collection."
+        },
         "activeMinutes": {
           "$ref": "ActiveMinutes",
           "description": "Optional. Data for points in the `active-minutes` interval data type collection."
@@ -1436,9 +2044,17 @@
           "$ref": "BasalEnergyBurned",
           "description": "Optional. Data for points in the `basal-energy-burned` interval data type collection."
         },
+        "bloodGlucose": {
+          "$ref": "BloodGlucose",
+          "description": "Optional. Data for points in the `blood-glucose` sample data type collection."
+        },
         "bodyFat": {
           "$ref": "BodyFat",
           "description": "Optional. Data for points in the `body-fat` sample data type collection."
+        },
+        "coreBodyTemperature": {
+          "$ref": "CoreBodyTemperature",
+          "description": "Optional. Data for points in the `core-body-temperature` sample data type collection."
         },
         "dailyHeartRateVariability": {
           "$ref": "DailyHeartRateVariability",
@@ -1476,6 +2092,10 @@
           "$ref": "Distance",
           "description": "Optional. Data for points in the `distance` interval data type collection."
         },
+        "electrocardiogram": {
+          "$ref": "Electrocardiogram",
+          "description": "Optional. Data for points in the `electrocardiogram` session data type collection."
+        },
         "exercise": {
           "$ref": "Exercise",
           "description": "Optional. Data for points in the `exercise` session data type collection."
@@ -1483,6 +2103,14 @@
         "floors": {
           "$ref": "Floors",
           "description": "Optional. Data for points in the `floors` interval data type collection."
+        },
+        "food": {
+          "$ref": "Food",
+          "description": "Optional. The food details."
+        },
+        "foodMeasurementUnit": {
+          "$ref": "FoodMeasurementUnit",
+          "description": "Optional. The food measurement unit details."
         },
         "heartRate": {
           "$ref": "HeartRate",
@@ -1500,9 +2128,17 @@
           "$ref": "HydrationLog",
           "description": "Optional. Data for points in the `hydration-log` session data type collection."
         },
+        "irregularRhythmNotification": {
+          "$ref": "IrregularRhythmNotification",
+          "description": "Optional. Data for points in the `irregular-rhythm-notification` session data type collection."
+        },
         "name": {
           "description": "Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `total-calories` for the `total_calories` field. The `{data_point}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.",
           "type": "string"
+        },
+        "nutritionLog": {
+          "$ref": "NutritionLog",
+          "description": "Optional. Data for points in the `nutrition-log` session data type collection."
         },
         "oxygenSaturation": {
           "$ref": "OxygenSaturation",
@@ -1754,6 +2390,80 @@
       },
       "type": "object"
     },
+    "Electrocardiogram": {
+      "description": "Represents an Electrocardiogram (ECG) measurement session. This data type is based on SaMD feature and any changes to it may require additional review.",
+      "id": "Electrocardiogram",
+      "properties": {
+        "beatsPerMinuteAvg": {
+          "description": "Optional. Average heart rate recorded during ECG reading in beats per minute.",
+          "format": "int64",
+          "type": "string"
+        },
+        "interval": {
+          "$ref": "SessionTimeInterval",
+          "description": "Required. Observed interval. NOTE: Historical ECG data lacks timezone offsets, so `start_utc_offset` and `end_utc_offset` will be missing or default to zero. As a result, the civil time fields within this interval will default to UTC. It is recommended to use physical time fields instead for accurate time referencing. NOTE: The `start_time` and `end_time` of the interval are equal, representing the reading time."
+        },
+        "leadNumber": {
+          "description": "Optional. The number of leads used for ECG reading.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "medicalDeviceInfo": {
+          "$ref": "MedicalDeviceInfo",
+          "description": "Output only. The meta information for the compatible device used to conduct the measurement. ECG measurements typically populate `firmware_version`, `feature_version`, and `device_model`.",
+          "readOnly": true
+        },
+        "millivoltsScalingFactor": {
+          "description": "Optional. The factor by which to divide waveform samples to get voltage in millivolts: millivolts = waveform_sample / millivolts_scaling_factor.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "resultClassification": {
+          "description": "Optional. The result classification of the ECG reading.",
+          "enum": [
+            "RESULT_CLASSIFICATION_UNSPECIFIED",
+            "NORMAL_SINUS_RHYTHM",
+            "ATRIAL_FIBRILLATION",
+            "INCONCLUSIVE",
+            "INCONCLUSIVE_HIGH_HEART_RATE",
+            "INCONCLUSIVE_LOW_HEART_RATE",
+            "UNREADABLE",
+            "NOT_ANALYZED"
+          ],
+          "enumDescriptions": [
+            "Unspecified result classification.",
+            "Heart rhythm appears normal. Corresponds to result \"Normal Sinus Rhythm\".",
+            "Signs of Atrial Fibrillation detected. Corresponds to result \"Atrial Fibrillation\".",
+            "The reading is inconclusive as it could not be classified. Corresponds to result \"Inconclusive\".",
+            "The reading is inconclusive as it could not be classified because heart rate is high (>120bpm). Corresponds to result \"Inconclusive: High heart rate\".",
+            "The reading is inconclusive as it could not be classified because heart rate is low (<50bpm). Corresponds to result \"Inconclusive: Low heart rate\".",
+            "The reading is unreadable.",
+            "The reading was not analyzed."
+          ],
+          "type": "string"
+        },
+        "samplingFrequencyHertz": {
+          "description": "Optional. The sampling frequency of waveform samples in hertz.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "waveformSamples": {
+          "description": "Optional. An array of voltage values representing lead I ECG values. Each sample represents voltage difference in ECG graph. The first value in array corresponds to the start of the reading.",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
+      "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
     "EndpointAuthorization": {
       "description": "Authorization mechanism for a subscriber endpoint. For all requests sent by the Webhooks service, the JSON payload is cryptographically signed. The signature is delivered in the `X-HEALTHAPI-SIGNATURE` HTTP header. This is an ECDSA (NIST P256) signature of the JSON payload. Clients must verify this signature using Google Health API's public key to confirm the payload was sent by the Health API.",
       "id": "EndpointAuthorization",
@@ -1766,6 +2476,70 @@
           "description": "Output only. Whether the secret is set.",
           "readOnly": true,
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "EnergyQuantity": {
+      "description": "Represents the energy quantity.",
+      "id": "EnergyQuantity",
+      "properties": {
+        "kcal": {
+          "description": "Required. Value representing the energy in kilocalories.",
+          "format": "double",
+          "type": "number"
+        },
+        "userProvidedUnit": {
+          "description": "Optional. Value representing the user provided unit.",
+          "enum": [
+            "ENERGY_UNIT_UNSPECIFIED",
+            "JOULE",
+            "KILOJOULE",
+            "KILOCALORIE",
+            "SMALL_CALORIE",
+            "CALORIE"
+          ],
+          "enumDescriptions": [
+            "Unspecified energy unit.",
+            "Value representing joule.",
+            "Value representing kilojoule.",
+            "Value representing kilocalorie.",
+            "Value representing small calorie.",
+            "Value representing calorie."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnergyQuantityRollup": {
+      "description": "Rollup for the energy quantity.",
+      "id": "EnergyQuantityRollup",
+      "properties": {
+        "kcalSum": {
+          "description": "Required. The sum of the energy in kilocalories.",
+          "format": "double",
+          "type": "number"
+        },
+        "userProvidedUnitLast": {
+          "description": "Optional. The user provided unit on the last element.",
+          "enum": [
+            "ENERGY_UNIT_UNSPECIFIED",
+            "JOULE",
+            "KILOJOULE",
+            "KILOCALORIE",
+            "SMALL_CALORIE",
+            "CALORIE"
+          ],
+          "enumDescriptions": [
+            "Unspecified energy unit.",
+            "Value representing joule.",
+            "Value representing kilojoule.",
+            "Value representing kilocalorie.",
+            "Value representing small calorie.",
+            "Value representing calorie."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1929,7 +2703,7 @@
       "id": "ExportExerciseTcxResponse",
       "properties": {
         "tcxData": {
-          "description": "Contains the exported TCX data.",
+          "description": "Contains the exported TCX data. This field is intended for gRPC clients, as media download integration is not supported for gRPC. HTTP clients should instead use the `alt=media` query parameter to download the raw binary TCX file.",
           "type": "string"
         }
       },
@@ -1963,6 +2737,159 @@
       },
       "type": "object"
     },
+    "Food": {
+      "description": "Represents a food item.",
+      "id": "Food",
+      "properties": {
+        "accessLevel": {
+          "description": "Required. The access level of the food.",
+          "enum": [
+            "FOOD_ACCESS_LEVEL_UNSPECIFIED",
+            "FOOD_ACCESS_LEVEL_PUBLIC",
+            "FOOD_ACCESS_LEVEL_PRIVATE"
+          ],
+          "enumDescriptions": [
+            "Unspecified food access level.",
+            "Public food access level.",
+            "Private food access level."
+          ],
+          "type": "string"
+        },
+        "brand": {
+          "description": "Optional. The brand of the food.",
+          "type": "string"
+        },
+        "defaultServing": {
+          "$ref": "FoodServing",
+          "description": "Required. Value representing the default serving of the food."
+        },
+        "description": {
+          "description": "Optional. The description of the food.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the food.",
+          "type": "string"
+        },
+        "energyAvg": {
+          "$ref": "EnergyQuantity",
+          "description": "Optional. Value representing the average energy of the food for the default serving."
+        },
+        "energyFromFat": {
+          "$ref": "EnergyQuantity",
+          "description": "Optional. Value representing the energy from fat of the food for the default serving."
+        },
+        "energyMax": {
+          "$ref": "EnergyQuantity",
+          "description": "Optional. Value representing the maximum energy of the food for the default serving."
+        },
+        "energyMin": {
+          "$ref": "EnergyQuantity",
+          "description": "Optional. Value representing the minimum energy of the food for the default serving."
+        },
+        "languageCode": {
+          "description": "Optional. The language code where the food is available in format xx-XX. Supported values are defined in Settings.food_language_code.",
+          "type": "string"
+        },
+        "mealType": {
+          "description": "Optional. The meal type associated with this food.",
+          "enum": [
+            "MEAL_TYPE_UNSPECIFIED",
+            "BEFORE_BREAKFAST",
+            "BREAKFAST",
+            "BEFORE_LUNCH",
+            "LUNCH",
+            "BEFORE_DINNER",
+            "DINNER",
+            "AFTER_DINNER",
+            "SNACK",
+            "ANYTIME"
+          ],
+          "enumDescriptions": [
+            "Unspecified meal type.",
+            "Value representing a meal before breakfast.",
+            "Value representing a breakfast.",
+            "Value representing a morning snack.",
+            "Value representing a lunch.",
+            "Value representing an afternoon snack.",
+            "Value representing dinner.",
+            "Value representing an evening snack.",
+            "Value representing any meal outside of the usual three meals per day.",
+            "Value representing any time (legacy NA)."
+          ],
+          "type": "string"
+        },
+        "nutrients": {
+          "description": "Optional. Value representing the nutrients of the food for the default serving.",
+          "items": {
+            "$ref": "NutrientQuantity"
+          },
+          "type": "array"
+        },
+        "servings": {
+          "description": "Optional. The serving of the food.",
+          "items": {
+            "$ref": "FoodServing"
+          },
+          "type": "array"
+        },
+        "totalCarbohydrate": {
+          "$ref": "WeightQuantity",
+          "description": "Optional. Value representing the total carbohydrate of the food for the default serving."
+        },
+        "totalFat": {
+          "$ref": "WeightQuantity",
+          "description": "Optional. Value representing the total fat of the food for the default serving."
+        }
+      },
+      "type": "object"
+    },
+    "FoodMeasurementUnit": {
+      "description": "Represents a food measurement unit.",
+      "id": "FoodMeasurementUnit",
+      "properties": {
+        "displayName": {
+          "description": "Required. The display name of the food measurement unit (e.g., \"gram\", \"piece\").",
+          "type": "string"
+        },
+        "pluralDisplayName": {
+          "description": "Optional. The plural display name of the food measurement unit (e.g., \"grams\", \"pieces\").",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FoodServing": {
+      "description": "Represents different properties and information about the serving of a specific food.",
+      "id": "FoodServing",
+      "properties": {
+        "amount": {
+          "description": "Optional. Amount of food consumed, fractional values are supported.",
+          "format": "double",
+          "type": "number"
+        },
+        "foodMeasurementUnit": {
+          "description": "Required. Food measurement unit",
+          "type": "string"
+        },
+        "foodMeasurementUnitDisplayName": {
+          "description": "Output only. Legacy measurement unit for serving size in singular form (e.g. \"piece\", \"gram\").",
+          "readOnly": true,
+          "type": "string"
+        },
+        "foodMeasurementUnitDisplayNamePlural": {
+          "description": "Output only. Legacy measurement unit for serving size in plural form (e.g. \"pieces\", \"grams\").",
+          "readOnly": true,
+          "type": "string"
+        },
+        "multiplier": {
+          "description": "Optional. Value representing the multiplier used to compute the energy when using this serving instead of the default serving.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "GoogleDevicesandservicesHealthV4DataType": {
       "description": "Represents a type of health data a user can have data points recorded for. It matches the parent resource of collection containing data points of the given type. Clients currently do not need to interact with this resource directly.",
       "id": "GoogleDevicesandservicesHealthV4DataType",
@@ -1981,6 +2908,33 @@
         "httpResponse": {
           "$ref": "HttpResponse",
           "description": "Required. Represents the HTTP response. This message includes the status code, reason phrase, headers, and body."
+        }
+      },
+      "type": "object"
+    },
+    "HeartBeat": {
+      "description": "A single heart beat measurement.",
+      "id": "HeartBeat",
+      "properties": {
+        "beatsPerMinute": {
+          "description": "Required. The beats-per-minute value extrapolated from the time before the following heart beat. This is calculated as 60000 / rr, where rr is the gap between heart beats in milliseconds (IBI - Interbeat Interval).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "civilTime": {
+          "$ref": "CivilDateTime",
+          "description": "Output only. The civil time in the timezone the subject is in at the time of the observation.",
+          "readOnly": true
+        },
+        "physicalTime": {
+          "description": "Required. The time of the heart beat measurement.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "utcOffset": {
+          "description": "Required. The UTC offset of the user's timezone when the heart beat measurement occurred.",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2075,7 +3029,7 @@
       "id": "HeartRateVariability",
       "properties": {
         "rootMeanSquareOfSuccessiveDifferencesMilliseconds": {
-          "description": "Optional. The root mean square of successive differences between normal heartbeats. This is a measure of heart rate variability used by Fitbit.",
+          "description": "Optional. The root mean square of successive differences between normal heartbeats. This is a measure of heart rate variability used by Google Health.",
           "format": "double",
           "type": "number"
         },
@@ -2266,6 +3220,54 @@
       },
       "type": "object"
     },
+    "IrnProfile": {
+      "description": "Irregular Rhythm Notifications (IRN) Profile details. The Irregular Rhythm Notifications (IRN) feature checks for signs of atrial fibrillation (AFib). The IrnProfile details include information about the user's onboarding status, enrollment status, and the last update time of analyzable data for this feature.",
+      "id": "IrnProfile",
+      "properties": {
+        "enrollmentStatus": {
+          "description": "Required. Whether or not the user is currently enrolled in having their data processed for IRN alerts.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Identifier. The resource name of this IrnProfile resource. Format: `users/{user}/irnProfile` Example: `users/1234567890/irnProfile` or `users/me/irnProfile` The {user} ID is a system-generated Google Health API user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The literal `me` can also be used to refer to the authenticated user.",
+          "type": "string"
+        },
+        "onboardingStatus": {
+          "description": "Required. Whether or not the user has onboarded onto the IRN feature.",
+          "type": "boolean"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp of the last piece of analyzable data synced by the user.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IrregularRhythmNotification": {
+      "description": "Represents an Irregular Rhythm Notification alert, indicating a potential sign of atrial fibrillation (AFib). This data type is based on SaMD feature and any changes to it may require additional review.",
+      "id": "IrregularRhythmNotification",
+      "properties": {
+        "alertWindows": {
+          "description": "Optional. The overlapping analysis windows that were used to evaluate rhythm for potential AFib, containing specific information about the user's heart rhythm.",
+          "items": {
+            "$ref": "AlertWindow"
+          },
+          "type": "array"
+        },
+        "interval": {
+          "$ref": "SessionTimeInterval",
+          "description": "Required. Observed interval."
+        },
+        "medicalDeviceInfo": {
+          "$ref": "MedicalDeviceInfo",
+          "description": "Output only. The meta information for the compatible device used to conduct the measurement. Irregular Rhythm Notification measurements typically populate `algorithm_version`, `service_version`, and `device_model`.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "ListDataPointsResponse": {
       "description": "Response containing raw data points matching the query",
       "id": "ListDataPointsResponse",
@@ -2280,6 +3282,24 @@
         "nextPageToken": {
           "description": "Next page token, empty if the response is complete",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListPairedDevicesResponse": {
+      "description": "Response message for ListPairedDevices.",
+      "id": "ListPairedDevicesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "pairedDevices": {
+          "description": "The paired devices of the user.",
+          "items": {
+            "$ref": "PairedDevice"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2303,6 +3323,56 @@
           "description": "The total number of subscribers matching the request.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ListSubscriptionsResponse": {
+      "description": "Response message for ListSubscriptions.",
+      "id": "ListSubscriptionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "subscriptions": {
+          "description": "The subscriptions from the specified subscriber.",
+          "items": {
+            "$ref": "Subscription"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MedicalDeviceInfo": {
+      "description": "Software as Medical Device (SaMD) metadata. Used to construct the Unique Device Identifier (UDI).",
+      "id": "MedicalDeviceInfo",
+      "properties": {
+        "algorithmVersion": {
+          "description": "Output only. The algorithm version used by the feature.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deviceModel": {
+          "description": "Output only. The model name or device type of the compatible device used to collect the data.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "featureVersion": {
+          "description": "Output only. The version of the feature/app running on the device.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "firmwareVersion": {
+          "description": "Output only. The firmware version running on the compatible device used to collect the data.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceVersion": {
+          "description": "Output only. The service version used by the feature.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2400,6 +3470,308 @@
           "description": "Optional. Vertical oscillation/stride length between [5.0, 11.0].",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "NutrientQuantity": {
+      "description": "Represents the quantity of a nutrient.",
+      "id": "NutrientQuantity",
+      "properties": {
+        "nutrient": {
+          "description": "Required. Value representing the nutrient.",
+          "enum": [
+            "NUTRIENT_UNSPECIFIED",
+            "BIOTIN",
+            "CAFFEINE",
+            "CALCIUM",
+            "CHLORIDE",
+            "CARBOHYDRATES",
+            "CHOLESTEROL",
+            "CHROMIUM",
+            "COPPER",
+            "DIETARY_FIBER",
+            "FOLIC_ACID",
+            "IODINE",
+            "IRON",
+            "MAGNESIUM",
+            "MANGANESE",
+            "MOLYBDENUM",
+            "MONOUNSATURATED_FAT",
+            "NIACIN",
+            "PANTOTHENIC_ACID",
+            "PHOSPHORUS",
+            "POLYUNSATURATED_FAT",
+            "POTASSIUM",
+            "PROTEIN",
+            "RIBOFLAVIN",
+            "SATURATED_FAT",
+            "SELENIUM",
+            "SODIUM",
+            "SUGAR",
+            "THIAMIN",
+            "TRANS_FAT",
+            "UNSATURATED_FAT",
+            "VITAMIN_A",
+            "VITAMIN_B12",
+            "VITAMIN_B6",
+            "VITAMIN_C",
+            "VITAMIN_D",
+            "VITAMIN_E",
+            "VITAMIN_K",
+            "ZINC",
+            "FOLATE"
+          ],
+          "enumDescriptions": [
+            "Unspecified nutrient.",
+            "Value representing biotin nutrient.",
+            "Value representing caffeine nutrient.",
+            "Value representing calcium nutrient.",
+            "Value representing chloride nutrient.",
+            "Value representing carbohydrates nutrient.",
+            "Value representing cholesterol nutrient.",
+            "Value representing chromium nutrient.",
+            "Value representing copper nutrient.",
+            "Value representing dietary fiber nutrient.",
+            "Value representing folic acid nutrient.",
+            "Value representing iodine nutrient.",
+            "Value representing iron nutrient.",
+            "Value representing magnesium nutrient.",
+            "Value representing manganese nutrient.",
+            "Value representing molybdenum nutrient.",
+            "Value representing monounsaturated fat nutrient.",
+            "Value representing niacin nutrient.",
+            "Value representing pantothenic acid nutrient.",
+            "Value representing phosphorus nutrient.",
+            "Value representing polyunsaturated fat nutrient.",
+            "Value representing potassium nutrient.",
+            "Value representing protein nutrient.",
+            "Value representing riboflavin nutrient.",
+            "Value representing saturated fat nutrient.",
+            "Value representing selenium nutrient.",
+            "Value representing sodium nutrient.",
+            "Value representing sugar nutrient.",
+            "Value representing thiamin nutrient.",
+            "Value representing trans fat nutrient.",
+            "Value representing unsaturated fat nutrient.",
+            "Value representing vitamin A nutrient.",
+            "Value representing vitamin B12 nutrient.",
+            "Value representing vitamin B6 nutrient.",
+            "Value representing vitamin C nutrient.",
+            "Value representing vitamin D nutrient.",
+            "Value representing vitamin E nutrient.",
+            "Value representing vitamin K nutrient.",
+            "Value representing zinc nutrient.",
+            "Value representing folate nutrient."
+          ],
+          "type": "string"
+        },
+        "quantity": {
+          "$ref": "WeightQuantity",
+          "description": "Required. Value representing the quantity of the nutrient."
+        }
+      },
+      "type": "object"
+    },
+    "NutrientQuantityRollup": {
+      "description": "Nutrient quantity rollup.",
+      "id": "NutrientQuantityRollup",
+      "properties": {
+        "nutrient": {
+          "description": "Required. Aggregated nutrient.",
+          "enum": [
+            "NUTRIENT_UNSPECIFIED",
+            "BIOTIN",
+            "CAFFEINE",
+            "CALCIUM",
+            "CHLORIDE",
+            "CARBOHYDRATES",
+            "CHOLESTEROL",
+            "CHROMIUM",
+            "COPPER",
+            "DIETARY_FIBER",
+            "FOLIC_ACID",
+            "IODINE",
+            "IRON",
+            "MAGNESIUM",
+            "MANGANESE",
+            "MOLYBDENUM",
+            "MONOUNSATURATED_FAT",
+            "NIACIN",
+            "PANTOTHENIC_ACID",
+            "PHOSPHORUS",
+            "POLYUNSATURATED_FAT",
+            "POTASSIUM",
+            "PROTEIN",
+            "RIBOFLAVIN",
+            "SATURATED_FAT",
+            "SELENIUM",
+            "SODIUM",
+            "SUGAR",
+            "THIAMIN",
+            "TRANS_FAT",
+            "UNSATURATED_FAT",
+            "VITAMIN_A",
+            "VITAMIN_B12",
+            "VITAMIN_B6",
+            "VITAMIN_C",
+            "VITAMIN_D",
+            "VITAMIN_E",
+            "VITAMIN_K",
+            "ZINC",
+            "FOLATE"
+          ],
+          "enumDescriptions": [
+            "Unspecified nutrient.",
+            "Value representing biotin nutrient.",
+            "Value representing caffeine nutrient.",
+            "Value representing calcium nutrient.",
+            "Value representing chloride nutrient.",
+            "Value representing carbohydrates nutrient.",
+            "Value representing cholesterol nutrient.",
+            "Value representing chromium nutrient.",
+            "Value representing copper nutrient.",
+            "Value representing dietary fiber nutrient.",
+            "Value representing folic acid nutrient.",
+            "Value representing iodine nutrient.",
+            "Value representing iron nutrient.",
+            "Value representing magnesium nutrient.",
+            "Value representing manganese nutrient.",
+            "Value representing molybdenum nutrient.",
+            "Value representing monounsaturated fat nutrient.",
+            "Value representing niacin nutrient.",
+            "Value representing pantothenic acid nutrient.",
+            "Value representing phosphorus nutrient.",
+            "Value representing polyunsaturated fat nutrient.",
+            "Value representing potassium nutrient.",
+            "Value representing protein nutrient.",
+            "Value representing riboflavin nutrient.",
+            "Value representing saturated fat nutrient.",
+            "Value representing selenium nutrient.",
+            "Value representing sodium nutrient.",
+            "Value representing sugar nutrient.",
+            "Value representing thiamin nutrient.",
+            "Value representing trans fat nutrient.",
+            "Value representing unsaturated fat nutrient.",
+            "Value representing vitamin A nutrient.",
+            "Value representing vitamin B12 nutrient.",
+            "Value representing vitamin B6 nutrient.",
+            "Value representing vitamin C nutrient.",
+            "Value representing vitamin D nutrient.",
+            "Value representing vitamin E nutrient.",
+            "Value representing vitamin K nutrient.",
+            "Value representing zinc nutrient.",
+            "Value representing folate nutrient."
+          ],
+          "type": "string"
+        },
+        "quantity": {
+          "$ref": "WeightQuantityRollup",
+          "description": "Required. Aggregated nutrient weight."
+        }
+      },
+      "type": "object"
+    },
+    "NutritionLog": {
+      "description": "Holds information about a user logged food. There are two ways of creating a nutrition log based on the food type: 1. Identified food: Using the food field, which is a reference to a Food resource. In this case fields `nutrients`, `energy`, `energy_from_fat`, `total_carbohydrate`, `total_fat`, `food_display_name` will be populated based on the referenced food. 2. Anonymous food: Using the `food_display_name` field and setting the `nutrients`, `energy`, `energy_from_fat`, `total_carbohydrate`, `total_fat` fields manually. The identified food is preferred over the anonymous food. Nutrition logs created from anonymous food are not be editable.",
+      "id": "NutritionLog",
+      "properties": {
+        "energy": {
+          "$ref": "EnergyQuantity",
+          "description": "Optional. Value representing the energy of the nutrition log. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually."
+        },
+        "energyFromFat": {
+          "$ref": "EnergyQuantity",
+          "description": "Optional. Value representing the energy from fat of the nutrition log. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually."
+        },
+        "food": {
+          "description": "Required. Represents the food ID.",
+          "type": "string"
+        },
+        "foodDisplayName": {
+          "description": "Value representing the display name of the food. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually.",
+          "type": "string"
+        },
+        "interval": {
+          "$ref": "SessionTimeInterval",
+          "description": "Required. Observed interval."
+        },
+        "mealType": {
+          "description": "Optional. Value representing the meal type of the nutrition log.",
+          "enum": [
+            "MEAL_TYPE_UNSPECIFIED",
+            "BEFORE_BREAKFAST",
+            "BREAKFAST",
+            "BEFORE_LUNCH",
+            "LUNCH",
+            "BEFORE_DINNER",
+            "DINNER",
+            "AFTER_DINNER",
+            "SNACK",
+            "ANYTIME"
+          ],
+          "enumDescriptions": [
+            "Unspecified meal type.",
+            "Value representing a meal before breakfast.",
+            "Value representing a breakfast.",
+            "Value representing a morning snack.",
+            "Value representing a lunch.",
+            "Value representing an afternoon snack.",
+            "Value representing dinner.",
+            "Value representing an evening snack.",
+            "Value representing any meal outside of the usual three meals per day.",
+            "Value representing any time (legacy NA)."
+          ],
+          "type": "string"
+        },
+        "nutrients": {
+          "description": "Optional. Value representing the nutrients of the nutrition log.",
+          "items": {
+            "$ref": "NutrientQuantity"
+          },
+          "type": "array"
+        },
+        "serving": {
+          "$ref": "Serving",
+          "description": "Optional. Value representing the nutrition log serving."
+        },
+        "totalCarbohydrate": {
+          "$ref": "WeightQuantity",
+          "description": "Optional. Value representing the total carbohydrate of the nutrition log. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually."
+        },
+        "totalFat": {
+          "$ref": "WeightQuantity",
+          "description": "Optional. Value representing the total fat of the nutrition log. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually."
+        }
+      },
+      "type": "object"
+    },
+    "NutritionLogRollupValue": {
+      "description": "Represents the result of the rollup of the nutrition log data type.",
+      "id": "NutritionLogRollupValue",
+      "properties": {
+        "energy": {
+          "$ref": "EnergyQuantityRollup",
+          "description": "Energy rollup."
+        },
+        "energyFromFat": {
+          "$ref": "EnergyQuantityRollup",
+          "description": "Value Energy from fat rollup."
+        },
+        "nutrients": {
+          "description": "List of the nutrient roll-ups by the nutrient type.",
+          "items": {
+            "$ref": "NutrientQuantityRollup"
+          },
+          "type": "array"
+        },
+        "totalCarbohydrate": {
+          "$ref": "WeightQuantityRollup",
+          "description": "Total carbohydrate rollup."
+        },
+        "totalFat": {
+          "$ref": "WeightQuantityRollup",
+          "description": "Total fat rollup."
         }
       },
       "type": "object"
@@ -2541,6 +3913,67 @@
       },
       "type": "object"
     },
+    "PairedDevice": {
+      "description": "User's Paired 1P Device The PairedDevice details include information about the device type, battery status, battery level, last sync time, device version, mac address, and features.",
+      "id": "PairedDevice",
+      "properties": {
+        "batteryLevel": {
+          "description": "Output only. The battery level of the device.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "batteryStatus": {
+          "description": "Output only. The battery status of the device. Supported: High | Medium | Low | Empty",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deviceType": {
+          "description": "Output only. The device type. Supported: TRACKER | SCALE",
+          "enum": [
+            "DEVICE_TYPE_UNSPECIFIED",
+            "TRACKER",
+            "SCALE"
+          ],
+          "enumDescriptions": [
+            "Device type is not specified.",
+            "Device type is tracker.",
+            "Device type is scale."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "deviceVersion": {
+          "description": "Output only. The product name of the device",
+          "readOnly": true,
+          "type": "string"
+        },
+        "features": {
+          "description": "Output only. Lists of unique features supported by the device. Comprehensive list of supported features: **Fitness Tracking** - `ACTIVE_MINUTES`: Legacy active minutes. - `AUTOSTRIDE`: Automatic stride length calculation. - `BIKE_ONBOARDING`: Cycling UI support. - `CALORIES`: Daily burned calories. - `DISTANCE`: Daily distance tracking. - `ELEVATION`: Floors climbed. - `INACTIVITY_ALERTS`: Reminders to move. - `SEDENTARY_TIME`: Tracks inactive time. - `STEPS`: Daily steps. - `SWIM`: Swim tracking (laps/strokes). - `AUTORUN`: Automatic run detection. - `ACTIVE_ZONE_MINUTES`: Active Zone Minutes (AZM). **Heart Rate & Health** - `HEART_RATE`: Continuous heart rate (PPG). - `BAT_SIGNAL`: High/Low Heart Rate Alerts. **Advanced Sensors** - `SPO2`: Blood oxygen saturation. - `NIGHTTIME_OXYGEN_SATURATION`: Sleep SpO2. - `ESTIMATED_OXYGEN_VARIATION`: Estimated Oxygen Variation. - `EDA`: Electrodermal Activity (stress). - `SKIN_TEMPERATURE`: Skin temperature variation. - `INTERNAL_DEVICE_TEMPERATURE`: Internal device temperature. **Sleep & Wellness** - `SLEEP`: Basic sleep tracking. - `SMART_SLEEP`: Advanced sleep tracking (stages/score). - `BEDTIME_REMINDER`: Bedtime reminders. - `SOUNDSCAPE`: Snore and noise detection. **Advanced Workouts** - `WB`: Custom Workout Builder. - `AUTOCUES`: Auto Cues / Auto Lap. - `DWR_RUN`: Daily Run Recommendations. - `ADVANCED_RUNNING`: Advanced Running Dynamics (e.g., GCT, VO). **GPS & Location** - `GPS`: Built-in GPS. - `CONNECTED_GPS`: Connected GPS (uses phone). - `LOCATION_HINT`: Location helper. **Payments & NFC** - `PAYMENTS`: NFC payments (Fitbit Pay/Google Wallet). - `FELICA`: FeliCa support (Japan payments/transit). **Activity Detection** - `GROK`: SmartTrack automatic activity detection. - `RETRO_AR`: Retroactive Activity Recognition prompts. **Smart Features & UI** - `ALARMS`: Silent alarms. - `BLE_MUSIC_CONTROL`: BLE music control. - `MUSIC`: Direct music storage/control. - `YOUTUBE_MUSIC_SUPPORTED`: YouTube Music support. - `GALLERY`: App Gallery. - `TUTORIAL_SUPPORTED`: On-screen tutorials. - `SMILEY_EMOTE`: Legacy Zip face. - `MOBILE_TO_DEVICE_DEEPLINK`: Mobile to device settings deep link. - `HIDE_GALLERY`: Option to hide Gallery. - `HIDE_GOAL_SELECTION`: Option to hide goal selection. - `DIGITAL_WARRANTY_SUPPORTED`: Digital warranty display. - `DIRECT_DEVICE_SETTINGS_SUPPORTED`: Direct device settings management. **Gym HR Broadcasting** - `ASPEN_SUPPORTED`: Broadcast HR to gym equipment. - `ASPEN_REMOTE_UI_SUPPORTED`: Remote UI for HR sharing. **Privacy & Security** - `FINITE_IMPROBABILITY`: BLE Resolvable Private Address (RPA) privacy. - `DOMAIN_KEY_SYNC`: Domain key synchronization. **BLE Protocol** - `BONDING`: Secure BLE bonding. - `ADVERTISES_SERIAL`: Advertises serial number. - `STATUS_CHARACTERISTIC`: BLE Status Characteristic. - `TRACKER_CHANNEL_CHARACTERISTIC`: BLE Tracker Channel Characteristic. - `PING_CHARACTERISTIC`: BLE Ping Characteristic. **Cellular & Wi-Fi** - `MOBILE_DATA`: LTE cellular support. - `SINGLE_AP_WIFI`: Single AP Wi-Fi. - `MULTI_AP_WIFI`: Multi AP Wi-Fi. - `WIFI_FWUP`: Firmware updates over Wi-Fi. **Data Sync & Transfer** - `APP_SYNC`: Background app sync. - `LIVE_DATA`: Real-time data streaming. - `EVENT_BASED_SYNC_SUPPORTED`: Event-based sync. - `TIME_SERVICE`: Time synchronization service. - `REMOTE_FILE_PROVIDER`: Remote file transfer. - `DIRECT_COMMS_ALARMS`: Direct communication for alarms. - `DIRECT_COMMS_EXERCISE`: Direct communication for exercise. - `DIRECT_COMMS_BATTERY_ALERTS`: Direct communication for battery alerts. **Google Integrations** - `PARROT_TREE_SUPPORTED`: Find My Device support.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "lastSyncTime": {
+          "description": "Output only. The time of last sync with the Fitbit mobile application.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "macAddress": {
+          "description": "Output only. Mac ID number of the device.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of this Device resource. Format: `users/{user}/pairedDevices/{paired_device}` Example: `users/1234567890/pairedDevices/123` or `users/me/pairedDevices/123`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Profile": {
       "description": "Profile details.",
       "id": "Profile",
@@ -2606,6 +4039,10 @@
       "description": "A reconciled computed or recorded metric.",
       "id": "ReconciledDataPoint",
       "properties": {
+        "activeEnergyBurned": {
+          "$ref": "ActiveEnergyBurned",
+          "description": "Data for points in the `active-energy-burned` interval data type collection."
+        },
         "activeMinutes": {
           "$ref": "ActiveMinutes",
           "description": "Data for points in the `active-minutes` interval data type collection."
@@ -2626,9 +4063,17 @@
           "$ref": "BasalEnergyBurned",
           "description": "Data for points in the `basal-energy-burned` interval data type collection."
         },
+        "bloodGlucose": {
+          "$ref": "BloodGlucose",
+          "description": "Data for points in the `blood-glucose` sample data type collection."
+        },
         "bodyFat": {
           "$ref": "BodyFat",
           "description": "Data for points in the `body-fat` sample data type collection."
+        },
+        "coreBodyTemperature": {
+          "$ref": "CoreBodyTemperature",
+          "description": "Data for points in the `core-body-temperature` sample data type collection."
         },
         "dailyHeartRateVariability": {
           "$ref": "DailyHeartRateVariability",
@@ -2689,6 +4134,10 @@
         "hydrationLog": {
           "$ref": "HydrationLog",
           "description": "Data for points in the `hydration-log` session data type collection."
+        },
+        "nutritionLog": {
+          "$ref": "NutritionLog",
+          "description": "Data for points in the `nutrition-log` session data type collection."
         },
         "oxygenSaturation": {
           "$ref": "OxygenSaturation",
@@ -2847,9 +4296,13 @@
       "type": "object"
     },
     "RollupDataPoint": {
-      "description": "Value of a rollup for a single physical time interval (aggregation window)",
+      "description": "Value of a rollup for a single physical time interval (aggregation window) of reconciled data points from all data sources, excluding those data points that are identified as recorded by wearables in intervals when they were not actually worn.",
       "id": "RollupDataPoint",
       "properties": {
+        "activeEnergyBurned": {
+          "$ref": "ActiveEnergyBurnedRollupValue",
+          "description": "Returned by default when rolling up data points from the `active-energy-burned` data type."
+        },
         "activeMinutes": {
           "$ref": "ActiveMinutesRollupValue",
           "description": "Returned by default when rolling up data points from the `active-minutes` data type, or when requested explicitly using the `active-minutes` rollup type identifier."
@@ -2866,6 +4319,10 @@
           "$ref": "AltitudeRollupValue",
           "description": "Returned by default when rolling up data points from the `altitude` data type, or when requested explicitly using the `altitude` rollup type identifier."
         },
+        "bloodGlucose": {
+          "$ref": "BloodGlucoseRollupValue",
+          "description": "Returned by default when rolling up data points from the `blood-glucose` data type."
+        },
         "bodyFat": {
           "$ref": "BodyFatRollupValue",
           "description": "Returned by default when rolling up data points from the `body-fat` data type, or when requested explicitly using the `body-fat` rollup type identifier."
@@ -2873,6 +4330,10 @@
         "caloriesInHeartRateZone": {
           "$ref": "CaloriesInHeartRateZoneRollupValue",
           "description": "Returned by default when rolling up data points from the `calories-in-heart-rate-zone` data type, or when requested explicitly using the `calories-in-heart-rate-zone` rollup type identifier."
+        },
+        "coreBodyTemperature": {
+          "$ref": "CoreBodyTemperatureRollupValue",
+          "description": "Returned by default when rolling up data points from the `core-body-temperature` data type, or when requested explicitly using the `core-body-temperature` rollup type identifier."
         },
         "distance": {
           "$ref": "DistanceRollupValue",
@@ -2894,6 +4355,10 @@
         "hydrationLog": {
           "$ref": "HydrationLogRollupValue",
           "description": "Returned by default when rolling up data points from the `hydration-log` data type, or when requested explicitly using the `hydration-log` rollup type identifier."
+        },
+        "nutritionLog": {
+          "$ref": "NutritionLogRollupValue",
+          "description": "Returned by default when rolling up data points from the `nutrition-log` data type, or when requested explicitly using the `nutrition-log` rollup type identifier."
         },
         "runVo2Max": {
           "$ref": "RunVO2MaxRollupValue",
@@ -2992,6 +4457,27 @@
       },
       "type": "object"
     },
+    "Serving": {
+      "description": "Represents different properties and information about the serving of a specific food.",
+      "id": "Serving",
+      "properties": {
+        "amount": {
+          "description": "Optional. Amount of food consumed, fractional values are supported.",
+          "format": "double",
+          "type": "number"
+        },
+        "foodMeasurementUnit": {
+          "description": "Required. Food measurement unit",
+          "type": "string"
+        },
+        "foodMeasurementUnitDisplayName": {
+          "description": "Output only. Legacy measurement unit for serving size in singular form (e.g. \"piece\", \"gram\").",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SessionTimeInterval": {
       "description": "Represents a time interval of session data point, which bundles multiple observed metrics together.",
       "id": "SessionTimeInterval",
@@ -3049,6 +4535,11 @@
             "Distance unit is miles.",
             "Distance unit is kilometers."
           ],
+          "type": "string"
+        },
+        "foodLanguageCode": {
+          "description": "Output only. The food language code derived from the user's food database. Possible values: `'en-US'`, `'en-GB'`, `'de-DE'`, `'es-ES'`, `'fr-FR'`, `'zh-CN'`, `'zh-TW'`, `'ja-JP'`, `'en-AU'`, `'en-CA'`, `'it-IT'`, `'ko-KR'`, `'es-MX'`, `'en-IN'`, `'en-SG'`, `'en-PH'`, `'en-IE'`, `'fr-CA'`. Updates to this field are currently not supported.",
+          "readOnly": true,
           "type": "string"
         },
         "glucoseUnit": {
@@ -3624,7 +5115,7 @@
       "id": "SubscriberConfig",
       "properties": {
         "dataTypes": {
-          "description": "Required. Supported data types are: \"altitude\", \"distance\", \"floors\", \"sleep\", \"steps\", \"weight\". Values should be in kebab-case.",
+          "description": "Required. See [Google Health API data types](https://developers.google.com/health/data-types) for the list of supported data types. Values should be in kebab-case.",
           "items": {
             "type": "string"
           },
@@ -3642,6 +5133,28 @@
             "When using `AUTOMATIC`, individual subscriptions are not created or stored. Instead, eligibility for notifications is computed dynamically. When a data update occurs for a given data type, notifications are sent to all subscribers with an `AUTOMATIC` policy for that data type, provided the user has granted the necessary consents. This means you do not need to call `CreateSubscription` for each user; notifications are managed automatically based on user consents. As `Subscription` resources are not stored, they cannot be retrieved or managed through `GetSubscription`, `ListSubscriptions`, `UpdateSubscription`, or `DeleteSubscription`.",
             "Requires subscriptions to be created manually for new users. The developer needs to call CreateSubscription for new users."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Subscription": {
+      "description": "A subscription to a data collection for a specific user, to be delivered to a subscriber.",
+      "id": "Subscription",
+      "properties": {
+        "dataTypes": {
+          "description": "Optional. Data types subscribed to. A subscriber will only receive notifications for data types that are declared here. A subscription can only subscribe to the data types of the subscriber. Supported data types are: \"altitude\", \"distance\", \"floors\", \"sleep\", \"steps\", \"weight\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the Subscription. Format: `projects/{project}/subscribers/{subscriber}/subscriptions/{subscription}` Example: `projects/my-project/subscribers/my-subscriber-123/subscriptions/my-subscription-456` The {project} ID is mandatory (6-30 characters, matching /a-z{6,30}/) The {subscriber} ID is user-settable (4-36 characters, matching /[a-z]([a-z0-9-]{2,34}[a-z0-9])/) if provided during creation, or system-generated otherwise. The {subscription} ID is user-settable (4-36 chars, matching /[a-z]([a-z0-9-]{2,34}[a-z0-9])/) or system-generated otherwise.",
+          "type": "string"
+        },
+        "user": {
+          "description": "Immutable. The resource name of the user for whom this subscription is active. Format: `users/{user}` where `{user}` is the public `healthUserId` as returned by the `GetIdentity` action in the profile PAPI (see `google.devicesandservices.health.v4main.HealthProfileService.GetIdentity`).",
           "type": "string"
         }
       },
@@ -3905,7 +5418,7 @@
           "type": "number"
         },
         "userProvidedUnit": {
-          "description": "Optional. Value representing the user provided unit.",
+          "description": "Optional. Value representing the user provided unit, used only for user-facing input and display purposes. In the API format, all volume quantities are converted to milliliters.",
           "enum": [
             "VOLUME_UNIT_UNSPECIFIED",
             "CUP_IMPERIAL",
@@ -3987,6 +5500,82 @@
           "description": "Required. Weight of a user in grams.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "WeightQuantity": {
+      "description": "Represents the weight quantity.",
+      "id": "WeightQuantity",
+      "properties": {
+        "grams": {
+          "description": "Required. Value representing the weight in grams.",
+          "format": "double",
+          "type": "number"
+        },
+        "userProvidedUnit": {
+          "description": "Optional. Value representing the user provided unit.",
+          "enum": [
+            "WEIGHT_UNIT_UNSPECIFIED",
+            "GRAM",
+            "KILOGRAM",
+            "OUNCE",
+            "POUND",
+            "STONE",
+            "MILLIGRAM",
+            "MICROGRAM",
+            "NANOGRAM"
+          ],
+          "enumDescriptions": [
+            "Unspecified weight unit.",
+            "Value representing gram.",
+            "Value representing kilogram.",
+            "Value representing ounce.",
+            "Value representing pound.",
+            "Value representing stone.",
+            "Value representing milligram.",
+            "Value representing microgram.",
+            "Value representing nanogram."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WeightQuantityRollup": {
+      "description": "Rollup for the weight.",
+      "id": "WeightQuantityRollup",
+      "properties": {
+        "gramsSum": {
+          "description": "Required. The sum of the weight in grams.",
+          "format": "double",
+          "type": "number"
+        },
+        "userProvidedUnitLast": {
+          "description": "Optional. The user provided unit on the last element.",
+          "enum": [
+            "WEIGHT_UNIT_UNSPECIFIED",
+            "GRAM",
+            "KILOGRAM",
+            "OUNCE",
+            "POUND",
+            "STONE",
+            "MILLIGRAM",
+            "MICROGRAM",
+            "NANOGRAM"
+          ],
+          "enumDescriptions": [
+            "Unspecified weight unit.",
+            "Value representing gram.",
+            "Value representing kilogram.",
+            "Value representing ounce.",
+            "Value representing pound.",
+            "Value representing stone.",
+            "Value representing milligram.",
+            "Value representing microgram.",
+            "Value representing nanogram."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

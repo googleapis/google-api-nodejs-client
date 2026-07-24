@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/bigquerydatapolicy",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "description": "bigquerydatapolicy",
   "main": "build/index.js",
   "types": "build/index.d.ts",

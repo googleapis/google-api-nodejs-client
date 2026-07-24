@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v12.1.0...datacatalog-v12.1.1) (2026-05-19)
+
+
+### Bug Fixes
+
+* **datacatalog:** update the API ([46bf5b6](https://github.com/googleapis/google-api-nodejs-client/commit/46bf5b609cb07ef46ddead37c1858f412e4e9bbd))
+
 ## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v12.0.0...datacatalog-v12.1.0) (2026-01-09)
 
 

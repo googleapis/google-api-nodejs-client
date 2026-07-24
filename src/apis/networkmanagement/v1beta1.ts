@@ -255,6 +255,23 @@ export namespace networkmanagement_v1beta1 {
     versionId?: string | null;
   }
   /**
+   * For display only. Metadata associated with a Cloud Run job.
+   */
+  export interface Schema$CloudRunJobInfo {
+    /**
+     * Name of a Cloud Run job.
+     */
+    displayName?: string | null;
+    /**
+     * Location in which this job is deployed.
+     */
+    location?: string | null;
+    /**
+     * URI of a Cloud Run job.
+     */
+    uri?: string | null;
+  }
+  /**
    * Wrapper for Cloud Run revision attributes.
    */
   export interface Schema$CloudRunRevisionEndpoint {
@@ -551,6 +568,10 @@ export namespace networkmanagement_v1beta1 {
      * A [Cloud Function](https://cloud.google.com/functions). Applicable only to source endpoint.
      */
     cloudFunction?: Schema$CloudFunctionEndpoint;
+    /**
+     * A [Cloud Run](https://cloud.google.com/run) [job](https://docs.cloud.google.com/run/docs/reference/rest/v2/projects.locations.jobs#Job) URI. Applicable only to source endpoint. The format is: projects/{project\}/locations/{location\}/jobs/{job\}
+     */
+    cloudRunJob?: string | null;
     /**
      * A [Cloud Run](https://cloud.google.com/run) [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get) Applicable only to source endpoint.
      */
@@ -1808,6 +1829,10 @@ export namespace networkmanagement_v1beta1 {
      * Display information of a Cloud Function.
      */
     cloudFunction?: Schema$CloudFunctionInfo;
+    /**
+     * Display information of a Cloud Run job.
+     */
+    cloudRunJob?: Schema$CloudRunJobInfo;
     /**
      * Display information of a Cloud Run revision.
      */

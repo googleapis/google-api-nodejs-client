@@ -434,11 +434,11 @@ export namespace places_v1 {
     referencedPlaces?: string[] | null;
   }
   /**
-   * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Content that is contextual to the place query.
+   * Content that is contextual to the place query.
    */
   export interface Schema$GoogleMapsPlacesV1ContextualContent {
     /**
-     * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Justifications for the place.
+     * Justifications for the place.
      */
     justifications?: Schema$GoogleMapsPlacesV1ContextualContentJustification[];
     /**
@@ -451,20 +451,14 @@ export namespace places_v1 {
     reviews?: Schema$GoogleMapsPlacesV1Review[];
   }
   /**
-   * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Justifications for the place. Justifications answers the question of why a place could interest an end user.
+   * Justifications for the place. Justifications answers the question of why a place could interest an end user.
    */
   export interface Schema$GoogleMapsPlacesV1ContextualContentJustification {
-    /**
-     * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details.
-     */
     businessAvailabilityAttributesJustification?: Schema$GoogleMapsPlacesV1ContextualContentJustificationBusinessAvailabilityAttributesJustification;
-    /**
-     * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details.
-     */
     reviewJustification?: Schema$GoogleMapsPlacesV1ContextualContentJustificationReviewJustification;
   }
   /**
-   * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. BusinessAvailabilityAttributes justifications. This shows some attributes a business has that could interest an end user.
+   * BusinessAvailabilityAttributes justifications. This shows some attributes a business has that could interest an end user.
    */
   export interface Schema$GoogleMapsPlacesV1ContextualContentJustificationBusinessAvailabilityAttributesJustification {
     /**
@@ -481,7 +475,7 @@ export namespace places_v1 {
     takeout?: boolean | null;
   }
   /**
-   * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. User review justifications. This highlights a section of the user review that would interest an end user. For instance, if the search query is "firewood pizza", the review justification highlights the text relevant to the search query.
+   * User review justifications. This highlights a section of the user review that would interest an end user. For instance, if the search query is "firewood pizza", the review justification highlights the text relevant to the search query.
    */
   export interface Schema$GoogleMapsPlacesV1ContextualContentJustificationReviewJustification {
     highlightedText?: Schema$GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedText;
@@ -909,6 +903,10 @@ export namespace places_v1 {
      * IANA Time Zone Database time zone. For example "America/New_York".
      */
     timeZone?: Schema$GoogleTypeTimeZone;
+    /**
+     * The transit station information for the place.
+     */
+    transitStation?: Schema$GoogleMapsPlacesV1TransitStation;
     /**
      * A set of type tags for this result. For example, "political" and "locality". For the complete list of possible values, see Table A and Table B at https://developers.google.com/maps/documentation/places/web-service/place-types
      */
@@ -1675,6 +1673,135 @@ export namespace places_v1 {
     searchUri?: string | null;
   }
   /**
+   * Represents a transit agency.
+   */
+  export interface Schema$GoogleMapsPlacesV1TransitAgency {
+    /**
+     * Agency name (e.g. "VTA") in the requested language.
+     */
+    displayName?: Schema$GoogleTypeLocalizedText;
+    /**
+     * The URL of the agency's fare details page.
+     */
+    fareUrl?: string | null;
+    /**
+     * Icon identifier for localized branded icon of a transit system (e.g. London Underground) which should be used instead of TransitLine.vehicle_icon in the UI.
+     */
+    icon?: Schema$GoogleMapsPlacesV1TransitIcon;
+    /**
+     * The transit lines that are served by this agency.
+     */
+    lines?: Schema$GoogleMapsPlacesV1TransitLine[];
+    /**
+     * The URL of the agency's homepage.
+     */
+    url?: string | null;
+  }
+  /**
+   * Icon for a transit line, vehicle, or agency.
+   */
+  export interface Schema$GoogleMapsPlacesV1TransitIcon {
+    /**
+     * Whether the name is contained in the icon and there is no need to display it next to the icon.
+     */
+    nameIncluded?: boolean | null;
+    /**
+     * The URL of the icon.
+     */
+    url?: string | null;
+  }
+  /**
+   * Represents a single transit line.
+   */
+  export interface Schema$GoogleMapsPlacesV1TransitLine {
+    /**
+     * The background color of the labels for this transit line in #RRGGBB hex format, e.g. #909CE1. This color can also be used for drawing shapes for this transit line.
+     */
+    backgroundColor?: string | null;
+    /**
+     * The long name for this transit line (e.g. "Sunnydale local").
+     */
+    displayName?: Schema$GoogleTypeLocalizedText;
+    /**
+     * Icon identifier for this particular line (e.g. subway lines in New York).
+     */
+    icon?: Schema$GoogleMapsPlacesV1TransitIcon;
+    /**
+     * The id of the transit line that can be used to uniquely identify the line among other transit lines in the same transit station. This identifier is not guaranteed to be stable across different responses.
+     */
+    id?: string | null;
+    /**
+     * The short name for this transit line (e.g. "S2").
+     */
+    shortDisplayName?: Schema$GoogleTypeLocalizedText;
+    /**
+     * The text color of labels for this transit line in #RRGGBB hex format, e.g. #909CE1.
+     */
+    textColor?: string | null;
+    /**
+     * The URL of a webpage with details about this line.
+     */
+    url?: string | null;
+    /**
+     * Icon identifier for this particular vehicle type.
+     */
+    vehicleIcon?: Schema$GoogleMapsPlacesV1TransitIcon;
+    /**
+     * The type of vehicle using this line.
+     */
+    vehicleType?: string | null;
+  }
+  /**
+   * Represents transit-specific information for a place.
+   */
+  export interface Schema$GoogleMapsPlacesV1TransitStation {
+    /**
+     * The transit agencies that serve this station.
+     */
+    agencies?: Schema$GoogleMapsPlacesV1TransitAgency[];
+    /**
+     * The name of the station in the local language.
+     */
+    displayName?: Schema$GoogleTypeLocalizedText;
+    /**
+     * Transit stops at this station.
+     */
+    stops?: Schema$GoogleMapsPlacesV1TransitStop[];
+  }
+  /**
+   * Represents a transit stop within a station. This is a specific location where passengers board and alight transit vehicles, such as a platform or bus bay. This is distinct from a `Departure`, which is an event of a vehicle leaving a stop at a specific time.
+   */
+  export interface Schema$GoogleMapsPlacesV1TransitStop {
+    /**
+     * The name of the stop.
+     */
+    displayName?: Schema$GoogleTypeLocalizedText;
+    /**
+     * The id of the transit stop that can be used to uniquely identify the stop among other transit stops in the same transit station. This identifier is not guaranteed to be stable across different responses.
+     */
+    id?: string | null;
+    /**
+     * The stop's location.
+     */
+    location?: Schema$GoogleTypeLatLng;
+    /**
+     * The platform code represented by this stop. It can be formatted in any way. (eg: "2", "Platform 2", "2-4", or "1x").
+     */
+    platformCode?: Schema$GoogleTypeLocalizedText;
+    /**
+     * The verbatim text written on the signboard for this platform, e.g. "Towards Central" or "East side & Brooklyn". When `platform_code` is absent, this field is potentially the only identifier for the platform; however, both `platform_code` and `signage_text` may be set simultaneously.
+     */
+    signageText?: Schema$GoogleTypeLocalizedText;
+    /**
+     * Human readable identifier of the stop, used by transit agencies to distinguish stops with the same name.
+     */
+    stopCode?: Schema$GoogleTypeLocalizedText;
+    /**
+     * Wheelchair accessibility of this stop. This field indicates whether there is an accessible path from outside the station to the stop. It does not indicate whether it is possible to board a vehicle from the stop.
+     */
+    wheelchairAccessibleEntrance?: boolean | null;
+  }
+  /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$GoogleTypeDate {
@@ -2093,6 +2220,7 @@ export namespace places_v1 {
      *   //   "subDestinations": [],
      *   //   "takeout": false,
      *   //   "timeZone": {},
+     *   //   "transitStation": {},
      *   //   "types": [],
      *   //   "userRatingCount": 0,
      *   //   "utcOffsetMinutes": 0,

@@ -272,7 +272,7 @@
       }
     }
   },
-  "revision": "20251026",
+  "revision": "20260517",
   "rootUrl": "https://chromewebstore.googleapis.com/",
   "schemas": {
     "CancelSubmissionRequest": {
@@ -412,6 +412,10 @@
       "description": "Request message for PublishItem.",
       "id": "PublishItemRequest",
       "properties": {
+        "blockOnWarnings": {
+          "description": "Optional. When set to true the request will fail if there are any warnings during validation and the details will be included in the error_details. Otherwise warnings are treated as non-blocking and will be ignored for validation but will be included in the response for inspection. Defaults to `false` if unset.",
+          "type": "boolean"
+        },
         "deployInfos": {
           "description": "Optional. Additional deploy information including the desired initial percentage rollout. Defaults to the current value saved in the developer dashboard if unset.",
           "items": {
@@ -475,6 +479,11 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "warningInfo": {
+          "$ref": "WarningsInfo",
+          "description": "Output only. Non-blocking warnings encountered during the request.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -538,6 +547,35 @@
           ],
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Warning": {
+      "description": "Represents a single warning encountered during the request.",
+      "id": "Warning",
+      "properties": {
+        "description": {
+          "description": "A description of the warning. Developers should use this message to understand the warning and take appropriate action to resolve the issue.",
+          "type": "string"
+        },
+        "reason": {
+          "description": "The reason for the warning. This is a constant value that identifies the proximate cause of the warning. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WarningsInfo": {
+      "description": "Message containing details on warnings encountered during PublishItem.",
+      "id": "WarningsInfo",
+      "properties": {
+        "warnings": {
+          "description": "All warnings encountered during the request.",
+          "items": {
+            "$ref": "Warning"
+          },
+          "type": "array"
         }
       },
       "type": "object"

@@ -1,5 +1,17 @@
 # Changelog
 
+## [8.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/observability-v8.2.0...observability-v8.3.0) (2026-05-19)
+
+
+### Features
+
+* **observability:** update the API ([94dd44e](https://github.com/googleapis/google-api-nodejs-client/commit/94dd44e0c9c2f003312f87e6003154e12b2d75d5))
+
+
+### Bug Fixes
+
+* **observability:** update the API ([1aa9af8](https://github.com/googleapis/google-api-nodejs-client/commit/1aa9af8e2a9d7b5c6b7e2340efecdce2b75b5f46))
+
 ## [8.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/observability-v8.1.0...observability-v8.2.0) (2026-02-03)
 
 

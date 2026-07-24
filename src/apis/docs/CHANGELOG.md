@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/docs-v9.2.1...docs-v9.3.0) (2026-05-19)
+
+
+### Features
+
+* **docs:** update the API ([b6c1b20](https://github.com/googleapis/google-api-nodejs-client/commit/b6c1b20ba9853116dc54195ebcd803f300757109))
+
 ## [9.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/docs-v9.2.0...docs-v9.2.1) (2026-01-28)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/datalabeling-v6.0.1...datalabeling-v6.1.0) (2026-05-19)
+
+
+### Features
+
+* **datalabeling:** update the API ([5374fcc](https://github.com/googleapis/google-api-nodejs-client/commit/5374fcc6895a08d7dfb1916e1f950eb4cc461f11))
+
 ## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datalabeling-v6.0.0...datalabeling-v6.0.1) (2025-12-05)
 
 

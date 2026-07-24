@@ -131,7 +131,7 @@ export namespace developerknowledge_v1alpha {
    */
   export interface Schema$Answer {
     /**
-     * The text of the answer.
+     * Contains the text of the answer.
      */
     answerText?: string | null;
   }
@@ -271,7 +271,7 @@ export namespace developerknowledge_v1alpha {
      *
      *   // Do the magic
      *   const res = await developerknowledge.documents.batchGet({
-     *     // Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
+     *     // Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` If you are changing the batch size, consider the value of `maxConcurrentGCSFetches` constant in the service implementation: http://cs///depot/google3/devrel/boq/developerknowledge/service/developerknowledge.go
      *     names: 'placeholder-value',
      *     // Optional. Specifies the DocumentView of the document. If unspecified, DeveloperKnowledge.BatchGetDocuments defaults to `DOCUMENT_VIEW_CONTENT`.
      *     view: 'placeholder-value',
@@ -681,7 +681,7 @@ export namespace developerknowledge_v1alpha {
 
   export interface Params$Resource$Documents$Batchget extends StandardParameters {
     /**
-     * Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
+     * Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` If you are changing the batch size, consider the value of `maxConcurrentGCSFetches` constant in the service implementation: http://cs///depot/google3/devrel/boq/developerknowledge/service/developerknowledge.go
      */
     names?: string[];
     /**

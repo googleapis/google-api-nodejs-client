@@ -26,36 +26,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudkms.europe-west9.rep.googleapis.com/",
-      "location": "europe-west9"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudkms.me-central2.rep.googleapis.com/",
-      "location": "me-central2"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudkms.us-east1.rep.googleapis.com/",
-      "location": "us-east1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudkms.us-east4.rep.googleapis.com/",
-      "location": "us-east4"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudkms.us-west2.rep.googleapis.com/",
-      "location": "us-west2"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudkms.us-west1.rep.googleapis.com/",
-      "location": "us-west1"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.us-central1.rep.googleapis.com/",
       "location": "us-central1"
     },
@@ -86,18 +56,18 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-east4.rep.googleapis.com/",
+      "location": "us-east4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-west2.rep.googleapis.com/",
+      "location": "us-west2"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.us-east7.rep.googleapis.com/",
       "location": "us-east7"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudkms.northamerica-northeast1.rep.googleapis.com/",
-      "location": "northamerica-northeast1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudkms.northamerica-northeast2.rep.googleapis.com/",
-      "location": "northamerica-northeast2"
     },
     {
       "description": "Regional Endpoint",
@@ -108,6 +78,36 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.us-west8.rep.googleapis.com/",
       "location": "us-west8"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.europe-west9.rep.googleapis.com/",
+      "location": "europe-west9"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.me-central2.rep.googleapis.com/",
+      "location": "me-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-east1.rep.googleapis.com/",
+      "location": "us-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-west1.rep.googleapis.com/",
+      "location": "us-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.northamerica-northeast1.rep.googleapis.com/",
+      "location": "northamerica-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.northamerica-northeast2.rep.googleapis.com/",
+      "location": "northamerica-northeast2"
     },
     {
       "description": "Regional Endpoint",
@@ -2376,6 +2376,25 @@
                           "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/importJobs/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "publicKeyFormat": {
+                          "description": "Optional. Specifies the WrappingPublicKey format. If not specified: * For RSA-based import methods, the wrapping key will be returned in PEM format * For pure ML-KEM-based import methods, the wrapping key will be returned in the raw bytes format specified in FIPS-203 * For X-Wing-based import methods, the wrapping key will be returned in the raw bytes format specified in https://datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem.",
+                          "enum": [
+                            "PUBLIC_KEY_FORMAT_UNSPECIFIED",
+                            "PEM",
+                            "DER",
+                            "NIST_PQC",
+                            "XWING_RAW_BYTES"
+                          ],
+                          "enumDescriptions": [
+                            "If the public_key_format field is not specified: - For PQC algorithms, an error will be returned. - For non-PQC algorithms, the default format is PEM, and the field pem will be populated. Otherwise, the public key will be exported through the public_key field in the requested format.",
+                            "The returned public key will be encoded in PEM format. See the [RFC7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13) for more information.",
+                            "The returned public key will be encoded in DER format (the PrivateKeyInfo structure from RFC 5208).",
+                            "This is supported only for PQC algorithms. The key material is returned in the format defined by NIST PQC standards (FIPS 203, FIPS 204, and FIPS 205).",
+                            "The returned public key is in raw bytes format defined in its standard https://datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem."
+                          ],
+                          "location": "query",
+                          "type": "string"
                         }
                       },
                       "path": "v1/{+name}",
@@ -2948,7 +2967,7 @@
       }
     }
   },
-  "revision": "20260423",
+  "revision": "20260514",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AddQuorumMember": {
@@ -4408,7 +4427,10 @@
             "RSA_OAEP_3072_SHA256_AES_256",
             "RSA_OAEP_4096_SHA256_AES_256",
             "RSA_OAEP_3072_SHA256",
-            "RSA_OAEP_4096_SHA256"
+            "RSA_OAEP_4096_SHA256",
+            "HPKE_KEM_ML_KEM_768_HKDF_SHA256_AES_256_GCM",
+            "HPKE_KEM_ML_KEM_1024_HKDF_SHA256_AES_256_GCM",
+            "HPKE_KEM_XWING_HKDF_SHA256_AES_256_GCM"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -4417,7 +4439,10 @@
             "This ImportMethod represents the CKM_RSA_AES_KEY_WRAP key wrapping scheme defined in the PKCS #11 standard. In summary, this involves wrapping the raw key with an ephemeral AES key, and wrapping the ephemeral AES key with a 3072 bit RSA key. For more details, see [RSA AES key wrap mechanism](http://docs.oasis-open.org/pkcs11/pkcs11-curr/v2.40/cos01/pkcs11-curr-v2.40-cos01.html#_Toc408226908).",
             "This ImportMethod represents the CKM_RSA_AES_KEY_WRAP key wrapping scheme defined in the PKCS #11 standard. In summary, this involves wrapping the raw key with an ephemeral AES key, and wrapping the ephemeral AES key with a 4096 bit RSA key. For more details, see [RSA AES key wrap mechanism](http://docs.oasis-open.org/pkcs11/pkcs11-curr/v2.40/cos01/pkcs11-curr-v2.40-cos01.html#_Toc408226908).",
             "This ImportMethod represents RSAES-OAEP with a 3072 bit RSA key. The key material to be imported is wrapped directly with the RSA key. Due to technical limitations of RSA wrapping, this method cannot be used to wrap RSA keys for import.",
-            "This ImportMethod represents RSAES-OAEP with a 4096 bit RSA key. The key material to be imported is wrapped directly with the RSA key. Due to technical limitations of RSA wrapping, this method cannot be used to wrap RSA keys for import."
+            "This ImportMethod represents RSAES-OAEP with a 4096 bit RSA key. The key material to be imported is wrapped directly with the RSA key. Due to technical limitations of RSA wrapping, this method cannot be used to wrap RSA keys for import.",
+            "Represents the Hybrid Public Key Encryption (HPKE) Scheme originally defined in [RFC 9180](https://www.rfc-editor.org/rfc/rfc9180). It involves wrapping the raw key with an ephemeral AES key, derived with HKDF-SHA256 from an encryption context, that is, in turn obtained from the receiver’s public key with the help of the ML-KEM-768 KEM. For more details, see the [ML-KEM HPKE standard](http://datatracker.ietf.org/doc/draft-ietf-hpke-pq/01/).",
+            "Represents the Hybrid Public Key Encryption (HPKE) Scheme originally defined in [RFC 9180](https://www.rfc-editor.org/rfc/rfc9180). It involves wrapping the raw key with an ephemeral AES key, derived with HKDF-SHA256 from an encryption context, that is, in turn obtained from the receiver’s public key with the help of the ML-KEM-1024 KEM. For more details, see the [ML-KEM HPKE standard](http://datatracker.ietf.org/doc/draft-ietf-hpke-pq/01/).",
+            "Represents the Hybrid Public Key Encryption (HPKE) Scheme originally defined in [RFC 9180](https://www.rfc-editor.org/rfc/rfc9180). It involves wrapping the raw key with an ephemeral AES key, derived with HKDF-SHA256 from an encryption context, that is, in turn obtained from the receiver’s public key with the help of the X-Wing hybrid KEM. For more details, see the [X-Wing standard](http://datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem/09/)."
           ],
           "type": "string"
         },
@@ -4450,6 +4475,25 @@
           "$ref": "WrappingPublicKey",
           "description": "Output only. The public key with which to wrap key material prior to import. Only returned if state is ACTIVE.",
           "readOnly": true
+        },
+        "publicKeyFormat": {
+          "description": "Output only. Specifies the WrappingPublicKey format provided by the customer in the KeyManagementService.GetImportJob request.",
+          "enum": [
+            "PUBLIC_KEY_FORMAT_UNSPECIFIED",
+            "PEM",
+            "DER",
+            "NIST_PQC",
+            "XWING_RAW_BYTES"
+          ],
+          "enumDescriptions": [
+            "If the public_key_format field is not specified: - For PQC algorithms, an error will be returned. - For non-PQC algorithms, the default format is PEM, and the field pem will be populated. Otherwise, the public key will be exported through the public_key field in the requested format.",
+            "The returned public key will be encoded in PEM format. See the [RFC7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13) for more information.",
+            "The returned public key will be encoded in DER format (the PrivateKeyInfo structure from RFC 5208).",
+            "This is supported only for PQC algorithms. The key material is returned in the format defined by NIST PQC standards (FIPS 203, FIPS 204, and FIPS 205).",
+            "The returned public key is in raw bytes format defined in its standard https://datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "state": {
           "description": "Output only. The current state of the ImportJob, indicating if it can be used.",
@@ -6001,8 +6045,14 @@
       "description": "The public key component of the wrapping key. For details of the type of key this public key corresponds to, see the ImportMethod.",
       "id": "WrappingPublicKey",
       "properties": {
+        "data": {
+          "description": "Output only. Contains the public key, formatted according to the PublicKey.PublicKeyFormat specified in the KeyManagementService.GetImportJob request.",
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
+        },
         "pem": {
-          "description": "The public key, encoded in PEM format. For more information, see the [RFC 7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13).",
+          "description": "The public key, encoded in PEM format. For more information, see the [RFC 7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13). This field gets populated by default for RSA-based import methods, if no public_key_format is specified in the request. If you want to retrieve the wrapping key of an ImportJob in some other format, use KeyManagementService.GetImportJob and set the public_key_format to the desired public key format.",
           "type": "string"
         }
       },

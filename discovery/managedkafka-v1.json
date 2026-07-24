@@ -3186,7 +3186,7 @@
       }
     }
   },
-  "revision": "20260423",
+  "revision": "20260507",
   "rootUrl": "https://managedkafka.googleapis.com/",
   "schemas": {
     "AccessConfig": {
@@ -4400,6 +4400,24 @@
         "name": {
           "description": "Identifier. The name of the schema registry instance. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}` The instance name {schema_registry} can contain the following: * Up to 255 characters. * Letters (uppercase or lowercase), numbers, and underscores.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SchemaSubject": {
+      "description": "Subject defines the evolution scope of schemas as a holder of schema versions.",
+      "id": "SchemaSubject",
+      "properties": {
+        "name": {
+          "description": "Identifier. The name of the subject. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}` Subject name {subject} can contain the following: * Up to 255 UTF-8 bytes. * Allowed characters: letters (uppercase or lowercase), numbers, and the following special characters: `.`, `-`, `_`, `+`, `%`, and `~`.",
+          "type": "string"
+        },
+        "versions": {
+          "description": "Optional. The versions of the subject.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

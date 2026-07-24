@@ -1249,7 +1249,7 @@ export namespace firestore_v1 {
      */
     queryScope?: string | null;
     /**
-     * Optional. Options for search indexes that are at the index definition level. This field is only currently supported for indexes with MONGODB_COMPATIBLE_API ApiScope.
+     * Optional. Options for search indexes that are at the index definition level.
      */
     searchIndexOptions?: Schema$GoogleFirestoreAdminV1SearchIndexOptions;
     /**
@@ -1538,7 +1538,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1SearchGeoSpec {
     /**
-     * Optional. Disables geoJSON indexing for the field. By default, geoJSON points are indexed.
+     * Optional. Disables geoJSON indexing for the field. By default, geoJSON points are indexed. Firestore GeoPoints are indexed regardless of this value.
      */
     geoJsonIndexingDisabled?: boolean | null;
   }
@@ -1551,7 +1551,7 @@ export namespace firestore_v1 {
      */
     textLanguage?: string | null;
     /**
-     * Optional. The field in the document that specifies which language to use for that specific document. For indexes with MONGODB_COMPATIBLE_API ApiScope: if unspecified, the language is taken from the "language" field if it exists or from `text_language` if it does not.
+     * Optional. The field in the document that specifies which language to use for that specific document. If unspecified, the language is taken from the "language" field if it exists or from `text_language` if it does not.
      */
     textLanguageOverrideFieldPath?: string | null;
   }

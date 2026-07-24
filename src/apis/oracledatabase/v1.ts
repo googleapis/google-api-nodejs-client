@@ -142,6 +142,35 @@ export namespace oracledatabase_v1 {
     medium?: string | null;
   }
   /**
+   * The Amazon S3 Iceberg storage.
+   */
+  export interface Schema$AmazonS3IcebergStorage {
+    /**
+     * Required. The access key ID of Amazon S3.
+     */
+    accessKeyId?: string | null;
+    /**
+     * Required. The bucket of Amazon S3.
+     */
+    bucket?: string | null;
+    /**
+     * Optional. The endpoint of Amazon S3.
+     */
+    endpoint?: string | null;
+    /**
+     * Required. The region of Amazon S3.
+     */
+    region?: string | null;
+    /**
+     * Required. The scheme type of Amazon S3.
+     */
+    schemeType?: string | null;
+    /**
+     * Optional. The secret access key of Amazon S3.
+     */
+    secretAccessKeySecret?: string | null;
+  }
+  /**
    * Details of the Autonomous Database resource. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/AutonomousDatabase/
    */
   export interface Schema$AutonomousDatabase {
@@ -728,6 +757,27 @@ export namespace oracledatabase_v1 {
     workloadUri?: string | null;
   }
   /**
+   * The Azure Data Lake Storage Iceberg storage.
+   */
+  export interface Schema$AzureDataLakeStorageIcebergStorage {
+    /**
+     * Optional. The account key of Azure Data Lake Storage.
+     */
+    accountKeySecret?: string | null;
+    /**
+     * Required. The account of Azure Data Lake Storage.
+     */
+    azureAccount?: string | null;
+    /**
+     * Required. The container of Azure Data Lake Storage.
+     */
+    container?: string | null;
+    /**
+     * Optional. The endpoint of Azure Data Lake Storage.
+     */
+    endpoint?: string | null;
+  }
+  /**
    * The details of the database backup destination.
    */
   export interface Schema$BackupDestinationDetails {
@@ -1081,11 +1131,11 @@ export namespace oracledatabase_v1 {
      */
     scanIpIds?: string[] | null;
     /**
-     * Output only. SCAN listener port - TCP
+     * Optional. SCAN listener port - TCP
      */
     scanListenerPortTcp?: number | null;
     /**
-     * Output only. SCAN listener port - TLS
+     * Optional. SCAN listener port - TLS
      */
     scanListenerPortTcpSsl?: number | null;
     /**
@@ -1790,6 +1840,35 @@ export namespace oracledatabase_v1 {
     tags?: {[key: string]: string} | null;
   }
   /**
+   * The deployment diagnostic data.
+   */
+  export interface Schema$DeploymentDiagnosticData {
+    /**
+     * Output only. The bucket name.
+     */
+    bucket?: string | null;
+    /**
+     * Output only. The time diagnostic end.
+     */
+    diagnosticEndTime?: string | null;
+    /**
+     * Output only. The time diagnostic start.
+     */
+    diagnosticStartTime?: string | null;
+    /**
+     * Output only. The diagnostic state.
+     */
+    diagnosticState?: string | null;
+    /**
+     * Output only. The namespace name.
+     */
+    namespace?: string | null;
+    /**
+     * Output only. The object name.
+     */
+    object?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -2119,6 +2198,2009 @@ export namespace oracledatabase_v1 {
     version?: string | null;
   }
   /**
+   * The Glue Iceberg catalog.
+   */
+  export interface Schema$GlueIcebergCatalog {
+    /**
+     * Required. The catalog ID of Glue.
+     */
+    glueId?: string | null;
+  }
+  /**
+   * The properties of GoldengateAmazonKinesisConnection.
+   */
+  export interface Schema$GoldengateAmazonKinesisConnectionProperties {
+    /**
+     * Optional. Access key ID to access the Amazon Kinesis.
+     */
+    accessKeyId?: string | null;
+    /**
+     * Optional. The name of the AWS region. If not provided, Goldengate will default to 'us-west-1'.
+     */
+    awsRegion?: string | null;
+    /**
+     * Optional. The endpoint URL of the Amazon Kinesis service. e.g.: 'https://kinesis.us-east-1.amazonaws.com' If not provided, Goldengate will default to 'https://kinesis..amazonaws.com'.
+     */
+    endpoint?: string | null;
+    /**
+     * Optional. Secret access key to access the Amazon Kinesis.
+     */
+    secretAccessKeySecret?: string | null;
+    /**
+     * Optional. The technology type of AmazonKinesisConnection.
+     */
+    technologyType?: string | null;
+  }
+  /**
+   * The properties of GoldengateAmazonRedshiftConnection.
+   */
+  export interface Schema$GoldengateAmazonRedshiftConnectionProperties {
+    /**
+     * Optional. Connection URL. e.g.: 'jdbc:redshift://aws-redshift-instance.aaaaaaaaaaaa.us-east-2.redshift.amazonaws.com:5439/mydb'
+     */
+    connectionUrl?: string | null;
+    /**
+     * Optional. Input only. The password Oracle Goldengate uses for Amazon Redshift connection in plain text.
+     */
+    password?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses for Amazon Redshift connection. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * Optional. The technology type of AmazonRedshiftConnection.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. The username Oracle Goldengate uses to connect the associated system of the given technology.
+     */
+    username?: string | null;
+  }
+  /**
+   * The properties of GoldengateAmazonS3Connection.
+   */
+  export interface Schema$GoldengateAmazonS3ConnectionProperties {
+    /**
+     * Optional. Access key ID to access the Amazon S3 bucket.
+     */
+    accessKeyId?: string | null;
+    /**
+     * Optional. The Amazon Endpoint for S3.
+     */
+    endpoint?: string | null;
+    /**
+     * Optional. The name of the AWS region where the bucket is created.
+     */
+    region?: string | null;
+    /**
+     * Optional. Secret access key to access the Amazon S3 bucket.
+     */
+    secretAccessKeySecret?: string | null;
+    /**
+     * Optional. The technology type of AmazonS3Connection.
+     */
+    technologyType?: string | null;
+  }
+  /**
+   * The properties of GoldengateAzureDataLakeStorageConnection.
+   */
+  export interface Schema$GoldengateAzureDataLakeStorageConnectionProperties {
+    /**
+     * Optional. Sets the Azure storage account name.
+     */
+    account?: string | null;
+    /**
+     * Optional. Azure storage account key. This property is required when 'authentication_type' is set to 'SHARED_KEY'.
+     */
+    accountKeySecret?: string | null;
+    /**
+     * Optional. Authentication mechanism to access Azure Data Lake Storage.
+     */
+    authenticationType?: string | null;
+    /**
+     * Optional. The endpoint used for authentication with Microsoft Entra ID (formerly Azure Active Directory). Default value: https://login.microsoftonline.com
+     */
+    azureAuthorityHost?: string | null;
+    /**
+     * Optional. Azure tenant ID of the application. This property is required when 'authentication_type' is set to 'AZURE_ACTIVE_DIRECTORY'.
+     */
+    azureTenantId?: string | null;
+    /**
+     * Optional. Azure client ID of the application. This property is required when 'authentication_type' is set to 'AZURE_ACTIVE_DIRECTORY'.
+     */
+    clientId?: string | null;
+    /**
+     * Optional. Azure client secret (aka application password) for authentication.
+     */
+    clientSecret?: string | null;
+    /**
+     * Optional. Azure Storage service endpoint. e.g: https://test.blob.core.windows.net
+     */
+    endpoint?: string | null;
+    /**
+     * Optional. Credential that uses a shared access signature (SAS) to authenticate to an Azure Service.
+     */
+    sasTokenSecret?: string | null;
+    /**
+     * Optional. The technology type of AzureDataLakeStorageConnection.
+     */
+    technologyType?: string | null;
+  }
+  /**
+   * The properties of GoldengateAzureSynapseAnalyticsConnection.
+   */
+  export interface Schema$GoldengateAzureSynapseAnalyticsConnectionProperties {
+    /**
+     * Optional. JDBC connection string. e.g.: 'jdbc:sqlserver://.sql.azuresynapse.net:1433;database=;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.sql.azuresynapse.net;loginTimeout=300;'
+     */
+    connectionString?: string | null;
+    /**
+     * Optional. Input only. The password Oracle Goldengate uses for Azure Synapse Analytics connection in plain text.
+     */
+    password?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses for Azure Synapse Analytics connection. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * Optional. The technology type of AzureSynapseAnalyticsConnection.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. The username Oracle Goldengate uses to connect the associated system of the given technology.
+     */
+    username?: string | null;
+  }
+  /**
+   * The backup schedule of the GoldengateDeployment.
+   */
+  export interface Schema$GoldengateBackupSchedule {
+    /**
+     * Output only. The timestamp of when the backup was scheduled.
+     */
+    backupScheduledTime?: string | null;
+    /**
+     * Output only. The bucket name.
+     */
+    bucket?: string | null;
+    /**
+     * Output only. The compartment id.
+     */
+    compartmentId?: string | null;
+    /**
+     * Output only. The frequency backup scheduled.
+     */
+    frequencyBackupScheduled?: string | null;
+    /**
+     * Output only. If metadata only.
+     */
+    metadataOnly?: boolean | null;
+    /**
+     * Output only. The namespace name.
+     */
+    namespace?: string | null;
+  }
+  /**
+   * Details of the GoldengateConnection resource.
+   */
+  export interface Schema$GoldengateConnection {
+    /**
+     * Output only. The date and time that the GoldengateConnection was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The ID of the subscription entitlement associated with the GoldengateConnection.
+     */
+    entitlementId?: string | null;
+    /**
+     * Optional. The GCP Oracle zone where Oracle GoldengateConnection is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
+     */
+    gcpOracleZone?: string | null;
+    /**
+     * Optional. The labels or tags associated with the GoldengateConnection.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The name of the GoldengateConnection resource in the following format: projects/{project\}/locations/{region\}/goldengateConnections/{goldengate_connection\}
+     */
+    name?: string | null;
+    /**
+     * Output only. HTTPS link to OCI resources exposed to Customer via UI Interface.
+     */
+    ociUrl?: string | null;
+    /**
+     * Optional. The name of the OdbNetwork associated with the GoldengateConnection. The format is projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}. It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.
+     */
+    odbNetwork?: string | null;
+    /**
+     * Optional. The name of the OdbSubnet associated with the GoldengateConnection for IP allocation. Format: projects/{project\}/locations/{location\}/odbNetworks/{odb_network\}/odbSubnets/{odb_subnet\}
+     */
+    odbSubnet?: string | null;
+    /**
+     * Required. The properties of the GoldengateConnection.
+     */
+    properties?: Schema$GoldengateConnectionProperties;
+  }
+  /**
+   * Represents the metadata of a Goldengate Connection Assignment.
+   */
+  export interface Schema$GoldengateConnectionAssignment {
+    /**
+     * Output only. The time when the connection assignment was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The display name for the GoldengateConnectionAssignment.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The OCID of the entitlement linked to this resource.
+     */
+    entitlementId?: string | null;
+    /**
+     * Optional. The labels or tags associated with the GoldengateConnectionAssignment.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The name of the GoldengateConnectionAssignment resource in the following format: projects/{project\}/locations/{region\}/goldengateConnectionAssignments/{goldengate_connection_assignment\}
+     */
+    name?: string | null;
+    /**
+     * Required. The properties of the GoldengateConnectionAssignment.
+     */
+    properties?: Schema$GoldengateConnectionAssignmentProperties;
+  }
+  /**
+   * The properties of a GoldengateConnectionAssignment.
+   */
+  export interface Schema$GoldengateConnectionAssignmentProperties {
+    /**
+     * Output only. Credential store alias.
+     */
+    alias?: string | null;
+    /**
+     * Required. The GoldengateConnection resource to be assigned. Format: projects/{project\}/locations/{location\}/goldengateConnections/{goldengate_connection\}
+     */
+    goldengateConnection?: string | null;
+    /**
+     * Required. The GoldenGateDeployment to assign the connection to. Format: projects/{project\}/locations/{location\}/goldengateDeployments/{goldengate_deployment\}
+     */
+    goldengateDeployment?: string | null;
+    /**
+     * Output only. The [OCID](https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the connection assignment being referenced.
+     */
+    ocid?: string | null;
+    /**
+     * Output only. The lifecycle state of the connection assignment.
+     */
+    state?: string | null;
+  }
+  /**
+   * The properties of a GoldengateConnection.
+   */
+  export interface Schema$GoldengateConnectionProperties {
+    /**
+     * Properties for an Amazon Kinesis connection.
+     */
+    amazonKinesisConnectionProperties?: Schema$GoldengateAmazonKinesisConnectionProperties;
+    /**
+     * Properties for an Amazon Redshift connection.
+     */
+    amazonRedshiftConnectionProperties?: Schema$GoldengateAmazonRedshiftConnectionProperties;
+    /**
+     * Properties for an Amazon S3 connection.
+     */
+    amazonS3ConnectionProperties?: Schema$GoldengateAmazonS3ConnectionProperties;
+    /**
+     * Properties for an Azure Data Lake Storage Connection.
+     */
+    azureDataLakeStorageConnectionProperties?: Schema$GoldengateAzureDataLakeStorageConnectionProperties;
+    /**
+     * Properties for an Azure Synapse Analytics connection.
+     */
+    azureSynapseAnalyticsConnectionProperties?: Schema$GoldengateAzureSynapseAnalyticsConnectionProperties;
+    /**
+     * Required. The connection type.
+     */
+    connectionType?: string | null;
+    /**
+     * Properties for a Databricks connection.
+     */
+    databricksConnectionProperties?: Schema$GoldengateDatabricksConnectionProperties;
+    /**
+     * Properties for a DB2 connection.
+     */
+    db2ConnectionProperties?: Schema$GoldengateDb2ConnectionProperties;
+    /**
+     * Optional. Metadata about this specific object.
+     */
+    description?: string | null;
+    /**
+     * Required. An object's Display Name.
+     */
+    displayName?: string | null;
+    /**
+     * Properties for an Elasticsearch connection.
+     */
+    elasticsearchConnectionProperties?: Schema$GoldengateElasticsearchConnectionProperties;
+    /**
+     * Properties for a Generic Connection.
+     */
+    genericConnectionProperties?: Schema$GoldengateGenericConnectionProperties;
+    /**
+     * Properties for a Goldengate Connection.
+     */
+    goldengateConnectionProperties?: Schema$GoldengateGoldengateConnectionProperties;
+    /**
+     * Properties for a Google BigQuery Connection.
+     */
+    googleBigQueryConnectionProperties?: Schema$GoldengateGoogleBigQueryConnectionProperties;
+    /**
+     * Properties for a Google Cloud Storage Connection.
+     */
+    googleCloudStorageConnectionProperties?: Schema$GoldengateGoogleCloudStorageConnectionProperties;
+    /**
+     * Properties for a Google Pub/Sub connection.
+     */
+    googlePubsubConnectionProperties?: Schema$GoldengateGooglePubsubConnectionProperties;
+    /**
+     * Properties for an HDFS connection.
+     */
+    hdfsConnectionProperties?: Schema$GoldengateHdfsConnectionProperties;
+    /**
+     * Properties for an Iceberg connection.
+     */
+    icebergConnectionProperties?: Schema$GoldengateIcebergConnectionProperties;
+    /**
+     * Output only. The Ingress IPs of the GoldengateConnection.
+     */
+    ingressIpAddresses?: string[] | null;
+    /**
+     * Properties for a Java Message Service connection.
+     */
+    javaMessageServiceConnectionProperties?: Schema$GoldengateJavaMessageServiceConnectionProperties;
+    /**
+     * Properties for a Kafka Connection.
+     */
+    kafkaConnectionProperties?: Schema$GoldengateKafkaConnectionProperties;
+    /**
+     * Properties for a Kafka Schema Registry Connection.
+     */
+    kafkaSchemaRegistryConnectionProperties?: Schema$GoldengateKafkaSchemaRegistryConnectionProperties;
+    /**
+     * Output only. Describes the object's current state in detail. For example, it can be used to provide actionable information for a resource in a Failed state.
+     */
+    lifecycleDetails?: string | null;
+    /**
+     * Output only. The lifecycle state of the connection.
+     */
+    lifecycleState?: string | null;
+    /**
+     * Properties for a Microsoft Fabric connection.
+     */
+    microsoftFabricConnectionProperties?: Schema$GoldengateMicrosoftFabricConnectionProperties;
+    /**
+     * Properties for a Microsoft SQL Server connection.
+     */
+    microsoftSqlserverConnectionProperties?: Schema$GoldengateMicrosoftSqlserverConnectionProperties;
+    /**
+     * Properties for a MongoDB connection.
+     */
+    mongodbConnectionProperties?: Schema$GoldengateMongodbConnectionProperties;
+    /**
+     * Properties for a Mysql Connection.
+     */
+    mysqlConnectionProperties?: Schema$GoldengateMysqlConnectionProperties;
+    /**
+     * Output only. The [OCID] of the connection being referenced.
+     */
+    ocid?: string | null;
+    /**
+     * Properties for an OCI Object Storage Connection.
+     */
+    ociObjectStorageConnectionProperties?: Schema$GoldengateOciObjectStorageConnectionProperties;
+    /**
+     * Properties for an Oracle AI Data Platform connection.
+     */
+    oracleAiDataPlatformConnectionProperties?: Schema$GoldengateOracleAIDataPlatformConnectionProperties;
+    /**
+     * Properties for an Oracle Database Connection.
+     */
+    oracleConnectionProperties?: Schema$GoldengateOracleConnectionProperties;
+    /**
+     * Properties for an Oracle NoSQL connection.
+     */
+    oracleNosqlConnectionProperties?: Schema$GoldengateOracleNosqlConnectionProperties;
+    /**
+     * Properties for a PostgreSQL connection.
+     */
+    postgresqlConnectionProperties?: Schema$GoldengatePostgresqlConnectionProperties;
+    /**
+     * Properties for a Redis connection.
+     */
+    redisConnectionProperties?: Schema$GoldengateRedisConnectionProperties;
+    /**
+     * Optional. The routing method for the GoldengateConnection.
+     */
+    routingMethod?: string | null;
+    /**
+     * Properties for a Snowflake connection.
+     */
+    snowflakeConnectionProperties?: Schema$GoldengateSnowflakeConnectionProperties;
+    /**
+     * Output only. The time the resource was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Details of the Goldengate Connection Type resource.
+   */
+  export interface Schema$GoldengateConnectionType {
+    /**
+     * Output only. The connection type of the Goldengate Connection Type resource.
+     */
+    connectionType?: string | null;
+    /**
+     * Identifier. The name of the Goldengate Connection Type resource with the format: projects/{project\}/locations/{region\}/goldengateConnectionTypes/{goldengate_connection_type\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The technology type of the Goldengate Connection Type resource.
+     */
+    technologyTypes?: string[] | null;
+  }
+  /**
+   * The properties of GoldengateDatabricksConnection.
+   */
+  export interface Schema$GoldengateDatabricksConnectionProperties {
+    /**
+     * Optional. Authentication type for Databricks.
+     */
+    authenticationType?: string | null;
+    /**
+     * Optional. OAuth client id, only applicable for authentication_type == OAUTH_M2M
+     */
+    clientId?: string | null;
+    /**
+     * Optional. OAuth client secret, only applicable for authentication_type == OAUTH_M2M
+     */
+    clientSecret?: string | null;
+    /**
+     * Optional. Connection URL. e.g.: 'jdbc:databricks://adb-33934.4.azuredatabricks.net:443/default;transportMode=http;ssl=1;httpPath=sql/protocolv1/o/3393########44/0##3-7-hlrb'
+     */
+    connectionUrl?: string | null;
+    /**
+     * Optional. Input only. The password used to connect to Databricks in plain text.
+     */
+    password?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password used to connect to Databricks. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * Optional. External storage credential name to access files on object storage such as ADLS Gen2, S3 or Cloud Storage.
+     */
+    storageCredential?: string | null;
+    /**
+     * Optional. The technology type of DatabricksConnection.
+     */
+    technologyType?: string | null;
+  }
+  /**
+   * The properties of GoldengateDb2Connection.
+   */
+  export interface Schema$GoldengateDb2ConnectionProperties {
+    /**
+     * Optional. An array of name-value pair attribute entries. Used as additional parameters in connection string.
+     */
+    additionalAttributes?: Schema$NameValuePair[];
+    /**
+     * Optional. The name of the database.
+     */
+    database?: string | null;
+    /**
+     * Optional. The name or address of a host.
+     */
+    host?: string | null;
+    /**
+     * Optional. Input only. The password Oracle Goldengate uses for Db2 connection in plain text.
+     */
+    password?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses for Db2 connection. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * Optional. The port of an endpoint usually specified for a connection.
+     */
+    port?: number | null;
+    /**
+     * Optional. Security protocol for the DB2 database.
+     */
+    securityProtocol?: string | null;
+    /**
+     * Optional. The keystash file which contains the encrypted password to the key database file. Not supported for IBM Db2 for i.
+     */
+    sslClientKeystashFile?: string | null;
+    /**
+     * Optional. The keystore file created at the client containing the server certificate / CA root certificate. Not supported for IBM Db2 for i.
+     */
+    sslClientKeystoredbFile?: string | null;
+    /**
+     * Optional. The file which contains the self-signed server certificate / Certificate Authority (CA) certificate.
+     */
+    sslServerCertificateFile?: string | null;
+    /**
+     * Optional. The technology type of Db2Connection.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. The username Oracle Goldengate uses to connect to the DB2 database.
+     */
+    username?: string | null;
+  }
+  /**
+   * GoldengateDeployment Goldengate Deployment resource model.
+   */
+  export interface Schema$GoldengateDeployment {
+    /**
+     * Output only. The date and time that the GoldengateDeployment was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The display name for the GoldengateDeployment.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The ID of the subscription entitlement associated with the GoldengateDeployment
+     */
+    entitlementId?: string | null;
+    /**
+     * Optional. The GCP Oracle zone where Oracle GoldengateDeployment is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
+     */
+    gcpOracleZone?: string | null;
+    /**
+     * Optional. The labels or tags associated with the GoldengateDeployment.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The name of the GoldengateDeployment resource in the following format: projects/{project\}/locations/{region\}/goldengateDeployments/{goldengate_deployment\}
+     */
+    name?: string | null;
+    /**
+     * Output only. HTTPS link to OCI resources exposed to Customer via UI Interface.
+     */
+    ociUrl?: string | null;
+    /**
+     * Optional. The name of the OdbNetwork associated with the GoldengateDeployment.
+     */
+    odbNetwork?: string | null;
+    /**
+     * Required. The name of the OdbSubnet associated with the GoldengateDeployment for IP allocation.
+     */
+    odbSubnet?: string | null;
+    /**
+     * Required. The properties of the GoldengateDeployment.
+     */
+    properties?: Schema$GoldengateDeploymentProperties;
+  }
+  /**
+   * Details of the Goldengate Deployment Environment resource.
+   */
+  export interface Schema$GoldengateDeploymentEnvironment {
+    /**
+     * Output only. Whether auto scaling is enabled by default for the Goldengate Deployment Environment resource.
+     */
+    autoScalingEnabled?: boolean | null;
+    /**
+     * Output only. The category of the Goldengate Deployment Environment resource.
+     */
+    category?: string | null;
+    /**
+     * Output only. The default CPU core count of the Goldengate Deployment Environment resource.
+     */
+    defaultCpuCoreCount?: number | null;
+    /**
+     * The display name of the Goldengate Deployment Environment resource.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The environment type of the Goldengate Deployment Environment resource.
+     */
+    environmentType?: string | null;
+    /**
+     * Output only. The max CPU core count of the Goldengate Deployment Environment resource.
+     */
+    maxCpuCoreCount?: number | null;
+    /**
+     * Output only. The memory per CPU core in GBs of the Goldengate Deployment Environment resource.
+     */
+    memoryGbPerCpuCore?: number | null;
+    /**
+     * Output only. The min CPU core count of the Goldengate Deployment Environment resource.
+     */
+    minCpuCoreCount?: number | null;
+    /**
+     * Identifier. The name of the Goldengate Deployment Environment resource with the format: projects/{project\}/locations/{location\}/goldengateDeploymentEnvironments/{goldengate_deployment_environment\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The network bandwidth per CPU core in Gbps of the Goldengate Deployment Environment resource.
+     */
+    networkBandwidthGbpsPerCpuCore?: number | null;
+    /**
+     * Output only. The storage usage limit per CPU core in GBs of the Goldengate Deployment Environment resource.
+     */
+    storageUsageLimitGbPerCpuCore?: number | null;
+  }
+  /**
+   * The lock of the GoldengateDeployment.
+   */
+  export interface Schema$GoldengateDeploymentLock {
+    /**
+     * Output only. The compartment id.
+     */
+    compartmentId?: string | null;
+    /**
+     * Output only. The time created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The message.
+     */
+    message?: string | null;
+    /**
+     * Output only. The related resource id.
+     */
+    relatedResourceId?: string | null;
+    /**
+     * Output only. The type of lock.
+     */
+    type?: string | null;
+  }
+  /**
+   * Properties of GoldengateDeployment.
+   */
+  export interface Schema$GoldengateDeploymentProperties {
+    /**
+     * Output only. The backup schedule of the GoldengateDeployment.
+     */
+    backupSchedule?: Schema$GoldengateBackupSchedule;
+    /**
+     * Output only. The category of the GoldengateDeployment.
+     */
+    category?: string | null;
+    /**
+     * Optional. The Minimum number of OCPUs to be made available for this Deployment.
+     */
+    cpuCoreCount?: number | null;
+    /**
+     * Output only. The deployment backup id of the GoldengateDeployment.
+     */
+    deploymentBackupId?: string | null;
+    /**
+     * Output only. The deployment diagnostic data of the GoldengateDeployment.
+     */
+    deploymentDiagnosticData?: Schema$DeploymentDiagnosticData;
+    /**
+     * Output only. The deployment role of the GoldengateDeployment.
+     */
+    deploymentRole?: string | null;
+    /**
+     * Required. A valid Goldengate Deployment type. For a list of supported types, use the `ListGoldengateDeploymentTypes` operation.
+     */
+    deploymentType?: string | null;
+    /**
+     * Output only. The deployment url of the GoldengateDeployment.
+     */
+    deploymentUrl?: string | null;
+    /**
+     * Optional. The description of the GoldengateDeployment.
+     */
+    description?: string | null;
+    /**
+     * Optional. The environment type of the GoldengateDeployment.
+     */
+    environmentType?: string | null;
+    /**
+     * Output only. The Fully Qualified Domain Name of the GoldengateDeployment.
+     */
+    fqdn?: string | null;
+    /**
+     * Output only. Whether the GoldengateDeployment is healthy.
+     */
+    healthy?: boolean | null;
+    /**
+     * Output only. The ingress ips of the GoldengateDeployment.
+     */
+    ingressIps?: Schema$IngressIp[];
+    /**
+     * Optional. Indicates if auto scaling is enabled for the Deployment's CPU core count.
+     */
+    isAutoScalingEnabled?: boolean | null;
+    /**
+     * Output only. Whether the GoldengateDeployment is of the latest version.
+     */
+    isLatestVersion?: boolean | null;
+    /**
+     * Output only. Whether the GoldengateDeployment is public.
+     */
+    isPublic?: boolean | null;
+    /**
+     * Output only. Whether storage utilization limit is exceeded of the GoldengateDeployment.
+     */
+    isStorageUtilizationLimitExceeded?: boolean | null;
+    /**
+     * Output only. The time last backup scheduled of the GoldengateDeployment.
+     */
+    lastBackupScheduleTime?: string | null;
+    /**
+     * Optional. The Oracle license model that applies to a Deployment.
+     */
+    licenseModel?: string | null;
+    /**
+     * Output only. The lifecycle details of the GoldengateDeployment.
+     */
+    lifecycleDetails?: string | null;
+    /**
+     * Output only. State of the GoldengateDeployment.
+     */
+    lifecycleState?: string | null;
+    /**
+     * Output only. The lifecycle sub-state of the GoldengateDeployment.
+     */
+    lifecycleSubState?: string | null;
+    /**
+     * Output only. The load balancer id of the GoldengateDeployment.
+     */
+    loadBalancerId?: string | null;
+    /**
+     * Output only. The load balancer subnet id of the GoldengateDeployment.
+     */
+    loadBalancerSubnetId?: string | null;
+    /**
+     * Output only. The locks of the GoldengateDeployment.
+     */
+    locks?: Schema$GoldengateDeploymentLock[];
+    /**
+     * Optional. The maintenance configuration of the GoldengateDeployment.
+     */
+    maintenanceConfig?: Schema$GoldengateMaintenanceConfig;
+    /**
+     * Optional. The maintenance window of the GoldengateDeployment.
+     */
+    maintenanceWindow?: Schema$GoldengateMaintenanceWindow;
+    /**
+     * Output only. The time next backup scheduled of the GoldengateDeployment.
+     */
+    nextBackupScheduleTime?: string | null;
+    /**
+     * Output only. The next maintenance action type of the GoldengateDeployment.
+     */
+    nextMaintenanceActionType?: string | null;
+    /**
+     * Output only. The next maintenance description of the GoldengateDeployment.
+     */
+    nextMaintenanceDescription?: string | null;
+    /**
+     * Output only. The time of next maintenance of the GoldengateDeployment.
+     */
+    nextMaintenanceTime?: string | null;
+    /**
+     * Output only. The nsg ids of the GoldengateDeployment.
+     */
+    nsgIds?: string[] | null;
+    /**
+     * Output only. OCID of the GoldengateDeployment.
+     */
+    ocid?: string | null;
+    /**
+     * Required. The ogg data of the GoldengateDeployment.
+     */
+    oggData?: Schema$GoldengateOggDeployment;
+    /**
+     * Output only. The time ogg version supported until of the GoldengateDeployment.
+     */
+    oggVersionSupportEndTime?: string | null;
+    /**
+     * Output only. The placements of the GoldengateDeployment.
+     */
+    placements?: Schema$GoldengatePlacement[];
+    /**
+     * Output only. The private ip address of the GoldengateDeployment.
+     */
+    privateIpAddress?: string | null;
+    /**
+     * Output only. The public ip address of the GoldengateDeployment.
+     */
+    publicIpAddress?: string | null;
+    /**
+     * Output only. The time when the role of the GoldengateDeployment was changed.
+     */
+    roleChangeTime?: string | null;
+    /**
+     * Output only. The storage utilization in bytes of the GoldengateDeployment.
+     */
+    storageUtilizationBytes?: string | null;
+    /**
+     * Output only. The time the GoldengateDeployment was updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. The time upgrade required of the GoldengateDeployment.
+     */
+    upgradeRequiredTime?: string | null;
+  }
+  /**
+   * Details of the Goldengate Deployment Type resource.
+   */
+  export interface Schema$GoldengateDeploymentType {
+    /**
+     * Output only. The category of the Goldengate Deployment Type resource.
+     */
+    category?: string | null;
+    /**
+     * Output only. The connection types of the Goldengate Deployment Type resource.
+     */
+    connectionTypes?: string[] | null;
+    /**
+     * Output only. The default username of the Goldengate Deployment Type resource.
+     */
+    defaultUsername?: string | null;
+    /**
+     * Output only. The deployment type of the Goldengate Deployment Type resource.
+     */
+    deploymentType?: string | null;
+    /**
+     * Output only. The display name of the Goldengate Deployment Type resource.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. The name of the Goldengate Deployment Type resource with the format: projects/{project\}/locations/{region\}/goldengateDeploymentTypes/{goldengate_deployment_type\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The Ogg version of the Goldengate Deployment Type resource.
+     */
+    oggVersion?: string | null;
+    /**
+     * Output only. The source technologies of the Goldengate Deployment Type resource.
+     */
+    sourceTechnologies?: string[] | null;
+    /**
+     * Output only. The supported capabilities of the Goldengate Deployment Type resource.
+     */
+    supportedCapabilities?: string[] | null;
+    /**
+     * Output only. The supported technologies URL of the Goldengate Deployment Type resource.
+     */
+    supportedTechnologiesUrl?: string | null;
+    /**
+     * Output only. The target technologies of the Goldengate Deployment Type resource.
+     */
+    targetTechnologies?: string[] | null;
+  }
+  /**
+   * Details of the Goldengate Deployment Version resource.
+   */
+  export interface Schema$GoldengateDeploymentVersion {
+    /**
+     * Identifier. The name of the Goldengate Deployment Version resource with the format: projects/{project\}/locations/{location\}/goldengateDeploymentVersions/{goldengate_deployment_version\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The deployment version ocid of the Goldengate Deployment Version resource.
+     */
+    ocid?: string | null;
+    /**
+     * Output only. The technology type of the Goldengate Deployment Version resource.
+     */
+    properties?: Schema$GoldengateDeploymentVersionProperties;
+  }
+  /**
+   * Properties of GoldengateDeploymentVersion.
+   */
+  export interface Schema$GoldengateDeploymentVersionProperties {
+    /**
+     * Output only. The deployment type of the Goldengate Deployment Version resource.
+     */
+    deploymentType?: string | null;
+    /**
+     * Output only. The OGG version of the Goldengate Deployment Version resource.
+     */
+    oggVersion?: string | null;
+    /**
+     * Output only. The release time of the Goldengate Deployment Version resource.
+     */
+    releaseTime?: string | null;
+    /**
+     * Output only. The release type of the Goldengate Deployment Version resource.
+     */
+    releaseType?: string | null;
+    /**
+     * Optional. Whether the Goldengate Deployment Version resource is a security fix.
+     */
+    securityFix?: boolean | null;
+    /**
+     * Output only. The support end time of the Goldengate Deployment Version resource.
+     */
+    supportEndTime?: string | null;
+  }
+  /**
+   * The properties of GoldengateElasticsearchConnection.
+   */
+  export interface Schema$GoldengateElasticsearchConnectionProperties {
+    /**
+     * Optional. Authentication type for Elasticsearch.
+     */
+    authenticationType?: string | null;
+    /**
+     * Optional. Fingerprint required by TLS security protocol. Eg.: '6152b2dfbff200f973c5074a5b91d06ab3b472c07c09a1ea57bb7fd406cdce9c'
+     */
+    fingerprint?: string | null;
+    /**
+     * Optional. Input only. The password Oracle Goldengate uses for Elastic Search connection in plain text.
+     */
+    password?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses for Elastic Search connection. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * Optional. Security protocol for Elasticsearch.
+     */
+    securityProtocol?: string | null;
+    /**
+     * Optional. Comma separated list of Elasticsearch server addresses, specified as host:port entries, where :port is optional. If port is not specified, it defaults to 9200. Example: "server1.example.com:4000,server2.example.com:4000"
+     */
+    servers?: string | null;
+    /**
+     * Optional. The technology type of ElasticsearchConnection.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. The username Oracle Goldengate uses to connect the associated system of the given technology.
+     */
+    username?: string | null;
+  }
+  /**
+   * The properties of GoldengateGenericConnectionProperties.
+   */
+  export interface Schema$GoldengateGenericConnectionProperties {
+    /**
+     * Optional. The host of the GenericConnection.
+     */
+    host?: string | null;
+    /**
+     * Optional. The technology type.
+     */
+    technologyType?: string | null;
+  }
+  /**
+   * The properties of GoldengateGoldengateConnectionProperties.
+   */
+  export interface Schema$GoldengateGoldengateConnectionProperties {
+    /**
+     * Optional. The name of the GoldengateDeployment associated with the GoldengateConnection. Format: projects/{project\}/locations/{location\}/goldengateDeployments/{goldengate_deployment\}
+     */
+    goldengateDeploymentId?: string | null;
+    /**
+     * Optional. The host of the GoldengateConnection.
+     */
+    host?: string | null;
+    /**
+     * Optional. Input only. The password used to connect to the Oracle Goldengate in plain text.
+     */
+    password?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password used to connect to the Oracle Goldengate. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * Optional. The port of the GoldengateConnection.
+     */
+    port?: number | null;
+    /**
+     * Optional. The technology type.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. The username credential.
+     */
+    username?: string | null;
+  }
+  /**
+   * The properties of GoldengateGoogleBigQueryConnectionProperties.
+   */
+  export interface Schema$GoldengateGoogleBigQueryConnectionProperties {
+    /**
+     * Optional. The base64 encoded content of the service account key file containing the credentials required to use Google BigQuery.
+     */
+    serviceAccountKeyFile?: string | null;
+    /**
+     * Optional. The technology type.
+     */
+    technologyType?: string | null;
+  }
+  /**
+   * The properties of GoldengateGoogleCloudStorageConnectionProperties.
+   */
+  export interface Schema$GoldengateGoogleCloudStorageConnectionProperties {
+    /**
+     * Optional. The base64 encoded content of the service account key file containing the credentials required to use Google Cloud Storage.
+     */
+    serviceAccountKeyFile?: string | null;
+    /**
+     * Optional. The technology type.
+     */
+    technologyType?: string | null;
+  }
+  /**
+   * The properties of GoldengateGooglePubsubConnection.
+   */
+  export interface Schema$GoldengateGooglePubsubConnectionProperties {
+    /**
+     * Optional. The base64 encoded content of the service account key file containing the credentials required to use Google Pub/Sub.
+     */
+    serviceAccountKeyFile?: string | null;
+    /**
+     * Optional. The technology type of GooglePubsubConnection.
+     */
+    technologyType?: string | null;
+  }
+  /**
+   * The group to roles mapping of the GoldengateDeployment.
+   */
+  export interface Schema$GoldengateGroupToRolesMapping {
+    /**
+     * Output only. The administrator group id.
+     */
+    administratorGroupId?: string | null;
+    /**
+     * Output only. The operator group id.
+     */
+    operatorGroupId?: string | null;
+    /**
+     * Output only. The security group id.
+     */
+    securityGroupId?: string | null;
+    /**
+     * Output only. The user group id.
+     */
+    userGroupId?: string | null;
+  }
+  /**
+   * The properties of GoldengateHdfsConnection.
+   */
+  export interface Schema$GoldengateHdfsConnectionProperties {
+    /**
+     * Optional. The content of the Hadoop Distributed File System configuration file (core-site.xml).
+     */
+    coreSiteXml?: string | null;
+    /**
+     * Optional. The technology type of HdfsConnection.
+     */
+    technologyType?: string | null;
+  }
+  /**
+   * The properties of GoldengateIcebergConnection.
+   */
+  export interface Schema$GoldengateIcebergConnectionProperties {
+    /**
+     * Required. The Iceberg catalog.
+     */
+    catalog?: Schema$IcebergCatalog;
+    /**
+     * Required. The Iceberg storage.
+     */
+    storage?: Schema$IcebergStorage;
+    /**
+     * Required. The technology type of Iceberg connection.
+     */
+    technologyType?: string | null;
+  }
+  /**
+   * The properties of GoldengateJavaMessageServiceConnection.
+   */
+  export interface Schema$GoldengateJavaMessageServiceConnectionProperties {
+    /**
+     * Optional. Authentication type for Java Message Service.
+     */
+    authenticationType?: string | null;
+    /**
+     * Optional. The Java class implementing javax.jms.ConnectionFactory interface supplied by the JMS provider.
+     */
+    connectionFactory?: string | null;
+    /**
+     * Optional. Connection URL of the Java Message Service, specifying the protocol, host, and port. e.g.: 'mq://myjms.host.domain:7676'
+     */
+    connectionUrl?: string | null;
+    /**
+     * Optional. The Connection Factory can be looked up using this name. e.g.: 'ConnectionFactory'
+     */
+    jndiConnectionFactory?: string | null;
+    /**
+     * Optional. The implementation of javax.naming.spi.InitialContextFactory interface used to obtain initial naming context.
+     */
+    jndiInitialContextFactory?: string | null;
+    /**
+     * Optional. The URL that Java Message Service will use to contact the JNDI provider. e.g.: 'tcp://myjms.host.domain:61616?jms.prefetchPolicy.all=1000'
+     */
+    jndiProviderUrl?: string | null;
+    /**
+     * Optional. The password associated to the principal.
+     */
+    jndiSecurityCredentialsSecret?: string | null;
+    /**
+     * Optional. Specifies the identity of the principal (user) to be authenticated.
+     */
+    jndiSecurityPrincipal?: string | null;
+    /**
+     * Optional. The base64 encoded content of the KeyStore file.
+     */
+    keyStoreFile?: string | null;
+    /**
+     * Optional. Input only. The KeyStore password in plain text.
+     */
+    keyStorePassword?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the KeyStore password. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    keyStorePasswordSecretVersion?: string | null;
+    /**
+     * Optional. Input only. The password Oracle Goldengate uses to connect the Java Message Service in plain text.
+     */
+    password?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses to connect the associated Java Message Service. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * Optional. Security protocol for Java Message Service.
+     */
+    securityProtocol?: string | null;
+    /**
+     * Optional. Input only. The password for the cert inside of the KeyStore in plain text.
+     */
+    sslKeyPassword?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password for the cert inside of the KeyStore. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    sslKeyPasswordSecretVersion?: string | null;
+    /**
+     * Optional. The technology type of JavaMessageServiceConnection.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. The base64 encoded content of the TrustStore file.
+     */
+    trustStoreFile?: string | null;
+    /**
+     * Optional. Input only. The TrustStore password in plain text.
+     */
+    trustStorePassword?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the TrustStore password. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    trustStorePasswordSecretVersion?: string | null;
+    /**
+     * Optional. If set to true, Java Naming and Directory Interface (JNDI) properties should be provided.
+     */
+    useJndi?: boolean | null;
+    /**
+     * Optional. The username Oracle Goldengate uses to connect to the Java Message Service.
+     */
+    username?: string | null;
+  }
+  /**
+   * The properties of GoldengateKafkaConnection.
+   */
+  export interface Schema$GoldengateKafkaConnectionProperties {
+    /**
+     * Optional. Kafka bootstrap. Equivalent of bootstrap.servers configuration property in Kafka: list of KafkaBootstrapServer objects specified by host/port. Used for establishing the initial connection to the Kafka cluster. Example: "server1.example.com:9092,server2.example.com:9092"
+     */
+    bootstrapServers?: Schema$KafkaBootstrapServer[];
+    /**
+     * Optional. The OCID of the Kafka cluster being referenced from OCI Streaming with Apache Kafka.
+     */
+    clusterId?: string | null;
+    /**
+     * Optional. The base64 encoded content of the consumer.properties file.
+     */
+    consumerPropertiesFile?: string | null;
+    /**
+     * Optional. The base64 encoded content of the KeyStore file.
+     */
+    keyStoreFile?: string | null;
+    /**
+     * Optional. Input only. The KeyStore password in plain text.
+     */
+    keyStorePassword?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the KeyStore password. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    keyStorePasswordSecretVersion?: string | null;
+    /**
+     * Optional. Input only. The password for Kafka basic/SASL auth in plain text.
+     */
+    password?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password for Kafka basic/SASL auth. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * Optional. The base64 encoded content of the producer.properties file.
+     */
+    producerPropertiesFile?: string | null;
+    /**
+     * Optional. Security Type for Kafka.
+     */
+    securityProtocol?: string | null;
+    /**
+     * Optional. Input only. The password for the cert inside of the KeyStore in plain text.
+     */
+    sslKeyPassword?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password for the cert inside of the KeyStore. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    sslKeyPasswordSecretVersion?: string | null;
+    /**
+     * Optional. The OCID of the stream pool being referenced.
+     */
+    streamPoolId?: string | null;
+    /**
+     * Optional. The technology type of KafkaConnection.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. The base64 encoded content of the TrustStore file.
+     */
+    trustStoreFile?: string | null;
+    /**
+     * Optional. Input only. The TrustStore password in plain text.
+     */
+    trustStorePassword?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the TrustStore password. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    trustStorePasswordSecretVersion?: string | null;
+    /**
+     * Optional. Specifies that the user intends to authenticate to the instance using a resource principal. Applicable only for OCI Streaming connections.
+     */
+    useResourcePrincipal?: boolean | null;
+    /**
+     * Optional. The username Oracle Goldengate uses to connect the associated system of the given technology.
+     */
+    username?: string | null;
+  }
+  /**
+   * The properties of GoldengateKafkaSchemaRegistryConnection.
+   */
+  export interface Schema$GoldengateKafkaSchemaRegistryConnectionProperties {
+    /**
+     * Optional. Used authentication mechanism to access Schema Registry.
+     */
+    authenticationType?: string | null;
+    /**
+     * Optional. The base64 encoded content of the KeyStore file.
+     */
+    keyStoreFile?: string | null;
+    /**
+     * Optional. Input only. The KeyStore password in plain text.
+     */
+    keyStorePassword?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the KeyStore password. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    keyStorePasswordSecretVersion?: string | null;
+    /**
+     * Optional. Input only. The password to access Schema Registry in plain text.
+     */
+    password?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password to access Schema Registry using basic authentication. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * Optional. Input only. The password for the cert inside the KeyStore in plain text.
+     */
+    sslKeyPassword?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password for the cert inside the KeyStore. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    sslKeyPasswordSecretVersion?: string | null;
+    /**
+     * Optional. The technology type of KafkaSchemaRegistryConnection.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. The base64 encoded content of the TrustStore file.
+     */
+    trustStoreFile?: string | null;
+    /**
+     * Optional. Input only. The TrustStore password in plain text.
+     */
+    trustStorePassword?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the TrustStore password. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    trustStorePasswordSecretVersion?: string | null;
+    /**
+     * Optional. Kafka Schema Registry URL. e.g.: 'https://server1.us.oracle.com:8081'
+     */
+    url?: string | null;
+    /**
+     * Optional. The username to access Schema Registry using basic authentication. This value is injected into 'schema.registry.basic.auth.user.info=user:password' configuration property.
+     */
+    username?: string | null;
+  }
+  /**
+   * The maintenance configuration of the GoldengateDeployment.
+   */
+  export interface Schema$GoldengateMaintenanceConfig {
+    /**
+     * Optional. Defines auto upgrade period for bundle releases. Manually configured period cannot be longer than service defined period for bundle releases. This period must be shorter or equal to major release upgrade period. Not passing this field during create will equate to using the service default.
+     */
+    bundleReleaseUpgradePeriodDays?: number | null;
+    /**
+     * Optional. Defines auto upgrade period for interim releases. This period must be shorter or equal to bundle release upgrade period.
+     */
+    interimReleaseUpgradePeriodDays?: number | null;
+    /**
+     * Optional. By default auto upgrade for interim releases are not enabled. If auto-upgrade is enabled for interim release, you have to specify interim_release_upgrade_period_days too.
+     */
+    isInterimReleaseAutoUpgradeEnabled?: boolean | null;
+    /**
+     * Optional. Defines auto upgrade period for major releases. Manually configured period cannot be longer than service defined period for major releases. Not passing this field during create will equate to using the service default.
+     */
+    majorReleaseUpgradePeriodDays?: number | null;
+    /**
+     * Optional. Defines auto upgrade period for releases with security fix. Manually configured period cannot be longer than service defined period for security releases. Not passing this field during create will equate to using the service default.
+     */
+    securityPatchUpgradePeriodDays?: number | null;
+  }
+  /**
+   * The maintenance window of the GoldengateDeployment.
+   */
+  export interface Schema$GoldengateMaintenanceWindow {
+    /**
+     * Required. Days of the week.
+     */
+    day?: string | null;
+    /**
+     * Required. Start hour for maintenance period. Hour is in UTC.
+     */
+    startHour?: number | null;
+  }
+  /**
+   * The properties of GoldengateMicrosoftFabricConnection.
+   */
+  export interface Schema$GoldengateMicrosoftFabricConnectionProperties {
+    /**
+     * Optional. Azure client ID of the application.
+     */
+    clientId?: string | null;
+    /**
+     * Optional. Client secret associated with the client id.
+     */
+    clientSecret?: string | null;
+    /**
+     * Optional. Optional Microsoft Fabric service endpoint. Default value: https://onelake.dfs.fabric.microsoft.com
+     */
+    endpoint?: string | null;
+    /**
+     * Optional. The technology type of MicrosoftFabricConnection.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. Azure tenant ID of the application.
+     */
+    tenantId?: string | null;
+  }
+  /**
+   * The properties of GoldengateMicrosoftSqlserverConnection.
+   */
+  export interface Schema$GoldengateMicrosoftSqlserverConnectionProperties {
+    /**
+     * Optional. An array of name-value pair attribute entries. Used as additional parameters in connection string.
+     */
+    additionalAttributes?: Schema$NameValuePair[];
+    /**
+     * Optional. The name of the database.
+     */
+    database?: string | null;
+    /**
+     * Optional. The name or address of a host.
+     */
+    host?: string | null;
+    /**
+     * Optional. Input only. The password Oracle Goldengate uses for Microsoft SQL Server connection in plain text.
+     */
+    password?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses for Microsoft SQL Server connection. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * Optional. The port of an endpoint usually specified for a connection.
+     */
+    port?: number | null;
+    /**
+     * Optional. Security Type for Microsoft SQL Server.
+     */
+    securityProtocol?: string | null;
+    /**
+     * Optional. If set to true, the driver validates the certificate that is sent by the database server.
+     */
+    serverCertificateValidationRequired?: boolean | null;
+    /**
+     * Optional. Database Certificate - The base64 encoded content of a .pem or .crt file containing the server public key (for 1-way SSL).
+     */
+    sslCaFile?: string | null;
+    /**
+     * Optional. The technology type of MicrosoftSqlserverConnection.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. The username Oracle Goldengate uses to connect to the Microsoft SQL Server.
+     */
+    username?: string | null;
+  }
+  /**
+   * The properties of GoldengateMongodbConnection.
+   */
+  export interface Schema$GoldengateMongodbConnectionProperties {
+    /**
+     * Optional. MongoDB connection string. e.g.: 'mongodb://mongodb0.example.com:27017/recordsrecords'
+     */
+    connectionString?: string | null;
+    /**
+     * Optional. The OCID of the Oracle Autonomous Json Database.
+     */
+    databaseId?: string | null;
+    /**
+     * Optional. Input only. The password Oracle Goldengate uses to connect the Mongodb connection in plain text.
+     */
+    password?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses to connect the Mongodb connection. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * Optional. Security Type for MongoDB.
+     */
+    securityProtocol?: string | null;
+    /**
+     * Optional. The technology type of MongodbConnection.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. Database Certificate - The base64 encoded content of a .pem file, containing the server public key (for 1 and 2-way SSL).
+     */
+    tlsCaFile?: string | null;
+    /**
+     * Optional. Client Certificate - The base64 encoded content of a .pem file, containing the client public key (for 2-way SSL).
+     */
+    tlsCertificateKeyFile?: string | null;
+    /**
+     * Optional. Input only. The Client Certificate key file password in plain text.
+     */
+    tlsCertificateKeyFilePassword?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the Client Certificate key file password in Secret Manager. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    tlsCertificateKeyFilePasswordSecretVersion?: string | null;
+    /**
+     * Optional. The username Oracle Goldengate uses to connect to the database.
+     */
+    username?: string | null;
+  }
+  /**
+   * Properties of GoldengateMysqlConnection.
+   */
+  export interface Schema$GoldengateMysqlConnectionProperties {
+    /**
+     * Optional. An array of name-value pair attribute entries. Used as additional parameters in connection string.
+     */
+    additionalAttributes?: Schema$NameValuePair[];
+    /**
+     * Optional. The name of the database.
+     */
+    database?: string | null;
+    /**
+     * Optional. The OCID of the database system being referenced.
+     */
+    dbSystemId?: string | null;
+    /**
+     * Optional. The name or address of a host.
+     */
+    host?: string | null;
+    /**
+     * Optional. Input only. The password Oracle Goldengate uses to connect to MySQL in plain text.
+     */
+    password?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses to connect to MySQL. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * Optional. The port of an endpoint usually specified for a connection.
+     */
+    port?: number | null;
+    /**
+     * Optional. Security Type for MySQL.
+     */
+    securityProtocol?: string | null;
+    /**
+     * Optional. Database Certificate - The base64 encoded content of a .pem or .crt file containing the server public key (for 1 and 2-way SSL).
+     */
+    sslCaFile?: string | null;
+    /**
+     * Optional. Client Certificate - The base64 encoded content of a .pem or .crt file containing the client public key (for 2-way SSL).
+     */
+    sslCertFile?: string | null;
+    /**
+     * Optional. The base64 encoded list of certificates revoked by the trusted certificate authorities (Trusted CA).
+     */
+    sslCrlFile?: string | null;
+    /**
+     * Optional. Client Key - The base64 encoded content of a .pem or .crt file containing the client private key (for 2-way SSL).
+     */
+    sslKeyFile?: string | null;
+    /**
+     * Optional. SSL modes for MySQL.
+     */
+    sslMode?: string | null;
+    /**
+     * Optional. The technology type of MysqlConnection.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. The username Oracle Goldengate uses to connect the associated system of the given technology.
+     */
+    username?: string | null;
+  }
+  /**
+   * The properties of GoldengateOciObjectStorageConnection.
+   */
+  export interface Schema$GoldengateOciObjectStorageConnectionProperties {
+    /**
+     * Optional. The content of the private key file (PEM file) corresponding to the API key of the fingerprint.
+     */
+    privateKeyFile?: string | null;
+    /**
+     * Optional. The passphrase of the private key.
+     */
+    privateKeyPassphraseSecret?: string | null;
+    /**
+     * Optional. The fingerprint of the API Key of the user specified by the userId.
+     */
+    publicKeyFingerprint?: string | null;
+    /**
+     * Optional. The name of the region of OCI Object Storage. e.g.: us-ashburn-1 If the region is not provided, backend will default to the default region.
+     */
+    region?: string | null;
+    /**
+     * Optional. The technology type of OciObjectStorageConnection.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. The OCID of the related OCI tenancy.
+     */
+    tenancyId?: string | null;
+    /**
+     * Optional. Specifies that the user intends to authenticate to the instance using a resource principal.
+     */
+    useResourcePrincipal?: boolean | null;
+    /**
+     * Optional. The OCID of the OCI user who will access the Object Storage. The user must have write access to the bucket they want to connect to.
+     */
+    userId?: string | null;
+  }
+  /**
+   * The Ogg data of the GoldengateDeployment.
+   */
+  export interface Schema$GoldengateOggDeployment {
+    /**
+     * Optional. The Goldengate deployment console password in plain text.
+     */
+    adminPassword?: string | null;
+    /**
+     * Optional. Input only. The Goldengate deployment console password secret version.
+     */
+    adminPasswordSecretVersion?: string | null;
+    /**
+     * Required. The Goldengate deployment console username.
+     */
+    adminUsername?: string | null;
+    /**
+     * Output only. The certificate of the GoldengateDeployment.
+     */
+    certificate?: string | null;
+    /**
+     * Output only. The credential store of the GoldengateDeployment.
+     */
+    credentialStore?: string | null;
+    /**
+     * Required. The name given to the Goldengate service deployment. The name must be 1 to 32 characters long, must contain only alphanumeric characters and must start with a letter.
+     */
+    deployment?: string | null;
+    /**
+     * Output only. The group to roles mapping of the GoldengateDeployment.
+     */
+    groupRolesMapping?: Schema$GoldengateGroupToRolesMapping;
+    /**
+     * Output only. The identity domain id of the GoldengateDeployment.
+     */
+    identityDomainId?: string | null;
+    /**
+     * Optional. Version of OGG
+     */
+    oggVersion?: string | null;
+    /**
+     * Output only. The password secret id of the GoldengateDeployment.
+     */
+    passwordSecretId?: string | null;
+  }
+  /**
+   * The properties of GoldengateOracleAIDataPlatformConnection.
+   */
+  export interface Schema$GoldengateOracleAIDataPlatformConnectionProperties {
+    /**
+     * Optional. Connection URL. It must start with 'jdbc:spark://'
+     */
+    connectionUrl?: string | null;
+    /**
+     * Optional. The content of the private key file (PEM file) corresponding to the API key of the fingerprint.
+     */
+    privateKeyFile?: string | null;
+    /**
+     * Optional. The passphrase of the private key.
+     */
+    privateKeyPassphraseSecret?: string | null;
+    /**
+     * Optional. The fingerprint of the API Key of the user specified by the user_id.
+     */
+    publicKeyFingerprint?: string | null;
+    /**
+     * Optional. The name of the region. e.g.: us-ashburn-1
+     */
+    region?: string | null;
+    /**
+     * Optional. The technology type of OracleAiDataPlatformConnection.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. The OCID of the related OCI tenancy.
+     */
+    tenancyId?: string | null;
+    /**
+     * Optional. Specifies that the user intends to authenticate to the instance using a resource principal.
+     */
+    useResourcePrincipal?: boolean | null;
+    /**
+     * Optional. The OCID of the OCI user who will access.
+     */
+    userId?: string | null;
+  }
+  /**
+   * The properties of Goldengate Oracle Database Connection.
+   */
+  export interface Schema$GoldengateOracleConnectionProperties {
+    /**
+     * Optional. Authentication mode.
+     */
+    authenticationMode?: string | null;
+    /**
+     * Optional. Connect descriptor or Easy Connect Naming method used to connect to a database.
+     */
+    connectionString?: string | null;
+    /**
+     * Optional. Database instance id of database in Oracle Database @ Google Cloud. If gcp_oracle_database_id is provided, connection_string must be empty.
+     */
+    gcpOracleDatabaseId?: string | null;
+    /**
+     * Optional. Input only. The password Oracle Goldengate uses in plain text.
+     */
+    password?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * Optional. The mode of the database connection session to be established by the data client.
+     */
+    sessionMode?: string | null;
+    /**
+     * Optional. The technology type.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. The username Oracle Goldengate uses to connect.
+     */
+    username?: string | null;
+    /**
+     * Optional. The wallet contents Oracle Goldengate uses to make connections to a database. This attribute is expected to be base64 encoded.
+     */
+    walletFile?: string | null;
+  }
+  /**
+   * The properties of GoldengateOracleNosqlConnection.
+   */
+  export interface Schema$GoldengateOracleNosqlConnectionProperties {
+    /**
+     * Optional. The content of the private key file (PEM file) corresponding to the API key of the fingerprint.
+     */
+    privateKeyFile?: string | null;
+    /**
+     * Optional. The passphrase of the private key.
+     */
+    privateKeyPassphraseSecret?: string | null;
+    /**
+     * Optional. The fingerprint of the API Key of the user specified by the userId.
+     */
+    publicKeyFingerprint?: string | null;
+    /**
+     * Optional. The name of the region. e.g.: us-ashburn-1
+     */
+    region?: string | null;
+    /**
+     * Optional. The technology type of OracleNosqlConnection.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. The OCID of the OCI tenancy.
+     */
+    tenancyId?: string | null;
+    /**
+     * Optional. Specifies that the user intends to authenticate to the instance using a resource principal.
+     */
+    useResourcePrincipal?: boolean | null;
+    /**
+     * Optional. The OCID of the OCI user who will access the Oracle NoSQL database.
+     */
+    userId?: string | null;
+  }
+  /**
+   * The placement of the GoldengateDeployment.
+   */
+  export interface Schema$GoldengatePlacement {
+    /**
+     * Output only. The availability domain.
+     */
+    availabilityDomain?: string | null;
+    /**
+     * Output only. The fault domain.
+     */
+    faultDomain?: string | null;
+  }
+  /**
+   * The properties of GoldengatePostgresqlConnection.
+   */
+  export interface Schema$GoldengatePostgresqlConnectionProperties {
+    /**
+     * Optional. An array of name-value pair attribute entries. Used as additional parameters in connection string.
+     */
+    additionalAttributes?: Schema$NameValuePair[];
+    /**
+     * Optional. The name of the database.
+     */
+    database?: string | null;
+    /**
+     * Optional. The OCID of the database system being referenced.
+     */
+    dbSystemId?: string | null;
+    /**
+     * Optional. The name or address of a host.
+     */
+    host?: string | null;
+    /**
+     * Optional. Input only. The password Oracle Goldengate uses for PostgreSQL connection in plain text.
+     */
+    password?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses for PostgreSQL connection. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * Optional. The port of an endpoint usually specified for a connection.
+     */
+    port?: number | null;
+    /**
+     * Optional. Security protocol for PostgreSQL.
+     */
+    securityProtocol?: string | null;
+    /**
+     * Optional. The base64 encoded certificate of the trusted certificate authorities (Trusted CA) for PostgreSQL.
+     */
+    sslCaFile?: string | null;
+    /**
+     * Optional. The base64 encoded certificate of the PostgreSQL server.
+     */
+    sslCertFile?: string | null;
+    /**
+     * Optional. The base64 encoded list of certificates revoked by the trusted certificate authorities (Trusted CA).
+     */
+    sslCrlFile?: string | null;
+    /**
+     * Optional. The base64 encoded private key of the PostgreSQL server.
+     */
+    sslKeyFile?: string | null;
+    /**
+     * Optional. SSL modes for PostgreSQL.
+     */
+    sslMode?: string | null;
+    /**
+     * Optional. The technology type of PostgresqlConnection.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. The username Oracle Goldengate uses to connect the associated system of the given technology.
+     */
+    username?: string | null;
+  }
+  /**
+   * The properties of GoldengateRedisConnection.
+   */
+  export interface Schema$GoldengateRedisConnectionProperties {
+    /**
+     * Optional. Authentication type for Redis.
+     */
+    authenticationType?: string | null;
+    /**
+     * Optional. The base64 encoded content of the KeyStore file.
+     */
+    keyStoreFile?: string | null;
+    /**
+     * Optional. Input only. The KeyStore password in plain text.
+     */
+    keyStorePassword?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the KeyStore password. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    keyStorePasswordSecretVersion?: string | null;
+    /**
+     * Optional. Input only. The password Oracle Goldengate uses for Redis connection in plain text.
+     */
+    password?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses for Redis connection. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * Optional. The OCID of the Redis cluster.
+     */
+    redisClusterId?: string | null;
+    /**
+     * Optional. Security protocol for Redis.
+     */
+    securityProtocol?: string | null;
+    /**
+     * Optional. Comma separated list of Redis server addresses, specified as host:port entries, where :port is optional. If port is not specified, it defaults to 6379. Example: "server1.example.com:6379,server2.example.com:6379"
+     */
+    servers?: string | null;
+    /**
+     * Optional. The technology type of RedisConnection.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. The base64 encoded content of the TrustStore file.
+     */
+    trustStoreFile?: string | null;
+    /**
+     * Optional. Input only. The TrustStore password in plain text.
+     */
+    trustStorePassword?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the TrustStore password. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    trustStorePasswordSecretVersion?: string | null;
+    /**
+     * Optional. The username Oracle Goldengate uses to connect the associated system of the given technology.
+     */
+    username?: string | null;
+  }
+  /**
+   * The properties of GoldengateSnowflakeConnection.
+   */
+  export interface Schema$GoldengateSnowflakeConnectionProperties {
+    /**
+     * Optional. Used authentication mechanism to access Snowflake.
+     */
+    authenticationType?: string | null;
+    /**
+     * Optional. JDBC connection URL. e.g.: 'jdbc:snowflake://.snowflakecomputing.com/?warehouse=&db='
+     */
+    connectionUrl?: string | null;
+    /**
+     * Optional. Input only. The password Oracle Goldengate uses to connect to Snowflake platform in plain text.
+     */
+    password?: string | null;
+    /**
+     * Optional. Input only. The resource name of a secret version in Secret Manager which contains the password Oracle Goldengate uses to connect to Snowflake platform. Format: projects/{project\}/secrets/{secret\}/versions/{version\}.
+     */
+    passwordSecretVersion?: string | null;
+    /**
+     * Optional. The content of private key file in PEM format.
+     */
+    privateKeyFile?: string | null;
+    /**
+     * Optional. Password if the private key file is encrypted.
+     */
+    privateKeyPassphraseSecret?: string | null;
+    /**
+     * Optional. The technology type of SnowflakeConnection.
+     */
+    technologyType?: string | null;
+    /**
+     * Optional. The username Oracle Goldengate uses to connect to Snowflake.
+     */
+    username?: string | null;
+  }
+  /**
+   * The Google Cloud Storage Iceberg storage.
+   */
+  export interface Schema$GoogleCloudStorageIcebergStorage {
+    /**
+     * Required. The bucket of Google Cloud Storage.
+     */
+    bucket?: string | null;
+    /**
+     * Required. The project ID of Google Cloud Storage.
+     */
+    projectId?: string | null;
+    /**
+     * Optional. The base64 encoded content of the service account key file of Google Cloud Storage.
+     */
+    serviceAccountKeyFile?: string | null;
+  }
+  /**
+   * The Iceberg catalog details.
+   */
+  export interface Schema$IcebergCatalog {
+    /**
+     * Required. The type of Iceberg catalog.
+     */
+    catalogType?: string | null;
+    /**
+     * The Glue Iceberg catalog.
+     */
+    glueIcebergCatalog?: Schema$GlueIcebergCatalog;
+    /**
+     * The Nessie Iceberg catalog.
+     */
+    nessieIcebergCatalog?: Schema$NessieIcebergCatalog;
+    /**
+     * The Polaris Iceberg catalog.
+     */
+    polarisIcebergCatalog?: Schema$PolarisIcebergCatalog;
+    /**
+     * The REST Iceberg catalog.
+     */
+    restIcebergCatalog?: Schema$RestIcebergCatalog;
+  }
+  /**
+   * The Iceberg storage details.
+   */
+  export interface Schema$IcebergStorage {
+    /**
+     * The Amazon S3 Iceberg storage.
+     */
+    amazonS3IcebergStorage?: Schema$AmazonS3IcebergStorage;
+    /**
+     * The Azure Data Lake Storage Iceberg storage.
+     */
+    azureDataLakeStorageIcebergStorage?: Schema$AzureDataLakeStorageIcebergStorage;
+    /**
+     * The Google Cloud Storage Iceberg storage.
+     */
+    googleCloudStorageIcebergStorage?: Schema$GoogleCloudStorageIcebergStorage;
+    /**
+     * Required. The type of Iceberg storage.
+     */
+    storageType?: string | null;
+  }
+  /**
    * The identity connector details which will allow OCI to securely access the resources in the customer project.
    */
   export interface Schema$IdentityConnector {
@@ -2130,6 +4212,32 @@ export namespace oracledatabase_v1 {
      * Output only. A google managed service account on which customers can grant roles to access resources in the customer project. Example: `p176944527254-55-75119d87fd8f@gcp-sa-oci.iam.gserviceaccount.com`
      */
     serviceAgentEmail?: string | null;
+  }
+  /**
+   * The ingress IPs of the GoldengateDeployment.
+   */
+  export interface Schema$IngressIp {
+    /**
+     * Output only. The ingress IP.
+     */
+    ingressIpAddress?: string | null;
+  }
+  /**
+   * Represents a Kafka bootstrap server with host name, optional port defaults to 9092, and an optional private ip.
+   */
+  export interface Schema$KafkaBootstrapServer {
+    /**
+     * Required. The name or address of a host.
+     */
+    host?: string | null;
+    /**
+     * Optional. The port of an endpoint usually specified for a connection.
+     */
+    port?: number | null;
+    /**
+     * Optional. The private IP address of the connection's endpoint in the customer's VCN, typically a database endpoint or a big data endpoint (e.g. Kafka bootstrap server). In case the privateIp is provided, the subnetId must also be provided. In case the privateIp (and the subnetId) is not provided it is assumed the datasource is publicly accessible. In case the connection is accessible only privately, the lack of privateIp will result in not being able to access the connection.
+     */
+    privateIpAddress?: string | null;
   }
   /**
    * The response for `AutonomousDatabaseBackup.List`.
@@ -2390,6 +4498,125 @@ export namespace oracledatabase_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for listing GoldengateConnectionAssignments.
+   */
+  export interface Schema$ListGoldengateConnectionAssignmentsResponse {
+    /**
+     * The list of GoldengateConnectionAssignments.
+     */
+    goldengateConnectionAssignments?: Schema$GoldengateConnectionAssignment[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unreachable locations when listing resources across all locations using wildcard location '-'.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * The response for `GoldengateConnection.List`.
+   */
+  export interface Schema$ListGoldengateConnectionsResponse {
+    /**
+     * The list of GoldengateConnections.
+     */
+    goldengateConnections?: Schema$GoldengateConnection[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Optional. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Message for response to listing GoldengateConnectionTypes
+   */
+  export interface Schema$ListGoldengateConnectionTypesResponse {
+    /**
+     * The list of GoldengateConnectionType
+     */
+    goldengateConnectionTypes?: Schema$GoldengateConnectionType[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unordered list. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Message for response to listing GoldengateDeploymentEnvironments
+   */
+  export interface Schema$ListGoldengateDeploymentEnvironmentsResponse {
+    /**
+     * The list of GoldengateDeploymentEnvironment
+     */
+    goldengateDeploymentEnvironments?: Schema$GoldengateDeploymentEnvironment[];
+    /**
+     * A token identifying a page of results the server should return. If this field is empty, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unordered list. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * The response for `GoldengateDeployment.List`.
+   */
+  export interface Schema$ListGoldengateDeploymentsResponse {
+    /**
+     * The list of GoldengateDeployments.
+     */
+    goldengateDeployments?: Schema$GoldengateDeployment[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Optional. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Message for response to listing GoldengateDeploymentTypes
+   */
+  export interface Schema$ListGoldengateDeploymentTypesResponse {
+    /**
+     * The list of GoldengateDeploymentType
+     */
+    goldengateDeploymentTypes?: Schema$GoldengateDeploymentType[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unordered list. The resource names of locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Message for response to listing GoldengateDeploymentVersions
+   */
+  export interface Schema$ListGoldengateDeploymentVersionsResponse {
+    /**
+     * The list of GoldengateDeploymentVersion
+     */
+    goldengateDeploymentVersions?: Schema$GoldengateDeploymentVersion[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Unordered list. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * The response message for Locations.ListLocations.
    */
   export interface Schema$ListLocationsResponse {
@@ -2570,6 +4797,32 @@ export namespace oracledatabase_v1 {
      * Optional. The valid Oracle grid infrastructure software version.
      */
     version?: string | null;
+  }
+  /**
+   * A name-value pair representing an attribute entry usable in a list of attributes.
+   */
+  export interface Schema$NameValuePair {
+    /**
+     * Required. The name of the property entry.
+     */
+    key?: string | null;
+    /**
+     * Required. The value of the property entry.
+     */
+    value?: string | null;
+  }
+  /**
+   * The Nessie Iceberg catalog.
+   */
+  export interface Schema$NessieIcebergCatalog {
+    /**
+     * Required. The Nessie branch.
+     */
+    branch?: string | null;
+    /**
+     * Required. The Nessie uri.
+     */
+    uri?: string | null;
   }
   /**
    * Represents OdbNetwork resource.
@@ -2808,6 +5061,31 @@ export namespace oracledatabase_v1 {
     pdbNodeLevelDetails?: Schema$PluggableDatabaseNodeLevelDetails[];
   }
   /**
+   * The Polaris Iceberg catalog.
+   */
+  export interface Schema$PolarisIcebergCatalog {
+    /**
+     * Required. The Polaris client ID.
+     */
+    clientId?: string | null;
+    /**
+     * Optional. The Polaris client secret.
+     */
+    clientSecret?: string | null;
+    /**
+     * Required. The catalog name within Polaris.
+     */
+    polarisCatalog?: string | null;
+    /**
+     * Required. The Polaris principal role.
+     */
+    principalRole?: string | null;
+    /**
+     * Required. The Polaris uri.
+     */
+    uri?: string | null;
+  }
+  /**
    * The request for `ExadbVmCluster.RemoveVirtualMachine`.
    */
   export interface Schema$RemoveVirtualMachineExadbVmClusterRequest {
@@ -2824,6 +5102,19 @@ export namespace oracledatabase_v1 {
    * The request for `AutonomousDatabase.Restart`.
    */
   export interface Schema$RestartAutonomousDatabaseRequest {}
+  /**
+   * The REST Iceberg catalog.
+   */
+  export interface Schema$RestIcebergCatalog {
+    /**
+     * Optional. The base64 encoded content of the configuration file containing additional properties for the REST catalog.
+     */
+    properties?: string | null;
+    /**
+     * Required. The REST uri.
+     */
+    uri?: string | null;
+  }
   /**
    * The request for `AutonomousDatabase.Restore`.
    */
@@ -2868,6 +5159,10 @@ export namespace oracledatabase_v1 {
    */
   export interface Schema$StartAutonomousDatabaseRequest {}
   /**
+   * The request for `GoldengateDeployment.Start`.
+   */
+  export interface Schema$StartGoldengateDeploymentRequest {}
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -2889,6 +5184,10 @@ export namespace oracledatabase_v1 {
    */
   export interface Schema$StopAutonomousDatabaseRequest {}
   /**
+   * The request for `GoldengateDeployment.Stop`.
+   */
+  export interface Schema$StopGoldengateDeploymentRequest {}
+  /**
    * The initial storage size, in gigabytes, that is applicable for virtual machine DBSystem.
    */
   export interface Schema$StorageSizeDetails {
@@ -2909,6 +5208,53 @@ export namespace oracledatabase_v1 {
      * Optional. The peer database name to switch over to. Required for cross-region standby, and must be omitted for in-region Data Guard.
      */
     peerAutonomousDatabase?: string | null;
+  }
+  /**
+   * Error details for TestGoldengateConnectionAssignment.
+   */
+  export interface Schema$TestConnectionAssignmentError {
+    /**
+     * The text describing the action required to fix the issue.
+     */
+    action?: string | null;
+    /**
+     * A short error code that defines the error, meant for programmatic parsing.
+     */
+    code?: string | null;
+    /**
+     * The text describing the root cause of the reported issue.
+     */
+    issue?: string | null;
+    /**
+     * A human-readable error message.
+     */
+    message?: string | null;
+  }
+  /**
+   * Request message for TestGoldengateConnectionAssignment.
+   */
+  export interface Schema$TestGoldengateConnectionAssignmentRequest {
+    /**
+     * Optional. The type of the test of the assigned connection. The only type actually supported is DEFAULT.
+     */
+    type?: string | null;
+  }
+  /**
+   * The result of the connectivity test performed between the Goldengate deployment and the associated database / service.
+   */
+  export interface Schema$TestGoldengateConnectionAssignmentResponse {
+    /**
+     * Error details if test connection failed.
+     */
+    error?: Schema$TestConnectionAssignmentError;
+    /**
+     * List of test connection assignment error objects.
+     */
+    errors?: Schema$TestConnectionAssignmentError[];
+    /**
+     * Type of the result i.e. Success, Failure or Timeout.
+     */
+    resultType?: string | null;
   }
   /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
@@ -2972,6 +5318,13 @@ export namespace oracledatabase_v1 {
     exadbVmClusters: Resource$Projects$Locations$Exadbvmclusters;
     exascaleDbStorageVaults: Resource$Projects$Locations$Exascaledbstoragevaults;
     giVersions: Resource$Projects$Locations$Giversions;
+    goldengateConnectionAssignments: Resource$Projects$Locations$Goldengateconnectionassignments;
+    goldengateConnections: Resource$Projects$Locations$Goldengateconnections;
+    goldengateConnectionTypes: Resource$Projects$Locations$Goldengateconnectiontypes;
+    goldengateDeploymentEnvironments: Resource$Projects$Locations$Goldengatedeploymentenvironments;
+    goldengateDeployments: Resource$Projects$Locations$Goldengatedeployments;
+    goldengateDeploymentTypes: Resource$Projects$Locations$Goldengatedeploymenttypes;
+    goldengateDeploymentVersions: Resource$Projects$Locations$Goldengatedeploymentversions;
     odbNetworks: Resource$Projects$Locations$Odbnetworks;
     operations: Resource$Projects$Locations$Operations;
     pluggableDatabases: Resource$Projects$Locations$Pluggabledatabases;
@@ -3019,6 +5372,26 @@ export namespace oracledatabase_v1 {
       this.giVersions = new Resource$Projects$Locations$Giversions(
         this.context
       );
+      this.goldengateConnectionAssignments =
+        new Resource$Projects$Locations$Goldengateconnectionassignments(
+          this.context
+        );
+      this.goldengateConnections =
+        new Resource$Projects$Locations$Goldengateconnections(this.context);
+      this.goldengateConnectionTypes =
+        new Resource$Projects$Locations$Goldengateconnectiontypes(this.context);
+      this.goldengateDeploymentEnvironments =
+        new Resource$Projects$Locations$Goldengatedeploymentenvironments(
+          this.context
+        );
+      this.goldengateDeployments =
+        new Resource$Projects$Locations$Goldengatedeployments(this.context);
+      this.goldengateDeploymentTypes =
+        new Resource$Projects$Locations$Goldengatedeploymenttypes(this.context);
+      this.goldengateDeploymentVersions =
+        new Resource$Projects$Locations$Goldengatedeploymentversions(
+          this.context
+        );
       this.odbNetworks = new Resource$Projects$Locations$Odbnetworks(
         this.context
       );
@@ -11686,6 +14059,3885 @@ export namespace oracledatabase_v1 {
     pageToken?: string;
     /**
      * Required. The parent value for the MinorVersion resource with the format: projects/{project\}/locations/{location\}/giVersions/{gi_version\}
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Goldengateconnectionassignments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new GoldengateConnectionAssignment in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateConnectionAssignments.create(
+     *       {
+     *         // Required. The ID of the GoldengateConnectionAssignment to create.
+     *         goldengateConnectionAssignmentId: 'placeholder-value',
+     *         // Required. The parent resource where this GoldengateConnectionAssignment will be created. Format: projects/{project\}/locations/{location\}
+     *         parent: 'projects/my-project/locations/my-location',
+     *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         requestId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "createTime": "my_createTime",
+     *           //   "displayName": "my_displayName",
+     *           //   "entitlementId": "my_entitlementId",
+     *           //   "labels": {},
+     *           //   "name": "my_name",
+     *           //   "properties": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengateconnectionassignments$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengateconnectionassignments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengateconnectionassignments$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/goldengateConnectionAssignments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single GoldengateConnectionAssignment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateConnectionAssignments.delete(
+     *       {
+     *         // Required. The name of the GoldengateConnectionAssignment to delete. Format: projects/{project\}/locations/{location\}/goldengateConnectionAssignments/{goldengate_connection_assignment\}
+     *         name: 'projects/my-project/locations/my-location/goldengateConnectionAssignments/my-goldengateConnectionAssignment',
+     *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         requestId: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengateconnectionassignments$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengateconnectionassignments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengateconnectionassignments$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single GoldengateConnectionAssignment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateConnectionAssignments.get(
+     *       {
+     *         // Required. The name of the GoldengateConnectionAssignment to retrieve. Format: projects/{project\}/locations/{location\}/goldengateConnectionAssignments/{goldengate_connection_assignment\}
+     *         name: 'projects/my-project/locations/my-location/goldengateConnectionAssignments/my-goldengateConnectionAssignment',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "entitlementId": "my_entitlementId",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "properties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoldengateConnectionAssignment>>;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoldengateConnectionAssignment>,
+      callback: BodyResponseCallback<Schema$GoldengateConnectionAssignment>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Get,
+      callback: BodyResponseCallback<Schema$GoldengateConnectionAssignment>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoldengateConnectionAssignment>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengateconnectionassignments$Get
+        | BodyResponseCallback<Schema$GoldengateConnectionAssignment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoldengateConnectionAssignment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoldengateConnectionAssignment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoldengateConnectionAssignment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengateconnectionassignments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengateconnectionassignments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoldengateConnectionAssignment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoldengateConnectionAssignment>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists GoldengateConnectionAssignments in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateConnectionAssignments.list(
+     *       {
+     *         // Optional. A filter expression that filters GoldengateConnectionAssignments listed in the response.
+     *         filter: 'placeholder-value',
+     *         // Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "DESC" after a field name for descending.
+     *         orderBy: 'placeholder-value',
+     *         // Optional. The maximum number of GoldengateConnectionAssignments to return. The service may return fewer than this value. If unspecified, at most 50 GoldengateConnectionAssignments will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListGoldengateConnectionAssignments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListGoldengateConnectionAssignments` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent value for the GoldengateConnectionAssignments. Format: projects/{project\}/locations/{location\}
+     *         parent: 'projects/my-project/locations/my-location',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "goldengateConnectionAssignments": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Goldengateconnectionassignments$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListGoldengateConnectionAssignmentsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGoldengateConnectionAssignmentsResponse>,
+      callback: BodyResponseCallback<Schema$ListGoldengateConnectionAssignmentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$List,
+      callback: BodyResponseCallback<Schema$ListGoldengateConnectionAssignmentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListGoldengateConnectionAssignmentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengateconnectionassignments$List
+        | BodyResponseCallback<Schema$ListGoldengateConnectionAssignmentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGoldengateConnectionAssignmentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGoldengateConnectionAssignmentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListGoldengateConnectionAssignmentsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengateconnectionassignments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengateconnectionassignments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/goldengateConnectionAssignments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListGoldengateConnectionAssignmentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListGoldengateConnectionAssignmentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Tests a single GoldengateConnectionAssignment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateConnectionAssignments.test(
+     *       {
+     *         // Required. Name of the connection assignment for which to test connection. projects/{project\}/locations/{region\}/goldengateConnectionAssignments/{goldengate_connection_assignment\}
+     *         name: 'projects/my-project/locations/my-location/goldengateConnectionAssignments/my-goldengateConnectionAssignment',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "type": "my_type"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "error": {},
+     *   //   "errors": [],
+     *   //   "resultType": "my_resultType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    test(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Test,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    test(
+      params?: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Test,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$TestGoldengateConnectionAssignmentResponse>
+    >;
+    test(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Test,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    test(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Test,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestGoldengateConnectionAssignmentResponse>,
+      callback: BodyResponseCallback<Schema$TestGoldengateConnectionAssignmentResponse>
+    ): void;
+    test(
+      params: Params$Resource$Projects$Locations$Goldengateconnectionassignments$Test,
+      callback: BodyResponseCallback<Schema$TestGoldengateConnectionAssignmentResponse>
+    ): void;
+    test(
+      callback: BodyResponseCallback<Schema$TestGoldengateConnectionAssignmentResponse>
+    ): void;
+    test(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengateconnectionassignments$Test
+        | BodyResponseCallback<Schema$TestGoldengateConnectionAssignmentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestGoldengateConnectionAssignmentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestGoldengateConnectionAssignmentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$TestGoldengateConnectionAssignmentResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengateconnectionassignments$Test;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengateconnectionassignments$Test;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:test').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestGoldengateConnectionAssignmentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestGoldengateConnectionAssignmentResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Goldengateconnectionassignments$Create extends StandardParameters {
+    /**
+     * Required. The ID of the GoldengateConnectionAssignment to create.
+     */
+    goldengateConnectionAssignmentId?: string;
+    /**
+     * Required. The parent resource where this GoldengateConnectionAssignment will be created. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoldengateConnectionAssignment;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengateconnectionassignments$Delete extends StandardParameters {
+    /**
+     * Required. The name of the GoldengateConnectionAssignment to delete. Format: projects/{project\}/locations/{location\}/goldengateConnectionAssignments/{goldengate_connection_assignment\}
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengateconnectionassignments$Get extends StandardParameters {
+    /**
+     * Required. The name of the GoldengateConnectionAssignment to retrieve. Format: projects/{project\}/locations/{location\}/goldengateConnectionAssignments/{goldengate_connection_assignment\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengateconnectionassignments$List extends StandardParameters {
+    /**
+     * Optional. A filter expression that filters GoldengateConnectionAssignments listed in the response.
+     */
+    filter?: string;
+    /**
+     * Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "DESC" after a field name for descending.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of GoldengateConnectionAssignments to return. The service may return fewer than this value. If unspecified, at most 50 GoldengateConnectionAssignments will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListGoldengateConnectionAssignments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListGoldengateConnectionAssignments` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent value for the GoldengateConnectionAssignments. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengateconnectionassignments$Test extends StandardParameters {
+    /**
+     * Required. Name of the connection assignment for which to test connection. projects/{project\}/locations/{region\}/goldengateConnectionAssignments/{goldengate_connection_assignment\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestGoldengateConnectionAssignmentRequest;
+  }
+
+  export class Resource$Projects$Locations$Goldengateconnections {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new GoldengateConnection in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateConnections.create({
+     *       // Required. The ID of the GoldengateConnection to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
+     *       goldengateConnectionId: 'placeholder-value',
+     *       // Required. The value for parent of the GoldengateConnection in the following format: projects/{project\}/locations/{location\}.
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "entitlementId": "my_entitlementId",
+     *         //   "gcpOracleZone": "my_gcpOracleZone",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "ociUrl": "my_ociUrl",
+     *         //   "odbNetwork": "my_odbNetwork",
+     *         //   "odbSubnet": "my_odbSubnet",
+     *         //   "properties": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Goldengateconnections$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengateconnections$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengateconnections$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengateconnections$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/goldengateConnections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single GoldengateConnection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateConnections.delete({
+     *       // Required. The name of the GoldengateConnection in the following format: projects/{project\}/locations/{location\}/goldengateConnections/{goldengate_connection\}.
+     *       name: 'projects/my-project/locations/my-location/goldengateConnections/my-goldengateConnection',
+     *       // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Goldengateconnections$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengateconnections$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengateconnections$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengateconnections$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single GoldengateConnection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.goldengateConnections.get(
+     *     {
+     *       // Required. The name of the GoldengateConnection in the following format: projects/{project\}/locations/{location\}/goldengateConnections/{goldengate_connection\}.
+     *       name: 'projects/my-project/locations/my-location/goldengateConnections/my-goldengateConnection',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "entitlementId": "my_entitlementId",
+     *   //   "gcpOracleZone": "my_gcpOracleZone",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "ociUrl": "my_ociUrl",
+     *   //   "odbNetwork": "my_odbNetwork",
+     *   //   "odbSubnet": "my_odbSubnet",
+     *   //   "properties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Goldengateconnections$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoldengateConnection>>;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoldengateConnection>,
+      callback: BodyResponseCallback<Schema$GoldengateConnection>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$Get,
+      callback: BodyResponseCallback<Schema$GoldengateConnection>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GoldengateConnection>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengateconnections$Get
+        | BodyResponseCallback<Schema$GoldengateConnection>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoldengateConnection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoldengateConnection>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoldengateConnection>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengateconnections$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengateconnections$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoldengateConnection>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoldengateConnection>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the GoldengateConnections for the given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateConnections.list({
+     *       // Optional. An expression for filtering the results of the request.
+     *       filter: 'placeholder-value',
+     *       // Optional. An expression for ordering the results of the request.
+     *       orderBy: 'placeholder-value',
+     *       // Optional. The maximum number of items to return. If unspecified, at most 50 GoldengateConnections will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous ListGoldengateConnections call. Provide this to retrieve the subsequent page.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent value for GoldengateConnections in the following format: projects/{project\}/locations/{location\}.
+     *       parent: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "goldengateConnections": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Goldengateconnections$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListGoldengateConnectionsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGoldengateConnectionsResponse>,
+      callback: BodyResponseCallback<Schema$ListGoldengateConnectionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengateconnections$List,
+      callback: BodyResponseCallback<Schema$ListGoldengateConnectionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListGoldengateConnectionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengateconnections$List
+        | BodyResponseCallback<Schema$ListGoldengateConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGoldengateConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGoldengateConnectionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListGoldengateConnectionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengateconnections$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengateconnections$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/goldengateConnections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListGoldengateConnectionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListGoldengateConnectionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Goldengateconnections$Create extends StandardParameters {
+    /**
+     * Required. The ID of the GoldengateConnection to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
+     */
+    goldengateConnectionId?: string;
+    /**
+     * Required. The value for parent of the GoldengateConnection in the following format: projects/{project\}/locations/{location\}.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoldengateConnection;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengateconnections$Delete extends StandardParameters {
+    /**
+     * Required. The name of the GoldengateConnection in the following format: projects/{project\}/locations/{location\}/goldengateConnections/{goldengate_connection\}.
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengateconnections$Get extends StandardParameters {
+    /**
+     * Required. The name of the GoldengateConnection in the following format: projects/{project\}/locations/{location\}/goldengateConnections/{goldengate_connection\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengateconnections$List extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request.
+     */
+    filter?: string;
+    /**
+     * Optional. An expression for ordering the results of the request.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of items to return. If unspecified, at most 50 GoldengateConnections will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous ListGoldengateConnections call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent value for GoldengateConnections in the following format: projects/{project\}/locations/{location\}.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Goldengateconnectiontypes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details of a single GoldengateConnectionType.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateConnectionTypes.get({
+     *       // Required. Name of the resource in the format: projects/{project\}/locations/{location\}/goldengateConnectionTypes/{goldengate_connection_type\}
+     *       name: 'projects/my-project/locations/my-location/goldengateConnectionTypes/my-goldengateConnectionType',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "connectionType": "my_connectionType",
+     *   //   "name": "my_name",
+     *   //   "technologyTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Goldengateconnectiontypes$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Goldengateconnectiontypes$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoldengateConnectionType>>;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengateconnectiontypes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengateconnectiontypes$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoldengateConnectionType>,
+      callback: BodyResponseCallback<Schema$GoldengateConnectionType>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengateconnectiontypes$Get,
+      callback: BodyResponseCallback<Schema$GoldengateConnectionType>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GoldengateConnectionType>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengateconnectiontypes$Get
+        | BodyResponseCallback<Schema$GoldengateConnectionType>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoldengateConnectionType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoldengateConnectionType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoldengateConnectionType>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengateconnectiontypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengateconnectiontypes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoldengateConnectionType>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoldengateConnectionType>(parameters);
+      }
+    }
+
+    /**
+     * Lists GoldengateConnectionTypes in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateConnectionTypes.list({
+     *       // Optional. An expression for filtering the results of the request. The connection_type field must be specified in the format: `connection_type="ORACLE"`.
+     *       filter: 'placeholder-value',
+     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A token identifying a page of results the server should return.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Parent value for ListGoldengateConnectionTypesRequest Format: projects/{project\}/locations/{location\}
+     *       parent: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "goldengateConnectionTypes": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Goldengateconnectiontypes$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Goldengateconnectiontypes$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListGoldengateConnectionTypesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengateconnectiontypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengateconnectiontypes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGoldengateConnectionTypesResponse>,
+      callback: BodyResponseCallback<Schema$ListGoldengateConnectionTypesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengateconnectiontypes$List,
+      callback: BodyResponseCallback<Schema$ListGoldengateConnectionTypesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListGoldengateConnectionTypesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengateconnectiontypes$List
+        | BodyResponseCallback<Schema$ListGoldengateConnectionTypesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGoldengateConnectionTypesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGoldengateConnectionTypesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListGoldengateConnectionTypesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengateconnectiontypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengateconnectiontypes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/goldengateConnectionTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListGoldengateConnectionTypesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListGoldengateConnectionTypesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Goldengateconnectiontypes$Get extends StandardParameters {
+    /**
+     * Required. Name of the resource in the format: projects/{project\}/locations/{location\}/goldengateConnectionTypes/{goldengate_connection_type\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengateconnectiontypes$List extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request. The connection_type field must be specified in the format: `connection_type="ORACLE"`.
+     */
+    filter?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListGoldengateConnectionTypesRequest Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Goldengatedeploymentenvironments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details of a single GoldengateDeploymentEnvironment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateDeploymentEnvironments.get(
+     *       {
+     *         // Required. Name of the resource with the format: projects/{project\}/locations/{location\}/goldengateDeploymentEnvironments/{goldengate_deployment_environment\}
+     *         name: 'projects/my-project/locations/my-location/goldengateDeploymentEnvironments/my-goldengateDeploymentEnvironment',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoScalingEnabled": false,
+     *   //   "category": "my_category",
+     *   //   "defaultCpuCoreCount": 0,
+     *   //   "displayName": "my_displayName",
+     *   //   "environmentType": "my_environmentType",
+     *   //   "maxCpuCoreCount": 0,
+     *   //   "memoryGbPerCpuCore": 0,
+     *   //   "minCpuCoreCount": 0,
+     *   //   "name": "my_name",
+     *   //   "networkBandwidthGbpsPerCpuCore": 0,
+     *   //   "storageUsageLimitGbPerCpuCore": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoldengateDeploymentEnvironment>>;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoldengateDeploymentEnvironment>,
+      callback: BodyResponseCallback<Schema$GoldengateDeploymentEnvironment>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$Get,
+      callback: BodyResponseCallback<Schema$GoldengateDeploymentEnvironment>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoldengateDeploymentEnvironment>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$Get
+        | BodyResponseCallback<Schema$GoldengateDeploymentEnvironment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoldengateDeploymentEnvironment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoldengateDeploymentEnvironment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoldengateDeploymentEnvironment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoldengateDeploymentEnvironment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoldengateDeploymentEnvironment>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists GoldengateDeploymentEnvironments in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateDeploymentEnvironments.list(
+     *       {
+     *         // Optional. The maximum number of items to return. If unspecified, at most 50 deployment environments will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A token identifying a page of results the server should return.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent, which owns this collection of GoldengateDeploymentEnvironments. Format: projects/{project\}/locations/{location\}
+     *         parent: 'projects/my-project/locations/my-location',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "goldengateDeploymentEnvironments": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListGoldengateDeploymentEnvironmentsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGoldengateDeploymentEnvironmentsResponse>,
+      callback: BodyResponseCallback<Schema$ListGoldengateDeploymentEnvironmentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$List,
+      callback: BodyResponseCallback<Schema$ListGoldengateDeploymentEnvironmentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListGoldengateDeploymentEnvironmentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$List
+        | BodyResponseCallback<Schema$ListGoldengateDeploymentEnvironmentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGoldengateDeploymentEnvironmentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGoldengateDeploymentEnvironmentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListGoldengateDeploymentEnvironmentsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/goldengateDeploymentEnvironments'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListGoldengateDeploymentEnvironmentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListGoldengateDeploymentEnvironmentsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$Get extends StandardParameters {
+    /**
+     * Required. Name of the resource with the format: projects/{project\}/locations/{location\}/goldengateDeploymentEnvironments/{goldengate_deployment_environment\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengatedeploymentenvironments$List extends StandardParameters {
+    /**
+     * Optional. The maximum number of items to return. If unspecified, at most 50 deployment environments will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of GoldengateDeploymentEnvironments. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Goldengatedeployments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new GoldengateDeployment in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateDeployments.create({
+     *       // Required. The ID of the GoldengateDeployment to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
+     *       goldengateDeploymentId: 'placeholder-value',
+     *       // Required. The value for parent of the GoldengateDeployment in the following format: projects/{project\}/locations/{location\}.
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "displayName": "my_displayName",
+     *         //   "entitlementId": "my_entitlementId",
+     *         //   "gcpOracleZone": "my_gcpOracleZone",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "ociUrl": "my_ociUrl",
+     *         //   "odbNetwork": "my_odbNetwork",
+     *         //   "odbSubnet": "my_odbSubnet",
+     *         //   "properties": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Goldengatedeployments$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengatedeployments$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengatedeployments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengatedeployments$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/goldengateDeployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single GoldengateDeployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateDeployments.delete({
+     *       // Required. The name of the GoldengateDeployment in the following format: projects/{project\}/locations/{location\}/goldengateDeployments/{goldengate_deployment\}.
+     *       name: 'projects/my-project/locations/my-location/goldengateDeployments/my-goldengateDeployment',
+     *       // Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Goldengatedeployments$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengatedeployments$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengatedeployments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengatedeployments$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single GoldengateDeployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oracledatabase.projects.locations.goldengateDeployments.get(
+     *     {
+     *       // Required. The name of the GoldengateDeployment in the following format: projects/{project\}/locations/{location\}/goldengateDeployments/{goldengate_deployment\}.
+     *       name: 'projects/my-project/locations/my-location/goldengateDeployments/my-goldengateDeployment',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "entitlementId": "my_entitlementId",
+     *   //   "gcpOracleZone": "my_gcpOracleZone",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "ociUrl": "my_ociUrl",
+     *   //   "odbNetwork": "my_odbNetwork",
+     *   //   "odbSubnet": "my_odbSubnet",
+     *   //   "properties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Goldengatedeployments$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoldengateDeployment>>;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoldengateDeployment>,
+      callback: BodyResponseCallback<Schema$GoldengateDeployment>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Get,
+      callback: BodyResponseCallback<Schema$GoldengateDeployment>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GoldengateDeployment>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengatedeployments$Get
+        | BodyResponseCallback<Schema$GoldengateDeployment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoldengateDeployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoldengateDeployment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoldengateDeployment>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengatedeployments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengatedeployments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoldengateDeployment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoldengateDeployment>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the GoldengateDeployments for the given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateDeployments.list({
+     *       // Optional. An expression for filtering the results of the request.
+     *       filter: 'placeholder-value',
+     *       // Optional. An expression for ordering the results of the request.
+     *       orderBy: 'placeholder-value',
+     *       // Optional. The maximum number of items to return. If unspecified, at most 50 GoldengateDeployments will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous ListGoldengateDeployments call. Provide this to retrieve the subsequent page.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent value for GoldengateDeployments in the following format: projects/{project\}/locations/{location\}.
+     *       parent: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "goldengateDeployments": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Goldengatedeployments$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListGoldengateDeploymentsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGoldengateDeploymentsResponse>,
+      callback: BodyResponseCallback<Schema$ListGoldengateDeploymentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$List,
+      callback: BodyResponseCallback<Schema$ListGoldengateDeploymentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListGoldengateDeploymentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengatedeployments$List
+        | BodyResponseCallback<Schema$ListGoldengateDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGoldengateDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGoldengateDeploymentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListGoldengateDeploymentsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengatedeployments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengatedeployments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/goldengateDeployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListGoldengateDeploymentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListGoldengateDeploymentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Starts a single GoldengateDeployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateDeployments.start({
+     *       // Required. The name of the Goldengate Deployment in the following format: projects/{project\}/locations/{location\}/goldengateDeployments/{goldengate_deployment\}.
+     *       name: 'projects/my-project/locations/my-location/goldengateDeployments/my-goldengateDeployment',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    start(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Start,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    start(
+      params?: Params$Resource$Projects$Locations$Goldengatedeployments$Start,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    start(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Start,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    start(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Start,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    start(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Start,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    start(callback: BodyResponseCallback<Schema$Operation>): void;
+    start(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengatedeployments$Start
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengatedeployments$Start;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengatedeployments$Start;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:start').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Stops a single GoldengateDeployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateDeployments.stop({
+     *       // Required. The name of the Goldengate Deployment in the following format: projects/{project\}/locations/{location\}/goldengateDeployments/{goldengate_deployment\}.
+     *       name: 'projects/my-project/locations/my-location/goldengateDeployments/my-goldengateDeployment',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    stop(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Stop,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    stop(
+      params?: Params$Resource$Projects$Locations$Goldengatedeployments$Stop,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    stop(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Stop,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    stop(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Stop,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    stop(
+      params: Params$Resource$Projects$Locations$Goldengatedeployments$Stop,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    stop(callback: BodyResponseCallback<Schema$Operation>): void;
+    stop(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengatedeployments$Stop
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengatedeployments$Stop;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengatedeployments$Stop;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:stop').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Goldengatedeployments$Create extends StandardParameters {
+    /**
+     * Required. The ID of the GoldengateDeployment to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
+     */
+    goldengateDeploymentId?: string;
+    /**
+     * Required. The value for parent of the GoldengateDeployment in the following format: projects/{project\}/locations/{location\}.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoldengateDeployment;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengatedeployments$Delete extends StandardParameters {
+    /**
+     * Required. The name of the GoldengateDeployment in the following format: projects/{project\}/locations/{location\}/goldengateDeployments/{goldengate_deployment\}.
+     */
+    name?: string;
+    /**
+     * Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengatedeployments$Get extends StandardParameters {
+    /**
+     * Required. The name of the GoldengateDeployment in the following format: projects/{project\}/locations/{location\}/goldengateDeployments/{goldengate_deployment\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengatedeployments$List extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request.
+     */
+    filter?: string;
+    /**
+     * Optional. An expression for ordering the results of the request.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of items to return. If unspecified, at most 50 GoldengateDeployments will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous ListGoldengateDeployments call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent value for GoldengateDeployments in the following format: projects/{project\}/locations/{location\}.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengatedeployments$Start extends StandardParameters {
+    /**
+     * Required. The name of the Goldengate Deployment in the following format: projects/{project\}/locations/{location\}/goldengateDeployments/{goldengate_deployment\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StartGoldengateDeploymentRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengatedeployments$Stop extends StandardParameters {
+    /**
+     * Required. The name of the Goldengate Deployment in the following format: projects/{project\}/locations/{location\}/goldengateDeployments/{goldengate_deployment\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StopGoldengateDeploymentRequest;
+  }
+
+  export class Resource$Projects$Locations$Goldengatedeploymenttypes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details of a single GoldenGateDeploymentType.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateDeploymentTypes.get({
+     *       // Required. The name of the GoldengateDeploymentType to retrieve. Format: projects/{project\}/locations/{location\}/goldengateDeploymentTypes/{goldengate_deployment_type\}
+     *       name: 'projects/my-project/locations/my-location/goldengateDeploymentTypes/my-goldengateDeploymentType',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "category": "my_category",
+     *   //   "connectionTypes": [],
+     *   //   "defaultUsername": "my_defaultUsername",
+     *   //   "deploymentType": "my_deploymentType",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "oggVersion": "my_oggVersion",
+     *   //   "sourceTechnologies": [],
+     *   //   "supportedCapabilities": [],
+     *   //   "supportedTechnologiesUrl": "my_supportedTechnologiesUrl",
+     *   //   "targetTechnologies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymenttypes$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Goldengatedeploymenttypes$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoldengateDeploymentType>>;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymenttypes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymenttypes$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoldengateDeploymentType>,
+      callback: BodyResponseCallback<Schema$GoldengateDeploymentType>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymenttypes$Get,
+      callback: BodyResponseCallback<Schema$GoldengateDeploymentType>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GoldengateDeploymentType>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengatedeploymenttypes$Get
+        | BodyResponseCallback<Schema$GoldengateDeploymentType>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoldengateDeploymentType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoldengateDeploymentType>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoldengateDeploymentType>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengatedeploymenttypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengatedeploymenttypes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoldengateDeploymentType>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoldengateDeploymentType>(parameters);
+      }
+    }
+
+    /**
+     * Lists GoldenGateDeploymentTypes in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateDeploymentTypes.list({
+     *       // Optional. An expression for filtering the results of the request. Either the deployment_type and ogg_version fields must be specified in the format: `deployment_type="DATABASE_ORACLE"` or `ogg_version="version"`. Allowed values for deployment_type are: `DATABASE_ORACLE`, `BIGDATA`, `DATABASE_MICROSOFT_SQLSERVER`, `DATABASE_MYSQL`, `DATABASE_POSTGRESQL`, `DATABASE_DB2ZOS`, `DATABASE_DB2I`, `GGSA`, `DATA_TRANSFORMS`.
+     *       filter: 'placeholder-value',
+     *       // Optional. Hint for how to order the results
+     *       orderBy: 'placeholder-value',
+     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A token identifying a page of results the server should return.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent resource. Format: projects/{project\}/locations/{location\}
+     *       parent: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "goldengateDeploymentTypes": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymenttypes$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Goldengatedeploymenttypes$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListGoldengateDeploymentTypesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymenttypes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymenttypes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGoldengateDeploymentTypesResponse>,
+      callback: BodyResponseCallback<Schema$ListGoldengateDeploymentTypesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymenttypes$List,
+      callback: BodyResponseCallback<Schema$ListGoldengateDeploymentTypesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListGoldengateDeploymentTypesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengatedeploymenttypes$List
+        | BodyResponseCallback<Schema$ListGoldengateDeploymentTypesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGoldengateDeploymentTypesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGoldengateDeploymentTypesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListGoldengateDeploymentTypesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengatedeploymenttypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengatedeploymenttypes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/goldengateDeploymentTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListGoldengateDeploymentTypesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListGoldengateDeploymentTypesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Goldengatedeploymenttypes$Get extends StandardParameters {
+    /**
+     * Required. The name of the GoldengateDeploymentType to retrieve. Format: projects/{project\}/locations/{location\}/goldengateDeploymentTypes/{goldengate_deployment_type\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengatedeploymenttypes$List extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request. Either the deployment_type and ogg_version fields must be specified in the format: `deployment_type="DATABASE_ORACLE"` or `ogg_version="version"`. Allowed values for deployment_type are: `DATABASE_ORACLE`, `BIGDATA`, `DATABASE_MICROSOFT_SQLSERVER`, `DATABASE_MYSQL`, `DATABASE_POSTGRESQL`, `DATABASE_DB2ZOS`, `DATABASE_DB2I`, `GGSA`, `DATA_TRANSFORMS`.
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Goldengatedeploymentversions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details of a single GoldengateDeploymentVersion.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateDeploymentVersions.get({
+     *       // Required. The name of the GoldengateDeploymentVersion to retrieve. Format: projects/{project\}/locations/{location\}/goldengateDeploymentVersions/{goldengate_deployment_version\}
+     *       name: 'projects/my-project/locations/my-location/goldengateDeploymentVersions/my-goldengateDeploymentVersion',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "ocid": "my_ocid",
+     *   //   "properties": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymentversions$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Goldengatedeploymentversions$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoldengateDeploymentVersion>>;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymentversions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymentversions$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoldengateDeploymentVersion>,
+      callback: BodyResponseCallback<Schema$GoldengateDeploymentVersion>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymentversions$Get,
+      callback: BodyResponseCallback<Schema$GoldengateDeploymentVersion>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoldengateDeploymentVersion>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengatedeploymentversions$Get
+        | BodyResponseCallback<Schema$GoldengateDeploymentVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoldengateDeploymentVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoldengateDeploymentVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoldengateDeploymentVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengatedeploymentversions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengatedeploymentversions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoldengateDeploymentVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoldengateDeploymentVersion>(parameters);
+      }
+    }
+
+    /**
+     * Lists GoldengateDeploymentVersions in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oracledatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const oracledatabase = google.oracledatabase('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await oracledatabase.projects.locations.goldengateDeploymentVersions.list({
+     *       // Optional. An expression for filtering the results of the request. Either the deployment_id and deployment_type fields must be specified in the format: `deployment_id="id"` or `deployment_type="DATABASE_ORACLE"`.
+     *       filter: 'placeholder-value',
+     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A token identifying a page of results the server should return.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Parent value for ListGoldengateDeploymentVersionsRequest Format: projects/{project\}/locations/{location\}
+     *       parent: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "goldengateDeploymentVersions": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymentversions$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Goldengatedeploymentversions$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListGoldengateDeploymentVersionsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymentversions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymentversions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGoldengateDeploymentVersionsResponse>,
+      callback: BodyResponseCallback<Schema$ListGoldengateDeploymentVersionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Goldengatedeploymentversions$List,
+      callback: BodyResponseCallback<Schema$ListGoldengateDeploymentVersionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListGoldengateDeploymentVersionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Goldengatedeploymentversions$List
+        | BodyResponseCallback<Schema$ListGoldengateDeploymentVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGoldengateDeploymentVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGoldengateDeploymentVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListGoldengateDeploymentVersionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Goldengatedeploymentversions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Goldengatedeploymentversions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://oracledatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/goldengateDeploymentVersions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListGoldengateDeploymentVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListGoldengateDeploymentVersionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Goldengatedeploymentversions$Get extends StandardParameters {
+    /**
+     * Required. The name of the GoldengateDeploymentVersion to retrieve. Format: projects/{project\}/locations/{location\}/goldengateDeploymentVersions/{goldengate_deployment_version\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Goldengatedeploymentversions$List extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request. Either the deployment_id and deployment_type fields must be specified in the format: `deployment_id="id"` or `deployment_type="DATABASE_ORACLE"`.
+     */
+    filter?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListGoldengateDeploymentVersionsRequest Format: projects/{project\}/locations/{location\}
      */
     parent?: string;
   }

@@ -230,6 +230,10 @@ import {
   cloudlocationfinder,
 } from './cloudlocationfinder';
 import {
+  VERSIONS as cloudnumberregistryVersions,
+  cloudnumberregistry,
+} from './cloudnumberregistry';
+import {
   VERSIONS as cloudprofilerVersions,
   cloudprofiler,
 } from './cloudprofiler';
@@ -756,6 +760,10 @@ import {
   VERSIONS as walletobjectsVersions,
   walletobjects,
 } from './walletobjects';
+import {
+  VERSIONS as webcontentpublisherVersions,
+  webcontentpublisher,
+} from './webcontentpublisher';
 import {VERSIONS as webfontsVersions, webfonts} from './webfonts';
 import {VERSIONS as webmastersVersions, webmasters} from './webmasters';
 import {VERSIONS as webriskVersions, webrisk} from './webrisk';
@@ -878,6 +886,7 @@ export const APIS: APIList = {
   cloudiot: cloudiotVersions,
   cloudkms: cloudkmsVersions,
   cloudlocationfinder: cloudlocationfinderVersions,
+  cloudnumberregistry: cloudnumberregistryVersions,
   cloudprofiler: cloudprofilerVersions,
   cloudresourcemanager: cloudresourcemanagerVersions,
   cloudscheduler: cloudschedulerVersions,
@@ -1105,6 +1114,7 @@ export const APIS: APIList = {
   vmwareengine: vmwareengineVersions,
   vpcaccess: vpcaccessVersions,
   walletobjects: walletobjectsVersions,
+  webcontentpublisher: webcontentpublisherVersions,
   webfonts: webfontsVersions,
   webmasters: webmastersVersions,
   webrisk: webriskVersions,
@@ -1205,6 +1215,7 @@ export class GeneratedAPIs {
   cloudiot = cloudiot;
   cloudkms = cloudkms;
   cloudlocationfinder = cloudlocationfinder;
+  cloudnumberregistry = cloudnumberregistry;
   cloudprofiler = cloudprofiler;
   cloudresourcemanager = cloudresourcemanager;
   cloudscheduler = cloudscheduler;
@@ -1432,6 +1443,7 @@ export class GeneratedAPIs {
   vmwareengine = vmwareengine;
   vpcaccess = vpcaccess;
   walletobjects = walletobjects;
+  webcontentpublisher = webcontentpublisher;
   webfonts = webfonts;
   webmasters = webmasters;
   webrisk = webrisk;

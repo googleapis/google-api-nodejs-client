@@ -835,7 +835,7 @@
       }
     }
   },
-  "revision": "20260406",
+  "revision": "20260430",
   "rootUrl": "https://servicemanagement.googleapis.com/",
   "schemas": {
     "Advice": {
@@ -3178,7 +3178,8 @@
             "STREET_VIEW",
             "SHOPPING",
             "GEO",
-            "GENERATIVE_AI"
+            "GENERATIVE_AI",
+            "HEALTH"
           ],
           "enumDescriptions": [
             "Not useful.",
@@ -3188,7 +3189,8 @@
             "Street View Org.",
             "Shopping Org.",
             "Geo Org.",
-            "Generative AI - https://developers.generativeai.google"
+            "Generative AI - https://developers.generativeai.google",
+            "Health Org."
           ],
           "type": "string"
         },

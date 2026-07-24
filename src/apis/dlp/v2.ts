@@ -236,6 +236,10 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2AllInfoTypes {}
   /**
+   * If set, indicates that the finding applies to all messages in the conversation.
+   */
+  export interface Schema$GooglePrivacyDlpV2AllMessages {}
+  /**
    * Catch-all for all other tables not specified by other filters. Should always be last, except for single-table configurations, which will only have a TableReference target.
    */
   export interface Schema$GooglePrivacyDlpV2AllOtherBigQueryTables {}
@@ -1017,6 +1021,10 @@ export namespace dlp_v2 {
      */
     contentMetadata?: Schema$GooglePrivacyDlpV2ContentMetadata;
     /**
+     * Represents a conversation (either complete or a slice). It is assumed that all included messages are contiguous and ordered in chronological order.
+     */
+    conversation?: Schema$GooglePrivacyDlpV2Conversation;
+    /**
      * Structured content for inspection. See https://cloud.google.com/sensitive-data-protection/docs/inspecting-text#inspecting_a_table to learn more.
      */
     table?: Schema$GooglePrivacyDlpV2Table;
@@ -1042,6 +1050,10 @@ export namespace dlp_v2 {
      */
     containerVersion?: string | null;
     /**
+     * Location within a conversation.
+     */
+    conversationLocation?: Schema$GooglePrivacyDlpV2ConversationLocation;
+    /**
      * Location data for document files.
      */
     documentLocation?: Schema$GooglePrivacyDlpV2DocumentLocation;
@@ -1066,6 +1078,45 @@ export namespace dlp_v2 {
      * User provided key-value pairs of content metadata.
      */
     properties?: Schema$GooglePrivacyDlpV2KeyValueMetadataProperty[];
+  }
+  /**
+   * Complete conversation or slice of a conversation. It is assumed that all included messages are contiguous and ordered in chronological order.
+   */
+  export interface Schema$GooglePrivacyDlpV2Conversation {
+    /**
+     * Messages exchanged within this conversation. The maximum number of messages allowed is 50k. The order of the messages is assumed to be chronological and will be used to index findings in the response.
+     */
+    messages?: Schema$GooglePrivacyDlpV2ConversationMessage[];
+  }
+  /**
+   * Location within a conversation.
+   */
+  export interface Schema$GooglePrivacyDlpV2ConversationLocation {
+    /**
+     * If set, indicates that the finding applies to all messages in the conversation.
+     */
+    allMessages?: Schema$GooglePrivacyDlpV2AllMessages;
+    /**
+     * Matches an index of a message in the conversation provided in the request.
+     */
+    messageIndex?: number | null;
+  }
+  /**
+   * Single message in a conversation.
+   */
+  export interface Schema$GooglePrivacyDlpV2ConversationMessage {
+    /**
+     * The contents of this message.
+     */
+    content?: string | null;
+    /**
+     * The type of message.
+     */
+    messageType?: string | null;
+    /**
+     * Optional. The identifier of the participant. For example 'test-user' or 'gemini'. The participant ID can contain lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`. The maximum length is 63 characters.
+     */
+    participantId?: string | null;
   }
   /**
    * Request message for CreateConnection.
@@ -3330,6 +3381,10 @@ export namespace dlp_v2 {
    * The inspectTemplate contains a configuration (set of types of sensitive data to be detected) to be used anywhere you otherwise would normally specify InspectConfig. See https://cloud.google.com/sensitive-data-protection/docs/concepts-templates to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2InspectTemplate {
+    /**
+     * Optional. Enables the use of [limited-availability built-in infoTypes](https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference#limited-availability-infotypes) in inspect_config. These infoTypes are supported only in specific regions and can cause scanning errors if used elsewhere.
+     */
+    allowLimitedAvailabilityInfoTypes?: boolean | null;
     /**
      * Output only. The creation timestamp of an inspectTemplate.
      */
@@ -7053,6 +7108,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "allowLimitedAvailabilityInfoTypes": false,
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
@@ -7337,6 +7393,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "allowLimitedAvailabilityInfoTypes": false,
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
@@ -7651,6 +7708,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "allowLimitedAvailabilityInfoTypes": false,
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
@@ -11795,6 +11853,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "allowLimitedAvailabilityInfoTypes": false,
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
@@ -12081,6 +12140,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "allowLimitedAvailabilityInfoTypes": false,
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
@@ -12397,6 +12457,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "allowLimitedAvailabilityInfoTypes": false,
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
@@ -18302,6 +18363,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "allowLimitedAvailabilityInfoTypes": false,
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
@@ -18586,6 +18648,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "allowLimitedAvailabilityInfoTypes": false,
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
@@ -18900,6 +18963,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "allowLimitedAvailabilityInfoTypes": false,
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
@@ -25673,6 +25737,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "allowLimitedAvailabilityInfoTypes": false,
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
@@ -25959,6 +26024,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "allowLimitedAvailabilityInfoTypes": false,
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
@@ -26273,6 +26339,7 @@ export namespace dlp_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "allowLimitedAvailabilityInfoTypes": false,
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",

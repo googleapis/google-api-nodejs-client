@@ -3150,7 +3150,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.",
+                      "description": "Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick a default of page_size = 50.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -3235,7 +3235,7 @@
       }
     }
   },
-  "revision": "20260430",
+  "revision": "20260515",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -3898,11 +3898,11 @@
       "id": "DirectoryEntry",
       "properties": {
         "directory": {
-          "description": "A child directory in the directory.",
+          "description": "A child directory in the directory. The path is returned including the full folder structure from the root.",
           "type": "string"
         },
         "file": {
-          "description": "A file in the directory.",
+          "description": "A file in the directory. The path is returned including the full folder structure from the root.",
           "type": "string"
         },
         "metadata": {
@@ -4157,7 +4157,12 @@
           "type": "string"
         },
         "defaultBranch": {
-          "description": "Required. The Git remote's default branch name. If not set, `main` will be used and stored for the repository.",
+          "description": "Optional. The Git remote's default branch name. If not set `main` will be used.",
+          "type": "string"
+        },
+        "effectiveDefaultBranch": {
+          "description": "Output only. The Git remote's effective default branch name. This is the default branch name of the Git remote if it is set, otherwise it is `main`.",
+          "readOnly": true,
           "type": "string"
         },
         "sshAuthenticationConfig": {

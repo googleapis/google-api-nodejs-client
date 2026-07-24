@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20260501",
+  "revision": "20260520",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AutomatedDiscounts": {
@@ -643,7 +643,7 @@
           ],
           "enumDescriptions": [
             "Unspecified unit.",
-            "Grams per km."
+            "Grams per kilometer."
           ],
           "type": "string"
         },
@@ -793,7 +793,7 @@
           ],
           "enumDescriptions": [
             "Unspecified unit.",
-            "Kilowatt hours per 100 km."
+            "Kilowatt hours per 100 kilometers."
           ],
           "type": "string"
         },
@@ -833,8 +833,8 @@
           ],
           "enumDescriptions": [
             "Unspecified unit.",
-            "Liter per 100 km.",
-            "Kilograms per 100 km."
+            "Liter per 100 kilometers.",
+            "Kilograms per 100 kilometers."
           ],
           "type": "string"
         },
@@ -1111,6 +1111,21 @@
       },
       "type": "object"
     },
+    "PickupCost": {
+      "description": "The pickup cost of the item.",
+      "id": "PickupCost",
+      "properties": {
+        "flatRate": {
+          "$ref": "Price",
+          "description": "Required. The flat rate pickup cost of the item."
+        },
+        "freeThreshold": {
+          "$ref": "Price",
+          "description": "Optional. The price threshold above which pickup is free of charge."
+        }
+      },
+      "type": "object"
+    },
     "Price": {
       "description": "The price represented as a number and currency.",
       "id": "Price",
@@ -1131,6 +1146,11 @@
       "description": "The processed product, built from multiple product inputs after applying rules and supplemental data sources. This processed product matches what is shown in your Merchant Center account. Each product is built from exactly one primary data source product input, and multiple supplemental data source inputs. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved. All fields in the processed product and its sub-messages match the name of their corresponding attribute in the [Product data specification](https://support.google.com/merchants/answer/7052112) with some exceptions.",
       "id": "Product",
       "properties": {
+        "archived": {
+          "description": "Output only. Determines whether the product is [archived](https://support.google.com/merchants/answer/11909930). To archive or restore your product, visit Merchant Center products page. Learn also more about [offer visibility](https://support.google.com/merchants/answer/12488713).",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "automatedDiscounts": {
           "$ref": "AutomatedDiscounts",
           "description": "Output only. The automated discounts information for the product.",
@@ -1466,6 +1486,13 @@
           "format": "double",
           "type": "number"
         },
+        "documentLinks": {
+          "description": "Optional. Contains a list of PDF [document URLs](https://support.google.com/merchants/answer/17084656) for the product. Examples are training manuals, user guides, assembly instructions, package inserts, etc. Must start with \"http://\" or \"https://\"), ASCII characters only, and RFC 3986 compliant.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "electricRange": {
           "$ref": "Mileage",
           "description": "The [electric range](https://support.google.com/google-ads/answer/15162232) of the vehicle in miles/kms."
@@ -1718,6 +1745,10 @@
           "description": "Shared identifier for all variants of the same product.",
           "type": "string"
         },
+        "itemGroupTitle": {
+          "description": "Optional. Represents the [title of the product group](https://support.google.com/merchants/answer/17085146) to which this variant product belongs. This can be used along with the [item group id](https://support.google.com/merchants/answer/6324507) attribute. It lets you perform better grouping of variant products, and helps identifying common product characteristics more efficiently.",
+          "type": "string"
+        },
         "lifestyleImageLinks": {
           "description": "Additional URLs of lifestyle images of the item, used to explicitly identify images that showcase your item in a real-world context. See the [Help Center article](https://support.google.com/merchants/answer/9103186) for more information.",
           "items": {
@@ -1872,6 +1903,10 @@
           ],
           "type": "string"
         },
+        "pickupCost": {
+          "$ref": "PickupCost",
+          "description": "Optional. The [pickup cost](https://support.google.com/merchants/answer/16988704) for an item when a customer buys it online and picks it up at a store."
+        },
         "pickupMethod": {
           "description": "The [pickup](https://support.google.com/merchants/answer/14634021) option for the item.",
           "enum": [
@@ -1915,6 +1950,11 @@
             "Indicates that the product will be shipped to a store for a customer to pick up in one week or more."
           ],
           "type": "string"
+        },
+        "popularityRank": {
+          "description": "Optional. Indicates the [popularity](https://support.google.com/merchants/answer/17085297) of the product in a merchant's inventory. Using a scale of 0.0 (lowest) to 100.0 (highest).",
+          "format": "float",
+          "type": "number"
         },
         "price": {
           "$ref": "Price",
@@ -1961,6 +2001,20 @@
           "description": "The unique ID of a promotion.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        },
+        "questionsAndAnswers": {
+          "description": "Optional. Contains user-, merchant-, and manufacturer-authored [questions and answers](https://support.google.com/merchants/answer/17085211) about the product. Max 30 question and answer pairs. Max 5000 characters total. Each question can have max 1000 characters. Each answer can have max 1000 characters.",
+          "items": {
+            "$ref": "QuestionAndAnswer"
+          },
+          "type": "array"
+        },
+        "relatedProducts": {
+          "description": "Optional. Specifies how other [products are related](https://support.google.com/merchants/answer/17085213) to this product.",
+          "items": {
+            "$ref": "RelatedProduct"
           },
           "type": "array"
         },
@@ -2128,6 +2182,13 @@
         "unitPricingMeasure": {
           "$ref": "UnitPricingMeasure",
           "description": "The measure and dimension of an item."
+        },
+        "variantOptions": {
+          "description": "Optional. Contains the [list of all variant-identifying options](https://support.google.com/merchants/answer/17085214) of this product.",
+          "items": {
+            "$ref": "VariantOption"
+          },
+          "type": "array"
         },
         "vehicleAllInPrice": {
           "$ref": "Price",
@@ -2653,6 +2714,68 @@
       },
       "type": "object"
     },
+    "QuestionAndAnswer": {
+      "description": "The question and answer for the product.",
+      "id": "QuestionAndAnswer",
+      "properties": {
+        "answer": {
+          "description": "Required. The answer text.",
+          "type": "string"
+        },
+        "question": {
+          "description": "Required. The question text.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RelatedProduct": {
+      "description": "Specifies how other products are related to this product.",
+      "id": "RelatedProduct",
+      "properties": {
+        "id": {
+          "description": "Required. The identifier of the related product.",
+          "type": "string"
+        },
+        "idType": {
+          "description": "Required. The type of the identifier of the related product. For example, [GTIN](https://support.google.com/merchants/answer/6219078) or [product ID](https://support.google.com/merchants/answer/6324405).",
+          "enum": [
+            "ID_TYPE_UNSPECIFIED",
+            "GTIN",
+            "ID"
+          ],
+          "enumDescriptions": [
+            "The identifier type is unspecified.",
+            "The identifier is a GTIN.",
+            "The identifier is a product ID in the feed."
+          ],
+          "type": "string"
+        },
+        "relationshipType": {
+          "description": "Required. The type of the relationship between this product and the related product.",
+          "enum": [
+            "RELATIONSHIP_TYPE_UNSPECIFIED",
+            "PART_OF_SET",
+            "REQUIRED_PART",
+            "OFTEN_BOUGHT_WITH",
+            "SUBSTITUTE",
+            "DIFFERENT_BRAND",
+            "ACCESSORY"
+          ],
+          "enumDescriptions": [
+            "The relationship type is unspecified.",
+            "Part of a set of products that are often purchased together.",
+            "Part that is necessary for the product to function, for example a battery for a battery-operated lamp.",
+            "A product that this product is often purchased together with, for example a phone case with a phone.",
+            "Product that this product can be substituted for. For example a printer comparable in function to another printer.",
+            "An identical product sold under a different brand, for example a cheaper house brand.",
+            "An accessory to this product, for example a side table that matches the style of a couch."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Shipping": {
       "description": "The Shipping of the product.",
       "id": "Shipping",
@@ -2882,6 +3005,21 @@
           "description": "The measure of an item.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "VariantOption": {
+      "description": "Additional product variants for the product.",
+      "id": "VariantOption",
+      "properties": {
+        "name": {
+          "description": "Required. The name of the variant. For example, \"Color\", \"Memory\", \"Size\", \"Length\"",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The value of the variant. For example, \"Red\", \"128GB\", \"XL\", \"100cm\"",
+          "type": "string"
         }
       },
       "type": "object"

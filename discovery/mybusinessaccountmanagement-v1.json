@@ -530,7 +530,7 @@
       }
     }
   },
-  "revision": "20260419",
+  "revision": "20260512",
   "rootUrl": "https://mybusinessaccountmanagement.googleapis.com/",
   "schemas": {
     "AcceptInvitationRequest": {
@@ -911,6 +911,11 @@
         },
         "locationName": {
           "description": "The name of the location to which the user is invited.",
+          "type": "string"
+        },
+        "placeId": {
+          "description": "Output only. The Place ID of the location to which the user is invited. Not always populated.",
+          "readOnly": true,
           "type": "string"
         }
       },

@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apihub-v6.0.1...apihub-v7.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **apihub:** This release has breaking changes.
+
+### Features
+
+* **apihub:** update the API ([c3233f8](https://github.com/googleapis/google-api-nodejs-client/commit/c3233f8ec94a13cfbdc3e42322c7211ddc7fd690))
+* **apihub:** update the API ([fa8498d](https://github.com/googleapis/google-api-nodejs-client/commit/fa8498dec7ef15c9ec9fd31c9596dee341083638))
+
 ## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/apihub-v6.0.0...apihub-v6.0.1) (2026-01-28)
 
 

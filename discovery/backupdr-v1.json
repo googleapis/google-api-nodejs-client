@@ -2661,7 +2661,7 @@
       }
     }
   },
-  "revision": "20260507",
+  "revision": "20260517",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -3675,7 +3675,7 @@
         },
         "computeInstanceBackupPlanProperties": {
           "$ref": "ComputeInstanceBackupPlanProperties",
-          "description": "Optional. Defines optional properties specific to backups of disk-based resources, such as Compute Engine. This includes settings like whether to perform a guest flush."
+          "description": "Optional. Defines optional properties specific to backups of compute instance-based resources, such as Compute Engine. This includes settings like whether to perform a guest flush."
         },
         "createTime": {
           "description": "Output only. When the `BackupPlan` was created.",
@@ -4245,7 +4245,7 @@
       "type": "object"
     },
     "ComputeInstanceBackupPlanProperties": {
-      "description": "--- ComputeInstanceBackupPlanProperties Message ---",
+      "description": "Properties for a compute instance backup plan.",
       "id": "ComputeInstanceBackupPlanProperties",
       "properties": {
         "guestFlush": {
@@ -4530,6 +4530,10 @@
         "project": {
           "description": "Required. Target project for the Compute Engine instance.",
           "type": "string"
+        },
+        "useProjectServiceAccount": {
+          "description": "Optional. Whether to use the project service account for the Compute Engine instance.",
+          "type": "boolean"
         },
         "zone": {
           "description": "Required. The zone of the Compute Engine instance.",
@@ -4879,7 +4883,7 @@
       "type": "object"
     },
     "DiskBackupPlanProperties": {
-      "description": "--- DiskBackupPlanProperties Message ---",
+      "description": "Properties for a disk backup plan.",
       "id": "DiskBackupPlanProperties",
       "properties": {
         "guestFlush": {
@@ -5139,6 +5143,10 @@
         "project": {
           "description": "Required. Target project for the disk.",
           "type": "string"
+        },
+        "useProjectServiceAccount": {
+          "description": "Optional. Whether to use the project service account for the disk.",
+          "type": "boolean"
         },
         "zone": {
           "description": "Required. Target zone for the disk.",
@@ -6579,6 +6587,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "useProjectServiceAccount": {
+          "description": "Optional. Whether to use the project service account for the disk.",
+          "type": "boolean"
         }
       },
       "type": "object"

@@ -169,7 +169,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1574,6 +1574,34 @@
                   "path": "v1/{+parent}/privateClouds",
                   "response": {
                     "$ref": "ListPrivateCloudsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "migrateManagementVms": {
+                  "description": "Migrates the management VMs of the PC from the current management cluster to a workload cluster. Post this migration, the provided workload cluster becomes the management cluster",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateClouds/{privateCloudsId}:migrateManagementVms",
+                  "httpMethod": "POST",
+                  "id": "vmwareengine.projects.locations.privateClouds.migrateManagementVms",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the private cloud whose management vms are getting migrated. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/privateClouds/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:migrateManagementVms",
+                  "request": {
+                    "$ref": "MigrateManagementVmsRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -3714,7 +3742,7 @@
       }
     }
   },
-  "revision": "20260420",
+  "revision": "20260518",
   "rootUrl": "https://vmwareengine.googleapis.com/",
   "schemas": {
     "AcceleratePrivateCloudDeletionRequest": {
@@ -5351,6 +5379,25 @@
         },
         "vpcNetwork": {
           "description": "Network to bind is a standard consumer VPC. Specify the name in the following form for consumer VPC network: `projects/{project}/global/networks/{network_id}`. `{project}` can either be a project number or a project ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MigrateManagementVmsRequest": {
+      "description": "Request message for VmwareEngine.MigrateManagementVms",
+      "id": "MigrateManagementVmsRequest",
+      "properties": {
+        "clusterId": {
+          "description": "Required. The user-provided identifier of the workload cluster to which the management VMs are to be migrated. The cluster must be in the same private cloud as the one specified in `name`, and must be a workload cluster. The eventual cluster name will be constructed from the private cloud name and this cluster ID.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. Checksum used to ensure that the user-provided value is up to date before the server processes the request. The server compares provided checksum with the current checksum of the resource. If the user-provided value is out of date, this request returns an `ABORTED` error.",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
         }
       },

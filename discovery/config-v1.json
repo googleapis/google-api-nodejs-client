@@ -15,6 +15,38 @@
   "description": "Creates and manages Google Cloud Platform resources and infrastructure.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/infrastructure-manager/docs",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://config.us-south1.rep.googleapis.com/",
+      "location": "us-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://config.us-west3.rep.googleapis.com/",
+      "location": "us-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://config.us-east4.rep.googleapis.com/",
+      "location": "us-east4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://config.us-west4.rep.googleapis.com/",
+      "location": "us-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://config.us-east5.rep.googleapis.com/",
+      "location": "us-east5"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://config.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -1736,7 +1768,7 @@
       }
     }
   },
-  "revision": "20260422",
+  "revision": "20260513",
   "rootUrl": "https://config.googleapis.com/",
   "schemas": {
     "ApplyResults": {

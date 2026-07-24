@@ -1297,12 +1297,12 @@
                   ],
                   "parameters": {
                     "allowMissing": {
-                      "description": "Optional. If set to true, and the MessageBus is not found, the request will succeed but no action will be taken on the server.",
+                      "description": "Optional. If set to true, and the GoogleApiSource is not found, the request will succeed but no action will be taken on the server.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "etag": {
-                      "description": "Optional. If provided, the MessageBus will only be deleted if the etag matches the current etag on the resource.",
+                      "description": "Optional. If provided, the GoogleApiSource will only be deleted if the etag matches the current etag on the resource.",
                       "location": "query",
                       "type": "string"
                     },
@@ -2627,7 +2627,7 @@
       }
     }
   },
-  "revision": "20260424",
+  "revision": "20260506",
   "rootUrl": "https://eventarc.googleapis.com/",
   "schemas": {
     "AuditConfig": {

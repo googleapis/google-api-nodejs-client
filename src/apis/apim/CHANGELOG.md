@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/apim-v7.0.2...apim-v7.0.3) (2026-05-19)
+
+
+### Bug Fixes
+
+* **apim:** update the API ([98a6b01](https://github.com/googleapis/google-api-nodejs-client/commit/98a6b01586a61fe4ccbbd43a34afb09c28f5b57c))
+* **apim:** update the API ([3ef7bda](https://github.com/googleapis/google-api-nodejs-client/commit/3ef7bda063bc081bb7c6b6c1b08de48157696c7f))
+
 ## [7.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/apim-v7.0.1...apim-v7.0.2) (2025-12-05)
 
 

@@ -1022,6 +1022,10 @@ export namespace container_v1beta1 {
      */
     nodeConfig?: Schema$NodeConfig;
     /**
+     * Optional. Configuration for Node Creation Mode.
+     */
+    nodeCreationConfig?: Schema$NodeCreationConfig;
+    /**
      * Output only. The size of the address space on each node for hosting containers. This is provisioned from within the `container_ipv4_cidr` range. This field will only be set when cluster is in route-based network mode.
      */
     nodeIpv4CidrSize?: number | null;
@@ -1446,6 +1450,10 @@ export namespace container_v1beta1 {
      * The desired network tier configuration for the cluster.
      */
     desiredNetworkTierConfig?: Schema$NetworkTierConfig;
+    /**
+     * Optional. The desired NodeCreationConfig for the cluster.
+     */
+    desiredNodeCreationConfig?: Schema$NodeCreationConfig;
     /**
      * The desired node kubelet config for the cluster.
      */
@@ -2200,6 +2208,23 @@ export namespace container_v1beta1 {
      * Optional. Amount of PID available for pod allocation. Defines the amount of "pid.available" signal in kubelet. Default is unset, if not specified in the kubelet config. Sample format: "30%". Must be \>= 10%. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
      */
     pidAvailable?: string | null;
+  }
+  /**
+   * Defines the maintenance exclusion for the node pool.
+   */
+  export interface Schema$ExclusionUntilEndOfSupport {
+    /**
+     * Optional. Indicates whether the exclusion is enabled.
+     */
+    enabled?: boolean | null;
+    /**
+     * Output only. The end time of the maintenance exclusion. It is output only. It is the cluster control plane version's end of support time, or end of extended support time when the cluster is on extended support channel.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. The start time of the maintenance exclusion. It is output only. It is the exclusion creation time.
+     */
+    startTime?: string | null;
   }
   /**
    * Configuration of Fast Socket feature.
@@ -3529,9 +3554,26 @@ export namespace container_v1beta1 {
     nodeKubeletConfig?: Schema$NodeKubeletConfig;
   }
   /**
+   * NodeCreationConfig defines the settings of node creation mode.
+   */
+  export interface Schema$NodeCreationConfig {
+    /**
+     * The mode of node creation.
+     */
+    nodeCreationMode?: string | null;
+  }
+  /**
    * NodeDrainConfig contains the node drain related configurations for this node pool.
    */
   export interface Schema$NodeDrainConfig {
+    /**
+     * The duration of the grace termination period for node drain.
+     */
+    graceTerminationDuration?: string | null;
+    /**
+     * The duration of the PDB timeout period for node drain.
+     */
+    pdbTimeoutDuration?: string | null;
     /**
      * Whether to respect PDB during node pool deletion.
      */
@@ -3763,6 +3805,10 @@ export namespace container_v1beta1 {
      */
     locations?: string[] | null;
     /**
+     * Optional. Specifies the maintenance policy for the node pool.
+     */
+    maintenancePolicy?: Schema$NodePoolMaintenancePolicy;
+    /**
      * NodeManagement configuration for this NodePool.
      */
     management?: Schema$NodeManagement;
@@ -3890,6 +3936,15 @@ export namespace container_v1beta1 {
      * Logging variant configuration.
      */
     variantConfig?: Schema$LoggingVariantConfig;
+  }
+  /**
+   * Defines the maintenance policy for the node pool.
+   */
+  export interface Schema$NodePoolMaintenancePolicy {
+    /**
+     * Optional. The exclusion until end of support for the node pool.
+     */
+    exclusionUntilEndOfSupport?: Schema$ExclusionUntilEndOfSupport;
   }
   /**
    * NodePoolUpgradeConcurrencyConfig is the configuration for the node pool auto upgrade concurrency.
@@ -7529,6 +7584,7 @@ export namespace container_v1beta1 {
      *   //   "networkConfig": {},
      *   //   "networkPolicy": {},
      *   //   "nodeConfig": {},
+     *   //   "nodeCreationConfig": {},
      *   //   "nodeIpv4CidrSize": 0,
      *   //   "nodePoolAutoConfig": {},
      *   //   "nodePoolDefaults": {},
@@ -10825,6 +10881,7 @@ export namespace container_v1beta1 {
      *   //   "initialNodeCount": 0,
      *   //   "instanceGroupUrls": [],
      *   //   "locations": [],
+     *   //   "maintenancePolicy": {},
      *   //   "management": {},
      *   //   "maxPodsConstraint": {},
      *   //   "name": "my_name",
@@ -13999,6 +14056,7 @@ export namespace container_v1beta1 {
      *   //   "networkConfig": {},
      *   //   "networkPolicy": {},
      *   //   "nodeConfig": {},
+     *   //   "nodeCreationConfig": {},
      *   //   "nodeIpv4CidrSize": 0,
      *   //   "nodePoolAutoConfig": {},
      *   //   "nodePoolDefaults": {},
@@ -17160,6 +17218,7 @@ export namespace container_v1beta1 {
      *   //   "initialNodeCount": 0,
      *   //   "instanceGroupUrls": [],
      *   //   "locations": [],
+     *   //   "maintenancePolicy": {},
      *   //   "management": {},
      *   //   "maxPodsConstraint": {},
      *   //   "name": "my_name",

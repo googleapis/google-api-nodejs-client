@@ -1,5 +1,17 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicecontrol-v11.2.0...servicecontrol-v12.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+* **servicecontrol:** update the API ([45054a1](https://github.com/googleapis/google-api-nodejs-client/commit/45054a12369e9289ef45cef362ebd569f5b4cf43))
+
 ## [11.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicecontrol-v11.1.0...servicecontrol-v11.2.0) (2026-01-28)
 
 

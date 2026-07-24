@@ -3986,7 +3986,7 @@
       }
     }
   },
-  "revision": "20260304",
+  "revision": "20260511",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -4400,6 +4400,116 @@
         },
         "workspaceId": {
           "description": "GTM Workspace ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CompilerErrorLite": {
+      "id": "CompilerErrorLite",
+      "properties": {
+        "errorMessage": {
+          "type": "string"
+        },
+        "errorType": {
+          "enum": [
+            "unknownErrorType",
+            "duplicateAutoEventName",
+            "duplicateConditionId",
+            "duplicateDefaultMacro",
+            "duplicateTagName",
+            "internalCompilerError",
+            "invalidMacroKey",
+            "invalidNumberPredicateArgs",
+            "invalidMacroFormat",
+            "invalidMacroNameReference",
+            "invalidMacroParameter",
+            "invalidUsageContext",
+            "invalidRegex",
+            "macroCycle",
+            "unknownConditionId",
+            "unknownMacroInstance",
+            "invalidManualEscaping",
+            "invalidHtmlCssJs",
+            "macroInCommentsError",
+            "jsCompilerError",
+            "jsonError",
+            "invalidTagParameter",
+            "javascriptTooLong",
+            "unknownTagInstance",
+            "invalidTagReference",
+            "unknownTriggerId",
+            "customTriggerMissingEventFilter",
+            "duplicateTriggerId",
+            "unsupportedTriggerType",
+            "invalidTriggerParameter",
+            "duplicateExperimentId",
+            "pixieCompilerError",
+            "macroNotServerSideResolvable",
+            "invalidBlockingTrigger",
+            "lineTooLong",
+            "invalidTypeInSelect",
+            "gaExperimentMacroIsDeprecated",
+            "unsafeHtmlContent",
+            "unsafeHtmlAttributeValue",
+            "unsafeCssContent",
+            "parameterReferenceNotFound",
+            "invalidCustomTemplateRuntimeCode",
+            "conflictingDestinationRouting",
+            "missingRequiredActivity",
+            "unresolvableDestinationTag",
+            "invalidDestinationTag",
+            "tosRequiredForThirdPartyTags"
+          ],
+          "enumDescriptions": [
+            "Unknown error type. Place holder for the enum's default value; not valid.",
+            "There are multiple auto-event instances with the same name. parent - N EntityKeys each with their auto_event_key populated.",
+            "There are multiple conditions with the same id. parent - N EntityKeys each with their condition_key populated.",
+            "There are multiple default macros with the same name. parent - N EntityKeys each with their macro_key populated. context - The macro name.",
+            "There are multiple tag instances with the same name. parent - N EntityKeys each with their tag_key populated.",
+            "An internal compiler invariant was broken. parent - 1 EntityKey which may have macro_key, condition_key, or tag_key populated. It's also possible that no keys are populated. context - An internal string (shouldn't be shown to the user) describing the problem.",
+            "An macro instance key was invalid e.g. foo#bar parent - 1 EntityKey with one of the following populated: macro_key, condition_key, tag_key. context - The string of the invalid name.",
+            "Wrong number of args passed to a predicate. parent - 1 EntityKey with its condition_key populated.",
+            "Macro format was invalid e.g. foo#bar parent - 1 EntityKey with one of the following populated: condition_key, tag_key. context - The full string of the invalid macro and surrounding literals.",
+            "A macro name was referenced instead of a macro key. parent - 1 EntityKey with one of the following populated: condition_key, tag_key. context - The name of the invalid macro name.",
+            "Macro had an invalid parameter. This could be anything from a parameter being a complex type or a macro parameter containing a macro reference. parent - 1 EntityKey with its macro_key populated. context - The value of the offending parameter if it is string-able.",
+            "Usage context of a container was invalid. Currently, this error can occur when a container context specifies both web and mobile. The UI shouldn't allowed creating such a mixed container. parent - not set context - The description of the context",
+            "Contents of an Regex predicate had an invalid pattern. parent - 1 EntityKey with one of the following populated: condition_key. context - The offending pattern.",
+            "There was a macro whose resolution would depend on itself. parent - N EntityKeys each with their macro_key, trigger_key, or condition_key populated. This represents the macro cycle. context - Empty.",
+            "A condition id was used which doesn't exist in the conditions list. parent - 1 EntityKey with its tag_key populated. context - The integer id of the missing conditional.",
+            "A macro name was used which doesn't exist in the macro list. parent - 1 EntityKey with one of the following populated: condition_key, tag_key. context - The name of the missing macro instance.",
+            "User-provided escaping inappropriate for the context in which it is used. parent - 1 EntityKey with one of the following populated: macro_key, condition_key, tag_key. context - Empty.",
+            "Auto-escaped content is not valid HTML, CSS or JavaScript. parent - 1 EntityKey with one of the following populated: tag_key. context - Empty.",
+            "Macro reference found inside an HTML, CSS or JavaScript comment. parent - 1 EntityKey with one of the following populated: tag_key. context - Empty.",
+            "Contents of an HTML script tag could not be compiled by JsCompiler. parent - 1 EntityKey with one of the following populated: tag_key. context - Empty.",
+            "Contents of a ConfigurationValue script tag could not be parsed by the JSON parser. parent - 1 EntityKey with one of the following populated: tag_key. context - Empty.",
+            "Tag had an invalid parameter. This could be anything from a parameter being a complex type or a macro parameter containing a macro reference. parent - 1 EntityKey with its tag_key populated. context - The value of the offending parameter if it is string-able.",
+            "An arbitrary HTML tag contains a piece of javascript with too many contiguous non-whitespace characters (e.g. a long array with no spaces between elements or an extremely long variable name).",
+            "A tag name was used which doesn't exist in the input tag list. parent - 1 EntityKey with tag_key populated. context - The name of the missing tag instance.",
+            "A tag name was used which doesn't exist in the compiled tag list. This happens if a tag is dependent on another tag, but the other tag has no rules attached to it and is pruned in the compiler. parent - 1 EntityKey with tag_key populated. context - The name of the missing tag instance.",
+            "A trigger id was used which doesn't exist in the triggers list. parent - 1 EntityKey parent of the unknown trigger. context - The id of the missing trigger instance.",
+            "A trigger of type custom trigger was created that doesn't include a custom event filter. parent - 1 EntityKey with its trigger_key populated. context - Empty.",
+            "There are multiple triggers with the same id. parent - N EntityKeys each with their trigger_key populated. context - Empty.",
+            "There is an unknown or unsupported trigger type. parent - 1 EntityKey with its trigger_key populated. context - The trigger type.",
+            "A trigger has an invalid parameter. parent - 1 EntityKey with its trigger_key populated. context - The invalid field.",
+            "There are multiple experiments with the same id. parent - N EntityKeys each with their experiment_key populated. context - Empty.",
+            "Contents of a pixie tag/macro could not be compiled by Pixie Parser. parent - 1 EntityKey with one of the following populated: tag_key, macro_key. context - Empty.",
+            "The macro cannot be resolved at server side. parent - 1 EntityKey indicating the entity in which this macro is used. context - The macro name.",
+            "The trigger cannot be used in blocking predicates (i.e. only All/Some pages triggers work for AMP, NS etc.) parent - 1 EntityKey indicating the tag in which this trigger is used. context - The trigger name.",
+            "A line in the input text is too long.",
+            "The value of a SELECT parameter in a vendor template instance does not point to an allowed vendor template instance. For details, see the documentation of the typesInSelect property in a vendor template. parent - 1 EntityKey indicating the tag/macro with this parameter. context - The parameter name.",
+            "The input container version contains a deprecated GA content experiment macro that needs to be removed.",
+            "Reminder: new error types will be treated as internal errors and trigger alerts unless they are handled in j/c/g/analytics/containertag/compiler/ErrorReporter.java&l=104 Please also remember to add new error types to CTUI at j/c/g/analytics/containertag/ui/app/components/container/compilererror/ HTML is not sanitized and contains unsafe content.",
+            "HTML attribute is not sanitized and the value is unsafe.",
+            "CSS is not sanitized and contains unsafe content.",
+            "The specified parameter was not found in the referenced entity. parent - 1 EntityKey with tag_key populated. context - The missing parameter in the form of \".\".",
+            "The custom template has invalid runtime code. parent - Entity key for the custom template. context - The error message.",
+            "The container version contains a Google tag tag and a destination tag that use the same destination ID. parent - Entity key for the conflicting Google tag. context - The Google tag tag name.",
+            "The container version has routing destinations, but is missing required activity instances. parent - Empty. context - Empty. proposed_change - The proposed change to add the missing activities.",
+            "The container version contains a product destination tag with a destination ID value that cannot be resolved statically. parent - Entity key of the destination tag. context - The name of the variable that could not be resolved. If the destination ID was a template value, then this will be the serialized value.",
+            "The container version contains a product destination tag with a destination ID value that is in an invalid format. parent - Entity key of the destination tag. context - The invalid destination ID.",
+            "GTM ToS is required for publishing versions with 3P tags. parent - not set context - Empty."
+          ],
           "type": "string"
         }
       },
@@ -4850,6 +4960,13 @@
         "compilerError": {
           "description": "Compiler errors or not.",
           "type": "boolean"
+        },
+        "compilerErrors": {
+          "description": "Compiler error details.",
+          "items": {
+            "$ref": "CompilerErrorLite"
+          },
+          "type": "array"
         },
         "containerVersion": {
           "$ref": "ContainerVersion",
@@ -5685,6 +5802,13 @@
           "description": "Compiler errors or not.",
           "type": "boolean"
         },
+        "compilerErrors": {
+          "description": "Compiler error details.",
+          "items": {
+            "$ref": "CompilerErrorLite"
+          },
+          "type": "array"
+        },
         "containerVersion": {
           "$ref": "ContainerVersion",
           "description": "The container version created."
@@ -5699,6 +5823,13 @@
         "compilerError": {
           "description": "Were there compiler errors or not.",
           "type": "boolean"
+        },
+        "compilerErrors": {
+          "description": "Compiler error details.",
+          "items": {
+            "$ref": "CompilerErrorLite"
+          },
+          "type": "array"
         },
         "containerVersion": {
           "$ref": "ContainerVersion",

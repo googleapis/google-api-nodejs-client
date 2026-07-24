@@ -2722,7 +2722,7 @@
       }
     }
   },
-  "revision": "20260423",
+  "revision": "20260512",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2968,6 +2968,11 @@
           "description": "Output only. Asset information specific for AWS Application Load Balancers.",
           "readOnly": true
         },
+        "awsAthenaWorkGroupDetails": {
+          "$ref": "AwsAthenaWorkGroupDetails",
+          "description": "Output only. Asset information specific for AwsAthenaWorkGroupDetails",
+          "readOnly": true
+        },
         "awsAutoscalingGroupDetails": {
           "$ref": "AwsAutoscalingGroupDetails",
           "description": "Output only. Asset information specific for AwsAutoscalingGroupDetails",
@@ -3028,9 +3033,29 @@
           "description": "Output only. Asset information specific for AWS Load Balancers.",
           "readOnly": true
         },
+        "awsEmrClusterDetails": {
+          "$ref": "AwsEmrClusterDetails",
+          "description": "Output only. Asset information specific for AwsEmrClusterDetails",
+          "readOnly": true
+        },
+        "awsFirehoseDetails": {
+          "$ref": "AwsFirehoseDetails",
+          "description": "Output only. Asset information specific for AwsFirehoseDetails",
+          "readOnly": true
+        },
+        "awsGlueJobDetails": {
+          "$ref": "AwsGlueJobDetails",
+          "description": "Output only. Asset information specific for AwsGlueJobDetails",
+          "readOnly": true
+        },
         "awsInternetGatewayDetails": {
           "$ref": "AwsInternetGatewayDetails",
           "description": "Output only. Asset information specific for AWS Internet Gateways.",
+          "readOnly": true
+        },
+        "awsKinesisStreamDetails": {
+          "$ref": "AwsKinesisStreamDetails",
+          "description": "Output only. Asset information specific for AwsKinesisStreamDetails",
           "readOnly": true
         },
         "awsLambdaFunctionDetails": {
@@ -3187,6 +3212,10 @@
           "$ref": "AwsApplicationLoadBalancerDetails",
           "description": "Optional. Asset information specific for AWS Application Load Balancers."
         },
+        "awsAthenaWorkGroupDetails": {
+          "$ref": "AwsAthenaWorkGroupDetails",
+          "description": "Optional. Asset information specific for AwsAthenaWorkGroupDetails"
+        },
         "awsAutoscalingGroupDetails": {
           "$ref": "AwsAutoscalingGroupDetails",
           "description": "Optional. Asset information specific for AwsAutoscalingGroupDetails"
@@ -3235,9 +3264,25 @@
           "$ref": "AwsElbLoadBalancerDetails",
           "description": "Asset information specific for AWS Load Balancers."
         },
+        "awsEmrClusterDetails": {
+          "$ref": "AwsEmrClusterDetails",
+          "description": "Optional. Asset information specific for AwsEmrClusterDetails"
+        },
+        "awsFirehoseDetails": {
+          "$ref": "AwsFirehoseDetails",
+          "description": "Optional. Asset information specific for AwsFirehoseDetails"
+        },
+        "awsGlueJobDetails": {
+          "$ref": "AwsGlueJobDetails",
+          "description": "Optional. Asset information specific for AwsGlueJobDetails"
+        },
         "awsInternetGatewayDetails": {
           "$ref": "AwsInternetGatewayDetails",
           "description": "Optional. Asset information specific for AWS Internet Gateways."
+        },
+        "awsKinesisStreamDetails": {
+          "$ref": "AwsKinesisStreamDetails",
+          "description": "Optional. Asset information specific for AwsKinesisStreamDetails"
         },
         "awsLambdaFunctionDetails": {
           "$ref": "AwsLambdaFunctionDetails",
@@ -3548,6 +3593,12 @@
       "properties": {},
       "type": "object"
     },
+    "AwsAthenaWorkGroupDetails": {
+      "description": "Contains details for an AWS Athena Work Group asset.",
+      "id": "AwsAthenaWorkGroupDetails",
+      "properties": {},
+      "type": "object"
+    },
     "AwsAutoscalingGroupDetails": {
       "description": "Asset information specific for AWS Autoscaling Group.",
       "id": "AwsAutoscalingGroupDetails",
@@ -3649,9 +3700,33 @@
       "properties": {},
       "type": "object"
     },
+    "AwsEmrClusterDetails": {
+      "description": "Contains details for an AWS EMR Cluster asset.",
+      "id": "AwsEmrClusterDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsFirehoseDetails": {
+      "description": "Contains details for an AWS Firehose asset.",
+      "id": "AwsFirehoseDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsGlueJobDetails": {
+      "description": "Contains details for an AWS Glue Job asset.",
+      "id": "AwsGlueJobDetails",
+      "properties": {},
+      "type": "object"
+    },
     "AwsInternetGatewayDetails": {
       "description": "Asset information specific for AWS Internet Gateways.",
       "id": "AwsInternetGatewayDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsKinesisStreamDetails": {
+      "description": "Contains details for an AWS Kinesis Stream asset.",
+      "id": "AwsKinesisStreamDetails",
       "properties": {},
       "type": "object"
     },

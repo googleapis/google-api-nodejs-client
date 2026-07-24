@@ -2,7 +2,7 @@
 
 # sqladmin
 
-> API for Cloud SQL database instance management
+> Cloud SQL Admin API
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in

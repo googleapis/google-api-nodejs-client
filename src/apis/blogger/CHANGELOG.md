@@ -1,5 +1,23 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/blogger-v6.1.0...blogger-v7.0.0) (2026-05-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/blogger-v6.0.1...blogger-v6.1.0) (2026-05-19)
+
+
+### Features
+
+* **blogger:** update the API ([050b7de](https://github.com/googleapis/google-api-nodejs-client/commit/050b7de872c3eafd99de1421afab517ee53942e4))
+
 ## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/blogger-v6.0.0...blogger-v6.0.1) (2025-12-05)
 
 

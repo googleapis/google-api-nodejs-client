@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20260408",
+  "revision": "20260524",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -925,6 +925,20 @@
       "description": "Structured representation of a function declaration as defined by the [OpenAPI 3.0 specification](https://spec.openapis.org/oas/v3.0.3). Included in this declaration are the function name, description, parameters and response type. This FunctionDeclaration is a representation of a block of code that can be used as a `Tool` by the model and executed by the client.",
       "id": "GoogleCloudAiplatformV1beta1FunctionDeclaration",
       "properties": {
+        "behavior": {
+          "description": "Optional. Specifies the function Behavior. If not specified, the system keeps the current function call behavior. This field is currently only supported by the BidiGenerateContent method.",
+          "enum": [
+            "UNSPECIFIED",
+            "BLOCKING",
+            "NON_BLOCKING"
+          ],
+          "enumDescriptions": [
+            "This value is unspecified.",
+            "If set, the system will wait to receive the function response before continuing the conversation.",
+            "If set, the system will not wait to receive the function response. Instead, it will attempt to handle function responses as they become available while maintaining the conversation between the user and the model."
+          ],
+          "type": "string"
+        },
         "description": {
           "description": "Optional. Description and purpose of the function. Model uses it to decide how and whether to call the function.",
           "type": "string"
@@ -2814,6 +2828,10 @@
           "$ref": "GoogleCloudAiplatformV1beta1EnterpriseWebSearch",
           "description": "Optional. Tool to support searching public web data, powered by Vertex AI Search and Sec4 compliance."
         },
+        "exaAiSearch": {
+          "$ref": "GoogleCloudAiplatformV1beta1ToolExaAiSearch",
+          "description": "Optional. Uses Exa.ai to search for information to answer user queries. The search results will be grounded on Exa.ai and presented to the model for response generation"
+        },
         "functionDeclarations": {
           "description": "Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 512 function declarations can be provided.",
           "items": {
@@ -2892,6 +2910,25 @@
         "retrievalConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1RetrievalConfig",
           "description": "Optional. Retrieval config."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ToolExaAiSearch": {
+      "description": "ExaAiSearch tool type. A tool that uses the Exa.ai search engine for grounding.",
+      "id": "GoogleCloudAiplatformV1beta1ToolExaAiSearch",
+      "properties": {
+        "apiKey": {
+          "description": "Required. The API key for ExaAiSearch.",
+          "type": "string"
+        },
+        "customConfigs": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. This field can be used to pass any parameter from the Exa.ai Search API.",
+          "type": "object"
         }
       },
       "type": "object"

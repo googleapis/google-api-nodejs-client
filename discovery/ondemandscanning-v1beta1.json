@@ -344,7 +344,7 @@
       }
     }
   },
-  "revision": "20260504",
+  "revision": "20260511",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AISkillAnalysisOccurrence": {
@@ -735,6 +735,7 @@
       "id": "CVSS",
       "properties": {
         "attackComplexity": {
+          "description": "Attack Complexity (AC). Defined in CVSS v2, v3, v4.",
           "enum": [
             "ATTACK_COMPLEXITY_UNSPECIFIED",
             "ATTACK_COMPLEXITY_LOW",
@@ -742,15 +743,29 @@
             "ATTACK_COMPLEXITY_MEDIUM"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            ""
+            "Unspecified.",
+            "Low attack complexity (AC:L). Defined in CVSS v2, v3, v4.",
+            "High attack complexity (AC:H). Defined in CVSS v2, v3, v4.",
+            "Medium attack complexity (AC:M). Defined in CVSS v2."
+          ],
+          "type": "string"
+        },
+        "attackRequirements": {
+          "description": "Attack Requirements (AT). Defined in CVSS v4.",
+          "enum": [
+            "ATTACK_REQUIREMENTS_UNSPECIFIED",
+            "ATTACK_REQUIREMENTS_NONE",
+            "ATTACK_REQUIREMENTS_PRESENT"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "No attack requirements (AT:N). Defined in CVSS v4.",
+            "Attack requirements: Present (AT:P). Defined in CVSS v4."
           ],
           "type": "string"
         },
         "attackVector": {
-          "description": "Base Metrics Represents the intrinsic characteristics of a vulnerability that are constant over time and across user environments.",
+          "description": "Attack Vector (AV). Defined in CVSS v2, v3, v4.",
           "enum": [
             "ATTACK_VECTOR_UNSPECIFIED",
             "ATTACK_VECTOR_NETWORK",
@@ -759,15 +774,16 @@
             "ATTACK_VECTOR_PHYSICAL"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Unspecified.",
+            "Attack Vector: Network (AV:N). Defined in CVSS v2, v3, v4.",
+            "Attack Vector: Adjacent (AV:A). Defined in CVSS v2, v3, v4.",
+            "Attack Vector: Local (AV:L). Defined in CVSS v2, v3, v4.",
+            "Attack Vector: Physical (AV:P). Defined in CVSS v3, v4."
           ],
           "type": "string"
         },
         "authentication": {
+          "description": "Authentication (Au). Defined in CVSS v2.",
           "enum": [
             "AUTHENTICATION_UNSPECIFIED",
             "AUTHENTICATION_MULTIPLE",
@@ -775,14 +791,15 @@
             "AUTHENTICATION_NONE"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            ""
+            "Unspecified.",
+            "Multiple authentication required (Au:M). Defined in CVSS v2.",
+            "Single authentication required (Au:S). Defined in CVSS v2.",
+            "No authentication required (Au:N). Defined in CVSS v2."
           ],
           "type": "string"
         },
         "availabilityImpact": {
+          "description": "Availability Impact (A). Defined in CVSS v2, v3.",
           "enum": [
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
@@ -792,12 +809,12 @@
             "IMPACT_COMPLETE"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Unspecified.",
+            "High impact (H). Defined in CVSS v3, v4.",
+            "Low impact (L). Defined in CVSS v3, v4.",
+            "No impact (N). Defined in CVSS v2, v3, v4.",
+            "Partial impact (P). Defined in CVSS v2.",
+            "Complete impact (C). Defined in CVSS v2."
           ],
           "type": "string"
         },
@@ -807,6 +824,7 @@
           "type": "number"
         },
         "confidentialityImpact": {
+          "description": "Confidentiality Impact (C). Defined in CVSS v2, v3.",
           "enum": [
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
@@ -816,12 +834,12 @@
             "IMPACT_COMPLETE"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Unspecified.",
+            "High impact (H). Defined in CVSS v3, v4.",
+            "Low impact (L). Defined in CVSS v3, v4.",
+            "No impact (N). Defined in CVSS v2, v3, v4.",
+            "Partial impact (P). Defined in CVSS v2.",
+            "Complete impact (C). Defined in CVSS v2."
           ],
           "type": "string"
         },
@@ -834,6 +852,7 @@
           "type": "number"
         },
         "integrityImpact": {
+          "description": "Integrity Impact (I). Defined in CVSS v2, v3.",
           "enum": [
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
@@ -843,16 +862,17 @@
             "IMPACT_COMPLETE"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Unspecified.",
+            "High impact (H). Defined in CVSS v3, v4.",
+            "Low impact (L). Defined in CVSS v3, v4.",
+            "No impact (N). Defined in CVSS v2, v3, v4.",
+            "Partial impact (P). Defined in CVSS v2.",
+            "Complete impact (C). Defined in CVSS v2."
           ],
           "type": "string"
         },
         "privilegesRequired": {
+          "description": "Privileges Required (PR). Defined in CVSS v3, v4.",
           "enum": [
             "PRIVILEGES_REQUIRED_UNSPECIFIED",
             "PRIVILEGES_REQUIRED_NONE",
@@ -860,36 +880,162 @@
             "PRIVILEGES_REQUIRED_HIGH"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            ""
+            "Unspecified.",
+            "No privileges required (PR:N). Defined in CVSS v3, v4.",
+            "Low privileges required (PR:L). Defined in CVSS v3, v4.",
+            "High privileges required (PR:H). Defined in CVSS v3, v4."
           ],
           "type": "string"
         },
         "scope": {
+          "description": "Scope (S). Defined in CVSS v3.",
           "enum": [
             "SCOPE_UNSPECIFIED",
             "SCOPE_UNCHANGED",
             "SCOPE_CHANGED"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            ""
+            "Unspecified.",
+            "Scope: Unchanged (S:U). Defined in CVSS v3.",
+            "Scope: Changed (S:C). Defined in CVSS v3."
+          ],
+          "type": "string"
+        },
+        "subsequentSystemAvailabilityImpact": {
+          "description": "Subsequent System Availability Impact (SA). Defined in CVSS v4.",
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "High impact (H). Defined in CVSS v3, v4.",
+            "Low impact (L). Defined in CVSS v3, v4.",
+            "No impact (N). Defined in CVSS v2, v3, v4.",
+            "Partial impact (P). Defined in CVSS v2.",
+            "Complete impact (C). Defined in CVSS v2."
+          ],
+          "type": "string"
+        },
+        "subsequentSystemConfidentialityImpact": {
+          "description": "Subsequent System Confidentiality Impact (SC). Defined in CVSS v4.",
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "High impact (H). Defined in CVSS v3, v4.",
+            "Low impact (L). Defined in CVSS v3, v4.",
+            "No impact (N). Defined in CVSS v2, v3, v4.",
+            "Partial impact (P). Defined in CVSS v2.",
+            "Complete impact (C). Defined in CVSS v2."
+          ],
+          "type": "string"
+        },
+        "subsequentSystemIntegrityImpact": {
+          "description": "Subsequent System Integrity Impact (SI). Defined in CVSS v4.",
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "High impact (H). Defined in CVSS v3, v4.",
+            "Low impact (L). Defined in CVSS v3, v4.",
+            "No impact (N). Defined in CVSS v2, v3, v4.",
+            "Partial impact (P). Defined in CVSS v2.",
+            "Complete impact (C). Defined in CVSS v2."
           ],
           "type": "string"
         },
         "userInteraction": {
+          "description": "User Interaction (UI). Defined in CVSS v3, v4.",
           "enum": [
             "USER_INTERACTION_UNSPECIFIED",
             "USER_INTERACTION_NONE",
-            "USER_INTERACTION_REQUIRED"
+            "USER_INTERACTION_REQUIRED",
+            "USER_INTERACTION_PASSIVE",
+            "USER_INTERACTION_ACTIVE"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            ""
+            "Unspecified.",
+            "No user interaction required (UI:N). Defined in CVSS v3, v4.",
+            "User interaction required (UI:R). Defined in CVSS v3.",
+            "Passive user interaction required (UI:P). Defined in CVSS v4.",
+            "Active user interaction required (UI:A). Defined in CVSS v4."
+          ],
+          "type": "string"
+        },
+        "vulnerableSystemAvailabilityImpact": {
+          "description": "Vulnerable System Availability Impact (VA). Defined in CVSS v4.",
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "High impact (H). Defined in CVSS v3, v4.",
+            "Low impact (L). Defined in CVSS v3, v4.",
+            "No impact (N). Defined in CVSS v2, v3, v4.",
+            "Partial impact (P). Defined in CVSS v2.",
+            "Complete impact (C). Defined in CVSS v2."
+          ],
+          "type": "string"
+        },
+        "vulnerableSystemConfidentialityImpact": {
+          "description": "Vulnerable System Confidentiality Impact (VC). Defined in CVSS v4.",
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "High impact (H). Defined in CVSS v3, v4.",
+            "Low impact (L). Defined in CVSS v3, v4.",
+            "No impact (N). Defined in CVSS v2, v3, v4.",
+            "Partial impact (P). Defined in CVSS v2.",
+            "Complete impact (C). Defined in CVSS v2."
+          ],
+          "type": "string"
+        },
+        "vulnerableSystemIntegrityImpact": {
+          "description": "Vulnerable System Integrity Impact (VI). Defined in CVSS v4.",
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "High impact (H). Defined in CVSS v3, v4.",
+            "Low impact (L). Defined in CVSS v3, v4.",
+            "No impact (N). Defined in CVSS v2, v3, v4.",
+            "Partial impact (P). Defined in CVSS v2.",
+            "Complete impact (C). Defined in CVSS v2."
           ],
           "type": "string"
         }
@@ -3262,12 +3408,14 @@
           "enum": [
             "CVSS_VERSION_UNSPECIFIED",
             "CVSS_VERSION_2",
-            "CVSS_VERSION_3"
+            "CVSS_VERSION_3",
+            "CVSS_VERSION_4"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            ""
+            "Unspecified.",
+            "CVSS v2.",
+            "CVSS v3.",
+            "CVSS v4."
           ],
           "type": "string"
         },

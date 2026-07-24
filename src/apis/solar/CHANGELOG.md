@@ -1,5 +1,21 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/solar-v4.1.2...solar-v5.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+
+
+### Bug Fixes
+
+* **solar:** update the API ([b602dd0](https://github.com/googleapis/google-api-nodejs-client/commit/b602dd017a34f0a14edd71c90d0c580c9a333ce6))
+
 ## [4.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/solar-v4.1.1...solar-v4.1.2) (2026-01-28)
 
 

@@ -1,5 +1,28 @@
 # Changelog
 
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v12.0.0...classroom-v13.0.0) (2026-05-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3920](https://github.com/googleapis/google-api-nodejs-client/issues/3920)) ([08443b4](https://github.com/googleapis/google-api-nodejs-client/commit/08443b4944a71fabe6804b05cb4e12d746c23011))
+
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v11.1.0...classroom-v12.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **classroom:** update the API ([43c8f7d](https://github.com/googleapis/google-api-nodejs-client/commit/43c8f7de0bc0f69ec9220c6fb102b7e6062fd735))
+* run the generator ([#3919](https://github.com/googleapis/google-api-nodejs-client/issues/3919)) ([b385d3f](https://github.com/googleapis/google-api-nodejs-client/commit/b385d3f99850e9407a217bd525c70a1ac8ab9163))
+
 ## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v11.0.1...classroom-v11.1.0) (2026-01-28)
 
 

@@ -2741,10 +2741,12 @@ export namespace dialogflow_v3 {
     queryText?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfo {
+    cesDebugInfo?: {[key: string]: any} | null;
     datastoreResponseReason?: string | null;
     ingestedContextReferenceDebugInfo?: Schema$GoogleCloudDialogflowV2beta1IngestedContextReferenceDebugInfo;
     knowledgeAssistBehavior?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoKnowledgeAssistBehavior;
     queryCategorizationFailureReason?: string | null;
+    queryGenerationDebugInfo?: Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoQueryGenerationDebugInfo;
     queryGenerationFailureReason?: string | null;
     serviceLatency?: Schema$GoogleCloudDialogflowV2beta1ServiceLatency;
   }
@@ -2766,6 +2768,11 @@ export namespace dialogflow_v3 {
     useCustomSafetyFilterLevel?: boolean | null;
     usePubsubDelivery?: boolean | null;
     useTranslatedMessage?: boolean | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoQueryGenerationDebugInfo {
+    candidatesTokenCount?: number | null;
+    promptTokenCount?: number | null;
+    totalTokenCount?: number | null;
   }
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata {
     doneTime?: string | null;
@@ -3352,10 +3359,12 @@ export namespace dialogflow_v3 {
     queryText?: string | null;
   }
   export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistDebugInfo {
+    cesDebugInfo?: {[key: string]: any} | null;
     datastoreResponseReason?: string | null;
     ingestedContextReferenceDebugInfo?: Schema$GoogleCloudDialogflowV2IngestedContextReferenceDebugInfo;
     knowledgeAssistBehavior?: Schema$GoogleCloudDialogflowV2KnowledgeAssistDebugInfoKnowledgeAssistBehavior;
     queryCategorizationFailureReason?: string | null;
+    queryGenerationDebugInfo?: Schema$GoogleCloudDialogflowV2KnowledgeAssistDebugInfoQueryGenerationDebugInfo;
     queryGenerationFailureReason?: string | null;
     serviceLatency?: Schema$GoogleCloudDialogflowV2ServiceLatency;
   }
@@ -3377,6 +3386,11 @@ export namespace dialogflow_v3 {
     useCustomSafetyFilterLevel?: boolean | null;
     usePubsubDelivery?: boolean | null;
     useTranslatedMessage?: boolean | null;
+  }
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistDebugInfoQueryGenerationDebugInfo {
+    candidatesTokenCount?: number | null;
+    promptTokenCount?: number | null;
+    totalTokenCount?: number | null;
   }
   export interface Schema$GoogleCloudDialogflowV2KnowledgeOperationMetadata {
     doneTime?: string | null;

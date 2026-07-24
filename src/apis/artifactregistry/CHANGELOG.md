@@ -1,5 +1,17 @@
 # Changelog
 
+## [19.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v19.4.0...artifactregistry-v19.5.0) (2026-05-19)
+
+
+### Features
+
+* **artifactregistry:** update the API ([3842e51](https://github.com/googleapis/google-api-nodejs-client/commit/3842e51d5ed6e3de8773526f9f1c4bd6055669c6))
+
+
+### Bug Fixes
+
+* **artifactregistry:** update the API ([a0b78b1](https://github.com/googleapis/google-api-nodejs-client/commit/a0b78b1f3e681d1e5c58e0bd20356d8fab8074b7))
+
 ## [19.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v19.3.0...artifactregistry-v19.4.0) (2026-01-28)
 
 

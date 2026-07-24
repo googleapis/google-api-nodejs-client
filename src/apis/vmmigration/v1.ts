@@ -786,6 +786,10 @@ export namespace vmmigration_v1 {
      */
     diskReplicaZones?: string[] | null;
     /**
+     * Optional. The details of each disk to create.
+     */
+    disks?: Schema$PersistentDiskDefaults[];
+    /**
      * The disk type to use in the VM.
      */
     diskType?: string | null;
@@ -2315,11 +2319,11 @@ export namespace vmmigration_v1 {
    */
   export interface Schema$PersistentDisk {
     /**
-     * The URI of the Persistent Disk.
+     * Output only. The URI of the Persistent Disk.
      */
     diskUri?: string | null;
     /**
-     * The ordinal number of the source VM disk.
+     * Output only. The ordinal number of the source VM disk.
      */
     sourceDiskNumber?: number | null;
   }
