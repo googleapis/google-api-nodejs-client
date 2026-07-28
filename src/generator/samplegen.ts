@@ -88,12 +88,18 @@ export async function generateSamples(apiPath: string, schema: Schema) {
 function getSample(schema: Schema, method: SchemaMethod) {
   let responseExample: undefined | {};
   if (method.response) {
-    const item = schema.schemas[method.response.$ref!];
+    const item =
+      schema.schemas && method.response.$ref
+        ? schema.schemas[method.response.$ref]
+        : undefined;
     responseExample = flattenSchema(item, schema.schemas);
   }
   let requestExample: {} | undefined;
   if (method.request) {
-    const item = schema.schemas[method.request.$ref!];
+    const item =
+      schema.schemas && method.request.$ref
+        ? schema.schemas[method.request.$ref]
+        : undefined;
     requestExample = flattenSchema(item, schema.schemas);
   }
   const sampleData: SampleData = {
@@ -137,7 +143,7 @@ export function getAllMethods(bag: MethodBag, methods?: SchemaMethod[]) {
  * Provide a flattened representation of what the structure for a
  * given request or response could look like.
  */
-function flattenSchema(item: SchemaItem | undefined, schemas: SchemaItems) {
+function flattenSchema(item?: SchemaItem, schemas?: SchemaItems) {
   // tslint:disable-next-line no-any
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const result: any = {};
@@ -153,7 +159,7 @@ function getExamplePropertyValue(
   name: string,
   details: SchemaItem,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  schemas: SchemaItems,
+  schemas?: SchemaItems,
 ): {} {
   switch (details.type) {
     case 'string':
