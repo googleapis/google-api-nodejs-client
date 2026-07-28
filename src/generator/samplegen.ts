@@ -137,11 +137,11 @@ export function getAllMethods(bag: MethodBag, methods?: SchemaMethod[]) {
  * Provide a flattened representation of what the structure for a
  * given request or response could look like.
  */
-function flattenSchema(item: SchemaItem, schemas: SchemaItems) {
+function flattenSchema(item: SchemaItem | undefined, schemas: SchemaItems) {
   // tslint:disable-next-line no-any
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const result: any = {};
-  if (item.properties) {
+  if (item?.properties) {
     for (const [name, details] of Object.entries(item.properties)) {
       result[name] = getExamplePropertyValue(name, details, schemas);
     }
