@@ -19,7 +19,6 @@ import {
   SchemaMethods,
   SchemaResources,
   SchemaItem,
-  SchemaItems,
 } from 'googleapis-common';
 import * as nunjucks from 'nunjucks';
 import * as filters from './filters';
@@ -87,14 +86,14 @@ export async function generateSamples(apiPath: string, schema: Schema) {
 
 function getSample(schema: Schema, method: SchemaMethod) {
   let responseExample: undefined | {};
-  if (method.response) {
-    const item = schema.schemas[method.response.$ref!];
-    responseExample = flattenSchema(item, schema.schemas);
+  if (method?.response?.$ref) {
+    const item = schema?.schemas?.[method.response.$ref];
+    responseExample = flattenSchema(item);
   }
   let requestExample: {} | undefined;
-  if (method.request) {
-    const item = schema.schemas[method.request.$ref!];
-    requestExample = flattenSchema(item, schema.schemas);
+  if (method?.request?.$ref) {
+    const item = schema?.schemas?.[method.request.$ref];
+    requestExample = flattenSchema(item);
   }
   const sampleData: SampleData = {
     api: schema,
@@ -137,24 +136,19 @@ export function getAllMethods(bag: MethodBag, methods?: SchemaMethod[]) {
  * Provide a flattened representation of what the structure for a
  * given request or response could look like.
  */
-function flattenSchema(item: SchemaItem, schemas: SchemaItems) {
+function flattenSchema(item?: SchemaItem) {
   // tslint:disable-next-line no-any
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const result: any = {};
-  if (item.properties) {
+  if (item?.properties) {
     for (const [name, details] of Object.entries(item.properties)) {
-      result[name] = getExamplePropertyValue(name, details, schemas);
+      result[name] = getExamplePropertyValue(name, details);
     }
   }
   return result;
 }
 
-function getExamplePropertyValue(
-  name: string,
-  details: SchemaItem,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  schemas: SchemaItems,
-): {} {
+function getExamplePropertyValue(name: string, details: SchemaItem): {} {
   switch (details.type) {
     case 'string':
       return `my_${name}`;
