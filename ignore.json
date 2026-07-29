@@ -12,6 +12,7 @@
     "datalineage:v1",
     "healthcare:v1",
     "healthcare:v1beta1",
-    "connectors:v2"
+    "connectors:v2",
+    "poly:v1"
   ]
 }
