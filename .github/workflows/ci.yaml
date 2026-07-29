@@ -5,6 +5,8 @@ on:
   pull_request:
     types: [ assigned, opened, synchronize, reopened, labeled ]
 name: ci
+permissions:
+  contents: read
 jobs:
   test:
     runs-on: ubuntu-latest
