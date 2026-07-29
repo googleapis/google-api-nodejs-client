@@ -19,7 +19,6 @@ import {
   SchemaMethods,
   SchemaResources,
   SchemaItem,
-  SchemaItems,
 } from 'googleapis-common';
 import * as nunjucks from 'nunjucks';
 import * as filters from './filters';
@@ -149,10 +148,7 @@ function flattenSchema(item?: SchemaItem) {
   return result;
 }
 
-function getExamplePropertyValue(
-  name: string,
-  details: SchemaItem,
-): {} {
+function getExamplePropertyValue(name: string, details: SchemaItem): {} {
   switch (details.type) {
     case 'string':
       return `my_${name}`;
