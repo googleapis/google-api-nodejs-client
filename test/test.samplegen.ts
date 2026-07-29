@@ -42,7 +42,7 @@ describe(__filename, () => {
     };
 
     await addFragments(customSchema);
-    
+
     const methods = getAllMethods(customSchema);
     assert.ok(methods.find(m => m.id === 'testMethod')?.fragment);
   });
