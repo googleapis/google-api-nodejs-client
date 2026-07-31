@@ -119,7 +119,7 @@ export class Generator {
     const indexPath = path.join(discoveryPath, 'index.json');
     const file = await readFile(indexPath, 'utf8');
     const apis = (JSON.parse(file) as Schemas).items;
-    const queue = new Q({concurrency: 50});
+    const queue = new Q({concurrency: 10});
     console.log(`Generating ${apis.length} APIs...`);
     await queue.addAll(
       apis.map(api => async () => {

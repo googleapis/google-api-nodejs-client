@@ -70,9 +70,14 @@ export async function synth(options: SynthOptions = {}) {
       `url.https://${process.env.CODE_BOT_TOKEN}@github.com/.insteadOf`,
       'https://github.com/',
     ]);
-    await execa('git', ['config', '--global', 'pack.threads', '1']);
-    await execa('git', ['config', '--global', 'pack.windowMemory', '256m']);
-    await execa('git', ['config', '--global', 'pack.packSizeLimit', '512m']);
+    await execa('git', ['config', '--global', 'pack.threads', '2']);
+    await execa('git', ['config', '--global', 'pack.windowMemory', '128m']);
+    await execa('git', ['config', '--global', 'pack.packSizeLimit', '256m']);
+    await execa('git', ['config', '--global', 'pack.deltaCacheSize', '128m']);
+    await execa('git', ['config', '--global', 'http.postBuffer', '524288000']);
+    await execa('git', ['config', '--global', 'http.version', 'HTTP/1.1']);
+    await execa('git', ['config', '--global', 'http.lowSpeedLimit', '1000']);
+    await execa('git', ['config', '--global', 'http.lowSpeedTime', '600']);
   }
   const dirs = files.filter(f => {
     return (
@@ -116,7 +121,19 @@ export async function synth(options: SynthOptions = {}) {
   await execa('git', ['add', '-A']);
   await execa('git', ['commit', '-m', 'feat: regenerate index files']);
   const prefix = getPrefix(totalSemverity);
-  await execa('git', ['push', 'origin', branch, '--force']);
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      await execa('git', ['push', 'origin', branch, '--force']);
+      break;
+    } catch (err) {
+      console.warn(`[Git Push Attempt ${attempt}/3 Failed]: ${err}`);
+      if (attempt === 3) {
+        throw err;
+      }
+      console.log(`Waiting 10 seconds before retrying git push...`);
+      await new Promise(resolve => setTimeout(resolve, 10000));
+    }
+  }
   try {
     // Open the pull request with the YOSHI_CODE_BOT_TOKEN
     await gaxios.request({
