@@ -70,6 +70,9 @@ export async function synth(options: SynthOptions = {}) {
       `url.https://${process.env.CODE_BOT_TOKEN}@github.com/.insteadOf`,
       'https://github.com/',
     ]);
+    await execa('git', ['config', '--global', 'pack.threads', '1']);
+    await execa('git', ['config', '--global', 'pack.windowMemory', '256m']);
+    await execa('git', ['config', '--global', 'pack.packSizeLimit', '512m']);
   }
   const dirs = files.filter(f => {
     return (
@@ -104,6 +107,11 @@ export async function synth(options: SynthOptions = {}) {
     const commitParams = ['commit', '-F', 'message.txt'];
     await execa('git', commitParams);
     fs.unlinkSync('message.txt');
+  }
+  // Release generator heap memory so V8 can GC before heavy Git operations
+  changeSets.length = 0;
+  if (global.gc) {
+    global.gc();
   }
   await execa('git', ['add', '-A']);
   await execa('git', ['commit', '-m', 'feat: regenerate index files']);
