@@ -1576,8 +1576,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     list(
       params: Params$Resource$Bidders$Finalizeddeals$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFinalizedDealsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListFinalizedDealsResponse>,
       callback: BodyResponseCallback<Schema$ListFinalizedDealsResponse>
     ): void;
     list(
@@ -2979,8 +2978,7 @@ export namespace authorizedbuyersmarketplace_v1 {
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Client>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Client> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
@@ -3136,8 +3134,7 @@ export namespace authorizedbuyersmarketplace_v1 {
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Client>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Client> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
@@ -3286,8 +3283,7 @@ export namespace authorizedbuyersmarketplace_v1 {
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Client>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Client> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
@@ -3430,8 +3426,7 @@ export namespace authorizedbuyersmarketplace_v1 {
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Client>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Client> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
@@ -3732,8 +3727,7 @@ export namespace authorizedbuyersmarketplace_v1 {
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Client>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Client> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
@@ -3956,8 +3950,7 @@ export namespace authorizedbuyersmarketplace_v1 {
         | BodyResponseCallback<Schema$ClientUser>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ClientUser>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ClientUser> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ClientUser>>
@@ -4107,8 +4100,7 @@ export namespace authorizedbuyersmarketplace_v1 {
         | BodyResponseCallback<Schema$ClientUser>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ClientUser>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ClientUser> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ClientUser>>
@@ -4256,8 +4248,7 @@ export namespace authorizedbuyersmarketplace_v1 {
         | BodyResponseCallback<Schema$ClientUser>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ClientUser>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ClientUser> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ClientUser>>
@@ -4393,8 +4384,7 @@ export namespace authorizedbuyersmarketplace_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4531,8 +4521,7 @@ export namespace authorizedbuyersmarketplace_v1 {
         | BodyResponseCallback<Schema$ClientUser>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ClientUser>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ClientUser> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ClientUser>>
@@ -4654,8 +4643,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     list(
       params: Params$Resource$Buyers$Clients$Users$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListClientUsersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListClientUsersResponse>,
       callback: BodyResponseCallback<Schema$ListClientUsersResponse>
     ): void;
     list(
@@ -5165,8 +5153,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     list(
       params: Params$Resource$Buyers$Finalizeddeals$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFinalizedDealsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListFinalizedDealsResponse>,
       callback: BodyResponseCallback<Schema$ListFinalizedDealsResponse>
     ): void;
     list(
@@ -5881,8 +5868,7 @@ export namespace authorizedbuyersmarketplace_v1 {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -6043,8 +6029,7 @@ export namespace authorizedbuyersmarketplace_v1 {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -6207,8 +6192,7 @@ export namespace authorizedbuyersmarketplace_v1 {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -6364,8 +6348,7 @@ export namespace authorizedbuyersmarketplace_v1 {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -6489,8 +6472,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     list(
       params: Params$Resource$Buyers$Proposals$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListProposalsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListProposalsResponse>,
       callback: BodyResponseCallback<Schema$ListProposalsResponse>
     ): void;
     list(
@@ -6694,8 +6676,7 @@ export namespace authorizedbuyersmarketplace_v1 {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -6867,8 +6848,7 @@ export namespace authorizedbuyersmarketplace_v1 {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -7088,8 +7068,7 @@ export namespace authorizedbuyersmarketplace_v1 {
     batchUpdate(
       params: Params$Resource$Buyers$Proposals$Deals$Batchupdate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchUpdateDealsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchUpdateDealsResponse>,
       callback: BodyResponseCallback<Schema$BatchUpdateDealsResponse>
     ): void;
     batchUpdate(
@@ -7272,8 +7251,7 @@ export namespace authorizedbuyersmarketplace_v1 {
         | BodyResponseCallback<Schema$Deal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Deal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Deal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Deal>>
@@ -7608,8 +7586,7 @@ export namespace authorizedbuyersmarketplace_v1 {
         | BodyResponseCallback<Schema$Deal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Deal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Deal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Deal>>
