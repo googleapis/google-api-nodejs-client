@@ -4,6 +4,12 @@
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
+        },
+        "https://www.googleapis.com/auth/organizationpolicy": {
+          "description": "See, edit, configure, and delete your Google Cloud Organization Policy data and see the email address for your Google Account"
+        },
+        "https://www.googleapis.com/auth/organizationpolicy.readonly": {
+          "description": "See your Google Cloud Organization Policy data and the email address of your Google Account"
         }
       }
     }
@@ -130,7 +136,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
+                  "description": "Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_number}` * `organizations/{organization_number}`",
                   "location": "path",
                   "pattern": "^folders/[^/]+$",
                   "required": true,
@@ -142,7 +148,9 @@
                 "$ref": "GoogleCloudOrgpolicyV2ListConstraintsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy",
+                "https://www.googleapis.com/auth/organizationpolicy.readonly"
               ]
             }
           }
@@ -159,7 +167,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
+                  "description": "Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_number}` * `organizations/{organization_number}`",
                   "location": "path",
                   "pattern": "^folders/[^/]+$",
                   "required": true,
@@ -174,7 +182,8 @@
                 "$ref": "GoogleCloudOrgpolicyV2Policy"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy"
               ]
             },
             "delete": {
@@ -204,7 +213,8 @@
                 "$ref": "GoogleProtobufEmpty"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy"
               ]
             },
             "get": {
@@ -229,7 +239,9 @@
                 "$ref": "GoogleCloudOrgpolicyV2Policy"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy",
+                "https://www.googleapis.com/auth/organizationpolicy.readonly"
               ]
             },
             "getEffectivePolicy": {
@@ -254,7 +266,9 @@
                 "$ref": "GoogleCloudOrgpolicyV2Policy"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy",
+                "https://www.googleapis.com/auth/organizationpolicy.readonly"
               ]
             },
             "list": {
@@ -278,7 +292,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
+                  "description": "Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_number}` * `organizations/{organization_number}`",
                   "location": "path",
                   "pattern": "^folders/[^/]+$",
                   "required": true,
@@ -290,7 +304,9 @@
                 "$ref": "GoogleCloudOrgpolicyV2ListPoliciesResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy",
+                "https://www.googleapis.com/auth/organizationpolicy.readonly"
               ]
             },
             "patch": {
@@ -303,7 +319,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number}/policies/{constraint_name}` * `folders/{folder_id}/policies/{constraint_name}` * `organizations/{organization_id}/policies/{constraint_name}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id}/policies/{constraint_name}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.",
+                  "description": "Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number}/policies/{constraint_name}` * `folders/{folder_number}/policies/{constraint_name}` * `organizations/{organization_number}/policies/{constraint_name}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id}/policies/{constraint_name}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.",
                   "location": "path",
                   "pattern": "^folders/[^/]+/policies/[^/]+$",
                   "required": true,
@@ -324,7 +340,8 @@
                 "$ref": "GoogleCloudOrgpolicyV2Policy"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy"
               ]
             }
           }
@@ -356,7 +373,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
+                  "description": "Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_number}` * `organizations/{organization_number}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -368,7 +385,9 @@
                 "$ref": "GoogleCloudOrgpolicyV2ListConstraintsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy",
+                "https://www.googleapis.com/auth/organizationpolicy.readonly"
               ]
             }
           }
@@ -400,7 +419,8 @@
                 "$ref": "GoogleCloudOrgpolicyV2CustomConstraint"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy"
               ]
             },
             "delete": {
@@ -425,7 +445,8 @@
                 "$ref": "GoogleProtobufEmpty"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy"
               ]
             },
             "get": {
@@ -450,7 +471,9 @@
                 "$ref": "GoogleCloudOrgpolicyV2CustomConstraint"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy",
+                "https://www.googleapis.com/auth/organizationpolicy.readonly"
               ]
             },
             "list": {
@@ -486,7 +509,9 @@
                 "$ref": "GoogleCloudOrgpolicyV2ListCustomConstraintsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy",
+                "https://www.googleapis.com/auth/organizationpolicy.readonly"
               ]
             },
             "patch": {
@@ -514,7 +539,8 @@
                 "$ref": "GoogleCloudOrgpolicyV2CustomConstraint"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy"
               ]
             }
           }
@@ -531,7 +557,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
+                  "description": "Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_number}` * `organizations/{organization_number}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -546,7 +572,8 @@
                 "$ref": "GoogleCloudOrgpolicyV2Policy"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy"
               ]
             },
             "delete": {
@@ -576,7 +603,8 @@
                 "$ref": "GoogleProtobufEmpty"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy"
               ]
             },
             "get": {
@@ -601,7 +629,9 @@
                 "$ref": "GoogleCloudOrgpolicyV2Policy"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy",
+                "https://www.googleapis.com/auth/organizationpolicy.readonly"
               ]
             },
             "getEffectivePolicy": {
@@ -626,7 +656,9 @@
                 "$ref": "GoogleCloudOrgpolicyV2Policy"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy",
+                "https://www.googleapis.com/auth/organizationpolicy.readonly"
               ]
             },
             "list": {
@@ -650,7 +682,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
+                  "description": "Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_number}` * `organizations/{organization_number}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -662,7 +694,9 @@
                 "$ref": "GoogleCloudOrgpolicyV2ListPoliciesResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy",
+                "https://www.googleapis.com/auth/organizationpolicy.readonly"
               ]
             },
             "patch": {
@@ -675,7 +709,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number}/policies/{constraint_name}` * `folders/{folder_id}/policies/{constraint_name}` * `organizations/{organization_id}/policies/{constraint_name}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id}/policies/{constraint_name}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.",
+                  "description": "Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number}/policies/{constraint_name}` * `folders/{folder_number}/policies/{constraint_name}` * `organizations/{organization_number}/policies/{constraint_name}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id}/policies/{constraint_name}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/policies/[^/]+$",
                   "required": true,
@@ -696,7 +730,8 @@
                 "$ref": "GoogleCloudOrgpolicyV2Policy"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy"
               ]
             }
           }
@@ -728,7 +763,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
+                  "description": "Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_number}` * `organizations/{organization_number}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -740,7 +775,9 @@
                 "$ref": "GoogleCloudOrgpolicyV2ListConstraintsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy",
+                "https://www.googleapis.com/auth/organizationpolicy.readonly"
               ]
             }
           }
@@ -757,7 +794,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
+                  "description": "Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_number}` * `organizations/{organization_number}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -772,7 +809,8 @@
                 "$ref": "GoogleCloudOrgpolicyV2Policy"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy"
               ]
             },
             "delete": {
@@ -802,7 +840,8 @@
                 "$ref": "GoogleProtobufEmpty"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy"
               ]
             },
             "get": {
@@ -827,7 +866,9 @@
                 "$ref": "GoogleCloudOrgpolicyV2Policy"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy",
+                "https://www.googleapis.com/auth/organizationpolicy.readonly"
               ]
             },
             "getEffectivePolicy": {
@@ -852,7 +893,9 @@
                 "$ref": "GoogleCloudOrgpolicyV2Policy"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy",
+                "https://www.googleapis.com/auth/organizationpolicy.readonly"
               ]
             },
             "list": {
@@ -876,7 +919,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_id}` * `organizations/{organization_id}`",
+                  "description": "Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number}` * `projects/{project_id}` * `folders/{folder_number}` * `organizations/{organization_number}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -888,7 +931,9 @@
                 "$ref": "GoogleCloudOrgpolicyV2ListPoliciesResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy",
+                "https://www.googleapis.com/auth/organizationpolicy.readonly"
               ]
             },
             "patch": {
@@ -901,7 +946,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number}/policies/{constraint_name}` * `folders/{folder_id}/policies/{constraint_name}` * `organizations/{organization_id}/policies/{constraint_name}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id}/policies/{constraint_name}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.",
+                  "description": "Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number}/policies/{constraint_name}` * `folders/{folder_number}/policies/{constraint_name}` * `organizations/{organization_number}/policies/{constraint_name}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id}/policies/{constraint_name}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/policies/[^/]+$",
                   "required": true,
@@ -922,7 +967,8 @@
                 "$ref": "GoogleCloudOrgpolicyV2Policy"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/organizationpolicy"
               ]
             }
           }
@@ -930,7 +976,7 @@
       }
     }
   },
-  "revision": "20260504",
+  "revision": "20260723",
   "rootUrl": "https://orgpolicy.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2AlternatePolicySpec": {
@@ -987,7 +1033,7 @@
           "description": "Defines this constraint as being a list constraint."
         },
         "name": {
-          "description": "Immutable. The resource name of the constraint. Must be in one of the following forms: * `projects/{project_number}/constraints/{constraint_name}` * `folders/{folder_id}/constraints/{constraint_name}` * `organizations/{organization_id}/constraints/{constraint_name}` For example, \"/projects/123/constraints/compute.disableSerialPortAccess\".",
+          "description": "Immutable. The resource name of the constraint. Must be in one of the following forms: * `projects/{project_number}/constraints/{constraint_name}` * `folders/{folder_number}/constraints/{constraint_name}` * `organizations/{organization_number}/constraints/{constraint_name}` For example, \"/projects/123/constraints/compute.disableSerialPortAccess\".",
           "type": "string"
         },
         "supportsDryRun": {
@@ -1296,7 +1342,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number}/policies/{constraint_name}` * `folders/{folder_id}/policies/{constraint_name}` * `organizations/{organization_id}/policies/{constraint_name}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id}/policies/{constraint_name}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.",
+          "description": "Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number}/policies/{constraint_name}` * `folders/{folder_number}/policies/{constraint_name}` * `organizations/{organization_number}/policies/{constraint_name}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id}/policies/{constraint_name}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.",
           "type": "string"
         },
         "spec": {

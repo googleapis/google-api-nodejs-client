@@ -170,7 +170,7 @@ export namespace orgpolicy_v2 {
      */
     listConstraint?: Schema$GoogleCloudOrgpolicyV2ConstraintListConstraint;
     /**
-     * Immutable. The resource name of the constraint. Must be in one of the following forms: * `projects/{project_number\}/constraints/{constraint_name\}` * `folders/{folder_id\}/constraints/{constraint_name\}` * `organizations/{organization_id\}/constraints/{constraint_name\}` For example, "/projects/123/constraints/compute.disableSerialPortAccess".
+     * Immutable. The resource name of the constraint. Must be in one of the following forms: * `projects/{project_number\}/constraints/{constraint_name\}` * `folders/{folder_number\}/constraints/{constraint_name\}` * `organizations/{organization_number\}/constraints/{constraint_name\}` For example, "/projects/123/constraints/compute.disableSerialPortAccess".
      */
     name?: string | null;
     /**
@@ -360,7 +360,7 @@ export namespace orgpolicy_v2 {
      */
     etag?: string | null;
     /**
-     * Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     * Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_number\}/policies/{constraint_name\}` * `organizations/{organization_number\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      */
     name?: string | null;
     /**
@@ -500,7 +500,11 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *       'https://www.googleapis.com/auth/organizationpolicy.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -513,7 +517,7 @@ export namespace orgpolicy_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      *     pageToken: 'placeholder-value',
-     *     // Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     *     // Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_number\}` * `organizations/{organization_number\}`
      *     parent: 'folders/my-folder',
      *   });
      *   console.log(res.data);
@@ -641,7 +645,7 @@ export namespace orgpolicy_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     * Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_number\}` * `organizations/{organization_number\}`
      */
     parent?: string;
   }
@@ -674,7 +678,10 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -683,7 +690,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.folders.policies.create({
-     *     // Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     *     // Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_number\}` * `organizations/{organization_number\}`
      *     parent: 'folders/my-folder',
      *
      *     // Request body metadata
@@ -833,7 +840,10 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -967,7 +977,11 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *       'https://www.googleapis.com/auth/organizationpolicy.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1111,7 +1125,11 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *       'https://www.googleapis.com/auth/organizationpolicy.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1258,7 +1276,11 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *       'https://www.googleapis.com/auth/organizationpolicy.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1271,7 +1293,7 @@ export namespace orgpolicy_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      *     pageToken: 'placeholder-value',
-     *     // Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     *     // Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_number\}` * `organizations/{organization_number\}`
      *     parent: 'folders/my-folder',
      *   });
      *   console.log(res.data);
@@ -1410,7 +1432,10 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1419,7 +1444,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.folders.policies.patch({
-     *     // Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     *     // Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_number\}/policies/{constraint_name\}` * `organizations/{organization_number\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      *     name: 'folders/my-folder/policies/my-policie',
      *     // Field mask used to specify the fields to be overwritten in the policy. The fields specified in the update_mask are relative to the policy, not the full request.
      *     updateMask: 'placeholder-value',
@@ -1549,7 +1574,7 @@ export namespace orgpolicy_v2 {
 
   export interface Params$Resource$Folders$Policies$Create extends StandardParameters {
     /**
-     * Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     * Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_number\}` * `organizations/{organization_number\}`
      */
     parent?: string;
 
@@ -1590,13 +1615,13 @@ export namespace orgpolicy_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     * Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_number\}` * `organizations/{organization_number\}`
      */
     parent?: string;
   }
   export interface Params$Resource$Folders$Policies$Patch extends StandardParameters {
     /**
-     * Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     * Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_number\}/policies/{constraint_name\}` * `organizations/{organization_number\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      */
     name?: string;
     /**
@@ -1653,7 +1678,11 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *       'https://www.googleapis.com/auth/organizationpolicy.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1666,7 +1695,7 @@ export namespace orgpolicy_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      *     pageToken: 'placeholder-value',
-     *     // Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     *     // Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_number\}` * `organizations/{organization_number\}`
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -1794,7 +1823,7 @@ export namespace orgpolicy_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     * Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_number\}` * `organizations/{organization_number\}`
      */
     parent?: string;
   }
@@ -1827,7 +1856,10 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1996,7 +2028,10 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2128,7 +2163,11 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *       'https://www.googleapis.com/auth/organizationpolicy.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2279,7 +2318,11 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *       'https://www.googleapis.com/auth/organizationpolicy.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2431,7 +2474,10 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2653,7 +2699,10 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2662,7 +2711,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.organizations.policies.create({
-     *     // Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     *     // Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_number\}` * `organizations/{organization_number\}`
      *     parent: 'organizations/my-organization',
      *
      *     // Request body metadata
@@ -2812,7 +2861,10 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2946,7 +2998,11 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *       'https://www.googleapis.com/auth/organizationpolicy.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3090,7 +3146,11 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *       'https://www.googleapis.com/auth/organizationpolicy.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3238,7 +3298,11 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *       'https://www.googleapis.com/auth/organizationpolicy.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3251,7 +3315,7 @@ export namespace orgpolicy_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      *     pageToken: 'placeholder-value',
-     *     // Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     *     // Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_number\}` * `organizations/{organization_number\}`
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -3390,7 +3454,10 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3399,7 +3466,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.organizations.policies.patch({
-     *     // Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     *     // Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_number\}/policies/{constraint_name\}` * `organizations/{organization_number\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      *     name: 'organizations/my-organization/policies/my-policie',
      *     // Field mask used to specify the fields to be overwritten in the policy. The fields specified in the update_mask are relative to the policy, not the full request.
      *     updateMask: 'placeholder-value',
@@ -3529,7 +3596,7 @@ export namespace orgpolicy_v2 {
 
   export interface Params$Resource$Organizations$Policies$Create extends StandardParameters {
     /**
-     * Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     * Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_number\}` * `organizations/{organization_number\}`
      */
     parent?: string;
 
@@ -3570,13 +3637,13 @@ export namespace orgpolicy_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     * Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_number\}` * `organizations/{organization_number\}`
      */
     parent?: string;
   }
   export interface Params$Resource$Organizations$Policies$Patch extends StandardParameters {
     /**
-     * Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     * Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_number\}/policies/{constraint_name\}` * `organizations/{organization_number\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      */
     name?: string;
     /**
@@ -3629,7 +3696,11 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *       'https://www.googleapis.com/auth/organizationpolicy.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3642,7 +3713,7 @@ export namespace orgpolicy_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      *     pageToken: 'placeholder-value',
-     *     // Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     *     // Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_number\}` * `organizations/{organization_number\}`
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -3770,7 +3841,7 @@ export namespace orgpolicy_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     * Required. The Google Cloud resource that parents the constraint. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_number\}` * `organizations/{organization_number\}`
      */
     parent?: string;
   }
@@ -3803,7 +3874,10 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3812,7 +3886,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.projects.policies.create({
-     *     // Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     *     // Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_number\}` * `organizations/{organization_number\}`
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -3962,7 +4036,10 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4096,7 +4173,11 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *       'https://www.googleapis.com/auth/organizationpolicy.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4240,7 +4321,11 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *       'https://www.googleapis.com/auth/organizationpolicy.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4387,7 +4472,11 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *       'https://www.googleapis.com/auth/organizationpolicy.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4400,7 +4489,7 @@ export namespace orgpolicy_v2 {
      *     pageSize: 'placeholder-value',
      *     // Page token used to retrieve the next page. This is not used, but the server may at any point start using this field.
      *     pageToken: 'placeholder-value',
-     *     // Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     *     // Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_number\}` * `organizations/{organization_number\}`
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -4539,7 +4628,10 @@ export namespace orgpolicy_v2 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/organizationpolicy',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4548,7 +4640,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Do the magic
      *   const res = await orgpolicy.projects.policies.patch({
-     *     // Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     *     // Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_number\}/policies/{constraint_name\}` * `organizations/{organization_number\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      *     name: 'projects/my-project/policies/my-policie',
      *     // Field mask used to specify the fields to be overwritten in the policy. The fields specified in the update_mask are relative to the policy, not the full request.
      *     updateMask: 'placeholder-value',
@@ -4678,7 +4770,7 @@ export namespace orgpolicy_v2 {
 
   export interface Params$Resource$Projects$Policies$Create extends StandardParameters {
     /**
-     * Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     * Required. The Google Cloud resource that will parent the new policy. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_number\}` * `organizations/{organization_number\}`
      */
     parent?: string;
 
@@ -4719,13 +4811,13 @@ export namespace orgpolicy_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_id\}` * `organizations/{organization_id\}`
+     * Required. The target Google Cloud resource that parents the set of constraints and policies that will be returned from this call. Must be in one of the following forms: * `projects/{project_number\}` * `projects/{project_id\}` * `folders/{folder_number\}` * `organizations/{organization_number\}`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Policies$Patch extends StandardParameters {
     /**
-     * Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
+     * Immutable. The resource name of the policy. Must be one of the following forms, where `constraint_name` is the name of the constraint that this policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_number\}/policies/{constraint_name\}` * `organizations/{organization_number\}/policies/{constraint_name\}` For example, `projects/123/policies/compute.disableSerialPortAccess`. Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      */
     name?: string;
     /**
