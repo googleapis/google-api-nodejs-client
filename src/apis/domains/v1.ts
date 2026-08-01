@@ -511,6 +511,10 @@ export namespace domains_v1 {
      * Required. The Tag of the new registrar. Can be found at [List of registrars](https://nominet.uk/registrar-list/).
      */
     tag?: string | null;
+    /**
+     * Optional. If set, validates the request without actually initiating the transfer.
+     */
+    validateOnly?: boolean | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -1279,8 +1283,7 @@ export namespace domains_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -1404,8 +1407,7 @@ export namespace domains_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1601,8 +1603,7 @@ export namespace domains_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1727,8 +1728,7 @@ export namespace domains_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -1939,8 +1939,7 @@ export namespace domains_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2094,8 +2093,7 @@ export namespace domains_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2250,8 +2248,7 @@ export namespace domains_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2391,8 +2388,7 @@ export namespace domains_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2535,8 +2531,7 @@ export namespace domains_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2823,8 +2818,7 @@ export namespace domains_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2974,8 +2968,7 @@ export namespace domains_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3063,7 +3056,8 @@ export namespace domains_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
-     *         //   "tag": "my_tag"
+     *         //   "tag": "my_tag",
+     *         //   "validateOnly": false
      *         // }
      *       },
      *     });
@@ -3127,8 +3121,7 @@ export namespace domains_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3254,8 +3247,7 @@ export namespace domains_v1 {
     list(
       params: Params$Resource$Projects$Locations$Registrations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRegistrationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRegistrationsResponse>,
       callback: BodyResponseCallback<Schema$ListRegistrationsResponse>
     ): void;
     list(
@@ -3360,6 +3352,8 @@ export namespace domains_v1 {
      *     name: 'projects/my-project/locations/my-location/registrations/my-registration',
      *     // Required. The field mask describing which fields to update as a comma-separated list. For example, if only the labels are being updated, the `update_mask` is `"labels"`.
      *     updateMask: 'placeholder-value',
+     *     // Optional. If set, validates the request without actually updating the registration.
+     *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -3441,8 +3435,7 @@ export namespace domains_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3591,8 +3584,7 @@ export namespace domains_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3743,8 +3735,7 @@ export namespace domains_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4918,8 +4909,7 @@ export namespace domains_v1 {
     searchDomains(
       params: Params$Resource$Projects$Locations$Registrations$Searchdomains,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SearchDomainsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SearchDomainsResponse>,
       callback: BodyResponseCallback<Schema$SearchDomainsResponse>
     ): void;
     searchDomains(
@@ -5090,8 +5080,7 @@ export namespace domains_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5221,8 +5210,7 @@ export namespace domains_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Registrations$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -5397,8 +5385,7 @@ export namespace domains_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5563,6 +5550,10 @@ export namespace domains_v1 {
      * Required. The field mask describing which fields to update as a comma-separated list. For example, if only the labels are being updated, the `update_mask` is `"labels"`.
      */
     updateMask?: string;
+    /**
+     * Optional. If set, validates the request without actually updating the registration.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata
