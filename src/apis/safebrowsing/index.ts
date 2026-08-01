@@ -35,10 +35,7 @@ export function safebrowsing<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v4'
-    | safebrowsing_v4.Options
-    | 'v5'
-    | safebrowsing_v5.Options
+    'v4' | safebrowsing_v4.Options | 'v5' | safebrowsing_v5.Options
 ) {
   return getAPI<T>('safebrowsing', versionOrOptions, VERSIONS, this);
 }
