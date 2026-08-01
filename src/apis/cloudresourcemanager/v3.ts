@@ -1160,8 +1160,7 @@ export namespace cloudresourcemanager_v3 {
     list(
       params: Params$Resource$Effectivetags$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListEffectiveTagsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListEffectiveTagsResponse>,
       callback: BodyResponseCallback<Schema$ListEffectiveTagsResponse>
     ): void;
     list(
@@ -1360,8 +1359,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1498,8 +1496,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1645,8 +1642,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Folder>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Folder>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Folder> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Folder>>
@@ -1793,8 +1789,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2087,8 +2082,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2245,8 +2239,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2369,8 +2362,7 @@ export namespace cloudresourcemanager_v3 {
     search(
       params: Params$Resource$Folders$Search,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SearchFoldersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SearchFoldersResponse>,
       callback: BodyResponseCallback<Schema$SearchFoldersResponse>
     ): void;
     search(
@@ -2535,8 +2527,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2663,8 +2654,7 @@ export namespace cloudresourcemanager_v3 {
     testIamPermissions(
       params: Params$Resource$Folders$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -2833,8 +2823,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3099,8 +3088,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Capability>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Capability>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Capability> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Capability>>
@@ -3249,8 +3237,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3431,8 +3418,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Lien>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Lien>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Lien> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Lien>>
@@ -3566,8 +3552,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3708,8 +3693,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Lien>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Lien>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Lien> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Lien>>
@@ -4188,8 +4172,7 @@ export namespace cloudresourcemanager_v3 {
     get(
       params: Params$Resource$Locations$Tagbindingcollections$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TagBindingCollection>,
+        MethodOptions | BodyResponseCallback<Schema$TagBindingCollection>,
       callback: BodyResponseCallback<Schema$TagBindingCollection>
     ): void;
     get(
@@ -4360,8 +4343,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4531,8 +4513,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4838,8 +4819,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5138,8 +5118,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5269,8 +5248,7 @@ export namespace cloudresourcemanager_v3 {
     testIamPermissions(
       params: Params$Resource$Organizations$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -5510,8 +5488,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5648,8 +5625,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5796,8 +5772,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Project>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Project>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Project> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Project>>
@@ -5944,8 +5919,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6074,8 +6048,7 @@ export namespace cloudresourcemanager_v3 {
     list(
       params: Params$Resource$Projects$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListProjectsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListProjectsResponse>,
       callback: BodyResponseCallback<Schema$ListProjectsResponse>
     ): void;
     list(
@@ -6240,8 +6213,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6399,8 +6371,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6523,8 +6494,7 @@ export namespace cloudresourcemanager_v3 {
     search(
       params: Params$Resource$Projects$Search,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SearchProjectsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SearchProjectsResponse>,
       callback: BodyResponseCallback<Schema$SearchProjectsResponse>
     ): void;
     search(
@@ -6692,8 +6662,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6823,8 +6792,7 @@ export namespace cloudresourcemanager_v3 {
     testIamPermissions(
       params: Params$Resource$Projects$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -6993,8 +6961,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7274,8 +7241,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7413,8 +7379,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7538,8 +7503,7 @@ export namespace cloudresourcemanager_v3 {
     list(
       params: Params$Resource$Tagbindings$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTagBindingsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTagBindingsResponse>,
       callback: BodyResponseCallback<Schema$ListTagBindingsResponse>
     ): void;
     list(
@@ -7753,8 +7717,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7895,8 +7858,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8042,8 +8004,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$TagKey>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TagKey>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TagKey> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TagKey>>
@@ -8190,8 +8151,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -8341,8 +8301,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$TagKey>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TagKey>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TagKey> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TagKey>>
@@ -8647,8 +8606,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8793,8 +8751,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -8921,8 +8878,7 @@ export namespace cloudresourcemanager_v3 {
     testIamPermissions(
       params: Params$Resource$Tagkeys$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -9213,8 +9169,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9355,8 +9310,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9499,8 +9453,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$TagValue>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TagValue>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TagValue> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TagValue>>
@@ -9647,8 +9600,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -9795,8 +9747,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$TagValue>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TagValue>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TagValue> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TagValue>>
@@ -9923,8 +9874,7 @@ export namespace cloudresourcemanager_v3 {
     list(
       params: Params$Resource$Tagvalues$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTagValuesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTagValuesResponse>,
       callback: BodyResponseCallback<Schema$ListTagValuesResponse>
     ): void;
     list(
@@ -10100,8 +10050,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10246,8 +10195,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -10374,8 +10322,7 @@ export namespace cloudresourcemanager_v3 {
     testIamPermissions(
       params: Params$Resource$Tagvalues$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -10663,8 +10610,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10807,8 +10753,7 @@ export namespace cloudresourcemanager_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10934,8 +10879,7 @@ export namespace cloudresourcemanager_v3 {
     list(
       params: Params$Resource$Tagvalues$Tagholds$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTagHoldsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTagHoldsResponse>,
       callback: BodyResponseCallback<Schema$ListTagHoldsResponse>
     ): void;
     list(
