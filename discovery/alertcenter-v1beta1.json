@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20260525",
+  "revision": "20260727",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AbuseDetected": {
@@ -1856,11 +1856,13 @@
           "description": "Optional. Agent type that triggered the rule.",
           "enum": [
             "AGENT_TYPE_UNSPECIFIED",
-            "STUDIO"
+            "STUDIO",
+            "WORK_AGENT"
           ],
           "enumDescriptions": [
             "Unspecified agent type.",
-            "Studio agent type."
+            "Studio agent type.",
+            "Work Agent agent type."
           ],
           "type": "string"
         },
@@ -2008,7 +2010,8 @@
             "CHROME_URL_VISITED",
             "CHROMEOS_FILE_TRANSFER",
             "GEMINI_ACCESS",
-            "AGENT_EXECUTION"
+            "AGENT_EXECUTION",
+            "CHROME_DATA_COPIED"
           ],
           "enumDescriptions": [
             "Trigger is unspecified.",
@@ -2023,7 +2026,8 @@
             "A URL is visited within Chrome.",
             "A file being transferred (copy or moved) between different file systems on ChromeOS.",
             "Gemini access.",
-            "Agent execution."
+            "Agent execution.",
+            "Text copied from Chrome."
           ],
           "type": "string"
         },
