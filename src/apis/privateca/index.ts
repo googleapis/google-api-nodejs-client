@@ -35,10 +35,7 @@ export function privateca<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | privateca_v1.Options
-    | 'v1beta1'
-    | privateca_v1beta1.Options
+    'v1' | privateca_v1.Options | 'v1beta1' | privateca_v1beta1.Options
 ) {
   return getAPI<T>('privateca', versionOrOptions, VERSIONS, this);
 }

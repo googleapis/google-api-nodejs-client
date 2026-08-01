@@ -1128,7 +1128,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The resource name of the parent associated with the Certificates, in the format `projects/*/locations/*/caPools/*`. The parent resource name can be in one of two forms: 1. **Specific CA Pool:** To list certificates within a single CA Pool: `projects/*/locations/*/caPools/*` 2. **All CA Pools in a Location:** To list certificates across *all* CA Pools in a given project and location, use the wildcard character (`-`) in place of the CA Pool ID. Example: `projects/*/locations/*/caPools/-` See go/ccfe-nested-collections#aggregate-listing for more details.",
+                          "description": "Required. The resource name of the parent associated with the Certificates, in the format `projects/*/locations/*/caPools/*`. The parent resource name can be in one of two forms: 1. **Specific CA Pool:** To list certificates within a single CA Pool: `projects/*/locations/*/caPools/*` 2. **All CA Pools in a Location:** To list certificates across *all* CA Pools in a given project and location, use the wildcard character (`-`) in place of the CA Pool ID. Example: `projects/*/locations/*/caPools/-`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/caPools/[^/]+$",
                           "required": true,
@@ -1616,7 +1616,7 @@
       }
     }
   },
-  "revision": "20260430",
+  "revision": "20260529",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AccessUrls": {
