@@ -3742,7 +3742,7 @@
       }
     }
   },
-  "revision": "20260518",
+  "revision": "20260608",
   "rootUrl": "https://vmwareengine.googleapis.com/",
   "schemas": {
     "AcceleratePrivateCloudDeletionRequest": {
@@ -4296,6 +4296,33 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "EncryptionConfig": {
+      "description": "Encryption configuration for a private cloud.",
+      "id": "EncryptionConfig",
+      "properties": {
+        "cryptoKeyName": {
+          "description": "Optional. The resource name of the Cloud KMS key to be used for CMEK encryption. The format of this field is `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`. The key must be in the same region as the private cloud. This key is used for wrapping the key-encrypting key of vSAN clusters. This field must be provided when `type` is `CMEK` or `LEGACY_CMEK`, and must not be set when `type` is `OTHER`.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. The encryption type of the private cloud.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "CMEK",
+            "LEGACY_CMEK",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "The default value. This value should never be used.",
+            "Customer-managed encryption keys (CMEK).",
+            "Legacy customer-managed encryption keys (CMEK).",
+            "Other encryption types, such as self-managed external KMS."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Expr": {
@@ -6080,6 +6107,10 @@
         "description": {
           "description": "User-provided description for this private cloud.",
           "type": "string"
+        },
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig",
+          "description": "Optional. Encryption configuration for the private cloud. If this field is left unspecified, Google default encryption is used."
         },
         "expireTime": {
           "description": "Output only. Time when the resource will be irreversibly deleted.",
