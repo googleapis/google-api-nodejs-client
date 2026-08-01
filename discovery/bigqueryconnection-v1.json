@@ -366,7 +366,7 @@
       }
     }
   },
-  "revision": "20240727",
+  "revision": "20260601",
   "rootUrl": "https://bigqueryconnection.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -698,6 +698,13 @@
         "network": {
           "$ref": "ConnectorConfigurationNetwork",
           "description": "Networking configuration."
+        },
+        "parameters": {
+          "additionalProperties": {
+            "$ref": "ConnectorConfigurationParameterValue"
+          },
+          "description": "Optional. A map of name-value pairs for connector-specific parameters. Extra configuration parameters, that are not standardized in configuration sections. To update a single parameter value call ConnectionService.UpdateConnection with `update_mask` set to `configuration.parameters.parameter_id`. If parameter id does not fit `[a-zA-Z0-9_]+` pattern, it should be escaped with backticks - for example ``configuration.parameters.`parameter id` ``.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -721,6 +728,13 @@
       "description": "Client authentication.",
       "id": "ConnectorConfigurationAuthentication",
       "properties": {
+        "parameters": {
+          "additionalProperties": {
+            "$ref": "ConnectorConfigurationParameterValue"
+          },
+          "description": "Optional. A map of name-value pairs for authentication-specific parameters. Extra configuration parameters, that are not standardized in authentication. To update a single parameter value call ConnectionService.UpdateConnection with `update_mask` set to `configuration.authentication.parameters.parameter_id`. If parameter id does not fit `[a-zA-Z0-9_]+` pattern, it should be escaped with backticks - for example ``configuration.authentication.parameters.`parameter id` ``.",
+          "type": "object"
+        },
         "serviceAccount": {
           "description": "Output only. Google-managed service account associated with this connection, e.g., `service-{project_number}@gcp-sa-bigqueryconnection.iam.gserviceaccount.com`. BigQuery jobs using this connection will act as `service_account` identity while connecting to the datasource.",
           "readOnly": true,
@@ -751,6 +765,35 @@
         "privateServiceConnect": {
           "$ref": "ConnectorConfigurationPrivateServiceConnect",
           "description": "Private Service Connect networking configuration."
+        }
+      },
+      "type": "object"
+    },
+    "ConnectorConfigurationParameterValue": {
+      "description": "Represents a value for a connector parameter.",
+      "id": "ConnectorConfigurationParameterValue",
+      "properties": {
+        "boolValue": {
+          "description": "A boolean parameter value.",
+          "type": "boolean"
+        },
+        "doubleValue": {
+          "description": "A double parameter value.",
+          "format": "double",
+          "type": "number"
+        },
+        "int32Value": {
+          "description": "An int32 parameter value.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "secretValue": {
+          "$ref": "ConnectorConfigurationSecret",
+          "description": "A secret parameter value. Allowed only for Authentication parameters."
+        },
+        "stringValue": {
+          "description": "A string parameter value.",
+          "type": "string"
         }
       },
       "type": "object"
