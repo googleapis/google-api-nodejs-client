@@ -952,7 +952,7 @@ export namespace realtimebidding_v1 {
    */
   export interface Schema$PretargetingConfig {
     /**
-     * Targeting modes included by this config. A bid request must allow all the specified targeting modes. An unset value allows all bid requests to be sent, regardless of which targeting modes they allow.
+     * Deprecated: The value of this field no longer has any effect. Targeting modes included by this config. A bid request must allow all the specified targeting modes. An unset value allows all bid requests to be sent, regardless of which targeting modes they allow.
      */
     allowedUserTargetingModes?: string[] | null;
     /**
@@ -1350,8 +1350,7 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Schema$Bidder>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Bidder>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Bidder> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Bidder>>
@@ -1636,8 +1635,7 @@ export namespace realtimebidding_v1 {
     list(
       params: Params$Resource$Bidders$Creatives$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCreativesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCreativesResponse>,
       callback: BodyResponseCallback<Schema$ListCreativesResponse>
     ): void;
     list(
@@ -1783,8 +1781,7 @@ export namespace realtimebidding_v1 {
     watch(
       params: Params$Resource$Bidders$Creatives$Watch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$WatchCreativesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$WatchCreativesResponse>,
       callback: BodyResponseCallback<Schema$WatchCreativesResponse>
     ): void;
     watch(
@@ -1986,8 +1983,7 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Schema$Endpoint>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Endpoint>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Endpoint> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Endpoint>>
@@ -2108,8 +2104,7 @@ export namespace realtimebidding_v1 {
     list(
       params: Params$Resource$Bidders$Endpoints$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListEndpointsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListEndpointsResponse>,
       callback: BodyResponseCallback<Schema$ListEndpointsResponse>
     ): void;
     list(
@@ -2284,8 +2279,7 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Schema$Endpoint>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Endpoint>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Endpoint> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Endpoint>>
@@ -3336,8 +3330,7 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5470,8 +5463,7 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Schema$Buyer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Buyer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Buyer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Buyer>>
@@ -5586,8 +5578,7 @@ export namespace realtimebidding_v1 {
     getRemarketingTag(
       params: Params$Resource$Buyers$Getremarketingtag,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GetRemarketingTagResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GetRemarketingTagResponse>,
       callback: BodyResponseCallback<Schema$GetRemarketingTagResponse>
     ): void;
     getRemarketingTag(
@@ -5961,8 +5952,7 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Creative>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Creative> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
@@ -6121,8 +6111,7 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Creative>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Creative> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
@@ -6247,8 +6236,7 @@ export namespace realtimebidding_v1 {
     list(
       params: Params$Resource$Buyers$Creatives$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCreativesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCreativesResponse>,
       callback: BodyResponseCallback<Schema$ListCreativesResponse>
     ): void;
     list(
@@ -6455,8 +6443,7 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Creative>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Creative> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
@@ -6667,8 +6654,7 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Schema$UserList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UserList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UserList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UserList>>
@@ -6820,8 +6806,7 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Schema$UserList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UserList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UserList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UserList>>
@@ -6963,8 +6948,7 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Schema$UserList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UserList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UserList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UserList>>
@@ -7080,8 +7064,7 @@ export namespace realtimebidding_v1 {
     getRemarketingTag(
       params: Params$Resource$Buyers$Userlists$Getremarketingtag,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GetRemarketingTagResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GetRemarketingTagResponse>,
       callback: BodyResponseCallback<Schema$GetRemarketingTagResponse>
     ): void;
     getRemarketingTag(
@@ -7227,8 +7210,7 @@ export namespace realtimebidding_v1 {
     list(
       params: Params$Resource$Buyers$Userlists$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListUserListsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListUserListsResponse>,
       callback: BodyResponseCallback<Schema$ListUserListsResponse>
     ): void;
     list(
@@ -7396,8 +7378,7 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Schema$UserList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UserList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UserList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UserList>>
@@ -7549,8 +7530,7 @@ export namespace realtimebidding_v1 {
         | BodyResponseCallback<Schema$UserList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UserList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UserList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UserList>>
