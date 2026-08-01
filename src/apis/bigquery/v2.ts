@@ -208,6 +208,10 @@ export namespace bigquery_v2 {
      * Optional. The name of this argument. Can be absent for function return argument.
      */
     name?: string | null;
+    /**
+     * Optional. Set if argument_kind == FIXED_TABLE.
+     */
+    tableType?: Schema$StandardSqlTableType;
   }
   /**
    * Arima coefficients.
@@ -387,6 +391,37 @@ export namespace bigquery_v2 {
      * The tuple of time_series_ids identifying this time series. It will be one of the unique tuples of values present in the time_series_id_columns specified during ARIMA model training. Only present when time_series_id_columns training option was used and the order of values here are same as the order of time_series_id_columns.
      */
     timeSeriesIds?: string[] | null;
+  }
+  /**
+   * Arrow RecordBatch. This feature is not yet available.
+   */
+  export interface Schema$ArrowRecordBatch {
+    /**
+     * IPC-serialized Arrow RecordBatch.
+     */
+    serializedRecordBatch?: string | null;
+  }
+  /**
+   * Arrow schema as specified in https://arrow.apache.org/docs/python/api/datatypes.html and serialized to bytes using IPC: https://arrow.apache.org/docs/format/Columnar.html#serialization-and-interprocess-communication-ipc See code samples on how this message can be deserialized. This feature is not yet available.
+   */
+  export interface Schema$ArrowSchema {
+    /**
+     * IPC serialized Arrow schema.
+     */
+    serializedSchema?: string | null;
+  }
+  /**
+   * Contains options specific to Arrow Serialization. This feature is not yet available.
+   */
+  export interface Schema$ArrowSerializationOptions {
+    /**
+     * The compression codec to use for Arrow buffers in serialized record batches.
+     */
+    bufferCompression?: string | null;
+    /**
+     * Optional. Set timestamp precision option. If not set, the default precision is microseconds.
+     */
+    picosTimestampPrecision?: string | null;
   }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
@@ -1670,7 +1705,7 @@ export namespace bigquery_v2 {
      */
     timestampFormat?: string | null;
     /**
-     * Precisions (maximum number of total digits in base 10) for seconds of TIMESTAMP types that are allowed to the destination table for autodetection mode. Available for the formats: CSV, PARQUET, and AVRO. Possible values include: Not Specified, [], or [6]: timestamp(6) for all auto detected TIMESTAMP columns [6, 12]: timestamp(6) for all auto detected TIMESTAMP columns that have less than 6 digits of subseconds. timestamp(12) for all auto detected TIMESTAMP columns that have more than 6 digits of subseconds. [12]: timestamp(12) for all auto detected TIMESTAMP columns. The order of the elements in this array is ignored. Inputs that have higher precision than the highest target precision in this array will be truncated.
+     * Precisions (maximum number of total digits in base 10) for seconds of TIMESTAMP types that are allowed to the destination table for autodetection mode. Available for the formats: CSV, PARQUET, AVRO, and Iceberg External Table. Possible values include: Not Specified, [], or [6]: timestamp(6) for all auto detected TIMESTAMP columns [6, 12]: timestamp(6) for all auto detected TIMESTAMP columns that have less than 6 digits of subseconds. timestamp(12) for all auto detected TIMESTAMP columns that have more than 6 digits of subseconds. [12]: timestamp(12) for all auto detected TIMESTAMP columns. The order of the elements in this array is ignored. Inputs that have higher precision than the highest target precision in this array will be truncated.
      */
     timestampTargetPrecision?: number[] | null;
     /**
@@ -1704,7 +1739,7 @@ export namespace bigquery_v2 {
      */
     containerMemory?: string | null;
     /**
-     * Optional. Maximum number of requests that a Cloud Run instance can handle concurrently. If absent or if `0`, a default concurrency is used.
+     * Optional. Maximum number of requests that a Python UDF instance can handle concurrently. If absent or if `0`, the default concurrency value is used. For more information, see [Configure container limits for Python UDFs](https://cloud.google.com/bigquery/docs/user-defined-functions-python#configure-container-limits).
      */
     containerRequestConcurrency?: string | null;
     /**
@@ -1896,7 +1931,7 @@ export namespace bigquery_v2 {
      */
     asynchronous?: boolean | null;
     /**
-     * Optional. The generation expression (e.g. AI.EMBED(...)) used to generated the field.
+     * Optional. The generation expression (e.g. AI.EMBED(...)) used to generate the field.
      */
     generationExpression?: string | null;
     /**
@@ -2465,7 +2500,7 @@ export namespace bigquery_v2 {
      */
     query?: Schema$JobConfigurationQuery;
     /**
-     * Optional. The reservation that job would use. User can specify a reservation to execute the job. If reservation is not set, reservation is determined based on the rules defined by the reservation assignments. The expected format is `projects/{project\}/locations/{location\}/reservations/{reservation\}`.
+     * Optional. The reservation that job would use. User can specify a reservation to execute the job. If reservation is not set, reservation is determined based on the rules defined by the reservation assignments. The expected format is `projects/{project\}/locations/{location\}/reservations/{reservation\}`. Forces the query to use on-demand billing when set to `none`, which requires the project or organization to have `reservation_override_mode` set to `ALLOW_ANY_OVERRIDE`.
      */
     reservation?: string | null;
   }
@@ -2683,7 +2718,7 @@ export namespace bigquery_v2 {
      */
     timestampFormat?: string | null;
     /**
-     * Precisions (maximum number of total digits in base 10) for seconds of TIMESTAMP types that are allowed to the destination table for autodetection mode. Available for the formats: CSV, PARQUET, and AVRO. Possible values include: Not Specified, [], or [6]: timestamp(6) for all auto detected TIMESTAMP columns [6, 12]: timestamp(6) for all auto detected TIMESTAMP columns that have less than 6 digits of subseconds. timestamp(12) for all auto detected TIMESTAMP columns that have more than 6 digits of subseconds. [12]: timestamp(12) for all auto detected TIMESTAMP columns. The order of the elements in this array is ignored. Inputs that have higher precision than the highest target precision in this array will be truncated.
+     * Precisions (maximum number of total digits in base 10) for seconds of TIMESTAMP types that are allowed to the destination table for autodetection mode. Available for the formats: CSV, PARQUET, AVRO, and Iceberg External Table. Possible values include: Not Specified, [], or [6]: timestamp(6) for all auto detected TIMESTAMP columns [6, 12]: timestamp(6) for all auto detected TIMESTAMP columns that have less than 6 digits of subseconds. timestamp(12) for all auto detected TIMESTAMP columns that have more than 6 digits of subseconds. [12]: timestamp(12) for all auto detected TIMESTAMP columns. The order of the elements in this array is ignored. Inputs that have higher precision than the highest target precision in this array will be truncated.
      */
     timestampTargetPrecision?: number[] | null;
     /**
@@ -2952,6 +2987,10 @@ export namespace bigquery_v2 {
      */
     finalExecutionDurationMs?: string | null;
     /**
+     * Output only. Regions where the global query accesses data.
+     */
+    globalQueryRemoteRegions?: string[] | null;
+    /**
      * Output only. Statistics for a load job.
      */
     load?: Schema$JobStatistics3;
@@ -2959,6 +2998,10 @@ export namespace bigquery_v2 {
      * Output only. Number of child jobs executed.
      */
     numChildJobs?: string | null;
+    /**
+     * Output only. The global query that created this job.
+     */
+    parentGlobalQueryJob?: Schema$JobReference;
     /**
      * Output only. If this is a child job, specifies the job ID of the parent.
      */
@@ -3125,6 +3168,10 @@ export namespace bigquery_v2 {
      */
     numDmlAffectedRows?: string | null;
     /**
+     * Output only. Storage and caching statistics per cloud provider for queries over object storage.
+     */
+    objectStorageStats?: Schema$ObjectStorageStats[];
+    /**
      * Output only. Performance insights.
      */
     performanceInsights?: Schema$PerformanceInsights;
@@ -3197,7 +3244,7 @@ export namespace bigquery_v2 {
      */
     totalSlotMs?: string | null;
     /**
-     * Output only. Total bytes transferred for cross-cloud queries such as Cross Cloud Transfer and CREATE TABLE AS SELECT (CTAS).
+     * Output only. Total bytes transferred for BigQuery Omni queries from the remote cloud back to Google Cloud. This tracks data movement over Google-managed connections (like query results). It doesn't include input data read from the external data lake (for example, S3) because that data stays within the remote cloud.
      */
     transferredBytes?: string | null;
     /**
@@ -3267,6 +3314,10 @@ export namespace bigquery_v2 {
      * Output only. Number of rows copied to the destination table.
      */
     copiedRows?: string | null;
+    /**
+     * Output only. Destination region for a cross-region copy job. Not set for in-region copy jobs.
+     */
+    remoteDestinationRegion?: string | null;
   }
   export interface Schema$JobStatus {
     /**
@@ -3663,6 +3714,23 @@ export namespace bigquery_v2 {
     confusionMatrixList?: Schema$ConfusionMatrix[];
   }
   /**
+   * Storage and caching statistics for object storage.
+   */
+  export interface Schema$ObjectStorageStats {
+    /**
+     * Total bytes read from the GCP Lakehouse-internal cache, avoiding an object storage read.
+     */
+    cacheBytesRead?: string | null;
+    /**
+     * The cloud provider for this block of statistics.
+     */
+    cloudProvider?: string | null;
+    /**
+     * Total bytes read directly from the cloud provider's storage.
+     */
+    objectStorageBytesRead?: string | null;
+  }
+  /**
    * Parquet Options for load and make external tables.
    */
   export interface Schema$ParquetOptions {
@@ -3954,6 +4022,10 @@ export namespace bigquery_v2 {
    */
   export interface Schema$QueryRequest {
     /**
+     * Optional. Options specific to the Apache Arrow output format.
+     */
+    arrowSerializationOptions?: Schema$ArrowSerializationOptions;
+    /**
      * Optional. Connection properties which can modify the query behavior.
      */
     connectionProperties?: Schema$ConnectionProperty[];
@@ -4030,11 +4102,15 @@ export namespace bigquery_v2 {
      */
     queryParameters?: Schema$QueryParameter[];
     /**
+     * Optional. The query results format. If the value is anything other than `STRUCT_ENCODING` or unspecified: * The schema of the results will be provided in `QueryResponse.results_schema` field. * The results of the first page will be provided in `QueryResponse.results` field. * The `QueryResponse.rows` will not be populated. * The `QueryResponse.schema` for `QueryResponse.rows` will also not be populated since it is the schema of the `QueryResponse.rows`. This feature is not yet available.
+     */
+    queryResultsFormat?: string | null;
+    /**
      * Optional. A unique user provided identifier to ensure idempotent behavior for queries. Note that this is different from the job_id. It has the following properties: 1. It is case-sensitive, limited to up to 36 ASCII characters. A UUID is recommended. 2. Read only queries can ignore this token since they are nullipotent by definition. 3. For the purposes of idempotency ensured by the request_id, a request is considered duplicate of another only if they have the same request_id and are actually duplicates. When determining whether a request is a duplicate of another request, all parameters in the request that may affect the result are considered. For example, query, connection_properties, query_parameters, use_legacy_sql are parameters that affect the result and are considered when determining whether a request is a duplicate, but properties like timeout_ms don't affect the result and are thus not considered. Dry run query requests are never considered duplicate of another request. 4. When a duplicate mutating query request is detected, it returns: a. the results of the mutation if it completes successfully within the timeout. b. the running operation if it is still in progress at the end of the timeout. 5. Its lifetime is limited to 15 minutes. In other words, if two requests are sent with the same request_id, but more than 15 minutes apart, idempotency is not guaranteed.
      */
     requestId?: string | null;
     /**
-     * Optional. The reservation that jobs.query request would use. User can specify a reservation to execute the job.query. The expected format is `projects/{project\}/locations/{location\}/reservations/{reservation\}`.
+     * Optional. The reservation that jobs.query request would use. User can specify a reservation to execute the job.query. The expected format is `projects/{project\}/locations/{location\}/reservations/{reservation\}`. Forces the query to use on-demand billing when set to `none`. This requires the project or organization to have `reservation_override_mode` set to `ALLOW_ANY_OVERRIDE`.
      */
     reservation?: string | null;
     /**
@@ -4055,6 +4131,14 @@ export namespace bigquery_v2 {
     writeIncrementalResults?: boolean | null;
   }
   export interface Schema$QueryResponse {
+    /**
+     * Output only. Serialized row data in Arrow RecordBatch format.
+     */
+    arrowRecordBatch?: Schema$ArrowRecordBatch;
+    /**
+     * Output only. Arrow schema
+     */
+    arrowSchema?: Schema$ArrowSchema;
     /**
      * Whether the query result was fetched from the query cache.
      */
@@ -4099,6 +4183,10 @@ export namespace bigquery_v2 {
      * Output only. The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
      */
     numDmlAffectedRows?: string | null;
+    /**
+     * Output only. The number of rows out of `total_rows` returned in this response. This feature is not yet available.
+     */
+    pageRowCount?: string | null;
     /**
      * A token used for paging results. A non-empty token indicates that additional results are available. To see additional results, query the [`jobs.getQueryResults`](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/getQueryResults) method. For more information, see [Paging through table data](https://cloud.google.com/bigquery/docs/paging-results).
      */
@@ -6030,7 +6118,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Deletes the dataset specified by the datasetId value. Before you can delete a dataset, you must delete all its tables, either manually or by specifying deleteContents. Immediately after deletion, you can create another dataset with the same name.
+     * Deletes the dataset specified by the datasetId value. Before you can delete a dataset, you must delete all its tables, either manually or by specifying deleteContents. Immediately after deletion, you can create another dataset with the same name. # IAM Permissions Requires the `bigquery.datasets.delete` permission on the dataset.
      * @example
      * ```js
      * // Before running the sample:
@@ -6166,7 +6254,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Returns the dataset specified by datasetID.
+     * Returns the dataset specified by datasetID. # IAM Permissions Requires the `bigquery.datasets.get` permission on the dataset.
      * @example
      * ```js
      * // Before running the sample:
@@ -6293,8 +6381,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Dataset>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Dataset> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>
@@ -6342,7 +6429,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Creates a new empty dataset.
+     * Creates a new empty dataset. # IAM Permissions Requires the `bigquery.datasets.create` permission on the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -6502,8 +6589,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Dataset>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Dataset> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>
@@ -6550,7 +6636,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Lists all datasets in the specified project to which the user has been granted the READER dataset role.
+     * Lists all datasets in the specified project to which the user has been granted the READER dataset role. # IAM Permissions Requires no specific IAM permission(s) to use this method. Results are filtered to only include datasets on which the caller has the `bigquery.datasets.get` permission.
      * @example
      * ```js
      * // Before running the sample:
@@ -6701,7 +6787,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource. This method supports RFC5789 patch semantics.
+     * Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource. This method supports RFC5789 patch semantics. # IAM Permissions Requires the following IAM permission(s) to use this method: - `bigquery.datasets.update` on the dataset. - `bigquery.datasets.get` on the dataset.
      * @example
      * ```js
      * // Before running the sample:
@@ -6865,8 +6951,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Dataset>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Dataset> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>
@@ -6914,7 +6999,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Undeletes a dataset which is within time travel window based on datasetId. If a time is specified, the dataset version deleted at that time is undeleted, else the last live version is undeleted.
+     * Undeletes a dataset which is within time travel window based on datasetId. If a time is specified, the dataset version deleted at that time is undeleted, else the last live version is undeleted. # IAM Permissions Requires the following IAM permission(s) to use this method: - `bigquery.datasets.create` on the project. - `bigquery.datasets.get` on the dataset.
      * @example
      * ```js
      * // Before running the sample:
@@ -7044,8 +7129,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Dataset>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Dataset> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>
@@ -7094,7 +7178,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource.
+     * Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource. # IAM Permissions Requires the `bigquery.datasets.update` permission on the dataset.
      * @example
      * ```js
      * // Before running the sample:
@@ -7258,8 +7342,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Dataset>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Dataset> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>
@@ -7445,7 +7528,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Requests that a job be cancelled. This call will return immediately, and the client will need to poll for the job status to see if the cancel completed successfully. Cancelled jobs may still incur costs.
+     * Requests that a job be cancelled. This call will return immediately, and the client will need to poll for the job status to see if the cancel completed successfully. Cancelled jobs may still incur costs. # IAM Permissions Requires the `bigquery.jobs.update` permission on the job resource. If the user matches the creator of the job, the `bigquery.jobs.create` permission on the project is required instead.
      * @example
      * ```js
      * // Before running the sample:
@@ -7589,7 +7672,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Requests the deletion of the metadata of a job. This call returns when the job's metadata is deleted.
+     * Requests the deletion of the metadata of a job. This call returns when the job's metadata is deleted. # IAM Permissions Requires the `bigquery.jobs.delete` permission on the job resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -7725,7 +7808,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Returns information about a specific job. Job information is available for a six month period after creation. Requires that you're the person who ran the job, or have the Is Owner project role.
+     * Returns information about a specific job. Job information is available for a six month period after creation. Requires that you're the person who ran the job, or have the Is Owner project role. # IAM Permissions Requires the `bigquery.jobs.get` permission on the job resource. If the user matches the creator of the job, the `bigquery.jobs.create` permission on the project is required instead.
      * @example
      * ```js
      * // Before running the sample:
@@ -7830,8 +7913,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -7878,7 +7960,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * RPC to get the results of a query job.
+     * RPC to get the results of a query job. # IAM Permissions Requires the following IAM permission(s) to use this method: - `bigquery.jobs.get` on the job. - `bigquery.tables.getData` on the destination table. If the user matches the creator of the job, the following IAM permission(s) are required instead: - `bigquery.jobs.create` on the project. - `bigquery.tables.getData` on the destination table.
      * @example
      * ```js
      * // Before running the sample:
@@ -7978,8 +8060,7 @@ export namespace bigquery_v2 {
     getQueryResults(
       params: Params$Resource$Jobs$Getqueryresults,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GetQueryResultsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GetQueryResultsResponse>,
       callback: BodyResponseCallback<Schema$GetQueryResultsResponse>
     ): void;
     getQueryResults(
@@ -8049,7 +8130,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Starts a new asynchronous job. This API has two different kinds of endpoint URIs, as this method supports a variety of use cases. * The *Metadata* URI is used for most interactions, as it accepts the job configuration directly. * The *Upload* URI is ONLY for the case when you're sending both a load job configuration and a data stream together. In this case, the Upload URI accepts the job configuration and the data as two distinct multipart MIME parts.
+     * Starts a new asynchronous job. This API has two different kinds of endpoint URIs, as this method supports a variety of use cases. * The *Metadata* URI is used for most interactions, as it accepts the job configuration directly. * The *Upload* URI is ONLY for the case when you're sending both a load job configuration and a data stream together. In this case, the Upload URI accepts the job configuration and the data as two distinct multipart MIME parts. # IAM Permissions Requires the `bigquery.jobs.create` permission on the project resource. Additional permissions are required depending on the job type: - **Load, Export, and Copy jobs**: Generally require data-level permissions such as `bigquery.tables.export` or access to external storage. - **Query jobs**: Permissions are dependent on the SQL statement. Complex queries (DDL, DCL) may require additional permissions to create reservations, modify IAM policies, or update project settings.
      * @example
      * ```js
      * // Before running the sample:
@@ -8174,8 +8255,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -8226,7 +8306,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Lists all jobs that you started in the specified project. Job information is available for a six month period after creation. The job list is sorted in reverse chronological order, by job creation time. Requires the Can View project role, or the Is Owner project role if you set the allUsers property.
+     * Lists all jobs that you started in the specified project. Job information is available for a six month period after creation. The job list is sorted in reverse chronological order, by job creation time. Requires the Can View project role, or the Is Owner project role if you set the allUsers property. # IAM Permissions Requires no specific IAM permission(s) to use this method. Users are able to list the jobs they created. Additional access is granted based on the following permissions: - Users with the `bigquery.jobs.listAll` permission can list all jobs with all metadata. - Users with the `bigquery.jobs.list` permission can list all jobs, but with redacted information for jobs they did not create.
      * @example
      * ```js
      * // Before running the sample:
@@ -8337,8 +8417,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$JobList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$JobList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$JobList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$JobList>>
@@ -8386,7 +8465,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Runs a BigQuery SQL query synchronously and returns query results if the query completes within a specified timeout.
+     * Runs a BigQuery SQL query synchronously and returns query results if the query completes within a specified timeout. # IAM Permissions Requires the `bigquery.jobs.create` permission on the project resource. Data-level permissions are highly dependent on the SQL statement being executed. While standard queries require data access (such as `bigquery.tables.getData`), complex operations like DDL or DCL may require permissions to manage reservations, IAM policies, or project settings.
      * @example
      * ```js
      * // Before running the sample:
@@ -8427,6 +8506,7 @@ export namespace bigquery_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "arrowSerializationOptions": {},
      *       //   "connectionProperties": [],
      *       //   "continuous": false,
      *       //   "createSession": false,
@@ -8446,6 +8526,7 @@ export namespace bigquery_v2 {
      *       //   "preserveNulls": false,
      *       //   "query": "my_query",
      *       //   "queryParameters": [],
+     *       //   "queryResultsFormat": "my_queryResultsFormat",
      *       //   "requestId": "my_requestId",
      *       //   "reservation": "my_reservation",
      *       //   "timeoutMs": 0,
@@ -8459,6 +8540,8 @@ export namespace bigquery_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "arrowRecordBatch": {},
+     *   //   "arrowSchema": {},
      *   //   "cacheHit": false,
      *   //   "creationTime": "my_creationTime",
      *   //   "dmlStats": {},
@@ -8470,6 +8553,7 @@ export namespace bigquery_v2 {
      *   //   "kind": "my_kind",
      *   //   "location": "my_location",
      *   //   "numDmlAffectedRows": "my_numDmlAffectedRows",
+     *   //   "pageRowCount": "my_pageRowCount",
      *   //   "pageToken": "my_pageToken",
      *   //   "queryId": "my_queryId",
      *   //   "rows": [],
@@ -8740,7 +8824,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Deletes the model specified by modelId from the dataset.
+     * Deletes the model specified by modelId from the dataset. # IAM Permissions Requires the `bigquery.models.delete` permission on the model.
      * @example
      * ```js
      * // Before running the sample:
@@ -8876,7 +8960,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Gets the specified model resource by model ID.
+     * Gets the specified model resource by model ID. # IAM Permissions Requires the `bigquery.models.getMetadata` permission on the model.
      * @example
      * ```js
      * // Before running the sample:
@@ -8991,8 +9075,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Model>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Model>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Model> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Model>>
@@ -9040,7 +9123,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Lists all models in the specified dataset. Requires the READER dataset role. After retrieving the list of models, you can get information about a particular model by calling the models.get method.
+     * Lists all models in the specified dataset. Requires the READER dataset role. After retrieving the list of models, you can get information about a particular model by calling the models.get method. # IAM Permissions Requires the `bigquery.models.list` permission on the dataset.
      * @example
      * ```js
      * // Before running the sample:
@@ -9187,7 +9270,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Patch specific fields in the specified model.
+     * Patch specific fields in the specified model. # IAM Permissions Requires the `bigquery.models.updateMetadata` permission on the model.
      * @example
      * ```js
      * // Before running the sample:
@@ -9329,8 +9412,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Model>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Model>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Model> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Model>>
@@ -9451,7 +9533,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * RPC to get the service account for a project used for interactions with Google Cloud KMS
+     * RPC to get the service account for a project used for interactions with Google Cloud KMS. Requires the `bigquery.jobs.create` permission on the project resource. This permission is required to authorize the retrieval of the project's service identity for technical management tasks like encryption configuration.
      * @example
      * ```js
      * // Before running the sample:
@@ -9525,8 +9607,7 @@ export namespace bigquery_v2 {
     getServiceAccount(
       params: Params$Resource$Projects$Getserviceaccount,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GetServiceAccountResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GetServiceAccountResponse>,
       callback: BodyResponseCallback<Schema$GetServiceAccountResponse>
     ): void;
     getServiceAccount(
@@ -9596,7 +9677,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * RPC to list projects to which the user has been granted any project role. Users of this method are encouraged to consider the [Resource Manager](https://cloud.google.com/resource-manager/docs/) API, which provides the underlying data for this method and has more capabilities.
+     * RPC to list projects to which the user has been granted any project role. Users of this method are encouraged to consider the [Resource Manager](https://cloud.google.com/resource-manager/docs/) API, which provides the underlying data for this method and has more capabilities. # IAM Permissions Requires no specific IAM permission(s) to use this method. The results are filtered to only include projects on which the caller has been granted a project-level role such as a BigQuery predefined IAM role or a basic role such as Viewer or Owner.
      * @example
      * ```js
      * // Before running the sample:
@@ -9766,7 +9847,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Deletes the routine specified by routineId from the dataset.
+     * Deletes the routine specified by routineId from the dataset. # IAM Permissions Requires the `bigquery.routines.delete` permission on the routine.
      * @example
      * ```js
      * // Before running the sample:
@@ -9902,7 +9983,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Gets the specified routine resource by routine ID.
+     * Gets the specified routine resource by routine ID. # IAM Permissions Requires the `bigquery.routines.get` permission on the routine.
      * @example
      * ```js
      * // Before running the sample:
@@ -10019,8 +10100,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Routine>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Routine>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Routine> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Routine>>
@@ -10170,8 +10250,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -10220,7 +10299,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Creates a new routine in the dataset.
+     * Creates a new routine in the dataset. # IAM Permissions Requires the `bigquery.routines.create` permission on the dataset.
      * @example
      * ```js
      * // Before running the sample:
@@ -10360,8 +10439,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Routine>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Routine>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Routine> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Routine>>
@@ -10409,7 +10487,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Lists all routines in the specified dataset. Requires the READER dataset role.
+     * Lists all routines in the specified dataset. Requires the READER dataset role. # IAM Permissions Requires the `bigquery.routines.list` permission on the dataset.
      * @example
      * ```js
      * // Before running the sample:
@@ -10493,8 +10571,7 @@ export namespace bigquery_v2 {
     list(
       params: Params$Resource$Routines$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRoutinesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRoutinesResponse>,
       callback: BodyResponseCallback<Schema$ListRoutinesResponse>
     ): void;
     list(
@@ -10664,8 +10741,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -10795,8 +10871,7 @@ export namespace bigquery_v2 {
     testIamPermissions(
       params: Params$Resource$Routines$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -10866,7 +10941,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Updates information in an existing routine. The update method replaces the entire Routine resource.
+     * Updates information in an existing routine. The update method replaces the entire Routine resource. # IAM Permissions Requires the `bigquery.routines.update` permission on the routine.
      * @example
      * ```js
      * // Before running the sample:
@@ -11008,8 +11083,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Routine>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Routine>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Routine> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Routine>>
@@ -11190,7 +11264,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Deletes provided row access policies.
+     * Deletes provided row access policies. # IAM Permissions Requires the following IAM permission(s) on the table: - `bigquery.rowAccessPolicies.delete` - `bigquery.rowAccessPolicies.setIamPolicy`
      * @example
      * ```js
      * // Before running the sample:
@@ -11336,7 +11410,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Deletes a row access policy.
+     * Deletes a row access policy. # IAM Permissions Requires the following IAM permission(s) on the table: - `bigquery.rowAccessPolicies.delete` - `bigquery.rowAccessPolicies.setIamPolicy`
      * @example
      * ```js
      * // Before running the sample:
@@ -11477,7 +11551,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Gets the specified row access policy by policy ID.
+     * Gets the specified row access policy by policy ID. # IAM Permissions Requires the `bigquery.rowAccessPolicies.get` permission on the table.
      * @example
      * ```js
      * // Before running the sample:
@@ -11732,8 +11806,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -11782,7 +11855,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Creates a row access policy.
+     * Creates a row access policy. # IAM Permissions Requires the following IAM permission(s) on the table: - `bigquery.rowAccessPolicies.create` - `bigquery.rowAccessPolicies.setIamPolicy` - `bigquery.tables.getData`
      * @example
      * ```js
      * // Before running the sample:
@@ -11944,7 +12017,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Lists all row access policies on the specified table.
+     * Lists all row access policies on the specified table. # IAM Permissions Requires the `bigquery.rowAccessPolicies.list` permission on the table.
      * @example
      * ```js
      * // Before running the sample:
@@ -12182,8 +12255,7 @@ export namespace bigquery_v2 {
     testIamPermissions(
       params: Params$Resource$Rowaccesspolicies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -12253,7 +12325,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Updates a row access policy.
+     * Updates a row access policy. # IAM Permissions Requires the following IAM permission(s) on the table: - `bigquery.rowAccessPolicies.update` - `bigquery.rowAccessPolicies.setIamPolicy` - `bigquery.tables.getData`
      * @example
      * ```js
      * // Before running the sample:
@@ -12570,7 +12642,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Streams data into BigQuery one record at a time without needing to run a load job.
+     * Streams data into BigQuery one record at a time without needing to run a load job. # IAM Permissions Requires the following IAM permission(s) to use this method: - `bigquery.tables.updateData` on the table. - `bigquery.tables.get` on the table. - `bigquery.datasets.get` on the dataset.
      * @example
      * ```js
      * // Before running the sample:
@@ -12661,8 +12733,7 @@ export namespace bigquery_v2 {
     insertAll(
       params: Params$Resource$Tabledata$Insertall,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TableDataInsertAllResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TableDataInsertAllResponse>,
       callback: BodyResponseCallback<Schema$TableDataInsertAllResponse>
     ): void;
     insertAll(
@@ -12733,7 +12804,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * List the content of a table in rows.
+     * List the content of a table in rows. # IAM Permissions Requires the `bigquery.tables.getData` permission on the table.
      * @example
      * ```js
      * // Before running the sample:
@@ -12958,7 +13029,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Deletes the table specified by tableId from the dataset. If the table contains data, all the data will be deleted.
+     * Deletes the table specified by tableId from the dataset. If the table contains data, all the data will be deleted. # IAM Permissions Requires the `bigquery.tables.delete` permission on the table.
      * @example
      * ```js
      * // Before running the sample:
@@ -13094,7 +13165,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Gets the specified table resource by table ID. This method does not return the data in the table, it only returns the table resource, which describes the structure of this table.
+     * Gets the specified table resource by table ID. This method does not return the data in the table, it only returns the table resource, which describes the structure of this table. # IAM Permissions Requires the `bigquery.tables.get` permission on the table.
      * @example
      * ```js
      * // Before running the sample:
@@ -13244,8 +13315,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Table>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Table> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
@@ -13395,8 +13465,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -13445,7 +13514,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Creates a new, empty table in the dataset.
+     * Creates a new, empty table in the dataset. # IAM Permissions Requires the `bigquery.tables.create` permission on the dataset.
      * @example
      * ```js
      * // Before running the sample:
@@ -13647,8 +13716,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Table>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Table> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
@@ -13696,7 +13764,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Lists all tables in the specified dataset. Requires the READER dataset role.
+     * Lists all tables in the specified dataset. Requires the READER dataset role. # IAM Permissions Requires the `bigquery.tables.list` permission on the dataset.
      * @example
      * ```js
      * // Before running the sample:
@@ -13797,8 +13865,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$TableList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TableList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TableList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TableList>>
@@ -13846,7 +13913,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Updates information in an existing table. The update method replaces the entire table resource, whereas the patch method only replaces fields that are provided in the submitted table resource. This method supports RFC5789 patch semantics.
+     * Updates information in an existing table. The update method replaces the entire table resource, whereas the patch method only replaces fields that are provided in the submitted table resource. This method supports RFC5789 patch semantics. # IAM Permissions Requires the following IAM permission(s) on the table: - `bigquery.tables.update` - `bigquery.tables.get`
      * @example
      * ```js
      * // Before running the sample:
@@ -14052,8 +14119,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Table>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Table> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
@@ -14203,8 +14269,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -14334,8 +14399,7 @@ export namespace bigquery_v2 {
     testIamPermissions(
       params: Params$Resource$Tables$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -14405,7 +14469,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Updates information in an existing table. The update method replaces the entire Table resource, whereas the patch method only replaces fields that are provided in the submitted Table resource.
+     * Updates information in an existing table. The update method replaces the entire Table resource, whereas the patch method only replaces fields that are provided in the submitted Table resource. # IAM Permissions Requires the `bigquery.tables.update` permission on the table.
      * @example
      * ```js
      * // Before running the sample:
@@ -14611,8 +14675,7 @@ export namespace bigquery_v2 {
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Table>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Table> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
