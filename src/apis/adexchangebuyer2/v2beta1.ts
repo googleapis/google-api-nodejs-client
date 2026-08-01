@@ -382,7 +382,12 @@ export namespace adexchangebuyer2_v2beta1 {
   /**
    * Request message for indicating that the proposal's setup step is complete.
    */
-  export interface Schema$CompleteSetupRequest {}
+  export interface Schema$CompleteSetupRequest {
+    /**
+     * The external deal ids of the deals to mark as setup completed. If empty, all the deals in the proposal will be marked as setup completed.
+     */
+    externalDealIds?: string[] | null;
+  }
   /**
    * Contains information on how a buyer or seller can be reached.
    */
@@ -2319,8 +2324,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Client>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Client> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
@@ -2467,8 +2471,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Client>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Client> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
@@ -2776,8 +2779,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Client>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Client> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
@@ -2972,8 +2974,7 @@ export namespace adexchangebuyer2_v2beta1 {
     create(
       params: Params$Resource$Accounts$Clients$Invitations$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ClientUserInvitation>,
+        MethodOptions | BodyResponseCallback<Schema$ClientUserInvitation>,
       callback: BodyResponseCallback<Schema$ClientUserInvitation>
     ): void;
     create(
@@ -3118,8 +3119,7 @@ export namespace adexchangebuyer2_v2beta1 {
     get(
       params: Params$Resource$Accounts$Clients$Invitations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ClientUserInvitation>,
+        MethodOptions | BodyResponseCallback<Schema$ClientUserInvitation>,
       callback: BodyResponseCallback<Schema$ClientUserInvitation>
     ): void;
     get(
@@ -3493,8 +3493,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$ClientUser>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ClientUser>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ClientUser> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ClientUser>>
@@ -3620,8 +3619,7 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Accounts$Clients$Users$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListClientUsersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListClientUsersResponse>,
       callback: BodyResponseCallback<Schema$ListClientUsersResponse>
     ): void;
     list(
@@ -3796,8 +3794,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$ClientUser>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ClientUser>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ClientUser> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ClientUser>>
@@ -4057,8 +4054,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Creative>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Creative> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
@@ -4222,8 +4218,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Creative>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Creative> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
@@ -4348,8 +4343,7 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Accounts$Creatives$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCreativesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCreativesResponse>,
       callback: BodyResponseCallback<Schema$ListCreativesResponse>
     ): void;
     list(
@@ -4512,8 +4506,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4710,8 +4703,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Creative>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Creative> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
@@ -4855,8 +4847,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5097,8 +5088,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5398,8 +5388,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5588,8 +5577,7 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Accounts$Finalizedproposals$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListProposalsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListProposalsResponse>,
       callback: BodyResponseCallback<Schema$ListProposalsResponse>
     ): void;
     list(
@@ -5774,8 +5762,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -5940,8 +5927,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -6154,8 +6140,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Product>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Product> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Product>>
@@ -6280,8 +6265,7 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Accounts$Products$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListProductsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListProductsResponse>,
       callback: BodyResponseCallback<Schema$ListProductsResponse>
     ): void;
     list(
@@ -6502,8 +6486,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -6654,8 +6637,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Note>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Note>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Note> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
@@ -6818,8 +6800,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -6907,7 +6888,9 @@ export namespace adexchangebuyer2_v2beta1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "externalDealIds": []
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -6982,8 +6965,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -7164,8 +7146,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -7322,8 +7303,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -7450,8 +7430,7 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Accounts$Proposals$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListProposalsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListProposalsResponse>,
       callback: BodyResponseCallback<Schema$ListProposalsResponse>
     ): void;
     list(
@@ -7636,8 +7615,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -7800,8 +7778,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -7984,8 +7961,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -8706,8 +8682,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$FilterSet>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$FilterSet>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$FilterSet> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$FilterSet>>
@@ -8842,8 +8817,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8990,8 +8964,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$FilterSet>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$FilterSet>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$FilterSet> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$FilterSet>>
@@ -9112,8 +9085,7 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFilterSetsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListFilterSetsResponse>,
       callback: BodyResponseCallback<Schema$ListFilterSetsResponse>
     ): void;
     list(
@@ -9308,8 +9280,7 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListBidMetricsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListBidMetricsResponse>,
       callback: BodyResponseCallback<Schema$ListBidMetricsResponse>
     ): void;
     list(
@@ -10015,8 +9986,7 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFilteredBidsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListFilteredBidsResponse>,
       callback: BodyResponseCallback<Schema$ListFilteredBidsResponse>
     ): void;
     list(
@@ -10731,8 +10701,7 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLosingBidsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLosingBidsResponse>,
       callback: BodyResponseCallback<Schema$ListLosingBidsResponse>
     ): void;
     list(
@@ -11154,8 +11123,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$FilterSet>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$FilterSet>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$FilterSet> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$FilterSet>>
@@ -11290,8 +11258,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -11438,8 +11405,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$FilterSet>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$FilterSet>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$FilterSet> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$FilterSet>>
@@ -11560,8 +11526,7 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Filtersets$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFilterSetsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListFilterSetsResponse>,
       callback: BodyResponseCallback<Schema$ListFilterSetsResponse>
     ): void;
     list(
@@ -11754,8 +11719,7 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Filtersets$Bidmetrics$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListBidMetricsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListBidMetricsResponse>,
       callback: BodyResponseCallback<Schema$ListBidMetricsResponse>
     ): void;
     list(
@@ -12448,8 +12412,7 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Filtersets$Filteredbids$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFilteredBidsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListFilteredBidsResponse>,
       callback: BodyResponseCallback<Schema$ListFilteredBidsResponse>
     ): void;
     list(
@@ -13153,8 +13116,7 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Bidders$Filtersets$Losingbids$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLosingBidsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLosingBidsResponse>,
       callback: BodyResponseCallback<Schema$ListLosingBidsResponse>
     ): void;
     list(
@@ -13579,8 +13541,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$FilterSet>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$FilterSet>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$FilterSet> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$FilterSet>>
@@ -13715,8 +13676,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -13863,8 +13823,7 @@ export namespace adexchangebuyer2_v2beta1 {
         | BodyResponseCallback<Schema$FilterSet>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$FilterSet>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$FilterSet> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$FilterSet>>
@@ -13985,8 +13944,7 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Buyers$Filtersets$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFilterSetsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListFilterSetsResponse>,
       callback: BodyResponseCallback<Schema$ListFilterSetsResponse>
     ): void;
     list(
@@ -14179,8 +14137,7 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Buyers$Filtersets$Bidmetrics$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListBidMetricsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListBidMetricsResponse>,
       callback: BodyResponseCallback<Schema$ListBidMetricsResponse>
     ): void;
     list(
@@ -14873,8 +14830,7 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Buyers$Filtersets$Filteredbids$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFilteredBidsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListFilteredBidsResponse>,
       callback: BodyResponseCallback<Schema$ListFilteredBidsResponse>
     ): void;
     list(
@@ -15577,8 +15533,7 @@ export namespace adexchangebuyer2_v2beta1 {
     list(
       params: Params$Resource$Buyers$Filtersets$Losingbids$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLosingBidsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLosingBidsResponse>,
       callback: BodyResponseCallback<Schema$ListLosingBidsResponse>
     ): void;
     list(
