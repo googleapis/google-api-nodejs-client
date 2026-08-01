@@ -191,11 +191,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudtrace.us-central2.rep.googleapis.com/",
-      "location": "us-central2"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://cloudtrace.us-east1.rep.googleapis.com/",
       "location": "us-east1"
     },
@@ -208,11 +203,6 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://cloudtrace.us-east5.rep.googleapis.com/",
       "location": "us-east5"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudtrace.us-east7.rep.googleapis.com/",
-      "location": "us-east7"
     },
     {
       "description": "Regional Endpoint",
@@ -238,11 +228,6 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://cloudtrace.us-west4.rep.googleapis.com/",
       "location": "us-west4"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudtrace.us-west8.rep.googleapis.com/",
-      "location": "us-west8"
     },
     {
       "description": "Regional Endpoint",
@@ -418,7 +403,7 @@
       }
     }
   },
-  "revision": "20260508",
+  "revision": "20260612",
   "rootUrl": "https://cloudtrace.googleapis.com/",
   "schemas": {
     "Annotation": {
