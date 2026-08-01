@@ -484,8 +484,7 @@ export namespace dfareporting_v3_5 {
     upload(
       params: Params$Resource$Media$Upload,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CreativeAssetMetadata>,
+        MethodOptions | BodyResponseCallback<Schema$CreativeAssetMetadata>,
       callback: BodyResponseCallback<Schema$CreativeAssetMetadata>
     ): void;
     upload(
