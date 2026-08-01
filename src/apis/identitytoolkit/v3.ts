@@ -1638,8 +1638,7 @@ export namespace identitytoolkit_v3 {
     createAuthUri(
       params: Params$Resource$Relyingparty$Createauthuri,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CreateAuthUriResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CreateAuthUriResponse>,
       callback: BodyResponseCallback<Schema$CreateAuthUriResponse>
     ): void;
     createAuthUri(
@@ -1785,8 +1784,7 @@ export namespace identitytoolkit_v3 {
     deleteAccount(
       params: Params$Resource$Relyingparty$Deleteaccount,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeleteAccountResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DeleteAccountResponse>,
       callback: BodyResponseCallback<Schema$DeleteAccountResponse>
     ): void;
     deleteAccount(
@@ -1938,8 +1936,7 @@ export namespace identitytoolkit_v3 {
     downloadAccount(
       params: Params$Resource$Relyingparty$Downloadaccount,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DownloadAccountResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DownloadAccountResponse>,
       callback: BodyResponseCallback<Schema$DownloadAccountResponse>
     ): void;
     downloadAccount(
@@ -2091,8 +2088,7 @@ export namespace identitytoolkit_v3 {
     emailLinkSignin(
       params: Params$Resource$Relyingparty$Emaillinksignin,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$EmailLinkSigninResponse>,
+        MethodOptions | BodyResponseCallback<Schema$EmailLinkSigninResponse>,
       callback: BodyResponseCallback<Schema$EmailLinkSigninResponse>
     ): void;
     emailLinkSignin(
@@ -2241,8 +2237,7 @@ export namespace identitytoolkit_v3 {
     getAccountInfo(
       params: Params$Resource$Relyingparty$Getaccountinfo,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GetAccountInfoResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GetAccountInfoResponse>,
       callback: BodyResponseCallback<Schema$GetAccountInfoResponse>
     ): void;
     getAccountInfo(
@@ -2844,8 +2839,7 @@ export namespace identitytoolkit_v3 {
     getRecaptchaParam(
       params: Params$Resource$Relyingparty$Getrecaptchaparam,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
       callback: BodyResponseCallback<Schema$GetRecaptchaParamResponse>
     ): void;
     getRecaptchaParam(
@@ -2995,8 +2989,7 @@ export namespace identitytoolkit_v3 {
     resetPassword(
       params: Params$Resource$Relyingparty$Resetpassword,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ResetPasswordResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ResetPasswordResponse>,
       callback: BodyResponseCallback<Schema$ResetPasswordResponse>
     ): void;
     resetPassword(
@@ -3327,8 +3320,7 @@ export namespace identitytoolkit_v3 {
     setAccountInfo(
       params: Params$Resource$Relyingparty$Setaccountinfo,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SetAccountInfoResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SetAccountInfoResponse>,
       callback: BodyResponseCallback<Schema$SetAccountInfoResponse>
     ): void;
     setAccountInfo(
@@ -3804,8 +3796,7 @@ export namespace identitytoolkit_v3 {
     signupNewUser(
       params: Params$Resource$Relyingparty$Signupnewuser,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SignupNewUserResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SignupNewUserResponse>,
       callback: BodyResponseCallback<Schema$SignupNewUserResponse>
     ): void;
     signupNewUser(
@@ -3966,8 +3957,7 @@ export namespace identitytoolkit_v3 {
     uploadAccount(
       params: Params$Resource$Relyingparty$Uploadaccount,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UploadAccountResponse>,
+        MethodOptions | BodyResponseCallback<Schema$UploadAccountResponse>,
       callback: BodyResponseCallback<Schema$UploadAccountResponse>
     ): void;
     uploadAccount(
@@ -4161,8 +4151,7 @@ export namespace identitytoolkit_v3 {
     verifyAssertion(
       params: Params$Resource$Relyingparty$Verifyassertion,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$VerifyAssertionResponse>,
+        MethodOptions | BodyResponseCallback<Schema$VerifyAssertionResponse>,
       callback: BodyResponseCallback<Schema$VerifyAssertionResponse>
     ): void;
     verifyAssertion(
@@ -4313,8 +4302,7 @@ export namespace identitytoolkit_v3 {
     verifyCustomToken(
       params: Params$Resource$Relyingparty$Verifycustomtoken,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
+        MethodOptions | BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
       callback: BodyResponseCallback<Schema$VerifyCustomTokenResponse>
     ): void;
     verifyCustomToken(
@@ -4479,8 +4467,7 @@ export namespace identitytoolkit_v3 {
     verifyPassword(
       params: Params$Resource$Relyingparty$Verifypassword,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$VerifyPasswordResponse>,
+        MethodOptions | BodyResponseCallback<Schema$VerifyPasswordResponse>,
       callback: BodyResponseCallback<Schema$VerifyPasswordResponse>
     ): void;
     verifyPassword(
