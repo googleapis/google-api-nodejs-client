@@ -369,7 +369,7 @@
       }
     }
   },
-  "revision": "20221210",
+  "revision": "20260614",
   "rootUrl": "https://datapipelines.googleapis.com/",
   "schemas": {
     "GoogleCloudDatapipelinesV1DataflowJobDetails": {
@@ -750,7 +750,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Immutable. The sources of the pipeline (for example, Dataplex). The keys and values are set by the corresponding sources during pipeline creation.",
+          "description": "Immutable. The sources of the pipeline (for example, Knowledge Catalog). The keys and values are set by the corresponding sources during pipeline creation.",
           "type": "object"
         },
         "scheduleInfo": {
