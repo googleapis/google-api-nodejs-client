@@ -1947,8 +1947,7 @@ export namespace recommendationengine_v1beta1 {
     import(
       params: Params$Resource$Projects$Locations$Catalogs$Catalogitems$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -2529,8 +2528,7 @@ export namespace recommendationengine_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -3718,8 +3716,7 @@ export namespace recommendationengine_v1beta1 {
     import(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -4038,8 +4035,7 @@ export namespace recommendationengine_v1beta1 {
     purge(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Purge,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     purge(
@@ -4197,8 +4193,7 @@ export namespace recommendationengine_v1beta1 {
     rejoin(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Rejoin,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     rejoin(
@@ -4604,8 +4599,7 @@ export namespace recommendationengine_v1beta1 {
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
