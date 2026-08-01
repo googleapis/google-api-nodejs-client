@@ -969,8 +969,7 @@ export namespace solar_v1 {
         | BodyResponseCallback<Schema$DataLayers>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DataLayers>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DataLayers> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DataLayers>>
@@ -1146,8 +1145,7 @@ export namespace solar_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
