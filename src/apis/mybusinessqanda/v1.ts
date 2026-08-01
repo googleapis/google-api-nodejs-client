@@ -382,8 +382,7 @@ export namespace mybusinessqanda_v1 {
         | BodyResponseCallback<Schema$Question>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Question>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Question> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Question>>
@@ -515,8 +514,7 @@ export namespace mybusinessqanda_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -644,8 +642,7 @@ export namespace mybusinessqanda_v1 {
     list(
       params: Params$Resource$Locations$Questions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListQuestionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListQuestionsResponse>,
       callback: BodyResponseCallback<Schema$ListQuestionsResponse>
     ): void;
     list(
@@ -823,8 +820,7 @@ export namespace mybusinessqanda_v1 {
         | BodyResponseCallback<Schema$Question>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Question>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Question> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Question>>
@@ -1022,8 +1018,7 @@ export namespace mybusinessqanda_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1319,8 +1314,7 @@ export namespace mybusinessqanda_v1 {
         | BodyResponseCallback<Schema$Answer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Answer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Answer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Answer>>
