@@ -7654,8 +7654,7 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Flightclass$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FlightClassListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$FlightClassListResponse>,
       callback: BodyResponseCallback<Schema$FlightClassListResponse>
     ): void;
     list(
@@ -8845,8 +8844,7 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Flightobject$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FlightObjectListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$FlightObjectListResponse>,
       callback: BodyResponseCallback<Schema$FlightObjectListResponse>
     ): void;
     list(
@@ -9947,8 +9945,7 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Genericclass$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GenericClassListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GenericClassListResponse>,
       callback: BodyResponseCallback<Schema$GenericClassListResponse>
     ): void;
     list(
@@ -11018,8 +11015,7 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Genericobject$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GenericObjectListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GenericObjectListResponse>,
       callback: BodyResponseCallback<Schema$GenericObjectListResponse>
     ): void;
     list(
@@ -12182,8 +12178,7 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Giftcardclass$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GiftCardClassListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GiftCardClassListResponse>,
       callback: BodyResponseCallback<Schema$GiftCardClassListResponse>
     ): void;
     list(
@@ -13378,8 +13373,7 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Giftcardobject$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GiftCardObjectListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GiftCardObjectListResponse>,
       callback: BodyResponseCallback<Schema$GiftCardObjectListResponse>
     ): void;
     list(
@@ -14028,8 +14022,7 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Schema$Issuer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Issuer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Issuer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>
@@ -14180,8 +14173,7 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Schema$Issuer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Issuer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Issuer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>
@@ -14469,8 +14461,7 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Schema$Issuer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Issuer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Issuer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>
@@ -14624,8 +14615,7 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Schema$Issuer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Issuer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Issuer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Issuer>>
@@ -15516,8 +15506,7 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Loyaltyclass$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LoyaltyClassListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LoyaltyClassListResponse>,
       callback: BodyResponseCallback<Schema$LoyaltyClassListResponse>
     ): void;
     list(
@@ -16730,8 +16719,7 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Loyaltyobject$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LoyaltyObjectListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LoyaltyObjectListResponse>,
       callback: BodyResponseCallback<Schema$LoyaltyObjectListResponse>
     ): void;
     list(
@@ -17596,8 +17584,7 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Schema$Media>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Media>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Media> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Media>>
@@ -18129,8 +18116,7 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Schema$OfferClass>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$OfferClass>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$OfferClass> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>
@@ -18356,8 +18342,7 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Schema$OfferClass>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$OfferClass>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$OfferClass> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>
@@ -18481,8 +18466,7 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Offerclass$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$OfferClassListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$OfferClassListResponse>,
       callback: BodyResponseCallback<Schema$OfferClassListResponse>
     ): void;
     list(
@@ -18732,8 +18716,7 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Schema$OfferClass>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$OfferClass>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$OfferClass> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>
@@ -18962,8 +18945,7 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Schema$OfferClass>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$OfferClass>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$OfferClass> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$OfferClass>>
@@ -19664,8 +19646,7 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Offerobject$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$OfferObjectListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$OfferObjectListResponse>,
       callback: BodyResponseCallback<Schema$OfferObjectListResponse>
     ): void;
     list(
@@ -20606,8 +20587,7 @@ export namespace walletobjects_v1 {
         | BodyResponseCallback<Schema$SmartTap>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SmartTap>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SmartTap> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SmartTap>>
@@ -21339,8 +21319,7 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Transitclass$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TransitClassListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TransitClassListResponse>,
       callback: BodyResponseCallback<Schema$TransitClassListResponse>
     ): void;
     list(
@@ -22619,8 +22598,7 @@ export namespace walletobjects_v1 {
     list(
       params: Params$Resource$Transitobject$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TransitObjectListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TransitObjectListResponse>,
       callback: BodyResponseCallback<Schema$TransitObjectListResponse>
     ): void;
     list(
