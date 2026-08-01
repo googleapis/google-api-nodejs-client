@@ -1243,7 +1243,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Atomically updates the ResourceRecordSet collection.
+     * Atomically updates the ResourceRecordSet collection. Note: While `dns.changes.create` is the baseline permission required to invoke this method, additional permissions are checked depending on the specific additions or deletions contained in the payload.
      * @example
      * ```js
      * // Before running the sample:
@@ -1357,8 +1357,7 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Schema$Change>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Change>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Change> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Change>>
@@ -1510,8 +1509,7 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Schema$Change>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Change>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Change> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Change>>
@@ -1893,8 +1891,7 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Schema$DnsKey>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DnsKey>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DnsKey> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DnsKey>>
@@ -2250,8 +2247,7 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2510,7 +2506,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Creates a new ManagedZone.
+     * Creates a new ManagedZone. Note: While `dns.managedZones.create` is the baseline permission required to invoke this method, additional permissions are required if the managed zone configuration references other resources.
      * @example
      * ```js
      * // Before running the sample:
@@ -3226,8 +3222,7 @@ export namespace dns_v1beta2 {
     list(
       params: Params$Resource$Managedzones$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ManagedZonesListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ManagedZonesListResponse>,
       callback: BodyResponseCallback<Schema$ManagedZonesListResponse>
     ): void;
     list(
@@ -3420,8 +3415,7 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3908,8 +3902,7 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4214,8 +4207,7 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4502,8 +4494,7 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4630,8 +4621,7 @@ export namespace dns_v1beta2 {
     list(
       params: Params$Resource$Policies$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PoliciesListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PoliciesListResponse>,
       callback: BodyResponseCallback<Schema$PoliciesListResponse>
     ): void;
     list(
@@ -4791,8 +4781,7 @@ export namespace dns_v1beta2 {
     patch(
       params: Params$Resource$Policies$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PoliciesPatchResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PoliciesPatchResponse>,
       callback: BodyResponseCallback<Schema$PoliciesPatchResponse>
     ): void;
     patch(
@@ -4951,8 +4940,7 @@ export namespace dns_v1beta2 {
     update(
       params: Params$Resource$Policies$Update,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PoliciesUpdateResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PoliciesUpdateResponse>,
       callback: BodyResponseCallback<Schema$PoliciesUpdateResponse>
     ): void;
     update(
@@ -5219,8 +5207,7 @@ export namespace dns_v1beta2 {
         | BodyResponseCallback<Schema$Project>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Project>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Project> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Project>>
