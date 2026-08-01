@@ -4438,8 +4438,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -4848,8 +4847,7 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -5025,8 +5023,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5297,8 +5294,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5440,8 +5436,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5925,8 +5920,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Connection>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Connection>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Connection> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Connection>>
@@ -6050,8 +6044,7 @@ export namespace connectors_v1 {
     getConnectionSchemaMetadata(
       params: Params$Resource$Projects$Locations$Connections$Getconnectionschemametadata,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ConnectionSchemaMetadata>,
+        MethodOptions | BodyResponseCallback<Schema$ConnectionSchemaMetadata>,
       callback: BodyResponseCallback<Schema$ConnectionSchemaMetadata>
     ): void;
     getConnectionSchemaMetadata(
@@ -6213,8 +6206,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6345,8 +6337,7 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Connections$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListConnectionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListConnectionsResponse>,
       callback: BodyResponseCallback<Schema$ListConnectionsResponse>
     ): void;
     list(
@@ -6855,8 +6846,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6994,8 +6984,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7142,8 +7131,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7270,8 +7258,7 @@ export namespace connectors_v1 {
     search(
       params: Params$Resource$Projects$Locations$Connections$Search,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SearchConnectionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SearchConnectionsResponse>,
       callback: BodyResponseCallback<Schema$SearchConnectionsResponse>
     ): void;
     search(
@@ -7439,8 +7426,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -7569,8 +7555,7 @@ export namespace connectors_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Connections$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -7944,8 +7929,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8091,8 +8075,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8375,8 +8358,7 @@ export namespace connectors_v1 {
     listEntityTypes(
       params: Params$Resource$Projects$Locations$Connections$Connectionschemametadata$Listentitytypes,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListEntityTypesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListEntityTypesResponse>,
       callback: BodyResponseCallback<Schema$ListEntityTypesResponse>
     ): void;
     listEntityTypes(
@@ -8548,8 +8530,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8797,8 +8778,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8942,8 +8922,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9072,8 +9051,7 @@ export namespace connectors_v1 {
     get(
       params: Params$Resource$Projects$Locations$Connections$Enduserauthentications$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$EndUserAuthentication>,
+        MethodOptions | BodyResponseCallback<Schema$EndUserAuthentication>,
       callback: BodyResponseCallback<Schema$EndUserAuthentication>
     ): void;
     get(
@@ -9416,8 +9394,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9653,8 +9630,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9796,8 +9772,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10258,8 +10233,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10404,8 +10378,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11186,8 +11159,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11334,8 +11306,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11487,8 +11458,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11638,8 +11608,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11845,8 +11814,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11987,8 +11955,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12445,8 +12412,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12670,8 +12636,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Settings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Settings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
@@ -12821,8 +12786,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13015,8 +12979,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13160,8 +13123,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13620,8 +13582,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13861,8 +13822,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14000,8 +13960,7 @@ export namespace connectors_v1 {
     get(
       params: Params$Resource$Projects$Locations$Global$Customconnectors$Customconnectorversions$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CustomConnectorVersion>,
+        MethodOptions | BodyResponseCallback<Schema$CustomConnectorVersion>,
       callback: BodyResponseCallback<Schema$CustomConnectorVersion>
     ): void;
     get(
@@ -14377,8 +14336,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14519,8 +14477,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14790,8 +14747,7 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Managedzones$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListManagedZonesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListManagedZonesResponse>,
       callback: BodyResponseCallback<Schema$ListManagedZonesResponse>
     ): void;
     list(
@@ -14969,8 +14925,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15184,8 +15139,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -15316,8 +15270,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -15454,8 +15407,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15580,8 +15532,7 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -15803,8 +15754,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Provider>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Provider>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Provider> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Provider>>
@@ -15942,8 +15892,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -16068,8 +16017,7 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Providers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListProvidersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListProvidersResponse>,
       callback: BodyResponseCallback<Schema$ListProvidersResponse>
     ): void;
     list(
@@ -16237,8 +16185,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -16365,8 +16312,7 @@ export namespace connectors_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Providers$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -16604,8 +16550,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$Connector>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Connector>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Connector> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Connector>>
@@ -16729,8 +16674,7 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Providers$Connectors$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListConnectorsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListConnectorsResponse>,
       callback: BodyResponseCallback<Schema$ListConnectorsResponse>
     ): void;
     list(
@@ -16912,8 +16856,7 @@ export namespace connectors_v1 {
     fetchAuthSchema(
       params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Fetchauthschema,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FetchAuthSchemaResponse>,
+        MethodOptions | BodyResponseCallback<Schema$FetchAuthSchemaResponse>,
       callback: BodyResponseCallback<Schema$FetchAuthSchemaResponse>
     ): void;
     fetchAuthSchema(
@@ -17444,8 +17387,7 @@ export namespace connectors_v1 {
         | BodyResponseCallback<Schema$EventType>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$EventType>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$EventType> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$EventType>>
@@ -17570,8 +17512,7 @@ export namespace connectors_v1 {
     list(
       params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Eventtypes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListEventTypesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListEventTypesResponse>,
       callback: BodyResponseCallback<Schema$ListEventTypesResponse>
     ): void;
     list(
