@@ -246,8 +246,7 @@ export namespace indexing_v3 {
     getMetadata(
       params: Params$Resource$Urlnotifications$Getmetadata,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UrlNotificationMetadata>,
+        MethodOptions | BodyResponseCallback<Schema$UrlNotificationMetadata>,
       callback: BodyResponseCallback<Schema$UrlNotificationMetadata>
     ): void;
     getMetadata(
