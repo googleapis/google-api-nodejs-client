@@ -2273,8 +2273,7 @@ export namespace ml_v1 {
     cancel(
       params: Params$Resource$Projects$Jobs$Cancel,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
       callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
     ): void;
     cancel(
@@ -2441,8 +2440,7 @@ export namespace ml_v1 {
     create(
       params: Params$Resource$Projects$Jobs$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
       callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>
     ): void;
     create(
@@ -2592,8 +2590,7 @@ export namespace ml_v1 {
     get(
       params: Params$Resource$Projects$Jobs$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
       callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>
     ): void;
     get(
@@ -3060,8 +3057,7 @@ export namespace ml_v1 {
     patch(
       params: Params$Resource$Projects$Jobs$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
       callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>
     ): void;
     patch(
@@ -3613,8 +3609,7 @@ export namespace ml_v1 {
     get(
       params: Params$Resource$Projects$Locations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Location>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudMlV1__Location>,
       callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Location>
     ): void;
     get(
@@ -3930,8 +3925,7 @@ export namespace ml_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
       callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
     ): void;
     cancel(
@@ -4252,8 +4246,7 @@ export namespace ml_v1 {
     create(
       params: Params$Resource$Projects$Locations$Studies$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>,
       callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Study>
     ): void;
     create(
@@ -4389,8 +4382,7 @@ export namespace ml_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Studies$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
       callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
     ): void;
     delete(
@@ -4529,8 +4521,7 @@ export namespace ml_v1 {
     get(
       params: Params$Resource$Projects$Locations$Studies$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudMlV1__Study>,
       callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Study>
     ): void;
     get(
@@ -4870,8 +4861,7 @@ export namespace ml_v1 {
     addMeasurement(
       params: Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
       callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
     ): void;
     addMeasurement(
@@ -5186,8 +5176,7 @@ export namespace ml_v1 {
     complete(
       params: Params$Resource$Projects$Locations$Studies$Trials$Complete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
       callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
     ): void;
     complete(
@@ -5354,8 +5343,7 @@ export namespace ml_v1 {
     create(
       params: Params$Resource$Projects$Locations$Studies$Trials$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
       callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
     ): void;
     create(
@@ -5491,8 +5479,7 @@ export namespace ml_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Studies$Trials$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
       callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
     ): void;
     delete(
@@ -5636,8 +5623,7 @@ export namespace ml_v1 {
     get(
       params: Params$Resource$Projects$Locations$Studies$Trials$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
       callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
     ): void;
     get(
@@ -6088,8 +6074,7 @@ export namespace ml_v1 {
     stop(
       params: Params$Resource$Projects$Locations$Studies$Trials$Stop,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>,
       callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Trial>
     ): void;
     stop(
@@ -6508,8 +6493,7 @@ export namespace ml_v1 {
     create(
       params: Params$Resource$Projects$Models$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
       callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>
     ): void;
     create(
@@ -6801,8 +6785,7 @@ export namespace ml_v1 {
     get(
       params: Params$Resource$Projects$Models$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
       callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>
     ): void;
     get(
@@ -8150,8 +8133,7 @@ export namespace ml_v1 {
     get(
       params: Params$Resource$Projects$Models$Versions$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
       callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>
     ): void;
     get(
@@ -8653,8 +8635,7 @@ export namespace ml_v1 {
     setDefault(
       params: Params$Resource$Projects$Models$Versions$Setdefault,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
       callback: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>
     ): void;
     setDefault(
@@ -8867,8 +8848,7 @@ export namespace ml_v1 {
     cancel(
       params: Params$Resource$Projects$Operations$Cancel,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
       callback: BodyResponseCallback<Schema$GoogleProtobuf__Empty>
     ): void;
     cancel(
