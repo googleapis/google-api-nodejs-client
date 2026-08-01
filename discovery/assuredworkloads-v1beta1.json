@@ -145,10 +145,486 @@
         }
       }
     },
+    "folders": {
+      "resources": {
+        "locations": {
+          "resources": {
+            "dbFindingSummaries": {
+              "methods": {
+                "list": {
+                  "description": "Lists the finding summary by category for a given scope.",
+                  "flatPath": "v1beta1/folders/{foldersId}/locations/{locationsId}/dbFindingSummaries",
+                  "httpMethod": "GET",
+                  "id": "assuredworkloads.folders.locations.dbFindingSummaries.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. The filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token that identifies the page of results that the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent scope for the framework overview page. Formats: - projects/{project}/locations/{location} - folders/{folder}/locations/{location} - organizations/{organization}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/dbFindingSummaries",
+                  "response": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "dbFrameworkComplianceReports": {
+              "methods": {
+                "aggregate": {
+                  "description": "Gets the aggregated compliance report over time for a given scope.",
+                  "flatPath": "v1beta1/folders/{foldersId}/locations/{locationsId}/dbFrameworkComplianceReports/{dbFrameworkComplianceReportsId}:aggregate",
+                  "httpMethod": "GET",
+                  "id": "assuredworkloads.folders.locations.dbFrameworkComplianceReports.aggregate",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. The filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "interval.endTime": {
+                      "description": "Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.",
+                      "format": "google-datetime",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "interval.startTime": {
+                      "description": "Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.",
+                      "format": "google-datetime",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the aggregated compliance report over time to retrieve. Format: `organizations/{organization_id}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}`",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/dbFrameworkComplianceReports/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:aggregate",
+                  "response": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "fetch": {
+                  "description": "Fetches the framework compliance report for a given scope.",
+                  "flatPath": "v1beta1/folders/{foldersId}/locations/{locationsId}/dbFrameworkComplianceReports/{dbFrameworkComplianceReportsId}:fetch",
+                  "httpMethod": "GET",
+                  "id": "assuredworkloads.folders.locations.dbFrameworkComplianceReports.fetch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "endTime": {
+                      "description": "Optional. The end time of the report.",
+                      "format": "google-datetime",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "filter": {
+                      "description": "Optional. The filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the framework compliance report to retrieve.",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/dbFrameworkComplianceReports/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:fetch",
+                  "response": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "dbControlComplianceSummaries": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists the control compliance summary for a given scope.",
+                      "flatPath": "v1beta1/folders/{foldersId}/locations/{locationsId}/dbFrameworkComplianceReports/{dbFrameworkComplianceReportsId}/dbControlComplianceSummaries",
+                      "httpMethod": "GET",
+                      "id": "assuredworkloads.folders.locations.dbFrameworkComplianceReports.dbControlComplianceSummaries.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. The filtering results.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The requested page size. The server might return fewer items than requested. If unspecified, the default page size is 50. The maximum value is 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A token that identifies the page of results that the server should return.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent scope for the framework overview page. Format: organizations/{organization}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report} folders/{folder}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report} projects/{project}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}",
+                          "location": "path",
+                          "pattern": "^folders/[^/]+/locations/[^/]+/dbFrameworkComplianceReports/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/dbControlComplianceSummaries",
+                      "response": {
+                        "$ref": "GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "dbFrameworkComplianceSummaries": {
+              "methods": {
+                "list": {
+                  "description": "Lists the framework compliance summary for a given scope.",
+                  "flatPath": "v1beta1/folders/{foldersId}/locations/{locationsId}/dbFrameworkComplianceSummaries",
+                  "httpMethod": "GET",
+                  "id": "assuredworkloads.folders.locations.dbFrameworkComplianceSummaries.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. The filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The requested page size. The server might return fewer items than requested. If unspecified, the default page size is 50. The maximum value is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token that identifies the page of results that the server should return. Pass the next_page_token value from a previous result.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent scope for the framework compliance summary. Format: organizations/{organization}/locations/{location} folders/{folder}/locations/{location} projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. Specifies the level of detail to return in the response.",
+                      "enum": [
+                        "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_UNSPECIFIED",
+                        "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_BASIC",
+                        "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_FULL"
+                      ],
+                      "enumDescriptions": [
+                        "The default / unset value. The API will default to the BASIC view.",
+                        "Includes basic compliance metadata, but omits trend data.",
+                        "Includes all information, including finding_count and controls_passing_trend. Trend data is provided for the last 30 days."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/dbFrameworkComplianceSummaries",
+                  "response": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "organizations": {
       "resources": {
         "locations": {
           "resources": {
+            "dbFindingSummaries": {
+              "methods": {
+                "list": {
+                  "description": "Lists the finding summary by category for a given scope.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/dbFindingSummaries",
+                  "httpMethod": "GET",
+                  "id": "assuredworkloads.organizations.locations.dbFindingSummaries.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. The filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token that identifies the page of results that the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent scope for the framework overview page. Formats: - projects/{project}/locations/{location} - folders/{folder}/locations/{location} - organizations/{organization}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/dbFindingSummaries",
+                  "response": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "dbFrameworkComplianceReports": {
+              "methods": {
+                "aggregate": {
+                  "description": "Gets the aggregated compliance report over time for a given scope.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/dbFrameworkComplianceReports/{dbFrameworkComplianceReportsId}:aggregate",
+                  "httpMethod": "GET",
+                  "id": "assuredworkloads.organizations.locations.dbFrameworkComplianceReports.aggregate",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. The filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "interval.endTime": {
+                      "description": "Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.",
+                      "format": "google-datetime",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "interval.startTime": {
+                      "description": "Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.",
+                      "format": "google-datetime",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the aggregated compliance report over time to retrieve. Format: `organizations/{organization_id}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/dbFrameworkComplianceReports/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:aggregate",
+                  "response": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "fetch": {
+                  "description": "Fetches the framework compliance report for a given scope.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/dbFrameworkComplianceReports/{dbFrameworkComplianceReportsId}:fetch",
+                  "httpMethod": "GET",
+                  "id": "assuredworkloads.organizations.locations.dbFrameworkComplianceReports.fetch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "endTime": {
+                      "description": "Optional. The end time of the report.",
+                      "format": "google-datetime",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "filter": {
+                      "description": "Optional. The filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the framework compliance report to retrieve.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/dbFrameworkComplianceReports/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:fetch",
+                  "response": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "dbControlComplianceSummaries": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists the control compliance summary for a given scope.",
+                      "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/dbFrameworkComplianceReports/{dbFrameworkComplianceReportsId}/dbControlComplianceSummaries",
+                      "httpMethod": "GET",
+                      "id": "assuredworkloads.organizations.locations.dbFrameworkComplianceReports.dbControlComplianceSummaries.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. The filtering results.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The requested page size. The server might return fewer items than requested. If unspecified, the default page size is 50. The maximum value is 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A token that identifies the page of results that the server should return.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent scope for the framework overview page. Format: organizations/{organization}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report} folders/{folder}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report} projects/{project}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/[^/]+/dbFrameworkComplianceReports/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/dbControlComplianceSummaries",
+                      "response": {
+                        "$ref": "GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "dbFrameworkComplianceSummaries": {
+              "methods": {
+                "list": {
+                  "description": "Lists the framework compliance summary for a given scope.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/dbFrameworkComplianceSummaries",
+                  "httpMethod": "GET",
+                  "id": "assuredworkloads.organizations.locations.dbFrameworkComplianceSummaries.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. The filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The requested page size. The server might return fewer items than requested. If unspecified, the default page size is 50. The maximum value is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token that identifies the page of results that the server should return. Pass the next_page_token value from a previous result.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent scope for the framework compliance summary. Format: organizations/{organization}/locations/{location} folders/{folder}/locations/{location} projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. Specifies the level of detail to return in the response.",
+                      "enum": [
+                        "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_UNSPECIFIED",
+                        "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_BASIC",
+                        "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_FULL"
+                      ],
+                      "enumDescriptions": [
+                        "The default / unset value. The API will default to the BASIC view.",
+                        "Includes basic compliance metadata, but omits trend data.",
+                        "Includes all information, including finding_count and controls_passing_trend. Trend data is provided for the last 30 days."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/dbFrameworkComplianceSummaries",
+                  "response": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "operations": {
               "methods": {
                 "get": {
@@ -217,6 +693,38 @@
                   "path": "v1beta1/{+name}/operations",
                   "response": {
                     "$ref": "GoogleLongrunningListOperationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "violations": {
+              "methods": {
+                "batchAcknowledgeViolations": {
+                  "description": "Acknowledges multiple existing violations. By acknowledging violations, users acknowledge the existence of compliance violations in their workload and decide to ignore them due to a valid business justification. Acknowledgement is a permanent operation and it cannot be reverted. This is a batch version of AcknowledgeViolation.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/violations:batchAcknowledgeViolations",
+                  "httpMethod": "POST",
+                  "id": "assuredworkloads.organizations.locations.violations.batchAcknowledgeViolations",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Optional. The parent resource shared by all violations being acknowledged. Format: organizations/{organization}/locations/{location}/workloads/{workload}",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/violations:batchAcknowledgeViolations",
+                  "request": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -614,6 +1122,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "batchAcknowledgeViolations": {
+                      "description": "Acknowledges multiple existing violations. By acknowledging violations, users acknowledge the existence of compliance violations in their workload and decide to ignore them due to a valid business justification. Acknowledgement is a permanent operation and it cannot be reverted. This is a batch version of AcknowledgeViolation.",
+                      "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}/violations:batchAcknowledgeViolations",
+                      "httpMethod": "POST",
+                      "id": "assuredworkloads.organizations.locations.workloads.violations.batchAcknowledgeViolations",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Optional. The parent resource shared by all violations being acknowledged. Format: organizations/{organization}/locations/{location}/workloads/{workload}",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/violations:batchAcknowledgeViolations",
+                      "request": {
+                        "$ref": "GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "get": {
                       "description": "Retrieves Assured Workload Violation based on ID.",
                       "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}/violations/{violationsId}",
@@ -665,6 +1201,11 @@
                           "location": "query",
                           "type": "string"
                         },
+                        "orderBy": {
+                          "description": "Optional. Actionable sorting delegation.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "pageSize": {
                           "description": "Optional. Page size.",
                           "format": "int32",
@@ -697,11 +1238,285 @@
               }
             }
           }
+        },
+        "violations": {
+          "methods": {
+            "batchAcknowledgeViolations": {
+              "description": "Acknowledges multiple existing violations. By acknowledging violations, users acknowledge the existence of compliance violations in their workload and decide to ignore them due to a valid business justification. Acknowledgement is a permanent operation and it cannot be reverted. This is a batch version of AcknowledgeViolation.",
+              "flatPath": "v1beta1/organizations/{organizationsId}/violations:batchAcknowledgeViolations",
+              "httpMethod": "POST",
+              "id": "assuredworkloads.organizations.violations.batchAcknowledgeViolations",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Optional. The parent resource shared by all violations being acknowledged. Format: organizations/{organization}/locations/{location}/workloads/{workload}",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/violations:batchAcknowledgeViolations",
+              "request": {
+                "$ref": "GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "projects": {
+      "resources": {
+        "locations": {
+          "resources": {
+            "dbFindingSummaries": {
+              "methods": {
+                "list": {
+                  "description": "Lists the finding summary by category for a given scope.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dbFindingSummaries",
+                  "httpMethod": "GET",
+                  "id": "assuredworkloads.projects.locations.dbFindingSummaries.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. The filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token that identifies the page of results that the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent scope for the framework overview page. Formats: - projects/{project}/locations/{location} - folders/{folder}/locations/{location} - organizations/{organization}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/dbFindingSummaries",
+                  "response": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "dbFrameworkComplianceReports": {
+              "methods": {
+                "aggregate": {
+                  "description": "Gets the aggregated compliance report over time for a given scope.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dbFrameworkComplianceReports/{dbFrameworkComplianceReportsId}:aggregate",
+                  "httpMethod": "GET",
+                  "id": "assuredworkloads.projects.locations.dbFrameworkComplianceReports.aggregate",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. The filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "interval.endTime": {
+                      "description": "Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.",
+                      "format": "google-datetime",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "interval.startTime": {
+                      "description": "Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.",
+                      "format": "google-datetime",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the aggregated compliance report over time to retrieve. Format: `organizations/{organization_id}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dbFrameworkComplianceReports/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:aggregate",
+                  "response": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "fetch": {
+                  "description": "Fetches the framework compliance report for a given scope.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dbFrameworkComplianceReports/{dbFrameworkComplianceReportsId}:fetch",
+                  "httpMethod": "GET",
+                  "id": "assuredworkloads.projects.locations.dbFrameworkComplianceReports.fetch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "endTime": {
+                      "description": "Optional. The end time of the report.",
+                      "format": "google-datetime",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "filter": {
+                      "description": "Optional. The filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the framework compliance report to retrieve.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dbFrameworkComplianceReports/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:fetch",
+                  "response": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "dbControlComplianceSummaries": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists the control compliance summary for a given scope.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dbFrameworkComplianceReports/{dbFrameworkComplianceReportsId}/dbControlComplianceSummaries",
+                      "httpMethod": "GET",
+                      "id": "assuredworkloads.projects.locations.dbFrameworkComplianceReports.dbControlComplianceSummaries.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. The filtering results.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The requested page size. The server might return fewer items than requested. If unspecified, the default page size is 50. The maximum value is 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A token that identifies the page of results that the server should return.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent scope for the framework overview page. Format: organizations/{organization}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report} folders/{folder}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report} projects/{project}/locations/{location}/dbFrameworkComplianceReports/{db_framework_compliance_report}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dbFrameworkComplianceReports/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/dbControlComplianceSummaries",
+                      "response": {
+                        "$ref": "GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "dbFrameworkComplianceSummaries": {
+              "methods": {
+                "list": {
+                  "description": "Lists the framework compliance summary for a given scope.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dbFrameworkComplianceSummaries",
+                  "httpMethod": "GET",
+                  "id": "assuredworkloads.projects.locations.dbFrameworkComplianceSummaries.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. The filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The requested page size. The server might return fewer items than requested. If unspecified, the default page size is 50. The maximum value is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token that identifies the page of results that the server should return. Pass the next_page_token value from a previous result.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent scope for the framework compliance summary. Format: organizations/{organization}/locations/{location} folders/{folder}/locations/{location} projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. Specifies the level of detail to return in the response.",
+                      "enum": [
+                        "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_UNSPECIFIED",
+                        "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_BASIC",
+                        "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_FULL"
+                      ],
+                      "enumDescriptions": [
+                        "The default / unset value. The API will default to the BASIC view.",
+                        "Includes basic compliance metadata, but omits trend data.",
+                        "Includes all information, including finding_count and controls_passing_trend. Trend data is provided for the last 30 days."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/dbFrameworkComplianceSummaries",
+                  "response": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
         }
       }
     }
   },
-  "revision": "20260504",
+  "revision": "20260719",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -738,6 +1553,36 @@
       "description": "Response for violation acknowledgement",
       "id": "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse": {
+      "description": "The response message for AggregateDbFrameworkComplianceReport.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse",
+      "properties": {
+        "aggregatedComplianceReports": {
+          "description": "The list of aggregated compliance reports.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1beta1AggregatedComplianceReport"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1AggregatedComplianceReport": {
+      "description": "The aggregated compliance report.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1AggregatedComplianceReport",
+      "properties": {
+        "controlAssessmentDetails": {
+          "$ref": "GoogleCloudAssuredworkloadsV1beta1ControlAssessmentDetails",
+          "description": "The control assessment details of the framework."
+        },
+        "reportTime": {
+          "description": "The report time of the aggregated compliance report.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse": {
@@ -887,6 +1732,271 @@
       },
       "type": "object"
     },
+    "GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest": {
+      "description": "Request for acknowledging the violations in a batch",
+      "id": "GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest",
+      "properties": {
+        "acknowledgeType": {
+          "description": "Optional. Acknowledge type of specified violations.",
+          "enum": [
+            "ACKNOWLEDGE_TYPE_UNSPECIFIED",
+            "SINGLE_VIOLATION",
+            "EXISTING_CHILD_RESOURCE_VIOLATIONS"
+          ],
+          "enumDescriptions": [
+            "Acknowledge type unspecified.",
+            "Acknowledge only the specific violation.",
+            "Acknowledge specified orgPolicy violation and also associated resource violations."
+          ],
+          "type": "string"
+        },
+        "comment": {
+          "description": "Required. Business justification explaining the need for violations acknowledgement",
+          "type": "string"
+        },
+        "names": {
+          "description": "Required. The resource names of the Violations to acknowledge. Format for each name: organizations/{organization}/locations/{location}/workloads/{workload}/violations/{violation}",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse": {
+      "description": "Response for batch violation acknowledgement",
+      "id": "GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse",
+      "properties": {
+        "acknowledgedViolationsCount": {
+          "description": "Count of acknowledged violations.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1CELExpression": {
+      "description": "A Common Expression Language (CEL) expression that's used to create a rule.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1CELExpression",
+      "properties": {
+        "expression": {
+          "description": "Required. The logical expression in CEL. The maximum length of the condition is 1000 characters. For more information, see [CEL expression](https://cloud.google.com/security-command-center/docs/compliance-manager-write-cel-expressions).",
+          "type": "string"
+        },
+        "resourceTypesValues": {
+          "$ref": "GoogleCloudAssuredworkloadsV1beta1StringList",
+          "description": "The resource instance types on which this expression is defined. The format is `/`. For example: `compute.googleapis.com/Instance`"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1CloudControlAssessmentDetails": {
+      "description": "The cloud control assessment details for non-manual cloud controls.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1CloudControlAssessmentDetails",
+      "properties": {
+        "evaluationState": {
+          "description": "Output only. The evaluation status of the cloud control.",
+          "enum": [
+            "EVALUATION_STATE_UNSPECIFIED",
+            "EVALUATION_STATE_PASSED",
+            "EVALUATION_STATE_FAILED",
+            "EVALUATION_STATE_NOT_ASSESSED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The control is passing.",
+            "The control is failing.",
+            "The control is not assessed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "findingsCount": {
+          "description": "The number of findings for the cloud control.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1CloudControlReport": {
+      "description": "The cloud control report.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1CloudControlReport",
+      "properties": {
+        "categories": {
+          "description": "The list of categories for the cloud control.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "cloudControl": {
+          "description": "The name of the cloud control.",
+          "type": "string"
+        },
+        "cloudControlAssessmentDetails": {
+          "$ref": "GoogleCloudAssuredworkloadsV1beta1CloudControlAssessmentDetails",
+          "description": "The details of a cloud control assessment."
+        },
+        "cloudControlDeployment": {
+          "description": "The name of the cloud control deployment.",
+          "type": "string"
+        },
+        "cloudControlType": {
+          "description": "The type of the cloud control.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "CUSTOM",
+            "BUILT_IN"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "A cloud control that's created and managed by you.",
+            "A cloud control that's provided and managed by Google."
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of the cloud control.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the cloud control.",
+          "type": "string"
+        },
+        "enforcementMode": {
+          "description": "The enforcement mode of the cloud control.",
+          "enum": [
+            "ENFORCEMENT_MODE_UNSPECIFIED",
+            "PREVENTIVE",
+            "DETECTIVE",
+            "AUDIT"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The cloud control is enforced to prevent non-compliance.",
+            "The cloud control is enforced to detect non-compliance.",
+            "The cloud control is enforced to audit for non-compliance."
+          ],
+          "type": "string"
+        },
+        "findingCategory": {
+          "description": "The category of the finding.",
+          "type": "string"
+        },
+        "findingSeverity": {
+          "description": "The severity of the finding.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "A critical vulnerability is easily discoverable by an external actor, exploitable, and results in the direct ability to execute arbitrary code, exfiltrate data, and otherwise gain additional access and privileges to cloud resources and workloads. Examples include publicly accessible unprotected user data and public SSH access with weak or no passwords. A critical threat is a threat that can access, modify, or delete data or execute unauthorized code within existing resources.",
+            "A high-risk vulnerability can be easily discovered and exploited in combination with other vulnerabilities to gain direct access and the ability to execute arbitrary code, exfiltrate data, and otherwise gain additional access and privileges to cloud resources and workloads. An example is a database with weak or no passwords that is only accessible internally. This database could easily be compromised by an actor that had access to the internal network. A high-risk threat is a threat that can create new computational resources in an environment but can't access data or execute code in existing resources.",
+            "A medium-risk vulnerability can be used by an actor to gain access to resources or privileges that enable them to eventually (through multiple steps or a complex exploit) gain access and the ability to execute arbitrary code or exfiltrate data. An example is a service account with access to more projects than it should have. If an actor gains access to the service account, they could potentially use that access to manipulate a project the service account was not intended to. A medium-risk threat can cause operational impact but might not access data or execute unauthorized code.",
+            "A low-risk vulnerability hampers a security organization's ability to detect vulnerabilities or active threats in their deployment, or prevents the root cause investigation of security issues. An example is monitoring and logs being disabled for resource configurations and access. A low-risk threat is a threat that has obtained minimal access to an environment but can't access data, execute code, or create resources."
+          ],
+          "type": "string"
+        },
+        "frameworkMajorRevisionIds": {
+          "description": "The major revision IDs of the frameworks that the cloud control belongs to.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "majorRevisionId": {
+          "description": "The major revision ID of the cloud control.",
+          "format": "int64",
+          "type": "string"
+        },
+        "manualCloudControlAssessmentDetails": {
+          "$ref": "GoogleCloudAssuredworkloadsV1beta1ManualCloudControlAssessmentDetails",
+          "description": "The details of a manual cloud control assessment."
+        },
+        "minorRevisionId": {
+          "description": "The minor revision ID of the cloud control.",
+          "format": "int64",
+          "type": "string"
+        },
+        "rules": {
+          "description": "The list of rules that correspond to the cloud control.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1beta1Rule"
+          },
+          "type": "array"
+        },
+        "similarControls": {
+          "description": "The list of similar controls.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1beta1SimilarControls"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1ControlAssessmentDetails": {
+      "description": "The details for a control assessment.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1ControlAssessmentDetails",
+      "properties": {
+        "assessedPassingControlIds": {
+          "description": "The list of controls that were assessed and are passing.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "assessedPassingControls": {
+          "description": "The number of controls that were assessed and are passing.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "failingControlIds": {
+          "description": "The list of controls that are failing.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "failingControls": {
+          "description": "The number of controls that are failing.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "notAssessedControlIds": {
+          "description": "The list of controls that aren't assessed because they require manual review.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "notAssessedControls": {
+          "description": "The number of controls that aren't assessed because they require manual review.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "passingControlIds": {
+          "description": "The list of controls that are passing or not assessed.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "passingControls": {
+          "description": "The number of controls that are passing or not assessed.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAssuredworkloadsV1beta1CreateWorkloadOperationMetadata": {
       "description": "Operation metadata to give request details of CreateWorkload.",
       "id": "GoogleCloudAssuredworkloadsV1beta1CreateWorkloadOperationMetadata",
@@ -911,6 +2021,7 @@
             "EU_DATA_BOUNDARY_AND_SUPPORT",
             "ISRAEL_DATA_BOUNDARY_AND_SUPPORT",
             "JAPAN_DATA_BOUNDARY",
+            "SWITZERLAND_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS",
             "KSA_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS",
             "REGIONAL_DATA_BOUNDARY",
             "US_DATA_BOUNDARY_AND_SUPPORT",
@@ -941,6 +2052,7 @@
             "US_REGIONAL_ACCESS"
           ],
           "enumDeprecated": [
+            false,
             false,
             false,
             false,
@@ -1005,6 +2117,7 @@
             "European Union (EU) Data Boundary and Support",
             "Israel Data Boundary and Support",
             "Japan Data Boundary",
+            "Switzerland Data Boundary with Access Justifications",
             "Kingdom of Saudi Arabia (KSA) Data Boundary with Access Justifications",
             "Data boundary for one of Assured Workloads' *Free tier* control packages. Determines the region by specifying the data location during workload creation.",
             "United States (US) Data Boundary and Support",
@@ -1059,6 +2172,282 @@
       },
       "type": "object"
     },
+    "GoogleCloudAssuredworkloadsV1beta1DbControlComplianceSummary": {
+      "description": "The details for control compliance.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1DbControlComplianceSummary",
+      "properties": {
+        "cloudControlReports": {
+          "description": "The list of cloud control reports.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1beta1CloudControlReport"
+          },
+          "type": "array"
+        },
+        "complianceFrameworks": {
+          "description": "The list of compliance frameworks that the control belongs to.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "control": {
+          "description": "The name of the control.",
+          "type": "string"
+        },
+        "controlResponsibilityType": {
+          "description": "The responsibility type for the control.",
+          "enum": [
+            "REGULATORY_CONTROL_RESPONSIBILITY_TYPE_UNSPECIFIED",
+            "GOOGLE",
+            "CUSTOMER",
+            "SHARED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Google's responsibility.",
+            "Your responsibility.",
+            "Shared responsibility."
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of the control.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the control.",
+          "type": "string"
+        },
+        "isFakeControl": {
+          "description": "Whether the control is a fake control. Fake controls are created and mapped to cloud controls that don't belong to a control group.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Identifier. The name of the control compliance summary.",
+          "type": "string"
+        },
+        "overallEvaluationState": {
+          "description": "Output only. The overall evaluation status of the control.",
+          "enum": [
+            "EVALUATION_STATE_UNSPECIFIED",
+            "EVALUATION_STATE_PASSED",
+            "EVALUATION_STATE_FAILED",
+            "EVALUATION_STATE_NOT_ASSESSED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The control is passing.",
+            "The control is failing.",
+            "The control is not assessed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "similarControls": {
+          "description": "The list of similar controls.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1beta1SimilarControls"
+          },
+          "type": "array"
+        },
+        "totalFindingsCount": {
+          "description": "The total number of findings for the control.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1DbFindingSummary": {
+      "description": "The details for a finding.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1DbFindingSummary",
+      "properties": {
+        "findingCategory": {
+          "description": "Output only. The category of the finding.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "findingClass": {
+          "description": "Output only. The class of the finding.",
+          "enum": [
+            "FINDING_CLASS_UNSPECIFIED",
+            "THREAT",
+            "VULNERABILITY",
+            "MISCONFIGURATION",
+            "OBSERVATION",
+            "SCC_ERROR",
+            "POSTURE_VIOLATION",
+            "TOXIC_COMBINATION",
+            "SENSITIVE_DATA_RISK",
+            "CHOKEPOINT"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The activity is unwanted or malicious.",
+            "A potential weakness in software that increases risk to confidentiality, integrity, and availability.",
+            "A potential weakness in a cloud resource or asset configuration that increases risk.",
+            "A security observation that is for informational purposes.",
+            "An error that prevents Security Command Center from functioning properly.",
+            "A potential security risk that's due to a change in the security posture.",
+            "A combination of security issues that represent a more severe security problem when taken together.",
+            "A potential security risk to data assets that contain sensitive data.",
+            "A resource or resource group where high risk attack paths converge, based on attack path simulations (APS)."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "findingCount": {
+          "description": "Output only. The count of the finding.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the finding summary.",
+          "type": "string"
+        },
+        "relatedFrameworks": {
+          "description": "Optional. The list of compliance frameworks that the finding belongs to.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "severity": {
+          "description": "Output only. The severity of the finding.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "A critical vulnerability is easily discoverable by an external actor, exploitable, and results in the direct ability to execute arbitrary code, exfiltrate data, and otherwise gain additional access and privileges to cloud resources and workloads. Examples include publicly accessible unprotected user data and public SSH access with weak or no passwords. A critical threat is a threat that can access, modify, or delete data or execute unauthorized code within existing resources.",
+            "A high-risk vulnerability can be easily discovered and exploited in combination with other vulnerabilities to gain direct access and the ability to execute arbitrary code, exfiltrate data, and otherwise gain additional access and privileges to cloud resources and workloads. An example is a database with weak or no passwords that is only accessible internally. This database could easily be compromised by an actor that had access to the internal network. A high-risk threat is a threat that can create new computational resources in an environment but can't access data or execute code in existing resources.",
+            "A medium-risk vulnerability can be used by an actor to gain access to resources or privileges that enable them to eventually (through multiple steps or a complex exploit) gain access and the ability to execute arbitrary code or exfiltrate data. An example is a service account with access to more projects than it should have. If an actor gains access to the service account, they could potentially use that access to manipulate a project the service account was not intended to. A medium-risk threat can cause operational impact but might not access data or execute unauthorized code.",
+            "A low-risk vulnerability hampers a security organization's ability to detect vulnerabilities or active threats in their deployment, or prevents the root cause investigation of security issues. An example is monitoring and logs being disabled for resource configurations and access. A low-risk threat is a threat that has obtained minimal access to an environment but can't access data, execute code, or create resources."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The last updated time of the finding.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1DbFrameworkComplianceSummary": {
+      "description": "The details for a framework compliance summary.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1DbFrameworkComplianceSummary",
+      "properties": {
+        "controlAssessmentDetails": {
+          "$ref": "GoogleCloudAssuredworkloadsV1beta1ControlAssessmentDetails",
+          "description": "The control assessment details of the framework."
+        },
+        "controlsPassingTrend": {
+          "$ref": "GoogleCloudAssuredworkloadsV1beta1Trend",
+          "description": "Output only. The trend of controls that are passing for the given duration.",
+          "readOnly": true
+        },
+        "findingCount": {
+          "description": "Output only. The count of the findings generated against the framework.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "framework": {
+          "description": "The name of the framework.",
+          "type": "string"
+        },
+        "frameworkCategories": {
+          "description": "The list of framework categories supported by the framework.",
+          "items": {
+            "enum": [
+              "FRAMEWORK_CATEGORY_UNSPECIFIED",
+              "INDUSTRY_DEFINED_STANDARD",
+              "ASSURED_WORKLOADS",
+              "DATA_SECURITY",
+              "GOOGLE_BEST_PRACTICES",
+              "CUSTOM_FRAMEWORK"
+            ],
+            "enumDescriptions": [
+              "Default value. This value is unused.",
+              "An industry-defined framework.",
+              "An Assured Workloads framework.",
+              "A data security posture framework.",
+              "A Google's best practices framework.",
+              "A user-created framework."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "frameworkDisplayName": {
+          "description": "Optional. The display name for the framework.",
+          "type": "string"
+        },
+        "frameworkType": {
+          "description": "The type of framework.",
+          "enum": [
+            "FRAMEWORK_TYPE_UNSPECIFIED",
+            "BUILT_IN",
+            "CUSTOM"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "A framework that's provided and managed by Google.",
+            "A framework that's created and managed by you."
+          ],
+          "type": "string"
+        },
+        "majorRevisionId": {
+          "description": "The major revision ID of the framework.",
+          "format": "int64",
+          "type": "string"
+        },
+        "minorRevisionId": {
+          "description": "The minor revision ID of the framework.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the framework compliance summary.",
+          "type": "string"
+        },
+        "supportedCloudProviders": {
+          "description": "The list of cloud providers supported by the framework.",
+          "items": {
+            "enum": [
+              "CLOUD_PROVIDER_UNSPECIFIED",
+              "AWS",
+              "AZURE",
+              "GCP"
+            ],
+            "enumDescriptions": [
+              "Default value. This value is unused.",
+              "Amazon Web Services (AWS).",
+              "Microsoft Azure.",
+              "Google Cloud."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "targetResourceDetails": {
+          "description": "The target resource details for the framework.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1beta1TargetResourceDetails"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse": {
       "description": "Response for EnableComplianceUpdates endpoint.",
       "id": "GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse",
@@ -1071,6 +2460,169 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse": {
+      "description": "The response message for FetchDbFrameworkComplianceReport.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse",
+      "properties": {
+        "controlAssessmentDetails": {
+          "$ref": "GoogleCloudAssuredworkloadsV1beta1ControlAssessmentDetails",
+          "description": "The control assessment details of the framework."
+        },
+        "framework": {
+          "description": "The name of the framework.",
+          "type": "string"
+        },
+        "frameworkCategories": {
+          "description": "The list of framework categories supported.",
+          "items": {
+            "enum": [
+              "FRAMEWORK_CATEGORY_UNSPECIFIED",
+              "INDUSTRY_DEFINED_STANDARD",
+              "ASSURED_WORKLOADS",
+              "DATA_SECURITY",
+              "GOOGLE_BEST_PRACTICES",
+              "CUSTOM_FRAMEWORK"
+            ],
+            "enumDescriptions": [
+              "Default value. This value is unused.",
+              "An industry-defined framework.",
+              "An Assured Workloads framework.",
+              "A data security posture framework.",
+              "A Google's best practices framework.",
+              "A user-created framework."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "frameworkDescription": {
+          "description": "The description of the framework.",
+          "type": "string"
+        },
+        "frameworkDisplayName": {
+          "description": "Optional. The display name for the framework.",
+          "type": "string"
+        },
+        "frameworkType": {
+          "description": "The type of the framework.",
+          "enum": [
+            "FRAMEWORK_TYPE_UNSPECIFIED",
+            "BUILT_IN",
+            "CUSTOM"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "A framework that's provided and managed by Google.",
+            "A framework that's created and managed by you."
+          ],
+          "type": "string"
+        },
+        "majorRevisionId": {
+          "description": "The latest major revision ID of the framework.",
+          "format": "int64",
+          "type": "string"
+        },
+        "minorRevisionId": {
+          "description": "The latest minor revision ID of the latest major revision of the framework.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the framework compliance report.",
+          "type": "string"
+        },
+        "supportedCloudProviders": {
+          "description": "The list of cloud providers that are supported by the framework.",
+          "items": {
+            "enum": [
+              "CLOUD_PROVIDER_UNSPECIFIED",
+              "AWS",
+              "AZURE",
+              "GCP"
+            ],
+            "enumDescriptions": [
+              "Default value. This value is unused.",
+              "Amazon Web Services (AWS).",
+              "Microsoft Azure.",
+              "Google Cloud."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "targetResourceDetails": {
+          "description": "The target resource details of the framework.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1beta1TargetResourceDetails"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. The last updated time of the report.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse": {
+      "description": "The response message for ListDBControlComplianceSummaries.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse",
+      "properties": {
+        "dbControlComplianceSummaries": {
+          "description": "The list of control compliance details.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1beta1DbControlComplianceSummary"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Output only. The token to retrieve the next page of results.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse": {
+      "description": "The response message for ListDbFindingSummaries.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse",
+      "properties": {
+        "dbFindingSummaries": {
+          "description": "List of finding summary by category.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1beta1DbFindingSummary"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Output only. The token to retrieve the next page of results.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse": {
+      "description": "The response message for ListDbFrameworkComplianceSummariesResponse.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse",
+      "properties": {
+        "dbFrameworkComplianceSummaries": {
+          "description": "The list of framework compliance summaries.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1beta1DbFrameworkComplianceSummary"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Output only. The token to retrieve the next page of results.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAssuredworkloadsV1beta1ListViolationsResponse": {
       "description": "Response of ListViolations endpoint.",
       "id": "GoogleCloudAssuredworkloadsV1beta1ListViolationsResponse",
@@ -1078,6 +2630,11 @@
         "nextPageToken": {
           "description": "The next page token. Returns empty if reached the last page.",
           "type": "string"
+        },
+        "totalSize": {
+          "description": "The total number of violations.",
+          "format": "int32",
+          "type": "integer"
         },
         "violations": {
           "description": "List of Violations under a Workload.",
@@ -1119,6 +2676,20 @@
           "description": "List of Workloads under a given parent.",
           "items": {
             "$ref": "GoogleCloudAssuredworkloadsV1beta1Workload"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1ManualCloudControlAssessmentDetails": {
+      "description": "The details for a manual cloud control assessment.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1ManualCloudControlAssessmentDetails",
+      "properties": {
+        "manualCloudControlGuide": {
+          "description": "The guide for assessing a cloud control manually.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -1335,6 +2906,127 @@
           "description": "The total number of events successfully moved to the original table.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1Rule": {
+      "description": "A rule in the cloud control.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1Rule",
+      "properties": {
+        "celExpression": {
+          "$ref": "GoogleCloudAssuredworkloadsV1beta1CELExpression",
+          "description": "The rule's logic expression in Common Expression Language (CEL)."
+        },
+        "description": {
+          "description": "Optional. The rule description. The maximum length is 2000 characters.",
+          "type": "string"
+        },
+        "ruleActionTypes": {
+          "description": "Required. The functionality that's enabled by the rule.",
+          "items": {
+            "enum": [
+              "RULE_ACTION_TYPE_UNSPECIFIED",
+              "RULE_ACTION_TYPE_PREVENTIVE",
+              "RULE_ACTION_TYPE_DETECTIVE",
+              "RULE_ACTION_TYPE_AUDIT"
+            ],
+            "enumDescriptions": [
+              "Default value. This value is unused.",
+              "The rule is intended to prevent non-compliance.",
+              "The rule is intended to detect non-compliance.",
+              "The rule is intended to audit non-compliance."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1SimilarControls": {
+      "description": "The similar controls.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1SimilarControls",
+      "properties": {
+        "controlId": {
+          "description": "The ID of the control.",
+          "type": "string"
+        },
+        "framework": {
+          "description": "The name of the framework.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1StringList": {
+      "description": "A list of strings for the parameter value.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1StringList",
+      "properties": {
+        "values": {
+          "description": "Required. The strings in the list.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1TargetResourceDetails": {
+      "description": "The details for a target resource.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1TargetResourceDetails",
+      "properties": {
+        "createTime": {
+          "description": "The create time of the target resource.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "frameworkDeployment": {
+          "description": "The framework deployment name for the target resource. For example, `organizations/{organization_id}/locations/{location}/frameworkDeployments/{framework_deployment_id}`",
+          "type": "string"
+        },
+        "majorRevisionId": {
+          "description": "The major revision ID of the framework for the target resource.",
+          "format": "int64",
+          "type": "string"
+        },
+        "minorRevisionId": {
+          "description": "The minor revision ID of the framework for the target resource.",
+          "format": "int64",
+          "type": "string"
+        },
+        "targetResource": {
+          "description": "The target resource. For example, `organizations/1234567890`, `projects/1234567890`, or `folders/1234567890`.",
+          "type": "string"
+        },
+        "targetResourceDisplayName": {
+          "description": "The display name of the target resource. For example, `google.com`, `staging-project`, or `development-folder`.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "The update time of the target resource.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1Trend": {
+      "description": "The trend of a compliance metric.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1Trend",
+      "properties": {
+        "duration": {
+          "description": "Output only. The duration for the trend.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        },
+        "valuePercent": {
+          "description": "Output only. The trend value as a percentage. The value can be positive or negative.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -1656,6 +3348,7 @@
             "EU_DATA_BOUNDARY_AND_SUPPORT",
             "ISRAEL_DATA_BOUNDARY_AND_SUPPORT",
             "JAPAN_DATA_BOUNDARY",
+            "SWITZERLAND_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS",
             "KSA_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS",
             "REGIONAL_DATA_BOUNDARY",
             "US_DATA_BOUNDARY_AND_SUPPORT",
@@ -1686,6 +3379,7 @@
             "US_REGIONAL_ACCESS"
           ],
           "enumDeprecated": [
+            false,
             false,
             false,
             false,
@@ -1750,6 +3444,7 @@
             "European Union (EU) Data Boundary and Support",
             "Israel Data Boundary and Support",
             "Japan Data Boundary",
+            "Switzerland Data Boundary with Access Justifications",
             "Kingdom of Saudi Arabia (KSA) Data Boundary with Access Justifications",
             "Data boundary for one of Assured Workloads' *Free tier* control packages. Determines the region by specifying the data location during workload creation.",
             "United States (US) Data Boundary and Support",
