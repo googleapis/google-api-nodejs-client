@@ -18,13 +18,33 @@
   "endpoints": [
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://config.us-central1.rep.googleapis.com/",
+      "location": "us-central1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://config.us-south1.rep.googleapis.com/",
       "location": "us-south1"
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://config.us-west1.rep.googleapis.com/",
+      "location": "us-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://config.us-west2.rep.googleapis.com/",
+      "location": "us-west2"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://config.us-west3.rep.googleapis.com/",
       "location": "us-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://config.us-east1.rep.googleapis.com/",
+      "location": "us-east1"
     },
     {
       "description": "Regional Endpoint",
@@ -1768,7 +1788,7 @@
       }
     }
   },
-  "revision": "20260513",
+  "revision": "20260623",
   "rootUrl": "https://config.googleapis.com/",
   "schemas": {
     "ApplyResults": {
@@ -1914,7 +1934,7 @@
           "type": "object"
         },
         "artifactsGcsBucket": {
-          "description": "Optional. User-defined location of Cloud Build logs and artifacts in Google Cloud Storage. Format: `gs://{bucket}/{folder}` A default bucket will be bootstrapped if the field is not set or empty. Default bucket format: `gs://--blueprint-config` Constraints: - The bucket needs to be in the same project as the deployment - The path cannot be within the path of `gcs_source` - The field cannot be updated, including changing its presence",
+          "description": "User-defined location of Cloud Build logs and artifacts in Google Cloud Storage. Format: `gs://{bucket}/{folder}` A default bucket will be bootstrapped if the field is not set or empty. Default bucket format: `gs://--blueprint-config` Constraints: - The bucket needs to be in the same project as the deployment - The path cannot be within the path of `gcs_source` - The field cannot be updated, including changing its presence",
           "type": "string"
         },
         "createTime": {
@@ -2081,7 +2101,7 @@
           "type": "string"
         },
         "tfVersionConstraint": {
-          "description": "Optional. The user-specified Terraform version constraint. Example: \"=1.3.10\".",
+          "description": "The user-specified Terraform version constraint. Example: \"=1.3.10\".",
           "type": "string"
         },
         "updateTime": {
@@ -2091,7 +2111,7 @@
           "type": "string"
         },
         "workerPool": {
-          "description": "Optional. The user-specified Cloud Build worker pool resource in which the Cloud Build job will execute. Format: `projects/{project}/locations/{location}/workerPools/{workerPoolId}`. If this field is unspecified, the default Cloud Build worker pool will be used.",
+          "description": "The user-specified Cloud Build worker pool resource in which the Cloud Build job will execute. Format: `projects/{project}/locations/{location}/workerPools/{workerPoolId}`. If this field is unspecified, the default Cloud Build worker pool will be used.",
           "type": "string"
         }
       },
@@ -2241,6 +2261,11 @@
         "applyResults": {
           "$ref": "ApplyResults",
           "description": "Outputs and artifacts from applying a deployment."
+        },
+        "applyResultsAvailable": {
+          "description": "Output only. Indicating if early apply results are available.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "build": {
           "description": "Output only. Cloud Build instance UUID associated with this operation.",
@@ -2590,15 +2615,15 @@
       "id": "GitSource",
       "properties": {
         "directory": {
-          "description": "Optional. Subdirectory inside the repository. Example: 'staging/my-package'",
+          "description": "Subdirectory inside the repository. Example: 'staging/my-package'",
           "type": "string"
         },
         "ref": {
-          "description": "Optional. Git reference (e.g. branch or tag).",
+          "description": "Git reference (e.g. branch or tag).",
           "type": "string"
         },
         "repo": {
-          "description": "Optional. Repository URL. Example: 'https://github.com/kubernetes/examples.git'",
+          "description": "Repository URL. Example: 'https://github.com/kubernetes/examples.git'",
           "type": "string"
         }
       },
@@ -3093,7 +3118,7 @@
           "type": "object"
         },
         "artifactsGcsBucket": {
-          "description": "Optional. User-defined location of Cloud Build logs, artifacts, and in Google Cloud Storage. Format: `gs://{bucket}/{folder}` A default bucket will be bootstrapped if the field is not set or empty Default Bucket Format: `gs://--blueprint-config` Constraints: - The bucket needs to be in the same project as the deployment - The path cannot be within the path of `gcs_source` If omitted and deployment resource ref provided has artifacts_gcs_bucket defined, that artifact bucket is used.",
+          "description": "User-defined location of Cloud Build logs, artifacts, and in Google Cloud Storage. Format: `gs://{bucket}/{folder}` A default bucket will be bootstrapped if the field is not set or empty Default Bucket Format: `gs://--blueprint-config` Constraints: - The bucket needs to be in the same project as the deployment - The path cannot be within the path of `gcs_source` If omitted and deployment resource ref provided has artifacts_gcs_bucket defined, that artifact bucket is used.",
           "type": "string"
         },
         "build": {
@@ -3232,11 +3257,11 @@
           "type": "string"
         },
         "tfVersionConstraint": {
-          "description": "Optional. The user-specified Terraform version constraint. Example: \"=1.3.10\".",
+          "description": "The user-specified Terraform version constraint. Example: \"=1.3.10\".",
           "type": "string"
         },
         "workerPool": {
-          "description": "Optional. The user-specified Worker Pool resource in which the Cloud Build job will execute. Format projects/{project}/locations/{location}/workerPools/{workerPoolId} If this field is unspecified, the default Cloud Build worker pool will be used. If omitted and deployment resource ref provided has worker_pool defined, that worker pool is used.",
+          "description": "The user-specified Worker Pool resource in which the Cloud Build job will execute. Format projects/{project}/locations/{location}/workerPools/{workerPoolId} If this field is unspecified, the default Cloud Build worker pool will be used. If omitted and deployment resource ref provided has worker_pool defined, that worker pool is used.",
           "type": "string"
         }
       },
