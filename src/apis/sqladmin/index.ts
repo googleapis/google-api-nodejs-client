@@ -31,10 +31,7 @@ export function sqladmin(
 export function sqladmin<T = sqladmin_v1.Sqladmin | sqladmin_v1beta4.Sqladmin>(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | sqladmin_v1.Options
-    | 'v1beta4'
-    | sqladmin_v1beta4.Options
+    'v1' | sqladmin_v1.Options | 'v1beta4' | sqladmin_v1beta4.Options
 ) {
   return getAPI<T>('sqladmin', versionOrOptions, VERSIONS, this);
 }
