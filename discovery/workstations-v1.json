@@ -15,6 +15,13 @@
   "description": "Allows administrators to create managed developer environments in the cloud. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/workstations",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://rep-wkstn.us-central1.rep.googleapis.com/",
+      "location": "us-central1"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -1221,7 +1228,7 @@
       }
     }
   },
-  "revision": "20260427",
+  "revision": "20260604",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1488,6 +1495,11 @@
           "format": "google-duration",
           "type": "string"
         },
+        "maxSizeGb": {
+          "description": "Optional. Maximum size in GB to which this persistent directory can be resized. Defaults to unlimited if not set.",
+          "format": "int32",
+          "type": "integer"
+        },
         "reclaimPolicy": {
           "description": "Optional. Whether the persistent disk should be deleted when the workstation is deleted. Valid values are `DELETE` and `RETAIN`. Defaults to `DELETE`.",
           "enum": [
@@ -1672,6 +1684,11 @@
         "fsType": {
           "description": "Optional. Type of file system that the disk should be formatted with. The workstation image must support this file system type. Must be empty if source_snapshot is set. Defaults to `\"ext4\"`.",
           "type": "string"
+        },
+        "maxSizeGb": {
+          "description": "Optional. Maximum size in GB to which this persistent directory can be resized. Defaults to unlimited if not set.",
+          "format": "int32",
+          "type": "integer"
         },
         "reclaimPolicy": {
           "description": "Optional. Whether the persistent disk should be deleted when the workstation is deleted. Valid values are `DELETE` and `RETAIN`. Defaults to `DELETE`.",
@@ -2340,6 +2357,13 @@
           "description": "Identifier. Full name of this workstation.",
           "type": "string"
         },
+        "persistentDirectories": {
+          "description": "Optional. Directories to persist across workstation sessions.",
+          "items": {
+            "$ref": "WorkstationPersistentDirectory"
+          },
+          "type": "array"
+        },
         "reconciling": {
           "description": "Output only. Indicates whether this workstation is currently being updated to match its intended state.",
           "readOnly": true,
@@ -2651,6 +2675,22 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkstationPersistentDirectory": {
+      "description": "A directory to persist across workstation sessions. Updates to this field will only take effect on this workstation after it is restarted.",
+      "id": "WorkstationPersistentDirectory",
+      "properties": {
+        "mountPath": {
+          "description": "Optional. The mount path of the persistent directory.",
+          "type": "string"
+        },
+        "sizeGb": {
+          "description": "Optional. Size of the persistent directory in GB. If specified in an update request, this is the desired size of the directory.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
