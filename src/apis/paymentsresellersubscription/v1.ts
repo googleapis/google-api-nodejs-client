@@ -168,7 +168,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     cycleOptions?: Schema$CycleOptions;
     /**
-     * Required. The parent resource name, which is the identifier of the partner.
+     * Optional. Deprecated: Use the `parent` field in `GenerateUserSessionRequest` instead. The parent resource name, which is the identifier of the partner.
      */
     parent?: string | null;
     /**
@@ -1038,8 +1038,7 @@ export namespace paymentsresellersubscription_v1 {
     list(
       params: Params$Resource$Partners$Products$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListProductsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListProductsResponse>,
       callback: BodyResponseCallback<Schema$ListProductsResponse>
     ): void;
     list(
@@ -1369,8 +1368,7 @@ export namespace paymentsresellersubscription_v1 {
     list(
       params: Params$Resource$Partners$Promotions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPromotionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPromotionsResponse>,
       callback: BodyResponseCallback<Schema$ListPromotionsResponse>
     ): void;
     list(
@@ -1560,8 +1558,7 @@ export namespace paymentsresellersubscription_v1 {
     cancel(
       params: Params$Resource$Partners$Subscriptions$Cancel,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CancelSubscriptionResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CancelSubscriptionResponse>,
       callback: BodyResponseCallback<Schema$CancelSubscriptionResponse>
     ): void;
     cancel(
@@ -2051,8 +2048,7 @@ export namespace paymentsresellersubscription_v1 {
     extend(
       params: Params$Resource$Partners$Subscriptions$Extend,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ExtendSubscriptionResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ExtendSubscriptionResponse>,
       callback: BodyResponseCallback<Schema$ExtendSubscriptionResponse>
     ): void;
     extend(
@@ -2547,8 +2543,7 @@ export namespace paymentsresellersubscription_v1 {
     resume(
       params: Params$Resource$Partners$Subscriptions$Resume,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ResumeSubscriptionResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ResumeSubscriptionResponse>,
       callback: BodyResponseCallback<Schema$ResumeSubscriptionResponse>
     ): void;
     resume(
@@ -3145,8 +3140,7 @@ export namespace paymentsresellersubscription_v1 {
     patch(
       params: Params$Resource$Partners$Subscriptions$Lineitems$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SubscriptionLineItem>,
+        MethodOptions | BodyResponseCallback<Schema$SubscriptionLineItem>,
       callback: BodyResponseCallback<Schema$SubscriptionLineItem>
     ): void;
     patch(

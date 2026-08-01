@@ -586,7 +586,7 @@
       }
     }
   },
-  "revision": "20260430",
+  "revision": "20260607",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "Amount": {
@@ -668,7 +668,8 @@
           "description": "Optional. The cycle options for the subscription."
         },
         "parent": {
-          "description": "Required. The parent resource name, which is the identifier of the partner.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: Use the `parent` field in `GenerateUserSessionRequest` instead. The parent resource name, which is the identifier of the partner.",
           "type": "string"
         },
         "subscription": {
@@ -1436,13 +1437,15 @@
             "PROCESSING_STATE_UNSPECIFIED",
             "PROCESSING_STATE_CANCELLING",
             "PROCESSING_STATE_RECURRING",
-            "PROCESSING_STATE_RESUMING"
+            "PROCESSING_STATE_RESUMING",
+            "PROCESSING_STATE_SUSPENDING"
           ],
           "enumDescriptions": [
             "The processing state is unspecified.",
             "The subscription is being cancelled.",
             "The subscription is recurring.",
-            "The subscription is being resumed."
+            "The subscription is being resumed.",
+            "The subscription is being suspended."
           ],
           "readOnly": true,
           "type": "string"
