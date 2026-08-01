@@ -961,8 +961,7 @@ export namespace merchantapi_lfp_v1beta {
         | BodyResponseCallback<Schema$LfpSale>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LfpSale>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LfpSale> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LfpSale>>
@@ -1115,8 +1114,7 @@ export namespace merchantapi_lfp_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1262,8 +1260,7 @@ export namespace merchantapi_lfp_v1beta {
         | BodyResponseCallback<Schema$LfpStore>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LfpStore>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LfpStore> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LfpStore>>
@@ -1427,8 +1424,7 @@ export namespace merchantapi_lfp_v1beta {
         | BodyResponseCallback<Schema$LfpStore>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LfpStore>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LfpStore> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LfpStore>>
@@ -1553,8 +1549,7 @@ export namespace merchantapi_lfp_v1beta {
     list(
       params: Params$Resource$Accounts$Lfpstores$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLfpStoresResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLfpStoresResponse>,
       callback: BodyResponseCallback<Schema$ListLfpStoresResponse>
     ): void;
     list(

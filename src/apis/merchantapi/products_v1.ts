@@ -287,6 +287,31 @@ export namespace merchantapi_products_v1 {
     reportingContext?: string | null;
   }
   /**
+   * The display address of the property.
+   */
+  export interface Schema$DisplayAddress {
+    /**
+     * The city such as Seattle, New York, etc.
+     */
+    city?: string | null;
+    /**
+     * The postal code, such as 94043.
+     */
+    postalCode?: string | null;
+    /**
+     * The region(state), such as WA, OH, etc.
+     */
+    region?: string | null;
+    /**
+     * The street name.
+     */
+    streetName?: string | null;
+    /**
+     * The street number.
+     */
+    streetNumber?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -405,6 +430,23 @@ export namespace merchantapi_products_v1 {
     severity?: string | null;
   }
   /**
+   * The lease term of the property.
+   */
+  export interface Schema$LeaseTerm {
+    /**
+     * The duration unit of the lease term.
+     */
+    durationUnit?: string | null;
+    /**
+     * The duration value of the lease term.
+     */
+    durationValue?: string | null;
+    /**
+     * The type of lease term.
+     */
+    type?: string | null;
+  }
+  /**
    * Response message for the ListProducts method.
    */
   export interface Schema$ListProductsResponse {
@@ -479,6 +521,19 @@ export namespace merchantapi_products_v1 {
      * The distance value.
      */
     value?: string | null;
+  }
+  /**
+   * The pet policy of the property.
+   */
+  export interface Schema$PetPolicy {
+    /**
+     * Whether pets are allowed.
+     */
+    petsAllowed?: boolean | null;
+    /**
+     * The pet types allowed.
+     */
+    petTypes?: string[] | null;
   }
   /**
    * The pickup cost of the item.
@@ -592,6 +647,10 @@ export namespace merchantapi_products_v1 {
      */
     ageGroup?: string | null;
     /**
+     * The amenity features for the property.
+     */
+    amenityFeature?: string[] | null;
+    /**
      * A safeguard in the [automated discounts] (https://support.google.com/merchants/answer/10295759) and "Dynamic Promotions" (https://support.google.com/merchants/answer/13949249) projects, ensuring that discounts on business offers do not fall below this value, thereby preserving the offer's value and profitability.
      */
     autoPricingMinPrice?: Schema$Price;
@@ -679,6 +738,10 @@ export namespace merchantapi_products_v1 {
      * The date time when an offer becomes visible in search results across Google’s YouTube surfaces, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. See [Disclosure date](https://support.google.com/merchants/answer/13034208) for more information.
      */
     disclosureDate?: string | null;
+    /**
+     * The display address of the property.
+     */
+    displayAddress?: Schema$DisplayAddress;
     /**
      * An identifier for an item for dynamic remarketing campaigns.
      */
@@ -792,6 +855,14 @@ export namespace merchantapi_products_v1 {
      */
     itemGroupTitle?: string | null;
     /**
+     * The latitude of the property. The value must be between -90 (inclusive) and 90 (inclusive), up to 6 decimal places.
+     */
+    latitude?: number | null;
+    /**
+     * The lease term of the property.
+     */
+    leaseTerm?: Schema$LeaseTerm;
+    /**
      * Additional URLs of lifestyle images of the item, used to explicitly identify images that showcase your item in a real-world context. See the [Help Center article](https://support.google.com/merchants/answer/9103186) for more information.
      */
     lifestyleImageLinks?: string[] | null;
@@ -803,6 +874,10 @@ export namespace merchantapi_products_v1 {
      * [Link template](https://support.google.com/merchants/answer/13871172) for business hosted local storefront.
      */
     linkTemplate?: string | null;
+    /**
+     * The longitude of the property. The value must be between -180 (inclusive) and 180 (inclusive), up to 6 decimal places.
+     */
+    longitude?: number | null;
     /**
      * Loyalty points that users receive after purchasing the item. Japan only.
      */
@@ -864,6 +939,22 @@ export namespace merchantapi_products_v1 {
      */
     multipack?: string | null;
     /**
+     * The neighborhood (locality) of the property, such as `Wallingford`, `Greenwood`, etc.
+     */
+    neighborhood?: string | null;
+    /**
+     * The number of bathrooms in the property. The value must be greater than 0 and a multiple of 0.5.
+     */
+    numberOfBathrooms?: number | null;
+    /**
+     * The number of bedrooms in the property. The value must be greater than or equal to 0 and a multiple of 1.0.
+     */
+    numberOfBedrooms?: number | null;
+    /**
+     * The number of units available for a specific floor plan of the property. The value must be greater than 0.
+     */
+    numberOfUnits?: string | null;
+    /**
      * The item's [pattern](https://support.google.com/merchants/answer/6324483). For example, polka dots.
      */
     pattern?: string | null;
@@ -871,6 +962,10 @@ export namespace merchantapi_products_v1 {
      * Publication of this item will be temporarily [paused](https://support.google.com/merchants/answer/11909930).
      */
     pause?: string | null;
+    /**
+     * The pet policy for the property.
+     */
+    petPolicy?: Schema$PetPolicy;
     /**
      * Optional. The [pickup cost](https://support.google.com/merchants/answer/16988704) for an item when a customer buys it online and picks it up at a store.
      */
@@ -895,6 +990,10 @@ export namespace merchantapi_products_v1 {
      * Technical specification or additional product details.
      */
     productDetails?: Schema$ProductDetail[];
+    /**
+     * The product fee for the property.
+     */
+    productFee?: Schema$ProductFee[];
     /**
      * The height of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive).
      */
@@ -924,7 +1023,15 @@ export namespace merchantapi_products_v1 {
      */
     promotionIds?: string[] | null;
     /**
-     * Optional. Contains user-, merchant-, and manufacturer-authored [questions and answers](https://support.google.com/merchants/answer/17085211) about the product. Max 30 question and answer pairs. Max 5000 characters total. Each question can have max 1000 characters. Each answer can have max 1000 characters.
+     * The name of the property.
+     */
+    propertyName?: string | null;
+    /**
+     * The type of property.
+     */
+    propertyType?: string | null;
+    /**
+     * Optional. Contains user-, merchant-, and manufacturer-authored [questions and answers](https://support.google.com/merchants/answer/17085211) about the product. Max 30 question and answer pairs. Max 10000 characters total. Each question can have max 1000 characters. Each answer can have max 1000 characters.
      */
     questionsAndAnswers?: Schema$QuestionAndAnswer[];
     /**
@@ -935,6 +1042,10 @@ export namespace merchantapi_products_v1 {
      * The return label of the product, used to group products in account-level return policies. Max. 100 characters. For more information, see [Return policy label](https://support.google.com/merchants/answer/9445425).
      */
     returnPolicyLabel?: string | null;
+    /**
+     * Optional. [Return rules](https://support.google.com/merchants/answer/17081382) for the product.
+     */
+    returns?: Schema$Returns[];
     /**
      * Advertised sale price of the item.
      */
@@ -984,6 +1095,10 @@ export namespace merchantapi_products_v1 {
      */
     shoppingAdsExcludedCountries?: string[] | null;
     /**
+     * The short title of the item.
+     */
+    shortTitle?: string | null;
+    /**
      * Size of the item. Only one value is allowed. For variants with different sizes, insert a separate product for each size with the same `itemGroupId` value, see [Size](https://support.google.com/merchants/answer/6324492).
      */
     size?: string | null;
@@ -995,6 +1110,10 @@ export namespace merchantapi_products_v1 {
      * The cut of the item. It can be used to represent combined size types for apparel items. Maximum two of size types can be provided, see [Size type](https://support.google.com/merchants/answer/6324497).
      */
     sizeTypes?: string[] | null;
+    /**
+     * The specialty housing type for the property.
+     */
+    specialtyHousingType?: string | null;
     /**
      * Structured description, for algorithmically (AI)-generated descriptions.
      */
@@ -1024,6 +1143,10 @@ export namespace merchantapi_products_v1 {
      */
     trim?: string | null;
     /**
+     * The unit area of the property, such as `1000 sqft`.
+     */
+    unitArea?: Schema$UnitArea;
+    /**
      * The preference of the denominator of the unit price.
      */
     unitPricingBaseMeasure?: Schema$UnitPricingBaseMeasure;
@@ -1031,6 +1154,10 @@ export namespace merchantapi_products_v1 {
      * The measure and dimension of an item.
      */
     unitPricingMeasure?: Schema$UnitPricingMeasure;
+    /**
+     * The utilities included for the property.
+     */
+    utilitiesIncluded?: string[] | null;
     /**
      * Optional. Contains the [list of all variant-identifying options](https://support.google.com/merchants/answer/17085214) of this product.
      */
@@ -1147,6 +1274,19 @@ export namespace merchantapi_products_v1 {
      * Required. The dimension value represented as a number. The value can have a maximum precision of four decimal places.
      */
     value?: number | null;
+  }
+  /**
+   * The product fee attribute containing type and amount.
+   */
+  export interface Schema$ProductFee {
+    /**
+     * The amount of product fee.
+     */
+    amount?: Schema$Price;
+    /**
+     * The type of product fee.
+     */
+    type?: string | null;
   }
   /**
    * This resource represents input data you submit for a product, not the processed product that you see in Merchant Center, in Shopping ads, or across Google surfaces. Product inputs, rules and supplemental data source data are combined to create the processed Product. For more information, see [Manage products](/merchant/api/guides/products/overview). Required product input attributes to pass data validation checks are primarily defined in the [Products Data Specification](https://support.google.com/merchants/answer/188494). The following attributes are required: feedLabel, contentLanguage and offerId. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. All fields in the product input and its sub-messages match the English name of their corresponding attribute in the [Products Data Specification](https://support.google.com/merchants/answer/188494) with [some exceptions](https://support.google.com/merchants/answer/7052112). The following reference documentation lists the field names in the **camelCase** casing style while the Products Data Specification lists the names in the **snake_case** casing style.
@@ -1374,6 +1514,55 @@ export namespace merchantapi_products_v1 {
     relationshipType?: string | null;
   }
   /**
+   * The returns of the product.
+   */
+  export interface Schema$Returns {
+    /**
+     * The [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the countries to which an item can be returned.
+     */
+    countries?: string[] | null;
+    /**
+     * The condition the item must be in to be accepted.
+     */
+    itemConditions?: string[] | null;
+    /**
+     * The physical methods by which the item can be returned.
+     */
+    methods?: string[] | null;
+    /**
+     * The financial outcomes available for a return.
+     */
+    outcomes?: string[] | null;
+    /**
+     * The URL of the return policy.
+     */
+    policyUrl?: string | null;
+    /**
+     * A flat restocking fee penalty.
+     */
+    restockingFee?: Schema$Price;
+    /**
+     * A percentage restocking fee penalty.
+     */
+    restockingPercentageFee?: number | null;
+    /**
+     * The fixed cost out-of-pocket for a customer to return an item.
+     */
+    shippingFee?: Schema$Price;
+    /**
+     * The type of return shipping fee.
+     */
+    shippingFeeType?: string | null;
+    /**
+     * The duration of the return window in days.
+     */
+    windowDays?: string | null;
+    /**
+     * Special return window behavior.
+     */
+    windowType?: string | null;
+  }
+  /**
    * The Shipping of the product.
    */
   export interface Schema$Shipping {
@@ -1519,6 +1708,19 @@ export namespace merchantapi_products_v1 {
      * The number of subscription periods the buyer has to pay.
      */
     periodLength?: string | null;
+  }
+  /**
+   * The unit area of the property.
+   */
+  export interface Schema$UnitArea {
+    /**
+     * The unit of area.
+     */
+    unit?: string | null;
+    /**
+     * The area value.
+     */
+    value?: number | null;
   }
   /**
    * The UnitPricingBaseMeasure of the product.
@@ -1678,8 +1880,7 @@ export namespace merchantapi_products_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2214,8 +2415,7 @@ export namespace merchantapi_products_v1 {
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Product>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Product> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Product>>
@@ -2338,8 +2538,7 @@ export namespace merchantapi_products_v1 {
     list(
       params: Params$Resource$Accounts$Products$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListProductsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListProductsResponse>,
       callback: BodyResponseCallback<Schema$ListProductsResponse>
     ): void;
     list(
