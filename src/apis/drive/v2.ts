@@ -2173,8 +2173,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$About>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$About>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$About> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$About>>
@@ -2359,8 +2358,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$App>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$App>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$App> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$App>>
@@ -2503,8 +2501,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$AppList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AppList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AppList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AppList>>
@@ -2694,8 +2691,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Change>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Change>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Change> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Change>>
@@ -3031,8 +3027,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$ChangeList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ChangeList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ChangeList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ChangeList>>
@@ -3228,8 +3223,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -4174,8 +4168,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$ChildList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ChildList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ChildList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ChildList>>
@@ -4543,8 +4536,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Comment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Comment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
@@ -4717,8 +4709,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Comment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Comment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
@@ -5047,8 +5038,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Comment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Comment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
@@ -5223,8 +5213,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Comment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Comment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Comment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Comment>>
@@ -5602,8 +5591,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Drive>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Drive>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Drive> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
@@ -5749,8 +5737,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Drive>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Drive>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Drive> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
@@ -5915,8 +5902,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Drive>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Drive>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Drive> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
@@ -6059,8 +6045,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$DriveList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DriveList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DriveList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DriveList>>
@@ -6203,8 +6188,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Drive>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Drive>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Drive> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
@@ -6371,8 +6355,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Drive>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Drive>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Drive> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Drive>>
@@ -6785,8 +6768,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$File>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$File> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$File>>
@@ -7315,8 +7297,7 @@ export namespace drive_v2 {
     generateCseToken(
       params: Params$Resource$Files$Generatecsetoken,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GenerateCseTokenResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GenerateCseTokenResponse>,
       callback: BodyResponseCallback<Schema$GenerateCseTokenResponse>
     ): void;
     generateCseToken(
@@ -7722,8 +7703,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$File>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$File> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$File>>
@@ -8051,8 +8031,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$File>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$File> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$File>>
@@ -8234,8 +8213,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$FileList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$FileList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$FileList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$FileList>>
@@ -8380,8 +8358,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$LabelList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LabelList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LabelList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LabelList>>
@@ -8512,8 +8489,7 @@ export namespace drive_v2 {
     modifyLabels(
       params: Params$Resource$Files$Modifylabels,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ModifyLabelsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ModifyLabelsResponse>,
       callback: BodyResponseCallback<Schema$ModifyLabelsResponse>
     ): void;
     modifyLabels(
@@ -8874,8 +8850,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$File>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$File> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$File>>
@@ -9100,8 +9075,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$File>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$File> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$File>>
@@ -9325,8 +9299,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$File>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$File> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$File>>
@@ -9550,8 +9523,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$File>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$File> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$File>>
@@ -9893,8 +9865,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$File>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$File>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$File> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$File>>
@@ -10084,8 +10055,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -11301,8 +11271,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$ParentList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ParentList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ParentList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ParentList>>
@@ -11676,8 +11645,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Permission>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Permission>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Permission> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Permission>>
@@ -12025,8 +11993,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Permission>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Permission>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Permission> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Permission>>
@@ -12387,8 +12354,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Permission>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Permission>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Permission> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Permission>>
@@ -12588,8 +12554,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Permission>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Permission>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Permission> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Permission>>
@@ -13093,8 +13058,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Property>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Property>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Property> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Property>>
@@ -13251,8 +13215,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Property>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Property>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Property> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Property>>
@@ -13563,8 +13526,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Property>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Property>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Property> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Property>>
@@ -13725,8 +13687,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Property>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Property>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Property> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Property>>
@@ -15170,8 +15131,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Revision>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Revision>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Revision> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Revision>>
@@ -15506,8 +15466,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Revision>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Revision>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Revision> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Revision>>
@@ -15689,8 +15648,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$Revision>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Revision>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Revision> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Revision>>
@@ -16041,8 +15999,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$TeamDrive>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TeamDrive>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TeamDrive> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TeamDrive>>
@@ -16205,8 +16162,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$TeamDrive>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TeamDrive>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TeamDrive> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TeamDrive>>
@@ -16519,8 +16475,7 @@ export namespace drive_v2 {
         | BodyResponseCallback<Schema$TeamDrive>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TeamDrive>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TeamDrive> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TeamDrive>>
