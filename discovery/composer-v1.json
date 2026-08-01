@@ -1278,7 +1278,7 @@
       }
     }
   },
-  "revision": "20260325",
+  "revision": "20260622",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {
@@ -2567,6 +2567,20 @@
           },
           "description": "Optional. Apache Airflow configuration properties to override. Property keys contain the section and property names, separated by a hyphen, for example \"core-dags_are_paused_at_creation\". Section names must not contain hyphens (\"-\"), opening square brackets (\"[\"), or closing square brackets (\"]\"). The property name must not be empty and must not contain an equals sign (\"=\") or semicolon (\";\"). Section and property names must not contain a period (\".\"). Apache Airflow configuration property names must be written in [snake_case](https://en.wikipedia.org/wiki/Snake_case). Property values can contain any character, and can be written in any lower/upper case format. Certain Apache Airflow configuration property values are [blocked](/composer/docs/concepts/airflow-configurations), and cannot be overridden.",
           "type": "object"
+        },
+        "auditLogsReplicationMode": {
+          "description": "Optional. The selected mode of audit logs replication. This field is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.",
+          "enum": [
+            "AUDIT_LOGS_REPLICATION_MODE_UNSPECIFIED",
+            "AUDIT_LOGS_REPLICATION_DISABLED",
+            "AUDIT_LOGS_REPLICATION_ENABLED"
+          ],
+          "enumDescriptions": [
+            "The user's choice of logs replication mode is unspecified.",
+            "The user opted out of audit logs replication.",
+            "The user opted in to audit logs replication."
+          ],
+          "type": "string"
         },
         "cloudDataLineageIntegration": {
           "$ref": "CloudDataLineageIntegration",

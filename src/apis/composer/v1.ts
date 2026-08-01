@@ -1050,6 +1050,10 @@ export namespace composer_v1 {
      */
     airflowConfigOverrides?: {[key: string]: string} | null;
     /**
+     * Optional. The selected mode of audit logs replication. This field is supported for Cloud Composer environments in versions composer-3-airflow-*.*.*-build.* and newer.
+     */
+    auditLogsReplicationMode?: string | null;
+    /**
      * Optional. The configuration for Cloud Data Lineage integration.
      */
     cloudDataLineageIntegration?: Schema$CloudDataLineageIntegration;
@@ -1428,8 +1432,7 @@ export namespace composer_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1590,8 +1593,7 @@ export namespace composer_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1741,8 +1743,7 @@ export namespace composer_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1886,8 +1887,7 @@ export namespace composer_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2471,8 +2471,7 @@ export namespace composer_v1 {
     list(
       params: Params$Resource$Projects$Locations$Environments$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
       callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>
     ): void;
     list(
@@ -2648,8 +2647,7 @@ export namespace composer_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2812,8 +2810,7 @@ export namespace composer_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2948,8 +2945,7 @@ export namespace composer_v1 {
     pollAirflowCommand(
       params: Params$Resource$Projects$Locations$Environments$Pollairflowcommand,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PollAirflowCommandResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PollAirflowCommandResponse>,
       callback: BodyResponseCallback<Schema$PollAirflowCommandResponse>
     ): void;
     pollAirflowCommand(
@@ -3121,8 +3117,7 @@ export namespace composer_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3275,8 +3270,7 @@ export namespace composer_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3413,8 +3407,7 @@ export namespace composer_v1 {
     stopAirflowCommand(
       params: Params$Resource$Projects$Locations$Environments$Stopairflowcommand,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$StopAirflowCommandResponse>,
+        MethodOptions | BodyResponseCallback<Schema$StopAirflowCommandResponse>,
       callback: BodyResponseCallback<Schema$StopAirflowCommandResponse>
     ): void;
     stopAirflowCommand(
@@ -3726,8 +3719,7 @@ export namespace composer_v1 {
     create(
       params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UserWorkloadsConfigMap>,
+        MethodOptions | BodyResponseCallback<Schema$UserWorkloadsConfigMap>,
       callback: BodyResponseCallback<Schema$UserWorkloadsConfigMap>
     ): void;
     create(
@@ -3888,8 +3880,7 @@ export namespace composer_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4011,8 +4002,7 @@ export namespace composer_v1 {
     get(
       params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UserWorkloadsConfigMap>,
+        MethodOptions | BodyResponseCallback<Schema$UserWorkloadsConfigMap>,
       callback: BodyResponseCallback<Schema$UserWorkloadsConfigMap>
     ): void;
     get(
@@ -4325,8 +4315,7 @@ export namespace composer_v1 {
     update(
       params: Params$Resource$Projects$Locations$Environments$Userworkloadsconfigmaps$Update,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UserWorkloadsConfigMap>,
+        MethodOptions | BodyResponseCallback<Schema$UserWorkloadsConfigMap>,
       callback: BodyResponseCallback<Schema$UserWorkloadsConfigMap>
     ): void;
     update(
@@ -4691,8 +4680,7 @@ export namespace composer_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5325,8 +5313,7 @@ export namespace composer_v1 {
     list(
       params: Params$Resource$Projects$Locations$Environments$Workloads$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListWorkloadsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListWorkloadsResponse>,
       callback: BodyResponseCallback<Schema$ListWorkloadsResponse>
     ): void;
     list(
@@ -5502,8 +5489,7 @@ export namespace composer_v1 {
     list(
       params: Params$Resource$Projects$Locations$Imageversions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListImageVersionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListImageVersionsResponse>,
       callback: BodyResponseCallback<Schema$ListImageVersionsResponse>
     ): void;
     list(
@@ -5688,8 +5674,7 @@ export namespace composer_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5830,8 +5815,7 @@ export namespace composer_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5960,8 +5944,7 @@ export namespace composer_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
