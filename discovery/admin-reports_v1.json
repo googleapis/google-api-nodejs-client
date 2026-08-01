@@ -126,6 +126,11 @@
               "location": "query",
               "type": "string"
             },
+            "agentInfoFilter": {
+              "description": "Optional. Filters on agent info fields in the activity. This filter gets applied in conjunction(AND) with other filters. Example: \"agentInfoFilter=agentId=\\\"agent-id\\\" AND agentName=\\\"agent-name\\\" AND agentOwnerEmail=\\\"agent-owner-email\\\"\"",
+              "location": "query",
+              "type": "string"
+            },
             "applicationInfoFilter": {
               "description": "Optional. Used to filter on the `oAuthClientId` field present in [`ApplicationInfo`](#applicationinfo) message. **Usage** ``` GET...&applicationInfoFilter=oAuthClientId=\"clientId\" GET...&applicationInfoFilter=oAuthClientId=%22clientId%22 ```",
               "location": "query",
@@ -690,7 +695,7 @@
       }
     }
   },
-  "revision": "20260504",
+  "revision": "20260724",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {
@@ -727,6 +732,10 @@
         "actor": {
           "description": "User doing the action.",
           "properties": {
+            "agentAttributionInfo": {
+              "$ref": "AgentAttributionInfo",
+              "description": "Details of the AI agent that was the actor for the activity."
+            },
             "applicationInfo": {
               "description": "Details of the application that was the actor for the activity.",
               "properties": {
@@ -964,6 +973,10 @@
           "description": "IP address of the user doing the action. This is the Internet Protocol (IP) address of the user when logging into Google Workspace, which may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. The API supports IPv4 and IPv6.",
           "type": "string"
         },
+        "isAgenticAction": {
+          "description": "Whether the activity was performed by an agent.",
+          "type": "boolean"
+        },
         "kind": {
           "default": "admin#reports#activity",
           "description": "The type of API resource. For an activity report, the value is `audit#activity`.",
@@ -983,6 +996,10 @@
             "$ref": "ResourceDetails"
           },
           "type": "array"
+        },
+        "userDeviceInfo": {
+          "$ref": "ActivityUserDeviceInfo",
+          "description": "Device details of the user doing the action."
         }
       },
       "type": "object"
@@ -1029,6 +1046,62 @@
         },
         "subdivisionCode": {
           "description": "ISO 3166-2 region code (states and provinces) for countries of the user doing the action.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ActivityUserDeviceInfo": {
+      "description": "Device details of the user doing the action.",
+      "id": "ActivityUserDeviceInfo",
+      "properties": {
+        "deviceId": {
+          "description": "Output only. Device ID of the user's device.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deviceOsVersion": {
+          "description": "Output only. Device OS version of the user's device.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deviceType": {
+          "description": "Output only. The type of the user's device.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentAttributionInfo": {
+      "description": "Details of the AI agent that was the actor for the activity.",
+      "id": "AgentAttributionInfo",
+      "properties": {
+        "agentId": {
+          "description": "The ID of the agent.",
+          "type": "string"
+        },
+        "agentName": {
+          "description": "The user visible name of the agent.",
+          "type": "string"
+        },
+        "agentOwner": {
+          "$ref": "AgentAttributionInfoAgentOwner",
+          "description": "The owner of the agent."
+        },
+        "agentType": {
+          "description": "Type of the agent.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentAttributionInfoAgentOwner": {
+      "description": "Details of the owner of the AI agent.",
+      "id": "AgentAttributionInfoAgentOwner",
+      "properties": {
+        "email": {
+          "description": "The email of the agent owner.",
           "type": "string"
         }
       },

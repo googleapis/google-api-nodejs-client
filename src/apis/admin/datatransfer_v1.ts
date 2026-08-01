@@ -489,8 +489,7 @@ export namespace admin_datatransfer_v1 {
     list(
       params: Params$Resource$Applications$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ApplicationsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ApplicationsListResponse>,
       callback: BodyResponseCallback<Schema$ApplicationsListResponse>
     ): void;
     list(
@@ -972,8 +971,7 @@ export namespace admin_datatransfer_v1 {
     list(
       params: Params$Resource$Transfers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DataTransfersListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DataTransfersListResponse>,
       callback: BodyResponseCallback<Schema$DataTransfersListResponse>
     ): void;
     list(
