@@ -100,7 +100,7 @@ export namespace firebasedataconnect_v1 {
   }
 
   /**
-   * Firebase Data Connect API
+   * Firebase SQL Connect API
    *
    * Firebase SQL Connect is a relational database service for mobile and web apps that lets you build and scale using a fully-managed PostgreSQL database powered by Cloud SQL. The REST API lets developers manage the connections to their database, change the schema of their database, and query the database.
    *
@@ -145,6 +145,10 @@ export namespace firebasedataconnect_v1 {
    * Settings for CloudSQL instance configuration.
    */
   export interface Schema$CloudSqlInstance {
+    /**
+     * Output only. [Output only] The Cloud SQL instance edition.
+     */
+    edition?: string | null;
     /**
      * Required. Name of the CloudSQL instance, in the format: ``` projects/{project\}/locations/{location\}/instances/{instance\} ```
      */
@@ -1012,8 +1016,7 @@ export namespace firebasedataconnect_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -1138,8 +1141,7 @@ export namespace firebasedataconnect_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1336,8 +1338,7 @@ export namespace firebasedataconnect_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1469,8 +1470,7 @@ export namespace firebasedataconnect_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1608,8 +1608,7 @@ export namespace firebasedataconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1735,8 +1734,7 @@ export namespace firebasedataconnect_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -1980,8 +1978,7 @@ export namespace firebasedataconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2132,8 +2129,7 @@ export namespace firebasedataconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2570,8 +2566,7 @@ export namespace firebasedataconnect_v1 {
     generateQuery(
       params: Params$Resource$Projects$Locations$Services$Generatequery,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GenerateQueryResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GenerateQueryResponse>,
       callback: BodyResponseCallback<Schema$GenerateQueryResponse>
     ): void;
     generateQuery(
@@ -2723,8 +2718,7 @@ export namespace firebasedataconnect_v1 {
     generateSchema(
       params: Params$Resource$Projects$Locations$Services$Generateschema,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GenerateSchemaResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GenerateSchemaResponse>,
       callback: BodyResponseCallback<Schema$GenerateSchemaResponse>
     ): void;
     generateSchema(
@@ -2892,8 +2886,7 @@ export namespace firebasedataconnect_v1 {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -3174,8 +3167,7 @@ export namespace firebasedataconnect_v1 {
     list(
       params: Params$Resource$Projects$Locations$Services$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListServicesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListServicesResponse>,
       callback: BodyResponseCallback<Schema$ListServicesResponse>
     ): void;
     list(
@@ -3360,8 +3352,7 @@ export namespace firebasedataconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3691,8 +3682,7 @@ export namespace firebasedataconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3845,8 +3835,7 @@ export namespace firebasedataconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3977,8 +3966,7 @@ export namespace firebasedataconnect_v1 {
     executeMutation(
       params: Params$Resource$Projects$Locations$Services$Connectors$Executemutation,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ExecuteMutationResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ExecuteMutationResponse>,
       callback: BodyResponseCallback<Schema$ExecuteMutationResponse>
     ): void;
     executeMutation(
@@ -4134,8 +4122,7 @@ export namespace firebasedataconnect_v1 {
     executeQuery(
       params: Params$Resource$Projects$Locations$Services$Connectors$Executequery,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ExecuteQueryResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ExecuteQueryResponse>,
       callback: BodyResponseCallback<Schema$ExecuteQueryResponse>
     ): void;
     executeQuery(
@@ -4306,8 +4293,7 @@ export namespace firebasedataconnect_v1 {
         | BodyResponseCallback<Schema$Connector>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Connector>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Connector> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Connector>>
@@ -4747,8 +4733,7 @@ export namespace firebasedataconnect_v1 {
     list(
       params: Params$Resource$Projects$Locations$Services$Connectors$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListConnectorsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListConnectorsResponse>,
       callback: BodyResponseCallback<Schema$ListConnectorsResponse>
     ): void;
     list(
@@ -4937,8 +4922,7 @@ export namespace firebasedataconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5258,8 +5242,7 @@ export namespace firebasedataconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5412,8 +5395,7 @@ export namespace firebasedataconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5560,8 +5542,7 @@ export namespace firebasedataconnect_v1 {
         | BodyResponseCallback<Schema$Schema>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Schema>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Schema> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Schema>>
@@ -5875,8 +5856,7 @@ export namespace firebasedataconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

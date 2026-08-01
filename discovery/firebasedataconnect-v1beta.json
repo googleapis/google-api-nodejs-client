@@ -1221,7 +1221,7 @@
       }
     }
   },
-  "revision": "20260502",
+  "revision": "20260719",
   "rootUrl": "https://firebasedataconnect.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -1249,6 +1249,23 @@
       "description": "Settings for CloudSQL instance configuration.",
       "id": "CloudSqlInstance",
       "properties": {
+        "edition": {
+          "description": "Output only. [Output only] The Cloud SQL instance edition.",
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "EDITION_ENTERPRISE",
+            "EDITION_ENTERPRISE_PLUS",
+            "EDITION_DEVELOPER"
+          ],
+          "enumDescriptions": [
+            "Unspecified edition.",
+            "Enterprise edition.",
+            "Enterprise Plus edition.",
+            "Developer edition (includes AI Developer edition)."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "instance": {
           "description": "Required. Name of the CloudSQL instance, in the format: ``` projects/{project}/locations/{location}/instances/{instance} ```",
           "type": "string"
@@ -2346,7 +2363,7 @@
     }
   },
   "servicePath": "",
-  "title": "Firebase Data Connect API",
+  "title": "Firebase SQL Connect API",
   "version": "v1beta",
   "version_module": true
 }
