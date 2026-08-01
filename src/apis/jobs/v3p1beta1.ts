@@ -1423,8 +1423,7 @@ export namespace jobs_v3p1beta1 {
     complete(
       params: Params$Resource$Projects$Complete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CompleteQueryResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CompleteQueryResponse>,
       callback: BodyResponseCallback<Schema$CompleteQueryResponse>
     ): void;
     complete(
@@ -1819,8 +1818,7 @@ export namespace jobs_v3p1beta1 {
         | BodyResponseCallback<Schema$Company>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Company>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Company> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Company>>
@@ -1957,8 +1955,7 @@ export namespace jobs_v3p1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2106,8 +2103,7 @@ export namespace jobs_v3p1beta1 {
         | BodyResponseCallback<Schema$Company>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Company>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Company> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Company>>
@@ -2233,8 +2229,7 @@ export namespace jobs_v3p1beta1 {
     list(
       params: Params$Resource$Projects$Companies$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCompaniesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCompaniesResponse>,
       callback: BodyResponseCallback<Schema$ListCompaniesResponse>
     ): void;
     list(
@@ -2414,8 +2409,7 @@ export namespace jobs_v3p1beta1 {
         | BodyResponseCallback<Schema$Company>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Company>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Company> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Company>>
@@ -2617,8 +2611,7 @@ export namespace jobs_v3p1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2794,8 +2787,7 @@ export namespace jobs_v3p1beta1 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -2932,8 +2924,7 @@ export namespace jobs_v3p1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3098,8 +3089,7 @@ export namespace jobs_v3p1beta1 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -3423,8 +3413,7 @@ export namespace jobs_v3p1beta1 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -4005,8 +3994,7 @@ export namespace jobs_v3p1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
