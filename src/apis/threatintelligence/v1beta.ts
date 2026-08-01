@@ -213,6 +213,10 @@ export namespace threatintelligence_v1beta {
      * Insider Threat alert detail type.
      */
     insiderThreat?: Schema$InsiderThreatAlertDetail;
+    /**
+     * Technology Watchlist alert detail type.
+     */
+    targetTechnology?: Schema$TargetTechnologyAlertDetail;
   }
   /**
    * A document that is associated with an alert.
@@ -285,6 +289,19 @@ export namespace threatintelligence_v1beta {
     translatedTitle?: string | null;
   }
   /**
+   * Represents an association with a vulnerability.
+   */
+  export interface Schema$Association {
+    /**
+     * Required. The ID of the association.
+     */
+    id?: string | null;
+    /**
+     * Required. The type of the association.
+     */
+    type?: string | null;
+  }
+  /**
    * Tracks basic CRUD facts.
    */
   export interface Schema$Audit {
@@ -326,6 +343,10 @@ export namespace threatintelligence_v1beta {
      */
     displayName?: string | null;
     /**
+     * If included when updating a configuration, this should be set to the current etag of the configuration. If the etags do not match, the update will be rejected and an ABORTED error will be returned.
+     */
+    etag?: string | null;
+    /**
      * Identifier. Server generated name for the configuration. format is projects/{project\}/configurations/{configuration\}
      */
     name?: string | null;
@@ -354,6 +375,10 @@ export namespace threatintelligence_v1beta {
      * Output only. Name of the detail type. Will be set by the server during creation to the name of the field that is set in the detail union.
      */
     detailType?: string | null;
+    /**
+     * Technology Watchlist detail config.
+     */
+    technologyWatchlist?: Schema$TechnologyWatchListConfig;
   }
   /**
    * A ConfigurationRevision is a snapshot of a Configuration at a point in time. It is immutable.
@@ -823,6 +848,10 @@ export namespace threatintelligence_v1beta {
      * Insider Threat finding detail type.
      */
     insiderThreat?: Schema$InsiderThreatFindingDetail;
+    /**
+     * Technology Watchlist finding detail type.
+     */
+    targetTechnology?: Schema$TargetTechnologyFindingDetail;
   }
   /**
    * Request message for GenerateOrgProfileConfiguration.
@@ -1033,6 +1062,56 @@ export namespace threatintelligence_v1beta {
     reasoning?: string | null;
   }
   /**
+   * Contains details about a product fix.
+   */
+  export interface Schema$ProductFix {
+    /**
+     * Required. The name of the fix. Ex: "Magento".
+     */
+    displayName?: string | null;
+    /**
+     * Optional. The published time of the fix.
+     */
+    publishTime?: string | null;
+    /**
+     * Required. The source ID of the fix. Ex: "APPSEC-1420".
+     */
+    sourceId?: string | null;
+    /**
+     * Optional. The URI of the fix.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Contains details about a public exploit.
+   */
+  export interface Schema$PublicExploit {
+    /**
+     * Optional. The grade of the exploit. Ex: "non-weaponized".
+     */
+    exploitGrade?: string | null;
+    /**
+     * Required. The name of the exploit. Ex: "Magentounauth.php.txt".
+     */
+    exploitName?: string | null;
+    /**
+     * Optional. The reliability of the exploit. Ex: "Unreviewed".
+     */
+    exploitReliability?: string | null;
+    /**
+     * Optional. The release time of the exploit.
+     */
+    releaseTime?: string | null;
+    /**
+     * Optional. The size of the exploit.
+     */
+    sizeBytes?: string | null;
+    /**
+     * Optional. The URI of the exploit.
+     */
+    uri?: string | null;
+  }
+  /**
    * Structured relevance analysis for a threat.
    */
   export interface Schema$RelevanceAnalysis {
@@ -1105,6 +1184,62 @@ export namespace threatintelligence_v1beta {
     message?: string | null;
   }
   /**
+   * Contains details for a technology watchlist alert.
+   */
+  export interface Schema$TargetTechnologyAlertDetail {
+    /**
+     * Optional. The vulnerability match details.
+     */
+    vulnerabilityMatch?: Schema$VulnerabilityMatch;
+  }
+  /**
+   * Contains details for a technology watchlist finding.
+   */
+  export interface Schema$TargetTechnologyFindingDetail {
+    /**
+     * Optional. The vulnerability match details.
+     */
+    vulnerabilityMatch?: Schema$VulnerabilityMatch;
+  }
+  /**
+   * TechnologyWatchListAlertThreshold contains the thresholds for alerting.
+   */
+  export interface Schema$TechnologyWatchListAlertThreshold {
+    /**
+     * Optional. The minimum CVSS score for the alert. Evaluates to CVSS v3 when available with a fallback to v2 and v4. Ex: 7.0. Valid range is [0.0, 10.0].
+     */
+    cvssScoreMinimum?: number | null;
+    /**
+     * Optional. The minimum epss score for the alert. Ex: 0.8. Valid range is [0.0, 1.0].
+     */
+    epssScoreMinimum?: number | null;
+    /**
+     * Optional. The exploitation states of the alert.
+     */
+    exploitationStates?: string[] | null;
+    /**
+     * Optional. The minimum priority for the alert.
+     */
+    priorityMinimum?: string | null;
+    /**
+     * Optional. The minimum risk rating for the alert.
+     */
+    riskRatingMinimum?: string | null;
+  }
+  /**
+   * TechnologyWatchListConfig is the configuration for the technology watchlist.
+   */
+  export interface Schema$TechnologyWatchListConfig {
+    /**
+     * Optional. Alert thresholds to effectively reduce noise.
+     */
+    alertThreshold?: Schema$TechnologyWatchListAlertThreshold;
+    /**
+     * Optional. List of vendor, technology or cpe fingerprint. example: Microsoft office 360 Apache Server 3.5 cpe:2.3:a:microsoft:outlook:*:*:*:*:*:*:*:*
+     */
+    technologies?: string[] | null;
+  }
+  /**
    * Response message for UpsertConfiguration.
    */
   export interface Schema$UpsertConfigurationResponse {
@@ -1112,6 +1247,79 @@ export namespace threatintelligence_v1beta {
      * Output only. Created configuration ID with server assigned id.
      */
     configuration?: string | null;
+  }
+  /**
+   * Contains details about a vulnerability match.
+   */
+  export interface Schema$VulnerabilityMatch {
+    /**
+     * Optional. Associated threat actors, malware, etc. This is embedded as a snapshot because the details of the association at the time of the vulnerability match are important for context and reporting.
+     */
+    associations?: Schema$Association[];
+    /**
+     * Required. The collection ID of the vulnerability. Ex: "vulnerability--cve-2025-9876".
+     */
+    collectionId?: string | null;
+    /**
+     * Required. The CVE ID of the vulnerability. Ex: "CVE-2025-9876". See https://www.cve.org/ for more information.
+     */
+    cveId?: string | null;
+    /**
+     * Required. The CVSS score of the vulnerability. Evaluates to CVSS v3 when available with a fallback to v2 and v4. Example: 6.4.
+     */
+    cvss3Score?: number | null;
+    /**
+     * Required. A description of the vulnerability.
+     */
+    description?: string | null;
+    /**
+     * Optional. The disclosure time of the vulnerability.
+     */
+    disclosureTime?: string | null;
+    /**
+     * Optional. The EPSS score, representing the probability of exploitation. Example: 0.87.
+     */
+    epssScore?: number | null;
+    /**
+     * Optional. List of exploitation consequences for the vulnerability.
+     */
+    exploitationConsequences?: string[] | null;
+    /**
+     * Required. The exploitation state of the vulnerability.
+     */
+    exploitationState?: string | null;
+    /**
+     * Optional. List of exploitation vectors for the vulnerability.
+     */
+    exploitationVectors?: string[] | null;
+    /**
+     * Optional. The specific technologies from the configured watchlist that triggered the match. Ex: "Apache Struts".
+     */
+    matchedTechnologies?: string[] | null;
+    /**
+     * Optional. The priority level of the vulnerability data. Ex: "P1".
+     */
+    priority?: string | null;
+    /**
+     * Optional. List of product fixes for the vulnerability.
+     */
+    productFixes?: Schema$ProductFix[];
+    /**
+     * Optional. List of public exploits.
+     */
+    publicExploits?: Schema$PublicExploit[];
+    /**
+     * Output only. Whether a publicly available exploit exists.
+     */
+    publiclyAvailableExploit?: boolean | null;
+    /**
+     * Required. The risk rating of the vulnerability.
+     */
+    riskRating?: string | null;
+    /**
+     * Required. All technologies affected by the vulnerability. Ex: "Apache Struts".
+     */
+    technologies?: string[] | null;
   }
 
   export class Resource$Projects {
@@ -1227,8 +1435,7 @@ export namespace threatintelligence_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1407,8 +1614,7 @@ export namespace threatintelligence_v1beta {
         | BodyResponseCallback<Schema$Alert>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Alert>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Alert> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
@@ -1568,8 +1774,7 @@ export namespace threatintelligence_v1beta {
         | BodyResponseCallback<Schema$Alert>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Alert>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Alert> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
@@ -1873,8 +2078,7 @@ export namespace threatintelligence_v1beta {
         | BodyResponseCallback<Schema$Alert>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Alert>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Alert> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
@@ -2032,8 +2236,7 @@ export namespace threatintelligence_v1beta {
         | BodyResponseCallback<Schema$Alert>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Alert>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Alert> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
@@ -2185,8 +2388,7 @@ export namespace threatintelligence_v1beta {
         | BodyResponseCallback<Schema$Alert>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Alert>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Alert> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
@@ -2212,6 +2414,158 @@ export namespace threatintelligence_v1beta {
         options: Object.assign(
           {
             url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Alert>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Alert>(parameters);
+      }
+    }
+
+    /**
+     * Get the decrypted password of an alert.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/threatintelligence.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const threatintelligence = google.threatintelligence('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await threatintelligence.projects.alerts.getPassword({
+     *     // Required. Name of the alert to get. Format: projects/{project\}/alerts/{alert\}
+     *     name: 'projects/my-project/alerts/my-alert',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aiSummary": "my_aiSummary",
+     *   //   "audit": {},
+     *   //   "configurations": [],
+     *   //   "detail": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "duplicateOf": "my_duplicateOf",
+     *   //   "duplicatedBy": [],
+     *   //   "etag": "my_etag",
+     *   //   "externalId": "my_externalId",
+     *   //   "findingCount": "my_findingCount",
+     *   //   "findings": [],
+     *   //   "name": "my_name",
+     *   //   "priorityAnalysis": {},
+     *   //   "relevanceAnalysis": {},
+     *   //   "severityAnalysis": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getPassword(
+      params: Params$Resource$Projects$Alerts$Getpassword,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getPassword(
+      params?: Params$Resource$Projects$Alerts$Getpassword,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Alert>>;
+    getPassword(
+      params: Params$Resource$Projects$Alerts$Getpassword,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getPassword(
+      params: Params$Resource$Projects$Alerts$Getpassword,
+      options: MethodOptions | BodyResponseCallback<Schema$Alert>,
+      callback: BodyResponseCallback<Schema$Alert>
+    ): void;
+    getPassword(
+      params: Params$Resource$Projects$Alerts$Getpassword,
+      callback: BodyResponseCallback<Schema$Alert>
+    ): void;
+    getPassword(callback: BodyResponseCallback<Schema$Alert>): void;
+    getPassword(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Alerts$Getpassword
+        | BodyResponseCallback<Schema$Alert>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Alert>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Alert> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Alerts$Getpassword;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Alerts$Getpassword;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://threatintelligence.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:getPassword').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
             apiVersion: '',
           },
@@ -2488,8 +2842,7 @@ export namespace threatintelligence_v1beta {
         | BodyResponseCallback<Schema$Alert>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Alert>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Alert> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
@@ -2647,8 +3000,7 @@ export namespace threatintelligence_v1beta {
         | BodyResponseCallback<Schema$Alert>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Alert>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Alert> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
@@ -2806,8 +3158,7 @@ export namespace threatintelligence_v1beta {
         | BodyResponseCallback<Schema$Alert>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Alert>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Alert> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
@@ -2965,8 +3316,7 @@ export namespace threatintelligence_v1beta {
         | BodyResponseCallback<Schema$Alert>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Alert>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Alert> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
@@ -3124,8 +3474,7 @@ export namespace threatintelligence_v1beta {
         | BodyResponseCallback<Schema$Alert>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Alert>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Alert> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
@@ -3230,6 +3579,12 @@ export namespace threatintelligence_v1beta {
     requestBody?: Schema$MarkAlertAsFalsePositiveRequest;
   }
   export interface Params$Resource$Projects$Alerts$Get extends StandardParameters {
+    /**
+     * Required. Name of the alert to get. Format: projects/{project\}/alerts/{alert\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Alerts$Getpassword extends StandardParameters {
     /**
      * Required. Name of the alert to get. Format: projects/{project\}/alerts/{alert\}
      */
@@ -3526,6 +3881,7 @@ export namespace threatintelligence_v1beta {
      *   //   "description": "my_description",
      *   //   "detail": {},
      *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "provider": "my_provider",
      *   //   "state": "my_state",
@@ -3705,8 +4061,7 @@ export namespace threatintelligence_v1beta {
     list(
       params: Params$Resource$Projects$Configurations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListConfigurationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListConfigurationsResponse>,
       callback: BodyResponseCallback<Schema$ListConfigurationsResponse>
     ): void;
     list(
@@ -3821,6 +4176,7 @@ export namespace threatintelligence_v1beta {
      *       //   "description": "my_description",
      *       //   "detail": {},
      *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
      *       //   "name": "my_name",
      *       //   "provider": "my_provider",
      *       //   "state": "my_state",
@@ -4273,8 +4629,7 @@ export namespace threatintelligence_v1beta {
         | BodyResponseCallback<Schema$Finding>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Finding>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Finding> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Finding>>
@@ -4399,8 +4754,7 @@ export namespace threatintelligence_v1beta {
     list(
       params: Params$Resource$Projects$Findings$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFindingsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListFindingsResponse>,
       callback: BodyResponseCallback<Schema$ListFindingsResponse>
     ): void;
     list(
@@ -4548,8 +4902,7 @@ export namespace threatintelligence_v1beta {
     search(
       params: Params$Resource$Projects$Findings$Search,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SearchFindingsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SearchFindingsResponse>,
       callback: BodyResponseCallback<Schema$SearchFindingsResponse>
     ): void;
     search(
