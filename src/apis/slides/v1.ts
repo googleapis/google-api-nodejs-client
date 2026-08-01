@@ -3278,8 +3278,7 @@ export namespace slides_v1 {
         | BodyResponseCallback<Schema$Page>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Page>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Page> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Page>>
@@ -3429,8 +3428,7 @@ export namespace slides_v1 {
         | BodyResponseCallback<Schema$Thumbnail>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Thumbnail>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Thumbnail> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Thumbnail>>
