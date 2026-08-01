@@ -407,8 +407,7 @@ export namespace adsenseplatform_v1 {
     close(
       params: Params$Resource$Platforms$Accounts$Close,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CloseAccountResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CloseAccountResponse>,
       callback: BodyResponseCallback<Schema$CloseAccountResponse>
     ): void;
     close(
@@ -582,8 +581,7 @@ export namespace adsenseplatform_v1 {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -729,8 +727,7 @@ export namespace adsenseplatform_v1 {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -854,8 +851,7 @@ export namespace adsenseplatform_v1 {
     list(
       params: Params$Resource$Platforms$Accounts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAccountsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAccountsResponse>,
       callback: BodyResponseCallback<Schema$ListAccountsResponse>
     ): void;
     list(
@@ -999,8 +995,7 @@ export namespace adsenseplatform_v1 {
     lookup(
       params: Params$Resource$Platforms$Accounts$Lookup,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LookupAccountResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LookupAccountResponse>,
       callback: BodyResponseCallback<Schema$LookupAccountResponse>
     ): void;
     lookup(
@@ -1229,8 +1224,7 @@ export namespace adsenseplatform_v1 {
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Event>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Event> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Event>>
@@ -1398,8 +1392,7 @@ export namespace adsenseplatform_v1 {
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Site>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Site> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
@@ -1534,8 +1527,7 @@ export namespace adsenseplatform_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1674,8 +1666,7 @@ export namespace adsenseplatform_v1 {
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Site>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Site> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
@@ -1935,8 +1926,7 @@ export namespace adsenseplatform_v1 {
     requestReview(
       params: Params$Resource$Platforms$Accounts$Sites$Requestreview,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RequestSiteReviewResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RequestSiteReviewResponse>,
       callback: BodyResponseCallback<Schema$RequestSiteReviewResponse>
     ): void;
     requestReview(
