@@ -2824,8 +2824,7 @@ export namespace mybusinesslodging_v1 {
         | BodyResponseCallback<Schema$Lodging>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Lodging>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Lodging> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Lodging>>
@@ -3013,8 +3012,7 @@ export namespace mybusinesslodging_v1 {
         | BodyResponseCallback<Schema$Lodging>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Lodging>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Lodging> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Lodging>>
