@@ -624,8 +624,7 @@ export namespace youtubeAnalytics_v2 {
         | BodyResponseCallback<Schema$GroupItem>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GroupItem>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$GroupItem> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$GroupItem>>
@@ -752,8 +751,7 @@ export namespace youtubeAnalytics_v2 {
     list(
       params: Params$Resource$Groupitems$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListGroupItemsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListGroupItemsResponse>,
       callback: BodyResponseCallback<Schema$ListGroupItemsResponse>
     ): void;
     list(
@@ -1111,8 +1109,7 @@ export namespace youtubeAnalytics_v2 {
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Group>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Group> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Group>>
@@ -1419,8 +1416,7 @@ export namespace youtubeAnalytics_v2 {
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Group>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Group> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Group>>

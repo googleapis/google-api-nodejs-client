@@ -36,15 +36,11 @@ export function youtubeAnalytics(
 ): youtubeAnalytics_v2.Youtubeanalytics;
 export function youtubeAnalytics<
   T =
-    | youtubeAnalytics_v1.Youtubeanalytics
-    | youtubeAnalytics_v2.Youtubeanalytics,
+    youtubeAnalytics_v1.Youtubeanalytics | youtubeAnalytics_v2.Youtubeanalytics,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | youtubeAnalytics_v1.Options
-    | 'v2'
-    | youtubeAnalytics_v2.Options
+    'v1' | youtubeAnalytics_v1.Options | 'v2' | youtubeAnalytics_v2.Options
 ) {
   return getAPI<T>('youtubeAnalytics', versionOrOptions, VERSIONS, this);
 }
