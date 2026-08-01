@@ -306,7 +306,7 @@
       }
     }
   },
-  "revision": "20260308",
+  "revision": "20260705",
   "rootUrl": "https://kmsinventory.googleapis.com/",
   "schemas": {
     "GoogleCloudKmsInventoryV1ListCryptoKeysResponse": {
@@ -537,7 +537,8 @@
             "ASYMMETRIC_DECRYPT",
             "RAW_ENCRYPT_DECRYPT",
             "MAC",
-            "KEY_ENCAPSULATION"
+            "KEY_ENCAPSULATION",
+            "AES_WRAPPING"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -546,7 +547,8 @@
             "CryptoKeys with this purpose may be used with AsymmetricDecrypt and GetPublicKey.",
             "CryptoKeys with this purpose may be used with RawEncrypt and RawDecrypt. This purpose is meant to be used for interoperable symmetric encryption and does not support automatic CryptoKey rotation.",
             "CryptoKeys with this purpose may be used with MacSign.",
-            "CryptoKeys with this purpose may be used with GetPublicKey and Decapsulate."
+            "CryptoKeys with this purpose may be used with GetPublicKey and Decapsulate.",
+            "CryptoKeys with this purpose may be used for AES key"
           ],
           "type": "string"
         },
@@ -615,7 +617,8 @@
             "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
             "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
             "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
-            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU"
+            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+            "AES_256_KWP"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -664,7 +667,8 @@
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 1. Randomized version supporting externally-computed message representatives.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version supporting externally-computed message representatives.",
-            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version supporting externally-computed message representatives."
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version supporting externally-computed message representatives.",
+            "AES key wrap with zero padding algorithm (RFC 5649). Can only be used by keys with purpose AES_WRAPPING."
           ],
           "readOnly": true,
           "type": "string"
@@ -711,6 +715,11 @@
           "description": "Output only. The root cause of the most recent generation failure. Only present if state is GENERATION_FAILED.",
           "readOnly": true,
           "type": "string"
+        },
+        "hsmTrusted": {
+          "description": "Output only. Field indicating that the key wrapping key is trusted. This field is only valid for key purpose AES_256_WRAPPING, and protection level HSM_SINGLE_TENANT.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "importFailureReason": {
           "description": "Output only. The root cause of the most recent import failure. Only present if state is IMPORT_FAILED.",
@@ -788,6 +797,10 @@
             "This version was destroyed, and it may not be used or enabled again. However, Cloud KMS could not confirm that the corresponding key material residing in an external key manager was destroyed. Additional details can be found in CryptoKeyVersion.external_destruction_failure_reason."
           ],
           "type": "string"
+        },
+        "trustedWrappingEnabled": {
+          "description": "Immutable. Field indicating that the key may be wrapped by a trusted key. This field can be set for all key purposes except ENCRYPT_DECRYPT, and is only valid for keys with protection level HSM_SINGLE_TENANT. This field can only be set at creation or import time via CreateCryptoKeyVersion, or ImportCryptoKeyVersion.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -845,7 +858,8 @@
             "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
             "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
             "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
-            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU"
+            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+            "AES_256_KWP"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -894,7 +908,8 @@
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 1. Randomized version supporting externally-computed message representatives.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version supporting externally-computed message representatives.",
-            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version supporting externally-computed message representatives."
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version supporting externally-computed message representatives.",
+            "AES key wrap with zero padding algorithm (RFC 5649). Can only be used by keys with purpose AES_WRAPPING."
           ],
           "type": "string"
         },
@@ -925,12 +940,16 @@
       "description": "ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level and EXTERNAL_VPC protection levels.",
       "id": "GoogleCloudKmsV1ExternalProtectionLevelOptions",
       "properties": {
+        "ekmConnectionBackendOverride": {
+          "description": "Optional. The resource name of the backend environment where the key material of CryptoKeyVersions is associated with. Setting this field overrides the CryptoKeyBackend. This field may be set when CryptoKeyVersions is set to EXTERNAL_VPC. Format: `projects/*/locations/*/ekmConnections/*`.",
+          "type": "string"
+        },
         "ekmConnectionKeyPath": {
-          "description": "The path to the external key material on the EKM when using EkmConnection e.g., \"v0/my/key\". Set this field instead of external_key_uri when using an EkmConnection.",
+          "description": "Optional. The path to the external key material on the EKM when using EkmConnection e.g., \"v0/my/key\". Set this field instead of external_key_uri when using an EkmConnection.",
           "type": "string"
         },
         "externalKeyUri": {
-          "description": "The URI for an external resource that this CryptoKeyVersion represents.",
+          "description": "Optional. The URI for an external resource that this CryptoKeyVersion represents.",
           "type": "string"
         }
       },
