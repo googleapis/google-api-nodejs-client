@@ -90,11 +90,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://dataform.europe-north2.rep.googleapis.com/",
-      "location": "europe-north2"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://dataform.europe-southwest1.rep.googleapis.com/",
       "location": "europe-southwest1"
     },
@@ -170,11 +165,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://dataform.northamerica-south1.rep.googleapis.com/",
-      "location": "northamerica-south1"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://dataform.southamerica-east1.rep.googleapis.com/",
       "location": "southamerica-east1"
     },
@@ -202,11 +192,6 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://dataform.us-east5.rep.googleapis.com/",
       "location": "us-east5"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://dataform.us-east7.rep.googleapis.com/",
-      "location": "us-east7"
     },
     {
       "description": "Regional Endpoint",
@@ -1088,7 +1073,7 @@
                   ]
                 },
                 "deleteLongRunning": {
-                  "description": "Deletes a single Repository asynchronously.",
+                  "description": "Deletes a single repository asynchronously.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}:deleteLongRunning",
                   "httpMethod": "POST",
                   "id": "dataform.projects.locations.repositories.deleteLongRunning",
@@ -1532,7 +1517,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The compilation result's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:GetCompilationResultRequest)",
+                          "description": "Required. The compilation result's name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/compilationResults/[^/]+$",
                           "required": true,
@@ -1558,7 +1543,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter for the returned list. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListCompilationResultsRequest)",
+                          "description": "Optional. Filter for the returned list.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1658,7 +1643,7 @@
                           "type": "string"
                         },
                         "releaseConfigId": {
-                          "description": "Required. The ID to use for the release config, which will become the final component of the release config's resource name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:CreateReleaseConfigRequest)",
+                          "description": "Required. The ID to use for the release config, which will become the final component of the release config's resource name.",
                           "location": "query",
                           "type": "string"
                         }
@@ -1685,7 +1670,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The release config's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:DeleteReleaseConfigRequest)",
+                          "description": "Required. The release config's name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/releaseConfigs/[^/]+$",
                           "required": true,
@@ -1711,7 +1696,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The release config's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:GetReleaseConfigRequest)",
+                          "description": "Required. The release config's name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/releaseConfigs/[^/]+$",
                           "required": true,
@@ -1743,7 +1728,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListReleaseConfigsRequest)",
+                          "description": "Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -3191,7 +3176,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick a default of page_size = 50.",
+                      "description": "Optional. Maximum number of `TeamFolders` to return. The server may return fewer items than requested. If unspecified, the server will pick a default of `page_size` = 50.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -3276,7 +3261,7 @@
       }
     }
   },
-  "revision": "20260515",
+  "revision": "20260702",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -3644,7 +3629,7 @@
       "properties": {
         "actionTarget": {
           "$ref": "Target",
-          "description": "Output only. The identifier of the action where this error occurred, if available. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:CompilationError)",
+          "description": "Output only. The identifier of the action where this error occurred, if available.",
           "readOnly": true
         },
         "message": {
@@ -4209,12 +4194,16 @@
           "type": "string"
         },
         "defaultBranch": {
-          "description": "Optional. The Git remote's default branch name. If not set `main` will be used.",
+          "description": "Optional. The Git remote's default branch name. If not set, `main` will be used.",
           "type": "string"
         },
         "effectiveDefaultBranch": {
           "description": "Output only. The Git remote's effective default branch name. This is the default branch name of the Git remote if it is set, otherwise it is `main`.",
           "readOnly": true,
+          "type": "string"
+        },
+        "gitRepositoryLink": {
+          "description": "Optional. Resource name for the `GitRepositoryLink` used for machine credentials. Must be in the format `projects/*/locations/*/connections/*/gitRepositoryLinks/*`",
           "type": "string"
         },
         "sshAuthenticationConfig": {
@@ -4408,7 +4397,7 @@
           "type": "string"
         },
         "unreachable": {
-          "description": "Locations which could not be reached. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListCompilationResultsResponse)",
+          "description": "Locations which could not be reached.",
           "items": {
             "type": "string"
           },
@@ -4476,7 +4465,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Locations which could not be reached. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListReleaseConfigsResponse)",
+          "description": "Locations which could not be reached.",
           "items": {
             "type": "string"
           },
@@ -5320,7 +5309,7 @@
           "type": "string"
         },
         "internalMetadata": {
-          "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ReleaseConfig)",
+          "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.",
           "readOnly": true,
           "type": "string"
         },
@@ -5662,6 +5651,23 @@
       },
       "type": "object"
     },
+    "TableUpdateTrigger": {
+      "description": "Represents a table update trigger configuration.",
+      "id": "TableUpdateTrigger",
+      "properties": {
+        "table": {
+          "$ref": "Target",
+          "description": "The target table to trigger the workflow."
+        },
+        "triggerUpdateTime": {
+          "description": "Output only. The modification time of this table that resulted in an invocation of the workflow. This would be updated by the triggering service after a successful workflow invocation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Target": {
       "description": "Represents an action identifier. If the action writes output, the output will be written to the referenced database object.",
       "id": "Target",
@@ -5772,6 +5778,24 @@
       },
       "type": "object"
     },
+    "TriggerEvaluationRecord": {
+      "description": "A record of an attempt to evaluate trigger conditions.",
+      "id": "TriggerEvaluationRecord",
+      "properties": {
+        "evaluationTime": {
+          "description": "Output only. The timestamp of this trigger evaluation attempt.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "$ref": "Status",
+          "description": "Output only. The status of the trigger evaluation. Success is indicated by a code of 0 (OK). Message will only be present if the status code is non-zero.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "UncommittedFileChange": {
       "description": "Represents the Git state of a file with uncommitted changes.",
       "id": "UncommittedFileChange",
@@ -5854,6 +5878,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "workflowTriggerConfig": {
+          "$ref": "WorkflowTriggerConfig",
+          "description": "Optional. Optional trigger configuration for this workflow. If present, the workflow will be triggered based on the specified triggers."
         }
       },
       "type": "object"
@@ -5994,6 +6022,69 @@
           "$ref": "Target",
           "description": "Output only. This action's identifier. Unique within the workflow invocation.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "WorkflowTrigger": {
+      "description": "The trigger definition to invoke a workflow.",
+      "id": "WorkflowTrigger",
+      "properties": {
+        "tableUpdateTrigger": {
+          "$ref": "TableUpdateTrigger",
+          "description": "The table update trigger configuration."
+        }
+      },
+      "type": "object"
+    },
+    "WorkflowTriggerConfig": {
+      "description": "Represents a trigger configuration for a workflow.",
+      "id": "WorkflowTriggerConfig",
+      "properties": {
+        "condition": {
+          "description": "Optional. The condition to use when triggering the workflow.",
+          "enum": [
+            "CONDITION_UNSPECIFIED",
+            "ALL",
+            "ANY"
+          ],
+          "enumDescriptions": [
+            "If CONDITION_UNSPECIFIED, the default value is ANY.",
+            "If ALL, all the trigger config conditions must be met before a workflow is invoked.",
+            "If ANY, at least one of the trigger config conditions must be met before a workflow is invoked."
+          ],
+          "type": "string"
+        },
+        "lastSuccessfulEvaluationTime": {
+          "description": "Output only. The timestamp of the last successful trigger evaluation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "maxWaitDuration": {
+          "description": "Optional. The effective maximum wait time duration for the trigger condition to be met. If not specified, the workflow won't be triggered until conditions are met.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "minExecutionDuration": {
+          "description": "Optional. Minimum duration between two consecutive executions. If not specified, the workflow will be executed every time trigger conditions are met and no ongoing workflow execution.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "recentTriggerEvaluationRecords": {
+          "description": "Output only. Records of the 10 most recent trigger evaluations, ordered in descending order of `evaluation_time`. Updated whenever the service evaluates the trigger conditions (via polling or upon receiving a push event).",
+          "items": {
+            "$ref": "TriggerEvaluationRecord"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "workflowTriggers": {
+          "description": "Required. The trigger definitions to invoke a workflow.",
+          "items": {
+            "$ref": "WorkflowTrigger"
+          },
+          "type": "array"
         }
       },
       "type": "object"

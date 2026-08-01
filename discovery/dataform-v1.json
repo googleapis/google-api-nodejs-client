@@ -90,11 +90,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://dataform.europe-north2.rep.googleapis.com/",
-      "location": "europe-north2"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://dataform.europe-southwest1.rep.googleapis.com/",
       "location": "europe-southwest1"
     },
@@ -170,11 +165,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://dataform.northamerica-south1.rep.googleapis.com/",
-      "location": "northamerica-south1"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://dataform.southamerica-east1.rep.googleapis.com/",
       "location": "southamerica-east1"
     },
@@ -202,11 +192,6 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://dataform.us-east5.rep.googleapis.com/",
       "location": "us-east5"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://dataform.us-east7.rep.googleapis.com/",
-      "location": "us-east7"
     },
     {
       "description": "Regional Endpoint",
@@ -1497,7 +1482,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The compilation result's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:GetCompilationResultRequest)",
+                          "description": "Required. The compilation result's name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/compilationResults/[^/]+$",
                           "required": true,
@@ -1523,7 +1508,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter for the returned list. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListCompilationResultsRequest)",
+                          "description": "Optional. Filter for the returned list.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1623,7 +1608,7 @@
                           "type": "string"
                         },
                         "releaseConfigId": {
-                          "description": "Required. The ID to use for the release config, which will become the final component of the release config's resource name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:CreateReleaseConfigRequest)",
+                          "description": "Required. The ID to use for the release config, which will become the final component of the release config's resource name.",
                           "location": "query",
                           "type": "string"
                         }
@@ -1650,7 +1635,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The release config's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:DeleteReleaseConfigRequest)",
+                          "description": "Required. The release config's name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/releaseConfigs/[^/]+$",
                           "required": true,
@@ -1676,7 +1661,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The release config's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:GetReleaseConfigRequest)",
+                          "description": "Required. The release config's name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/releaseConfigs/[^/]+$",
                           "required": true,
@@ -1708,7 +1693,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListReleaseConfigsRequest)",
+                          "description": "Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -3150,7 +3135,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick a default of page_size = 50.",
+                      "description": "Optional. Maximum number of `TeamFolders` to return. The server may return fewer items than requested. If unspecified, the server will pick a default of `page_size` = 50.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -3235,7 +3220,7 @@
       }
     }
   },
-  "revision": "20260515",
+  "revision": "20260702",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "ActionErrorTable": {
@@ -3603,7 +3588,7 @@
       "properties": {
         "actionTarget": {
           "$ref": "Target",
-          "description": "Output only. The identifier of the action where this error occurred, if available. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:CompilationError)",
+          "description": "Output only. The identifier of the action where this error occurred, if available.",
           "readOnly": true
         },
         "message": {
@@ -4157,12 +4142,16 @@
           "type": "string"
         },
         "defaultBranch": {
-          "description": "Optional. The Git remote's default branch name. If not set `main` will be used.",
+          "description": "Optional. The Git remote's default branch name. If not set, `main` will be used.",
           "type": "string"
         },
         "effectiveDefaultBranch": {
           "description": "Output only. The Git remote's effective default branch name. This is the default branch name of the Git remote if it is set, otherwise it is `main`.",
           "readOnly": true,
+          "type": "string"
+        },
+        "gitRepositoryLink": {
+          "description": "Optional. Resource name for the `GitRepositoryLink` used for machine credentials. Must be in the format `projects/*/locations/*/connections/*/gitRepositoryLinks/*`",
           "type": "string"
         },
         "sshAuthenticationConfig": {
@@ -4356,7 +4345,7 @@
           "type": "string"
         },
         "unreachable": {
-          "description": "Locations which could not be reached. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListCompilationResultsResponse)",
+          "description": "Locations which could not be reached.",
           "items": {
             "type": "string"
           },
@@ -4424,7 +4413,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Locations which could not be reached. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListReleaseConfigsResponse)",
+          "description": "Locations which could not be reached.",
           "items": {
             "type": "string"
           },
@@ -5268,7 +5257,7 @@
           "type": "string"
         },
         "internalMetadata": {
-          "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ReleaseConfig)",
+          "description": "Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.",
           "readOnly": true,
           "type": "string"
         },
