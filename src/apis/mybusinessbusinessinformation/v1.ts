@@ -1148,8 +1148,7 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -1239,7 +1238,7 @@ export namespace mybusinessbusinessinformation_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. If specified, it fetches the next `page` of locations. The page token is returned by previous calls to `ListLocations` when there were more locations than could fit in the requested page size.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the account to fetch locations from. If the parent Account is of AccountType PERSONAL, only Locations that are directly owned by the Account are returned, otherwise it will return all accessible locations from the Account, either directly or indirectly.
+     *     // Required. The name of the account to fetch locations from. * **Specific Account ID**: If the account is of type `AccountType.PERSONAL`, the response returns only locations directly owned by that account. For all other types (e.g., `AccountType.LOCATION_GROUP`), it returns all accessible locations. * **Wildcard (`-`)**: Using `accounts/-` identifies the authenticated user. This scope defaults to `AccountType.PERSONAL` but includes both directly and indirectly owned locations (e.g., those accessible via member groups).
      *     parent: 'accounts/my-account',
      *     // Required. Read mask to specify what fields will be returned in the response.
      *     readMask: 'placeholder-value',
@@ -1282,8 +1281,7 @@ export namespace mybusinessbusinessinformation_v1 {
     list(
       params: Params$Resource$Accounts$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1391,7 +1389,7 @@ export namespace mybusinessbusinessinformation_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the account to fetch locations from. If the parent Account is of AccountType PERSONAL, only Locations that are directly owned by the Account are returned, otherwise it will return all accessible locations from the Account, either directly or indirectly.
+     * Required. The name of the account to fetch locations from. * **Specific Account ID**: If the account is of type `AccountType.PERSONAL`, the response returns only locations directly owned by that account. For all other types (e.g., `AccountType.LOCATION_GROUP`), it returns all accessible locations. * **Wildcard (`-`)**: Using `accounts/-` identifies the authenticated user. This scope defaults to `AccountType.PERSONAL` but includes both directly and indirectly owned locations (e.g., those accessible via member groups).
      */
     parent?: string;
     /**
@@ -1438,19 +1436,19 @@ export namespace mybusinessbusinessinformation_v1 {
      *
      *   // Do the magic
      *   const res = await mybusinessbusinessinformation.attributes.list({
-     *     // The primary category stable ID to find available attributes. Must be of the format categories/{category_id\}.
+     *     // Optional. The primary category stable ID to find available attributes. Must be of the format `categories/{category_id\}` (e.g., `categories/gcid:restaurant`). Required if `parent` is not set and `show_all` is false.
      *     categoryName: 'placeholder-value',
-     *     // The BCP 47 code of language to get attribute display names in. If this language is not available, they will be provided in English.
+     *     // Optional. The BCP 47 code of language to get attribute display names in. If this language is not available, they will be provided in English.
      *     languageCode: 'placeholder-value',
      *     // How many attributes to include per page. Default is 200, minimum is 1.
      *     pageSize: 'placeholder-value',
      *     // If specified, the next page of attribute metadata is retrieved.
      *     pageToken: 'placeholder-value',
-     *     // Resource name of the location to look up available attributes. If this field is set, category_name, region_code, language_code and show_all are not required and must not be set.
+     *     // Optional. Resource name of the location to look up available attributes. If this field is set, `category_name`, `region_code`, `language_code` and `show_all` are not required and must not be set. Format: `locations/{location_id\}` (e.g., `locations/1234567890`).
      *     parent: 'placeholder-value',
-     *     // The ISO 3166-1 alpha-2 country code to find available attributes.
+     *     // Optional. The ISO 3166-1 alpha-2 country code to find available attributes. Required if `parent` is not set.
      *     regionCode: 'placeholder-value',
-     *     // Metadata for all available attributes are returned when this field is set to true, disregarding parent and category_name fields. language_code and region_code are required when show_all is set to true.
+     *     // Optional. If set to true, metadata for all available attributes are returned, disregarding `parent` and `category_name` fields. `language_code` and `region_code` are required when `show_all` is set to true.
      *     showAll: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1564,11 +1562,11 @@ export namespace mybusinessbusinessinformation_v1 {
 
   export interface Params$Resource$Attributes$List extends StandardParameters {
     /**
-     * The primary category stable ID to find available attributes. Must be of the format categories/{category_id\}.
+     * Optional. The primary category stable ID to find available attributes. Must be of the format `categories/{category_id\}` (e.g., `categories/gcid:restaurant`). Required if `parent` is not set and `show_all` is false.
      */
     categoryName?: string;
     /**
-     * The BCP 47 code of language to get attribute display names in. If this language is not available, they will be provided in English.
+     * Optional. The BCP 47 code of language to get attribute display names in. If this language is not available, they will be provided in English.
      */
     languageCode?: string;
     /**
@@ -1580,15 +1578,15 @@ export namespace mybusinessbusinessinformation_v1 {
      */
     pageToken?: string;
     /**
-     * Resource name of the location to look up available attributes. If this field is set, category_name, region_code, language_code and show_all are not required and must not be set.
+     * Optional. Resource name of the location to look up available attributes. If this field is set, `category_name`, `region_code`, `language_code` and `show_all` are not required and must not be set. Format: `locations/{location_id\}` (e.g., `locations/1234567890`).
      */
     parent?: string;
     /**
-     * The ISO 3166-1 alpha-2 country code to find available attributes.
+     * Optional. The ISO 3166-1 alpha-2 country code to find available attributes. Required if `parent` is not set.
      */
     regionCode?: string;
     /**
-     * Metadata for all available attributes are returned when this field is set to true, disregarding parent and category_name fields. language_code and region_code are required when show_all is set to true.
+     * Optional. If set to true, metadata for all available attributes are returned, disregarding `parent` and `category_name` fields. `language_code` and `region_code` are required when `show_all` is set to true.
      */
     showAll?: boolean;
   }
@@ -1676,8 +1674,7 @@ export namespace mybusinessbusinessinformation_v1 {
     batchGet(
       params: Params$Resource$Categories$Batchget,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetCategoriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchGetCategoriesResponse>,
       callback: BodyResponseCallback<Schema$BatchGetCategoriesResponse>
     ): void;
     batchGet(
@@ -1831,8 +1828,7 @@ export namespace mybusinessbusinessinformation_v1 {
     list(
       params: Params$Resource$Categories$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCategoriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCategoriesResponse>,
       callback: BodyResponseCallback<Schema$ListCategoriesResponse>
     ): void;
     list(
@@ -2042,8 +2038,7 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Schema$Chain>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Chain>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Chain> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Chain>>
@@ -2162,8 +2157,7 @@ export namespace mybusinessbusinessinformation_v1 {
     search(
       params: Params$Resource$Chains$Search,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SearchChainsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SearchChainsResponse>,
       callback: BodyResponseCallback<Schema$SearchChainsResponse>
     ): void;
     search(
@@ -2509,8 +2503,7 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2666,8 +2659,7 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -2803,8 +2795,7 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Schema$Attributes>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Attributes>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Attributes> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Attributes>>
@@ -2926,8 +2917,7 @@ export namespace mybusinessbusinessinformation_v1 {
     getGoogleUpdated(
       params: Params$Resource$Locations$Getgoogleupdated,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleUpdatedLocation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleUpdatedLocation>,
       callback: BodyResponseCallback<Schema$GoogleUpdatedLocation>
     ): void;
     getGoogleUpdated(
@@ -3138,8 +3128,7 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -3286,8 +3275,7 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Schema$Attributes>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Attributes>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Attributes> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Attributes>>
@@ -3499,8 +3487,7 @@ export namespace mybusinessbusinessinformation_v1 {
         | BodyResponseCallback<Schema$Attributes>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Attributes>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Attributes> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Attributes>>
