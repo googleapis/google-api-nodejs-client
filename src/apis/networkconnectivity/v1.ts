@@ -314,7 +314,7 @@ export namespace networkconnectivity_v1 {
      */
     recordType?: string | null;
     /**
-     * Required. Immutable. The service class identifier which authorizes this AutomatedDnsRecord. Any API calls targeting this AutomatedDnsRecord must have `networkconnectivity.serviceclasses.use` IAM permission for the provided service class.
+     * Required. Immutable. The service class identifier which authorizes this AutomatedDnsRecord. Any API calls targeting this AutomatedDnsRecord must have `networkconnectivity.serviceClasses.use` IAM permission for the provided service class.
      */
     serviceClass?: string | null;
     /**
@@ -754,7 +754,7 @@ export namespace networkconnectivity_v1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * The reason of the error. This is a constant value that identifies the proximate cause of the error. Error reasons are unique within a particular domain of errors. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.
+     * The reason for the error. This is a constant value that identifies the proximate cause of the error. Error reasons are unique within a particular domain of errors. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.
      */
     reason?: string | null;
   }
@@ -1323,6 +1323,23 @@ export namespace networkconnectivity_v1 {
     unreachable?: string[] | null;
   }
   /**
+   * Response for ListPscAuthorizationPolicies.
+   */
+  export interface Schema$ListPscAuthorizationPoliciesResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of PscAuthorizationPolicies.
+     */
+    pscAuthorizationPolicies?: Schema$PscAuthorizationPolicy[];
+    /**
+     * Unordered list. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response for ListRegionalEndpoints.
    */
   export interface Schema$ListRegionalEndpointsResponse {
@@ -1798,6 +1815,51 @@ export namespace networkconnectivity_v1 {
      * The resource path of a service attachment. Example: projects/{projectNumOrId\}/regions/{region\}/serviceAttachments/{resourceId\}.
      */
     serviceAttachmentUri?: string | null;
+  }
+  /**
+   * Represents a PSC Authorization Policy.
+   */
+  export interface Schema$PscAuthorizationPolicy {
+    /**
+     * Required. The authorization mode.
+     */
+    authorizationMode?: string | null;
+    /**
+     * Required. List of authorized consumer resources allowed to connect. Supported values are: 1. Project resource name (e.g., `projects/{project_id\}`) 2. Wildcard `"*"` (grants global ingress authorization to the target).
+     */
+    authorizedClientResources?: string[] | null;
+    /**
+     * Output only. The time when the PscAuthorizationPolicy was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A description of this resource.
+     */
+    description?: string | null;
+    /**
+     * Output only. The etag of the PscAuthorizationPolicy.
+     */
+    etag?: string | null;
+    /**
+     * Optional. User-defined labels.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. The name of the PscAuthorizationPolicy. Format: projects/{project\}/locations/{location\}/pscAuthorizationPolicies/{psc_authorization_policy\}
+     */
+    name?: string | null;
+    /**
+     * Required. The full absolute URI of the targeted resource governed by this policy. For example, for an AgentRegistry resource, the format is: `//agentregistry.googleapis.com/projects/{project\}/locations/{location\}`
+     */
+    targetResourceUri?: string | null;
+    /**
+     * Output only. The unique identifier of the PscAuthorizationPolicy.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The time when the PscAuthorizationPolicy was updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Configuration used for Private Service Connect connections. Used when Infrastructure is PSC.
@@ -2718,6 +2780,7 @@ export namespace networkconnectivity_v1 {
     multicloudDataTransferConfigs: Resource$Projects$Locations$Multiclouddatatransferconfigs;
     multicloudDataTransferSupportedServices: Resource$Projects$Locations$Multiclouddatatransfersupportedservices;
     operations: Resource$Projects$Locations$Operations;
+    pscAuthorizationPolicies: Resource$Projects$Locations$Pscauthorizationpolicies;
     regionalEndpoints: Resource$Projects$Locations$Regionalendpoints;
     remoteTransportProfiles: Resource$Projects$Locations$Remotetransportprofiles;
     serviceClasses: Resource$Projects$Locations$Serviceclasses;
@@ -2745,6 +2808,8 @@ export namespace networkconnectivity_v1 {
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+      this.pscAuthorizationPolicies =
+        new Resource$Projects$Locations$Pscauthorizationpolicies(this.context);
       this.regionalEndpoints =
         new Resource$Projects$Locations$Regionalendpoints(this.context);
       this.remoteTransportProfiles =
@@ -3009,8 +3074,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -3135,8 +3199,7 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -3358,8 +3421,7 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Automateddnsrecords$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -3512,8 +3574,7 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Automateddnsrecords$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -4072,8 +4133,7 @@ export namespace networkconnectivity_v1 {
     acceptSpoke(
       params: Params$Resource$Projects$Locations$Global$Hubs$Acceptspoke,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     acceptSpoke(
@@ -4230,8 +4290,7 @@ export namespace networkconnectivity_v1 {
     acceptSpokeUpdate(
       params: Params$Resource$Projects$Locations$Global$Hubs$Acceptspokeupdate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     acceptSpokeUpdate(
@@ -4401,8 +4460,7 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Global$Hubs$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -4546,8 +4604,7 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Global$Hubs$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -4715,8 +4772,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$Hub>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Hub>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Hub> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Hub>>
@@ -4856,8 +4912,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5137,8 +5192,7 @@ export namespace networkconnectivity_v1 {
     listSpokes(
       params: Params$Resource$Projects$Locations$Global$Hubs$Listspokes,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListHubSpokesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListHubSpokesResponse>,
       callback: BodyResponseCallback<Schema$ListHubSpokesResponse>
     ): void;
     listSpokes(
@@ -5308,8 +5362,7 @@ export namespace networkconnectivity_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Global$Hubs$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -5459,8 +5512,7 @@ export namespace networkconnectivity_v1 {
     queryStatus(
       params: Params$Resource$Projects$Locations$Global$Hubs$Querystatus,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$QueryHubStatusResponse>,
+        MethodOptions | BodyResponseCallback<Schema$QueryHubStatusResponse>,
       callback: BodyResponseCallback<Schema$QueryHubStatusResponse>
     ): void;
     queryStatus(
@@ -5617,8 +5669,7 @@ export namespace networkconnectivity_v1 {
     rejectSpoke(
       params: Params$Resource$Projects$Locations$Global$Hubs$Rejectspoke,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     rejectSpoke(
@@ -5776,8 +5827,7 @@ export namespace networkconnectivity_v1 {
     rejectSpokeUpdate(
       params: Params$Resource$Projects$Locations$Global$Hubs$Rejectspokeupdate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     rejectSpokeUpdate(
@@ -5950,8 +6000,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6082,8 +6131,7 @@ export namespace networkconnectivity_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Hubs$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -6468,8 +6516,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Group>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Group> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Group>>
@@ -6613,8 +6660,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6909,8 +6955,7 @@ export namespace networkconnectivity_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Global$Hubs$Groups$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -7083,8 +7128,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -7216,8 +7260,7 @@ export namespace networkconnectivity_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Hubs$Groups$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -7476,8 +7519,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$RouteTable>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$RouteTable>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$RouteTable> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$RouteTable>>
@@ -7605,8 +7647,7 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Hubs$Routetables$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRouteTablesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRouteTablesResponse>,
       callback: BodyResponseCallback<Schema$ListRouteTablesResponse>
     ): void;
     list(
@@ -7819,8 +7860,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$Route>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Route>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Route> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Route>>
@@ -8159,8 +8199,7 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -8311,8 +8350,7 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -8629,8 +8667,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -8940,8 +8977,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -9073,8 +9109,7 @@ export namespace networkconnectivity_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -9346,8 +9381,7 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Internalranges$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -9495,8 +9529,7 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Internalranges$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -9810,8 +9843,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -9941,8 +9973,7 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$Internalranges$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListInternalRangesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListInternalRangesResponse>,
       callback: BodyResponseCallback<Schema$ListInternalRangesResponse>
     ): void;
     list(
@@ -10117,8 +10148,7 @@ export namespace networkconnectivity_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Internalranges$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -10288,8 +10318,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -10421,8 +10450,7 @@ export namespace networkconnectivity_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Internalranges$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -10713,8 +10741,7 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Multiclouddatatransferconfigs$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -10866,8 +10893,7 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Multiclouddatatransferconfigs$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -11351,8 +11377,7 @@ export namespace networkconnectivity_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Multiclouddatatransferconfigs$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -11612,8 +11637,7 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Multiclouddatatransferconfigs$Destinations$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -11766,8 +11790,7 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Multiclouddatatransferconfigs$Destinations$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -12070,8 +12093,7 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$Multiclouddatatransferconfigs$Destinations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDestinationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDestinationsResponse>,
       callback: BodyResponseCallback<Schema$ListDestinationsResponse>
     ): void;
     list(
@@ -12239,8 +12261,7 @@ export namespace networkconnectivity_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Multiclouddatatransferconfigs$Destinations$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -12827,8 +12848,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -12960,8 +12980,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -13081,8 +13100,7 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -13355,6 +13373,702 @@ export namespace networkconnectivity_v1 {
     returnPartialSuccess?: boolean;
   }
 
+  export class Resource$Projects$Locations$Pscauthorizationpolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new PscAuthorizationPolicy in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.pscAuthorizationPolicies.create(
+     *       {
+     *         // Required. The parent resource's name of the PscAuthorizationPolicy.
+     *         parent: 'projects/my-project/locations/my-location',
+     *         // Required. Resource ID of the PscAuthorizationPolicy.
+     *         pscAuthorizationPolicyId: 'placeholder-value',
+     *         // Optional. An optional request ID to identify requests.
+     *         requestId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "authorizationMode": "my_authorizationMode",
+     *           //   "authorizedClientResources": [],
+     *           //   "createTime": "my_createTime",
+     *           //   "description": "my_description",
+     *           //   "etag": "my_etag",
+     *           //   "labels": {},
+     *           //   "name": "my_name",
+     *           //   "targetResourceUri": "my_targetResourceUri",
+     *           //   "uid": "my_uid",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Pscauthorizationpolicies$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Pscauthorizationpolicies$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Pscauthorizationpolicies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Pscauthorizationpolicies$Create,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Pscauthorizationpolicies$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Pscauthorizationpolicies$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Pscauthorizationpolicies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Pscauthorizationpolicies$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/pscAuthorizationPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single PscAuthorizationPolicy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.pscAuthorizationPolicies.delete(
+     *       {
+     *         // Optional. The etag of the PscAuthorizationPolicy to delete.
+     *         etag: 'placeholder-value',
+     *         // Required. The name of the PscAuthorizationPolicy to delete.
+     *         name: 'projects/my-project/locations/my-location/pscAuthorizationPolicies/my-pscAuthorizationPolicie',
+     *         // Optional. An optional request ID to identify requests.
+     *         requestId: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Pscauthorizationpolicies$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Pscauthorizationpolicies$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Pscauthorizationpolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Pscauthorizationpolicies$Delete,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Pscauthorizationpolicies$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Pscauthorizationpolicies$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Pscauthorizationpolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Pscauthorizationpolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single PscAuthorizationPolicy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.pscAuthorizationPolicies.get({
+     *       // Required. Name of the PscAuthorizationPolicy to get.
+     *       name: 'projects/my-project/locations/my-location/pscAuthorizationPolicies/my-pscAuthorizationPolicie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authorizationMode": "my_authorizationMode",
+     *   //   "authorizedClientResources": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "targetResourceUri": "my_targetResourceUri",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Pscauthorizationpolicies$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Pscauthorizationpolicies$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PscAuthorizationPolicy>>;
+    get(
+      params: Params$Resource$Projects$Locations$Pscauthorizationpolicies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Pscauthorizationpolicies$Get,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$PscAuthorizationPolicy>,
+      callback: BodyResponseCallback<Schema$PscAuthorizationPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Pscauthorizationpolicies$Get,
+      callback: BodyResponseCallback<Schema$PscAuthorizationPolicy>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$PscAuthorizationPolicy>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Pscauthorizationpolicies$Get
+        | BodyResponseCallback<Schema$PscAuthorizationPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PscAuthorizationPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PscAuthorizationPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PscAuthorizationPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Pscauthorizationpolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Pscauthorizationpolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PscAuthorizationPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PscAuthorizationPolicy>(parameters);
+      }
+    }
+
+    /**
+     * Lists PscAuthorizationPolicies in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.pscAuthorizationPolicies.list({
+     *       // Optional. Filter expression to restrict the results.
+     *       filter: 'placeholder-value',
+     *       // Optional. Sort order of the results.
+     *       orderBy: 'placeholder-value',
+     *       // Optional. The maximum number of PscAuthorizationPolicies to return in a single page. The service may return fewer than this value. If unspecified, at most 50 PscAuthorizationPolicies will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListPscAuthorizationPolicies` call.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent resource's name.
+     *       parent: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pscAuthorizationPolicies": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Pscauthorizationpolicies$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Pscauthorizationpolicies$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListPscAuthorizationPoliciesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Pscauthorizationpolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Pscauthorizationpolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPscAuthorizationPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListPscAuthorizationPoliciesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Pscauthorizationpolicies$List,
+      callback: BodyResponseCallback<Schema$ListPscAuthorizationPoliciesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListPscAuthorizationPoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Pscauthorizationpolicies$List
+        | BodyResponseCallback<Schema$ListPscAuthorizationPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPscAuthorizationPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPscAuthorizationPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListPscAuthorizationPoliciesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Pscauthorizationpolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Pscauthorizationpolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/pscAuthorizationPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPscAuthorizationPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPscAuthorizationPoliciesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Pscauthorizationpolicies$Create extends StandardParameters {
+    /**
+     * Required. The parent resource's name of the PscAuthorizationPolicy.
+     */
+    parent?: string;
+    /**
+     * Required. Resource ID of the PscAuthorizationPolicy.
+     */
+    pscAuthorizationPolicyId?: string;
+    /**
+     * Optional. An optional request ID to identify requests.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PscAuthorizationPolicy;
+  }
+  export interface Params$Resource$Projects$Locations$Pscauthorizationpolicies$Delete extends StandardParameters {
+    /**
+     * Optional. The etag of the PscAuthorizationPolicy to delete.
+     */
+    etag?: string;
+    /**
+     * Required. The name of the PscAuthorizationPolicy to delete.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests.
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Pscauthorizationpolicies$Get extends StandardParameters {
+    /**
+     * Required. Name of the PscAuthorizationPolicy to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Pscauthorizationpolicies$List extends StandardParameters {
+    /**
+     * Optional. Filter expression to restrict the results.
+     */
+    filter?: string;
+    /**
+     * Optional. Sort order of the results.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of PscAuthorizationPolicies to return in a single page. The service may return fewer than this value. If unspecified, at most 50 PscAuthorizationPolicies will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListPscAuthorizationPolicies` call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource's name.
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Regionalendpoints {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -13459,8 +14173,7 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Regionalendpoints$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -13609,8 +14322,7 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Regionalendpoints$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -14127,8 +14839,7 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Remotetransportprofiles$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RemoteTransportProfile>,
+        MethodOptions | BodyResponseCallback<Schema$RemoteTransportProfile>,
       callback: BodyResponseCallback<Schema$RemoteTransportProfile>
     ): void;
     get(
@@ -14470,8 +15181,7 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Serviceclasses$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -14760,8 +15470,7 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$Serviceclasses$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListServiceClassesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListServiceClassesResponse>,
       callback: BodyResponseCallback<Schema$ListServiceClassesResponse>
     ): void;
     list(
@@ -14926,8 +15635,7 @@ export namespace networkconnectivity_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Serviceclasses$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -15163,8 +15871,7 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -15315,8 +16022,7 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -15468,8 +16174,7 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ServiceConnectionMap>,
+        MethodOptions | BodyResponseCallback<Schema$ServiceConnectionMap>,
       callback: BodyResponseCallback<Schema$ServiceConnectionMap>
     ): void;
     get(
@@ -15795,8 +16500,7 @@ export namespace networkconnectivity_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Serviceconnectionmaps$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -16061,8 +16765,7 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -16215,8 +16918,7 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -16367,8 +17069,7 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ServiceConnectionPolicy>,
+        MethodOptions | BodyResponseCallback<Schema$ServiceConnectionPolicy>,
       callback: BodyResponseCallback<Schema$ServiceConnectionPolicy>
     ): void;
     get(
@@ -16697,8 +17398,7 @@ export namespace networkconnectivity_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Serviceconnectionpolicies$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -16968,8 +17668,7 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Serviceconnectiontokens$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -17122,8 +17821,7 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Serviceconnectiontokens$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -17271,8 +17969,7 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Serviceconnectiontokens$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ServiceConnectionToken>,
+        MethodOptions | BodyResponseCallback<Schema$ServiceConnectionToken>,
       callback: BodyResponseCallback<Schema$ServiceConnectionToken>
     ): void;
     get(
@@ -17677,8 +18374,7 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Spokes$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -17825,8 +18521,7 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Spokes$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -18000,8 +18695,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$Spoke>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Spoke>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Spoke> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Spoke>>
@@ -18140,8 +18834,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -18442,8 +19135,7 @@ export namespace networkconnectivity_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Spokes$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -18611,8 +19303,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -18740,8 +19431,7 @@ export namespace networkconnectivity_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Spokes$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -19027,8 +19717,7 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -19179,8 +19868,7 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -19331,8 +20019,7 @@ export namespace networkconnectivity_v1 {
     get(
       params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GatewayAdvertisedRoute>,
+        MethodOptions | BodyResponseCallback<Schema$GatewayAdvertisedRoute>,
       callback: BodyResponseCallback<Schema$GatewayAdvertisedRoute>
     ): void;
     get(
@@ -19659,8 +20346,7 @@ export namespace networkconnectivity_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Spokes$Gatewayadvertisedroutes$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -19914,8 +20600,7 @@ export namespace networkconnectivity_v1 {
     create(
       params: Params$Resource$Projects$Locations$Transports$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -20062,8 +20747,7 @@ export namespace networkconnectivity_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Transports$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -20234,8 +20918,7 @@ export namespace networkconnectivity_v1 {
         | BodyResponseCallback<Schema$Transport>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Transport>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Transport> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Transport>>
@@ -20361,8 +21044,7 @@ export namespace networkconnectivity_v1 {
     list(
       params: Params$Resource$Projects$Locations$Transports$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTransportsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTransportsResponse>,
       callback: BodyResponseCallback<Schema$ListTransportsResponse>
     ): void;
     list(
@@ -20532,8 +21214,7 @@ export namespace networkconnectivity_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Transports$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(

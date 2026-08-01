@@ -1127,7 +1127,7 @@
       }
     }
   },
-  "revision": "20260422",
+  "revision": "20260701",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AllocationOptions": {
@@ -1508,6 +1508,25 @@
           "description": "Optional. An alternative to ip_cidr_range. Can be set when trying to create an IPv4 reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, there is an error if the range sizes do not match. Can also be used during updates to change the range size. NOTE: For IPv6 this field only works if ip_cidr_range is set as well, and both fields must match. In other words, with IPv6 this field only works as a redundant parameter.",
           "format": "int32",
           "type": "integer"
+        },
+        "rangeStatus": {
+          "description": "Output only. Status of the Internal Range.",
+          "enum": [
+            "RANGE_STATUS_UNSPECIFIED",
+            "ACTIVE",
+            "OBSOLETE",
+            "CREATING",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Unspecified status is the default value for an Internal Range.",
+            "Ranges with ACTIVE status will reserve the CIDR block from the given VPC.",
+            "A range becomes OBSOLETE if its VPC network is deleted. An OBSOLETE range is inactive, doesn't reserve any CIDR blocks, and can only be deleted or have its labels and description updated.",
+            "Ranges with CREATING state are in the process of being created.",
+            "Ranges with DELETING state are in the process of being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "targetCidrRange": {
           "description": "Optional. Can be set to narrow down or pick a different address space while searching for a free range. If not set, defaults to the [\"10.0.0.0/8\", \"172.16.0.0/12\", \"192.168.0.0/16\"] address space (for auto-mode networks, the \"10.0.0.0/9\" range is used instead of \"10.0.0.0/8\"). This can be used to target the search in other rfc-1918 address spaces like \"172.16.0.0/12\" and \"192.168.0.0/16\" or non-rfc-1918 address spaces used in the VPC.",
