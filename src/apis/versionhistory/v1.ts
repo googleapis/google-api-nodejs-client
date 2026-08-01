@@ -358,8 +358,7 @@ export namespace versionhistory_v1 {
     list(
       params: Params$Resource$Platforms$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPlatformsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPlatformsResponse>,
       callback: BodyResponseCallback<Schema$ListPlatformsResponse>
     ): void;
     list(
@@ -526,8 +525,7 @@ export namespace versionhistory_v1 {
     list(
       params: Params$Resource$Platforms$Channels$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListChannelsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListChannelsResponse>,
       callback: BodyResponseCallback<Schema$ListChannelsResponse>
     ): void;
     list(
@@ -701,8 +699,7 @@ export namespace versionhistory_v1 {
     list(
       params: Params$Resource$Platforms$Channels$Versions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListVersionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListVersionsResponse>,
       callback: BodyResponseCallback<Schema$ListVersionsResponse>
     ): void;
     list(
@@ -881,8 +878,7 @@ export namespace versionhistory_v1 {
     list(
       params: Params$Resource$Platforms$Channels$Versions$Releases$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListReleasesResponse>,
       callback: BodyResponseCallback<Schema$ListReleasesResponse>
     ): void;
     list(
