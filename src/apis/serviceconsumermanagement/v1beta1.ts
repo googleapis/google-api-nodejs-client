@@ -2259,8 +2259,7 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2413,8 +2412,7 @@ export namespace serviceconsumermanagement_v1beta1 {
     get(
       params: Params$Resource$Services$Consumerquotametrics$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$V1Beta1ConsumerQuotaMetric>,
+        MethodOptions | BodyResponseCallback<Schema$V1Beta1ConsumerQuotaMetric>,
       callback: BodyResponseCallback<Schema$V1Beta1ConsumerQuotaMetric>
     ): void;
     get(
@@ -2590,8 +2588,7 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2750,8 +2747,7 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3103,8 +3099,7 @@ export namespace serviceconsumermanagement_v1beta1 {
     get(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$V1Beta1ConsumerQuotaLimit>,
+        MethodOptions | BodyResponseCallback<Schema$V1Beta1ConsumerQuotaLimit>,
       callback: BodyResponseCallback<Schema$V1Beta1ConsumerQuotaLimit>
     ): void;
     get(
@@ -3303,8 +3298,7 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3455,8 +3449,7 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3777,8 +3770,7 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4030,8 +4022,7 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4182,8 +4173,7 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4504,8 +4494,7 @@ export namespace serviceconsumermanagement_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
