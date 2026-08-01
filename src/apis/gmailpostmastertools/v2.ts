@@ -189,6 +189,28 @@ export namespace gmailpostmastertools_v2 {
     status?: string | null;
   }
   /**
+   * [Developer Preview](https://developers.google.com/workspace/preview): Request message for CreateDomain.
+   */
+  export interface Schema$CreateDomainRequest {
+    /**
+     * Required. The domain to add. e.g., "example.com"
+     */
+    domainId?: string | null;
+  }
+  /**
+   * [Developer Preview](https://developers.google.com/workspace/preview): Request message for CreateUser.
+   */
+  export interface Schema$CreateUserRequest {
+    /**
+     * Optional. Specifies the permission level to give the user for the specified domain. If not specified, the default value for this field is READER.
+     */
+    permission?: string | null;
+    /**
+     * Required. The user to create.
+     */
+    userId?: string | null;
+  }
+  /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$Date {
@@ -237,6 +259,19 @@ export namespace gmailpostmastertools_v2 {
     dateRanges?: Schema$DateRange[];
   }
   /**
+   * [Developer Preview](https://developers.google.com/workspace/preview): Verdict of domain deliverability status.
+   */
+  export interface Schema$DeliverabilityStatusVerdict {
+    /**
+     * Output only. The specific reason for the compliance verdict.
+     */
+    reason?: string | null;
+    /**
+     * Output only. The compliance state.
+     */
+    state?: Schema$ComplianceStatus;
+  }
+  /**
    * Information about a domain registered by the user.
    */
   export interface Schema$Domain {
@@ -265,6 +300,10 @@ export namespace gmailpostmastertools_v2 {
    * Compliance data for a given domain.
    */
   export interface Schema$DomainComplianceData {
+    /**
+     * Output only. Deliverability status verdict.
+     */
+    deliverabilityStatusVerdict?: Schema$DeliverabilityStatusVerdict;
     /**
      * Domain that this data is for.
      */
@@ -321,6 +360,27 @@ export namespace gmailpostmastertools_v2 {
     value?: Schema$StatisticValue;
   }
   /**
+   * [Developer Preview](https://developers.google.com/workspace/preview): The DNS token a user can use to verify ownership of a domain.
+   */
+  export interface Schema$DomainVerificationToken {
+    /**
+     * Identifier. The resource name of the domain verification token. Format: domains/{domain\}/verificationToken
+     */
+    name?: string | null;
+    /**
+     * The verification token.
+     */
+    token?: string | null;
+    /**
+     * The verification method used.
+     */
+    verificationMethod?: string | null;
+  }
+  /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
+   */
+  export interface Schema$Empty {}
+  /**
    * Compliance verdict for whether a sender meets the unsubscribe honoring compliance requirement.
    */
   export interface Schema$HonorUnsubscribeVerdict {
@@ -345,6 +405,19 @@ export namespace gmailpostmastertools_v2 {
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * [Developer Preview](https://developers.google.com/workspace/preview): Response message for ListUsers.
+   */
+  export interface Schema$ListUsersResponse {
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The users that have access to the domain.
+     */
+    users?: Schema$User[];
   }
   /**
    * Defines a specific metric to query, including a user-defined name, the base metric type, and optional filters.
@@ -482,13 +555,332 @@ export namespace gmailpostmastertools_v2 {
      */
     dateRanges?: Schema$DateRanges;
   }
+  /**
+   * [Developer Preview](https://developers.google.com/workspace/preview): Information about a user's access to a domain.
+   */
+  export interface Schema$User {
+    /**
+     * Output only. The user that added the current user.
+     */
+    accessGranter?: string | null;
+    /**
+     * Output only. The time the user was granted access.
+     */
+    createTime?: string | null;
+    /**
+     * Identifier. The resource name of the user. Format: users/{user\} Note: {user\} is the user's email address.
+     */
+    name?: string | null;
+    /**
+     * The permission level that the user has for the specified domain.
+     */
+    permission?: string | null;
+    /**
+     * The user's email address.
+     */
+    user?: string | null;
+  }
+  /**
+   * [Developer Preview](https://developers.google.com/workspace/preview): Request message for VerifyDomain.
+   */
+  export interface Schema$VerifyDomainRequest {
+    /**
+     * Required. The verification method used. Must be specified, i.e. TXT or CNAME.
+     */
+    verificationMethod?: string | null;
+  }
+  /**
+   * [Developer Preview](https://developers.google.com/workspace/preview): Response message for VerifyDomain.
+   */
+  export interface Schema$VerifyDomainResponse {}
 
   export class Resource$Domains {
     context: APIRequestContext;
     domainStats: Resource$Domains$Domainstats;
+    users: Resource$Domains$Users;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.domainStats = new Resource$Domains$Domainstats(this.context);
+      this.users = new Resource$Domains$Users(this.context);
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview): Adds a domain to the user's account. Returns INVALID_ARGUMENT if a domain is not provided. Returns ALREADY_EXISTS if the domain is already registered by the user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmailpostmastertools.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmailpostmastertools = google.gmailpostmastertools('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/postmaster',
+     *       'https://www.googleapis.com/auth/postmaster.domain',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmailpostmastertools.domains.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "domainId": "my_domainId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "lastVerifyTime": "my_lastVerifyTime",
+     *   //   "name": "my_name",
+     *   //   "permission": "my_permission",
+     *   //   "verificationState": "my_verificationState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Domains$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Domains$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Domain>>;
+    create(
+      params: Params$Resource$Domains$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Domains$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Domain>,
+      callback: BodyResponseCallback<Schema$Domain>
+    ): void;
+    create(
+      params: Params$Resource$Domains$Create,
+      callback: BodyResponseCallback<Schema$Domain>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Domain>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Domains$Create
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Domain>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Domain> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Domain>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Domains$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Domains$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://gmailpostmastertools.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/domains').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Domain>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Domain>(parameters);
+      }
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview): Deletes a domain from the user's account. Returns NOT_FOUND if the domain is not registered by the user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmailpostmastertools.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmailpostmastertools = google.gmailpostmastertools('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/postmaster',
+     *       'https://www.googleapis.com/auth/postmaster.domain',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmailpostmastertools.domains.delete({
+     *     // Required. The domain to delete.
+     *     name: 'domains/my-domain',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Domains$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Domains$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Domains$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Domains$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Domains$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Domains$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Domains$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Domains$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://gmailpostmastertools.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
     }
 
     /**
@@ -586,8 +978,7 @@ export namespace gmailpostmastertools_v2 {
         | BodyResponseCallback<Schema$Domain>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Domain>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Domain> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Domain>>
@@ -707,8 +1098,7 @@ export namespace gmailpostmastertools_v2 {
     getComplianceStatus(
       params: Params$Resource$Domains$Getcompliancestatus,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DomainComplianceStatus>,
+        MethodOptions | BodyResponseCallback<Schema$DomainComplianceStatus>,
       callback: BodyResponseCallback<Schema$DomainComplianceStatus>
     ): void;
     getComplianceStatus(
@@ -773,6 +1163,151 @@ export namespace gmailpostmastertools_v2 {
         );
       } else {
         return createAPIRequest<Schema$DomainComplianceStatus>(parameters);
+      }
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview): Gets a verification token used for verifying a user's ownership over a domain.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmailpostmastertools.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmailpostmastertools = google.gmailpostmastertools('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/postmaster',
+     *       'https://www.googleapis.com/auth/postmaster.domain',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmailpostmastertools.domains.getVerificationToken({
+     *     // Required. The resource name of the verification token to retrieve. Format: `domains/{domain\}/verificationToken`
+     *     name: 'domains/my-domain/verificationToken',
+     *     // Required. The verification method used. Must be specified, i.e. TXT or CNAME.
+     *     verificationMethod: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "token": "my_token",
+     *   //   "verificationMethod": "my_verificationMethod"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getVerificationToken(
+      params: Params$Resource$Domains$Getverificationtoken,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getVerificationToken(
+      params?: Params$Resource$Domains$Getverificationtoken,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DomainVerificationToken>>;
+    getVerificationToken(
+      params: Params$Resource$Domains$Getverificationtoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getVerificationToken(
+      params: Params$Resource$Domains$Getverificationtoken,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$DomainVerificationToken>,
+      callback: BodyResponseCallback<Schema$DomainVerificationToken>
+    ): void;
+    getVerificationToken(
+      params: Params$Resource$Domains$Getverificationtoken,
+      callback: BodyResponseCallback<Schema$DomainVerificationToken>
+    ): void;
+    getVerificationToken(
+      callback: BodyResponseCallback<Schema$DomainVerificationToken>
+    ): void;
+    getVerificationToken(
+      paramsOrCallback?:
+        | Params$Resource$Domains$Getverificationtoken
+        | BodyResponseCallback<Schema$DomainVerificationToken>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DomainVerificationToken>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DomainVerificationToken>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DomainVerificationToken>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Domains$Getverificationtoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Domains$Getverificationtoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://gmailpostmastertools.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DomainVerificationToken>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DomainVerificationToken>(parameters);
       }
     }
 
@@ -915,8 +1450,164 @@ export namespace gmailpostmastertools_v2 {
         return createAPIRequest<Schema$ListDomainsResponse>(parameters);
       }
     }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview): Verifies a user's ownership of a domain at the DNS level. Note that this is distinct from checking if the user has OWNER status within IRDB.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmailpostmastertools.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmailpostmastertools = google.gmailpostmastertools('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/postmaster',
+     *       'https://www.googleapis.com/auth/postmaster.domain',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmailpostmastertools.domains.verify({
+     *     // Required. The domain to verify.
+     *     name: 'domains/my-domain',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "verificationMethod": "my_verificationMethod"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    verify(
+      params: Params$Resource$Domains$Verify,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    verify(
+      params?: Params$Resource$Domains$Verify,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VerifyDomainResponse>>;
+    verify(
+      params: Params$Resource$Domains$Verify,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    verify(
+      params: Params$Resource$Domains$Verify,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$VerifyDomainResponse>,
+      callback: BodyResponseCallback<Schema$VerifyDomainResponse>
+    ): void;
+    verify(
+      params: Params$Resource$Domains$Verify,
+      callback: BodyResponseCallback<Schema$VerifyDomainResponse>
+    ): void;
+    verify(callback: BodyResponseCallback<Schema$VerifyDomainResponse>): void;
+    verify(
+      paramsOrCallback?:
+        | Params$Resource$Domains$Verify
+        | BodyResponseCallback<Schema$VerifyDomainResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VerifyDomainResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VerifyDomainResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$VerifyDomainResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Domains$Verify;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Domains$Verify;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://gmailpostmastertools.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:verify').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VerifyDomainResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VerifyDomainResponse>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Domains$Create extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CreateDomainRequest;
+  }
+  export interface Params$Resource$Domains$Delete extends StandardParameters {
+    /**
+     * Required. The domain to delete.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Domains$Get extends StandardParameters {
     /**
      * Required. The resource name of the domain. Format: `domains/{domain_name\}`, where domain_name is the fully qualified domain name (i.e., mymail.mydomain.com).
@@ -929,6 +1620,16 @@ export namespace gmailpostmastertools_v2 {
      */
     name?: string;
   }
+  export interface Params$Resource$Domains$Getverificationtoken extends StandardParameters {
+    /**
+     * Required. The resource name of the verification token to retrieve. Format: `domains/{domain\}/verificationToken`
+     */
+    name?: string;
+    /**
+     * Required. The verification method used. Must be specified, i.e. TXT or CNAME.
+     */
+    verificationMethod?: string;
+  }
   export interface Params$Resource$Domains$List extends StandardParameters {
     /**
      * Optional. Requested page size. Server may return fewer domains than requested. If unspecified, the default value for this field is 10. The maximum value for this field is 200.
@@ -938,6 +1639,17 @@ export namespace gmailpostmastertools_v2 {
      * Optional. The next_page_token value returned from a previous List request, if any.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Domains$Verify extends StandardParameters {
+    /**
+     * Required. The domain to verify.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$VerifyDomainRequest;
   }
 
   export class Resource$Domains$Domainstats {
@@ -1033,8 +1745,7 @@ export namespace gmailpostmastertools_v2 {
     query(
       params: Params$Resource$Domains$Domainstats$Query,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$QueryDomainStatsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$QueryDomainStatsResponse>,
       callback: BodyResponseCallback<Schema$QueryDomainStatsResponse>
     ): void;
     query(
@@ -1116,6 +1827,796 @@ export namespace gmailpostmastertools_v2 {
      * Request body metadata
      */
     requestBody?: Schema$QueryDomainStatsRequest;
+  }
+
+  export class Resource$Domains$Users {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview): Creates a user, who has access to a domain. Returns INVALID_ARGUMENT if a user is not provided.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmailpostmastertools.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmailpostmastertools = google.gmailpostmastertools('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/postmaster',
+     *       'https://www.googleapis.com/auth/postmaster.user',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmailpostmastertools.domains.users.create({
+     *     // Required. The parent resource where this user will be created. Format: domains/{domain\}
+     *     parent: 'domains/my-domain',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permission": "my_permission",
+     *       //   "userId": "my_userId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessGranter": "my_accessGranter",
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "permission": "my_permission",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Domains$Users$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Domains$Users$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$User>>;
+    create(
+      params: Params$Resource$Domains$Users$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Domains$Users$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    create(
+      params: Params$Resource$Domains$Users$Create,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$User>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Domains$Users$Create
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$User>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Domains$Users$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Domains$Users$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://gmailpostmastertools.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/users').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$User>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$User>(parameters);
+      }
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview): Deletes a user from a domain. Returns NOT_FOUND if the user does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmailpostmastertools.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmailpostmastertools = google.gmailpostmastertools('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/postmaster',
+     *       'https://www.googleapis.com/auth/postmaster.user',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmailpostmastertools.domains.users.delete({
+     *     // Required. The resource name of the user to delete. Format: domains/{domain\}/users/{user\}
+     *     name: 'domains/my-domain/users/my-user',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Domains$Users$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Domains$Users$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Domains$Users$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Domains$Users$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Domains$Users$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Domains$Users$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Domains$Users$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Domains$Users$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://gmailpostmastertools.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview): Retrieves detailed information about a user that has access to a domain. Returns NOT_FOUND if the user does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmailpostmastertools.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmailpostmastertools = google.gmailpostmastertools('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/postmaster',
+     *       'https://www.googleapis.com/auth/postmaster.user',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmailpostmastertools.domains.users.get({
+     *     // Required. The resource name of the user to retrieve. Format: `domains/{domain\}/users/{user\}`
+     *     name: 'domains/my-domain/users/my-user',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessGranter": "my_accessGranter",
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "permission": "my_permission",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Domains$Users$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Domains$Users$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$User>>;
+    get(
+      params: Params$Resource$Domains$Users$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Domains$Users$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    get(
+      params: Params$Resource$Domains$Users$Get,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$User>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Domains$Users$Get
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$User>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Domains$Users$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Domains$Users$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://gmailpostmastertools.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$User>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$User>(parameters);
+      }
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview): Lists the users that have access to a domain.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmailpostmastertools.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmailpostmastertools = google.gmailpostmastertools('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/postmaster',
+     *       'https://www.googleapis.com/auth/postmaster.user',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmailpostmastertools.domains.users.list({
+     *     // Optional. Requested page size. Server may return fewer users than requested. If unspecified, the default value for this field is 10. The maximum value for this field is 200.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name for which to list users. Format: `domains/{domain\}`
+     *     parent: 'domains/my-domain',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "users": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Domains$Users$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Domains$Users$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListUsersResponse>>;
+    list(
+      params: Params$Resource$Domains$Users$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Domains$Users$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListUsersResponse>,
+      callback: BodyResponseCallback<Schema$ListUsersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Domains$Users$List,
+      callback: BodyResponseCallback<Schema$ListUsersResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListUsersResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Domains$Users$List
+        | BodyResponseCallback<Schema$ListUsersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUsersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUsersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListUsersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Domains$Users$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Domains$Users$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://gmailpostmastertools.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/users').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListUsersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListUsersResponse>(parameters);
+      }
+    }
+
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview): Updates a user for a domain. Only Owners and Admins can execute this RPC, only a user's domain permission will be allowed to be updated. Returns NOT_FOUND if the user does not exist. Returns INVALID_ARGUMENT if a permission is not provided or is PERMISSION_UNSPECIFIED, NONE, or OWNER.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gmailpostmastertools.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const gmailpostmastertools = google.gmailpostmastertools('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/postmaster',
+     *       'https://www.googleapis.com/auth/postmaster.user',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gmailpostmastertools.domains.users.patch({
+     *     // Identifier. The resource name of the user. Format: users/{user\} Note: {user\} is the user's email address.
+     *     name: 'domains/my-domain/users/my-user',
+     *     // The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessGranter": "my_accessGranter",
+     *       //   "createTime": "my_createTime",
+     *       //   "name": "my_name",
+     *       //   "permission": "my_permission",
+     *       //   "user": "my_user"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessGranter": "my_accessGranter",
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "permission": "my_permission",
+     *   //   "user": "my_user"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Domains$Users$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Domains$Users$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$User>>;
+    patch(
+      params: Params$Resource$Domains$Users$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Domains$Users$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    patch(
+      params: Params$Resource$Domains$Users$Patch,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$User>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Domains$Users$Patch
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$User>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Domains$Users$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Domains$Users$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://gmailpostmastertools.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$User>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$User>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Domains$Users$Create extends StandardParameters {
+    /**
+     * Required. The parent resource where this user will be created. Format: domains/{domain\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CreateUserRequest;
+  }
+  export interface Params$Resource$Domains$Users$Delete extends StandardParameters {
+    /**
+     * Required. The resource name of the user to delete. Format: domains/{domain\}/users/{user\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Domains$Users$Get extends StandardParameters {
+    /**
+     * Required. The resource name of the user to retrieve. Format: `domains/{domain\}/users/{user\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Domains$Users$List extends StandardParameters {
+    /**
+     * Optional. Requested page size. Server may return fewer users than requested. If unspecified, the default value for this field is 10. The maximum value for this field is 200.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name for which to list users. Format: `domains/{domain\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Domains$Users$Patch extends StandardParameters {
+    /**
+     * Identifier. The resource name of the user. Format: users/{user\} Note: {user\} is the user's email address.
+     */
+    name?: string;
+    /**
+     * The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$User;
   }
 
   export class Resource$Domainstats {
