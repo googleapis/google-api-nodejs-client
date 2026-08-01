@@ -727,8 +727,7 @@ export namespace cloudcontrolspartner_v1beta {
         | BodyResponseCallback<Schema$Partner>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Partner>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Partner> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Partner>>
@@ -899,8 +898,7 @@ export namespace cloudcontrolspartner_v1beta {
         | BodyResponseCallback<Schema$Customer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Customer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Customer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Customer>>
@@ -1036,8 +1034,7 @@ export namespace cloudcontrolspartner_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1175,8 +1172,7 @@ export namespace cloudcontrolspartner_v1beta {
         | BodyResponseCallback<Schema$Customer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Customer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Customer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Customer>>
@@ -1304,8 +1300,7 @@ export namespace cloudcontrolspartner_v1beta {
     list(
       params: Params$Resource$Organizations$Locations$Customers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCustomersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCustomersResponse>,
       callback: BodyResponseCallback<Schema$ListCustomersResponse>
     ): void;
     list(
@@ -1481,8 +1476,7 @@ export namespace cloudcontrolspartner_v1beta {
         | BodyResponseCallback<Schema$Customer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Customer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Customer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Customer>>
@@ -1707,8 +1701,7 @@ export namespace cloudcontrolspartner_v1beta {
         | BodyResponseCallback<Schema$Workload>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Workload>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Workload> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Workload>>
@@ -2123,8 +2116,7 @@ export namespace cloudcontrolspartner_v1beta {
     list(
       params: Params$Resource$Organizations$Locations$Customers$Workloads$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListWorkloadsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListWorkloadsResponse>,
       callback: BodyResponseCallback<Schema$ListWorkloadsResponse>
     ): void;
     list(
@@ -2535,8 +2527,7 @@ export namespace cloudcontrolspartner_v1beta {
         | BodyResponseCallback<Schema$Violation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Violation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Violation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Violation>>
@@ -2671,8 +2662,7 @@ export namespace cloudcontrolspartner_v1beta {
     list(
       params: Params$Resource$Organizations$Locations$Customers$Workloads$Violations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListViolationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListViolationsResponse>,
       callback: BodyResponseCallback<Schema$ListViolationsResponse>
     ): void;
     list(
