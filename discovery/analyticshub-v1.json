@@ -1247,7 +1247,7 @@
       }
     }
   },
-  "revision": "20260427",
+  "revision": "20260607",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AIInference": {
@@ -1407,7 +1407,7 @@
       "type": "object"
     },
     "BigtableConfig": {
-      "description": "Configuration for a Bigtable subscription. The Pub/Sub message will be written to a Bigtable row as follows: - row key: subscription name and message ID delimited by #. - columns: message bytes written to a single column family \"data\" with an empty-string column qualifier. - cell timestamp: the message publish timestamp.",
+      "description": "Configuration for a Bigtable subscription. The Pub/Sub message will be written to a Bigtable row as follows: - row key: subscription name, message ID hash, and message ID delimited by `#`. - columns: message bytes written to a single column family `data` with an empty-string column qualifier. - cell timestamp: the message publish timestamp.",
       "id": "BigtableConfig",
       "properties": {
         "appProfileId": {
@@ -1497,6 +1497,39 @@
         "textConfig": {
           "$ref": "TextConfig",
           "description": "Optional. If set, message data will be written to Cloud Storage in text format."
+        }
+      },
+      "type": "object"
+    },
+    "Compression": {
+      "description": "Configuration for compressing/decompressing message data using a user-specified compression algorithm.",
+      "id": "Compression",
+      "properties": {
+        "compressionAlgorithm": {
+          "description": "Required. Specifies the compression algorithm to use.",
+          "enum": [
+            "COMPRESSION_ALGORITHM_UNSPECIFIED",
+            "ZLIB"
+          ],
+          "enumDescriptions": [
+            "Unspecified algorithm.",
+            "ZLIB compression."
+          ],
+          "type": "string"
+        },
+        "compressionMode": {
+          "description": "Required. Specifies whether to compress or decompress the message.",
+          "enum": [
+            "COMPRESSION_MODE_UNSPECIFIED",
+            "COMPRESS",
+            "DECOMPRESS"
+          ],
+          "enumDescriptions": [
+            "Unspecified mode.",
+            "Compress.",
+            "Decompress."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -2215,6 +2248,10 @@
         "aiInference": {
           "$ref": "AIInference",
           "description": "Optional. AI Inference. Specifies the Vertex AI endpoint that inference requests built from the Pub/Sub message data and provided parameters will be sent to."
+        },
+        "compression": {
+          "$ref": "Compression",
+          "description": "Optional. Compression/Decompression."
         },
         "disabled": {
           "description": "Optional. If true, the transform is disabled and will not be applied to messages. Defaults to `false`.",
