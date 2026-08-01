@@ -656,7 +656,7 @@ export namespace places_v1 {
      */
     curbsidePickup?: boolean | null;
     /**
-     * The hours of operation for the next seven days (including today). The time period starts at midnight on the date of the request and ends at 11:59 pm six days later. This field includes the special_days subfield of all hours, set for dates that have exceptional hours.
+     * The hours of operation for the next seven days (including today) incorporating any special opening hours. The time period starts at midnight on the date of the request and ends at 11:59 pm six days later. If the actual opening hours are outside of this range, the opening hours will be truncated. For example, if a place is open from 10pm yesterday to 6am today, the opening hours will be truncated to 12am today to 6am today. This field includes the special_days subfield of all hours, set for dates that have exceptional hours.
      */
     currentOpeningHours?: Schema$GoogleMapsPlacesV1PlaceOpeningHours;
     /**
@@ -824,7 +824,7 @@ export namespace places_v1 {
      */
     rating?: number | null;
     /**
-     * The regular hours of operation. Note that if a place is always open (24 hours), the `close` field will not be set. Clients can rely on always open (24 hours) being represented as an [`open`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Period) period containing [`day`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Point) with value `0`, [`hour`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Point) with value `0`, and [`minute`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Point) with value `0`.
+     * The regular hours are the hours of operation for a place on a typical schedule. Note that if a place is always open (24 hours), the `close` field will not be set. Clients can rely on always open (24 hours) being represented as an [`open`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Period) period containing [`day`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Point) with value `0`, [`hour`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Point) with value `0`, and [`minute`](https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places#Point) with value `0`.
      */
     regularOpeningHours?: Schema$GoogleMapsPlacesV1PlaceOpeningHours;
     /**
@@ -2257,8 +2257,7 @@ export namespace places_v1 {
     get(
       params: Params$Resource$Places$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleMapsPlacesV1Place>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleMapsPlacesV1Place>,
       callback: BodyResponseCallback<Schema$GoogleMapsPlacesV1Place>
     ): void;
     get(
