@@ -681,8 +681,7 @@ export namespace workflowexecutions_v1 {
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Execution> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
@@ -871,8 +870,7 @@ export namespace workflowexecutions_v1 {
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Execution> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
@@ -1046,8 +1044,7 @@ export namespace workflowexecutions_v1 {
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Execution> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
@@ -1192,8 +1189,7 @@ export namespace workflowexecutions_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1491,8 +1487,7 @@ export namespace workflowexecutions_v1 {
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Execution> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
@@ -1621,8 +1616,7 @@ export namespace workflowexecutions_v1 {
     list(
       params: Params$Resource$Projects$Locations$Workflows$Executions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListExecutionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListExecutionsResponse>,
       callback: BodyResponseCallback<Schema$ListExecutionsResponse>
     ): void;
     list(
@@ -1854,8 +1848,7 @@ export namespace workflowexecutions_v1 {
     list(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Callbacks$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCallbacksResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCallbacksResponse>,
       callback: BodyResponseCallback<Schema$ListCallbacksResponse>
     ): void;
     list(
@@ -2051,8 +2044,7 @@ export namespace workflowexecutions_v1 {
         | BodyResponseCallback<Schema$StepEntry>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$StepEntry>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$StepEntry> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$StepEntry>>
@@ -2187,8 +2179,7 @@ export namespace workflowexecutions_v1 {
     list(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListStepEntriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListStepEntriesResponse>,
       callback: BodyResponseCallback<Schema$ListStepEntriesResponse>
     ): void;
     list(
