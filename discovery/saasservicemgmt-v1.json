@@ -4,6 +4,12 @@
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
+        },
+        "https://www.googleapis.com/auth/saasservicemgmt.read-write": {
+          "description": "See, edit, configure, and delete your Google Cloud App Lifecycle Management data and see the email address for your Google Account"
+        },
+        "https://www.googleapis.com/auth/saasservicemgmt.readonly": {
+          "description": "See your Google Cloud App Lifecycle Management data and the email address of your Google Account"
         }
       }
     }
@@ -225,7 +231,8 @@
                     "$ref": "Release"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 },
                 "delete": {
@@ -265,7 +272,8 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 },
                 "get": {
@@ -290,7 +298,9 @@
                     "$ref": "Release"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write",
+                    "https://www.googleapis.com/auth/saasservicemgmt.readonly"
                   ]
                 },
                 "list": {
@@ -336,7 +346,9 @@
                     "$ref": "ListReleasesResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write",
+                    "https://www.googleapis.com/auth/saasservicemgmt.readonly"
                   ]
                 },
                 "patch": {
@@ -380,7 +392,8 @@
                     "$ref": "Release"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 }
               }
@@ -427,7 +440,8 @@
                     "$ref": "RolloutKind"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 },
                 "delete": {
@@ -467,7 +481,8 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 },
                 "get": {
@@ -492,7 +507,9 @@
                     "$ref": "RolloutKind"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write",
+                    "https://www.googleapis.com/auth/saasservicemgmt.readonly"
                   ]
                 },
                 "list": {
@@ -538,7 +555,9 @@
                     "$ref": "ListRolloutKindsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write",
+                    "https://www.googleapis.com/auth/saasservicemgmt.readonly"
                   ]
                 },
                 "patch": {
@@ -582,7 +601,8 @@
                     "$ref": "RolloutKind"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 }
               }
@@ -629,7 +649,8 @@
                     "$ref": "Rollout"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 },
                 "delete": {
@@ -669,7 +690,8 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 },
                 "get": {
@@ -694,7 +716,9 @@
                     "$ref": "Rollout"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write",
+                    "https://www.googleapis.com/auth/saasservicemgmt.readonly"
                   ]
                 },
                 "list": {
@@ -740,7 +764,9 @@
                     "$ref": "ListRolloutsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write",
+                    "https://www.googleapis.com/auth/saasservicemgmt.readonly"
                   ]
                 },
                 "patch": {
@@ -784,7 +810,8 @@
                     "$ref": "Rollout"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 }
               }
@@ -831,7 +858,8 @@
                     "$ref": "Saas"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 },
                 "delete": {
@@ -871,7 +899,8 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 },
                 "get": {
@@ -896,7 +925,9 @@
                     "$ref": "Saas"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write",
+                    "https://www.googleapis.com/auth/saasservicemgmt.readonly"
                   ]
                 },
                 "list": {
@@ -942,7 +973,9 @@
                     "$ref": "ListSaasResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write",
+                    "https://www.googleapis.com/auth/saasservicemgmt.readonly"
                   ]
                 },
                 "patch": {
@@ -986,7 +1019,8 @@
                     "$ref": "Saas"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 }
               }
@@ -1033,7 +1067,8 @@
                     "$ref": "Tenant"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 },
                 "delete": {
@@ -1073,7 +1108,8 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 },
                 "get": {
@@ -1098,7 +1134,9 @@
                     "$ref": "Tenant"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write",
+                    "https://www.googleapis.com/auth/saasservicemgmt.readonly"
                   ]
                 },
                 "list": {
@@ -1144,7 +1182,9 @@
                     "$ref": "ListTenantsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write",
+                    "https://www.googleapis.com/auth/saasservicemgmt.readonly"
                   ]
                 },
                 "patch": {
@@ -1188,7 +1228,8 @@
                     "$ref": "Tenant"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 }
               }
@@ -1235,7 +1276,8 @@
                     "$ref": "UnitKind"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 },
                 "delete": {
@@ -1275,7 +1317,8 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 },
                 "get": {
@@ -1300,7 +1343,9 @@
                     "$ref": "UnitKind"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write",
+                    "https://www.googleapis.com/auth/saasservicemgmt.readonly"
                   ]
                 },
                 "list": {
@@ -1346,7 +1391,9 @@
                     "$ref": "ListUnitKindsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write",
+                    "https://www.googleapis.com/auth/saasservicemgmt.readonly"
                   ]
                 },
                 "patch": {
@@ -1390,7 +1437,8 @@
                     "$ref": "UnitKind"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 }
               }
@@ -1437,7 +1485,8 @@
                     "$ref": "UnitOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 },
                 "delete": {
@@ -1477,7 +1526,8 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 },
                 "get": {
@@ -1502,7 +1552,9 @@
                     "$ref": "UnitOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write",
+                    "https://www.googleapis.com/auth/saasservicemgmt.readonly"
                   ]
                 },
                 "list": {
@@ -1548,7 +1600,9 @@
                     "$ref": "ListUnitOperationsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write",
+                    "https://www.googleapis.com/auth/saasservicemgmt.readonly"
                   ]
                 },
                 "patch": {
@@ -1592,7 +1646,8 @@
                     "$ref": "UnitOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 }
               }
@@ -1639,7 +1694,8 @@
                     "$ref": "Unit"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 },
                 "delete": {
@@ -1679,7 +1735,8 @@
                     "$ref": "Empty"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 },
                 "get": {
@@ -1704,7 +1761,9 @@
                     "$ref": "Unit"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write",
+                    "https://www.googleapis.com/auth/saasservicemgmt.readonly"
                   ]
                 },
                 "list": {
@@ -1750,7 +1809,9 @@
                     "$ref": "ListUnitsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write",
+                    "https://www.googleapis.com/auth/saasservicemgmt.readonly"
                   ]
                 },
                 "patch": {
@@ -1794,7 +1855,8 @@
                     "$ref": "Unit"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/saasservicemgmt.read-write"
                   ]
                 }
               }
@@ -1804,7 +1866,7 @@
       }
     }
   },
-  "revision": "20260505",
+  "revision": "20260708",
   "rootUrl": "https://saasservicemgmt.googleapis.com/",
   "schemas": {
     "Aggregate": {
@@ -1839,6 +1901,17 @@
         "version": {
           "description": "Output only. Version metadata if present on the blueprint.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Decimal": {
+      "description": "A representation of a decimal value, such as 2.5. Clients may convert values into language-native decimal formats, such as Java's [BigDecimal](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/BigDecimal.html) or Python's [decimal.Decimal](https://docs.python.org/3/library/decimal.html).",
+      "id": "Decimal",
+      "properties": {
+        "value": {
+          "description": "The decimal value, as a string. The string representation consists of an optional sign, `+` (`U+002B`) or `-` (`U+002D`), followed by a sequence of zero or more decimal digits (\"the integer\"), optionally followed by a fraction, optionally followed by an exponent. An empty string **should** be interpreted as `0`. The fraction consists of a decimal point followed by zero or more decimal digits. The string must contain at least one digit in either the integer or the fraction. The number formed by the sign, the integer and the fraction is referred to as the significand. The exponent consists of the character `e` (`U+0065`) or `E` (`U+0045`) followed by one or more decimal digits. Services **should** normalize decimal values before storing them by: - Removing an explicitly-provided `+` sign (`+2.5` -> `2.5`). - Replacing a zero-length integer value with `0` (`.5` -> `0.5`). - Coercing the exponent character to upper-case, with explicit sign (`2.5e8` -> `2.5E+8`). - Removing an explicitly-provided zero exponent (`2.5E0` -> `2.5`). Services **may** perform additional normalization based on its own needs and the internal decimal implementation selected, such as shifting the decimal point and exponent value together (example: `2.5E-1` <-> `0.25`). Additionally, services **may** preserve trailing zeroes in the fraction to indicate increased precision, but are not required to do so. Note that only the `.` character is supported to divide the integer and the fraction; `,` **should not** be supported regardless of locale. Additionally, thousand separators **should not** be supported. If a service does support them, values **must** be normalized. The ENBF grammar is: DecimalString = '' | [Sign] Significand [Exponent]; Sign = '+' | '-'; Significand = Digits '.' | [Digits] '.' Digits; Exponent = ('e' | 'E') [Sign] Digits; Digits = { '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' }; Services **should** clearly document the range of supported values, the maximum supported precision (total number of digits), and, if applicable, the scale (number of digits after the decimal point), as well as how it behaves when receiving out-of-bounds values. Services **may** choose to accept values passed as input even when the value has a higher precision or scale than the service supports, and **should** round the value to fit the supported scale. Alternatively, the service **may** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if precision would be lost. Services **should** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if the service receives a value outside of the supported range.",
           "type": "string"
         }
       },
@@ -2480,7 +2553,7 @@
       "type": "object"
     },
     "RolloutKind": {
-      "description": "An object that describes various settings of Rollout execution. Includes built-in policies across GCP and GDC, and customizable policies.",
+      "description": "An object that describes various settings of Rollout execution. Includes built-in and customizable policies.",
       "id": "RolloutKind",
       "properties": {
         "annotations": {
@@ -2532,6 +2605,10 @@
         "unitKind": {
           "description": "Required. Immutable. UnitKind that this rollout kind corresponds to. Rollouts stemming from this rollout kind will target the units of this unit kind. In other words, this defines the population of target units to be upgraded by rollouts.",
           "type": "string"
+        },
+        "unitUpdatePacing": {
+          "$ref": "UnitUpdatePacing",
+          "description": "Optional. Settings for controlling the pacing of rollouts i.e. the number of units to be rolled out in parallel in a region."
         },
         "updateTime": {
           "description": "Output only. The timestamp when the resource was last updated. Any change to the resource made by users must refresh this value. Changes to a resource made by the service should refresh this value.",
@@ -2642,33 +2719,18 @@
           "type": "string"
         },
         "state": {
-          "description": "Output only. State of the Saas. It is always in ACTIVE state if the application_template is empty.",
+          "description": "Output only. State of the Saas. It is always in STATE_ACTIVE state if the application_template is empty.",
           "enum": [
             "STATE_TYPE_UNSPECIFIED",
             "STATE_ACTIVE",
             "STATE_RUNNING",
-            "STATE_FAILED",
-            "ACTIVE",
-            "RUNNING",
-            "FAILED"
-          ],
-          "enumDeprecated": [
-            false,
-            false,
-            false,
-            false,
-            true,
-            true,
-            true
+            "STATE_FAILED"
           ],
           "enumDescriptions": [
             "State type is unspecified.",
             "The Saas is ready",
             "In the process of importing, synchronizing or replicating ApplicationTemplates",
-            "Failure during process of importing, synchronizing or replicating ApplicationTemplate processing",
-            "Deprecated: Use STATE_ACTIVE.",
-            "Deprecated: Use STATE_RUNNING.",
-            "Deprecated: Use STATE_FAILED."
+            "Failure during process of importing, synchronizing or replicating ApplicationTemplate processing"
           ],
           "readOnly": true,
           "type": "string"
@@ -2931,7 +2993,7 @@
             "MANAGEMENT_MODE_SYSTEM"
           ],
           "enumDescriptions": [
-            "",
+            "Unspecified management mode.",
             "Unit's lifecycle is managed by the user.",
             "The system will decide when to deprovision and delete the unit. User still can deprovision or delete the unit manually."
           ],
@@ -3026,7 +3088,7 @@
             "SYSTEM_MANAGED_STATE_DECOMMISSIONED"
           ],
           "enumDescriptions": [
-            "",
+            "Unspecified system managed state.",
             "Unit has dependents attached.",
             "Unit has no dependencies attached, but attachment is allowed.",
             "Unit has no dependencies attached, and attachment is not allowed."
@@ -3097,7 +3159,9 @@
             "TYPE_UPDATING",
             "TYPE_PROVISIONED",
             "TYPE_OPERATION_ERROR",
-            "TYPE_FLAGS_CONFIG_INITIALIZED"
+            "TYPE_FLAGS_CONFIG_INITIALIZED",
+            "TYPE_APP_CREATED_OR_ALREADY_EXISTS",
+            "TYPE_APP_COMPONENTS_REGISTERED"
           ],
           "enumDescriptions": [
             "Condition type is unspecified.",
@@ -3105,7 +3169,9 @@
             "Condition type is updating.",
             "Condition type is provisioned.",
             "Condition type is operationError. True when the last unit operation fails with a non-ignorable error.",
-            "Condition type is flagsConfigInitialized. True when the flags configuration is synchronized and ready to be served."
+            "Condition type is flagsConfigInitialized. True when the flags configuration is synchronized and ready to be served.",
+            "Indicates if AppHub app has been created or if Apphub app has already existed.",
+            "Indicates if services and workloads have been registered with AppHub."
           ],
           "type": "string"
         }
@@ -3140,6 +3206,21 @@
           "description": "Optional. Annotations is an unstructured key-value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/user-guide/annotations",
           "type": "object"
         },
+        "boundaryType": {
+          "description": "Optional. Output only. BoundaryType describes the type of boundary the Unit Kind represents.",
+          "enum": [
+            "BOUNDARY_TYPE_UNSPECIFIED",
+            "BOUNDARY_TYPE_TENANT_PROJECT",
+            "BOUNDARY_TYPE_MANAGED_PROJECT"
+          ],
+          "enumDescriptions": [
+            "Unspecified boundary type.",
+            "Tenant project boundary.",
+            "Managed project boundary."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. The timestamp when the resource was created.",
           "format": "google-datetime",
@@ -3170,7 +3251,7 @@
           "type": "string"
         },
         "inputVariableMappings": {
-          "description": "Optional. List of inputVariables for this release that will either be retrieved from a dependency’s outputVariables, or will be passed on to a dependency’s inputVariables. Maximum 100.",
+          "description": "Optional. List of inputVariables for this release that will either be retrieved from a dependency's outputVariables, or will be passed on to a dependency's inputVariables. Maximum 100.",
           "items": {
             "$ref": "VariableMapping"
           },
@@ -3248,7 +3329,8 @@
           "type": "string"
         },
         "deprovision": {
-          "$ref": "Deprovision"
+          "$ref": "Deprovision",
+          "description": "Optional. Deprovision operation."
         },
         "engineState": {
           "description": "Optional. Output only. The engine state for on-going deployment engine operation(s). This field is opaque for external usage.",
@@ -3282,7 +3364,8 @@
           "type": "string"
         },
         "flagUpdate": {
-          "$ref": "FlagUpdate"
+          "$ref": "FlagUpdate",
+          "description": "Optional. Flag update operation."
         },
         "labels": {
           "additionalProperties": {
@@ -3300,7 +3383,8 @@
           "type": "string"
         },
         "provision": {
-          "$ref": "Provision"
+          "$ref": "Provision",
+          "description": "Optional. Provision operation."
         },
         "rollout": {
           "description": "Optional. Specifies which rollout created this Unit Operation. This cannot be modified and is used for filtering purposes only. If a dependent unit and unit operation are created as part of another unit operation, they will use the same rolloutId.",
@@ -3349,7 +3433,8 @@
           "type": "string"
         },
         "upgrade": {
-          "$ref": "Upgrade"
+          "$ref": "Upgrade",
+          "description": "Optional. Upgrade operation."
         }
       },
       "type": "object"
@@ -3410,6 +3495,22 @@
             "Indicates if the UnitOperation's core workload execution completed successfully. The workload is the core execution operation performed for a UnitOperation (e.g., provisioning, updating, or deprovisioning resources) excluding post-operation checks."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UnitUpdatePacing": {
+      "description": "UnitUpdatePacing defines the policy for the maximum number of unit operations that can run for a rollout in parallel in a single region.",
+      "id": "UnitUpdatePacing",
+      "properties": {
+        "maxConcurrentOperationsCount": {
+          "description": "Optional. An absolute cap on concurrent units operations. If both percent and count are provided, the system uses the MINIMUM (most restrictive).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxConcurrentOperationsPercent": {
+          "$ref": "Decimal",
+          "description": "Optional. The maximum percentage of total units in the scope that can be in-flight. Example: 10.5 for 10.5%. If both percent and count are provided, the system uses the MINIMUM (most restrictive)."
         }
       },
       "type": "object"
