@@ -1568,8 +1568,7 @@ export namespace datastore_v1beta3 {
     beginTransaction(
       params: Params$Resource$Projects$Begintransaction,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BeginTransactionResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BeginTransactionResponse>,
       callback: BodyResponseCallback<Schema$BeginTransactionResponse>
     ): void;
     beginTransaction(

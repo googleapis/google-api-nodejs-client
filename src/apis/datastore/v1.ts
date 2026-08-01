@@ -196,6 +196,10 @@ export namespace datastore_v1 {
      * Required. A list of keys with incomplete key paths for which to allocate IDs. No key may be reserved/read-only.
      */
     keys?: Schema$Key[];
+    /**
+     * Optional. The options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
   }
   /**
    * The response for Datastore.AllocateIds.
@@ -233,6 +237,10 @@ export namespace datastore_v1 {
      */
     databaseId?: string | null;
     /**
+     * Optional. The options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
+    /**
      * Options for a new transaction.
      */
     transactionOptions?: Schema$TransactionOptions;
@@ -262,6 +270,10 @@ export namespace datastore_v1 {
      * The mutations to perform. When mode is `TRANSACTIONAL`, mutations affecting a single entity are applied in order. The following sequences of mutations affecting a single entity are not permitted in a single `Commit` request: - `insert` followed by `insert` - `update` followed by `insert` - `upsert` followed by `insert` - `delete` followed by `update` When mode is `NON_TRANSACTIONAL`, no two mutations may affect a single entity.
      */
     mutations?: Schema$Mutation[];
+    /**
+     * Optional. The options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
     /**
      * Options for beginning a new transaction for this request. The transaction is committed when the request completes. If specified, TransactionOptions.mode must be TransactionOptions.ReadWrite.
      */
@@ -951,6 +963,10 @@ export namespace datastore_v1 {
      * The options for this lookup request.
      */
     readOptions?: Schema$ReadOptions;
+    /**
+     * Optional. The options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
   }
   /**
    * The response for Datastore.Lookup.
@@ -1302,6 +1318,15 @@ export namespace datastore_v1 {
     previousTransaction?: string | null;
   }
   /**
+   * Options for a request.
+   */
+  export interface Schema$RequestOptions {
+    /**
+     * Optional. The request tags for the request. The tags are processed as follows: - Truncated to 510 characters. - Filtered out if empty. - Deduplicated. - Limited to 50 tags.
+     */
+    requestTags?: string[] | null;
+  }
+  /**
    * The request for Datastore.ReserveIds.
    */
   export interface Schema$ReserveIdsRequest {
@@ -1313,6 +1338,10 @@ export namespace datastore_v1 {
      * Required. A list of keys with complete key paths whose numeric IDs should not be auto-allocated.
      */
     keys?: Schema$Key[];
+    /**
+     * Optional. The options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
   }
   /**
    * The response for Datastore.ReserveIds.
@@ -1326,6 +1355,10 @@ export namespace datastore_v1 {
      * The ID of the database against which to make the request. '(default)' is not allowed; please use empty string '' to refer the default database.
      */
     databaseId?: string | null;
+    /**
+     * Optional. The options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
     /**
      * Required. The transaction identifier, returned by a call to Datastore.BeginTransaction.
      */
@@ -1363,6 +1396,10 @@ export namespace datastore_v1 {
      * The options for this query.
      */
     readOptions?: Schema$ReadOptions;
+    /**
+     * Optional. The options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
   }
   /**
    * The response for Datastore.RunAggregationQuery.
@@ -1417,6 +1454,10 @@ export namespace datastore_v1 {
      * The options for this query.
      */
     readOptions?: Schema$ReadOptions;
+    /**
+     * Optional. The options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
   }
   /**
    * The response for Datastore.RunQuery.
@@ -1588,7 +1629,8 @@ export namespace datastore_v1 {
      *       // request body parameters
      *       // {
      *       //   "databaseId": "my_databaseId",
-     *       //   "keys": []
+     *       //   "keys": [],
+     *       //   "requestOptions": {}
      *       // }
      *     },
      *   });
@@ -1739,6 +1781,7 @@ export namespace datastore_v1 {
      *       // request body parameters
      *       // {
      *       //   "databaseId": "my_databaseId",
+     *       //   "requestOptions": {},
      *       //   "transactionOptions": {}
      *       // }
      *     },
@@ -1779,8 +1822,7 @@ export namespace datastore_v1 {
     beginTransaction(
       params: Params$Resource$Projects$Begintransaction,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BeginTransactionResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BeginTransactionResponse>,
       callback: BodyResponseCallback<Schema$BeginTransactionResponse>
     ): void;
     beginTransaction(
@@ -1893,6 +1935,7 @@ export namespace datastore_v1 {
      *       //   "databaseId": "my_databaseId",
      *       //   "mode": "my_mode",
      *       //   "mutations": [],
+     *       //   "requestOptions": {},
      *       //   "singleUseTransaction": {},
      *       //   "transaction": "my_transaction"
      *       // }
@@ -2089,8 +2132,7 @@ export namespace datastore_v1 {
     export(
       params: Params$Resource$Projects$Export,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     export(
@@ -2246,8 +2288,7 @@ export namespace datastore_v1 {
     import(
       params: Params$Resource$Projects$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -2360,7 +2401,8 @@ export namespace datastore_v1 {
      *       //   "databaseId": "my_databaseId",
      *       //   "keys": [],
      *       //   "propertyMask": {},
-     *       //   "readOptions": {}
+     *       //   "readOptions": {},
+     *       //   "requestOptions": {}
      *       // }
      *     },
      *   });
@@ -2512,7 +2554,8 @@ export namespace datastore_v1 {
      *       // request body parameters
      *       // {
      *       //   "databaseId": "my_databaseId",
-     *       //   "keys": []
+     *       //   "keys": [],
+     *       //   "requestOptions": {}
      *       // }
      *     },
      *   });
@@ -2659,6 +2702,7 @@ export namespace datastore_v1 {
      *       // request body parameters
      *       // {
      *       //   "databaseId": "my_databaseId",
+     *       //   "requestOptions": {},
      *       //   "transaction": "my_transaction"
      *       // }
      *     },
@@ -2810,7 +2854,8 @@ export namespace datastore_v1 {
      *       //   "explainOptions": {},
      *       //   "gqlQuery": {},
      *       //   "partitionId": {},
-     *       //   "readOptions": {}
+     *       //   "readOptions": {},
+     *       //   "requestOptions": {}
      *       // }
      *     },
      *   });
@@ -2970,7 +3015,8 @@ export namespace datastore_v1 {
      *       //   "partitionId": {},
      *       //   "propertyMask": {},
      *       //   "query": {},
-     *       //   "readOptions": {}
+     *       //   "readOptions": {},
+     *       //   "requestOptions": {}
      *       // }
      *     },
      *   });
@@ -3288,8 +3334,7 @@ export namespace datastore_v1 {
     create(
       params: Params$Resource$Projects$Indexes$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -3438,8 +3483,7 @@ export namespace datastore_v1 {
     delete(
       params: Params$Resource$Projects$Indexes$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -3960,8 +4004,7 @@ export namespace datastore_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4095,8 +4138,7 @@ export namespace datastore_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4218,8 +4260,7 @@ export namespace datastore_v1 {
     get(
       params: Params$Resource$Projects$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
