@@ -291,8 +291,7 @@ export namespace verifiedaccess_v1 {
         | BodyResponseCallback<Schema$Challenge>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Challenge>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Challenge> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Challenge>>

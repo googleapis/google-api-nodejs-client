@@ -35,10 +35,7 @@ export function verifiedaccess<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | verifiedaccess_v1.Options
-    | 'v2'
-    | verifiedaccess_v2.Options
+    'v1' | verifiedaccess_v1.Options | 'v2' | verifiedaccess_v2.Options
 ) {
   return getAPI<T>('verifiedaccess', versionOrOptions, VERSIONS, this);
 }
