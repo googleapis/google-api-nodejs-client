@@ -3610,8 +3610,7 @@ export namespace videointelligence_v1 {
     cancel(
       params: Params$Resource$Operations$Projects$Locations$Operations$Cancel,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
       callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
     ): void;
     cancel(
@@ -3750,8 +3749,7 @@ export namespace videointelligence_v1 {
     delete(
       params: Params$Resource$Operations$Projects$Locations$Operations$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
       callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
     ): void;
     delete(
@@ -4089,8 +4087,7 @@ export namespace videointelligence_v1 {
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
       callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
     ): void;
     cancel(
@@ -4224,8 +4221,7 @@ export namespace videointelligence_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
       callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>
     ): void;
     delete(
