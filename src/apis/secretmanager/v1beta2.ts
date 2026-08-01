@@ -816,8 +816,7 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -942,8 +941,7 @@ export namespace secretmanager_v1beta2 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1330,8 +1328,7 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Secret>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Secret> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Secret>>
@@ -1468,8 +1465,7 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1616,8 +1612,7 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Secret>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Secret> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Secret>>
@@ -1756,8 +1751,7 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2076,8 +2070,7 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Secret>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Secret> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Secret>>
@@ -2223,8 +2216,7 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2353,8 +2345,7 @@ export namespace secretmanager_v1beta2 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Secrets$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -3371,8 +3362,7 @@ export namespace secretmanager_v1beta2 {
     list(
       params: Params$Resource$Projects$Locations$Secrets$Versions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSecretVersionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSecretVersionsResponse>,
       callback: BodyResponseCallback<Schema$ListSecretVersionsResponse>
     ): void;
     list(
@@ -3794,8 +3784,7 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Secret>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Secret> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Secret>>
@@ -3932,8 +3921,7 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4080,8 +4068,7 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Secret>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Secret> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Secret>>
@@ -4220,8 +4207,7 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4540,8 +4526,7 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Secret>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Secret> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Secret>>
@@ -4687,8 +4672,7 @@ export namespace secretmanager_v1beta2 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4815,8 +4799,7 @@ export namespace secretmanager_v1beta2 {
     testIamPermissions(
       params: Params$Resource$Projects$Secrets$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -5828,8 +5811,7 @@ export namespace secretmanager_v1beta2 {
     list(
       params: Params$Resource$Projects$Secrets$Versions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSecretVersionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSecretVersionsResponse>,
       callback: BodyResponseCallback<Schema$ListSecretVersionsResponse>
     ): void;
     list(
