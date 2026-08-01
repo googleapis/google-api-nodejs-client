@@ -107,6 +107,9 @@
         "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations": {
           "description": "Move a copy of your food purchase and reservation activity"
         },
+        "https://www.googleapis.com/auth/dataportability.pixel.device_data": {
+          "description": "Usage and diagnostic data from your Pixel devices."
+        },
         "https://www.googleapis.com/auth/dataportability.play.devices": {
           "description": "Move a copy of information about your devices with Google Play Store installed"
         },
@@ -370,6 +373,7 @@
             "https://www.googleapis.com/auth/dataportability.nest.store",
             "https://www.googleapis.com/auth/dataportability.nest.user",
             "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations",
+            "https://www.googleapis.com/auth/dataportability.pixel.device_data",
             "https://www.googleapis.com/auth/dataportability.play.devices",
             "https://www.googleapis.com/auth/dataportability.play.grouping",
             "https://www.googleapis.com/auth/dataportability.play.installs",
@@ -473,6 +477,7 @@
             "https://www.googleapis.com/auth/dataportability.nest.store",
             "https://www.googleapis.com/auth/dataportability.nest.user",
             "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations",
+            "https://www.googleapis.com/auth/dataportability.pixel.device_data",
             "https://www.googleapis.com/auth/dataportability.play.devices",
             "https://www.googleapis.com/auth/dataportability.play.grouping",
             "https://www.googleapis.com/auth/dataportability.play.installs",
@@ -569,6 +574,7 @@
             "https://www.googleapis.com/auth/dataportability.nest.store",
             "https://www.googleapis.com/auth/dataportability.nest.user",
             "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations",
+            "https://www.googleapis.com/auth/dataportability.pixel.device_data",
             "https://www.googleapis.com/auth/dataportability.play.devices",
             "https://www.googleapis.com/auth/dataportability.play.grouping",
             "https://www.googleapis.com/auth/dataportability.play.installs",
@@ -668,6 +674,7 @@
             "https://www.googleapis.com/auth/dataportability.nest.store",
             "https://www.googleapis.com/auth/dataportability.nest.user",
             "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations",
+            "https://www.googleapis.com/auth/dataportability.pixel.device_data",
             "https://www.googleapis.com/auth/dataportability.play.devices",
             "https://www.googleapis.com/auth/dataportability.play.grouping",
             "https://www.googleapis.com/auth/dataportability.play.installs",
@@ -761,6 +768,7 @@
             "https://www.googleapis.com/auth/dataportability.nest.store",
             "https://www.googleapis.com/auth/dataportability.nest.user",
             "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations",
+            "https://www.googleapis.com/auth/dataportability.pixel.device_data",
             "https://www.googleapis.com/auth/dataportability.play.devices",
             "https://www.googleapis.com/auth/dataportability.play.grouping",
             "https://www.googleapis.com/auth/dataportability.play.installs",
@@ -854,6 +862,7 @@
             "https://www.googleapis.com/auth/dataportability.nest.store",
             "https://www.googleapis.com/auth/dataportability.nest.user",
             "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations",
+            "https://www.googleapis.com/auth/dataportability.pixel.device_data",
             "https://www.googleapis.com/auth/dataportability.play.devices",
             "https://www.googleapis.com/auth/dataportability.play.grouping",
             "https://www.googleapis.com/auth/dataportability.play.installs",
@@ -896,7 +905,7 @@
       }
     }
   },
-  "revision": "20260105",
+  "revision": "20260719",
   "rootUrl": "https://dataportability.googleapis.com/",
   "schemas": {
     "CancelPortabilityArchiveRequest": {

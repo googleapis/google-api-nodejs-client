@@ -296,6 +296,7 @@ export namespace dataportability_v1beta {
      *       'https://www.googleapis.com/auth/dataportability.nest.store',
      *       'https://www.googleapis.com/auth/dataportability.nest.user',
      *       'https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations',
+     *       'https://www.googleapis.com/auth/dataportability.pixel.device_data',
      *       'https://www.googleapis.com/auth/dataportability.play.devices',
      *       'https://www.googleapis.com/auth/dataportability.play.grouping',
      *       'https://www.googleapis.com/auth/dataportability.play.installs',
@@ -385,8 +386,7 @@ export namespace dataportability_v1beta {
     check(
       params: Params$Resource$Accesstype$Check,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CheckAccessTypeResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CheckAccessTypeResponse>,
       callback: BodyResponseCallback<Schema$CheckAccessTypeResponse>
     ): void;
     check(
@@ -526,6 +526,7 @@ export namespace dataportability_v1beta {
      *       'https://www.googleapis.com/auth/dataportability.nest.store',
      *       'https://www.googleapis.com/auth/dataportability.nest.user',
      *       'https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations',
+     *       'https://www.googleapis.com/auth/dataportability.pixel.device_data',
      *       'https://www.googleapis.com/auth/dataportability.play.devices',
      *       'https://www.googleapis.com/auth/dataportability.play.grouping',
      *       'https://www.googleapis.com/auth/dataportability.play.installs',
@@ -751,6 +752,7 @@ export namespace dataportability_v1beta {
      *       'https://www.googleapis.com/auth/dataportability.nest.store',
      *       'https://www.googleapis.com/auth/dataportability.nest.user',
      *       'https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations',
+     *       'https://www.googleapis.com/auth/dataportability.pixel.device_data',
      *       'https://www.googleapis.com/auth/dataportability.play.devices',
      *       'https://www.googleapis.com/auth/dataportability.play.grouping',
      *       'https://www.googleapis.com/auth/dataportability.play.installs',
@@ -840,8 +842,7 @@ export namespace dataportability_v1beta {
     getPortabilityArchiveState(
       params: Params$Resource$Archivejobs$Getportabilityarchivestate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PortabilityArchiveState>,
+        MethodOptions | BodyResponseCallback<Schema$PortabilityArchiveState>,
       callback: BodyResponseCallback<Schema$PortabilityArchiveState>
     ): void;
     getPortabilityArchiveState(
@@ -967,6 +968,7 @@ export namespace dataportability_v1beta {
      *       'https://www.googleapis.com/auth/dataportability.nest.store',
      *       'https://www.googleapis.com/auth/dataportability.nest.user',
      *       'https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations',
+     *       'https://www.googleapis.com/auth/dataportability.pixel.device_data',
      *       'https://www.googleapis.com/auth/dataportability.play.devices',
      *       'https://www.googleapis.com/auth/dataportability.play.grouping',
      *       'https://www.googleapis.com/auth/dataportability.play.installs',
@@ -1226,6 +1228,7 @@ export namespace dataportability_v1beta {
      *       'https://www.googleapis.com/auth/dataportability.nest.store',
      *       'https://www.googleapis.com/auth/dataportability.nest.user',
      *       'https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations',
+     *       'https://www.googleapis.com/auth/dataportability.pixel.device_data',
      *       'https://www.googleapis.com/auth/dataportability.play.devices',
      *       'https://www.googleapis.com/auth/dataportability.play.grouping',
      *       'https://www.googleapis.com/auth/dataportability.play.installs',
@@ -1330,8 +1333,7 @@ export namespace dataportability_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1452,6 +1454,7 @@ export namespace dataportability_v1beta {
      *       'https://www.googleapis.com/auth/dataportability.nest.store',
      *       'https://www.googleapis.com/auth/dataportability.nest.user',
      *       'https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations',
+     *       'https://www.googleapis.com/auth/dataportability.pixel.device_data',
      *       'https://www.googleapis.com/auth/dataportability.play.devices',
      *       'https://www.googleapis.com/auth/dataportability.play.grouping',
      *       'https://www.googleapis.com/auth/dataportability.play.installs',
