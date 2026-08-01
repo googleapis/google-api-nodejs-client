@@ -33,10 +33,7 @@ export function ideahub(
 export function ideahub<T = ideahub_v1alpha.Ideahub | ideahub_v1beta.Ideahub>(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1alpha'
-    | ideahub_v1alpha.Options
-    | 'v1beta'
-    | ideahub_v1beta.Options
+    'v1alpha' | ideahub_v1alpha.Options | 'v1beta' | ideahub_v1beta.Options
 ) {
   return getAPI<T>('ideahub', versionOrOptions, VERSIONS, this);
 }
