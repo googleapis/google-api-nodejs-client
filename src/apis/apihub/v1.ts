@@ -375,6 +375,31 @@ export namespace apihub_v1 {
     environmentFilter?: Schema$GoogleCloudApihubV1EnvironmentFilter;
   }
   /**
+   * The target configuration for Apigee X. Note: If this API is called while an earlier deployment is still in progress, the earlier deployment will be aborted and a new deployment will be triggered.
+   */
+  export interface Schema$GoogleCloudApihubV1ApigeeXTargetDetails {
+    /**
+     * Output only. The revision number of the Apigee proxy that was deployed.
+     */
+    deployedRevision?: string | null;
+    /**
+     * Required. The specific Apigee environment where the server will be deployed.
+     */
+    environment?: string | null;
+    /**
+     * Optional. Metadata for the proxy configuration in Apigee X.
+     */
+    metadata?: Schema$GoogleCloudApihubV1MetaData;
+    /**
+     * Required. This name identifies the proxy resource in Apigee. It typically follows a standard alphanumeric format (e.g., "mcp-discovery-server").
+     */
+    proxy?: string | null;
+    /**
+     * Required. The runtime project that hosts the Apigee X organization. This must be one of the runtime projects attached to the API Hub host project.
+     */
+    targetProject?: string | null;
+  }
+  /**
    * An ApiHubInstance represents the instance resources of the API Hub. Currently, only one ApiHub instance is allowed for each project.
    */
   export interface Schema$GoogleCloudApihubV1ApiHubInstance {
@@ -722,6 +747,15 @@ export namespace apihub_v1 {
      * Optional. The authentication template for the plugin.
      */
     authConfigTemplate?: Schema$GoogleCloudApihubV1AuthConfigTemplate;
+  }
+  /**
+   * Request message for ApiHub.ConfigureAndDeployServer.
+   */
+  export interface Schema$GoogleCloudApihubV1ConfigureAndDeployServerRequest {
+    /**
+     * MCP (Model Context Protocol) server configuration.
+     */
+    mcpServerConfig?: Schema$GoogleCloudApihubV1McpServerConfig;
   }
   /**
    * ConfigValueOption represents an option for a config variable of type enum or multi select.
@@ -1473,6 +1507,23 @@ export namespace apihub_v1 {
     path?: Schema$GoogleCloudApihubV1Path;
   }
   /**
+   * Identifies a single API Hub operation by spec resource name + HTTP path + HTTP method.
+   */
+  export interface Schema$GoogleCloudApihubV1HttpOperationConfig {
+    /**
+     * Required. HTTP method of the operation within the referenced spec. (GET / PUT / POST / DELETE / OPTIONS / HEAD / PATCH / TRACE).
+     */
+    method?: string | null;
+    /**
+     * Required. HTTP path of the operation within the referenced spec. Match is exact (no template substitution): the path here must appear verbatim on an APIOperationRevision belonging to the spec.
+     */
+    path?: string | null;
+    /**
+     * Required. Spec resource name: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/specs/{spec\}`
+     */
+    spec?: string | null;
+  }
+  /**
    * An HTTP-based API Operation, sometimes called a "REST" Operation.
    */
   export interface Schema$GoogleCloudApihubV1HttpOperationDetails {
@@ -1872,6 +1923,19 @@ export namespace apihub_v1 {
     name?: string | null;
   }
   /**
+   * MCP-specific server configuration.
+   */
+  export interface Schema$GoogleCloudApihubV1McpServerConfig {
+    /**
+     * Optional. The target Apigee X configuration.
+     */
+    apigeeXTargetDetails?: Schema$GoogleCloudApihubV1ApigeeXTargetDetails;
+    /**
+     * Required. The tools to expose on the MCP server.
+     */
+    tools?: Schema$GoogleCloudApihubV1McpToolConfig[];
+  }
+  /**
    * Details describing an MCP Tool.
    */
   export interface Schema$GoogleCloudApihubV1McpTool {
@@ -1899,6 +1963,36 @@ export namespace apihub_v1 {
      * Optional. Optional title for the tool.
      */
     title?: string | null;
+  }
+  /**
+   * A tool exposed by the MCP server. Each tool wraps exactly one API Hub operation under a caller-supplied identifier.
+   */
+  export interface Schema$GoogleCloudApihubV1McpToolConfig {
+    /**
+     * Required. Description of what the tool does and how it is used. Description serves as key reference for the agent to know about the tool capabilities.
+     */
+    description?: string | null;
+    /**
+     * Required. The API Hub operation this tool exposes. Each tool wraps exactly one operation; callers that want to expose multiple operations should declare multiple tools.
+     */
+    operation?: Schema$GoogleCloudApihubV1OperationConfig;
+    /**
+     * Required. Caller-supplied identifier for the tool; each tool must have a unique identifier. This will be by used by agents to invoke the tool. Tool ID must be unique across all tools in the given MCP server configuration.
+     */
+    toolId?: string | null;
+  }
+  /**
+   * Metadata for the server configuration in Apigee X.
+   */
+  export interface Schema$GoogleCloudApihubV1MetaData {
+    /**
+     * Optional. Description for the server. For apigee target, this will be used as revision description.
+     */
+    description?: string | null;
+    /**
+     * Optional. Display name for the server. For apigee target, this will be used as revision display name.
+     */
+    displayName?: string | null;
   }
   /**
    * The config variable value of data type multi int.
@@ -1956,6 +2050,19 @@ export namespace apihub_v1 {
      * Output only. The version in the spec. This maps to `info.version` in OpenAPI spec.
      */
     version?: string | null;
+  }
+  /**
+   * API hub Operation config.
+   */
+  export interface Schema$GoogleCloudApihubV1OperationConfig {
+    /**
+     * The HTTP operation config.
+     */
+    httpOperation?: Schema$GoogleCloudApihubV1HttpOperationConfig;
+    /**
+     * Full API Hub operation resource name: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/operations/{operation\}`
+     */
+    operation?: string | null;
   }
   /**
    * The operation details parsed from the spec.
@@ -2921,6 +3028,7 @@ export namespace apihub_v1 {
     operations: Resource$Projects$Locations$Operations;
     plugins: Resource$Projects$Locations$Plugins;
     runtimeProjectAttachments: Resource$Projects$Locations$Runtimeprojectattachments;
+    servers: Resource$Projects$Locations$Servers;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.addons = new Resource$Projects$Locations$Addons(this.context);
@@ -2951,6 +3059,7 @@ export namespace apihub_v1 {
       this.plugins = new Resource$Projects$Locations$Plugins(this.context);
       this.runtimeProjectAttachments =
         new Resource$Projects$Locations$Runtimeprojectattachments(this.context);
+      this.servers = new Resource$Projects$Locations$Servers(this.context);
     }
 
     /**
@@ -2975,7 +3084,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3038,8 +3150,7 @@ export namespace apihub_v1 {
     collectApiData(
       params: Params$Resource$Projects$Locations$Collectapidata,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     collectApiData(
@@ -3131,7 +3242,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3273,7 +3388,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3429,7 +3548,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3576,7 +3699,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3732,7 +3859,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3977,7 +4108,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4032,8 +4167,7 @@ export namespace apihub_v1 {
     get(
       params: Params$Resource$Projects$Locations$Addons$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudApihubV1Addon>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudApihubV1Addon>,
       callback: BodyResponseCallback<Schema$GoogleCloudApihubV1Addon>
     ): void;
     get(
@@ -4120,7 +4254,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4274,7 +4412,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4334,8 +4475,7 @@ export namespace apihub_v1 {
     manageConfig(
       params: Params$Resource$Projects$Locations$Addons$Manageconfig,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     manageConfig(
@@ -4470,7 +4610,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4539,8 +4682,7 @@ export namespace apihub_v1 {
     create(
       params: Params$Resource$Projects$Locations$Apihubinstances$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -4633,7 +4775,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4685,8 +4830,7 @@ export namespace apihub_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Apihubinstances$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -4776,7 +4920,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4927,7 +5075,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5075,7 +5227,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5144,8 +5299,7 @@ export namespace apihub_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Apihubinstances$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -5294,7 +5448,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5390,8 +5547,7 @@ export namespace apihub_v1 {
     create(
       params: Params$Resource$Projects$Locations$Apis$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudApihubV1Api>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudApihubV1Api>,
       callback: BodyResponseCallback<Schema$GoogleCloudApihubV1Api>
     ): void;
     create(
@@ -5478,7 +5634,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5544,8 +5703,7 @@ export namespace apihub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5612,7 +5770,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5679,8 +5841,7 @@ export namespace apihub_v1 {
     get(
       params: Params$Resource$Projects$Locations$Apis$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudApihubV1Api>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudApihubV1Api>,
       callback: BodyResponseCallback<Schema$GoogleCloudApihubV1Api>
     ): void;
     get(
@@ -5767,7 +5928,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5918,7 +6083,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6014,8 +6182,7 @@ export namespace apihub_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Apis$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudApihubV1Api>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudApihubV1Api>,
       callback: BodyResponseCallback<Schema$GoogleCloudApihubV1Api>
     ): void;
     patch(
@@ -6184,7 +6351,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6272,8 +6442,7 @@ export namespace apihub_v1 {
     create(
       params: Params$Resource$Projects$Locations$Apis$Versions$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudApihubV1Version>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudApihubV1Version>,
       callback: BodyResponseCallback<Schema$GoogleCloudApihubV1Version>
     ): void;
     create(
@@ -6365,7 +6534,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6431,8 +6603,7 @@ export namespace apihub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6499,7 +6670,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6562,8 +6737,7 @@ export namespace apihub_v1 {
     get(
       params: Params$Resource$Projects$Locations$Apis$Versions$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudApihubV1Version>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudApihubV1Version>,
       callback: BodyResponseCallback<Schema$GoogleCloudApihubV1Version>
     ): void;
     get(
@@ -6652,7 +6826,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6806,7 +6984,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6894,8 +7075,7 @@ export namespace apihub_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Apis$Versions$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudApihubV1Version>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudApihubV1Version>,
       callback: BodyResponseCallback<Schema$GoogleCloudApihubV1Version>
     ): void;
     patch(
@@ -7056,7 +7236,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7217,7 +7401,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7384,7 +7571,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7448,8 +7638,7 @@ export namespace apihub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7517,7 +7706,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7664,7 +7857,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7820,7 +8017,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8051,7 +8251,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8136,8 +8339,7 @@ export namespace apihub_v1 {
     create(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudApihubV1Spec>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudApihubV1Spec>,
       callback: BodyResponseCallback<Schema$GoogleCloudApihubV1Spec>
     ): void;
     create(
@@ -8230,7 +8432,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8294,8 +8499,7 @@ export namespace apihub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8363,7 +8567,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8516,7 +8724,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8577,8 +8789,7 @@ export namespace apihub_v1 {
     get(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudApihubV1Spec>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudApihubV1Spec>,
       callback: BodyResponseCallback<Schema$GoogleCloudApihubV1Spec>
     ): void;
     get(
@@ -8666,7 +8877,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8811,7 +9026,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8881,8 +9099,7 @@ export namespace apihub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8950,7 +9167,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9106,7 +9327,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9190,8 +9414,7 @@ export namespace apihub_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudApihubV1Spec>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudApihubV1Spec>,
       callback: BodyResponseCallback<Schema$GoogleCloudApihubV1Spec>
     ): void;
     patch(
@@ -9374,7 +9597,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9547,7 +9773,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9611,8 +9840,7 @@ export namespace apihub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9679,7 +9907,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9829,7 +10061,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9983,7 +10219,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10221,7 +10460,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10390,7 +10632,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10454,8 +10699,7 @@ export namespace apihub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10522,7 +10766,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10669,7 +10917,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10823,7 +11075,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11057,7 +11312,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11228,7 +11486,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11292,8 +11553,7 @@ export namespace apihub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -11360,7 +11620,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11509,7 +11773,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11663,7 +11931,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11899,7 +12170,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12086,7 +12360,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12150,8 +12427,7 @@ export namespace apihub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -12218,7 +12494,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12375,7 +12655,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12529,7 +12813,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12786,7 +13073,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12944,7 +13235,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13125,7 +13420,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13282,7 +13581,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13467,7 +13770,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13636,7 +13942,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13700,8 +14009,7 @@ export namespace apihub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -13768,7 +14076,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13916,7 +14228,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -14068,7 +14384,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -14298,7 +14617,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -14460,7 +14782,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -14607,7 +14933,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -14815,7 +15145,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -14885,8 +15218,7 @@ export namespace apihub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -14953,7 +15285,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -15017,8 +15352,7 @@ export namespace apihub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -15085,7 +15419,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -15137,8 +15475,7 @@ export namespace apihub_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -15227,7 +15564,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -15445,7 +15786,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -15529,8 +15873,7 @@ export namespace apihub_v1 {
     create(
       params: Params$Resource$Projects$Locations$Plugins$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudApihubV1Plugin>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudApihubV1Plugin>,
       callback: BodyResponseCallback<Schema$GoogleCloudApihubV1Plugin>
     ): void;
     create(
@@ -15622,7 +15965,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -15674,8 +16020,7 @@ export namespace apihub_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Plugins$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -15764,7 +16109,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -15831,8 +16179,7 @@ export namespace apihub_v1 {
     disable(
       params: Params$Resource$Projects$Locations$Plugins$Disable,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudApihubV1Plugin>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudApihubV1Plugin>,
       callback: BodyResponseCallback<Schema$GoogleCloudApihubV1Plugin>
     ): void;
     disable(
@@ -15924,7 +16271,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -15991,8 +16341,7 @@ export namespace apihub_v1 {
     enable(
       params: Params$Resource$Projects$Locations$Plugins$Enable,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudApihubV1Plugin>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudApihubV1Plugin>,
       callback: BodyResponseCallback<Schema$GoogleCloudApihubV1Plugin>
     ): void;
     enable(
@@ -16081,7 +16430,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -16142,8 +16495,7 @@ export namespace apihub_v1 {
     get(
       params: Params$Resource$Projects$Locations$Plugins$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudApihubV1Plugin>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudApihubV1Plugin>,
       callback: BodyResponseCallback<Schema$GoogleCloudApihubV1Plugin>
     ): void;
     get(
@@ -16230,7 +16582,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -16372,7 +16728,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -16526,7 +16886,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -16777,7 +17140,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -16849,8 +17215,7 @@ export namespace apihub_v1 {
     create(
       params: Params$Resource$Projects$Locations$Plugins$Instances$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -16943,7 +17308,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -16995,8 +17363,7 @@ export namespace apihub_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Plugins$Instances$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -17086,7 +17453,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -17146,8 +17516,7 @@ export namespace apihub_v1 {
     disableAction(
       params: Params$Resource$Projects$Locations$Plugins$Instances$Disableaction,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     disableAction(
@@ -17240,7 +17609,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -17300,8 +17672,7 @@ export namespace apihub_v1 {
     enableAction(
       params: Params$Resource$Projects$Locations$Plugins$Instances$Enableaction,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     enableAction(
@@ -17394,7 +17765,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -17454,8 +17828,7 @@ export namespace apihub_v1 {
     executeAction(
       params: Params$Resource$Projects$Locations$Plugins$Instances$Executeaction,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     executeAction(
@@ -17548,7 +17921,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -17702,7 +18079,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -17857,7 +18238,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -18015,7 +18399,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -18302,7 +18689,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -18465,7 +18856,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -18627,7 +19021,10 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -18691,8 +19088,7 @@ export namespace apihub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -18760,7 +19156,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -18907,7 +19307,11 @@ export namespace apihub_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readonly',
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -19091,5 +19495,179 @@ export namespace apihub_v1 {
      * Required. The parent, which owns this collection of runtime project attachments. Format: `projects/{project\}/locations/{location\}`
      */
     parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Servers {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Configures and deploys a given server config for given target. Currently this API supports only deploying MCP server in Apigee X. For mcp server deployment in apigee X, if there is already a mcp proxy deployed, then this method will try to overwrite it by creating new revision i.e. all existing tools will be removed and new set of tools will be deployed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apihub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apihub = google.apihub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/apihub.readwrite',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await apihub.projects.locations.servers.configureAndDeployServer({
+     *     // Required. Format: `projects/{project\}/locations/{location\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "mcpServerConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    configureAndDeployServer(
+      params: Params$Resource$Projects$Locations$Servers$Configureanddeployserver,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    configureAndDeployServer(
+      params?: Params$Resource$Projects$Locations$Servers$Configureanddeployserver,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    configureAndDeployServer(
+      params: Params$Resource$Projects$Locations$Servers$Configureanddeployserver,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    configureAndDeployServer(
+      params: Params$Resource$Projects$Locations$Servers$Configureanddeployserver,
+      options:
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    configureAndDeployServer(
+      params: Params$Resource$Projects$Locations$Servers$Configureanddeployserver,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    configureAndDeployServer(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    configureAndDeployServer(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Servers$Configureanddeployserver
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Servers$Configureanddeployserver;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Servers$Configureanddeployserver;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apihub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/servers:configureAndDeployServer'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Servers$Configureanddeployserver extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudApihubV1ConfigureAndDeployServerRequest;
   }
 }
