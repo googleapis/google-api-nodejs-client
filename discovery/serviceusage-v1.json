@@ -431,7 +431,7 @@
       }
     }
   },
-  "revision": "20260423",
+  "revision": "20260721",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AddEnableRulesMetadata": {
@@ -497,7 +497,7 @@
       "description": "A message to group the analysis information.",
       "id": "Analysis",
       "properties": {
-        "analysis": {
+        "analysisResult": {
           "$ref": "AnalysisResult",
           "description": "Output only. Analysis result of updating a policy.",
           "readOnly": true
@@ -507,14 +507,12 @@
           "enum": [
             "ANALYSIS_TYPE_UNSPECIFIED",
             "ANALYSIS_TYPE_DEPENDENCY",
-            "ANALYSIS_TYPE_RESOURCE_USAGE",
-            "ANALYSIS_TYPE_RESOURCE_EXISTENCE"
+            "ANALYSIS_TYPE_RESOURCE_USAGE"
           ],
           "enumDescriptions": [
             "Unspecified analysis type. Do not use.",
             "The analysis of service dependencies.",
-            "The analysis of service resource usage.",
-            "The analysis of service resource existence."
+            "The analysis of service resource usage."
           ],
           "readOnly": true,
           "type": "string"
@@ -1171,15 +1169,14 @@
       "description": "Consumer Policy is a set of rules that define what services or service groups can be used for a cloud resource hierarchy.",
       "id": "ConsumerPolicy",
       "properties": {
-        "annotations": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Optional. Annotations is an unstructured key-value map stored with a policy that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. [AIP-128](https://google.aip.dev/128#annotations)",
-          "type": "object"
+        "createTime": {
+          "description": "Output only. The time the policy was created. For singleton policies, this is the first touch of the policy.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         },
         "enableRules": {
-          "description": "Enable rules define usable services and service groups.",
+          "description": "Enable rules define usable services and groups. There can currently be at most one `EnableRule`. This restriction will be lifted in later releases.",
           "items": {
             "$ref": "EnableRule"
           },
@@ -1190,13 +1187,14 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of the policy. We only allow consumer policy name as `default` for now: `projects/12345/consumerPolicies/default`, `folders/12345/consumerPolicies/default`, `organizations/12345/consumerPolicies/default`.",
+          "description": "Output only. The resource name of the policy. Only the `default` policy is supported: `projects/12345/consumerPolicies/default`, `folders/12345/consumerPolicies/default`, `organizations/12345/consumerPolicies/default`.",
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "The last-modified time.",
+          "description": "Output only. The time the policy was last updated.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1563,7 +1561,7 @@
       "type": "object"
     },
     "EnableRule": {
-      "description": "The consumer policy rule that defines usable services and service groups.",
+      "description": "The consumer policy rule that defines enabled services and groups.",
       "id": "EnableRule",
       "properties": {
         "enableType": {
@@ -1582,24 +1580,16 @@
           ],
           "type": "string"
         },
-        "groups": {
-          "deprecated": true,
-          "description": "DEPRECATED: Please use field `values`. Service group should have prefix `groups/`. The names of the service groups that are enabled (Not Implemented). Example: `groups/googleServices`.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
         "services": {
-          "deprecated": true,
-          "description": "DEPRECATED: Please use field `values`. Service should have prefix `services/`. The names of the services that are enabled. Example: `storage.googleapis.com`.",
+          "description": "The names of the services that are enabled. Example: `services/storage.googleapis.com`.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "values": {
-          "description": "The names of the services or service groups that are enabled. Example: `services/storage.googleapis.com`, `groups/googleServices`, `groups/allServices`.",
+          "deprecated": true,
+          "description": "Deprecated: Use the `services` field instead. The names of the services or service groups that are enabled. Example: `services/storage.googleapis.com`, `groups/googleServices`, `groups/allServices`.",
           "items": {
             "type": "string"
           },
@@ -2204,6 +2194,85 @@
       },
       "type": "object"
     },
+    "GoogleApiServiceusageV2alphaAnalysis": {
+      "description": "A message to group the analysis information.",
+      "id": "GoogleApiServiceusageV2alphaAnalysis",
+      "properties": {
+        "analysisResult": {
+          "$ref": "GoogleApiServiceusageV2alphaAnalysisResult",
+          "description": "Output only. Analysis result of updating a policy.",
+          "readOnly": true
+        },
+        "analysisType": {
+          "description": "Output only. The type of analysis.",
+          "enum": [
+            "ANALYSIS_TYPE_UNSPECIFIED",
+            "ANALYSIS_TYPE_DEPENDENCY",
+            "ANALYSIS_TYPE_RESOURCE_USAGE",
+            "ANALYSIS_TYPE_RESOURCE_EXISTENCE"
+          ],
+          "enumDescriptions": [
+            "Unspecified analysis type. Do not use.",
+            "The analysis of service dependencies.",
+            "The analysis of service resource usage.",
+            "The analysis of service resource existence."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. The user friendly display name of the analysis type. E.g. service dependency analysis, service resource usage analysis, etc.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "service": {
+          "description": "The names of the service that has analysis result of warnings or blockers. Example: `services/storage.googleapis.com`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2alphaAnalysisResult": {
+      "description": "An analysis result including blockers and warnings.",
+      "id": "GoogleApiServiceusageV2alphaAnalysisResult",
+      "properties": {
+        "blockers": {
+          "description": "Blocking information that would prevent the policy changes at runtime.",
+          "items": {
+            "$ref": "GoogleApiServiceusageV2alphaImpact"
+          },
+          "type": "array"
+        },
+        "warnings": {
+          "description": "Warning information indicating that the policy changes might be unsafe, but will not block the changes at runtime.",
+          "items": {
+            "$ref": "GoogleApiServiceusageV2alphaImpact"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2alphaAnalyzeConsumerPolicyMetadata": {
+      "description": "Metadata for the `AnalyzeConsumerPolicy` method.",
+      "id": "GoogleApiServiceusageV2alphaAnalyzeConsumerPolicyMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2alphaAnalyzeConsumerPolicyResponse": {
+      "description": "The response of analyzing a consumer policy update.",
+      "id": "GoogleApiServiceusageV2alphaAnalyzeConsumerPolicyResponse",
+      "properties": {
+        "analysis": {
+          "description": "The list of analyses returned from performing the intended policy update analysis. The analysis is grouped by service name and different analysis types. The empty analysis list means that the consumer policy can be updated without any warnings or blockers.",
+          "items": {
+            "$ref": "GoogleApiServiceusageV2alphaAnalysis"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleApiServiceusageV2alphaConsumerPolicy": {
       "description": "Consumer Policy is a set of rules that define what services or service groups can be used for a cloud resource hierarchy.",
       "id": "GoogleApiServiceusageV2alphaConsumerPolicy",
@@ -2257,6 +2326,37 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2alphaImpact": {
+      "description": "A message to group impacts of updating a policy.",
+      "id": "GoogleApiServiceusageV2alphaImpact",
+      "properties": {
+        "detail": {
+          "description": "Output only. User friendly impact detail in a free form message.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "impactType": {
+          "description": "Output only. The type of impact.",
+          "enum": [
+            "IMPACT_TYPE_UNSPECIFIED",
+            "DEPENDENCY_MISSING_DEPENDENCIES",
+            "RESOURCE_EXISTENCE_PROJECT"
+          ],
+          "enumDescriptions": [
+            "Reserved Blocks (Block n contains codes from 100n to 100(n+1) -1 Block 0 - Special/Admin codes Block 1 - Impact Type of ANALYSIS_TYPE_DEPENDENCY Block 2 - Impact Type of ANALYSIS_TYPE_RESOURCE_USAGE Block 3 - Impact Type of ANALYSIS_TYPE_RESOURCE_EXISTENCE ...",
+            "Block 1 - Impact Type of ANALYSIS_TYPE_DEPENDENCY",
+            "Block 3 - Impact Type of ANALYSIS_TYPE_RESOURCE_EXISTENCE"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "parent": {
+          "description": "The parent resource that the analysis is based on and the service name that the analysis is for. Example: `projects/100/services/compute.googleapis.com`, folders/101/services/compute.googleapis.com` and `organizations/102/services/compute.googleapis.com`. Usually, the parent resource here is same as the parent resource of the analyzed policy. However, for some analysis types, the parent can be different. For example, for resource existence analysis, if the parent resource of the analyzed policy is a folder or an organization, the parent resource here can still be the project that contains the resources.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2576,19 +2676,18 @@
           "description": "Output only. The type of impact.",
           "enum": [
             "IMPACT_TYPE_UNSPECIFIED",
-            "DEPENDENCY_MISSING_DEPENDENCIES",
-            "RESOURCE_EXISTENCE_PROJECT"
+            "DEPENDENCY_MISSING_DEPENDENCIES"
           ],
           "enumDescriptions": [
-            "Reserved Blocks (Block n contains codes from 100n to 100(n+1) -1 Block 0 - Special/Admin codes Block 1 - Impact Type of ANALYSIS_TYPE_DEPENDENCY Block 2 - Impact Type of ANALYSIS_TYPE_RESOURCE_USAGE Block 3 - Impact Type of ANALYSIS_TYPE_RESOURCE_EXISTENCE ...",
-            "Block 1 - Impact Type of ANALYSIS_TYPE_DEPENDENCY",
-            "Block 3 - Impact Type of ANALYSIS_TYPE_RESOURCE_EXISTENCE"
+            "Reserved Blocks (Block n contains codes from 100n to 100(n+1) -1 Block 0 - Special/Admin codes Block 1 - Impact Type of ANALYSIS_TYPE_DEPENDENCY Block 2 - Impact Type of ANALYSIS_TYPE_RESOURCE_USAGE ...",
+            "Block 1 - Impact Type of ANALYSIS_TYPE_DEPENDENCY"
           ],
           "readOnly": true,
           "type": "string"
         },
-        "parent": {
-          "description": "The parent resource that the analysis is based on and the service name that the analysis is for. Example: `projects/100/services/compute.googleapis.com`, folders/101/services/compute.googleapis.com` and `organizations/102/services/compute.googleapis.com`. Usually, the parent resource here is same as the parent resource of the analyzed policy. However, for some analysis types, the parent can be different. For example, for resource existence analysis, if the parent resource of the analyzed policy is a folder or an organization, the parent resource here can still be the project that contains the resources.",
+        "missingDependency": {
+          "description": "Output only. This field will be populated only for the `DEPENDENCY_MISSING_DEPENDENCIES` impact type. Example: `services/compute.googleapis.com`. Impact.detail will be in format : `missing service dependency: {missing_dependency}.`",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3133,12 +3232,28 @@
       "description": "Bind API methods to metrics. Binding a method to a metric causes that metric's configured quota behaviors to apply to the method call.",
       "id": "MetricRule",
       "properties": {
+        "agenticMetricCosts": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "string"
+          },
+          "description": "Optional. Metrics to update when the selected methods are called, and the associated cost applied to each metric, iff the source of the call is an agent. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative.",
+          "type": "object"
+        },
         "metricCosts": {
           "additionalProperties": {
             "format": "int64",
             "type": "string"
           },
           "description": "Metrics to update when the selected methods are called, and the associated cost applied to each metric. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative.",
+          "type": "object"
+        },
+        "nonagenticMetricCosts": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "string"
+          },
+          "description": "Optional. Metrics to update when the selected methods are called, and the associated cost applied to each metric, iff the source of the call is not an agent. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative.",
           "type": "object"
         },
         "selector": {
@@ -3538,6 +3653,20 @@
         },
         "name": {
           "description": "Name of the quota limit. The name must be provided, and it must be unique within the service. The name can only include alphanumeric characters as well as '-'. The maximum length of the limit name is 64 characters.",
+          "type": "string"
+        },
+        "trafficSource": {
+          "description": "Optional. This is only informational, the logic to allocate the quota to the correct metric (such as in `metric_rules`) should identify which quota metrics to allocate to.",
+          "enum": [
+            "TRAFFIC_SOURCE_UNSPECIFIED",
+            "TRAFFIC_SOURCE_NONAGENTIC",
+            "TRAFFIC_SOURCE_AGENTIC"
+          ],
+          "enumDescriptions": [
+            "This quota limit applies to all traffic. This is the default value.",
+            "This quota limit applies to traffic not recognized as agentic.",
+            "This quota limit applies to only agentic traffic."
+          ],
           "type": "string"
         },
         "unit": {
