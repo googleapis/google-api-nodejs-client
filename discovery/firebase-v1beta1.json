@@ -1324,7 +1324,7 @@
       }
     }
   },
-  "revision": "20250331",
+  "revision": "20260615",
   "rootUrl": "https://firebase.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -2351,6 +2351,10 @@
         },
         "realtimeDatabaseUrl": {
           "description": "Optional. Duplicate field for the URL of the default Realtime Database instances (if the default instance has been provisioned). If the request asks for the V2 config format, this field will be populated instead of `realtime_database_instance_uri`.",
+          "type": "string"
+        },
+        "recaptchaSiteKey": {
+          "description": "Optional. Recaptcha Enterprise site key associated with the Firebase App.",
           "type": "string"
         },
         "storageBucket": {
