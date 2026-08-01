@@ -880,8 +880,7 @@ export namespace workspaceevents_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -941,7 +940,7 @@ export namespace workspaceevents_v1 {
     }
 
     /**
-     * Creates a Google Workspace subscription. To learn how to use this method, see [Create a Google Workspace subscription](https://developers.google.com/workspace/events/guides/create-subscription). For a subscription on a [Chat target resource](https://developers.google.com/workspace/events/guides/events-chat), you can create a subscription as: - A Chat app by specifying an authorization scope that begins with `chat.app` and getting one-time administrator approval. To learn more, see [Authorize as a Chat app with administrator approval](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app). - A user by specifying an authorization scope that doesn't include `app` in its name. To learn more, see [Authorize as a Chat user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * Creates a Google Workspace subscription. To learn how to use this method, see [Create a Google Workspace subscription](https://developers.google.com/workspace/events/guides/create-subscription). For a subscription on a [Chat target resource](https://developers.google.com/workspace/events/guides/events-chat), you can create a subscription as: - A Chat app subscribing to space events where the app is a member by specifying an authorization scope that begins with `chat.app` and getting one-time administrator approval. To learn more, see [Authorize as a Chat app with administrator approval](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app). - [Developer Preview](https://developers.google.com/workspace/preview): A Chat app subscribing to all events in a Google Workspace organization by specifying an authorization scope that begins with `chat.app.all` and obtaining one-time administrator approval. To learn more, see [Subscribe to all Google Chat events in a Workspace organization ](https://developers.google.com/workspace/events/guides/create-subscription#customer-subscription). - A user by specifying an authorization scope that doesn't include `app` in its name. To learn more, see [Authorize as a Chat user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      * @example
      * ```js
      * // Before running the sample:
@@ -963,6 +962,10 @@ export namespace workspaceevents_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.app.all.memberships.readonly',
+     *       'https://www.googleapis.com/auth/chat.app.all.messages.readonly',
+     *       'https://www.googleapis.com/auth/chat.app.all.spaces.readonly',
+     *       'https://www.googleapis.com/auth/chat.app.all.users.readstate.readonly',
      *       'https://www.googleapis.com/auth/chat.app.memberships',
      *       'https://www.googleapis.com/auth/chat.app.memberships.readonly',
      *       'https://www.googleapis.com/auth/chat.app.messages.readonly',
@@ -1082,8 +1085,7 @@ export namespace workspaceevents_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1248,8 +1250,7 @@ export namespace workspaceevents_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1520,7 +1521,7 @@ export namespace workspaceevents_v1 {
      *
      *   // Do the magic
      *   const res = await workspaceevents.subscriptions.list({
-     *     // Required. A query filter. You can filter subscriptions by event type (`event_types`) and target resource (`target_resource`). You must specify at least one event type in your query. To filter for multiple event types, use the `OR` operator. To filter by both event type and target resource, use the `AND` operator and specify the full resource name, such as `//chat.googleapis.com/spaces/{space\}`. For example, the following queries are valid: ``` event_types:"google.workspace.chat.membership.v1.updated" OR event_types:"google.workspace.chat.message.v1.created" event_types:"google.workspace.chat.message.v1.created" AND target_resource="//chat.googleapis.com/spaces/{space\}" ( event_types:"google.workspace.chat.membership.v1.updated" OR event_types:"google.workspace.chat.message.v1.created" ) AND target_resource="//chat.googleapis.com/spaces/{space\}" ``` The server rejects invalid queries with an `INVALID_ARGUMENT` error.
+     *     // Required. A query filter. You can filter subscriptions by event type (`event_types`) and target resource (`target_resource`). You must specify at least one event type in your query. To filter for multiple event types, use the `OR` operator. To filter by both event type and target resource, use the `AND` operator and specify the full resource name, such as `//chat.googleapis.com/spaces/{space\}`. For example, the following queries are valid: ``` event_types:"google.workspace.chat.membership.v1.updated" OR event_types:"google.workspace.chat.message.v1.created" event_types:"google.workspace.chat.message.v1.created" AND target_resource="//chat.googleapis.com/spaces/{space\}" ( event_types:"google.workspace.chat.membership.v1.updated" OR event_types:"google.workspace.chat.message.v1.created" ) AND target_resource="//chat.googleapis.com/spaces/{space\}" ``` The following query is available in [Developer Preview](https://developers.google.com/workspace/preview): ``` event_types:"google.workspace.chat.message.v1.created" AND target_resource="//admin.googleapis.com/customers/my_customer" ``` The server rejects invalid queries with an `INVALID_ARGUMENT` error.
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of subscriptions to return. The service might return fewer than this value. If unspecified or set to `0`, up to 50 subscriptions are returned. The maximum value is 100. If you specify a value more than 100, the system only returns 100 subscriptions.
      *     pageSize: 'placeholder-value',
@@ -1564,8 +1565,7 @@ export namespace workspaceevents_v1 {
     list(
       params: Params$Resource$Subscriptions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSubscriptionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSubscriptionsResponse>,
       callback: BodyResponseCallback<Schema$ListSubscriptionsResponse>
     ): void;
     list(
@@ -1634,7 +1634,7 @@ export namespace workspaceevents_v1 {
     }
 
     /**
-     * Updates or renews a Google Workspace subscription. To learn how to use this method, see [Update or renew a Google Workspace subscription](https://developers.google.com/workspace/events/guides/update-subscription). For a subscription on a [Chat target resource](https://developers.google.com/workspace/events/guides/events-chat), you can update a subscription as: - A Chat app by specifying an authorization scope that begins with `chat.app` and getting one-time administrator approval. To learn more, see [Authorize as a Chat app with administrator approval](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app). - A user by specifying an authorization scope that doesn't include `app` in its name. To learn more, see [Authorize as a Chat user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * Updates or renews a Google Workspace subscription. To learn how to use this method, see [Update or renew a Google Workspace subscription](https://developers.google.com/workspace/events/guides/update-subscription). For a subscription on a [Chat target resource](https://developers.google.com/workspace/events/guides/events-chat), you can update a subscription as: - A Chat app subscribing to space events where the app is a member by specifying an authorization scope that begins with `chat.app` and getting one-time administrator approval. To learn more, see [Authorize as a Chat app with administrator approval](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app). - [Developer Preview](https://developers.google.com/workspace/preview): A Chat app subscribing to all events in a Google Workspace organization by specifying an authorization scope that begins with `chat.app.all` and getting one-time administrator approval. To learn more, see [Subscribe to all Google Chat events in a Workspace organization ](https://developers.google.com/workspace/events/guides/create-subscription#customer-subscription). - A user by specifying an authorization scope that doesn't include `app` in its name. To learn more, see [Authorize as a Chat user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      * @example
      * ```js
      * // Before running the sample:
@@ -1656,6 +1656,10 @@ export namespace workspaceevents_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.app.all.memberships.readonly',
+     *       'https://www.googleapis.com/auth/chat.app.all.messages.readonly',
+     *       'https://www.googleapis.com/auth/chat.app.all.spaces.readonly',
+     *       'https://www.googleapis.com/auth/chat.app.all.users.readstate.readonly',
      *       'https://www.googleapis.com/auth/chat.app.memberships',
      *       'https://www.googleapis.com/auth/chat.app.memberships.readonly',
      *       'https://www.googleapis.com/auth/chat.app.messages.readonly',
@@ -1779,8 +1783,7 @@ export namespace workspaceevents_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1827,7 +1830,7 @@ export namespace workspaceevents_v1 {
     }
 
     /**
-     * Reactivates a suspended Google Workspace subscription. This method resets your subscription's `State` field to `ACTIVE`. Before you use this method, you must fix the error that suspended the subscription. This method will ignore or reject any subscription that isn't currently in a suspended state. To learn how to use this method, see [Reactivate a Google Workspace subscription](https://developers.google.com/workspace/events/guides/reactivate-subscription). For a subscription on a [Chat target resource](https://developers.google.com/workspace/events/guides/events-chat), you can reactivate a subscription as: - A Chat app by specifying an authorization scope that begins with `chat.app` and getting one-time administrator approval. To learn more, see [Authorize as a Chat app with administrator approval](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app). - A user by specifying an authorization scope that doesn't include `app` in its name. To learn more, see [Authorize as a Chat user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * Reactivates a suspended Google Workspace subscription. This method resets your subscription's `State` field to `ACTIVE`. Before you use this method, you must fix the error that suspended the subscription. This method will ignore or reject any subscription that isn't currently in a suspended state. To learn how to use this method, see [Reactivate a Google Workspace subscription](https://developers.google.com/workspace/events/guides/reactivate-subscription). For a subscription on a [Chat target resource](https://developers.google.com/workspace/events/guides/events-chat), you can reactivate a subscription as: - A Chat app subscribing to space events where the app is a member by specifying an authorization scope that begins with `chat.app` and getting one-time administrator approval. To learn more, see [Authorize as a Chat app with administrator approval](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app). - [Developer Preview](https://developers.google.com/workspace/preview): A Chat app subscribing to all events in a Google Workspace organization by specifying an authorization scope that begins with `chat.app.all` and getting one-time administrator approval. To learn more, see [Subscribe to all Google Chat events in a Workspace organization ](https://developers.google.com/workspace/events/guides/create-subscription#customer-subscription). - A user by specifying an authorization scope that doesn't include `app` in its name. To learn more, see [Authorize as a Chat user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      * @example
      * ```js
      * // Before running the sample:
@@ -1849,6 +1852,10 @@ export namespace workspaceevents_v1 {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
+     *       'https://www.googleapis.com/auth/chat.app.all.memberships.readonly',
+     *       'https://www.googleapis.com/auth/chat.app.all.messages.readonly',
+     *       'https://www.googleapis.com/auth/chat.app.all.spaces.readonly',
+     *       'https://www.googleapis.com/auth/chat.app.all.users.readstate.readonly',
      *       'https://www.googleapis.com/auth/chat.app.memberships',
      *       'https://www.googleapis.com/auth/chat.app.memberships.readonly',
      *       'https://www.googleapis.com/auth/chat.app.messages.readonly',
@@ -1949,8 +1956,7 @@ export namespace workspaceevents_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2037,7 +2043,7 @@ export namespace workspaceevents_v1 {
   }
   export interface Params$Resource$Subscriptions$List extends StandardParameters {
     /**
-     * Required. A query filter. You can filter subscriptions by event type (`event_types`) and target resource (`target_resource`). You must specify at least one event type in your query. To filter for multiple event types, use the `OR` operator. To filter by both event type and target resource, use the `AND` operator and specify the full resource name, such as `//chat.googleapis.com/spaces/{space\}`. For example, the following queries are valid: ``` event_types:"google.workspace.chat.membership.v1.updated" OR event_types:"google.workspace.chat.message.v1.created" event_types:"google.workspace.chat.message.v1.created" AND target_resource="//chat.googleapis.com/spaces/{space\}" ( event_types:"google.workspace.chat.membership.v1.updated" OR event_types:"google.workspace.chat.message.v1.created" ) AND target_resource="//chat.googleapis.com/spaces/{space\}" ``` The server rejects invalid queries with an `INVALID_ARGUMENT` error.
+     * Required. A query filter. You can filter subscriptions by event type (`event_types`) and target resource (`target_resource`). You must specify at least one event type in your query. To filter for multiple event types, use the `OR` operator. To filter by both event type and target resource, use the `AND` operator and specify the full resource name, such as `//chat.googleapis.com/spaces/{space\}`. For example, the following queries are valid: ``` event_types:"google.workspace.chat.membership.v1.updated" OR event_types:"google.workspace.chat.message.v1.created" event_types:"google.workspace.chat.message.v1.created" AND target_resource="//chat.googleapis.com/spaces/{space\}" ( event_types:"google.workspace.chat.membership.v1.updated" OR event_types:"google.workspace.chat.message.v1.created" ) AND target_resource="//chat.googleapis.com/spaces/{space\}" ``` The following query is available in [Developer Preview](https://developers.google.com/workspace/preview): ``` event_types:"google.workspace.chat.message.v1.created" AND target_resource="//admin.googleapis.com/customers/my_customer" ``` The server rejects invalid queries with an `INVALID_ARGUMENT` error.
      */
     filter?: string;
     /**
@@ -2191,8 +2197,7 @@ export namespace workspaceevents_v1 {
         | BodyResponseCallback<Schema$Task>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Task>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Task> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Task>>
@@ -2334,8 +2339,7 @@ export namespace workspaceevents_v1 {
         | BodyResponseCallback<Schema$Task>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Task>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Task> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Task>>
@@ -2649,8 +2653,7 @@ export namespace workspaceevents_v1 {
     create(
       params: Params$Resource$Tasks$Pushnotificationconfigs$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TaskPushNotificationConfig>,
+        MethodOptions | BodyResponseCallback<Schema$TaskPushNotificationConfig>,
       callback: BodyResponseCallback<Schema$TaskPushNotificationConfig>
     ): void;
     create(
@@ -2806,8 +2809,7 @@ export namespace workspaceevents_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2926,8 +2928,7 @@ export namespace workspaceevents_v1 {
     get(
       params: Params$Resource$Tasks$Pushnotificationconfigs$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TaskPushNotificationConfig>,
+        MethodOptions | BodyResponseCallback<Schema$TaskPushNotificationConfig>,
       callback: BodyResponseCallback<Schema$TaskPushNotificationConfig>
     ): void;
     get(
