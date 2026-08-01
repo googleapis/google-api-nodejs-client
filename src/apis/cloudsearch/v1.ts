@@ -3253,7 +3253,7 @@ export namespace cloudsearch_v1 {
     quality?: number | null;
   }
   /**
-   * The search API request. NEXT ID: 25
+   * The search API request. NEXT ID: 26
    */
   export interface Schema$SearchRequest {
     /**
@@ -3291,7 +3291,7 @@ export namespace cloudsearch_v1 {
     start?: number | null;
   }
   /**
-   * The search API response. NEXT ID: 19
+   * The search API response. NEXT ID: 20
    */
   export interface Schema$SearchResponse {
     /**
@@ -3340,7 +3340,7 @@ export namespace cloudsearch_v1 {
     structuredResults?: Schema$StructuredResult[];
   }
   /**
-   * Results containing indexed information for a document. Next ID: 16
+   * Results containing indexed information for a document. Next ID: 17
    */
   export interface Schema$SearchResult {
     /**
@@ -4818,8 +4818,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4962,8 +4961,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Schema>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Schema>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Schema> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Schema>>
@@ -5117,8 +5115,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5308,8 +5305,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5462,8 +5458,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5615,8 +5610,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Item>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Item>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Item> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Item>>
@@ -5771,8 +5765,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6233,8 +6226,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Item>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Item>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Item> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Item>>
@@ -6387,8 +6379,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6824,8 +6815,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Media>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Media>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Media> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Media>>
@@ -7011,8 +7001,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7157,8 +7146,7 @@ export namespace cloudsearch_v1 {
     list(
       params: Params$Resource$Operations$Lro$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -7332,8 +7320,7 @@ export namespace cloudsearch_v1 {
     removeActivity(
       params: Params$Resource$Query$Removeactivity,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RemoveActivityResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RemoveActivityResponse>,
       callback: BodyResponseCallback<Schema$RemoveActivityResponse>
     ): void;
     removeActivity(
@@ -7815,8 +7802,7 @@ export namespace cloudsearch_v1 {
     list(
       params: Params$Resource$Query$Sources$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListQuerySourcesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListQuerySourcesResponse>,
       callback: BodyResponseCallback<Schema$ListQuerySourcesResponse>
     ): void;
     list(
@@ -8165,8 +8151,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8343,8 +8328,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8490,8 +8474,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8641,8 +8624,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$DataSource>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DataSource>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DataSource> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
@@ -8769,8 +8751,7 @@ export namespace cloudsearch_v1 {
     list(
       params: Params$Resource$Settings$Datasources$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDataSourceResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDataSourceResponse>,
       callback: BodyResponseCallback<Schema$ListDataSourceResponse>
     ): void;
     list(
@@ -8954,8 +8935,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9109,8 +9089,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9347,8 +9326,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9494,8 +9472,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9964,8 +9941,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10117,8 +10093,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10282,8 +10257,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12285,8 +12259,7 @@ export namespace cloudsearch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
