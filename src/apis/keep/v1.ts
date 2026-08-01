@@ -441,8 +441,7 @@ export namespace keep_v1 {
         | BodyResponseCallback<Schema$Attachment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Attachment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Attachment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Attachment>>
@@ -615,8 +614,7 @@ export namespace keep_v1 {
         | BodyResponseCallback<Schema$Note>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Note>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Note> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
@@ -746,8 +744,7 @@ export namespace keep_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -890,8 +887,7 @@ export namespace keep_v1 {
         | BodyResponseCallback<Schema$Note>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Note>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Note> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Note>>
@@ -1361,8 +1357,7 @@ export namespace keep_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
