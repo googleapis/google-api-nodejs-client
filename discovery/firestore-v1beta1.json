@@ -950,6 +950,11 @@
                       "location": "query",
                       "type": "string"
                     },
+                    "recursive": {
+                      "description": "Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "showMissing": {
                       "description": "If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.",
                       "location": "query",
@@ -1050,6 +1055,11 @@
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
+                    },
+                    "recursive": {
+                      "description": "Optional. If the list should recursively include all documents nested under the parent at any level. If the request specifies a `collection_id`, then the list will include all nested documents in the collection under the parent. This is optional, and when not provided, Firestore will only list documents nested immediately under the parent. Requests with `recursive` may not specify `show_missing`.",
+                      "location": "query",
+                      "type": "boolean"
                     },
                     "showMissing": {
                       "description": "If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.",
@@ -1431,7 +1441,7 @@
       }
     }
   },
-  "revision": "20260427",
+  "revision": "20260706",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1921,6 +1931,10 @@
       "description": "The request for Firestore.ExecutePipeline.",
       "id": "ExecutePipelineRequest",
       "properties": {
+        "autoCommitTransaction": {
+          "description": "Optional. Automatically commits the transaction after the pipeline has been executed. Only permitted in combination with `transaction` or `new_transaction`.",
+          "type": "boolean"
+        },
         "newTransaction": {
           "$ref": "TransactionOptions",
           "description": "Execute the pipeline in a new transaction. The identifier of the newly created transaction will be returned in the first response on the stream. This defaults to a read-only transaction."
