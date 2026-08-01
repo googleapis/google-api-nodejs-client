@@ -806,8 +806,7 @@ export namespace airquality_v1 {
     lookup(
       params: Params$Resource$Forecast$Lookup,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LookupForecastResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LookupForecastResponse>,
       callback: BodyResponseCallback<Schema$LookupForecastResponse>
     ): void;
     lookup(
@@ -975,8 +974,7 @@ export namespace airquality_v1 {
     lookup(
       params: Params$Resource$History$Lookup,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LookupHistoryResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LookupHistoryResponse>,
       callback: BodyResponseCallback<Schema$LookupHistoryResponse>
     ): void;
     lookup(
@@ -1159,8 +1157,7 @@ export namespace airquality_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
