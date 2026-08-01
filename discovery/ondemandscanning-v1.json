@@ -344,7 +344,7 @@
       }
     }
   },
-  "revision": "20260511",
+  "revision": "20260706",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AISkillAnalysisOccurrence": {
@@ -360,6 +360,16 @@
         },
         "maxSeverity": {
           "description": "Maximum severity found among findings.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Unspecified severity.",
+            "Critical severity.",
+            "High severity."
+          ],
           "type": "string"
         },
         "skillName": {
@@ -845,6 +855,24 @@
             "No impact (N). Defined in CVSS v2, v3, v4.",
             "Partial impact (P). Defined in CVSS v2.",
             "Complete impact (C). Defined in CVSS v2."
+          ],
+          "type": "string"
+        },
+        "exploitMaturity": {
+          "description": "Exploit Maturity (E). Defined in CVSS v4.",
+          "enum": [
+            "EXPLOIT_MATURITY_UNSPECIFIED",
+            "EXPLOIT_MATURITY_NOT_DEFINED",
+            "EXPLOIT_MATURITY_ATTACKED",
+            "EXPLOIT_MATURITY_POC",
+            "EXPLOIT_MATURITY_UNREPORTED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Exploit maturity: Not defined (E:X). Defined in CVSS v4.",
+            "Exploit maturity: Attacked (E:A). Defined in CVSS v4.",
+            "Exploit maturity: Proof-of-concept (E:P). Defined in CVSS v4.",
+            "Exploit maturity: Unreported (E:U). Defined in CVSS v4."
           ],
           "type": "string"
         },
@@ -1444,16 +1472,44 @@
           "description": "Category of the finding.",
           "type": "string"
         },
+        "details": {
+          "description": "Description of the finding category.",
+          "type": "string"
+        },
         "location": {
           "$ref": "FindingLocation",
           "description": "Location (path and line) where the finding was detected."
         },
         "scanner": {
           "description": "Scanner determines which engine (e.g. static, llm) emitted the finding.",
+          "enum": [
+            "SCANNER_UNSPECIFIED",
+            "STATIC",
+            "LLM",
+            "WS_POLICY",
+            "GOOGLE_ANTIVIRUS"
+          ],
+          "enumDescriptions": [
+            "Unspecified scanner.",
+            "Static scanner.",
+            "LLM scanner.",
+            "WS_POLICY scanner.",
+            "Google AntiVirus Service scanner."
+          ],
           "type": "string"
         },
         "severity": {
           "description": "Severity of the finding.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "HIGH"
+          ],
+          "enumDescriptions": [
+            "Unspecified severity.",
+            "Critical severity.",
+            "High severity."
+          ],
           "type": "string"
         }
       },
@@ -1850,6 +1906,34 @@
             "$ref": "Subject"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "IngestionSource": {
+      "description": "Indicates where an extracted package originates from.",
+      "id": "IngestionSource",
+      "properties": {
+        "attachmentUri": {
+          "description": "The attachment URI that this package was extracted from.",
+          "type": "string"
+        },
+        "resourceUrl": {
+          "description": "The resource URL of the resource that was scanned to find this package.",
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "SOURCE_UNSPECIFIED",
+            "DOCKER_IMAGE",
+            "SBOM_ATTACHMENT"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -2318,6 +2402,13 @@
         "hashDigest": {
           "description": "HashDigest stores the SHA512 hash digest of the jar file if the package is of type Maven. This field will be unset for non Maven packages.",
           "type": "string"
+        },
+        "ingestionSources": {
+          "description": "The list of sources that were scanned to find this package. This can be a Docker image, an SBOM attachment, or both, for example.",
+          "items": {
+            "$ref": "IngestionSource"
+          },
+          "type": "array"
         },
         "layerDetails": {
           "$ref": "LayerDetails"
@@ -3407,6 +3498,10 @@
         "cvssV2": {
           "$ref": "CVSS",
           "description": "The cvss v2 score for the vulnerability."
+        },
+        "cvssV4": {
+          "$ref": "CVSS",
+          "description": "The cvss v4 score for the vulnerability."
         },
         "cvssVersion": {
           "description": "Output only. CVSS version used to populate cvss_score and severity.",
