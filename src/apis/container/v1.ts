@@ -227,6 +227,10 @@ export namespace container_v1 {
    */
   export interface Schema$AddonsConfig {
     /**
+     * Optional. Configuration for the AgentSandbox addon.
+     */
+    agentSandboxConfig?: Schema$AgentSandboxConfig;
+    /**
      * Configuration for the Cloud Run addon, which allows the user to use a managed Knative service.
      */
     cloudRunConfig?: Schema$CloudRunConfig;
@@ -340,6 +344,15 @@ export namespace container_v1 {
      * The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.
      */
     threadsPerCore?: string | null;
+  }
+  /**
+   * Configuration for the AgentSandbox addon.
+   */
+  export interface Schema$AgentSandboxConfig {
+    /**
+     * Optional. Whether AgentSandbox is enabled for this cluster.
+     */
+    enabled?: boolean | null;
   }
   /**
    * AnonymousAuthenticationConfig defines the settings needed to limit endpoints that allow anonymous authentication.
@@ -791,6 +804,10 @@ export namespace container_v1 {
      */
     createTime?: string | null;
     /**
+     * Output only. The current emulated version of the master endpoint. The version is in minor version format, e.g. 1.30. No value or empty string means the cluster has no emulated version.
+     */
+    currentEmulatedVersion?: string | null;
+    /**
      * Output only. The current software version of the master endpoint.
      */
     currentMasterVersion?: string | null;
@@ -1002,6 +1019,10 @@ export namespace container_v1 {
      * Configuration for exporting resource usages. Resource usage export is disabled when this config is unspecified.
      */
     resourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
+    /**
+     * Optional. The rollback safe upgrade information of the cluster. This field is used when user manually triggers a rollback safe upgrade.
+     */
+    rollbackSafeUpgrade?: Schema$RollbackSafeUpgrade;
     /**
      * Output only. Reserved for future use.
      */
@@ -1223,6 +1244,10 @@ export namespace container_v1 {
      */
     desiredDnsConfig?: Schema$DNSConfig;
     /**
+     * Optional. The desired emulated version for the cluster.
+     */
+    desiredEmulatedVersion?: string | null;
+    /**
      * Enable/Disable Cilium Clusterwide Network Policy for the cluster.
      */
     desiredEnableCiliumClusterwideNetworkPolicy?: boolean | null;
@@ -1258,6 +1283,14 @@ export namespace container_v1 {
      * The desired Identity Service component configuration.
      */
     desiredIdentityServiceConfig?: Schema$IdentityServiceConfig;
+    /**
+     * The desired name of the image to use for this node. This is used to create clusters using a custom image. NOTE: Set the "desired_node_pool" field as well.
+     */
+    desiredImage?: string | null;
+    /**
+     * The project containing the desired image to use for this node. This is used to create clusters using a custom image. NOTE: Set the "desired_node_pool" field as well.
+     */
+    desiredImageProject?: string | null;
     /**
      * The desired image type for the node pool. NOTE: Set the "desired_node_pool" field as well.
      */
@@ -1403,6 +1436,10 @@ export namespace container_v1 {
      */
     desiredResourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
     /**
+     * Optional. The desired rollback safe upgrade configuration.
+     */
+    desiredRollbackSafeUpgrade?: Schema$RollbackSafeUpgrade;
+    /**
      * Enable/Disable Secret Manager Config.
      */
     desiredSecretManagerConfig?: Schema$SecretManagerConfig;
@@ -1488,9 +1525,22 @@ export namespace container_v1 {
      */
     pausedReason?: string[] | null;
     /**
+     * Output only. The cluster's rollback-safe upgrade status.
+     */
+    rollbackSafeUpgradeStatus?: Schema$RollbackSafeUpgradeStatus;
+    /**
      * The list of past auto upgrades.
      */
     upgradeDetails?: Schema$UpgradeDetails[];
+  }
+  /**
+   * CompleteControlPlaneUpgradeRequest sets the name of target cluster to complete upgrade.
+   */
+  export interface Schema$CompleteControlPlaneUpgradeRequest {
+    /**
+     * Optional. API request version that initiates this operation.
+     */
+    version?: string | null;
   }
   /**
    * CompleteIPRotationRequest moves the cluster master back into single-IP mode.
@@ -1674,6 +1724,28 @@ export namespace container_v1 {
     zone?: string | null;
   }
   /**
+   * CustomImageConfig contains the information r
+   */
+  export interface Schema$CustomImageConfig {
+    /**
+     * The name of the image to use for this node.
+     */
+    image?: string | null;
+    /**
+     * The project containing the image to use for this node.
+     */
+    imageProject?: string | null;
+  }
+  /**
+   * Contains the custom image info for a node pool.
+   */
+  export interface Schema$CustomImageInfo {
+    /**
+     * Output only. The human-readable upgrade message for the custom image.
+     */
+    upgradeMessage?: string | null;
+  }
+  /**
    * Support for running custom init code while bootstrapping nodes.
    */
   export interface Schema$CustomNodeInit {
@@ -1719,6 +1791,15 @@ export namespace container_v1 {
      * The desired state of etcd encryption.
      */
     state?: string | null;
+  }
+  /**
+   * DataplaneV2Config is the configuration for DPv2.
+   */
+  export interface Schema$DataplaneV2Config {
+    /**
+     * Optional. Scalability mode for the cluster.
+     */
+    scalabilityMode?: string | null;
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
@@ -1781,6 +1862,19 @@ export namespace container_v1 {
      * desired_tier specifies the desired tier of the cluster.
      */
     desiredTier?: string | null;
+  }
+  /**
+   * DiskIoScheduler contains the configuration for the disk IO scheduler.
+   */
+  export interface Schema$DiskIoScheduler {
+    /**
+     * Optional. Configures the IO scheduler for the attached disks. Supported values are `mq-deadline`, `bfq`, `kyber`, `none`.
+     */
+    nodeAttachedDiskIoScheduler?: string | null;
+    /**
+     * Optional. Configures the IO scheduler for the boot disk or ephemeral lssd that runs node system workloads. Supported values are `mq-deadline`, `bfq`, `kyber`, `none`.
+     */
+    nodeSystemIoScheduler?: string | null;
   }
   /**
    * DisruptionBudget defines the upgrade disruption budget for the cluster control plane.
@@ -2542,6 +2636,19 @@ export namespace container_v1 {
     enabledApis?: string[] | null;
   }
   /**
+   * Contains expiry information about the kubelet certificate.
+   */
+  export interface Schema$KubeletCertInfo {
+    /**
+     * Output only.
+     */
+    nonTpmBootstrapCertExpireTime?: string | null;
+    /**
+     * Output only.
+     */
+    tpmBootstrapCertExpireTime?: string | null;
+  }
+  /**
    * Configuration for the Kubernetes Dashboard.
    */
   export interface Schema$KubernetesDashboard {
@@ -2576,6 +2683,10 @@ export namespace container_v1 {
      */
     customNodeInit?: Schema$CustomNodeInit;
     /**
+     * Optional. Controls the configuration for the disk IO scheduler.
+     */
+    diskIoScheduler?: Schema$DiskIoScheduler;
+    /**
      * Optional. Amounts for 2M and 1G hugepages
      */
     hugepages?: Schema$HugepagesConfig;
@@ -2584,11 +2695,15 @@ export namespace container_v1 {
      */
     nodeKernelModuleLoading?: Schema$NodeKernelModuleLoading;
     /**
+     * Optional. Contains VFIO-related configurations for this node.
+     */
+    nodeVfioConfig?: Schema$NodeVfioConfig;
+    /**
      * Optional. Enables and configures swap space on nodes. If omitted, swap is disabled.
      */
     swapConfig?: Schema$SwapConfig;
     /**
-     * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_mtu_probing net.ipv4.tcp_max_orphans net.ipv4.tcp_max_tw_buckets net.ipv4.tcp_syn_retries net.ipv4.tcp_ecn net.ipv4.tcp_congestion_control net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.shmmni kernel.shmmax kernel.shmall kernel.perf_event_paranoid kernel.sched_rt_runtime_us kernel.softlockup_panic kernel.yama.ptrace_scope kernel.kptr_restrict kernel.dmesg_restrict kernel.sysrq fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_background_bytes vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_bytes vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes
+     * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.neigh.default.gc_thresh1 net.ipv4.neigh.default.gc_thresh2 net.ipv4.neigh.default.gc_thresh3 net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_mtu_probing net.ipv4.tcp_max_orphans net.ipv4.tcp_max_tw_buckets net.ipv4.tcp_syn_retries net.ipv4.tcp_ecn net.ipv4.tcp_congestion_control net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.keys.maxkeys kernel.keys.maxbytes kernel.shmmni kernel.shmmax kernel.shmall kernel.core_pattern kernel.perf_event_paranoid kernel.sched_rt_runtime_us kernel.softlockup_panic kernel.yama.ptrace_scope kernel.kptr_restrict kernel.dmesg_restrict kernel.sysrq fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_background_bytes vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_bytes vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes
      */
     sysctls?: {[key: string]: string} | null;
     /**
@@ -2916,6 +3031,10 @@ export namespace container_v1 {
      */
     datapathProvider?: string | null;
     /**
+     * Optional. DataplaneV2Config specifies the DPv2 configuration.
+     */
+    dataplaneV2Config?: Schema$DataplaneV2Config;
+    /**
      * Controls whether by default nodes have private IP addresses only. It is invalid to specify both PrivateClusterConfig.enablePrivateNodes and this field at the same time. To update the default setting, use ClusterUpdate.desired_default_enable_private_nodes
      */
     defaultEnablePrivateNodes?: boolean | null;
@@ -3170,6 +3289,10 @@ export namespace container_v1 {
      * Setting this field will assign instances of this pool to run on the specified node group. This is useful for running workloads on [sole tenant nodes](https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes).
      */
     nodeGroup?: string | null;
+    /**
+     * The node image configuration to use for this node pool. Note that this is only applicable for node pools using image_type=CUSTOM.
+     */
+    nodeImageConfig?: Schema$CustomImageConfig;
     /**
      * The set of Google API scopes to be made available on all of the node VMs under the "default" service account. The following scopes are recommended, but not required, and by default are not included: * `https://www.googleapis.com/auth/compute` is required for mounting persistent storage on your nodes. * `https://www.googleapis.com/auth/devstorage.read_only` is required for communicating with **gcr.io** (the [Artifact Registry](https://cloud.google.com/artifact-registry/)). If unspecified, no scopes are added, unless Cloud Logging or Cloud Monitoring are enabled, in which case their required scopes will be added.
      */
@@ -3447,6 +3570,10 @@ export namespace container_v1 {
      */
     enablePrivateNodes?: boolean | null;
     /**
+     * Optional. Immutable. The VPC network for the node pool.
+     */
+    network?: string | null;
+    /**
      * Network bandwidth tier configuration.
      */
     networkPerformanceConfig?: Schema$NetworkPerformanceConfig;
@@ -3492,7 +3619,7 @@ export namespace container_v1 {
      */
     bestEffortProvisioning?: Schema$BestEffortProvisioning;
     /**
-     * Which conditions caused the current node pool state.
+     * Output only. Which conditions caused the current node pool state.
      */
     conditions?: Schema$StatusCondition[];
     /**
@@ -3500,7 +3627,7 @@ export namespace container_v1 {
      */
     config?: Schema$NodeConfig;
     /**
-     * This checksum is computed by the server based on the value of node pool fields, and may be sent on update requests to ensure the client has an up-to-date value before proceeding.
+     * Output only. This checksum is computed by the server based on the value of node pool fields, and may be sent on update requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
@@ -3511,6 +3638,10 @@ export namespace container_v1 {
      * Output only. The resource URLs of the [managed instance groups](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances) associated with this node pool. During the node pool blue-green upgrade operation, the URLs contain both blue and green resources.
      */
     instanceGroupUrls?: string[] | null;
+    /**
+     * Output only. Contains expiry information about the kubelet certificate.
+     */
+    kubeletCertInfo?: Schema$KubeletCertInfo;
     /**
      * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the NodePool's nodes should be located. If this value is unspecified during node pool creation, the [Cluster.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.FIELDS.locations) value will be used, instead. Warning: changing node pool locations will result in nodes being added and/or removed.
      */
@@ -3666,6 +3797,10 @@ export namespace container_v1 {
      */
     autoUpgradeStatus?: string[] | null;
     /**
+     * Output only. Upgrade info for the node pool specific to the usage of custom images.
+     */
+    customImageInfo?: Schema$CustomImageInfo;
+    /**
      * The node pool's current minor version's end of extended support timestamp.
      */
     endOfExtendedSupportTimestamp?: string | null;
@@ -3724,6 +3859,15 @@ export namespace container_v1 {
      * List of node taints.
      */
     taints?: Schema$NodeTaint[];
+  }
+  /**
+   * Configuration settings for VFIO (Virtual Function I/O) on a node. VFIO allows safe, unprivileged, userspace drivers to access I/O devices.
+   */
+  export interface Schema$NodeVfioConfig {
+    /**
+     * Optional. Specifies the maximum number of DMA entries (pages) that can be mapped by the VFIO IOMMU type 1 driver for a container. This limit affects the total amount of host memory that can be pinned for direct device access, which is often critical for high-performance devices like TPUs and GPUs. This setting corresponds to the kernel parameter at: `/sys/module/vfio_iommu_type1/parameters/dma_entry_limit`. The default value in the kernel is `65535`. Higher values may be needed for workloads mapping large memory regions. Supported values are integers between `65535` and `4194304`.
+     */
+    dmaEntryLimit?: number | null;
   }
   /**
    * NotificationConfig is the configuration of notifications.
@@ -4258,6 +4402,32 @@ export namespace container_v1 {
      * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
+  }
+  /**
+   * RollbackSafeUpgrade is the configuration for the rollback safe upgrade.
+   */
+  export interface Schema$RollbackSafeUpgrade {
+    /**
+     * Optional. A user-defined period for the cluster remains in the rollbackable state. ex: {seconds: 21600\}.
+     */
+    controlPlaneSoakDuration?: string | null;
+  }
+  /**
+   * RollbackSafeUpgradeStatus contains the rollback-safe upgrade status of a cluster.
+   */
+  export interface Schema$RollbackSafeUpgradeStatus {
+    /**
+     * Output only. The rollback-safe mode expiration time.
+     */
+    controlPlaneUpgradeRollbackEndTime?: string | null;
+    /**
+     * Output only. The mode of the rollback-safe upgrade.
+     */
+    mode?: string | null;
+    /**
+     * Output only. The GKE version that the cluster previously used before step-one upgrade.
+     */
+    previousVersion?: string | null;
   }
   /**
    * RotationConfig is config for secret manager auto rotation.
@@ -4977,7 +5147,7 @@ export namespace container_v1 {
     startTime?: string | null;
   }
   /**
-   * TopologyManager defines the configuration options for Topology Manager feature. See https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/
+   * TopologyManager defines the configuration options for the [`kubelet` Topology Manager component](https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/). For more information about the supported machine types and versions for the Topology Manager in GKE, see [Customizing node system configuration](https://docs.cloud.google.com/kubernetes-engine/docs/how-to/node-system-config#kubelet-resource-managers).
    */
   export interface Schema$TopologyManager {
     /**
@@ -5105,6 +5275,14 @@ export namespace container_v1 {
      */
     gvnic?: Schema$VirtualNIC;
     /**
+     * The desired name of the image name to use for this node. This is used to create clusters using a custom image.
+     */
+    image?: string | null;
+    /**
+     * The project containing the desired image to use for this node pool. This is used to create clusters using a custom image.
+     */
+    imageProject?: string | null;
+    /**
      * Required. The desired image type for the node pool. Please see https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for available image types.
      */
     imageType?: string | null;
@@ -5132,6 +5310,10 @@ export namespace container_v1 {
      * Optional. The desired [Google Compute Engine machine type](https://cloud.google.com/compute/docs/machine-types) for nodes in the node pool. Initiates an upgrade operation that migrates the nodes in the node pool to the specified machine type.
      */
     machineType?: string | null;
+    /**
+     * Optional. Specifies the maintenance policy for the node pool, including maintenance exclusion options.
+     */
+    maintenancePolicy?: Schema$NodePoolMaintenancePolicy;
     /**
      * The maximum duration for the nodes to exist. If unspecified, the nodes can exist indefinitely.
      */
@@ -5235,6 +5417,10 @@ export namespace container_v1 {
      */
     endTime?: string | null;
     /**
+     * Output only. The emulated version before the upgrade.
+     */
+    initialEmulatedVersion?: string | null;
+    /**
      * The version before the upgrade.
      */
     initialVersion?: string | null;
@@ -5251,6 +5437,10 @@ export namespace container_v1 {
      */
     state?: string | null;
     /**
+     * Output only. The emulated version after the upgrade.
+     */
+    targetEmulatedVersion?: string | null;
+    /**
      * The version after the upgrade.
      */
     targetVersion?: string | null;
@@ -5259,6 +5449,10 @@ export namespace container_v1 {
    * UpgradeEvent is a notification sent to customers by the cluster server when a resource is upgrading.
    */
   export interface Schema$UpgradeEvent {
+    /**
+     * Output only. The current emulated version before the upgrade.
+     */
+    currentEmulatedVersion?: string | null;
     /**
      * The current version before the upgrade.
      */
@@ -5280,6 +5474,10 @@ export namespace container_v1 {
      */
     resourceType?: string | null;
     /**
+     * Output only. The target emulated version for the upgrade.
+     */
+    targetEmulatedVersion?: string | null;
+    /**
      * The target version for the upgrade.
      */
     targetVersion?: string | null;
@@ -5288,6 +5486,10 @@ export namespace container_v1 {
    * UpgradeInfoEvent is a notification sent to customers about the upgrade information of a resource.
    */
   export interface Schema$UpgradeInfoEvent {
+    /**
+     * Output only. The current emulated version before the upgrade.
+     */
+    currentEmulatedVersion?: string | null;
     /**
      * The current version before the upgrade.
      */
@@ -5336,6 +5538,10 @@ export namespace container_v1 {
      * Output only. The state of the upgrade.
      */
     state?: string | null;
+    /**
+     * Output only. The target emulated version for the upgrade.
+     */
+    targetEmulatedVersion?: string | null;
     /**
      * The target version for the upgrade.
      */
@@ -5564,7 +5770,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5746,7 +5956,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5922,7 +6136,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6051,6 +6269,171 @@ export namespace container_v1 {
     }
 
     /**
+     * CompleteControlPlaneUpgrade completes the rollback-safe upgrade by performing the step two upgrade for a specific cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await container.projects.locations.clusters.completeControlPlaneUpgrade({
+     *       // Required. The name (project, location, cluster) of the cluster to complete upgrade. Specified in the format `projects/x/locations/x/clusters/x`.
+     *       name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "version": "my_version"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    completeControlPlaneUpgrade(
+      params: Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    completeControlPlaneUpgrade(
+      params?: Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    completeControlPlaneUpgrade(
+      params: Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    completeControlPlaneUpgrade(
+      params: Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    completeControlPlaneUpgrade(
+      params: Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    completeControlPlaneUpgrade(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    completeControlPlaneUpgrade(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:completeControlPlaneUpgrade').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Completes master IP rotation.
      * @example
      * ```js
@@ -6072,7 +6455,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6163,8 +6549,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6235,7 +6620,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6326,8 +6714,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6397,7 +6784,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6483,8 +6873,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6551,7 +6940,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6576,6 +6969,7 @@ export namespace container_v1 {
      *   //   "minorTargetVersion": "my_minorTargetVersion",
      *   //   "patchTargetVersion": "my_patchTargetVersion",
      *   //   "pausedReason": [],
+     *   //   "rollbackSafeUpgradeStatus": {},
      *   //   "upgradeDetails": []
      *   // }
      * }
@@ -6700,7 +7094,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6737,6 +7135,7 @@ export namespace container_v1 {
      *   //   "controlPlaneEndpointsConfig": {},
      *   //   "costManagementConfig": {},
      *   //   "createTime": "my_createTime",
+     *   //   "currentEmulatedVersion": "my_currentEmulatedVersion",
      *   //   "currentMasterVersion": "my_currentMasterVersion",
      *   //   "currentNodeCount": 0,
      *   //   "currentNodeVersion": "my_currentNodeVersion",
@@ -6790,6 +7189,7 @@ export namespace container_v1 {
      *   //   "releaseChannel": {},
      *   //   "resourceLabels": {},
      *   //   "resourceUsageExportConfig": {},
+     *   //   "rollbackSafeUpgrade": {},
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
      *   //   "scheduleUpgradeConfig": {},
@@ -6856,8 +7256,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Cluster>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Cluster>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Cluster> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>
@@ -6973,8 +7372,7 @@ export namespace container_v1 {
     getJwks(
       params: Params$Resource$Projects$Locations$Clusters$Getjwks,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GetJSONWebKeysResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GetJSONWebKeysResponse>,
       callback: BodyResponseCallback<Schema$GetJSONWebKeysResponse>
     ): void;
     getJwks(
@@ -7063,7 +7461,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7116,8 +7518,7 @@ export namespace container_v1 {
     list(
       params: Params$Resource$Projects$Locations$Clusters$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListClustersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListClustersResponse>,
       callback: BodyResponseCallback<Schema$ListClustersResponse>
     ): void;
     list(
@@ -7207,7 +7608,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7299,8 +7703,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7370,7 +7773,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7462,8 +7868,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7534,7 +7939,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7626,8 +8034,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7697,7 +8104,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7789,8 +8199,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7860,7 +8269,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7954,8 +8366,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8026,7 +8437,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8119,8 +8533,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8191,7 +8604,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8283,8 +8699,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8355,7 +8770,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8447,8 +8865,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8519,7 +8936,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8612,8 +9032,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8684,7 +9103,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8776,8 +9198,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8848,7 +9269,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8940,8 +9364,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9008,7 +9431,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9100,8 +9526,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9155,6 +9580,17 @@ export namespace container_v1 {
      * The name (project, location, cluster) of the cluster to retrieve. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Clusters$Completecontrolplaneupgrade extends StandardParameters {
+    /**
+     * Required. The name (project, location, cluster) of the cluster to complete upgrade. Specified in the format `projects/x/locations/x/clusters/x`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CompleteControlPlaneUpgradeRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Completeiprotation extends StandardParameters {
     /**
@@ -9405,7 +9841,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9476,8 +9915,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9548,7 +9986,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9640,8 +10081,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9712,7 +10152,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9800,8 +10243,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9869,7 +10311,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9891,6 +10337,7 @@ export namespace container_v1 {
      *   // Example response
      *   // {
      *   //   "autoUpgradeStatus": [],
+     *   //   "customImageInfo": {},
      *   //   "endOfExtendedSupportTimestamp": "my_endOfExtendedSupportTimestamp",
      *   //   "endOfStandardSupportTimestamp": "my_endOfStandardSupportTimestamp",
      *   //   "minorTargetVersion": "my_minorTargetVersion",
@@ -10020,7 +10467,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10052,6 +10503,7 @@ export namespace container_v1 {
      *   //   "etag": "my_etag",
      *   //   "initialNodeCount": 0,
      *   //   "instanceGroupUrls": [],
+     *   //   "kubeletCertInfo": {},
      *   //   "locations": [],
      *   //   "maintenancePolicy": {},
      *   //   "management": {},
@@ -10117,8 +10569,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$NodePool>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$NodePool>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$NodePool> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$NodePool>>
@@ -10186,7 +10637,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10240,8 +10695,7 @@ export namespace container_v1 {
     list(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListNodePoolsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListNodePoolsResponse>,
       callback: BodyResponseCallback<Schema$ListNodePoolsResponse>
     ): void;
     list(
@@ -10332,7 +10786,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10425,8 +10882,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10497,7 +10953,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10591,8 +11050,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10663,7 +11121,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10757,8 +11218,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10829,7 +11289,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10922,8 +11385,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10994,7 +11456,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11023,6 +11488,8 @@ export namespace container_v1 {
      *       //   "flexStart": false,
      *       //   "gcfsConfig": {},
      *       //   "gvnic": {},
+     *       //   "image": "my_image",
+     *       //   "imageProject": "my_imageProject",
      *       //   "imageType": "my_imageType",
      *       //   "kubeletConfig": {},
      *       //   "labels": {},
@@ -11030,6 +11497,7 @@ export namespace container_v1 {
      *       //   "locations": [],
      *       //   "loggingConfig": {},
      *       //   "machineType": "my_machineType",
+     *       //   "maintenancePolicy": {},
      *       //   "maxRunDuration": "my_maxRunDuration",
      *       //   "name": "my_name",
      *       //   "nodeDrainConfig": {},
@@ -11119,8 +11587,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11403,8 +11870,7 @@ export namespace container_v1 {
     getOpenidConfiguration(
       params: Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GetOpenIDConfigResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GetOpenIDConfigResponse>,
       callback: BodyResponseCallback<Schema$GetOpenIDConfigResponse>
     ): void;
     getOpenidConfiguration(
@@ -11510,7 +11976,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11585,8 +12054,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -11653,7 +12121,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11739,8 +12211,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11807,7 +12278,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -11860,8 +12335,7 @@ export namespace container_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -12006,7 +12480,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12177,7 +12655,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12273,8 +12754,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12323,6 +12803,171 @@ export namespace container_v1 {
     }
 
     /**
+     * CompleteControlPlaneUpgrade completes the rollback-safe upgrade by performing the step two upgrade for a specific cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await container.projects.zones.clusters.completeControlPlaneUpgrade({
+     *       // Required. The name (project, location, cluster) of the cluster to complete upgrade. Specified in the format `projects/x/locations/x/clusters/x`.
+     *       name: 'projects/my-project/zones/my-zone/clusters/my-cluster',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "version": "my_version"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    completeControlPlaneUpgrade(
+      params: Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    completeControlPlaneUpgrade(
+      params?: Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    completeControlPlaneUpgrade(
+      params: Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    completeControlPlaneUpgrade(
+      params: Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    completeControlPlaneUpgrade(
+      params: Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    completeControlPlaneUpgrade(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    completeControlPlaneUpgrade(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:completeControlPlaneUpgrade').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Completes master IP rotation.
      * @example
      * ```js
@@ -12344,7 +12989,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12439,8 +13087,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12511,7 +13158,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12604,8 +13254,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12674,7 +13323,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12760,8 +13412,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12831,7 +13482,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -12855,6 +13510,7 @@ export namespace container_v1 {
      *   //   "minorTargetVersion": "my_minorTargetVersion",
      *   //   "patchTargetVersion": "my_patchTargetVersion",
      *   //   "pausedReason": [],
+     *   //   "rollbackSafeUpgradeStatus": {},
      *   //   "upgradeDetails": []
      *   // }
      * }
@@ -12979,7 +13635,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13016,6 +13676,7 @@ export namespace container_v1 {
      *   //   "controlPlaneEndpointsConfig": {},
      *   //   "costManagementConfig": {},
      *   //   "createTime": "my_createTime",
+     *   //   "currentEmulatedVersion": "my_currentEmulatedVersion",
      *   //   "currentMasterVersion": "my_currentMasterVersion",
      *   //   "currentNodeCount": 0,
      *   //   "currentNodeVersion": "my_currentNodeVersion",
@@ -13069,6 +13730,7 @@ export namespace container_v1 {
      *   //   "releaseChannel": {},
      *   //   "resourceLabels": {},
      *   //   "resourceUsageExportConfig": {},
+     *   //   "rollbackSafeUpgrade": {},
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
      *   //   "scheduleUpgradeConfig": {},
@@ -13135,8 +13797,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Cluster>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Cluster>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Cluster> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>
@@ -13206,7 +13867,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13302,8 +13966,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13373,7 +14036,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13426,8 +14093,7 @@ export namespace container_v1 {
     list(
       params: Params$Resource$Projects$Zones$Clusters$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListClustersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListClustersResponse>,
       callback: BodyResponseCallback<Schema$ListClustersResponse>
     ): void;
     list(
@@ -13516,7 +14182,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13612,8 +14281,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13683,7 +14351,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13779,8 +14450,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13850,7 +14520,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -13946,8 +14619,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14017,7 +14689,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -14113,8 +14788,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14184,7 +14858,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -14281,8 +14958,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14352,7 +15028,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -14450,8 +15129,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14522,7 +15200,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -14619,8 +15300,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14690,7 +15370,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -14786,8 +15469,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14857,7 +15539,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -14953,8 +15638,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15024,7 +15708,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -15120,8 +15807,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15188,6 +15874,17 @@ export namespace container_v1 {
      * Request body metadata
      */
     requestBody?: Schema$SetAddonsConfigRequest;
+  }
+  export interface Params$Resource$Projects$Zones$Clusters$Completecontrolplaneupgrade extends StandardParameters {
+    /**
+     * Required. The name (project, location, cluster) of the cluster to complete upgrade. Specified in the format `projects/x/locations/x/clusters/x`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CompleteControlPlaneUpgradeRequest;
   }
   export interface Params$Resource$Projects$Zones$Clusters$Completeiprotation extends StandardParameters {
     /**
@@ -15521,7 +16218,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -15620,8 +16320,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15692,7 +16391,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -15788,8 +16490,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15859,7 +16560,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -15947,8 +16651,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -16018,7 +16721,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -16038,6 +16745,7 @@ export namespace container_v1 {
      *   // Example response
      *   // {
      *   //   "autoUpgradeStatus": [],
+     *   //   "customImageInfo": {},
      *   //   "endOfExtendedSupportTimestamp": "my_endOfExtendedSupportTimestamp",
      *   //   "endOfStandardSupportTimestamp": "my_endOfStandardSupportTimestamp",
      *   //   "minorTargetVersion": "my_minorTargetVersion",
@@ -16167,7 +16875,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -16199,6 +16911,7 @@ export namespace container_v1 {
      *   //   "etag": "my_etag",
      *   //   "initialNodeCount": 0,
      *   //   "instanceGroupUrls": [],
+     *   //   "kubeletCertInfo": {},
      *   //   "locations": [],
      *   //   "maintenancePolicy": {},
      *   //   "management": {},
@@ -16264,8 +16977,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$NodePool>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$NodePool>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$NodePool> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$NodePool>>
@@ -16335,7 +17047,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -16389,8 +17105,7 @@ export namespace container_v1 {
     list(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListNodePoolsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListNodePoolsResponse>,
       callback: BodyResponseCallback<Schema$ListNodePoolsResponse>
     ): void;
     list(
@@ -16480,7 +17195,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -16579,8 +17297,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -16651,7 +17368,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -16750,8 +17470,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -16822,7 +17541,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -16921,8 +17643,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -16993,7 +17714,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -17028,6 +17752,8 @@ export namespace container_v1 {
      *       //   "flexStart": false,
      *       //   "gcfsConfig": {},
      *       //   "gvnic": {},
+     *       //   "image": "my_image",
+     *       //   "imageProject": "my_imageProject",
      *       //   "imageType": "my_imageType",
      *       //   "kubeletConfig": {},
      *       //   "labels": {},
@@ -17035,6 +17761,7 @@ export namespace container_v1 {
      *       //   "locations": [],
      *       //   "loggingConfig": {},
      *       //   "machineType": "my_machineType",
+     *       //   "maintenancePolicy": {},
      *       //   "maxRunDuration": "my_maxRunDuration",
      *       //   "name": "my_name",
      *       //   "nodeDrainConfig": {},
@@ -17124,8 +17851,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -17409,7 +18135,10 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -17488,8 +18217,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -17559,7 +18287,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -17645,8 +18377,7 @@ export namespace container_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -17716,7 +18447,11 @@ export namespace container_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/container',
+     *       'https://www.googleapis.com/auth/container.read-only',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -17769,8 +18504,7 @@ export namespace container_v1 {
     list(
       params: Params$Resource$Projects$Zones$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
