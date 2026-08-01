@@ -149,6 +149,27 @@ export namespace homegraph_v1 {
     deviceId?: string | null;
   }
   /**
+   * Component of a provider device.
+   */
+  export interface Schema$Component {
+    /**
+     * Optional. Child components.
+     */
+    childComponents?: Schema$Component[];
+    /**
+     * Required. List of Device types associated with this component. Supported device types are defined in cs//depot/google3/home/homeservicelayer/uddm/types/uddm_device_types.proto and the type string is the enum name, for example: ON_OFF_LIGHT =\> "ON_OFF_LIGHT".
+     */
+    deviceTypes?: string[] | null;
+    /**
+     * Required. ID of the component from the device provider.
+     */
+    id?: string | null;
+    /**
+     * Required. List of trait data associated with the component.
+     */
+    traitData?: Schema$TraitData[];
+  }
+  /**
    * Contains the set of updates for a component.
    */
   export interface Schema$ComponentTraitUpdates {
@@ -309,6 +330,15 @@ export namespace homegraph_v1 {
     events?: Schema$Events[];
   }
   /**
+   * Container for UDDM trait data associated with a device.
+   */
+  export interface Schema$HomeTraitPayload {
+    /**
+     * The root component of the device as reported by the provider.
+     */
+    rootComponent?: Schema$Component;
+  }
+  /**
    * Contains the set of updates for a device.
    */
   export interface Schema$HomeTraitUpdates {
@@ -329,6 +359,10 @@ export namespace homegraph_v1 {
      * Required. Third-party user ID.
      */
     agentUserId?: string | null;
+    /**
+     * Optional. Specifies the type of device data to be returned in the response. This allows callers to request traditional Smart Home traits, Unified Device Data Model (UDDM) traits, or both. If unspecified, defaults to SMART_HOME_TRAIT_ONLY.
+     */
+    deviceView?: string | null;
     /**
      * Optional. If true, the response will include device metadata in the device_metadata field.
      */
@@ -385,6 +419,10 @@ export namespace homegraph_v1 {
      * States of the devices. Map of third-party device ID to struct of device states.
      */
     devices?: {[key: string]: {[key: string]: any}} | null;
+    /**
+     * Map of device IDs to their Unified Device Data Model (UDDM) trait payloads. This field is populated when `device_view` is set to HOME_TRAIT_ONLY or HOME_TRAIT_AND_SMART_HOME_TRAIT.
+     */
+    homeTraitPayload?: {[key: string]: Schema$HomeTraitPayload} | null;
   }
   /**
    * The states and notifications specific to a device.
@@ -408,7 +446,7 @@ export namespace homegraph_v1 {
     states?: {[key: string]: any} | null;
   }
   /**
-   * Request type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call. It may include states, notifications, or both. States and notifications are defined per `device_id` (for example, "123" and "456" in the following example). Example: ```json { "requestId": "ff36a3cc-ec34-11e6-b1a0-64510650abcf", "agentUserId": "1234", "payload": { "devices": { "states": { "123": { "on": true \}, "456": { "on": true, "brightness": 10 \}, \}, \} \} \} ```
+   * Request type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call. It may include states, notifications, home_traits, home_events, or any combination thereof. Smart Home Device Traits (SHDT) `states` and `notifications` are defined per `device_id` (for example, "123" and "456" in the following example). Google Home Traits `home_traits` and `home_events` are lists of updates or events, each associated with a `device_id` (for example, "789" in the following example). Example: ```json { "requestId": "ff36a3cc-ec34-11e6-b1a0-64510650abcf", "agentUserId": "1234", "payload": { "devices": { "states": { "123": { "on": true \}, "456": { "on": true, "brightness": 10 \}, \}, "homeTraits": [ { "deviceId": "789", "components": [ { "componentId": "main", "traitData": [ { "trait": { "@type": "type.googleapis.com/home.graph.v1.OnOffTrait", "onOff": true \} \} ] \} ] \} ], "homeEvents": [ { "deviceId": "789", "events": [ { "componentId": "main", "events": [ { "eventId": "event-123", "eventTime": "2026-01-01T00:00:00Z", "event": { "@type": "type.googleapis.com/home.graph.v1.DoorbellPressTrait.DoorbellPressedEvent" \} \} ] \} ] \} ] \} \} \} ```
    */
   export interface Schema$ReportStateAndNotificationRequest {
     /**
@@ -437,6 +475,10 @@ export namespace homegraph_v1 {
    */
   export interface Schema$ReportStateAndNotificationResponse {
     /**
+     * Map from agent device ID to the result of reporting state and notifications. This is only populated for UDDM updates for now.
+     */
+    deviceResults?: {[key: string]: Schema$Result} | null;
+    /**
      * Request ID copied from ReportStateAndNotificationRequest.
      */
     requestId?: string | null;
@@ -458,6 +500,15 @@ export namespace homegraph_v1 {
    * Response type for the [`RequestSyncDevices`](#google.home.graph.v1.HomeGraphApiService.RequestSyncDevices) call. Intentionally empty upon success. An HTTP response code is returned with more details upon failure.
    */
   export interface Schema$RequestSyncDevicesResponse {}
+  /**
+   * Result of reporting state and notifications for a single device.
+   */
+  export interface Schema$Result {
+    /**
+     * The trait commit timestamp of the state update in Home Graph.
+     */
+    homeTraitCommitTime?: string | null;
+  }
   /**
    * Payload containing the state and notification information for devices.
    */
@@ -510,6 +561,14 @@ export namespace homegraph_v1 {
    * Contains the trait payload for a single trait.
    */
   export interface Schema$TraitData {
+    /**
+     * Other metadata for the trait. The time the client update was committed in the server.
+     */
+    commitTime?: string | null;
+    /**
+     * Optional in write requests (e.g. ReportStateAndNotification). If set, represents the provider version timestamp of the existing trait in the database. The server will perform optimistic locking validation if this field is present and the experiment is enabled. It will not be persisted to the database.
+     */
+    providerVersionTime?: string | null;
     /**
      * The Provider Home API trait payload.
      */
@@ -610,8 +669,7 @@ export namespace homegraph_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -710,6 +768,7 @@ export namespace homegraph_v1 {
      *       // request body parameters
      *       // {
      *       //   "agentUserId": "my_agentUserId",
+     *       //   "deviceView": "my_deviceView",
      *       //   "includeDeviceMetadata": false,
      *       //   "inputs": [],
      *       //   "requestId": "my_requestId"
@@ -863,6 +922,7 @@ export namespace homegraph_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "deviceResults": {},
      *   //   "requestId": "my_requestId"
      *   // }
      * }
@@ -1046,8 +1106,7 @@ export namespace homegraph_v1 {
     requestSync(
       params: Params$Resource$Devices$Requestsync,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RequestSyncDevicesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RequestSyncDevicesResponse>,
       callback: BodyResponseCallback<Schema$RequestSyncDevicesResponse>
     ): void;
     requestSync(
