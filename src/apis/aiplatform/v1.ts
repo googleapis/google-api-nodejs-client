@@ -125,7 +125,6 @@ export namespace aiplatform_v1 {
     indexEndpoints: Resource$Indexendpoints;
     indexes: Resource$Indexes;
     media: Resource$Media;
-    memoryBanks: Resource$Memorybanks;
     metadataStores: Resource$Metadatastores;
     migratableResources: Resource$Migratableresources;
     modelDeploymentMonitoringJobs: Resource$Modeldeploymentmonitoringjobs;
@@ -133,7 +132,6 @@ export namespace aiplatform_v1 {
     notebookExecutionJobs: Resource$Notebookexecutionjobs;
     notebookRuntimes: Resource$Notebookruntimes;
     notebookRuntimeTemplates: Resource$Notebookruntimetemplates;
-    onlineEvaluators: Resource$Onlineevaluators;
     operations: Resource$Operations;
     persistentResources: Resource$Persistentresources;
     pipelineJobs: Resource$Pipelinejobs;
@@ -143,7 +141,6 @@ export namespace aiplatform_v1 {
     ragEngineConfig: Resource$Ragengineconfig;
     reasoningEngines: Resource$Reasoningengines;
     schedules: Resource$Schedules;
-    semanticGovernancePolicies: Resource$Semanticgovernancepolicies;
     skills: Resource$Skills;
     specialistPools: Resource$Specialistpools;
     studies: Resource$Studies;
@@ -175,7 +172,6 @@ export namespace aiplatform_v1 {
       this.indexEndpoints = new Resource$Indexendpoints(this.context);
       this.indexes = new Resource$Indexes(this.context);
       this.media = new Resource$Media(this.context);
-      this.memoryBanks = new Resource$Memorybanks(this.context);
       this.metadataStores = new Resource$Metadatastores(this.context);
       this.migratableResources = new Resource$Migratableresources(this.context);
       this.modelDeploymentMonitoringJobs =
@@ -188,7 +184,6 @@ export namespace aiplatform_v1 {
       this.notebookRuntimeTemplates = new Resource$Notebookruntimetemplates(
         this.context
       );
-      this.onlineEvaluators = new Resource$Onlineevaluators(this.context);
       this.operations = new Resource$Operations(this.context);
       this.persistentResources = new Resource$Persistentresources(this.context);
       this.pipelineJobs = new Resource$Pipelinejobs(this.context);
@@ -198,9 +193,6 @@ export namespace aiplatform_v1 {
       this.ragEngineConfig = new Resource$Ragengineconfig(this.context);
       this.reasoningEngines = new Resource$Reasoningengines(this.context);
       this.schedules = new Resource$Schedules(this.context);
-      this.semanticGovernancePolicies = new Resource$Semanticgovernancepolicies(
-        this.context
-      );
       this.skills = new Resource$Skills(this.context);
       this.specialistPools = new Resource$Specialistpools(this.context);
       this.studies = new Resource$Studies(this.context);
@@ -216,29 +208,13 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$CloudAiLargeModelsVisionGenerateVideoExperiments {
     /**
-     * Optional. If true, anchors the last frame in video generation by generating a custom border mask.
-     */
-    anchorLastFrame?: boolean | null;
-    /**
-     * CFG scale for video-transform, perf-generation, a2v, video-textures models.
-     */
-    cfgScale?: number | null;
-    /**
      * Optional. Video codec to use for output.
      */
     codec?: string | null;
     /**
-     * Optional. Color alignment configuration.
-     */
-    colorAlignment?: Schema$CloudAiLargeModelsVisionGenerateVideoExperimentsColorAlignmentConfig;
-    /**
      * Conditioning frames for veo experimental models ONLY, not to be confused with keyframes (ID:31) in GenerateVideoRequest.
      */
     conditioningFrames?: Schema$CloudAiLargeModelsVisionGenerateVideoExperimentsConditioningFrame[];
-    /**
-     * Generic key-value pairs for experimental parameters. This allows adding new parameters without changing the dataplane binary.
-     */
-    customParameters?: {[key: string]: any} | null;
     /**
      * Human pose parameters for Pose Control
      */
@@ -252,14 +228,6 @@ export namespace aiplatform_v1 {
      */
     numDiffusionSteps?: number | null;
     /**
-     * Optional. Omni Rewriter configuration.
-     */
-    omniRewriter?: Schema$CloudAiLargeModelsVisionGenerateVideoExperimentsOmniRewriterConfig;
-    /**
-     * The original REST API request JSON sent by the user, in the instances/parameters format. Preserved for saving alongside output artifacts so users can reproduce their requests. This field is populated by the API handler and is not user-settable.
-     */
-    originalRequestJson?: string | null;
-    /**
      * Prompt chunks for "ProModel" prompting. If set, the prompt will not be rewritten, and top-level prompt ignored.
      */
     promptInputs?: Schema$CloudAiLargeModelsVisionPromptInputs;
@@ -267,18 +235,6 @@ export namespace aiplatform_v1 {
      * Optional tag for tracking the source of this request. Allowed values: "colab", "comfyui", "curl", "flowresearch", "vertexstudio". Unrecognized tags are recorded as "unknown" in metrics. Tags do not affect video generation behavior. Up to 16 characters, ASCII alphanumeric, hyphens, and underscores only.
      */
     requestOriginTag?: string | null;
-    /**
-     * Optional. Scheduling configuration.
-     */
-    schedulingConfig?: Schema$CloudAiLargeModelsVisionGenerateVideoExperimentsVESchedulingConfig;
-    /**
-     * Parameters for seamless (edge-continuous) video generation, enabling temporal looping and/or spatial tessellation.
-     */
-    seamless?: Schema$CloudAiLargeModelsVisionSeamless;
-    /**
-     * Optional. Spatial alignment configuration.
-     */
-    spatialAlignment?: Schema$CloudAiLargeModelsVisionGenerateVideoExperimentsSpatialAlignmentConfig;
     /**
      * If true (default), truncate input videos that exceed the model's maximum frame count by applying a frame_selection_config to __video_file__ inputs. Set to false to preserve the existing fail-fast behavior.
      */
@@ -292,15 +248,6 @@ export namespace aiplatform_v1 {
      */
     videoTransformStrength?: number | null;
   }
-  /**
-   * Configuration for color alignment.
-   */
-  export interface Schema$CloudAiLargeModelsVisionGenerateVideoExperimentsColorAlignmentConfig {
-    /**
-     * Optional. If true, enable alignment.
-     */
-    enable?: boolean | null;
-  }
   export interface Schema$CloudAiLargeModelsVisionGenerateVideoExperimentsConditioningFrame {
     /**
      * The index of the frame, starts with zero and must be a multiple of 8.
@@ -310,37 +257,6 @@ export namespace aiplatform_v1 {
      * The image data for this conditioning frame.
      */
     image?: Schema$CloudAiLargeModelsVisionGenerateVideoRequestImage;
-  }
-  /**
-   * Configuration for Omni Rewriter.
-   */
-  export interface Schema$CloudAiLargeModelsVisionGenerateVideoExperimentsOmniRewriterConfig {
-    /**
-     * Optional. Maximum duration of a chunk in seconds.
-     */
-    maxChunkDuration?: number | null;
-    /**
-     * Optional. FPS used to generate gemini chunks for video inputs.
-     */
-    rewriterInputFps?: number | null;
-  }
-  /**
-   * Configuration for spatial alignment.
-   */
-  export interface Schema$CloudAiLargeModelsVisionGenerateVideoExperimentsSpatialAlignmentConfig {
-    /**
-     * Optional. If true, enable alignment.
-     */
-    enable?: boolean | null;
-  }
-  /**
-   * Scheduling configuration for Veo Experimental.
-   */
-  export interface Schema$CloudAiLargeModelsVisionGenerateVideoExperimentsVESchedulingConfig {
-    /**
-     * Optional. If true, enable retries on transient errors with default backoff.
-     */
-    enableRetry?: boolean | null;
   }
   /**
    * The image bytes or Cloud Storage URI to make the prediction on.
@@ -602,20 +518,6 @@ export namespace aiplatform_v1 {
      */
     score?: number | null;
   }
-  export interface Schema$CloudAiLargeModelsVisionSeamless {
-    /**
-     * If true, the generated video will be loopable (seamless time looping).
-     */
-    loop?: boolean | null;
-    /**
-     * If true, the generated video will be tessellatable as a horizontal tessellation.
-     */
-    tessellateHorizontal?: boolean | null;
-    /**
-     * If true, the generated video will be tessellatable as a vertical tessellation.
-     */
-    tessellateVertical?: boolean | null;
-  }
   export interface Schema$CloudAiLargeModelsVisionSemanticFilterResponse {
     /**
      * Class labels of the bounding boxes that failed the semantic filtering. Bounding box coordinates.
@@ -681,19 +583,6 @@ export namespace aiplatform_v1 {
      */
     extensions?: Array<{[key: string]: any}> | null;
   }
-  /**
-   * Metadata for the ActivateOnlineEvaluator operation.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ActivateOnlineEvaluatorOperationMetadata {
-    /**
-     * Common part of operation metadata.
-     */
-    genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
-  }
-  /**
-   * Request message for ActivateOnlineEvaluator.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ActivateOnlineEvaluatorRequest {}
   /**
    * Parameters that configure the active learning pipeline. Active learning will label the data incrementally by several iterations. For every iteration, it will select a batch of data based on the sampling strategy.
    */
@@ -766,143 +655,6 @@ export namespace aiplatform_v1 {
      * Required. The measurement to be added to a Trial.
      */
     measurement?: Schema$GoogleCloudAiplatformV1Measurement;
-  }
-  /**
-   * A Vertex agent contains instructions and configurations for the LLM to execute a certain task.
-   */
-  export interface Schema$GoogleCloudAiplatformV1Agent {
-    /**
-     * Required. The base agent for the agent. Supported values: * `antigravity-preview-05-2026`
-     */
-    base_agent?: string | null;
-    /**
-     * Optional. The base environment configuration for the agent. Valid types: * A string value for the environment ID, or `remote` for the default. * A struct value for the `environment_config`.
-     */
-    base_environment?: any | null;
-    /**
-     * Output only. The time the agent was created.
-     */
-    created?: string | null;
-    /**
-     * Optional. The description of the agent.
-     */
-    description?: string | null;
-    /**
-     * Immutable. The user-specified ID for the agent. This ID becomes the final component of the agent resource name. If not provided, Vertex AI will generate a value for this ID. The ID can be up to 63 characters and must match the regular expression `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`.
-     */
-    id?: string | null;
-    /**
-     * Optional. The metadata for the agent.
-     */
-    metadata?: {[key: string]: string} | null;
-    /**
-     * Identifier. The resource name of the agent. Format: `projects/{project\}/locations/{location\}/agents/{agent\}`.
-     */
-    name?: string | null;
-    /**
-     * Output only. The object type of the resource. For agents, the value is `agent`.
-     */
-    object?: string | null;
-    /**
-     * Optional. The instructions for the agent to follow. These instructions are passed to the LLM as a system instruction.
-     */
-    system_instruction?: string | null;
-    /**
-     * Optional. The tools available to the agent.
-     */
-    tools?: Schema$GoogleCloudAiplatformV1AgentTool[];
-    /**
-     * Output only. The time the agent was last updated.
-     */
-    updated?: string | null;
-  }
-  /**
-   * Represents configuration for an Agent.
-   */
-  export interface Schema$GoogleCloudAiplatformV1AgentConfig {
-    /**
-     * Required. Unique identifier of the agent. This ID is used to refer to this agent, e.g., in AgentEvent.author, or in the `sub_agents` field. It must be unique within the `agents` map.
-     */
-    agentId?: string | null;
-    /**
-     * Optional. The type or class of the agent (e.g., "LlmAgent", "RouterAgent", "ToolUseAgent"). Useful for the autorater to understand the expected behavior of the agent.
-     */
-    agentType?: string | null;
-    /**
-     * Optional. A high-level description of the agent's role and responsibilities. Critical for evaluating if the agent is routing tasks correctly.
-     */
-    description?: string | null;
-    /**
-     * Optional. Provides instructions for the LLM model, guiding the agent's behavior. Can be static or dynamic. Dynamic instructions can contain placeholders like {variable_name\} that will be resolved at runtime using the `AgentEvent.state_delta` field.
-     */
-    instruction?: string | null;
-    /**
-     * Optional. The list of valid agent IDs that this agent can delegate to. This defines the directed edges in the multi-agent system graph topology.
-     */
-    subAgents?: string[] | null;
-    /**
-     * Optional. The list of tools available to this agent.
-     */
-    tools?: Schema$GoogleCloudAiplatformV1Tool[];
-  }
-  /**
-   * Represents data specific to multi-turn agent evaluations.
-   */
-  export interface Schema$GoogleCloudAiplatformV1AgentData {
-    /**
-     * Optional. A map containing the static configurations for each agent in the system. Key: agent_id (matches the `author` field in events). Value: The static configuration of the agent.
-     */
-    agents?: {[key: string]: Schema$GoogleCloudAiplatformV1AgentConfig} | null;
-    /**
-     * Optional. A chronological list of conversation turns. Each turn represents a logical execution cycle (e.g., User Input -\> Agent Response).
-     */
-    turns?: Schema$GoogleCloudAiplatformV1ConversationTurn[];
-  }
-  /**
-   * Represents a single event in the execution trace.
-   */
-  export interface Schema$GoogleCloudAiplatformV1AgentEvent {
-    /**
-     * Optional. The list of tools that were active/available to the agent at the time of this event. This overrides the `AgentConfig.tools` if set.
-     */
-    activeTools?: Schema$GoogleCloudAiplatformV1Tool[];
-    /**
-     * Required. The ID of the agent or entity that generated this event. Use "user" to denote events generated by the end-user.
-     */
-    author?: string | null;
-    /**
-     * Required. The content of the event (e.g., text response, tool call, tool response).
-     */
-    content?: Schema$GoogleCloudAiplatformV1Content;
-    /**
-     * Optional. The timestamp when the event occurred.
-     */
-    eventTime?: string | null;
-    /**
-     * Optional. The change in the session state caused by this event. This is a key-value map of fields that were modified or added by the event.
-     */
-    stateDelta?: {[key: string]: any} | null;
-  }
-  /**
-   * A tool provides a list of actions available to the Agent during the process of executing a task.
-   */
-  export interface Schema$GoogleCloudAiplatformV1AgentTool {
-    /**
-     * Optional. The headers for the MCP server, such as for authentication. Only applicable when `type` is `mcp_server`.
-     */
-    headers?: {[key: string]: string} | null;
-    /**
-     * Optional. The name of the MCP server. Only applicable when `type` is `mcp_server`.
-     */
-    name?: string | null;
-    /**
-     * Required. The type of the tool. Supported types: * `code_execution` * `filesystem` * `google_search` * `mcp_server` * `url_context`
-     */
-    type?: string | null;
-    /**
-     * Optional. The URL for the MCP server endpoint. Only applicable when `type` is `mcp_server`.
-     */
-    url?: string | null;
   }
   /**
    * The aggregation result for the entire dataset and all metrics.
@@ -1207,103 +959,6 @@ export namespace aiplatform_v1 {
     outputName?: string | null;
   }
   /**
-   * Configuration for audio-specific output formatting.
-   */
-  export interface Schema$GoogleCloudAiplatformV1AudioResponseFormat {
-    /**
-     * Optional. Bit rate in bits per second (bps). Only applicable for compressed formats (MP3, Opus).
-     */
-    bitRate?: number | null;
-    /**
-     * Optional. Delivery mode for the generated content.
-     */
-    delivery?: string | null;
-    /**
-     * Optional. The MIME type of the audio output.
-     */
-    mimeType?: string | null;
-    /**
-     * Optional. Sample rate for the generated audio in Hertz.
-     */
-    sampleRate?: number | null;
-  }
-  /**
-   * The transcription of an audio part. For multi-speaker audio, each speaker segment is a separate Part with its own AudioTranscription carrying the speaker_label.
-   */
-  export interface Schema$GoogleCloudAiplatformV1AudioTranscription {
-    /**
-     * Optional. A label identifying the speaker of this audio segment (e.g. "spk_1", "spk_2"). Present when diarization is set.
-     */
-    speakerLabel?: string | null;
-    /**
-     * Required. The transcription text of this audio segment.
-     */
-    text?: string | null;
-    /**
-     * Optional. Detailed word-level transcriptions and timing details. Present when word_timestamp is set.
-     */
-    words?: Schema$GoogleCloudAiplatformV1AudioTranscriptionWordInfo[];
-  }
-  /**
-   * Configuration for speech recognition (transcription).
-   */
-  export interface Schema$GoogleCloudAiplatformV1AudioTranscriptionConfig {
-    /**
-     * Optional. A list of phrases to bias the ASR model towards.
-     */
-    adaptationPhrases?: string[] | null;
-    /**
-     * Optional. A list of custom vocabulary phrases to bias the speech recognition model toward recognizing specific terms.
-     */
-    customVocabulary?: string[] | null;
-    /**
-     * Optional. Configures speaker diarization.
-     */
-    diarization?: boolean | null;
-    /**
-     * Optional. The model will detect the language automatically.
-     */
-    languageAuto?: Schema$GoogleCloudAiplatformV1AudioTranscriptionConfigLanguageAuto;
-    /**
-     * Optional. Specifies one or more languages in the audio.
-     */
-    languageHints?: Schema$GoogleCloudAiplatformV1AudioTranscriptionConfigLanguageHints;
-    /**
-     * Optional. Configures word-level timestamp generation.
-     */
-    wordTimestamp?: boolean | null;
-  }
-  /**
-   * Indicates the language of the audio should be automatically detected.
-   */
-  export interface Schema$GoogleCloudAiplatformV1AudioTranscriptionConfigLanguageAuto {}
-  /**
-   * Provides hints to the model about possible languages present in the audio.
-   */
-  export interface Schema$GoogleCloudAiplatformV1AudioTranscriptionConfigLanguageHints {
-    /**
-     * Required. BCP-47 language codes. At least one must be specified.
-     */
-    languageCodes?: string[] | null;
-  }
-  /**
-   * Information about a single recognized word.
-   */
-  export interface Schema$GoogleCloudAiplatformV1AudioTranscriptionWordInfo {
-    /**
-     * Optional. End offset in time of the word relative to the start of the audio.
-     */
-    endOffset?: string | null;
-    /**
-     * Optional. Start offset in time of the word relative to the start of the audio.
-     */
-    startOffset?: string | null;
-    /**
-     * Required. Transcript of the word.
-     */
-    word?: string | null;
-  }
-  /**
    * Request message for AugmentPrompt.
    */
   export interface Schema$GoogleCloudAiplatformV1AugmentPromptRequest {
@@ -1441,11 +1096,11 @@ export namespace aiplatform_v1 {
     serviceAccount?: string | null;
   }
   /**
-   * A description of resources that to large degree are decided by Agent Platform, and require only a modest additional configuration. Each Model supporting these resources documents its specific guidelines.
+   * A description of resources that to large degree are decided by Vertex AI, and require only a modest additional configuration. Each Model supporting these resources documents its specific guidelines.
    */
   export interface Schema$GoogleCloudAiplatformV1AutomaticResources {
     /**
-     * Immutable. The maximum number of replicas that may be deployed on when the traffic against it increases. If the requested value is too large, the deployment will error, but if deployment succeeds then the ability to scale to that many replicas is guaranteed (barring service outages). If traffic increases beyond what its replicas at maximum may handle, a portion of the traffic will be dropped. If this value is not provided, a no upper bound for scaling under heavy traffic will be assume, though Agent Platform may be unable to scale beyond certain replica number.
+     * Immutable. The maximum number of replicas that may be deployed on when the traffic against it increases. If the requested value is too large, the deployment will error, but if deployment succeeds then the ability to scale to that many replicas is guaranteed (barring service outages). If traffic increases beyond what its replicas at maximum may handle, a portion of the traffic will be dropped. If this value is not provided, a no upper bound for scaling under heavy traffic will be assume, though Vertex AI may be unable to scale beyond certain replica number.
      */
     maxReplicaCount?: number | null;
     /**
@@ -1581,7 +1236,7 @@ export namespace aiplatform_v1 {
      */
     maxReplicaCount?: number | null;
     /**
-     * Immutable. The number of machine replicas used at the start of the batch operation. If not set, Agent Platform decides starting number, not greater than max_replica_count
+     * Immutable. The number of machine replicas used at the start of the batch operation. If not set, Vertex AI decides starting number, not greater than max_replica_count
      */
     startingReplicaCount?: number | null;
   }
@@ -2306,10 +1961,6 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1CandidateResponse {
     /**
-     * Optional. Represents the complete execution trace of a multi-turn conversation, which can involve single or multiple agents. This field is used to provide the full output of an agent's run, including all turns and events, for direct evaluation.
-     */
-    agentData?: Schema$GoogleCloudAiplatformV1AgentData;
-    /**
      * Required. The name of the candidate that produced the response.
      */
     candidate?: string | null;
@@ -2338,10 +1989,6 @@ export namespace aiplatform_v1 {
      * Required. The candidate that is being evaluated. The value is the same as the candidate name in the EvaluationRequest.
      */
     candidate?: string | null;
-    /**
-     * Output only. Error while evaluating the candidate for the metric.
-     */
-    error?: Schema$GoogleRpcStatus;
     /**
      * Optional. The explanation for the metric.
      */
@@ -2490,44 +2137,6 @@ export namespace aiplatform_v1 {
      * Customizable online prediction request timeout.
      */
     inferenceTimeout?: string | null;
-  }
-  /**
-   * Specifies configuration for exporting evaluation results to Cloud Logging.
-   */
-  export interface Schema$GoogleCloudAiplatformV1CloudLoggingConfig {
-    /**
-     * Optional. Google Cloud project to write logs to. Defaults to the request project.
-     */
-    project?: string | null;
-    /**
-     * Optional. MonitoredResource labels to associate the log with. The backend will automatically inject project and location.
-     */
-    resourceLabels?: {[key: string]: string} | null;
-    /**
-     * Optional. MonitoredResource type. Defaults to "global" if unspecified.
-     */
-    resourceType?: string | null;
-    /**
-     * Optional. Tracing context for the evaluation run.
-     */
-    tracingContext?: Schema$GoogleCloudAiplatformV1CloudLoggingConfigTracingContext;
-  }
-  /**
-   * Tracing context for Observability correlation.
-   */
-  export interface Schema$GoogleCloudAiplatformV1CloudLoggingConfigTracingContext {
-    /**
-     * Optional. Unique identifier for a conversation (session thread), used to store and correlate messages within a conversation. The value corresponds to the `gen_ai.conversation.id` field in the the OpenTelemetry GenAI attributes.
-     */
-    conversationId?: string | null;
-    /**
-     * Optional. ID of the Cloud Trace span associated with the current operation in which the log is being written. e.g., `7a2190356c3fc94b`. If a span is being evaluated, this field should be populated.
-     */
-    spanId?: string | null;
-    /**
-     * Optional. Trace ID being written to Cloud Trace in association with this log entry. e.g., `12345`, the numeric ID from the resource name. If a trace or span is being evaluated, this field should be populated.
-     */
-    traceId?: string | null;
   }
   /**
    * Result of executing the ExecutableCode. Generated only when the `CodeExecution` tool is used.
@@ -2847,23 +2456,6 @@ export namespace aiplatform_v1 {
      * Output only. Timestamp when this Context was last updated.
      */
     updateTime?: string | null;
-  }
-  /**
-   * Represents a single turn/invocation in the conversation.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ConversationTurn {
-    /**
-     * Optional. The list of events that occurred during this turn.
-     */
-    events?: Schema$GoogleCloudAiplatformV1AgentEvent[];
-    /**
-     * Optional. A unique identifier for the turn. Useful for referencing specific turns across systems.
-     */
-    turnId?: string | null;
-    /**
-     * Required. The 0-based index of the turn in the conversation sequence.
-     */
-    turnIndex?: number | null;
   }
   /**
    * Details of ModelService.CopyModel operation.
@@ -3205,15 +2797,6 @@ export namespace aiplatform_v1 {
     genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
   }
   /**
-   * Metadata for the CreateOnlineEvaluator operation.
-   */
-  export interface Schema$GoogleCloudAiplatformV1CreateOnlineEvaluatorOperationMetadata {
-    /**
-     * Common part of operation metadata.
-     */
-    genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
-  }
-  /**
    * Details of operations that perform create PersistentResource.
    */
   export interface Schema$GoogleCloudAiplatformV1CreatePersistentResourceOperationMetadata {
@@ -3249,15 +2832,6 @@ export namespace aiplatform_v1 {
   export interface Schema$GoogleCloudAiplatformV1CreateRegistryFeatureOperationMetadata {
     /**
      * Operation metadata for Feature.
-     */
-    genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
-  }
-  /**
-   * Runtime operation metadata for ServingProfileService.CreateServingProfile.
-   */
-  export interface Schema$GoogleCloudAiplatformV1CreateServingProfileOperationMetadata {
-    /**
-     * Output only. The standard operation metadata for Vertex AI.
      */
     genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
   }
@@ -3818,7 +3392,7 @@ export namespace aiplatform_v1 {
      */
     machineSpec?: Schema$GoogleCloudAiplatformV1MachineSpec;
     /**
-     * Immutable. The maximum number of replicas that may be deployed on when the traffic against it increases. If the requested value is too large, the deployment will error, but if deployment succeeds then the ability to scale to that many replicas is guaranteed (barring service outages). If traffic increases beyond what its replicas at maximum may handle, a portion of the traffic will be dropped. If this value is not provided, will use min_replica_count as the default value. The value of this field impacts the charge against Agent Platform CPU and GPU quotas. Specifically, you will be charged for (max_replica_count * number of cores in the selected machine type) and (max_replica_count * number of GPUs per replica in the selected machine type).
+     * Immutable. The maximum number of replicas that may be deployed on when the traffic against it increases. If the requested value is too large, the deployment will error, but if deployment succeeds then the ability to scale to that many replicas is guaranteed (barring service outages). If traffic increases beyond what its replicas at maximum may handle, a portion of the traffic will be dropped. If this value is not provided, will use min_replica_count as the default value. The value of this field impacts the charge against Vertex CPU and GPU quotas. Specifically, you will be charged for (max_replica_count * number of cores in the selected machine type) and (max_replica_count * number of GPUs per replica in the selected machine type).
      */
     maxReplicaCount?: number | null;
     /**
@@ -3931,15 +3505,6 @@ export namespace aiplatform_v1 {
   export interface Schema$GoogleCloudAiplatformV1DeleteMetadataStoreOperationMetadata {
     /**
      * Operation metadata for deleting a MetadataStore.
-     */
-    genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
-  }
-  /**
-   * Metadata for the DeleteOnlineEvaluator operation.
-   */
-  export interface Schema$GoogleCloudAiplatformV1DeleteOnlineEvaluatorOperationMetadata {
-    /**
-     * Generic operation metadata.
      */
     genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
   }
@@ -4419,15 +3984,6 @@ export namespace aiplatform_v1 {
      * Output only. The name of the PublisherModel resource. Format: `publishers/{publisher\}/models/{publisher_model\}@{version_id\}`, or `publishers/hf-{hugging-face-author\}/models/{hugging-face-model-name\}@001`
      */
     publisherModel?: string | null;
-  }
-  /**
-   * Request message for SemanticGovernancePolicyEngineService.DeprovisionSemanticGovernancePolicyEngine.
-   */
-  export interface Schema$GoogleCloudAiplatformV1DeprovisionSemanticGovernancePolicyEngineRequest {
-    /**
-     * Optional. If true, the operation bypass checks on current state and force the deprovisioning operation.
-     */
-    force?: boolean | null;
   }
   export interface Schema$GoogleCloudAiplatformV1DestinationFeatureSetting {
     /**
@@ -4961,7 +4517,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1EvaluateInstancesRequest {
     /**
-     * Optional. Autorater config used for evaluation. Not applicable for predefined metrics (PredefinedMetricSpec); the server uses its own model configuration for predefined metrics and this field is ignored.
+     * Optional. Autorater config used for evaluation.
      */
     autoraterConfig?: Schema$GoogleCloudAiplatformV1AutoraterConfig;
     /**
@@ -5535,47 +5091,6 @@ export namespace aiplatform_v1 {
     name?: string | null;
   }
   /**
-   * EvaluationMetric is a resource that represents a reusable metric configuration.
-   */
-  export interface Schema$GoogleCloudAiplatformV1EvaluationMetric {
-    /**
-     * Output only. The time when the EvaluationMetric was created.
-     */
-    createTime?: string | null;
-    /**
-     * Optional. A description of the EvaluationMetric.
-     */
-    description?: string | null;
-    /**
-     * Required. The user-friendly display name for the EvaluationMetric.
-     */
-    displayName?: string | null;
-    /**
-     * Optional. Customer-managed encryption key spec for this EvaluationMetric. If set, this EvaluationMetric will be secured by this key.
-     */
-    encryptionSpec?: Schema$GoogleCloudAiplatformV1EncryptionSpec;
-    /**
-     * Optional. The Google Cloud Storage URI that stores the metric specification..
-     */
-    gcsUri?: string | null;
-    /**
-     * Optional. Labels for the evaluation metric.
-     */
-    labels?: {[key: string]: string} | null;
-    /**
-     * Optional. The metric configuration. Only LLMMetric and CustomCodeExecutionMetric are supported.
-     */
-    metric?: Schema$GoogleCloudAiplatformV1Metric;
-    /**
-     * Identifier. The resource name of the EvaluationMetric. Format: `projects/{project\}/locations/{location\}/evaluationMetrics/{evaluation_metric\}`
-     */
-    name?: string | null;
-    /**
-     * Output only. The time when the EvaluationMetric was last updated.
-     */
-    updateTime?: string | null;
-  }
-  /**
    * Config for parsing LLM responses. It can be used to parse the LLM response to be evaluated, or the LLM response from LLM-based metrics/Autoraters.
    */
   export interface Schema$GoogleCloudAiplatformV1EvaluationParserConfig {
@@ -5598,10 +5113,6 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1EvaluationPrompt {
     /**
-     * Optional. Represents the complete execution trace of a multi-turn conversation, which can involve single or multiple agents. This serves as the input context for agent scraping.
-     */
-    agentData?: Schema$GoogleCloudAiplatformV1AgentData;
-    /**
      * Prompt template data.
      */
     promptTemplateData?: Schema$GoogleCloudAiplatformV1EvaluationPromptPromptTemplateData;
@@ -5609,10 +5120,6 @@ export namespace aiplatform_v1 {
      * Text prompt.
      */
     text?: string | null;
-    /**
-     * Optional. The generated user scenario used to drive multi-turn agent running results.
-     */
-    userScenario?: Schema$GoogleCloudAiplatformV1EvaluationPromptUserScenario;
     /**
      * Fields and values that can be used to populate the prompt template.
      */
@@ -5626,19 +5133,6 @@ export namespace aiplatform_v1 {
      * The values for fields in the prompt template.
      */
     values?: {[key: string]: Schema$GoogleCloudAiplatformV1Content} | null;
-  }
-  /**
-   * User scenario to help simulate multi-turn agent running results.
-   */
-  export interface Schema$GoogleCloudAiplatformV1EvaluationPromptUserScenario {
-    /**
-     * Required. The plan for the conversation, used to drive the multi-turn agent run and generate the simulated agent evaluation dataset.
-     */
-    conversationPlan?: string | null;
-    /**
-     * Required. The prompt that starts the conversation between the simulated user and the agent under test.
-     */
-    startingPrompt?: string | null;
   }
   /**
    * A single evaluation request supporting input for both single-turn model generation and multi-turn agent execution traces. Valid input modes: 1. Inference Mode: `prompt` is set (containing text or AgentData context). 2. Offline Eval Mode: `prompt` is unset, and `candidate_responses` contains `agent_data` (the completed execution trace). Validation Rule: Either `prompt` must be set, OR at least one of the `candidate_responses` must contain `agent_data`.
@@ -5801,17 +5295,9 @@ export namespace aiplatform_v1 {
      */
     autoraterConfig?: Schema$GoogleCloudAiplatformV1EvaluationRunEvaluationConfigAutoraterConfig;
     /**
-     * Optional. Configuration for exporting evaluation results to Cloud Logging.
-     */
-    cloudLoggingConfig?: Schema$GoogleCloudAiplatformV1CloudLoggingConfig;
-    /**
      * Optional. Specifications for custom dataset-level aggregations.
      */
     datasetCustomMetrics?: Schema$GoogleCloudAiplatformV1DatasetCustomMetric[];
-    /**
-     * Optional. Specifications for loss analysis. Each config can be specified for one metric.
-     */
-    lossAnalysisConfig?: Schema$GoogleCloudAiplatformV1LossAnalysisConfig[];
     /**
      * Optional. The metrics to be calculated in the evaluation run. Required when analysis_configs is not set.
      */
@@ -5881,10 +5367,6 @@ export namespace aiplatform_v1 {
      */
     agentRunConfig?: Schema$GoogleCloudAiplatformV1EvaluationRunInferenceConfigAgentRunConfig;
     /**
-     * Optional. Contains the static configurations for each agent in the system. Key: agent_id (matches the `author` field in events). Value: The static configuration of the agent.
-     */
-    agents?: {[key: string]: Schema$GoogleCloudAiplatformV1AgentConfig} | null;
-    /**
      * Optional. Generation config.
      */
     generationConfig?: Schema$GoogleCloudAiplatformV1GenerationConfig;
@@ -5896,10 +5378,6 @@ export namespace aiplatform_v1 {
      * Optional. The parallelism of the evaluation run for the inference step. If not specified, the default parallelism will be used.
      */
     parallelism?: number | null;
-    /**
-     * Optional. The prompt template used for inference. The values for variables in the prompt template are defined in EvaluationItem.EvaluationPrompt.PromptTemplateData.values. If not specified, the prompt template in the EvaluationConfig will be used.
-     */
-    promptTemplate?: Schema$GoogleCloudAiplatformV1EvaluationRunEvaluationConfigPromptTemplate;
   }
   /**
    * Configuration for Agent Run.
@@ -6108,12 +5586,6 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1EvaluationSet {
     /**
-     * Optional. Static configurations for each agent associated with the items in this set. Key: `agent_id` (matches the `author` field in `events`). Value: The static configuration of the agent.
-     */
-    agentConfigs?: {
-      [key: string]: Schema$GoogleCloudAiplatformV1AgentConfig;
-    } | null;
-    /**
      * Output only. Timestamp when this item was created.
      */
     createTime?: string | null;
@@ -6121,10 +5593,6 @@ export namespace aiplatform_v1 {
      * Required. The display name of the EvaluationSet.
      */
     displayName?: string | null;
-    /**
-     * Optional. Customer-managed encryption key spec for this EvaluationSet. If set, this EvaluationSet and its sub-resources will be secured by this key.
-     */
-    encryptionSpec?: Schema$GoogleCloudAiplatformV1EncryptionSpec;
     /**
      * Required. The EvaluationItems that are part of this dataset.
      */
@@ -8419,43 +7887,6 @@ export namespace aiplatform_v1 {
     inlineData?: Schema$GoogleCloudAiplatformV1FunctionResponseBlob;
   }
   /**
-   * Configuration for a single gateway.
-   */
-  export interface Schema$GoogleCloudAiplatformV1GatewayConfig {
-    /**
-     * Optional. Additional consumer projects permitted to attach their own PSC endpoint to this gateway's ServiceAttachment. This is the "decoupled" mode, where the customer creates the PSC endpoint in a project other than this gateway's `network` project. Each listed project is VPC-SC enforced: it must be within the caller's service perimeter. The owning SemanticGovernancePolicyEngine's own project is always permitted implicitly and need not be listed. Format: project ID or number.
-     */
-    allowedProjects?: string[] | null;
-    /**
-     * Output only. The fully qualified record name of the created A-record in Cloud DNS.
-     */
-    dnsRecord?: string | null;
-    /**
-     * Optional. FQDN of the private DNS zone to create DNS record set for PSC endpoint.
-     */
-    dnsZoneName?: string | null;
-    /**
-     * Output only. The private IP address of the PSC endpoint.
-     */
-    ipAddress?: string | null;
-    /**
-     * Optional. The URI of the network resource where PSC-E will be provisioned. if not provided `default` network will be used. Format: projects/{project\}/global/networks/{network\}
-     */
-    network?: string | null;
-    /**
-     * Output only. The self-link or name of the Private Service Connect endpoint forwarding rule.
-     */
-    pscEndpoint?: string | null;
-    /**
-     * Output only. The state of the Gateway configuration.
-     */
-    state?: string | null;
-    /**
-     * Optional. The URI of the subnetwork resource where PSC-E will be provisioned. if not provided `default` subnet will be used from the same {location\} Format: projects/{project\}/regions/{region\}/subnetworks/{subnetwork\}
-     */
-    subnetwork?: string | null;
-  }
-  /**
    * The Google Cloud Storage location where the output is to be written to.
    */
   export interface Schema$GoogleCloudAiplatformV1GcsDestination {
@@ -8718,32 +8149,6 @@ export namespace aiplatform_v1 {
     generatedRubrics?: Schema$GoogleCloudAiplatformV1Rubric[];
   }
   /**
-   * Request message for EvaluationAnalyticsService.GenerateLossClusters.
-   */
-  export interface Schema$GoogleCloudAiplatformV1GenerateLossClustersRequest {
-    /**
-     * Required. Configuration for the analysis algorithm. Analysis for multiple metrics and multiple candidates could be specified.
-     */
-    configs?: Schema$GoogleCloudAiplatformV1LossAnalysisConfig[];
-    /**
-     * Reference to a persisted EvaluationSet. The service will read items from this set.
-     */
-    evaluationSet?: string | null;
-    /**
-     * Inline evaluation results. Useful for ephemeral analysis in notebooks/SDKs where data isn't persisted.
-     */
-    inlineResults?: Schema$GoogleCloudAiplatformV1GenerateLossClustersRequestEvaluationResultList;
-  }
-  /**
-   * A wrapper to allow providing a list of items inline.
-   */
-  export interface Schema$GoogleCloudAiplatformV1GenerateLossClustersRequestEvaluationResultList {
-    /**
-     * Required. The list of evaluation results to analyze.
-     */
-    evaluationResults?: Schema$GoogleCloudAiplatformV1EvaluationResult[];
-  }
-  /**
    * Request message for MemoryBankService.GenerateMemories. Maximum size is 8 MB.
    */
   export interface Schema$GoogleCloudAiplatformV1GenerateMemoriesRequest {
@@ -8886,36 +8291,6 @@ export namespace aiplatform_v1 {
     syntheticExamples?: Schema$GoogleCloudAiplatformV1SyntheticExample[];
   }
   /**
-   * Request message for DataFoundryService.GenerateUserScenarios.
-   */
-  export interface Schema$GoogleCloudAiplatformV1GenerateUserScenariosRequest {
-    /**
-     * Optional. A map containing the static configurations for each agent in the system. Key: agent_id (matches the `author` field in events). Value: The static configuration of the agent. Required unless `gemini_agent_config` is set, in which case the agents map and `root_agent_id` are derived from the referenced Gemini Agent.
-     */
-    agents?: {[key: string]: Schema$GoogleCloudAiplatformV1AgentConfig} | null;
-    /**
-     * Optional. Allows the scenario generation to use cross region models. When this flag is set, the service may route traffic to other regions if a model is unavailable in the current region (e.g., to a `global` endpoint). If a fully-qualified model endpoint resource name with a different region than the request location is provided elsewhere in the request, this flag must be set to true or the request will fail.
-     */
-    allowCrossRegionModel?: boolean | null;
-    /**
-     * Optional. The agent id to identify the root agent. Required unless `gemini_agent_config` is set, in which case it is derived from the referenced Gemini Agent.
-     */
-    rootAgentId?: string | null;
-    /**
-     * Required. Configuration for generating user scenarios.
-     */
-    userScenarioGenerationConfig?: Schema$GoogleCloudAiplatformV1UserScenarioGenerationConfig;
-  }
-  /**
-   * Response message for DataFoundryService.GenerateUserScenarios.
-   */
-  export interface Schema$GoogleCloudAiplatformV1GenerateUserScenariosResponse {
-    /**
-     * The generated user scenarios used to simulate multi-turn agent running results and agent evaluation.
-     */
-    userScenarios?: Schema$GoogleCloudAiplatformV1UserScenario[];
-  }
-  /**
    * Generate video response.
    */
   export interface Schema$GoogleCloudAiplatformV1GenerateVideoResponse {
@@ -8962,10 +8337,6 @@ export namespace aiplatform_v1 {
      */
     audioTimestamp?: boolean | null;
     /**
-     * Optional. Config for audio transcription (speech recognition).
-     */
-    audioTranscriptionConfig?: Schema$GoogleCloudAiplatformV1AudioTranscriptionConfig;
-    /**
      * Optional. The number of candidate responses to generate. A higher `candidate_count` can provide more options to choose from, but it also consumes more resources. This can be useful for generating a variety of responses and selecting the best one.
      */
     candidateCount?: number | null;
@@ -8978,7 +8349,7 @@ export namespace aiplatform_v1 {
      */
     frequencyPenalty?: number | null;
     /**
-     * Optional. Config for image generation features. Deprecated: Use `response_format.image` instead.
+     * Optional. Config for image generation features.
      */
     imageConfig?: Schema$GoogleCloudAiplatformV1ImageConfig;
     /**
@@ -8998,11 +8369,7 @@ export namespace aiplatform_v1 {
      */
     presencePenalty?: number | null;
     /**
-     * Optional. New response format field for the model to configure output formatting and delivery.
-     */
-    responseFormat?: Schema$GoogleCloudAiplatformV1ResponseFormat[];
-    /**
-     * Optional. When this field is set, response_schema must be omitted and response_mime_type must be set to `application/json`. Deprecated: Use `response_format` instead.
+     * Optional. When this field is set, response_schema must be omitted and response_mime_type must be set to `application/json`.
      */
     responseJsonSchema?: any | null;
     /**
@@ -9010,7 +8377,7 @@ export namespace aiplatform_v1 {
      */
     responseLogprobs?: boolean | null;
     /**
-     * Optional. The IANA standard MIME type of the response. The model will generate output that conforms to this MIME type. Supported values include 'text/plain' (default) and 'application/json'. The model needs to be prompted to output the appropriate response type, otherwise the behavior is undefined. Deprecated: Use `response_format` instead.
+     * Optional. The IANA standard MIME type of the response. The model will generate output that conforms to this MIME type. Supported values include 'text/plain' (default) and 'application/json'. The model needs to be prompted to output the appropriate response type, otherwise the behavior is undefined.
      */
     responseMimeType?: string | null;
     /**
@@ -9018,7 +8385,7 @@ export namespace aiplatform_v1 {
      */
     responseModalities?: string[] | null;
     /**
-     * Optional. Lets you to specify a schema for the model's response, ensuring that the output conforms to a particular structure. This is useful for generating structured data such as JSON. The schema is a subset of the [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema) object. When this field is set, you must also set the `response_mime_type` to `application/json`. Deprecated: Use `response_format` instead.
+     * Optional. Lets you to specify a schema for the model's response, ensuring that the output conforms to a particular structure. This is useful for generating structured data such as JSON. The schema is a subset of the [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema) object. When this field is set, you must also set the `response_mime_type` to `application/json`.
      */
     responseSchema?: Schema$GoogleCloudAiplatformV1Schema;
     /**
@@ -9155,7 +8522,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1GoogleMaps {
     /**
-     * Optional. Deprecated: The Google Maps contextual widget behavior in Grounding with Google Maps is being deprecated; this field is planned for removal and no longer has any effect once removed. If true, include the widget context token in the response.
+     * Optional. If true, include the widget context token in the response.
      */
     enableWidget?: boolean | null;
   }
@@ -9381,7 +8748,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1GroundingMetadata {
     /**
-     * Optional. Output only. Deprecated: The Google Maps contextual widget behavior in Grounding with Google Maps is being deprecated; this field is planned for removal and will no longer be populated once removed. A token that can be used to render a Google Maps widget with the contextual data. This field is populated only when the grounding source is Google Maps.
+     * Optional. Output only. A token that can be used to render a Google Maps widget with the contextual data. This field is populated only when the grounding source is Google Maps.
      */
     googleMapsWidgetContextToken?: string | null;
     /**
@@ -9400,10 +8767,6 @@ export namespace aiplatform_v1 {
      * Optional. Output only. Metadata related to the retrieval grounding source.
      */
     retrievalMetadata?: Schema$GoogleCloudAiplatformV1RetrievalMetadata;
-    /**
-     * Optional. The queries that were executed by the retrieval tools. This field is populated only when the grounding source is a retrieval tool, such as Vertex AI Search.
-     */
-    retrievalQueries?: string[] | null;
     /**
      * Optional. A web search entry point that can be used to display search results. This field is populated only when the grounding source is Google Search.
      */
@@ -9576,27 +8939,6 @@ export namespace aiplatform_v1 {
     mimeType?: string | null;
   }
   /**
-   * Configuration for image-specific output formatting.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ImageResponseFormat {
-    /**
-     * Optional. The aspect ratio for the image output.
-     */
-    aspectRatio?: string | null;
-    /**
-     * Optional. Delivery mode for the generated content.
-     */
-    delivery?: string | null;
-    /**
-     * Optional. The size of the image output.
-     */
-    imageSize?: string | null;
-    /**
-     * Optional. The MIME type of the image output.
-     */
-    mimeType?: string | null;
-  }
-  /**
    * Describes the location from where we import data into a Dataset, together with the labels that will be applied to the DataItems and the Annotations.
    */
   export interface Schema$GoogleCloudAiplatformV1ImportDataConfig {
@@ -9639,116 +8981,6 @@ export namespace aiplatform_v1 {
    * Response message for DatasetService.ImportData.
    */
   export interface Schema$GoogleCloudAiplatformV1ImportDataResponse {}
-  /**
-   * Request message for EvaluationManagementService.ImportEvaluationSet.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ImportEvaluationSetRequest {
-    /**
-     * Source for loading Agent Engine sessions.
-     */
-    agentEngineSource?: Schema$GoogleCloudAiplatformV1ImportEvaluationSetRequestAgentEngineSource;
-    /**
-     * BigQuery source with column mappings.
-     */
-    bigquerySource?: Schema$GoogleCloudAiplatformV1BigQueryRequestSet;
-    /**
-     * Source for loading data directly from Cloud Trace.
-     */
-    cloudTraceSource?: Schema$GoogleCloudAiplatformV1ImportEvaluationSetRequestCloudTraceSource;
-    /**
-     * Required. The EvaluationSet to create. Used to specify 'display_name' and 'metadata'. The 'evaluation_items' field is ignored and populated by the import process.
-     */
-    evaluationSet?: Schema$GoogleCloudAiplatformV1EvaluationSet;
-    /**
-     * Required. The Cloud Storage location where the resulting EvaluationItem payloads will be stored.
-     */
-    gcsDestination?: Schema$GoogleCloudAiplatformV1GcsDestination;
-    /**
-     * Google Cloud Storage location.
-     */
-    gcsSource?: Schema$GoogleCloudAiplatformV1ImportEvaluationSetRequestGcsSource;
-    /**
-     * Inline source for small payloads (< 4MB).
-     */
-    inlineSource?: Schema$GoogleCloudAiplatformV1ImportEvaluationSetRequestInlineSource;
-  }
-  /**
-   * Source for loading Agent Engine sessions.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ImportEvaluationSetRequestAgentEngineSource {
-    /**
-     * Required. Location for the Agent Engine sessions.
-     */
-    location?: string | null;
-    /**
-     * Required. Project ID for the Agent Engine sessions.
-     */
-    projectId?: string | null;
-    /**
-     * Required. Reasoning Engine ID for the Agent Engine sessions.
-     */
-    reasoningEngineId?: string | null;
-    /**
-     * Required. Session IDs for the Agent Engine sessions to retrieve.
-     */
-    sessionIds?: string[] | null;
-  }
-  /**
-   * Source for loading traces directly from Cloud Trace.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ImportEvaluationSetRequestCloudTraceSource {
-    /**
-     * Required. Project ID for the Cloud Trace.
-     */
-    projectId?: string | null;
-    /**
-     * Optional. Session IDs to import traces for. If both trace_ids and session_ids are specified, the union of the two will be imported.
-     */
-    sessionIds?: string[] | null;
-    /**
-     * Optional. Trace IDs to import.
-     */
-    traceIds?: string[] | null;
-  }
-  /**
-   * Source for loading data from Cloud Storage.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ImportEvaluationSetRequestGcsSource {
-    /**
-     * Required. The Cloud Storage location of the input data.
-     */
-    gcsUri?: string | null;
-    /**
-     * Required. Schema configuration for the input data.
-     */
-    importSchemaConfig?: Schema$GoogleCloudAiplatformV1ImportEvaluationSetRequestImportSchemaConfig;
-  }
-  /**
-   * Configuration for the input data format.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ImportEvaluationSetRequestImportSchemaConfig {
-    /**
-     * Required. The format of the input data.
-     */
-    dataFormat?: string | null;
-    /**
-     * Optional. Version of the data format.
-     */
-    dataFormatVersion?: string | null;
-  }
-  /**
-   * Wrapper for inline data.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ImportEvaluationSetRequestInlineSource {
-    /**
-     * Required. The content of the inline data.
-     */
-    content?: string | null;
-    /**
-     * Required. Schema configuration for the inline data.
-     */
-    importSchemaConfig?: Schema$GoogleCloudAiplatformV1ImportEvaluationSetRequestImportSchemaConfig;
-  }
   /**
    * Details of operations that perform import Feature values.
    */
@@ -10193,83 +9425,6 @@ export namespace aiplatform_v1 {
     vectorsCount?: string | null;
   }
   /**
-   * Request message for MemoryBankService.IngestEvents.
-   */
-  export interface Schema$GoogleCloudAiplatformV1IngestEventsRequest {
-    /**
-     * Ingest events directly from the request.
-     */
-    directContentsSource?: Schema$GoogleCloudAiplatformV1IngestionDirectContentsSource;
-    /**
-     * Optional. If true, no revisions will be created for this request.
-     */
-    disableMemoryRevisions?: boolean | null;
-    /**
-     * Optional. Forces a flush of all pending events in the stream and triggers memory generation immediately bypassing any conditions configured in the `generation_trigger_config`.
-     */
-    forceFlush?: boolean | null;
-    /**
-     * Optional. Configuration for triggering memory generation from this ingestion. If not set, then the stream will be force flushed immediately.
-     */
-    generationTriggerConfig?: Schema$GoogleCloudAiplatformV1MemoryGenerationTriggerConfig;
-    /**
-     * Optional. User-provided metadata for the generated memories. This is not generated by Memory Bank.
-     */
-    metadata?: {
-      [key: string]: Schema$GoogleCloudAiplatformV1MemoryMetadataValue;
-    } | null;
-    /**
-     * Optional. The strategy to use when applying metadata to existing memories.
-     */
-    metadataMergeStrategy?: string | null;
-    /**
-     * Optional. Timestamp of when the revision is considered expired. If not set, the memory revision will be kept until manually deleted.
-     */
-    revisionExpireTime?: string | null;
-    /**
-     * Optional. Labels to be applied to the generated memory revisions. For example, you can use this to label a revision with its data source.
-     */
-    revisionLabels?: {[key: string]: string} | null;
-    /**
-     * Optional. The TTL for the revision. The expiration time is computed: now + TTL.
-     */
-    revisionTtl?: string | null;
-    /**
-     * Required. The scope of the memories that should be generated from the stream. Memories will be consolidated across memories with the same scope. Scope values cannot contain the wildcard character '*'.
-     */
-    scope?: {[key: string]: string} | null;
-    /**
-     * Optional. The ID of the stream to ingest events into. If not provided, a new one will be created.
-     */
-    streamId?: string | null;
-  }
-  /**
-   * Ingest events directly from the request.
-   */
-  export interface Schema$GoogleCloudAiplatformV1IngestionDirectContentsSource {
-    /**
-     * Required. The events to ingest.
-     */
-    events?: Schema$GoogleCloudAiplatformV1IngestionDirectContentsSourceEvent[];
-  }
-  /**
-   * A single event to ingest.
-   */
-  export interface Schema$GoogleCloudAiplatformV1IngestionDirectContentsSourceEvent {
-    /**
-     * Required. The content of the event.
-     */
-    content?: Schema$GoogleCloudAiplatformV1Content;
-    /**
-     * Optional. A unique identifier for the event. If an event with the same event_id is ingested multiple times, it will be de-duplicated.
-     */
-    eventId?: string | null;
-    /**
-     * Optional. The time at which the event occurred. If provided, this timestamp will be used for ordering events within a stream. If not provided, the server-side ingestion time will be used.
-     */
-    eventTime?: string | null;
-  }
-  /**
    * Specifies Vertex AI owned input data to be used for training, and possibly evaluating, the Model.
    */
   export interface Schema$GoogleCloudAiplatformV1InputDataConfig {
@@ -10465,19 +9620,6 @@ export namespace aiplatform_v1 {
     executions?: Schema$GoogleCloudAiplatformV1Execution[];
   }
   /**
-   * Response message for AgentService.ListAgents.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ListAgentsResponse {
-    /**
-     * The agents matching the request.
-     */
-    agents?: Schema$GoogleCloudAiplatformV1Agent[];
-    /**
-     * A token to retrieve the next page of results. Pass this value as ListAgentsRequest.page_token in a subsequent call.
-     */
-    nextPageToken?: string | null;
-  }
-  /**
    * Response message for DatasetService.ListAnnotations.
    */
   export interface Schema$GoogleCloudAiplatformV1ListAnnotationsResponse {
@@ -10654,19 +9796,6 @@ export namespace aiplatform_v1 {
      * List of EvaluationItems in the requested page.
      */
     evaluationItems?: Schema$GoogleCloudAiplatformV1EvaluationItem[];
-    /**
-     * A token to retrieve the next page of results.
-     */
-    nextPageToken?: string | null;
-  }
-  /**
-   * Response message for EvaluationMetricService.ListEvaluationMetrics.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ListEvaluationMetricsResponse {
-    /**
-     * List of EvaluationMetrics in the requested page.
-     */
-    evaluationMetrics?: Schema$GoogleCloudAiplatformV1EvaluationMetric[];
     /**
      * A token to retrieve the next page of results.
      */
@@ -11037,19 +10166,6 @@ export namespace aiplatform_v1 {
     notebookRuntimeTemplates?: Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate[];
   }
   /**
-   * Response message for ListOnlineEvaluators.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ListOnlineEvaluatorsResponse {
-    /**
-     * A token to retrieve the next page. Absence of this field indicates there are no subsequent pages.
-     */
-    nextPageToken?: string | null;
-    /**
-     * A list of OnlineEvaluators matching the request.
-     */
-    onlineEvaluators?: Schema$GoogleCloudAiplatformV1OnlineEvaluator[];
-  }
-  /**
    * Request message for VizierService.ListOptimalTrials.
    */
   export interface Schema$GoogleCloudAiplatformV1ListOptimalTrialsRequest {}
@@ -11188,19 +10304,6 @@ export namespace aiplatform_v1 {
      * List of Schedules in the requested page.
      */
     schedules?: Schema$GoogleCloudAiplatformV1Schedule[];
-  }
-  /**
-   * Response message for SemanticGovernancePolicyService.ListSemanticGovernancePolicies.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ListSemanticGovernancePoliciesResponse {
-    /**
-     * A token to retrieve the next page of results. Pass to ListSemanticGovernancePoliciesRequest.page_token to obtain that page.
-     */
-    nextPageToken?: string | null;
-    /**
-     * The list of SemanticGovernancePolicies.
-     */
-    semanticGovernancePolicies?: Schema$GoogleCloudAiplatformV1SemanticGovernancePolicy[];
   }
   /**
    * Response message for SessionService.ListSessions.
@@ -11418,19 +10521,6 @@ export namespace aiplatform_v1 {
     displayName?: string | null;
   }
   /**
-   * Configuration for the loss analysis job.
-   */
-  export interface Schema$GoogleCloudAiplatformV1LossAnalysisConfig {
-    /**
-     * Required. The candidate model/agent to analyze (e.g., "gemini-3.0-pro"). This targets the specific CandidateResult within the EvaluationResult.
-     */
-    candidate?: string | null;
-    /**
-     * Required. The metric to analyze (e.g., "tool_use_quality"). This filters the EvaluationItems in the EvalSet to only those where EvaluationResult.metric matches this value.
-     */
-    metric?: string | null;
-  }
-  /**
    * Represents a mount configuration for Lustre file system.
    */
   export interface Schema$GoogleCloudAiplatformV1LustreMount {
@@ -11456,7 +10546,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1MachineSpec {
     /**
-     * The number of accelerators to attach to the machine. For [accelerator optimized machine types](https://cloud.google.com/compute/docs/accelerator-optimized-machines), One may set the accelerator_count from 1 to N for machine with N GPUs. If accelerator_count is less than or equal to N / 2, Agent Platform co-schedules the replicas of the model into the same VM to save cost. For example, if the machine type is a3-highgpu-8g, which has 8 H100 GPUs, one can set accelerator_count to 1 to 8. If accelerator_count is 1, 2, 3, or 4, Agent Platform co-schedules 8, 4, 2, or 2 replicas of the model into the same VM to save cost. When co-scheduling, CPU, memory and storage on the VM will be distributed to replicas on the VM. For example, one can expect a co-scheduled replica requesting 2 GPUs out of a 8-GPU VM will receive 25% of the CPU, memory and storage of the VM. Note that the feature is not compatible with multihost_gpu_node_count. When multihost_gpu_node_count is set, the co-scheduling will not be enabled.
+     * The number of accelerators to attach to the machine. For accelerator optimized machine types (https://cloud.google.com/compute/docs/accelerator-optimized-machines), One may set the accelerator_count from 1 to N for machine with N GPUs. If accelerator_count is less than or equal to N / 2, Vertex will co-schedule the replicas of the model into the same VM to save cost. For example, if the machine type is a3-highgpu-8g, which has 8 H100 GPUs, one can set accelerator_count to 1 to 8. If accelerator_count is 1, 2, 3, or 4, Vertex will co-schedule 8, 4, 2, or 2 replicas of the model into the same VM to save cost. When co-scheduling, CPU, memory and storage on the VM will be distributed to replicas on the VM. For example, one can expect a co-scheduled replica requesting 2 GPUs out of a 8-GPU VM will receive 25% of the CPU, memory and storage of the VM. Note that the feature is not compatible with multihost_gpu_node_count. When multihost_gpu_node_count is set, the co-scheduling will not be enabled.
      */
     acceleratorCount?: number | null;
     /**
@@ -11468,7 +10558,7 @@ export namespace aiplatform_v1 {
      */
     gpuPartitionSize?: string | null;
     /**
-     * Immutable. The type of the machine. See the [list of machine types supported for prediction](https://cloud.google.com/gemini-enterprise-agent-platform/machine-learning/predictions/configure-compute#machine-types) See the [list of machine types supported for custom training](https://cloud.google.com/gemini-enterprise-agent-platform/machine-learning/training/configure-compute#machine-types). For DeployedModel this field is optional, and the default value is `n1-standard-2`. For BatchPredictionJob or as part of WorkerPoolSpec this field is required.
+     * Immutable. The type of the machine. See the [list of machine types supported for prediction](https://cloud.google.com/vertex-ai/docs/predictions/configure-compute#machine-types) See the [list of machine types supported for custom training](https://cloud.google.com/vertex-ai/docs/training/configure-compute#machine-types). For DeployedModel this field is optional, and the default value is `n1-standard-2`. For BatchPredictionJob or as part of WorkerPoolSpec this field is required.
      */
     machineType?: string | null;
     /**
@@ -11758,10 +10848,6 @@ export namespace aiplatform_v1 {
      * Optional. Specifies to trigger generation if the stream is inactive for the specified duration after the most recent event. The duration must have a minute-level granularity.
      */
     idleDuration?: string | null;
-    /**
-     * Optional. Re-include the last N already-processed events in the next window.
-     */
-    overlapEventCount?: number | null;
   }
   /**
    * Memory metadata.
@@ -12340,7 +11426,7 @@ export namespace aiplatform_v1 {
      */
     checkpoints?: Schema$GoogleCloudAiplatformV1Checkpoint[];
     /**
-     * The specification of the container that is to be used when deploying this Model. The specification is ingested upon ModelService.UploadModel, and all binaries it contains are copied and stored internally by Vertex AI. Not required for AutoML Models.
+     * Input only. The specification of the container that is to be used when deploying this Model. The specification is ingested upon ModelService.UploadModel, and all binaries it contains are copied and stored internally by Vertex AI. Not required for AutoML Models.
      */
     containerSpec?: Schema$GoogleCloudAiplatformV1ModelContainerSpec;
     /**
@@ -14106,147 +13192,6 @@ export namespace aiplatform_v1 {
     postStartupScriptConfig?: Schema$GoogleCloudAiplatformV1PostStartupScriptConfig;
   }
   /**
-   * An OnlineEvaluator contains the configuration for an Online Evaluation.
-   */
-  export interface Schema$GoogleCloudAiplatformV1OnlineEvaluator {
-    /**
-     * Required. Immutable. The name of the agent that the OnlineEvaluator evaluates periodically. This value is used to filter the traces with a matching cloud.resource_id and link the evaluation results with relevant dashboards/UIs. This field is immutable. Once set, it cannot be changed.
-     */
-    agentResource?: string | null;
-    /**
-     * Data source for the OnlineEvaluator, based on Google Cloud Observability stack (Cloud Trace & Cloud Logging).
-     */
-    cloudObservability?: Schema$GoogleCloudAiplatformV1OnlineEvaluatorCloudObservability;
-    /**
-     * Required. Configuration for the OnlineEvaluator.
-     */
-    config?: Schema$GoogleCloudAiplatformV1OnlineEvaluatorConfig;
-    /**
-     * Output only. Timestamp when the OnlineEvaluator was created.
-     */
-    createTime?: string | null;
-    /**
-     * Optional. Human-readable name for the OnlineEvaluator. The name doesn't have to be unique. The name can consist of any UTF-8 characters. The maximum length is `63` characters. If the display name exceeds max characters, an `INVALID_ARGUMENT` error is returned.
-     */
-    displayName?: string | null;
-    /**
-     * Required. A list of metric sources to be used for evaluating samples. At least one MetricSource must be provided. Right now, only predefined metrics and registered metrics are supported. Every registered metric must have `display_name` (or `title`) and `score_range` defined. Otherwise, the evaluations will fail. The maximum number of `metric_sources` is 25.
-     */
-    metricSources?: Schema$GoogleCloudAiplatformV1MetricSource[];
-    /**
-     * Identifier. The resource name of the OnlineEvaluator. Format: projects/{project\}/locations/{location\}/onlineEvaluators/{id\}.
-     */
-    name?: string | null;
-    /**
-     * Output only. The state of the OnlineEvaluator.
-     */
-    state?: string | null;
-    /**
-     * Output only. Contains additional information about the state of the OnlineEvaluator. This is used to provide more details in the event of a failure.
-     */
-    stateDetails?: Schema$GoogleCloudAiplatformV1OnlineEvaluatorStateDetails[];
-    /**
-     * Output only. Timestamp when the OnlineEvaluator was last updated.
-     */
-    updateTime?: string | null;
-  }
-  /**
-   * Data source for the OnlineEvaluator, based on Google Cloud Observability stack (Cloud Trace & Cloud Logging).
-   */
-  export interface Schema$GoogleCloudAiplatformV1OnlineEvaluatorCloudObservability {
-    /**
-     * Optional. Optional log view that will be used to query logs. If empty, the `_Default` view will be used.
-     */
-    logView?: string | null;
-    /**
-     * Data source follows OpenTelemetry convention.
-     */
-    openTelemetry?: Schema$GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityOpenTelemetry;
-    /**
-     * Scope online evaluation to single traces.
-     */
-    traceScope?: Schema$GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScope;
-    /**
-     * Optional. Optional trace view that will be used to query traces. If empty, the `_Default` view will be used. NOTE: This field is not supported yet and will be ignored if set.
-     */
-    traceView?: string | null;
-  }
-  /**
-   * Defines a predicate for filtering based on a numeric value.
-   */
-  export interface Schema$GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate {
-    /**
-     * Required. The comparison operator to apply.
-     */
-    comparisonOperator?: string | null;
-    /**
-     * Required. The value to compare against.
-     */
-    value?: number | null;
-  }
-  /**
-   * Configuration for data source following OpenTelemetry.
-   */
-  export interface Schema$GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityOpenTelemetry {
-    /**
-     * Required. Defines which version OTel Semantic Convention the data follows. Can be "1.39.0" or newer.
-     */
-    semconvVersion?: string | null;
-  }
-  /**
-   * If chosen, the online evaluator will evaluate single traces matching specified `filter`.
-   */
-  export interface Schema$GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScope {
-    /**
-     * Optional. A list of predicates to filter traces. Multiple predicates are combined using AND. The maximum number of predicates is 10.
-     */
-    filter?: Schema$GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScopePredicate[];
-  }
-  /**
-   * Defines a single filter predicate.
-   */
-  export interface Schema$GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScopePredicate {
-    /**
-     * Filter on the duration of a trace.
-     */
-    duration?: Schema$GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate;
-    /**
-     * Filter on the total token usage within a trace.
-     */
-    totalTokenUsage?: Schema$GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate;
-  }
-  /**
-   * Configuration for sampling behavior of the OnlineEvaluator. The OnlineEvaluator runs at a fixed interval of 10 minutes.
-   */
-  export interface Schema$GoogleCloudAiplatformV1OnlineEvaluatorConfig {
-    /**
-     * Optional. The maximum number of evaluations to perform per run. If set to 0, the number is unbounded.
-     */
-    maxEvaluatedSamplesPerRun?: string | null;
-    /**
-     * Random sampling method.
-     */
-    randomSampling?: Schema$GoogleCloudAiplatformV1OnlineEvaluatorConfigRandomSampling;
-  }
-  /**
-   * Configuration for random sampling.
-   */
-  export interface Schema$GoogleCloudAiplatformV1OnlineEvaluatorConfigRandomSampling {
-    /**
-     * Required. The percentage of traces to sample for evaluation. Must be an integer between `1` and `100`.
-     */
-    percentage?: number | null;
-  }
-  /**
-   * Contains additional information about the state of the OnlineEvaluator.
-   */
-  export interface Schema$GoogleCloudAiplatformV1OnlineEvaluatorStateDetails {
-    /**
-     * Output only. Human-readable message describing the state of the OnlineEvaluator.
-     */
-    message?: string | null;
-  }
-  /**
    * Config for evaluation output.
    */
   export interface Schema$GoogleCloudAiplatformV1OutputConfig {
@@ -14490,10 +13435,6 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1Part {
     /**
-     * Optional. Audio (input or output) transcription. This is only set when this Part contains audio data.
-     */
-    audioTranscription?: Schema$GoogleCloudAiplatformV1AudioTranscription;
-    /**
      * Optional. The result of executing the ExecutableCode.
      */
     codeExecutionResult?: Schema$GoogleCloudAiplatformV1CodeExecutionResult;
@@ -14581,15 +13522,11 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1PauseModelDeploymentMonitoringJobRequest {}
   /**
-   * Request message for SandboxEnvironmentService.PauseSandboxEnvironment.
-   */
-  export interface Schema$GoogleCloudAiplatformV1PauseSandboxEnvironmentRequest {}
-  /**
    * Request message for ScheduleService.PauseSchedule.
    */
   export interface Schema$GoogleCloudAiplatformV1PauseScheduleRequest {}
   /**
-   * Represents the spec of persistent disk and hyperdisk options.
+   * Represents the spec of persistent disk options.
    */
   export interface Schema$GoogleCloudAiplatformV1PersistentDiskSpec {
     /**
@@ -14597,7 +13534,7 @@ export namespace aiplatform_v1 {
      */
     diskSizeGb?: string | null;
     /**
-     * Type of the disk (default is "pd-standard"). Valid values: "pd-ssd" (Persistent Disk Solid State Drive) "pd-standard" (Persistent Disk Hard Disk Drive) "pd-balanced" (Balanced Persistent Disk) "pd-extreme" (Extreme Persistent Disk) "hyperdisk-balanced" (Hyperdisk Balanced) "hyperdisk-extreme" (Hyperdisk Extreme) "hyperdisk-balanced-high-availability" (Hyperdisk Balanced High Availability) "hyperdisk-ml" (Hyperdisk ML) "hyperdisk-throughput" (Hyperdisk Throughput)
+     * Type of the disk (default is "pd-standard"). Valid values: "pd-ssd" (Persistent Disk Solid State Drive) "pd-standard" (Persistent Disk Hard Disk Drive) "pd-balanced" (Balanced Persistent Disk) "pd-extreme" (Extreme Persistent Disk)
      */
     diskType?: string | null;
   }
@@ -17104,10 +16041,6 @@ export namespace aiplatform_v1 {
      */
     agentFramework?: string | null;
     /**
-     * Optional. Configuration for building container image.
-     */
-    buildSpec?: Schema$GoogleCloudAiplatformV1ReasoningEngineSpecBuildSpec;
-    /**
      * Optional. Declarations for object class methods in OpenAPI specification format.
      */
     classMethods?: Array<{[key: string]: any}> | null;
@@ -17141,19 +16074,6 @@ export namespace aiplatform_v1 {
     sourceCodeSpec?: Schema$GoogleCloudAiplatformV1ReasoningEngineSpecSourceCodeSpec;
   }
   /**
-   * Specification for building container image.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ReasoningEngineSpecBuildSpec {
-    /**
-     * Optional. The service account that Cloud Build uses to run the build. This field is only applicable when `worker_pool` is specified (i.e., for custom worker pools). If `worker_pool` is not specified, this field is ignored and the build runs using the Google-managed service agent. Format: `projects/{project\}/serviceAccounts/{service_account\}` or `{service_account\}@{project\}.iam.gserviceaccount.com`
-     */
-    serviceAccount?: string | null;
-    /**
-     * Optional. Identifier. The resource name of the Cloud Build WorkerPool to use for the build. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`
-     */
-    workerPool?: string | null;
-  }
-  /**
    * Specification for deploying from a container image.
    */
   export interface Schema$GoogleCloudAiplatformV1ReasoningEngineSpecContainerSpec {
@@ -17161,19 +16081,11 @@ export namespace aiplatform_v1 {
      * Required. The Artifact Registry Docker image URI (e.g., us-central1-docker.pkg.dev/my-project/my-repo/my-image:tag) of the container image that is to be run on each worker replica.
      */
     imageUri?: string | null;
-    /**
-     * Optional. The port the container listens on. Defaults to 8080 if unset.
-     */
-    port?: number | null;
   }
   /**
    * The specification of a Reasoning Engine deployment.
    */
   export interface Schema$GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpec {
-    /**
-     * Optional. Agent Gateway configuration for the Reasoning Engine deployment.
-     */
-    agentGatewayConfig?: Schema$GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpecAgentGatewayConfig;
     /**
      * Optional. Concurrency for each container and agent server. Recommended value: 2 * cpu + 1. Defaults to 9.
      */
@@ -17206,37 +16118,6 @@ export namespace aiplatform_v1 {
      * Optional. Environment variables where the value is a secret in Cloud Secret Manager. To use this feature, add 'Secret Manager Secret Accessor' role (roles/secretmanager.secretAccessor) to AI Platform Reasoning Engine Service Agent.
      */
     secretEnv?: Schema$GoogleCloudAiplatformV1SecretEnvVar[];
-  }
-  /**
-   * Agent Gateway configuration for a Reasoning Engine deployment.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpecAgentGatewayConfig {
-    /**
-     * Optional. Configuration for traffic originating from the Reasoning Engine. When unset, outgoing traffic is not routed through an Agent Gateway.
-     */
-    agentToAnywhereConfig?: Schema$GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpecAgentGatewayConfigAgentToAnywhereConfig;
-    /**
-     * Optional. Configuration for traffic targeting the Reasoning Engine. When unset, incoming traffic is not routed through an Agent Gateway.
-     */
-    clientToAgentConfig?: Schema$GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpecAgentGatewayConfigClientToAgentConfig;
-  }
-  /**
-   * Configuration for traffic originating from a Reasoning Engine.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpecAgentGatewayConfigAgentToAnywhereConfig {
-    /**
-     * Required. The resource name of the Agent Gateway for outbound traffic. It must be set to a Google-managed gateway whose `governed_access_path` is `AGENT_TO_ANYWHERE`. Format: `projects/{project\}/locations/{location\}/agentGateways/{agent_gateway\}`
-     */
-    agentGateway?: string | null;
-  }
-  /**
-   * Configuration for traffic targeting a Reasoning Engine.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ReasoningEngineSpecDeploymentSpecAgentGatewayConfigClientToAgentConfig {
-    /**
-     * Required. The resource name of the Agent Gateway to use for inbound traffic. It must be set to a Google-managed gateway whose `governed_access_path` is `CLIENT_TO_AGENT`. Format: `projects/{project\}/locations/{location\}/agentGateways/{agent_gateway\}`
-     */
-    agentGateway?: string | null;
   }
   /**
    * User-provided package specification, containing pickled object and package requirements.
@@ -17539,27 +16420,6 @@ export namespace aiplatform_v1 {
     replicaHours?: number | null;
   }
   /**
-   * Configuration for the model to configure output formatting and delivery.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ResponseFormat {
-    /**
-     * Audio output format.
-     */
-    audio?: Schema$GoogleCloudAiplatformV1AudioResponseFormat;
-    /**
-     * Image output format.
-     */
-    image?: Schema$GoogleCloudAiplatformV1ImageResponseFormat;
-    /**
-     * Text output format.
-     */
-    text?: Schema$GoogleCloudAiplatformV1TextResponseFormat;
-    /**
-     * Video output format.
-     */
-    video?: Schema$GoogleCloudAiplatformV1VideoResponseFormat;
-  }
-  /**
    * Runtime operation information for DatasetService.RestoreDatasetVersion.
    */
   export interface Schema$GoogleCloudAiplatformV1RestoreDatasetVersionOperationMetadata {
@@ -17572,10 +16432,6 @@ export namespace aiplatform_v1 {
    * Request message for JobService.ResumeModelDeploymentMonitoringJob.
    */
   export interface Schema$GoogleCloudAiplatformV1ResumeModelDeploymentMonitoringJobRequest {}
-  /**
-   * Request message for SandboxEnvironmentService.ResumeSandboxEnvironment.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ResumeSandboxEnvironmentRequest {}
   /**
    * Request message for ScheduleService.ResumeSchedule.
    */
@@ -18335,48 +17191,15 @@ export namespace aiplatform_v1 {
      * Required. The category of the default container image.
      */
     defaultContainerCategory?: string | null;
-    /**
-     * Optional. Resource requests and limits for the default container.
-     */
-    resources?: Schema$GoogleCloudAiplatformV1SandboxEnvironmentTemplateResourceRequirements;
   }
   /**
    * Configuration for egress control of sandbox instances.
    */
   export interface Schema$GoogleCloudAiplatformV1SandboxEnvironmentTemplateEgressControlConfig {
     /**
-     * Optional. The customer VPC network that sandbox egress is routed into.
-     */
-    customerVpcNetwork?: string | null;
-    /**
-     * Optional. DNS peering configurations that allow sandbox egress to resolve customer-internal domains via the customer VPC.
-     */
-    dnsPeeringConfigs?: Schema$GoogleCloudAiplatformV1SandboxEnvironmentTemplateEgressControlConfigDnsPeeringConfig[];
-    /**
      * Optional. Whether to allow internet access.
      */
     internetAccess?: boolean | null;
-    /**
-     * Optional. The name of the customer VPC NetworkAttachment used to draw a PSC interface IP into the customer VPC for sandbox egress.
-     */
-    networkAttachment?: string | null;
-  }
-  /**
-   * Configuration for peering a customer's private DNS zone so that sandbox egress can resolve customer-internal domains via the customer VPC.
-   */
-  export interface Schema$GoogleCloudAiplatformV1SandboxEnvironmentTemplateEgressControlConfigDnsPeeringConfig {
-    /**
-     * Required. The DNS name suffix of the zone being peered to, e.g., "my-internal-domain.corp.". Must end with a dot.
-     */
-    domain?: string | null;
-    /**
-     * Required. The VPC network name in the target_project where the DNS zone specified by 'domain' is visible.
-     */
-    targetNetwork?: string | null;
-    /**
-     * Required. The project ID hosting the Cloud DNS managed zone that contains the 'domain'. The Vertex AI Service Agent requires the dns.peer role on this project.
-     */
-    targetProject?: string | null;
   }
   /**
    * Represents a network port in a container.
@@ -21787,103 +20610,6 @@ export namespace aiplatform_v1 {
     text?: string | null;
   }
   /**
-   * Represents a governance policy applied to a specific Agent and optionally a specific Tool within that Agent.
-   */
-  export interface Schema$GoogleCloudAiplatformV1SemanticGovernancePolicy {
-    /**
-     * Required. The name of the agent in Agent Registry that is affected by this policy.
-     */
-    agent?: string | null;
-    /**
-     * Output only. Represents the principal of the agent, used by the Policy Decision Point (PDP) for governance checks. For more information, see https://docs.cloud.google.com/agent-builder/agent-engine/agent-identity Format: `principal://TRUST_DOMAIN/NAMESPACE/AGENT_NAME` Example: `principal://agents.global.org-ORGANIZATION_ID.system.id.goog/resources/aiplatform/projects/PROJECT_NUMBER/locations/LOCATION/reasoningEngines/AGENT_ENGINE_ID`
-     */
-    agentIdentity?: string | null;
-    /**
-     * Output only. Timestamp when this SemanticGovernancePolicy was created.
-     */
-    createTime?: string | null;
-    /**
-     * Optional. The description of the SemanticGovernancePolicy.
-     */
-    description?: string | null;
-    /**
-     * Optional. The user-defined name of the SemanticGovernancePolicy.
-     */
-    displayName?: string | null;
-    /**
-     * Optional. Used to perform consistent read-modify-write transactions. If provided, the request will only succeed if the etag matches the current value. Otherwise, an ABORTED error will be returned.
-     */
-    etag?: string | null;
-    /**
-     * Optional. The McpTools that are affected by this policy.
-     */
-    mcpTools?: Schema$GoogleCloudAiplatformV1SemanticGovernancePolicyMcpTool[];
-    /**
-     * Identifier. Resource name of the SemanticGovernancePolicy.
-     */
-    name?: string | null;
-    /**
-     * Required. The natural language constraint of the SemanticGovernancePolicy.
-     */
-    naturalLanguageConstraint?: string | null;
-    /**
-     * Output only. Timestamp when this SemanticGovernancePolicy was last updated.
-     */
-    updateTime?: string | null;
-  }
-  /**
-   * Define a singleton SemanticGovernancePolicyEngine resource under a project and location.
-   */
-  export interface Schema$GoogleCloudAiplatformV1SemanticGovernancePolicyEngine {
-    /**
-     * Output only. Timestamp when this SemanticGovernancePolicyEngine was created.
-     */
-    createTime?: string | null;
-    /**
-     * Optional. Configurations for gateways. The keys are user-defined names for each gateway. At most 5 gateway configurations are allowed.
-     */
-    gatewayConfigs?: {
-      [key: string]: Schema$GoogleCloudAiplatformV1GatewayConfig;
-    } | null;
-    /**
-     * Output only. The private IPv4 address of the PSC endpoint.
-     */
-    ipAddress?: string | null;
-    /**
-     * Identifier. The resource name of the SemanticGovernancePolicyEngine. Format: projects/{project\}/locations/{location\}/semanticGovernancePolicyEngine
-     */
-    name?: string | null;
-    /**
-     * Output only. The URI of the PSC endpoint resource created in customer project. Format: projects/{project\}/regions/{region\}/forwardingRules/{forwarding_rule\}
-     */
-    pscForwardingRule?: string | null;
-    /**
-     * Output only. URI of the PSC attachment resource provided by SGP. Format: projects/{project\}/regions/{region\}/serviceAttachments/{service_attachment\}
-     */
-    pscServiceAttachment?: string | null;
-    /**
-     * Output only. The state of the SemanticGovernancePolicyEngine.
-     */
-    state?: string | null;
-    /**
-     * Output only. Timestamp when this SemanticGovernancePolicyEngine was last updated.
-     */
-    updateTime?: string | null;
-  }
-  /**
-   * Represents a governance policy applied to MCP tools used by an Agent.
-   */
-  export interface Schema$GoogleCloudAiplatformV1SemanticGovernancePolicyMcpTool {
-    /**
-     * Required. The resource name of the McpServer in Agent Registry that is affected by this policy. Format: `projects/{project\}/locations/{location\}/mcpServers/{mcp_server\}`
-     */
-    mcpServer?: string | null;
-    /**
-     * Optional. The resource names of the McpTools used by the Agent that is affected by this policy. If not specified, the policy applies to all McpTools in the McpServer.
-     */
-    tools?: string[] | null;
-  }
-  /**
    * Configuration for the use of custom service account to run the workloads.
    */
   export interface Schema$GoogleCloudAiplatformV1ServiceAccountSpec {
@@ -23077,19 +21803,6 @@ export namespace aiplatform_v1 {
     validationDatasetUri?: string | null;
   }
   /**
-   * Metadata for the SuspendOnlineEvaluator operation.
-   */
-  export interface Schema$GoogleCloudAiplatformV1SuspendOnlineEvaluatorOperationMetadata {
-    /**
-     * Common part of operation metadata.
-     */
-    genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
-  }
-  /**
-   * Request message for SuspendOnlineEvaluator.
-   */
-  export interface Schema$GoogleCloudAiplatformV1SuspendOnlineEvaluatorRequest {}
-  /**
    * Request message for FeatureOnlineStoreAdminService.SyncFeatureView.
    */
   export interface Schema$GoogleCloudAiplatformV1SyncFeatureViewRequest {}
@@ -23419,19 +22132,6 @@ export namespace aiplatform_v1 {
     maxWallTime?: string | null;
   }
   /**
-   * Configuration for text-specific output formatting.
-   */
-  export interface Schema$GoogleCloudAiplatformV1TextResponseFormat {
-    /**
-     * Optional. The IANA standard MIME type of the response.
-     */
-    mimeType?: string | null;
-    /**
-     * Optional. The JSON schema that the output should conform to. Only applicable when mime_type is APPLICATION_JSON.
-     */
-    schema?: any | null;
-  }
-  /**
    * The storage details for TFRecord output content.
    */
   export interface Schema$GoogleCloudAiplatformV1TFRecordDestination {
@@ -23546,10 +22246,6 @@ export namespace aiplatform_v1 {
      */
     enterpriseWebSearch?: Schema$GoogleCloudAiplatformV1EnterpriseWebSearch;
     /**
-     * Optional. Uses Exa.ai to search for information to answer user queries. The search results will be grounded on Exa.ai and presented to the model for response generation
-     */
-    exaAiSearch?: Schema$GoogleCloudAiplatformV1ToolExaAiSearch;
-    /**
      * Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 512 function declarations can be provided.
      */
     functionDeclarations?: Schema$GoogleCloudAiplatformV1FunctionDeclaration[];
@@ -23648,10 +22344,6 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1ToolComputerUse {
     /**
-     * Optional. Enables the prompt injection detection check on computer-use request.
-     */
-    enablePromptInjectionDetection?: boolean | null;
-    /**
      * Required. The environment being operated.
      */
     environment?: string | null;
@@ -23672,19 +22364,6 @@ export namespace aiplatform_v1 {
      * Optional. Retrieval config.
      */
     retrievalConfig?: Schema$GoogleCloudAiplatformV1RetrievalConfig;
-  }
-  /**
-   * ExaAiSearch tool type. A tool that uses the Exa.ai search engine for grounding.
-   */
-  export interface Schema$GoogleCloudAiplatformV1ToolExaAiSearch {
-    /**
-     * Required. The API key for ExaAiSearch.
-     */
-    apiKey?: string | null;
-    /**
-     * Optional. This field can be used to pass any parameter from the Exa.ai Search API.
-     */
-    customConfigs?: {[key: string]: any} | null;
   }
   /**
    * GoogleSearch tool type. Tool to support Google Search in Model. Powered by Google.
@@ -23784,14 +22463,6 @@ export namespace aiplatform_v1 {
      * Optional. Custom configs for ParallelAiSearch. This field can be used to pass any parameter from the Parallel.ai Search API. See the Parallel.ai documentation for the full list of available parameters and their usage: https://docs.parallel.ai/api-reference/search-beta/search Currently only `source_policy`, `excerpts`, `max_results`, `mode`, `fetch_policy` can be set via this field. For example: { "source_policy": { "include_domains": ["google.com", "wikipedia.org"], "exclude_domains": ["example.com"] \}, "fetch_policy": { "max_age_seconds": 3600 \} \}
      */
     customConfigs?: {[key: string]: any} | null;
-    /**
-     * Optional. Deprecated: Use `enable_zero_data_retention` instead. Instructs Vertex Grounding to use Parallel's Zero Data Retention Marketplace product. If this value is "false" or omitted, the Parallel Web Search for Grounding standard subscription will be used. If this value is "true", the Parallel Web Search for Grounding - ZDR subscription will be used.
-     */
-    enableDataRetention?: boolean | null;
-    /**
-     * Optional. Instructs Vertex Grounding to use Parallel's Zero Data Retention Marketplace product. If this value is "false" or omitted, the Parallel Web Search for Grounding standard subscription will be used. If this value is "true", the Parallel Web Search for Grounding - ZDR subscription will be used.
-     */
-    enableZeroDataRetention?: boolean | null;
   }
   /**
    * Input for tool parameter key match metric.
@@ -24689,15 +23360,6 @@ export namespace aiplatform_v1 {
     genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
   }
   /**
-   * Metadata for the UpdateOnlineEvaluator operation.
-   */
-  export interface Schema$GoogleCloudAiplatformV1UpdateOnlineEvaluatorOperationMetadata {
-    /**
-     * Generic operation metadata.
-     */
-    genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
-  }
-  /**
    * Details of operations that perform update PersistentResource.
    */
   export interface Schema$GoogleCloudAiplatformV1UpdatePersistentResourceOperationMetadata {
@@ -24937,44 +23599,6 @@ export namespace aiplatform_v1 {
     operation?: string | null;
   }
   /**
-   * Output of user scenario generation.
-   */
-  export interface Schema$GoogleCloudAiplatformV1UserScenario {
-    /**
-     * Conversation plan to drive multi-turn agent run and get simulated agent eval dataset.
-     */
-    conversationPlan?: string | null;
-    /**
-     * Starting prompt for the conversation between simulated user and agent under the test.
-     */
-    startingPrompt?: string | null;
-    /**
-     * Represents a short 3-5 word title for eval test case.
-     */
-    testCaseTitle?: string | null;
-  }
-  /**
-   * User scenario generation configuration.
-   */
-  export interface Schema$GoogleCloudAiplatformV1UserScenarioGenerationConfig {
-    /**
-     * Optional. Environment data in string type.
-     */
-    environmentData?: string | null;
-    /**
-     * Optional. The model name to use for generation. It can be model name, e.g. "gemini-3-pro-preview". or the fully qualified name of the publisher model or endpoint. Publisher model format: `projects/{project\}/locations/{location\}/publishers/x/models/x` Endpoint format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
-     */
-    modelName?: string | null;
-    /**
-     * Optional. Simulation instruction to guide the user scenario generation.
-     */
-    simulationInstruction?: string | null;
-    /**
-     * Required. The number of user scenarios to generate. The maximum number of scenarios that can be generated is 100.
-     */
-    userScenarioCount?: string | null;
-  }
-  /**
    * Value is the value of the field.
    */
   export interface Schema$GoogleCloudAiplatformV1Value {
@@ -25110,27 +23734,6 @@ export namespace aiplatform_v1 {
      * Optional. The start offset of the video.
      */
     startOffset?: string | null;
-  }
-  /**
-   * Configuration for video-specific output formatting.
-   */
-  export interface Schema$GoogleCloudAiplatformV1VideoResponseFormat {
-    /**
-     * The aspect ratio for the video output.
-     */
-    aspectRatio?: string | null;
-    /**
-     * Optional. Delivery mode for the generated content.
-     */
-    delivery?: string | null;
-    /**
-     * Optional. The duration for the video output.
-     */
-    duration?: string | null;
-    /**
-     * Optional. The Google Cloud Storage URI to store the video output. Required for Vertex if delivery is URI.
-     */
-    gcsUri?: string | null;
   }
   /**
    * Configuration for a voice.
@@ -26448,7 +25051,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Customjobs$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -26748,7 +25352,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Customjobs$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -27220,7 +25825,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Datalabelingjobs$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -27520,7 +26126,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Datalabelingjobs$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -27756,7 +26363,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Datasets$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -27896,7 +26504,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Datasets$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -28878,7 +27487,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Datasets$Annotationspecs$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -29178,7 +27788,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Datasets$Annotationspecs$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -29673,7 +28284,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Datasets$Dataitems$Annotations$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -29975,7 +28587,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Datasets$Dataitems$Annotations$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -30439,7 +29052,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Datasets$Dataitems$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -30739,7 +29353,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Datasets$Dataitems$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -30955,7 +29570,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Datasets$Datasetversions$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -31099,7 +29715,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Datasets$Datasetversions$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -31725,7 +30342,8 @@ export namespace aiplatform_v1 {
     restore(
       params: Params$Resource$Datasets$Datasetversions$Restore,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     restore(
@@ -32215,7 +30833,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Datasets$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -32515,7 +31134,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Datasets$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -32989,7 +31609,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Datasets$Savedqueries$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -33289,7 +31910,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Datasets$Savedqueries$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -33765,7 +32387,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Deploymentresourcepools$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -34065,7 +32688,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Deploymentresourcepools$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -34598,7 +33222,8 @@ export namespace aiplatform_v1 {
     fetchPredictOperation(
       params: Params$Resource$Endpoints$Fetchpredictoperation,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     fetchPredictOperation(
@@ -35089,7 +33714,8 @@ export namespace aiplatform_v1 {
     predictLongRunning(
       params: Params$Resource$Endpoints$Predictlongrunning,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     predictLongRunning(
@@ -35924,7 +34550,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Endpoints$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -36224,7 +34851,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Endpoints$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -36577,7 +35205,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Featuregroups$Features$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -36875,7 +35504,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Featuregroups$Features$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -37200,7 +35830,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Featuregroups$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -37497,7 +36128,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Featuregroups$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -37849,7 +36481,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Featureonlinestores$Featureviews$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -38151,7 +36784,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Featureonlinestores$Featureviews$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -38477,7 +37111,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Featureonlinestores$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -38774,7 +37409,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Featureonlinestores$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -39274,7 +37910,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Featurestores$Entitytypes$Features$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -39578,7 +38215,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Featurestores$Entitytypes$Features$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -40044,7 +38682,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Featurestores$Entitytypes$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -40345,7 +38984,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Featurestores$Entitytypes$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -40809,7 +39449,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Featurestores$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -41109,7 +39750,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Featurestores$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -41585,7 +40227,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Hyperparametertuningjobs$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -41885,7 +40528,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Hyperparametertuningjobs$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -42357,7 +41001,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Indexendpoints$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -42657,7 +41302,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Indexendpoints$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -43129,7 +41775,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Indexes$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -43429,7 +42076,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Indexes$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -43744,1554 +42392,6 @@ export namespace aiplatform_v1 {
        */
       body?: any;
     };
-  }
-
-  export class Resource$Memorybanks {
-    context: APIRequestContext;
-    memories: Resource$Memorybanks$Memories;
-    operations: Resource$Memorybanks$Operations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.memories = new Resource$Memorybanks$Memories(this.context);
-      this.operations = new Resource$Memorybanks$Operations(this.context);
-    }
-  }
-
-  export class Resource$Memorybanks$Memories {
-    context: APIRequestContext;
-    operations: Resource$Memorybanks$Memories$Operations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.operations = new Resource$Memorybanks$Memories$Operations(
-        this.context
-      );
-    }
-  }
-
-  export class Resource$Memorybanks$Memories$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.memoryBanks.memories.operations.cancel({
-     *     // The name of the operation resource to be cancelled.
-     *     name: 'memoryBanks/my-memoryBank/memories/my-memorie/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    cancel(
-      params: Params$Resource$Memorybanks$Memories$Operations$Cancel,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    cancel(
-      params?: Params$Resource$Memorybanks$Memories$Operations$Cancel,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
-    cancel(
-      params: Params$Resource$Memorybanks$Memories$Operations$Cancel,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    cancel(
-      params: Params$Resource$Memorybanks$Memories$Operations$Cancel,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    cancel(
-      params: Params$Resource$Memorybanks$Memories$Operations$Cancel,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    cancel(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    cancel(
-      paramsOrCallback?:
-        | Params$Resource$Memorybanks$Memories$Operations$Cancel
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Memorybanks$Memories$Operations$Cancel;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Memorybanks$Memories$Operations$Cancel;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.memoryBanks.memories.operations.delete({
-     *     // The name of the operation resource to be deleted.
-     *     name: 'memoryBanks/my-memoryBank/memories/my-memorie/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Memorybanks$Memories$Operations$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Memorybanks$Memories$Operations$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
-    delete(
-      params: Params$Resource$Memorybanks$Memories$Operations$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Memorybanks$Memories$Operations$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(
-      params: Params$Resource$Memorybanks$Memories$Operations$Delete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Memorybanks$Memories$Operations$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Memorybanks$Memories$Operations$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Memorybanks$Memories$Operations$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.memoryBanks.memories.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'memoryBanks/my-memoryBank/memories/my-memorie/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Memorybanks$Memories$Operations$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Memorybanks$Memories$Operations$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    get(
-      params: Params$Resource$Memorybanks$Memories$Operations$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Memorybanks$Memories$Operations$Get,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      params: Params$Resource$Memorybanks$Memories$Operations$Get,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Memorybanks$Memories$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Memorybanks$Memories$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Memorybanks$Memories$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.memoryBanks.memories.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'memoryBanks/my-memoryBank/memories/my-memorie',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     *     returnPartialSuccess: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Memorybanks$Memories$Operations$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Memorybanks$Memories$Operations$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-    >;
-    list(
-      params: Params$Resource$Memorybanks$Memories$Operations$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Memorybanks$Memories$Operations$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Memorybanks$Memories$Operations$List,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Memorybanks$Memories$Operations$List
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Memorybanks$Memories$Operations$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Memorybanks$Memories$Operations$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}/operations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.memoryBanks.memories.operations.wait({
-     *     // The name of the operation resource to wait on.
-     *     name: 'memoryBanks/my-memoryBank/memories/my-memorie/operations/my-operation',
-     *     // The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     *     timeout: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    wait(
-      params: Params$Resource$Memorybanks$Memories$Operations$Wait,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    wait(
-      params?: Params$Resource$Memorybanks$Memories$Operations$Wait,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    wait(
-      params: Params$Resource$Memorybanks$Memories$Operations$Wait,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    wait(
-      params: Params$Resource$Memorybanks$Memories$Operations$Wait,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      params: Params$Resource$Memorybanks$Memories$Operations$Wait,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      paramsOrCallback?:
-        | Params$Resource$Memorybanks$Memories$Operations$Wait
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Memorybanks$Memories$Operations$Wait;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Memorybanks$Memories$Operations$Wait;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Memorybanks$Memories$Operations$Cancel extends StandardParameters {
-    /**
-     * The name of the operation resource to be cancelled.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Memorybanks$Memories$Operations$Delete extends StandardParameters {
-    /**
-     * The name of the operation resource to be deleted.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Memorybanks$Memories$Operations$Get extends StandardParameters {
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Memorybanks$Memories$Operations$List extends StandardParameters {
-    /**
-     * The standard list filter.
-     */
-    filter?: string;
-    /**
-     * The name of the operation's parent resource.
-     */
-    name?: string;
-    /**
-     * The standard list page size.
-     */
-    pageSize?: number;
-    /**
-     * The standard list page token.
-     */
-    pageToken?: string;
-    /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     */
-    returnPartialSuccess?: boolean;
-  }
-  export interface Params$Resource$Memorybanks$Memories$Operations$Wait extends StandardParameters {
-    /**
-     * The name of the operation resource to wait on.
-     */
-    name?: string;
-    /**
-     * The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     */
-    timeout?: string;
-  }
-
-  export class Resource$Memorybanks$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.memoryBanks.operations.cancel({
-     *     // The name of the operation resource to be cancelled.
-     *     name: 'memoryBanks/my-memoryBank/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    cancel(
-      params: Params$Resource$Memorybanks$Operations$Cancel,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    cancel(
-      params?: Params$Resource$Memorybanks$Operations$Cancel,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
-    cancel(
-      params: Params$Resource$Memorybanks$Operations$Cancel,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    cancel(
-      params: Params$Resource$Memorybanks$Operations$Cancel,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    cancel(
-      params: Params$Resource$Memorybanks$Operations$Cancel,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    cancel(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    cancel(
-      paramsOrCallback?:
-        | Params$Resource$Memorybanks$Operations$Cancel
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Memorybanks$Operations$Cancel;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Memorybanks$Operations$Cancel;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.memoryBanks.operations.delete({
-     *     // The name of the operation resource to be deleted.
-     *     name: 'memoryBanks/my-memoryBank/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Memorybanks$Operations$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Memorybanks$Operations$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
-    delete(
-      params: Params$Resource$Memorybanks$Operations$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Memorybanks$Operations$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(
-      params: Params$Resource$Memorybanks$Operations$Delete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Memorybanks$Operations$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Memorybanks$Operations$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Memorybanks$Operations$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.memoryBanks.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'memoryBanks/my-memoryBank/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Memorybanks$Operations$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Memorybanks$Operations$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    get(
-      params: Params$Resource$Memorybanks$Operations$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Memorybanks$Operations$Get,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      params: Params$Resource$Memorybanks$Operations$Get,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Memorybanks$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Memorybanks$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Memorybanks$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.memoryBanks.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'memoryBanks/my-memoryBank',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     *     returnPartialSuccess: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Memorybanks$Operations$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Memorybanks$Operations$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-    >;
-    list(
-      params: Params$Resource$Memorybanks$Operations$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Memorybanks$Operations$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Memorybanks$Operations$List,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Memorybanks$Operations$List
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Memorybanks$Operations$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Memorybanks$Operations$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}/operations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.memoryBanks.operations.wait({
-     *     // The name of the operation resource to wait on.
-     *     name: 'memoryBanks/my-memoryBank/operations/my-operation',
-     *     // The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     *     timeout: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    wait(
-      params: Params$Resource$Memorybanks$Operations$Wait,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    wait(
-      params?: Params$Resource$Memorybanks$Operations$Wait,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    wait(
-      params: Params$Resource$Memorybanks$Operations$Wait,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    wait(
-      params: Params$Resource$Memorybanks$Operations$Wait,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      params: Params$Resource$Memorybanks$Operations$Wait,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      paramsOrCallback?:
-        | Params$Resource$Memorybanks$Operations$Wait
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Memorybanks$Operations$Wait;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Memorybanks$Operations$Wait;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Memorybanks$Operations$Cancel extends StandardParameters {
-    /**
-     * The name of the operation resource to be cancelled.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Memorybanks$Operations$Delete extends StandardParameters {
-    /**
-     * The name of the operation resource to be deleted.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Memorybanks$Operations$Get extends StandardParameters {
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Memorybanks$Operations$List extends StandardParameters {
-    /**
-     * The standard list filter.
-     */
-    filter?: string;
-    /**
-     * The name of the operation's parent resource.
-     */
-    name?: string;
-    /**
-     * The standard list page size.
-     */
-    pageSize?: number;
-    /**
-     * The standard list page token.
-     */
-    pageToken?: string;
-    /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     */
-    returnPartialSuccess?: boolean;
-  }
-  export interface Params$Resource$Memorybanks$Operations$Wait extends StandardParameters {
-    /**
-     * The name of the operation resource to wait on.
-     */
-    name?: string;
-    /**
-     * The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     */
-    timeout?: string;
   }
 
   export class Resource$Metadatastores {
@@ -45666,7 +42766,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Metadatastores$Artifacts$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -45966,7 +43067,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Metadatastores$Artifacts$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -46442,7 +43544,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Metadatastores$Contexts$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -46742,7 +43845,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Metadatastores$Contexts$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -47218,7 +44322,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Metadatastores$Executions$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -47519,7 +44624,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Metadatastores$Executions$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -47983,7 +45089,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Metadatastores$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -48283,7 +45390,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Metadatastores$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -48757,7 +45865,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Migratableresources$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -49057,7 +46166,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Migratableresources$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -49533,7 +46643,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Modeldeploymentmonitoringjobs$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -49835,7 +46946,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Modeldeploymentmonitoringjobs$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -50321,7 +47433,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Models$Evaluations$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -50621,7 +47734,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Models$Evaluations$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -51084,7 +48198,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Models$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -51384,7 +48499,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Models$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -51858,7 +48974,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Notebookexecutionjobs$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -52158,7 +49275,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Notebookexecutionjobs$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -52630,7 +49748,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Notebookruntimes$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -52930,7 +50049,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Notebookruntimes$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -53406,7 +50526,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Notebookruntimetemplates$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -53706,7 +50827,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Notebookruntimetemplates$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -53815,778 +50937,6 @@ export namespace aiplatform_v1 {
     returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Notebookruntimetemplates$Operations$Wait extends StandardParameters {
-    /**
-     * The name of the operation resource to wait on.
-     */
-    name?: string;
-    /**
-     * The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     */
-    timeout?: string;
-  }
-
-  export class Resource$Onlineevaluators {
-    context: APIRequestContext;
-    operations: Resource$Onlineevaluators$Operations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.operations = new Resource$Onlineevaluators$Operations(this.context);
-    }
-  }
-
-  export class Resource$Onlineevaluators$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.onlineEvaluators.operations.cancel({
-     *     // The name of the operation resource to be cancelled.
-     *     name: 'onlineEvaluators/my-onlineEvaluator/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    cancel(
-      params: Params$Resource$Onlineevaluators$Operations$Cancel,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    cancel(
-      params?: Params$Resource$Onlineevaluators$Operations$Cancel,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
-    cancel(
-      params: Params$Resource$Onlineevaluators$Operations$Cancel,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    cancel(
-      params: Params$Resource$Onlineevaluators$Operations$Cancel,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    cancel(
-      params: Params$Resource$Onlineevaluators$Operations$Cancel,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    cancel(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    cancel(
-      paramsOrCallback?:
-        | Params$Resource$Onlineevaluators$Operations$Cancel
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Onlineevaluators$Operations$Cancel;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Onlineevaluators$Operations$Cancel;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.onlineEvaluators.operations.delete({
-     *     // The name of the operation resource to be deleted.
-     *     name: 'onlineEvaluators/my-onlineEvaluator/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Onlineevaluators$Operations$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Onlineevaluators$Operations$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
-    delete(
-      params: Params$Resource$Onlineevaluators$Operations$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Onlineevaluators$Operations$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(
-      params: Params$Resource$Onlineevaluators$Operations$Delete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Onlineevaluators$Operations$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Onlineevaluators$Operations$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Onlineevaluators$Operations$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.onlineEvaluators.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'onlineEvaluators/my-onlineEvaluator/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Onlineevaluators$Operations$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Onlineevaluators$Operations$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    get(
-      params: Params$Resource$Onlineevaluators$Operations$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Onlineevaluators$Operations$Get,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      params: Params$Resource$Onlineevaluators$Operations$Get,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Onlineevaluators$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Onlineevaluators$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Onlineevaluators$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.onlineEvaluators.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'onlineEvaluators/my-onlineEvaluator',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     *     returnPartialSuccess: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Onlineevaluators$Operations$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Onlineevaluators$Operations$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-    >;
-    list(
-      params: Params$Resource$Onlineevaluators$Operations$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Onlineevaluators$Operations$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Onlineevaluators$Operations$List,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Onlineevaluators$Operations$List
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Onlineevaluators$Operations$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Onlineevaluators$Operations$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}/operations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.onlineEvaluators.operations.wait({
-     *     // The name of the operation resource to wait on.
-     *     name: 'onlineEvaluators/my-onlineEvaluator/operations/my-operation',
-     *     // The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     *     timeout: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    wait(
-      params: Params$Resource$Onlineevaluators$Operations$Wait,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    wait(
-      params?: Params$Resource$Onlineevaluators$Operations$Wait,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    wait(
-      params: Params$Resource$Onlineevaluators$Operations$Wait,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    wait(
-      params: Params$Resource$Onlineevaluators$Operations$Wait,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      params: Params$Resource$Onlineevaluators$Operations$Wait,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      paramsOrCallback?:
-        | Params$Resource$Onlineevaluators$Operations$Wait
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Onlineevaluators$Operations$Wait;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Onlineevaluators$Operations$Wait;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Onlineevaluators$Operations$Cancel extends StandardParameters {
-    /**
-     * The name of the operation resource to be cancelled.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Onlineevaluators$Operations$Delete extends StandardParameters {
-    /**
-     * The name of the operation resource to be deleted.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Onlineevaluators$Operations$Get extends StandardParameters {
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Onlineevaluators$Operations$List extends StandardParameters {
-    /**
-     * The standard list filter.
-     */
-    filter?: string;
-    /**
-     * The name of the operation's parent resource.
-     */
-    name?: string;
-    /**
-     * The standard list page size.
-     */
-    pageSize?: number;
-    /**
-     * The standard list page token.
-     */
-    pageToken?: string;
-    /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     */
-    returnPartialSuccess?: boolean;
-  }
-  export interface Params$Resource$Onlineevaluators$Operations$Wait extends StandardParameters {
     /**
      * The name of the operation resource to wait on.
      */
@@ -54941,7 +51291,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -55236,7 +51587,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -55709,7 +52061,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Persistentresources$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -56009,7 +52362,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Persistentresources$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -56481,7 +52835,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Pipelinejobs$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -56781,7 +53136,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Pipelinejobs$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -57136,7 +53492,8 @@ export namespace aiplatform_v1 {
     updateCacheConfig(
       params: Params$Resource$Projects$Updatecacheconfig,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     updateCacheConfig(
@@ -57224,7 +53581,6 @@ export namespace aiplatform_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
-    agents: Resource$Projects$Locations$Agents;
     batchPredictionJobs: Resource$Projects$Locations$Batchpredictionjobs;
     cachedContents: Resource$Projects$Locations$Cachedcontents;
     customJobs: Resource$Projects$Locations$Customjobs;
@@ -57233,7 +53589,6 @@ export namespace aiplatform_v1 {
     deploymentResourcePools: Resource$Projects$Locations$Deploymentresourcepools;
     endpoints: Resource$Projects$Locations$Endpoints;
     evaluationItems: Resource$Projects$Locations$Evaluationitems;
-    evaluationMetrics: Resource$Projects$Locations$Evaluationmetrics;
     evaluationRuns: Resource$Projects$Locations$Evaluationruns;
     evaluationSets: Resource$Projects$Locations$Evaluationsets;
     featureGroups: Resource$Projects$Locations$Featuregroups;
@@ -57242,7 +53597,6 @@ export namespace aiplatform_v1 {
     hyperparameterTuningJobs: Resource$Projects$Locations$Hyperparametertuningjobs;
     indexEndpoints: Resource$Projects$Locations$Indexendpoints;
     indexes: Resource$Projects$Locations$Indexes;
-    memoryBanks: Resource$Projects$Locations$Memorybanks;
     metadataStores: Resource$Projects$Locations$Metadatastores;
     migratableResources: Resource$Projects$Locations$Migratableresources;
     modelDeploymentMonitoringJobs: Resource$Projects$Locations$Modeldeploymentmonitoringjobs;
@@ -57251,7 +53605,6 @@ export namespace aiplatform_v1 {
     notebookExecutionJobs: Resource$Projects$Locations$Notebookexecutionjobs;
     notebookRuntimes: Resource$Projects$Locations$Notebookruntimes;
     notebookRuntimeTemplates: Resource$Projects$Locations$Notebookruntimetemplates;
-    onlineEvaluators: Resource$Projects$Locations$Onlineevaluators;
     operations: Resource$Projects$Locations$Operations;
     persistentResources: Resource$Projects$Locations$Persistentresources;
     pipelineJobs: Resource$Projects$Locations$Pipelinejobs;
@@ -57260,8 +53613,6 @@ export namespace aiplatform_v1 {
     ragEngineConfig: Resource$Projects$Locations$Ragengineconfig;
     reasoningEngines: Resource$Projects$Locations$Reasoningengines;
     schedules: Resource$Projects$Locations$Schedules;
-    semanticGovernancePolicies: Resource$Projects$Locations$Semanticgovernancepolicies;
-    semanticGovernancePolicyEngine: Resource$Projects$Locations$Semanticgovernancepolicyengine;
     skills: Resource$Projects$Locations$Skills;
     specialistPools: Resource$Projects$Locations$Specialistpools;
     studies: Resource$Projects$Locations$Studies;
@@ -57270,7 +53621,6 @@ export namespace aiplatform_v1 {
     tuningJobs: Resource$Projects$Locations$Tuningjobs;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.agents = new Resource$Projects$Locations$Agents(this.context);
       this.batchPredictionJobs =
         new Resource$Projects$Locations$Batchpredictionjobs(this.context);
       this.cachedContents = new Resource$Projects$Locations$Cachedcontents(
@@ -57289,8 +53639,6 @@ export namespace aiplatform_v1 {
       this.evaluationItems = new Resource$Projects$Locations$Evaluationitems(
         this.context
       );
-      this.evaluationMetrics =
-        new Resource$Projects$Locations$Evaluationmetrics(this.context);
       this.evaluationRuns = new Resource$Projects$Locations$Evaluationruns(
         this.context
       );
@@ -57311,9 +53659,6 @@ export namespace aiplatform_v1 {
         this.context
       );
       this.indexes = new Resource$Projects$Locations$Indexes(this.context);
-      this.memoryBanks = new Resource$Projects$Locations$Memorybanks(
-        this.context
-      );
       this.metadataStores = new Resource$Projects$Locations$Metadatastores(
         this.context
       );
@@ -57332,9 +53677,6 @@ export namespace aiplatform_v1 {
       );
       this.notebookRuntimeTemplates =
         new Resource$Projects$Locations$Notebookruntimetemplates(this.context);
-      this.onlineEvaluators = new Resource$Projects$Locations$Onlineevaluators(
-        this.context
-      );
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -57356,14 +53698,6 @@ export namespace aiplatform_v1 {
         this.context
       );
       this.schedules = new Resource$Projects$Locations$Schedules(this.context);
-      this.semanticGovernancePolicies =
-        new Resource$Projects$Locations$Semanticgovernancepolicies(
-          this.context
-        );
-      this.semanticGovernancePolicyEngine =
-        new Resource$Projects$Locations$Semanticgovernancepolicyengine(
-          this.context
-        );
       this.skills = new Resource$Projects$Locations$Skills(this.context);
       this.specialistPools = new Resource$Projects$Locations$Specialistpools(
         this.context
@@ -57619,7 +53953,8 @@ export namespace aiplatform_v1 {
     asyncRetrieveContexts(
       params: Params$Resource$Projects$Locations$Asyncretrievecontexts,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     asyncRetrieveContexts(
@@ -58091,7 +54426,8 @@ export namespace aiplatform_v1 {
     deploy(
       params: Params$Resource$Projects$Locations$Deploy,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     deploy(
@@ -58247,7 +54583,8 @@ export namespace aiplatform_v1 {
     evaluateDataset(
       params: Params$Resource$Projects$Locations$Evaluatedataset,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     evaluateDataset(
@@ -58702,160 +55039,6 @@ export namespace aiplatform_v1 {
     }
 
     /**
-     * Generates loss clusters from evaluation results. This is a statelss API method that would not modify the EvaluationSet resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.generateLossClusters({
-     *     // Required. The resource name of the Location. Format: `projects/{project\}/locations/{location\}`
-     *     location: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "configs": [],
-     *       //   "evaluationSet": "my_evaluationSet",
-     *       //   "inlineResults": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    generateLossClusters(
-      params: Params$Resource$Projects$Locations$Generatelossclusters,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    generateLossClusters(
-      params?: Params$Resource$Projects$Locations$Generatelossclusters,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    generateLossClusters(
-      params: Params$Resource$Projects$Locations$Generatelossclusters,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    generateLossClusters(
-      params: Params$Resource$Projects$Locations$Generatelossclusters,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    generateLossClusters(
-      params: Params$Resource$Projects$Locations$Generatelossclusters,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    generateLossClusters(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    generateLossClusters(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Generatelossclusters
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Generatelossclusters;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Generatelossclusters;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+location}:generateLossClusters').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['location'],
-        pathParams: ['location'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
      * Generates synthetic (artificial) data based on a description
      * @example
      * ```js
@@ -59008,164 +55191,6 @@ export namespace aiplatform_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudAiplatformV1GenerateSyntheticDataResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Generates user scenarios for agent evaluation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.generateUserScenarios({
-     *     // Required. The resource name of the Location to run the job. Format: `projects/{project\}/locations/{location\}`
-     *     location: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "agents": {},
-     *       //   "allowCrossRegionModel": false,
-     *       //   "rootAgentId": "my_rootAgentId",
-     *       //   "userScenarioGenerationConfig": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "userScenarios": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    generateUserScenarios(
-      params: Params$Resource$Projects$Locations$Generateuserscenarios,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    generateUserScenarios(
-      params?: Params$Resource$Projects$Locations$Generateuserscenarios,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1GenerateUserScenariosResponse>
-    >;
-    generateUserScenarios(
-      params: Params$Resource$Projects$Locations$Generateuserscenarios,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    generateUserScenarios(
-      params: Params$Resource$Projects$Locations$Generateuserscenarios,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateUserScenariosResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateUserScenariosResponse>
-    ): void;
-    generateUserScenarios(
-      params: Params$Resource$Projects$Locations$Generateuserscenarios,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateUserScenariosResponse>
-    ): void;
-    generateUserScenarios(
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateUserScenariosResponse>
-    ): void;
-    generateUserScenarios(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Generateuserscenarios
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateUserScenariosResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateUserScenariosResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateUserScenariosResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1GenerateUserScenariosResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Generateuserscenarios;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Generateuserscenarios;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+location}:generateUserScenarios').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['location'],
-        pathParams: ['location'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAiplatformV1GenerateUserScenariosResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAiplatformV1GenerateUserScenariosResponse>(
           parameters
         );
       }
@@ -59453,159 +55478,6 @@ export namespace aiplatform_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudAiplatformV1RagEngineConfig>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Gets a SemanticGovernancePolicyEngine. A SemanticGovernancePolicyEngine is a singleton resource that is created when its parent is created, and deleted when its parent is deleted. This method retrieves the current state of the Semantic Governance Policy Engine.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.getSemanticGovernancePolicyEngine({
-     *       // Required. The resource name of the SemanticGovernancePolicyEngine to retrieve. Format: projects/{project\}/locations/{location\}/semanticGovernancePolicyEngine
-     *       name: 'projects/my-project/locations/my-location/semanticGovernancePolicyEngine',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "gatewayConfigs": {},
-     *   //   "ipAddress": "my_ipAddress",
-     *   //   "name": "my_name",
-     *   //   "pscForwardingRule": "my_pscForwardingRule",
-     *   //   "pscServiceAttachment": "my_pscServiceAttachment",
-     *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getSemanticGovernancePolicyEngine(
-      params: Params$Resource$Projects$Locations$Getsemanticgovernancepolicyengine,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    getSemanticGovernancePolicyEngine(
-      params?: Params$Resource$Projects$Locations$Getsemanticgovernancepolicyengine,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicyEngine>
-    >;
-    getSemanticGovernancePolicyEngine(
-      params: Params$Resource$Projects$Locations$Getsemanticgovernancepolicyengine,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getSemanticGovernancePolicyEngine(
-      params: Params$Resource$Projects$Locations$Getsemanticgovernancepolicyengine,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicyEngine>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicyEngine>
-    ): void;
-    getSemanticGovernancePolicyEngine(
-      params: Params$Resource$Projects$Locations$Getsemanticgovernancepolicyengine,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicyEngine>
-    ): void;
-    getSemanticGovernancePolicyEngine(
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicyEngine>
-    ): void;
-    getSemanticGovernancePolicyEngine(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Getsemanticgovernancepolicyengine
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicyEngine>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicyEngine>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicyEngine>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicyEngine>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Getsemanticgovernancepolicyengine;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Getsemanticgovernancepolicyengine;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicyEngine>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicyEngine>(
           parameters
         );
       }
@@ -60006,7 +55878,8 @@ export namespace aiplatform_v1 {
     updateRagEngineConfig(
       params: Params$Resource$Projects$Locations$Updateragengineconfig,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     updateRagEngineConfig(
@@ -60040,166 +55913,6 @@ export namespace aiplatform_v1 {
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params = {} as Params$Resource$Projects$Locations$Updateragengineconfig;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Updates a SemanticGovernancePolicyEngine. This method performs an upsert operation. If the SemanticGovernancePolicyEngine resource does not exist, it will be created. Otherwise, it will be updated.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.updateSemanticGovernancePolicyEngine({
-     *       // Identifier. The resource name of the SemanticGovernancePolicyEngine. Format: projects/{project\}/locations/{location\}/semanticGovernancePolicyEngine
-     *       name: 'projects/my-project/locations/my-location/semanticGovernancePolicyEngine',
-     *       // Optional. Specifies the fields to be overwritten in the SemanticGovernancePolicyEngine resource by the update. The fields specified in the update_mask are relative to the resource itself. If no update_mask is provided, all fields are overwritten.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "createTime": "my_createTime",
-     *         //   "gatewayConfigs": {},
-     *         //   "ipAddress": "my_ipAddress",
-     *         //   "name": "my_name",
-     *         //   "pscForwardingRule": "my_pscForwardingRule",
-     *         //   "pscServiceAttachment": "my_pscServiceAttachment",
-     *         //   "state": "my_state",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    updateSemanticGovernancePolicyEngine(
-      params: Params$Resource$Projects$Locations$Updatesemanticgovernancepolicyengine,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    updateSemanticGovernancePolicyEngine(
-      params?: Params$Resource$Projects$Locations$Updatesemanticgovernancepolicyengine,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    updateSemanticGovernancePolicyEngine(
-      params: Params$Resource$Projects$Locations$Updatesemanticgovernancepolicyengine,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    updateSemanticGovernancePolicyEngine(
-      params: Params$Resource$Projects$Locations$Updatesemanticgovernancepolicyengine,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    updateSemanticGovernancePolicyEngine(
-      params: Params$Resource$Projects$Locations$Updatesemanticgovernancepolicyengine,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    updateSemanticGovernancePolicyEngine(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    updateSemanticGovernancePolicyEngine(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Updatesemanticgovernancepolicyengine
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Updatesemanticgovernancepolicyengine;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Updatesemanticgovernancepolicyengine;
         options = {};
       }
 
@@ -60322,17 +56035,6 @@ export namespace aiplatform_v1 {
      */
     requestBody?: Schema$GoogleCloudAiplatformV1GenerateInstanceRubricsRequest;
   }
-  export interface Params$Resource$Projects$Locations$Generatelossclusters extends StandardParameters {
-    /**
-     * Required. The resource name of the Location. Format: `projects/{project\}/locations/{location\}`
-     */
-    location?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1GenerateLossClustersRequest;
-  }
   export interface Params$Resource$Projects$Locations$Generatesyntheticdata extends StandardParameters {
     /**
      * Required. The geographic location where the synthetic data generation request is processed. This should be in the format `projects/{project\}/locations/{location\}`. For example, `projects/my-project/locations/us-central1`.
@@ -60344,17 +56046,6 @@ export namespace aiplatform_v1 {
      */
     requestBody?: Schema$GoogleCloudAiplatformV1GenerateSyntheticDataRequest;
   }
-  export interface Params$Resource$Projects$Locations$Generateuserscenarios extends StandardParameters {
-    /**
-     * Required. The resource name of the Location to run the job. Format: `projects/{project\}/locations/{location\}`
-     */
-    location?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1GenerateUserScenariosRequest;
-  }
   export interface Params$Resource$Projects$Locations$Get extends StandardParameters {
     /**
      * Resource name for the location.
@@ -60364,12 +56055,6 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Getragengineconfig extends StandardParameters {
     /**
      * Required. The name of the RagEngineConfig resource. Format: `projects/{project\}/locations/{location\}/ragEngineConfig`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Getsemanticgovernancepolicyengine extends StandardParameters {
-    /**
-     * Required. The resource name of the SemanticGovernancePolicyEngine to retrieve. Format: projects/{project\}/locations/{location\}/semanticGovernancePolicyEngine
      */
     name?: string;
   }
@@ -60416,862 +56101,6 @@ export namespace aiplatform_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudAiplatformV1RagEngineConfig;
-  }
-  export interface Params$Resource$Projects$Locations$Updatesemanticgovernancepolicyengine extends StandardParameters {
-    /**
-     * Identifier. The resource name of the SemanticGovernancePolicyEngine. Format: projects/{project\}/locations/{location\}/semanticGovernancePolicyEngine
-     */
-    name?: string;
-    /**
-     * Optional. Specifies the fields to be overwritten in the SemanticGovernancePolicyEngine resource by the update. The fields specified in the update_mask are relative to the resource itself. If no update_mask is provided, all fields are overwritten.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1SemanticGovernancePolicyEngine;
-  }
-
-  export class Resource$Projects$Locations$Agents {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Creates an agent.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.agents.create({
-     *     // Required. The resource name of the location to create the agent in. Format: `projects/{project\}/locations/{location\}`.
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "base_agent": "my_base_agent",
-     *       //   "base_environment": {},
-     *       //   "created": "my_created",
-     *       //   "description": "my_description",
-     *       //   "id": "my_id",
-     *       //   "metadata": {},
-     *       //   "name": "my_name",
-     *       //   "object": "my_object",
-     *       //   "system_instruction": "my_system_instruction",
-     *       //   "tools": [],
-     *       //   "updated": "my_updated"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Agents$Create,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    create(
-      params?: Params$Resource$Projects$Locations$Agents$Create,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    create(
-      params: Params$Resource$Projects$Locations$Agents$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Agents$Create,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Agents$Create,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    create(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Create
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/agents').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Deletes an agent.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.agents.delete({
-     *     // Required. The resource name of the agent to delete. Format: `projects/{project\}/locations/{location\}/agents/{agent\}`.
-     *     name: 'projects/my-project/locations/my-location/agents/my-agent',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Agents$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Agents$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    delete(
-      params: Params$Resource$Projects$Locations$Agents$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Agents$Delete,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Agents$Delete,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Delete
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Retrieves an agent.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.agents.get({
-     *     // Required. The resource name of the agent to retrieve. Format: `projects/{project\}/locations/{location\}/agents/{agent\}`.
-     *     name: 'projects/my-project/locations/my-location/agents/my-agent',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "base_agent": "my_base_agent",
-     *   //   "base_environment": {},
-     *   //   "created": "my_created",
-     *   //   "description": "my_description",
-     *   //   "id": "my_id",
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "object": "my_object",
-     *   //   "system_instruction": "my_system_instruction",
-     *   //   "tools": [],
-     *   //   "updated": "my_updated"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Agents$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Agents$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Agent>>;
-    get(
-      params: Params$Resource$Projects$Locations$Agents$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Agents$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Agent>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1Agent>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Agents$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1Agent>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1Agent>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Get
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Agent>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Agent>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Agent>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Agent>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAiplatformV1Agent>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAiplatformV1Agent>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Lists agents in a location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.agents.list({
-     *     // Optional. A comma-separated list of fields to order by. Supported fields: * `created` * `updated` Use `desc` after a field name for descending order. Example: `created desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Optional. The maximum number of agents to return. The service may return fewer than this value. The maximum page size is 100; values above 100 will be coerced to 100. If unspecified, the default page size is 10.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A page token, received from a previous AgentService.ListAgents call. Provide this to retrieve the subsequent page.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the location to list agents from. Format: `projects/{project\}/locations/{location\}`.
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "agents": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Agents$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Agents$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListAgentsResponse>
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Agents$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Agents$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListAgentsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListAgentsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Agents$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListAgentsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListAgentsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$List
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListAgentsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListAgentsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListAgentsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListAgentsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/agents').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAiplatformV1ListAgentsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAiplatformV1ListAgentsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Updates an agent.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.agents.patch({
-     *     // Identifier. The resource name of the agent. Format: `projects/{project\}/locations/{location\}/agents/{agent\}`.
-     *     name: 'projects/my-project/locations/my-location/agents/my-agent',
-     *     // Optional. The list of fields to update. If not present, all fields are updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "base_agent": "my_base_agent",
-     *       //   "base_environment": {},
-     *       //   "created": "my_created",
-     *       //   "description": "my_description",
-     *       //   "id": "my_id",
-     *       //   "metadata": {},
-     *       //   "name": "my_name",
-     *       //   "object": "my_object",
-     *       //   "system_instruction": "my_system_instruction",
-     *       //   "tools": [],
-     *       //   "updated": "my_updated"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "base_agent": "my_base_agent",
-     *   //   "base_environment": {},
-     *   //   "created": "my_created",
-     *   //   "description": "my_description",
-     *   //   "id": "my_id",
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "object": "my_object",
-     *   //   "system_instruction": "my_system_instruction",
-     *   //   "tools": [],
-     *   //   "updated": "my_updated"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Agents$Patch,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Agents$Patch,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Agent>>;
-    patch(
-      params: Params$Resource$Projects$Locations$Agents$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Agents$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Agent>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1Agent>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Agents$Patch,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1Agent>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1Agent>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Patch
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Agent>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Agent>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Agent>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Agent>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAiplatformV1Agent>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAiplatformV1Agent>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Agents$Create extends StandardParameters {
-    /**
-     * Required. The resource name of the location to create the agent in. Format: `projects/{project\}/locations/{location\}`.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1Agent;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Delete extends StandardParameters {
-    /**
-     * Required. The resource name of the agent to delete. Format: `projects/{project\}/locations/{location\}/agents/{agent\}`.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Get extends StandardParameters {
-    /**
-     * Required. The resource name of the agent to retrieve. Format: `projects/{project\}/locations/{location\}/agents/{agent\}`.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$List extends StandardParameters {
-    /**
-     * Optional. A comma-separated list of fields to order by. Supported fields: * `created` * `updated` Use `desc` after a field name for descending order. Example: `created desc`.
-     */
-    orderBy?: string;
-    /**
-     * Optional. The maximum number of agents to return. The service may return fewer than this value. The maximum page size is 100; values above 100 will be coerced to 100. If unspecified, the default page size is 10.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A page token, received from a previous AgentService.ListAgents call. Provide this to retrieve the subsequent page.
-     */
-    pageToken?: string;
-    /**
-     * Required. The resource name of the location to list agents from. Format: `projects/{project\}/locations/{location\}`.
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Patch extends StandardParameters {
-    /**
-     * Identifier. The resource name of the agent. Format: `projects/{project\}/locations/{location\}/agents/{agent\}`.
-     */
-    name?: string;
-    /**
-     * Optional. The list of fields to update. If not present, all fields are updated.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1Agent;
   }
 
   export class Resource$Projects$Locations$Batchpredictionjobs {
@@ -61705,7 +56534,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Batchpredictionjobs$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -63421,7 +58251,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Customjobs$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -64205,7 +59036,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Customjobs$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -64507,7 +59339,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Customjobs$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -65041,7 +59874,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -65839,7 +60673,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -66143,7 +60978,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Datalabelingjobs$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -66384,7 +61220,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datasets$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -66528,7 +61365,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -66677,7 +61515,8 @@ export namespace aiplatform_v1 {
     export(
       params: Params$Resource$Projects$Locations$Datasets$Export,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     export(
@@ -67126,7 +61965,8 @@ export namespace aiplatform_v1 {
     import(
       params: Params$Resource$Projects$Locations$Datasets$Import,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -68715,7 +63555,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -69023,7 +63864,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Datasets$Annotationspecs$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -69901,7 +64743,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -70209,7 +65052,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Annotations$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -70678,7 +65522,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -70982,7 +65827,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Datasets$Dataitems$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -71200,7 +66046,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -71346,7 +66193,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -71980,7 +66828,8 @@ export namespace aiplatform_v1 {
     restore(
       params: Params$Resource$Projects$Locations$Datasets$Datasetversions$Restore,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     restore(
@@ -72473,7 +67322,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -72775,7 +67625,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Datasets$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -72980,7 +67831,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Datasets$Savedqueries$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -73594,7 +68446,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Datasets$Savedqueries$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -73898,7 +68751,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Datasets$Savedqueries$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -74113,7 +68967,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -74259,7 +69114,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -74725,7 +69581,8 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Patch,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -75373,7 +70230,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -75681,7 +70539,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Deploymentresourcepools$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -76253,7 +71112,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Endpoints$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -76397,7 +71257,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Endpoints$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -76547,7 +71408,8 @@ export namespace aiplatform_v1 {
     deployModel(
       params: Params$Resource$Projects$Locations$Endpoints$Deploymodel,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     deployModel(
@@ -77188,7 +72050,8 @@ export namespace aiplatform_v1 {
     fetchPredictOperation(
       params: Params$Resource$Projects$Locations$Endpoints$Fetchpredictoperation,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     fetchPredictOperation(
@@ -77838,7 +72701,8 @@ export namespace aiplatform_v1 {
     mutateDeployedModel(
       params: Params$Resource$Projects$Locations$Endpoints$Mutatedeployedmodel,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     mutateDeployedModel(
@@ -78351,7 +73215,8 @@ export namespace aiplatform_v1 {
     predictLongRunning(
       params: Params$Resource$Projects$Locations$Endpoints$Predictlongrunning,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     predictLongRunning(
@@ -79144,7 +74009,8 @@ export namespace aiplatform_v1 {
     undeployModel(
       params: Params$Resource$Projects$Locations$Endpoints$Undeploymodel,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     undeployModel(
@@ -79297,7 +74163,8 @@ export namespace aiplatform_v1 {
     update(
       params: Params$Resource$Projects$Locations$Endpoints$Update,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     update(
@@ -81227,7 +76094,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Endpoints$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -81529,7 +76397,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Endpoints$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -81903,7 +76772,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Evaluationitems$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -82327,688 +77197,6 @@ export namespace aiplatform_v1 {
     parent?: string;
   }
 
-  export class Resource$Projects$Locations$Evaluationmetrics {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Creates an EvaluationMetric.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.evaluationMetrics.create({
-     *     // Optional. The ID to use for the EvaluationMetric, which will become the final component of the EvaluationMetric's resource name. This value should be 1-63 characters, and valid characters are /a-z-/. The first character must be a lowercase letter, and the last character must be a lowercase letter or number.
-     *     evaluationMetricId: 'placeholder-value',
-     *     // Required. The resource name of the Location to create the EvaluationMetric in. Format: `projects/{project\}/locations/{location\}`
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "encryptionSpec": {},
-     *       //   "gcsUri": "my_gcsUri",
-     *       //   "labels": {},
-     *       //   "metric": {},
-     *       //   "name": "my_name",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "encryptionSpec": {},
-     *   //   "gcsUri": "my_gcsUri",
-     *   //   "labels": {},
-     *   //   "metric": {},
-     *   //   "name": "my_name",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Evaluationmetrics$Create,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    create(
-      params?: Params$Resource$Projects$Locations$Evaluationmetrics$Create,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1EvaluationMetric>
-    >;
-    create(
-      params: Params$Resource$Projects$Locations$Evaluationmetrics$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Evaluationmetrics$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1EvaluationMetric>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1EvaluationMetric>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Evaluationmetrics$Create,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1EvaluationMetric>
-    ): void;
-    create(
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1EvaluationMetric>
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Evaluationmetrics$Create
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1EvaluationMetric>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1EvaluationMetric>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1EvaluationMetric>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1EvaluationMetric>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Evaluationmetrics$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Evaluationmetrics$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/evaluationMetrics').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAiplatformV1EvaluationMetric>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAiplatformV1EvaluationMetric>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Deletes an EvaluationMetric.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.evaluationMetrics.delete({
-     *     // Required. The name of the EvaluationMetric resource to be deleted. Format: `projects/{project\}/locations/{location\}/evaluationMetrics/{evaluation_metric\}`
-     *     name: 'projects/my-project/locations/my-location/evaluationMetrics/my-evaluationMetric',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Evaluationmetrics$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Evaluationmetrics$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    delete(
-      params: Params$Resource$Projects$Locations$Evaluationmetrics$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Evaluationmetrics$Delete,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Evaluationmetrics$Delete,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Evaluationmetrics$Delete
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Evaluationmetrics$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Evaluationmetrics$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Gets an EvaluationMetric.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.evaluationMetrics.get({
-     *     // Required. The name of the EvaluationMetric resource. Format: `projects/{project\}/locations/{location\}/evaluationMetrics/{evaluation_metric\}`
-     *     name: 'projects/my-project/locations/my-location/evaluationMetrics/my-evaluationMetric',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "encryptionSpec": {},
-     *   //   "gcsUri": "my_gcsUri",
-     *   //   "labels": {},
-     *   //   "metric": {},
-     *   //   "name": "my_name",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Evaluationmetrics$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Evaluationmetrics$Get,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1EvaluationMetric>
-    >;
-    get(
-      params: Params$Resource$Projects$Locations$Evaluationmetrics$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Evaluationmetrics$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1EvaluationMetric>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1EvaluationMetric>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Evaluationmetrics$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1EvaluationMetric>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1EvaluationMetric>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Evaluationmetrics$Get
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1EvaluationMetric>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1EvaluationMetric>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1EvaluationMetric>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1EvaluationMetric>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Evaluationmetrics$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Evaluationmetrics$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAiplatformV1EvaluationMetric>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAiplatformV1EvaluationMetric>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Lists EvaluationMetrics.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.evaluationMetrics.list({
-     *     // Optional. Filter expression that matches a subset of the EvaluationMetrics to show. For field names both snake_case and camelCase are supported. For more information about filter syntax, see [AIP-160](https://google.aip.dev/160).
-     *     filter: 'placeholder-value',
-     *     // Optional. A comma-separated list of fields to order by, sorted in ascending order by default. Use `desc` after a field name for descending.
-     *     orderBy: 'placeholder-value',
-     *     // Optional. The maximum number of EvaluationMetrics to return.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A page token, received from a previous `ListEvaluationMetrics` call. Provide this to retrieve the subsequent page.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the Location from which to list the EvaluationMetrics. Format: `projects/{project\}/locations/{location\}`
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "evaluationMetrics": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Evaluationmetrics$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Evaluationmetrics$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListEvaluationMetricsResponse>
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Evaluationmetrics$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Evaluationmetrics$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListEvaluationMetricsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListEvaluationMetricsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Evaluationmetrics$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListEvaluationMetricsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListEvaluationMetricsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Evaluationmetrics$List
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListEvaluationMetricsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListEvaluationMetricsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListEvaluationMetricsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListEvaluationMetricsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Evaluationmetrics$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Evaluationmetrics$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/evaluationMetrics').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAiplatformV1ListEvaluationMetricsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAiplatformV1ListEvaluationMetricsResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Evaluationmetrics$Create extends StandardParameters {
-    /**
-     * Optional. The ID to use for the EvaluationMetric, which will become the final component of the EvaluationMetric's resource name. This value should be 1-63 characters, and valid characters are /a-z-/. The first character must be a lowercase letter, and the last character must be a lowercase letter or number.
-     */
-    evaluationMetricId?: string;
-    /**
-     * Required. The resource name of the Location to create the EvaluationMetric in. Format: `projects/{project\}/locations/{location\}`
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1EvaluationMetric;
-  }
-  export interface Params$Resource$Projects$Locations$Evaluationmetrics$Delete extends StandardParameters {
-    /**
-     * Required. The name of the EvaluationMetric resource to be deleted. Format: `projects/{project\}/locations/{location\}/evaluationMetrics/{evaluation_metric\}`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Evaluationmetrics$Get extends StandardParameters {
-    /**
-     * Required. The name of the EvaluationMetric resource. Format: `projects/{project\}/locations/{location\}/evaluationMetrics/{evaluation_metric\}`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Evaluationmetrics$List extends StandardParameters {
-    /**
-     * Optional. Filter expression that matches a subset of the EvaluationMetrics to show. For field names both snake_case and camelCase are supported. For more information about filter syntax, see [AIP-160](https://google.aip.dev/160).
-     */
-    filter?: string;
-    /**
-     * Optional. A comma-separated list of fields to order by, sorted in ascending order by default. Use `desc` after a field name for descending.
-     */
-    orderBy?: string;
-    /**
-     * Optional. The maximum number of EvaluationMetrics to return.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A page token, received from a previous `ListEvaluationMetrics` call. Provide this to retrieve the subsequent page.
-     */
-    pageToken?: string;
-    /**
-     * Required. The resource name of the Location from which to list the EvaluationMetrics. Format: `projects/{project\}/locations/{location\}`
-     */
-    parent?: string;
-  }
-
   export class Resource$Projects$Locations$Evaluationruns {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -83406,7 +77594,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Evaluationruns$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -83887,10 +78076,8 @@ export namespace aiplatform_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "agentConfigs": {},
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
-     *       //   "encryptionSpec": {},
      *       //   "evaluationItems": [],
      *       //   "metadata": {},
      *       //   "name": "my_name",
@@ -83902,10 +78089,8 @@ export namespace aiplatform_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "agentConfigs": {},
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
-     *   //   "encryptionSpec": {},
      *   //   "evaluationItems": [],
      *   //   "metadata": {},
      *   //   "name": "my_name",
@@ -84092,7 +78277,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Evaluationsets$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -84197,10 +78383,8 @@ export namespace aiplatform_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "agentConfigs": {},
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
-     *   //   "encryptionSpec": {},
      *   //   "evaluationItems": [],
      *   //   "metadata": {},
      *   //   "name": "my_name",
@@ -84307,164 +78491,6 @@ export namespace aiplatform_v1 {
         return createAPIRequest<Schema$GoogleCloudAiplatformV1EvaluationSet>(
           parameters
         );
-      }
-    }
-
-    /**
-     * Imports an Evaluation Set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.evaluationSets.import({
-     *     // Required. Parent resource name.
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "agentEngineSource": {},
-     *       //   "bigquerySource": {},
-     *       //   "cloudTraceSource": {},
-     *       //   "evaluationSet": {},
-     *       //   "gcsDestination": {},
-     *       //   "gcsSource": {},
-     *       //   "inlineSource": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    import(
-      params: Params$Resource$Projects$Locations$Evaluationsets$Import,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    import(
-      params?: Params$Resource$Projects$Locations$Evaluationsets$Import,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    import(
-      params: Params$Resource$Projects$Locations$Evaluationsets$Import,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    import(
-      params: Params$Resource$Projects$Locations$Evaluationsets$Import,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    import(
-      params: Params$Resource$Projects$Locations$Evaluationsets$Import,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    import(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    import(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Evaluationsets$Import
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Evaluationsets$Import;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Evaluationsets$Import;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/evaluationSets:import').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -84664,10 +78690,8 @@ export namespace aiplatform_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "agentConfigs": {},
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
-     *       //   "encryptionSpec": {},
      *       //   "evaluationItems": [],
      *       //   "metadata": {},
      *       //   "name": "my_name",
@@ -84679,10 +78703,8 @@ export namespace aiplatform_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "agentConfigs": {},
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
-     *   //   "encryptionSpec": {},
      *   //   "evaluationItems": [],
      *   //   "metadata": {},
      *   //   "name": "my_name",
@@ -84815,17 +78837,6 @@ export namespace aiplatform_v1 {
      * Required. The name of the EvaluationSet resource. Format: `projects/{project\}/locations/{location\}/evaluationSets/{evaluation_set\}`
      */
     name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Evaluationsets$Import extends StandardParameters {
-    /**
-     * Required. Parent resource name.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1ImportEvaluationSetRequest;
   }
   export interface Params$Resource$Projects$Locations$Evaluationsets$List extends StandardParameters {
     /**
@@ -84970,7 +78981,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Featuregroups$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -85116,7 +79128,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featuregroups$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -85728,7 +79741,8 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Featuregroups$Patch,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -86294,7 +80308,8 @@ export namespace aiplatform_v1 {
     batchCreate(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Batchcreate,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     batchCreate(
@@ -86462,7 +80477,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -86609,7 +80625,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -87084,7 +81101,8 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Patch,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -87454,7 +81472,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -87757,7 +81776,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Featuregroups$Features$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -88085,7 +82105,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featuregroups$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -88387,7 +82408,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Featuregroups$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -88612,7 +82634,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -88759,7 +82782,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -89381,7 +83405,8 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Patch,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -89975,7 +84000,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -90123,7 +84149,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -91241,7 +85268,8 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Patch,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -92660,7 +86688,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -92965,7 +86994,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Featureviews$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -93294,7 +87324,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -93597,7 +87628,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Featureonlinestores$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -93812,7 +87844,8 @@ export namespace aiplatform_v1 {
     batchReadFeatureValues(
       params: Params$Resource$Projects$Locations$Featurestores$Batchreadfeaturevalues,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     batchReadFeatureValues(
@@ -93976,7 +88009,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Featurestores$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -94122,7 +88156,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featurestores$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -94740,7 +88775,8 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Featurestores$Patch,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -95509,7 +89545,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -95657,7 +89694,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -95812,7 +89850,8 @@ export namespace aiplatform_v1 {
     deleteFeatureValues(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Deletefeaturevalues,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     deleteFeatureValues(
@@ -95973,7 +90012,8 @@ export namespace aiplatform_v1 {
     exportFeatureValues(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Exportfeaturevalues,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     exportFeatureValues(
@@ -96441,7 +90481,8 @@ export namespace aiplatform_v1 {
     importFeatureValues(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Importfeaturevalues,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     importFeatureValues(
@@ -97902,7 +91943,8 @@ export namespace aiplatform_v1 {
     batchCreate(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Batchcreate,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     batchCreate(
@@ -98071,7 +92113,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -98219,7 +92262,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -99218,7 +93262,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -99526,7 +93571,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -100001,7 +94047,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -100309,7 +94356,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Featurestores$Entitytypes$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -100777,7 +94825,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Featurestores$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -101083,7 +95132,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Featurestores$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -101620,7 +95670,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -102422,7 +96473,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -102730,7 +96782,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Hyperparametertuningjobs$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -102956,7 +97009,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Indexendpoints$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -103100,7 +97154,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Indexendpoints$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -103250,7 +97305,8 @@ export namespace aiplatform_v1 {
     deployIndex(
       params: Params$Resource$Projects$Locations$Indexendpoints$Deployindex,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     deployIndex(
@@ -103830,8 +97886,6 @@ export namespace aiplatform_v1 {
      *       // Required. The name of the IndexEndpoint resource into which to deploy an Index. Format: `projects/{project\}/locations/{location\}/indexEndpoints/{index_endpoint\}`
      *       indexEndpoint:
      *         'projects/my-project/locations/my-location/indexEndpoints/my-indexEndpoint',
-     *       // Optional. The update mask applies to the resource. The supported paths are `automatic_resources`, `dedicated_resources`, `enable_access_logging` and `deployed_index_auth_config`. When omitted, the service will perform a full update of all fields. See google.protobuf.FieldMask.
-     *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -103895,7 +97949,8 @@ export namespace aiplatform_v1 {
     mutateDeployedIndex(
       params: Params$Resource$Projects$Locations$Indexendpoints$Mutatedeployedindex,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     mutateDeployedIndex(
@@ -104392,7 +98447,8 @@ export namespace aiplatform_v1 {
     undeployIndex(
       params: Params$Resource$Projects$Locations$Indexendpoints$Undeployindex,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     undeployIndex(
@@ -104536,10 +98592,6 @@ export namespace aiplatform_v1 {
      * Required. The name of the IndexEndpoint resource into which to deploy an Index. Format: `projects/{project\}/locations/{location\}/indexEndpoints/{index_endpoint\}`
      */
     indexEndpoint?: string;
-    /**
-     * Optional. The update mask applies to the resource. The supported paths are `automatic_resources`, `dedicated_resources`, `enable_access_logging` and `deployed_index_auth_config`. When omitted, the service will perform a full update of all fields. See google.protobuf.FieldMask.
-     */
-    updateMask?: string;
 
     /**
      * Request body metadata
@@ -104934,7 +98986,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Indexendpoints$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -105238,7 +99291,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Indexendpoints$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -105464,7 +99518,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Indexes$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -105608,7 +99663,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Indexes$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -106083,7 +100139,8 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Indexes$Patch,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -106889,7 +100946,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Indexes$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -107191,7 +101249,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Indexes$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -107301,3643 +101360,6 @@ export namespace aiplatform_v1 {
     returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Indexes$Operations$Wait extends StandardParameters {
-    /**
-     * The name of the operation resource to wait on.
-     */
-    name?: string;
-    /**
-     * The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     */
-    timeout?: string;
-  }
-
-  export class Resource$Projects$Locations$Memorybanks {
-    context: APIRequestContext;
-    memories: Resource$Projects$Locations$Memorybanks$Memories;
-    operations: Resource$Projects$Locations$Memorybanks$Operations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.memories = new Resource$Projects$Locations$Memorybanks$Memories(
-        this.context
-      );
-      this.operations = new Resource$Projects$Locations$Memorybanks$Operations(
-        this.context
-      );
-    }
-
-    /**
-     * Ingests events for a Memory Bank.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.memoryBanks.ingestEvents({
-     *     // Required. The resource name of the ReasoningEngine to ingest events to. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
-     *     parent:
-     *       'projects/my-project/locations/my-location/memoryBanks/my-memoryBank',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "directContentsSource": {},
-     *       //   "disableMemoryRevisions": false,
-     *       //   "forceFlush": false,
-     *       //   "generationTriggerConfig": {},
-     *       //   "metadata": {},
-     *       //   "metadataMergeStrategy": "my_metadataMergeStrategy",
-     *       //   "revisionExpireTime": "my_revisionExpireTime",
-     *       //   "revisionLabels": {},
-     *       //   "revisionTtl": "my_revisionTtl",
-     *       //   "scope": {},
-     *       //   "streamId": "my_streamId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    ingestEvents(
-      params: Params$Resource$Projects$Locations$Memorybanks$Ingestevents,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    ingestEvents(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Ingestevents,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    ingestEvents(
-      params: Params$Resource$Projects$Locations$Memorybanks$Ingestevents,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    ingestEvents(
-      params: Params$Resource$Projects$Locations$Memorybanks$Ingestevents,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    ingestEvents(
-      params: Params$Resource$Projects$Locations$Memorybanks$Ingestevents,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    ingestEvents(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    ingestEvents(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Ingestevents
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Ingestevents;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Ingestevents;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}:ingestEvents').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Memorybanks$Ingestevents extends StandardParameters {
-    /**
-     * Required. The resource name of the ReasoningEngine to ingest events to. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1IngestEventsRequest;
-  }
-
-  export class Resource$Projects$Locations$Memorybanks$Memories {
-    context: APIRequestContext;
-    operations: Resource$Projects$Locations$Memorybanks$Memories$Operations;
-    revisions: Resource$Projects$Locations$Memorybanks$Memories$Revisions;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.operations =
-        new Resource$Projects$Locations$Memorybanks$Memories$Operations(
-          this.context
-        );
-      this.revisions =
-        new Resource$Projects$Locations$Memorybanks$Memories$Revisions(
-          this.context
-        );
-    }
-
-    /**
-     * Create a Memory.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.memoryBanks.memories.create({
-     *     // Optional. The user defined ID to use for memory, which will become the final component of the memory resource name. If not provided, Vertex AI will generate a value for this ID. This value may be up to 63 characters, and valid characters are `[a-z0-9-]`. The first character must be a letter, and the last character must be a letter or number.
-     *     memoryId: 'placeholder-value',
-     *     // Required. The resource name of the ReasoningEngine to create the Memory under. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
-     *     parent:
-     *       'projects/my-project/locations/my-location/memoryBanks/my-memoryBank',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "disableMemoryRevisions": false,
-     *       //   "displayName": "my_displayName",
-     *       //   "expireTime": "my_expireTime",
-     *       //   "fact": "my_fact",
-     *       //   "metadata": {},
-     *       //   "name": "my_name",
-     *       //   "revisionExpireTime": "my_revisionExpireTime",
-     *       //   "revisionLabels": {},
-     *       //   "revisionTtl": "my_revisionTtl",
-     *       //   "scope": {},
-     *       //   "topics": [],
-     *       //   "ttl": "my_ttl",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Create,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    create(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Memories$Create,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    create(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Create,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Create,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    create(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Memories$Create
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Memories$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Memories$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/memories').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Delete a Memory.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.memoryBanks.memories.delete({
-     *     // Required. The resource name of the Memory to delete. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/memories/{memory\}`
-     *     name: 'projects/my-project/locations/my-location/memoryBanks/my-memoryBank/memories/my-memorie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Memories$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    delete(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Delete,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Delete,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Memories$Delete
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Memories$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Memories$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Generate memories.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.memoryBanks.memories.generate(
-     *     {
-     *       // Required. The resource name of the ReasoningEngine to generate memories for. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
-     *       parent:
-     *         'projects/my-project/locations/my-location/memoryBanks/my-memoryBank',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "allowedTopics": [],
-     *         //   "directContentsSource": {},
-     *         //   "directMemoriesSource": {},
-     *         //   "disableConsolidation": false,
-     *         //   "disableMemoryRevisions": false,
-     *         //   "metadata": {},
-     *         //   "metadataMergeStrategy": "my_metadataMergeStrategy",
-     *         //   "revisionExpireTime": "my_revisionExpireTime",
-     *         //   "revisionLabels": {},
-     *         //   "revisionTtl": "my_revisionTtl",
-     *         //   "scope": {},
-     *         //   "vertexSessionSource": {}
-     *         // }
-     *       },
-     *     },
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    generate(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Generate,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    generate(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Memories$Generate,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    generate(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Generate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    generate(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Generate,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    generate(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Generate,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    generate(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    generate(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Memories$Generate
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Memories$Generate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Memories$Generate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/memories:generate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Get a Memory.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.memoryBanks.memories.get({
-     *     // Required. The resource name of the Memory. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/memories/{memory\}`
-     *     name: 'projects/my-project/locations/my-location/memoryBanks/my-memoryBank/memories/my-memorie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "disableMemoryRevisions": false,
-     *   //   "displayName": "my_displayName",
-     *   //   "expireTime": "my_expireTime",
-     *   //   "fact": "my_fact",
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "revisionExpireTime": "my_revisionExpireTime",
-     *   //   "revisionLabels": {},
-     *   //   "revisionTtl": "my_revisionTtl",
-     *   //   "scope": {},
-     *   //   "topics": [],
-     *   //   "ttl": "my_ttl",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Memories$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Memory>>;
-    get(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Memory>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1Memory>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1Memory>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1Memory>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Memories$Get
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Memory>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Memory>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Memory>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1Memory>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Memories$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Memories$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAiplatformV1Memory>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAiplatformV1Memory>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * List Memories.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.memoryBanks.memories.list({
-     *     // Optional. The standard list filter. More detail in [AIP-160](https://google.aip.dev/160). Supported fields: * `scope` (as a JSON string with equality match only) * `topics` (i.e. `topics.custom_memory_topic_label: "example topic" OR topics.managed_memory_topic: USER_PREFERENCES`)
-     *     filter: 'placeholder-value',
-     *     // Optional. The standard list order by string. If not specified, the default order is `create_time desc`. If specified, the default sorting order of provided fields is ascending. More detail in [AIP-132](https://google.aip.dev/132). Supported fields: * `create_time` * `update_time`
-     *     orderBy: 'placeholder-value',
-     *     // Optional. The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the ReasoningEngine to list the Memories under. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
-     *     parent:
-     *       'projects/my-project/locations/my-location/memoryBanks/my-memoryBank',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "memories": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Memories$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListMemoriesResponse>
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListMemoriesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListMemoriesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListMemoriesResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListMemoriesResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Memories$List
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListMemoriesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListMemoriesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListMemoriesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListMemoriesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Memories$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Memories$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/memories').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAiplatformV1ListMemoriesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAiplatformV1ListMemoriesResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Update a Memory.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.memoryBanks.memories.patch({
-     *     // Identifier. Represents the resource name of the Memory. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/memories/{memory\}`
-     *     name: 'projects/my-project/locations/my-location/memoryBanks/my-memoryBank/memories/my-memorie',
-     *     // Optional. Mask specifying which fields to update. The following fields are immutable: * `scope` * `memory_type`
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "disableMemoryRevisions": false,
-     *       //   "displayName": "my_displayName",
-     *       //   "expireTime": "my_expireTime",
-     *       //   "fact": "my_fact",
-     *       //   "metadata": {},
-     *       //   "name": "my_name",
-     *       //   "revisionExpireTime": "my_revisionExpireTime",
-     *       //   "revisionLabels": {},
-     *       //   "revisionTtl": "my_revisionTtl",
-     *       //   "scope": {},
-     *       //   "topics": [],
-     *       //   "ttl": "my_ttl",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Patch,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Memories$Patch,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    patch(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Patch,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Patch,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Memories$Patch
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Memories$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Memories$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Purge memories.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.memoryBanks.memories.purge({
-     *     // Required. The resource name of the ReasoningEngine to purge memories from. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
-     *     parent:
-     *       'projects/my-project/locations/my-location/memoryBanks/my-memoryBank',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "filter": "my_filter",
-     *       //   "filterGroups": [],
-     *       //   "force": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    purge(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Purge,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    purge(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Memories$Purge,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    purge(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Purge,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    purge(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Purge,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    purge(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Purge,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    purge(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    purge(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Memories$Purge
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Memories$Purge;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Memories$Purge;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/memories:purge').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Retrieve memories.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.memoryBanks.memories.retrieve(
-     *     {
-     *       // Required. The resource name of the ReasoningEngine to retrieve memories from. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
-     *       parent:
-     *         'projects/my-project/locations/my-location/memoryBanks/my-memoryBank',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "filter": "my_filter",
-     *         //   "filterGroups": [],
-     *         //   "memoryTypes": [],
-     *         //   "scope": {},
-     *         //   "similaritySearchParams": {},
-     *         //   "simpleRetrievalParams": {}
-     *         // }
-     *       },
-     *     },
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "retrievedMemories": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    retrieve(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Retrieve,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    retrieve(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Memories$Retrieve,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1RetrieveMemoriesResponse>
-    >;
-    retrieve(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Retrieve,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    retrieve(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Retrieve,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1RetrieveMemoriesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1RetrieveMemoriesResponse>
-    ): void;
-    retrieve(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Retrieve,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1RetrieveMemoriesResponse>
-    ): void;
-    retrieve(
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1RetrieveMemoriesResponse>
-    ): void;
-    retrieve(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Memories$Retrieve
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1RetrieveMemoriesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1RetrieveMemoriesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1RetrieveMemoriesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1RetrieveMemoriesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Memories$Retrieve;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Memories$Retrieve;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/memories:retrieve').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAiplatformV1RetrieveMemoriesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAiplatformV1RetrieveMemoriesResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Rollback Memory to a specific revision.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.memoryBanks.memories.rollback(
-     *     {
-     *       // Required. The resource name of the Memory to rollback. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/memories/{memory\}`
-     *       name: 'projects/my-project/locations/my-location/memoryBanks/my-memoryBank/memories/my-memorie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "targetRevisionId": "my_targetRevisionId"
-     *         // }
-     *       },
-     *     },
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    rollback(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Rollback,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    rollback(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Memories$Rollback,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    rollback(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Rollback,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    rollback(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Rollback,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    rollback(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Rollback,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    rollback(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    rollback(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Memories$Rollback
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Memories$Rollback;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Memories$Rollback;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:rollback').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Memorybanks$Memories$Create extends StandardParameters {
-    /**
-     * Optional. The user defined ID to use for memory, which will become the final component of the memory resource name. If not provided, Vertex AI will generate a value for this ID. This value may be up to 63 characters, and valid characters are `[a-z0-9-]`. The first character must be a letter, and the last character must be a letter or number.
-     */
-    memoryId?: string;
-    /**
-     * Required. The resource name of the ReasoningEngine to create the Memory under. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1Memory;
-  }
-  export interface Params$Resource$Projects$Locations$Memorybanks$Memories$Delete extends StandardParameters {
-    /**
-     * Required. The resource name of the Memory to delete. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/memories/{memory\}`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Memorybanks$Memories$Generate extends StandardParameters {
-    /**
-     * Required. The resource name of the ReasoningEngine to generate memories for. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1GenerateMemoriesRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Memorybanks$Memories$Get extends StandardParameters {
-    /**
-     * Required. The resource name of the Memory. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/memories/{memory\}`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Memorybanks$Memories$List extends StandardParameters {
-    /**
-     * Optional. The standard list filter. More detail in [AIP-160](https://google.aip.dev/160). Supported fields: * `scope` (as a JSON string with equality match only) * `topics` (i.e. `topics.custom_memory_topic_label: "example topic" OR topics.managed_memory_topic: USER_PREFERENCES`)
-     */
-    filter?: string;
-    /**
-     * Optional. The standard list order by string. If not specified, the default order is `create_time desc`. If specified, the default sorting order of provided fields is ascending. More detail in [AIP-132](https://google.aip.dev/132). Supported fields: * `create_time` * `update_time`
-     */
-    orderBy?: string;
-    /**
-     * Optional. The standard list page size.
-     */
-    pageSize?: number;
-    /**
-     * Optional. The standard list page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. The resource name of the ReasoningEngine to list the Memories under. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Memorybanks$Memories$Patch extends StandardParameters {
-    /**
-     * Identifier. Represents the resource name of the Memory. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/memories/{memory\}`
-     */
-    name?: string;
-    /**
-     * Optional. Mask specifying which fields to update. The following fields are immutable: * `scope` * `memory_type`
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1Memory;
-  }
-  export interface Params$Resource$Projects$Locations$Memorybanks$Memories$Purge extends StandardParameters {
-    /**
-     * Required. The resource name of the ReasoningEngine to purge memories from. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1PurgeMemoriesRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Memorybanks$Memories$Retrieve extends StandardParameters {
-    /**
-     * Required. The resource name of the ReasoningEngine to retrieve memories from. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1RetrieveMemoriesRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Memorybanks$Memories$Rollback extends StandardParameters {
-    /**
-     * Required. The resource name of the Memory to rollback. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/memories/{memory\}`
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1RollbackMemoryRequest;
-  }
-
-  export class Resource$Projects$Locations$Memorybanks$Memories$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.memoryBanks.memories.operations.cancel({
-     *       // The name of the operation resource to be cancelled.
-     *       name: 'projects/my-project/locations/my-location/memoryBanks/my-memoryBank/memories/my-memorie/operations/my-operation',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    cancel(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Cancel,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    cancel(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Cancel,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
-    cancel(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Cancel,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    cancel(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Cancel,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    cancel(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Cancel,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    cancel(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    cancel(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Cancel
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Cancel;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Cancel;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.memoryBanks.memories.operations.delete({
-     *       // The name of the operation resource to be deleted.
-     *       name: 'projects/my-project/locations/my-location/memoryBanks/my-memoryBank/memories/my-memorie/operations/my-operation',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
-    delete(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Delete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.memoryBanks.memories.operations.get({
-     *       // The name of the operation resource.
-     *       name: 'projects/my-project/locations/my-location/memoryBanks/my-memoryBank/memories/my-memorie/operations/my-operation',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    get(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Get,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Get,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.memoryBanks.memories.operations.list({
-     *       // The standard list filter.
-     *       filter: 'placeholder-value',
-     *       // The name of the operation's parent resource.
-     *       name: 'projects/my-project/locations/my-location/memoryBanks/my-memoryBank/memories/my-memorie',
-     *       // The standard list page size.
-     *       pageSize: 'placeholder-value',
-     *       // The standard list page token.
-     *       pageToken: 'placeholder-value',
-     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     *       returnPartialSuccess: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$List,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$List
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}/operations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.memoryBanks.memories.operations.wait({
-     *       // The name of the operation resource to wait on.
-     *       name: 'projects/my-project/locations/my-location/memoryBanks/my-memoryBank/memories/my-memorie/operations/my-operation',
-     *       // The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     *       timeout: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    wait(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Wait,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    wait(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Wait,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    wait(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Wait,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    wait(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Wait,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Wait,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Wait
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Wait;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Wait;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Cancel extends StandardParameters {
-    /**
-     * The name of the operation resource to be cancelled.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Delete extends StandardParameters {
-    /**
-     * The name of the operation resource to be deleted.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Get extends StandardParameters {
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$List extends StandardParameters {
-    /**
-     * The standard list filter.
-     */
-    filter?: string;
-    /**
-     * The name of the operation's parent resource.
-     */
-    name?: string;
-    /**
-     * The standard list page size.
-     */
-    pageSize?: number;
-    /**
-     * The standard list page token.
-     */
-    pageToken?: string;
-    /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     */
-    returnPartialSuccess?: boolean;
-  }
-  export interface Params$Resource$Projects$Locations$Memorybanks$Memories$Operations$Wait extends StandardParameters {
-    /**
-     * The name of the operation resource to wait on.
-     */
-    name?: string;
-    /**
-     * The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     */
-    timeout?: string;
-  }
-
-  export class Resource$Projects$Locations$Memorybanks$Memories$Revisions {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Get a Memory Revision.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.memoryBanks.memories.revisions.get({
-     *       // Required. The resource name of the Memory Revision to retrieve. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/memories/{memory\}/revisions/{revision\}`
-     *       name: 'projects/my-project/locations/my-location/memoryBanks/my-memoryBank/memories/my-memorie/revisions/my-revision',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "expireTime": "my_expireTime",
-     *   //   "extractedMemories": [],
-     *   //   "fact": "my_fact",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "structuredData": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Revisions$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Memories$Revisions$Get,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1MemoryRevision>
-    >;
-    get(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Revisions$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Revisions$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1MemoryRevision>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1MemoryRevision>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Revisions$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1MemoryRevision>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1MemoryRevision>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Memories$Revisions$Get
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1MemoryRevision>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1MemoryRevision>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1MemoryRevision>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1MemoryRevision>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Memories$Revisions$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Memories$Revisions$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAiplatformV1MemoryRevision>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAiplatformV1MemoryRevision>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * List Memory Revisions for a Memory.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.memoryBanks.memories.revisions.list({
-     *       // Optional. The standard list filter. More detail in [AIP-160](https://google.aip.dev/160). Supported fields (equality match only): * `labels`
-     *       filter: 'placeholder-value',
-     *       // Optional. The standard list page size.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. The standard list page token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The resource name of the Memory to list revisions for. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/memories/{memory\}`
-     *       parent:
-     *         'projects/my-project/locations/my-location/memoryBanks/my-memoryBank/memories/my-memorie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "memoryRevisions": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Revisions$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Memories$Revisions$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListMemoryRevisionsResponse>
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Revisions$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Revisions$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListMemoryRevisionsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListMemoryRevisionsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Memorybanks$Memories$Revisions$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListMemoryRevisionsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListMemoryRevisionsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Memories$Revisions$List
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListMemoryRevisionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListMemoryRevisionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListMemoryRevisionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListMemoryRevisionsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Memories$Revisions$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Memories$Revisions$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/revisions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAiplatformV1ListMemoryRevisionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAiplatformV1ListMemoryRevisionsResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Memorybanks$Memories$Revisions$Get extends StandardParameters {
-    /**
-     * Required. The resource name of the Memory Revision to retrieve. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/memories/{memory\}/revisions/{revision\}`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Memorybanks$Memories$Revisions$List extends StandardParameters {
-    /**
-     * Optional. The standard list filter. More detail in [AIP-160](https://google.aip.dev/160). Supported fields (equality match only): * `labels`
-     */
-    filter?: string;
-    /**
-     * Optional. The standard list page size.
-     */
-    pageSize?: number;
-    /**
-     * Optional. The standard list page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. The resource name of the Memory to list revisions for. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/memories/{memory\}`
-     */
-    parent?: string;
-  }
-
-  export class Resource$Projects$Locations$Memorybanks$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.memoryBanks.operations.cancel(
-     *     {
-     *       // The name of the operation resource to be cancelled.
-     *       name: 'projects/my-project/locations/my-location/memoryBanks/my-memoryBank/operations/my-operation',
-     *     },
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    cancel(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$Cancel,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    cancel(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Operations$Cancel,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
-    cancel(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$Cancel,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    cancel(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$Cancel,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    cancel(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$Cancel,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    cancel(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    cancel(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Operations$Cancel
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Operations$Cancel;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Operations$Cancel;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.memoryBanks.operations.delete(
-     *     {
-     *       // The name of the operation resource to be deleted.
-     *       name: 'projects/my-project/locations/my-location/memoryBanks/my-memoryBank/operations/my-operation',
-     *     },
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Operations$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
-    delete(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$Delete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Operations$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Operations$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Operations$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.memoryBanks.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'projects/my-project/locations/my-location/memoryBanks/my-memoryBank/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Operations$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    get(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$Get,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$Get,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.memoryBanks.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'projects/my-project/locations/my-location/memoryBanks/my-memoryBank',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     *     returnPartialSuccess: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Operations$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$List,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Operations$List
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Operations$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Operations$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}/operations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.memoryBanks.operations.wait({
-     *     // The name of the operation resource to wait on.
-     *     name: 'projects/my-project/locations/my-location/memoryBanks/my-memoryBank/operations/my-operation',
-     *     // The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     *     timeout: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    wait(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$Wait,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    wait(
-      params?: Params$Resource$Projects$Locations$Memorybanks$Operations$Wait,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    wait(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$Wait,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    wait(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$Wait,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      params: Params$Resource$Projects$Locations$Memorybanks$Operations$Wait,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memorybanks$Operations$Wait
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memorybanks$Operations$Wait;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memorybanks$Operations$Wait;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Memorybanks$Operations$Cancel extends StandardParameters {
-    /**
-     * The name of the operation resource to be cancelled.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Memorybanks$Operations$Delete extends StandardParameters {
-    /**
-     * The name of the operation resource to be deleted.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Memorybanks$Operations$Get extends StandardParameters {
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Memorybanks$Operations$List extends StandardParameters {
-    /**
-     * The standard list filter.
-     */
-    filter?: string;
-    /**
-     * The name of the operation's parent resource.
-     */
-    name?: string;
-    /**
-     * The standard list page size.
-     */
-    pageSize?: number;
-    /**
-     * The standard list page token.
-     */
-    pageToken?: string;
-    /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     */
-    returnPartialSuccess?: boolean;
-  }
-  export interface Params$Resource$Projects$Locations$Memorybanks$Operations$Wait extends StandardParameters {
     /**
      * The name of the operation resource to wait on.
      */
@@ -111063,7 +101485,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Metadatastores$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -111209,7 +101632,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -111891,7 +102315,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -112532,7 +102957,8 @@ export namespace aiplatform_v1 {
     purge(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Purge,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     purge(
@@ -113214,7 +103640,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -113522,7 +103949,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Metadatastores$Artifacts$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -114224,7 +104652,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -114862,7 +105291,8 @@ export namespace aiplatform_v1 {
     purge(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Purge,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     purge(
@@ -115725,7 +106155,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -116033,7 +106464,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Metadatastores$Contexts$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -116579,7 +107011,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -117226,7 +107659,8 @@ export namespace aiplatform_v1 {
     purge(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Purge,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     purge(
@@ -117907,7 +108341,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -118215,7 +108650,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Metadatastores$Executions$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -119210,7 +109646,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Metadatastores$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -119514,7 +109951,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Metadatastores$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -119728,7 +110166,8 @@ export namespace aiplatform_v1 {
     batchMigrate(
       params: Params$Resource$Projects$Locations$Migratableresources$Batchmigrate,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     batchMigrate(
@@ -120330,7 +110769,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Migratableresources$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -120634,7 +111074,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Migratableresources$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -121044,7 +111485,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -121548,7 +111990,8 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Patch,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -122513,7 +112956,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -122821,7 +113265,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Modeldeploymentmonitoringjobs$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -123041,7 +113486,8 @@ export namespace aiplatform_v1 {
     copy(
       params: Params$Resource$Projects$Locations$Models$Copy,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     copy(
@@ -123185,7 +113631,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Models$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -123326,7 +113773,8 @@ export namespace aiplatform_v1 {
     deleteVersion(
       params: Params$Resource$Projects$Locations$Models$Deleteversion,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     deleteVersion(
@@ -123478,7 +113926,8 @@ export namespace aiplatform_v1 {
     export(
       params: Params$Resource$Projects$Locations$Models$Export,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     export(
@@ -125117,7 +115566,8 @@ export namespace aiplatform_v1 {
     updateExplanationDataset(
       params: Params$Resource$Projects$Locations$Models$Updateexplanationdataset,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     updateExplanationDataset(
@@ -125273,7 +115723,8 @@ export namespace aiplatform_v1 {
     upload(
       params: Params$Resource$Projects$Locations$Models$Upload,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     upload(
@@ -126413,7 +116864,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -126717,7 +117169,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Models$Evaluations$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -127699,7 +118152,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Models$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -128000,7 +118454,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Models$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -128520,7 +118975,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Nasjobs$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -129401,7 +119857,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -129546,7 +120003,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -130351,7 +120809,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -130655,7 +121114,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -130870,7 +121330,8 @@ export namespace aiplatform_v1 {
     assign(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Assign,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     assign(
@@ -131015,7 +121476,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -131492,7 +121954,8 @@ export namespace aiplatform_v1 {
     start(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Start,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     start(
@@ -131640,7 +122103,8 @@ export namespace aiplatform_v1 {
     stop(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Stop,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     stop(
@@ -131787,7 +122251,8 @@ export namespace aiplatform_v1 {
     upgrade(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Upgrade,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     upgrade(
@@ -132291,7 +122756,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -132595,7 +123061,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Notebookruntimes$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -132830,7 +123297,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -132976,7 +123444,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -134471,7 +124940,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -134779,7 +125249,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -134889,1950 +125360,6 @@ export namespace aiplatform_v1 {
     returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Notebookruntimetemplates$Operations$Wait extends StandardParameters {
-    /**
-     * The name of the operation resource to wait on.
-     */
-    name?: string;
-    /**
-     * The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     */
-    timeout?: string;
-  }
-
-  export class Resource$Projects$Locations$Onlineevaluators {
-    context: APIRequestContext;
-    operations: Resource$Projects$Locations$Onlineevaluators$Operations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.operations =
-        new Resource$Projects$Locations$Onlineevaluators$Operations(
-          this.context
-        );
-    }
-
-    /**
-     * Activates an OnlineEvaluator.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.onlineEvaluators.activate({
-     *     // Required. The name of the OnlineEvaluator to activate. Format: projects/{project\}/locations/{location\}/onlineEvaluators/{id\}.
-     *     name: 'projects/my-project/locations/my-location/onlineEvaluators/my-onlineEvaluator',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    activate(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Activate,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    activate(
-      params?: Params$Resource$Projects$Locations$Onlineevaluators$Activate,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    activate(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Activate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    activate(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Activate,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    activate(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Activate,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    activate(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    activate(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Onlineevaluators$Activate
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Onlineevaluators$Activate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Onlineevaluators$Activate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:activate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Creates an OnlineEvaluator in the given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.onlineEvaluators.create({
-     *     // Required. The parent resource where the OnlineEvaluator will be created. Format: projects/{project\}/locations/{location\}.
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "agentResource": "my_agentResource",
-     *       //   "cloudObservability": {},
-     *       //   "config": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "metricSources": [],
-     *       //   "name": "my_name",
-     *       //   "state": "my_state",
-     *       //   "stateDetails": [],
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Create,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    create(
-      params?: Params$Resource$Projects$Locations$Onlineevaluators$Create,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    create(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Create,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Create,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    create(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Onlineevaluators$Create
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Onlineevaluators$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Onlineevaluators$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/onlineEvaluators').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Deletes an OnlineEvaluator.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.onlineEvaluators.delete({
-     *     // Required. The name of the OnlineEvaluator to delete. Format: projects/{project\}/locations/{location\}/onlineEvaluators/{id\}.
-     *     name: 'projects/my-project/locations/my-location/onlineEvaluators/my-onlineEvaluator',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Onlineevaluators$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    delete(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Delete,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Delete,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Onlineevaluators$Delete
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Onlineevaluators$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Onlineevaluators$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Gets details of an OnlineEvaluator.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.onlineEvaluators.get({
-     *     // Required. The name of the OnlineEvaluator to retrieve. Format: projects/{project\}/locations/{location\}/onlineEvaluators/{id\}.
-     *     name: 'projects/my-project/locations/my-location/onlineEvaluators/my-onlineEvaluator',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "agentResource": "my_agentResource",
-     *   //   "cloudObservability": {},
-     *   //   "config": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "metricSources": [],
-     *   //   "name": "my_name",
-     *   //   "state": "my_state",
-     *   //   "stateDetails": [],
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Onlineevaluators$Get,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1OnlineEvaluator>
-    >;
-    get(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1OnlineEvaluator>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1OnlineEvaluator>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1OnlineEvaluator>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1OnlineEvaluator>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Onlineevaluators$Get
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1OnlineEvaluator>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1OnlineEvaluator>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1OnlineEvaluator>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1OnlineEvaluator>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Onlineevaluators$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Onlineevaluators$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAiplatformV1OnlineEvaluator>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAiplatformV1OnlineEvaluator>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Lists the OnlineEvaluators for the given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.onlineEvaluators.list({
-     *     // Optional. Standard list filter. Supported fields: * `create_time` * `update_time` * `agent_resource` Example: `create_time\>"2026-01-01T00:00:00-04:00"` where the timestamp is in RFC 3339 format) Based on aip.dev/160.
-     *     filter: 'placeholder-value',
-     *     // Optional. A comma-separated list of fields to order by. The default sorting order is ascending. Use "desc" after a field name for descending. Supported fields: * `create_time` * `update_time` Example: `create_time desc`. Based on aip.dev/132.
-     *     orderBy: 'placeholder-value',
-     *     // Optional. The maximum number of OnlineEvaluators to return. The service may return fewer than this value. If unspecified, at most 100 OnlineEvaluators will be returned. The maximum value is 100; values above 100 will be coerced to 100. Based on aip.dev/158.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A token identifying a page of results the server should return. Based on aip.dev/158.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource of the OnlineEvaluators to list. Format: projects/{project\}/locations/{location\}.
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "onlineEvaluators": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Onlineevaluators$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListOnlineEvaluatorsResponse>
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListOnlineEvaluatorsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListOnlineEvaluatorsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListOnlineEvaluatorsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListOnlineEvaluatorsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Onlineevaluators$List
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListOnlineEvaluatorsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListOnlineEvaluatorsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListOnlineEvaluatorsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListOnlineEvaluatorsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Onlineevaluators$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Onlineevaluators$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/onlineEvaluators').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAiplatformV1ListOnlineEvaluatorsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAiplatformV1ListOnlineEvaluatorsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Updates the fields of an OnlineEvaluator.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.onlineEvaluators.patch({
-     *     // Identifier. The resource name of the OnlineEvaluator. Format: projects/{project\}/locations/{location\}/onlineEvaluators/{id\}.
-     *     name: 'projects/my-project/locations/my-location/onlineEvaluators/my-onlineEvaluator',
-     *     // Optional. Field mask is used to control which fields get updated. If the mask is not present, all fields will be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "agentResource": "my_agentResource",
-     *       //   "cloudObservability": {},
-     *       //   "config": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "metricSources": [],
-     *       //   "name": "my_name",
-     *       //   "state": "my_state",
-     *       //   "stateDetails": [],
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Patch,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Onlineevaluators$Patch,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    patch(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Patch,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Patch,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Onlineevaluators$Patch
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Onlineevaluators$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Onlineevaluators$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Suspends an OnlineEvaluator. When an OnlineEvaluator is suspended, it won't run any evaluations until it is activated again.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.onlineEvaluators.suspend({
-     *     // Required. The name of the OnlineEvaluator to suspend. Format: projects/{project\}/locations/{location\}/onlineEvaluators/{id\}.
-     *     name: 'projects/my-project/locations/my-location/onlineEvaluators/my-onlineEvaluator',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    suspend(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Suspend,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    suspend(
-      params?: Params$Resource$Projects$Locations$Onlineevaluators$Suspend,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    suspend(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Suspend,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    suspend(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Suspend,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    suspend(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Suspend,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    suspend(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    suspend(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Onlineevaluators$Suspend
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Onlineevaluators$Suspend;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Onlineevaluators$Suspend;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:suspend').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Onlineevaluators$Activate extends StandardParameters {
-    /**
-     * Required. The name of the OnlineEvaluator to activate. Format: projects/{project\}/locations/{location\}/onlineEvaluators/{id\}.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1ActivateOnlineEvaluatorRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Onlineevaluators$Create extends StandardParameters {
-    /**
-     * Required. The parent resource where the OnlineEvaluator will be created. Format: projects/{project\}/locations/{location\}.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1OnlineEvaluator;
-  }
-  export interface Params$Resource$Projects$Locations$Onlineevaluators$Delete extends StandardParameters {
-    /**
-     * Required. The name of the OnlineEvaluator to delete. Format: projects/{project\}/locations/{location\}/onlineEvaluators/{id\}.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Onlineevaluators$Get extends StandardParameters {
-    /**
-     * Required. The name of the OnlineEvaluator to retrieve. Format: projects/{project\}/locations/{location\}/onlineEvaluators/{id\}.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Onlineevaluators$List extends StandardParameters {
-    /**
-     * Optional. Standard list filter. Supported fields: * `create_time` * `update_time` * `agent_resource` Example: `create_time\>"2026-01-01T00:00:00-04:00"` where the timestamp is in RFC 3339 format) Based on aip.dev/160.
-     */
-    filter?: string;
-    /**
-     * Optional. A comma-separated list of fields to order by. The default sorting order is ascending. Use "desc" after a field name for descending. Supported fields: * `create_time` * `update_time` Example: `create_time desc`. Based on aip.dev/132.
-     */
-    orderBy?: string;
-    /**
-     * Optional. The maximum number of OnlineEvaluators to return. The service may return fewer than this value. If unspecified, at most 100 OnlineEvaluators will be returned. The maximum value is 100; values above 100 will be coerced to 100. Based on aip.dev/158.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A token identifying a page of results the server should return. Based on aip.dev/158.
-     */
-    pageToken?: string;
-    /**
-     * Required. The parent resource of the OnlineEvaluators to list. Format: projects/{project\}/locations/{location\}.
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Onlineevaluators$Patch extends StandardParameters {
-    /**
-     * Identifier. The resource name of the OnlineEvaluator. Format: projects/{project\}/locations/{location\}/onlineEvaluators/{id\}.
-     */
-    name?: string;
-    /**
-     * Optional. Field mask is used to control which fields get updated. If the mask is not present, all fields will be updated.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1OnlineEvaluator;
-  }
-  export interface Params$Resource$Projects$Locations$Onlineevaluators$Suspend extends StandardParameters {
-    /**
-     * Required. The name of the OnlineEvaluator to suspend. Format: projects/{project\}/locations/{location\}/onlineEvaluators/{id\}.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1SuspendOnlineEvaluatorRequest;
-  }
-
-  export class Resource$Projects$Locations$Onlineevaluators$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.onlineEvaluators.operations.cancel({
-     *       // The name of the operation resource to be cancelled.
-     *       name: 'projects/my-project/locations/my-location/onlineEvaluators/my-onlineEvaluator/operations/my-operation',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    cancel(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Cancel,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    cancel(
-      params?: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Cancel,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
-    cancel(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Cancel,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    cancel(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Cancel,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    cancel(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Cancel,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    cancel(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    cancel(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Onlineevaluators$Operations$Cancel
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Onlineevaluators$Operations$Cancel;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Onlineevaluators$Operations$Cancel;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.onlineEvaluators.operations.delete({
-     *       // The name of the operation resource to be deleted.
-     *       name: 'projects/my-project/locations/my-location/onlineEvaluators/my-onlineEvaluator/operations/my-operation',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
-    delete(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Delete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Onlineevaluators$Operations$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Onlineevaluators$Operations$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Onlineevaluators$Operations$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.onlineEvaluators.operations.get({
-     *       // The name of the operation resource.
-     *       name: 'projects/my-project/locations/my-location/onlineEvaluators/my-onlineEvaluator/operations/my-operation',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    get(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Get,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Get,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Onlineevaluators$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Onlineevaluators$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Onlineevaluators$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.onlineEvaluators.operations.list({
-     *       // The standard list filter.
-     *       filter: 'placeholder-value',
-     *       // The name of the operation's parent resource.
-     *       name: 'projects/my-project/locations/my-location/onlineEvaluators/my-onlineEvaluator',
-     *       // The standard list page size.
-     *       pageSize: 'placeholder-value',
-     *       // The standard list page token.
-     *       pageToken: 'placeholder-value',
-     *       // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     *       returnPartialSuccess: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Onlineevaluators$Operations$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$List,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Onlineevaluators$Operations$List
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Onlineevaluators$Operations$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Onlineevaluators$Operations$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}/operations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.onlineEvaluators.operations.wait({
-     *       // The name of the operation resource to wait on.
-     *       name: 'projects/my-project/locations/my-location/onlineEvaluators/my-onlineEvaluator/operations/my-operation',
-     *       // The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     *       timeout: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    wait(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Wait,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    wait(
-      params?: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Wait,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    wait(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Wait,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    wait(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Wait,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      params: Params$Resource$Projects$Locations$Onlineevaluators$Operations$Wait,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Onlineevaluators$Operations$Wait
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Onlineevaluators$Operations$Wait;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Onlineevaluators$Operations$Wait;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Onlineevaluators$Operations$Cancel extends StandardParameters {
-    /**
-     * The name of the operation resource to be cancelled.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Onlineevaluators$Operations$Delete extends StandardParameters {
-    /**
-     * The name of the operation resource to be deleted.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Onlineevaluators$Operations$Get extends StandardParameters {
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Onlineevaluators$Operations$List extends StandardParameters {
-    /**
-     * The standard list filter.
-     */
-    filter?: string;
-    /**
-     * The name of the operation's parent resource.
-     */
-    name?: string;
-    /**
-     * The standard list page size.
-     */
-    pageSize?: number;
-    /**
-     * The standard list page token.
-     */
-    pageToken?: string;
-    /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     */
-    returnPartialSuccess?: boolean;
-  }
-  export interface Params$Resource$Projects$Locations$Onlineevaluators$Operations$Wait extends StandardParameters {
     /**
      * The name of the operation resource to wait on.
      */
@@ -137187,7 +125714,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -137487,7 +126015,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -137717,7 +126246,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Persistentresources$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -137862,7 +126392,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Persistentresources$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -138344,7 +126875,8 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Persistentresources$Patch,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -138492,7 +127024,8 @@ export namespace aiplatform_v1 {
     reboot(
       params: Params$Resource$Projects$Locations$Persistentresources$Reboot,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     reboot(
@@ -138978,7 +127511,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Persistentresources$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -139282,7 +127816,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Persistentresources$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -139494,7 +128029,8 @@ export namespace aiplatform_v1 {
     batchCancel(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Batchcancel,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     batchCancel(
@@ -139647,7 +128183,8 @@ export namespace aiplatform_v1 {
     batchDelete(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Batchdelete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     batchDelete(
@@ -140127,7 +128664,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -140952,7 +129490,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -141254,7 +129793,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Pipelinejobs$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -141377,13 +129917,11 @@ export namespace aiplatform_v1 {
   export class Resource$Projects$Locations$Publishers {
     context: APIRequestContext;
     models: Resource$Projects$Locations$Publishers$Models;
-    v1: Resource$Projects$Locations$Publishers$V1;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.models = new Resource$Projects$Locations$Publishers$Models(
         this.context
       );
-      this.v1 = new Resource$Projects$Locations$Publishers$V1(this.context);
     }
   }
 
@@ -141980,7 +130518,8 @@ export namespace aiplatform_v1 {
     fetchPredictOperation(
       params: Params$Resource$Projects$Locations$Publishers$Models$Fetchpredictoperation,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     fetchPredictOperation(
@@ -142479,7 +131018,8 @@ export namespace aiplatform_v1 {
     predictLongRunning(
       params: Params$Resource$Projects$Locations$Publishers$Models$Predictlongrunning,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     predictLongRunning(
@@ -143500,185 +132040,6 @@ export namespace aiplatform_v1 {
     requestBody?: Schema$GoogleCloudAiplatformV1InvokeRequest;
   }
 
-  export class Resource$Projects$Locations$Publishers$V1 {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Forwards arbitrary HTTP requests for both streaming and non-streaming cases. To use this method, invoke_route_prefix must be set to allow the paths that will be specified in the request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.publishers.v1.responses({
-     *     // ID of the DeployedModel that serves the invoke request.
-     *     deployedModelId: 'placeholder-value',
-     *     // Required. The name of the Endpoint requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
-     *     endpoint:
-     *       'projects/my-project/locations/my-location/publishers/my-publisher',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contentType": "my_contentType",
-     *       //   "data": "my_data",
-     *       //   "extensions": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contentType": "my_contentType",
-     *   //   "data": "my_data",
-     *   //   "extensions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    responses(
-      params: Params$Resource$Projects$Locations$Publishers$V1$Responses,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    responses(
-      params?: Params$Resource$Projects$Locations$Publishers$V1$Responses,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleApiHttpBody>>;
-    responses(
-      params: Params$Resource$Projects$Locations$Publishers$V1$Responses,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    responses(
-      params: Params$Resource$Projects$Locations$Publishers$V1$Responses,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleApiHttpBody>,
-      callback: BodyResponseCallback<Schema$GoogleApiHttpBody>
-    ): void;
-    responses(
-      params: Params$Resource$Projects$Locations$Publishers$V1$Responses,
-      callback: BodyResponseCallback<Schema$GoogleApiHttpBody>
-    ): void;
-    responses(callback: BodyResponseCallback<Schema$GoogleApiHttpBody>): void;
-    responses(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Publishers$V1$Responses
-        | BodyResponseCallback<Schema$GoogleApiHttpBody>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleApiHttpBody>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleApiHttpBody>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleApiHttpBody>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Publishers$V1$Responses;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Publishers$V1$Responses;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+endpoint}/v1/responses').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['endpoint'],
-        pathParams: ['endpoint'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleApiHttpBody>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleApiHttpBody>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Publishers$V1$Responses extends StandardParameters {
-    /**
-     * ID of the DeployedModel that serves the invoke request.
-     */
-    deployedModelId?: string;
-    /**
-     * Required. The name of the Endpoint requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
-     */
-    endpoint?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleApiHttpBody;
-  }
-
   export class Resource$Projects$Locations$Ragcorpora {
     context: APIRequestContext;
     operations: Resource$Projects$Locations$Ragcorpora$Operations;
@@ -143785,7 +132146,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Ragcorpora$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -143931,7 +132293,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Ragcorpora$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -144396,7 +132759,8 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Ragcorpora$Patch,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -144863,7 +133227,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Ragcorpora$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -145165,7 +133530,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Ragcorpora$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -145372,7 +133738,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -145675,7 +134042,8 @@ export namespace aiplatform_v1 {
     import(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Import,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -146291,7 +134659,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -146595,7 +134964,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Ragcorpora$Ragfiles$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -147076,7 +135446,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -147380,7 +135751,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Ragengineconfig$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -147622,7 +135994,8 @@ export namespace aiplatform_v1 {
     asyncQuery(
       params: Params$Resource$Projects$Locations$Reasoningengines$Asyncquery,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     asyncQuery(
@@ -147939,7 +136312,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Reasoningengines$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -148086,7 +136460,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Reasoningengines$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -148857,7 +137232,8 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Reasoningengines$Patch,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -149797,7 +138173,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Reasoningengines$Memories$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -149943,7 +138320,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Reasoningengines$Memories$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -150106,7 +138484,8 @@ export namespace aiplatform_v1 {
     generate(
       params: Params$Resource$Projects$Locations$Reasoningengines$Memories$Generate,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     generate(
@@ -150335,171 +138714,6 @@ export namespace aiplatform_v1 {
     }
 
     /**
-     * Ingests events for a Memory Bank.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.reasoningEngines.memories.ingestEvents({
-     *       // Required. The resource name of the ReasoningEngine to ingest events to. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
-     *       parent:
-     *         'projects/my-project/locations/my-location/reasoningEngines/my-reasoningEngine',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "directContentsSource": {},
-     *         //   "disableMemoryRevisions": false,
-     *         //   "forceFlush": false,
-     *         //   "generationTriggerConfig": {},
-     *         //   "metadata": {},
-     *         //   "metadataMergeStrategy": "my_metadataMergeStrategy",
-     *         //   "revisionExpireTime": "my_revisionExpireTime",
-     *         //   "revisionLabels": {},
-     *         //   "revisionTtl": "my_revisionTtl",
-     *         //   "scope": {},
-     *         //   "streamId": "my_streamId"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    ingestEvents(
-      params: Params$Resource$Projects$Locations$Reasoningengines$Memories$Ingestevents,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    ingestEvents(
-      params?: Params$Resource$Projects$Locations$Reasoningengines$Memories$Ingestevents,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    ingestEvents(
-      params: Params$Resource$Projects$Locations$Reasoningengines$Memories$Ingestevents,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    ingestEvents(
-      params: Params$Resource$Projects$Locations$Reasoningengines$Memories$Ingestevents,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    ingestEvents(
-      params: Params$Resource$Projects$Locations$Reasoningengines$Memories$Ingestevents,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    ingestEvents(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    ingestEvents(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Reasoningengines$Memories$Ingestevents
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Reasoningengines$Memories$Ingestevents;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Reasoningengines$Memories$Ingestevents;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/memories:ingestEvents').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
      * List Memories.
      * @example
      * ```js
@@ -150692,7 +138906,7 @@ export namespace aiplatform_v1 {
      *     await aiplatform.projects.locations.reasoningEngines.memories.patch({
      *       // Identifier. Represents the resource name of the Memory. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/memories/{memory\}`
      *       name: 'projects/my-project/locations/my-location/reasoningEngines/my-reasoningEngine/memories/my-memorie',
-     *       // Optional. Mask specifying which fields to update. The following fields are immutable: * `scope` * `memory_type`
+     *       // Optional. Mask specifying which fields to update. Supported fields: * `display_name` * `description` * `fact`
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -150757,7 +138971,8 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Reasoningengines$Memories$Patch,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -150911,7 +139126,8 @@ export namespace aiplatform_v1 {
     purge(
       params: Params$Resource$Projects$Locations$Reasoningengines$Memories$Purge,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     purge(
@@ -151229,7 +139445,8 @@ export namespace aiplatform_v1 {
     rollback(
       params: Params$Resource$Projects$Locations$Reasoningengines$Memories$Rollback,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     rollback(
@@ -151339,17 +139556,6 @@ export namespace aiplatform_v1 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Reasoningengines$Memories$Ingestevents extends StandardParameters {
-    /**
-     * Required. The resource name of the ReasoningEngine to ingest events to. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1IngestEventsRequest;
-  }
   export interface Params$Resource$Projects$Locations$Reasoningengines$Memories$List extends StandardParameters {
     /**
      * Optional. The standard list filter. More detail in [AIP-160](https://google.aip.dev/160). Supported fields: * `scope` (as a JSON string with equality match only) * `topics` (i.e. `topics.custom_memory_topic_label: "example topic" OR topics.managed_memory_topic: USER_PREFERENCES`)
@@ -151378,7 +139584,7 @@ export namespace aiplatform_v1 {
      */
     name?: string;
     /**
-     * Optional. Mask specifying which fields to update. The following fields are immutable: * `scope` * `memory_type`
+     * Optional. Mask specifying which fields to update. Supported fields: * `display_name` * `description` * `fact`
      */
     updateMask?: string;
 
@@ -151776,7 +139982,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Reasoningengines$Memories$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -152084,7 +140291,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Reasoningengines$Memories$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -152898,7 +141106,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Reasoningengines$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -153202,7 +141411,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Reasoningengines$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -153770,7 +141980,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -153918,7 +142129,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -154465,308 +142677,6 @@ export namespace aiplatform_v1 {
     }
 
     /**
-     * Pauses the specific SandboxEnvironment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.reasoningEngines.sandboxEnvironments.pause(
-     *       {
-     *         // Required. The resource name of the sandbox environment to pause. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/sandboxEnvironments/{sandbox_environment\}`
-     *         name: 'projects/my-project/locations/my-location/reasoningEngines/my-reasoningEngine/sandboxEnvironments/my-sandboxEnvironment',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {}
-     *         },
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    pause(
-      params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Pause,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    pause(
-      params?: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Pause,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    pause(
-      params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Pause,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    pause(
-      params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Pause,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    pause(
-      params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Pause,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    pause(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    pause(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Pause
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Pause;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Pause;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:pause').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Resumes the specific SandboxEnvironment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.reasoningEngines.sandboxEnvironments.resume(
-     *       {
-     *         // Required. The resource name of the sandbox environment to resume. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/sandboxEnvironments/{sandbox_environment\}`
-     *         name: 'projects/my-project/locations/my-location/reasoningEngines/my-reasoningEngine/sandboxEnvironments/my-sandboxEnvironment',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {}
-     *         },
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    resume(
-      params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Resume,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    resume(
-      params?: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Resume,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    resume(
-      params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Resume,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    resume(
-      params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Resume,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    resume(
-      params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Resume,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    resume(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    resume(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Resume
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Resume;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Resume;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:resume').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
      * Snapshots the specific SandboxEnvironment resource and creates a SandboxEnvironmentSnapshot resource.
      * @example
      * ```js
@@ -154861,7 +142771,8 @@ export namespace aiplatform_v1 {
     snapshot(
       params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Snapshot,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     snapshot(
@@ -154984,28 +142895,6 @@ export namespace aiplatform_v1 {
      * Required. The resource name of the reasoning engine to list sandbox environments from. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
      */
     parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Pause extends StandardParameters {
-    /**
-     * Required. The resource name of the sandbox environment to pause. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/sandboxEnvironments/{sandbox_environment\}`
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1PauseSandboxEnvironmentRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Resume extends StandardParameters {
-    /**
-     * Required. The resource name of the sandbox environment to resume. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/sandboxEnvironments/{sandbox_environment\}`
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1ResumeSandboxEnvironmentRequest;
   }
   export interface Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Snapshot extends StandardParameters {
     /**
@@ -155374,7 +143263,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -155521,7 +143411,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironments$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -155707,7 +143598,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironmentsnapshots$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -156478,7 +144370,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironmentsnapshots$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -156625,7 +144518,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironmentsnapshots$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -156827,7 +144721,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironmenttemplates$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -156974,7 +144869,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironmenttemplates$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -157753,7 +145649,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironmenttemplates$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -157900,7 +145797,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Reasoningengines$Sandboxenvironmenttemplates$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -158272,7 +146170,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Reasoningengines$Sessions$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -158418,7 +146317,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Reasoningengines$Sessions$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -159585,7 +147485,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Reasoningengines$Sessions$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -159893,7 +147794,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Reasoningengines$Sessions$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -160286,7 +148188,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Schedules$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -161564,7 +149467,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Schedules$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -161866,7 +149770,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Schedules$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -161984,1818 +149889,6 @@ export namespace aiplatform_v1 {
      * The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
      */
     timeout?: string;
-  }
-
-  export class Resource$Projects$Locations$Semanticgovernancepolicies {
-    context: APIRequestContext;
-    operations: Resource$Projects$Locations$Semanticgovernancepolicies$Operations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.operations =
-        new Resource$Projects$Locations$Semanticgovernancepolicies$Operations(
-          this.context
-        );
-    }
-
-    /**
-     * Creates a SemanticGovernancePolicy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.semanticGovernancePolicies.create({
-     *       // Required. The resource name of the Location into which to create the SemanticGovernancePolicy. Format: `projects/{project\}/locations/{location\}`
-     *       parent: 'projects/my-project/locations/my-location',
-     *       // Required. The ID to use for the SemanticGovernancePolicy, which will become the final component of the SemanticGovernancePolicy's resource name. This value may be up to 63 characters, and valid characters are `[a-z0-9-]`. The first character cannot be a number or hyphen. The last character must be a letter or a number.
-     *       semanticGovernancePolicyId: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "agent": "my_agent",
-     *         //   "agentIdentity": "my_agentIdentity",
-     *         //   "createTime": "my_createTime",
-     *         //   "description": "my_description",
-     *         //   "displayName": "my_displayName",
-     *         //   "etag": "my_etag",
-     *         //   "mcpTools": [],
-     *         //   "name": "my_name",
-     *         //   "naturalLanguageConstraint": "my_naturalLanguageConstraint",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Create,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    create(
-      params?: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Create,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    create(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Create,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Create,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    create(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Semanticgovernancepolicies$Create
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Semanticgovernancepolicies$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Semanticgovernancepolicies$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/semanticGovernancePolicies').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a SemanticGovernancePolicy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.semanticGovernancePolicies.delete({
-     *       // Optional. The etag of the SemanticGovernancePolicy. If an etag is provided and does not match the current etag of the SemanticGovernancePolicy, deletion will be blocked and an ABORTED error will be returned.
-     *       etag: 'placeholder-value',
-     *       // Required. The name of the SemanticGovernancePolicy resource to be deleted. Format: `projects/{project\}/locations/{location\}/semanticGovernancePolicies/{semantic_governance_policy\}`
-     *       name: 'projects/my-project/locations/my-location/semanticGovernancePolicies/my-semanticGovernancePolicie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    delete(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Delete,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Delete,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Semanticgovernancepolicies$Delete
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Semanticgovernancepolicies$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Semanticgovernancepolicies$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Gets a SemanticGovernancePolicy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.semanticGovernancePolicies.get({
-     *       // Required. The name of the SemanticGovernancePolicy resource. Format: `projects/{project\}/locations/{location\}/semanticGovernancePolicies/{semantic_governance_policy\}`
-     *       name: 'projects/my-project/locations/my-location/semanticGovernancePolicies/my-semanticGovernancePolicie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "agent": "my_agent",
-     *   //   "agentIdentity": "my_agentIdentity",
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "etag": "my_etag",
-     *   //   "mcpTools": [],
-     *   //   "name": "my_name",
-     *   //   "naturalLanguageConstraint": "my_naturalLanguageConstraint",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Get,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicy>
-    >;
-    get(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicy>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicy>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicy>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicy>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Semanticgovernancepolicies$Get
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicy>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicy>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Semanticgovernancepolicies$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Semanticgovernancepolicies$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAiplatformV1SemanticGovernancePolicy>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Lists SemanticGovernancePolicies in a given location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.semanticGovernancePolicies.list({
-     *       // Optional. The list page size. If zero, a default page size of 10 is used.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. The standard list page token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The resource name of the Location from which to list the SemanticGovernancePolicies. Format: `projects/{project\}/locations/{location\}`
-     *       parent: 'projects/my-project/locations/my-location',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "semanticGovernancePolicies": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Semanticgovernancepolicies$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListSemanticGovernancePoliciesResponse>
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListSemanticGovernancePoliciesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListSemanticGovernancePoliciesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListSemanticGovernancePoliciesResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListSemanticGovernancePoliciesResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Semanticgovernancepolicies$List
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListSemanticGovernancePoliciesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListSemanticGovernancePoliciesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListSemanticGovernancePoliciesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudAiplatformV1ListSemanticGovernancePoliciesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Semanticgovernancepolicies$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Semanticgovernancepolicies$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/semanticGovernancePolicies').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAiplatformV1ListSemanticGovernancePoliciesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAiplatformV1ListSemanticGovernancePoliciesResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Updates a SemanticGovernancePolicy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.semanticGovernancePolicies.patch({
-     *       // Identifier. Resource name of the SemanticGovernancePolicy.
-     *       name: 'projects/my-project/locations/my-location/semanticGovernancePolicies/my-semanticGovernancePolicie',
-     *       // Optional. `update_mask` is used to specify the fields to be overwritten in the SemanticGovernancePolicy resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the mask is not present, then all fields that are populated in the request message will be overwritten. Set the `update_mask` to `*` to override all fields.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "agent": "my_agent",
-     *         //   "agentIdentity": "my_agentIdentity",
-     *         //   "createTime": "my_createTime",
-     *         //   "description": "my_description",
-     *         //   "displayName": "my_displayName",
-     *         //   "etag": "my_etag",
-     *         //   "mcpTools": [],
-     *         //   "name": "my_name",
-     *         //   "naturalLanguageConstraint": "my_naturalLanguageConstraint",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Patch,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Patch,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    patch(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Patch,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Patch,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Semanticgovernancepolicies$Patch
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Semanticgovernancepolicies$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Semanticgovernancepolicies$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Semanticgovernancepolicies$Create extends StandardParameters {
-    /**
-     * Required. The resource name of the Location into which to create the SemanticGovernancePolicy. Format: `projects/{project\}/locations/{location\}`
-     */
-    parent?: string;
-    /**
-     * Required. The ID to use for the SemanticGovernancePolicy, which will become the final component of the SemanticGovernancePolicy's resource name. This value may be up to 63 characters, and valid characters are `[a-z0-9-]`. The first character cannot be a number or hyphen. The last character must be a letter or a number.
-     */
-    semanticGovernancePolicyId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1SemanticGovernancePolicy;
-  }
-  export interface Params$Resource$Projects$Locations$Semanticgovernancepolicies$Delete extends StandardParameters {
-    /**
-     * Optional. The etag of the SemanticGovernancePolicy. If an etag is provided and does not match the current etag of the SemanticGovernancePolicy, deletion will be blocked and an ABORTED error will be returned.
-     */
-    etag?: string;
-    /**
-     * Required. The name of the SemanticGovernancePolicy resource to be deleted. Format: `projects/{project\}/locations/{location\}/semanticGovernancePolicies/{semantic_governance_policy\}`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Semanticgovernancepolicies$Get extends StandardParameters {
-    /**
-     * Required. The name of the SemanticGovernancePolicy resource. Format: `projects/{project\}/locations/{location\}/semanticGovernancePolicies/{semantic_governance_policy\}`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Semanticgovernancepolicies$List extends StandardParameters {
-    /**
-     * Optional. The list page size. If zero, a default page size of 10 is used.
-     */
-    pageSize?: number;
-    /**
-     * Optional. The standard list page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. The resource name of the Location from which to list the SemanticGovernancePolicies. Format: `projects/{project\}/locations/{location\}`
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Semanticgovernancepolicies$Patch extends StandardParameters {
-    /**
-     * Identifier. Resource name of the SemanticGovernancePolicy.
-     */
-    name?: string;
-    /**
-     * Optional. `update_mask` is used to specify the fields to be overwritten in the SemanticGovernancePolicy resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the mask is not present, then all fields that are populated in the request message will be overwritten. Set the `update_mask` to `*` to override all fields.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1SemanticGovernancePolicy;
-  }
-
-  export class Resource$Projects$Locations$Semanticgovernancepolicies$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.semanticGovernancePolicies.operations.cancel(
-     *       {
-     *         // The name of the operation resource to be cancelled.
-     *         name: 'projects/my-project/locations/my-location/semanticGovernancePolicies/my-semanticGovernancePolicie/operations/my-operation',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    cancel(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Cancel,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    cancel(
-      params?: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Cancel,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
-    cancel(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Cancel,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    cancel(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Cancel,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    cancel(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Cancel,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    cancel(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    cancel(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Cancel
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Cancel;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Cancel;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.semanticGovernancePolicies.operations.delete(
-     *       {
-     *         // The name of the operation resource to be deleted.
-     *         name: 'projects/my-project/locations/my-location/semanticGovernancePolicies/my-semanticGovernancePolicie/operations/my-operation',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
-    delete(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Delete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.semanticGovernancePolicies.operations.get(
-     *       {
-     *         // The name of the operation resource.
-     *         name: 'projects/my-project/locations/my-location/semanticGovernancePolicies/my-semanticGovernancePolicie/operations/my-operation',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    get(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Get,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Get,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.semanticGovernancePolicies.operations.list(
-     *       {
-     *         // The standard list filter.
-     *         filter: 'placeholder-value',
-     *         // The name of the operation's parent resource.
-     *         name: 'projects/my-project/locations/my-location/semanticGovernancePolicies/my-semanticGovernancePolicie',
-     *         // The standard list page size.
-     *         pageSize: 'placeholder-value',
-     *         // The standard list page token.
-     *         pageToken: 'placeholder-value',
-     *         // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     *         returnPartialSuccess: 'placeholder-value',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$List,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$List
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}/operations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.semanticGovernancePolicies.operations.wait(
-     *       {
-     *         // The name of the operation resource to wait on.
-     *         name: 'projects/my-project/locations/my-location/semanticGovernancePolicies/my-semanticGovernancePolicie/operations/my-operation',
-     *         // The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     *         timeout: 'placeholder-value',
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    wait(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Wait,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    wait(
-      params?: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Wait,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    wait(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Wait,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    wait(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Wait,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Wait,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Wait
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Wait;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Wait;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Cancel extends StandardParameters {
-    /**
-     * The name of the operation resource to be cancelled.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Delete extends StandardParameters {
-    /**
-     * The name of the operation resource to be deleted.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Get extends StandardParameters {
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$List extends StandardParameters {
-    /**
-     * The standard list filter.
-     */
-    filter?: string;
-    /**
-     * The name of the operation's parent resource.
-     */
-    name?: string;
-    /**
-     * The standard list page size.
-     */
-    pageSize?: number;
-    /**
-     * The standard list page token.
-     */
-    pageToken?: string;
-    /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     */
-    returnPartialSuccess?: boolean;
-  }
-  export interface Params$Resource$Projects$Locations$Semanticgovernancepolicies$Operations$Wait extends StandardParameters {
-    /**
-     * The name of the operation resource to wait on.
-     */
-    name?: string;
-    /**
-     * The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     */
-    timeout?: string;
-  }
-
-  export class Resource$Projects$Locations$Semanticgovernancepolicyengine {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Deprovisions the SemanticGovernancePolicyEngine, tearing down the associated tenant project, GKE cluster, and PSC service attachments. This operation is irreversible. Returns a long-running operation; poll for completion. The response contains the SemanticGovernancePolicyEngine in DEPROVISIONING state.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await aiplatform.projects.locations.semanticGovernancePolicyEngine.deprovision(
-     *       {
-     *         // Required. The resource name of the SemanticGovernancePolicyEngine to deprovision. Format: projects/{project\}/locations/{location\}/semanticGovernancePolicyEngine
-     *         name: 'projects/my-project/locations/my-location/semanticGovernancePolicyEngine',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "force": false
-     *           // }
-     *         },
-     *       },
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    deprovision(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicyengine$Deprovision,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    deprovision(
-      params?: Params$Resource$Projects$Locations$Semanticgovernancepolicyengine$Deprovision,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    deprovision(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicyengine$Deprovision,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    deprovision(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicyengine$Deprovision,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    deprovision(
-      params: Params$Resource$Projects$Locations$Semanticgovernancepolicyengine$Deprovision,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    deprovision(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    deprovision(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Semanticgovernancepolicyengine$Deprovision
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Semanticgovernancepolicyengine$Deprovision;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Semanticgovernancepolicyengine$Deprovision;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:deprovision').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Semanticgovernancepolicyengine$Deprovision extends StandardParameters {
-    /**
-     * Required. The resource name of the SemanticGovernancePolicyEngine to deprovision. Format: projects/{project\}/locations/{location\}/semanticGovernancePolicyEngine
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1DeprovisionSemanticGovernancePolicyEngineRequest;
   }
 
   export class Resource$Projects$Locations$Skills {
@@ -164155,7 +150248,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Skills$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -164456,7 +150550,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Skills$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -164674,7 +150769,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Specialistpools$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -164821,7 +150917,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Specialistpools$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -165281,7 +151378,8 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Specialistpools$Patch,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -165759,7 +151857,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Specialistpools$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -166063,7 +152162,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Specialistpools$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -167339,7 +153439,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Studies$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -167641,7 +153742,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Studies$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -168019,7 +154121,8 @@ export namespace aiplatform_v1 {
     checkTrialEarlyStoppingState(
       params: Params$Resource$Projects$Locations$Studies$Trials$Checktrialearlystoppingstate,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     checkTrialEarlyStoppingState(
@@ -169258,7 +155361,8 @@ export namespace aiplatform_v1 {
     suggest(
       params: Params$Resource$Projects$Locations$Studies$Trials$Suggest,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     suggest(
@@ -169784,7 +155888,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Studies$Trials$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -170088,7 +156193,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Studies$Trials$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -170466,7 +156572,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Projects$Locations$Tensorboards$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -170610,7 +156717,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -171093,7 +157201,8 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Tensorboards$Patch,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -171967,7 +158076,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -173128,7 +159238,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -173436,7 +159547,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -173976,7 +160088,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -175132,7 +161245,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -175440,7 +161554,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -175828,7 +161943,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -177338,7 +163454,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -177646,7 +163763,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Tensorboards$Experiments$Runs$Timeseries$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -178114,7 +164232,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Tensorboards$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -178416,7 +164535,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Tensorboards$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -178948,7 +165068,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -179740,7 +165861,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -180044,7 +166166,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Trainingpipelines$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -180907,7 +167030,8 @@ export namespace aiplatform_v1 {
     rebaseTunedModel(
       params: Params$Resource$Projects$Locations$Tuningjobs$Rebasetunedmodel,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     rebaseTunedModel(
@@ -181382,7 +167506,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -181607,150 +167732,6 @@ export namespace aiplatform_v1 {
         );
       }
     }
-
-    /**
-     * Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.projects.locations.tuningJobs.operations.wait({
-     *     // The name of the operation resource to wait on.
-     *     name: 'projects/my-project/locations/my-location/tuningJobs/my-tuningJob/operations/my-operation',
-     *     // The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     *     timeout: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    wait(
-      params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Wait,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    wait(
-      params?: Params$Resource$Projects$Locations$Tuningjobs$Operations$Wait,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    wait(
-      params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Wait,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    wait(
-      params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Wait,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      params: Params$Resource$Projects$Locations$Tuningjobs$Operations$Wait,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Tuningjobs$Operations$Wait
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Tuningjobs$Operations$Wait;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Tuningjobs$Operations$Wait;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Locations$Tuningjobs$Operations$Cancel extends StandardParameters {
@@ -181792,16 +167773,6 @@ export namespace aiplatform_v1 {
      * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
-  }
-  export interface Params$Resource$Projects$Locations$Tuningjobs$Operations$Wait extends StandardParameters {
-    /**
-     * The name of the operation resource to wait on.
-     */
-    name?: string;
-    /**
-     * The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     */
-    timeout?: string;
   }
 
   export class Resource$Publishers {
@@ -182223,7 +168194,8 @@ export namespace aiplatform_v1 {
     fetchPredictOperation(
       params: Params$Resource$Publishers$Models$Fetchpredictoperation,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     fetchPredictOperation(
@@ -182874,7 +168846,8 @@ export namespace aiplatform_v1 {
     predictLongRunning(
       params: Params$Resource$Publishers$Models$Predictlongrunning,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     predictLongRunning(
@@ -183571,7 +169544,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Ragcorpora$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -183871,7 +169845,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Ragcorpora$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -184345,7 +170320,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Ragcorpora$Ragfiles$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -184645,7 +170621,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Ragcorpora$Ragfiles$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -185117,7 +171094,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Ragengineconfig$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -185417,7 +171395,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Ragengineconfig$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -185644,7 +171623,8 @@ export namespace aiplatform_v1 {
     asyncQuery(
       params: Params$Resource$Reasoningengines$Asyncquery,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     asyncQuery(
@@ -185958,7 +171938,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Reasoningengines$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -186104,7 +172085,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Reasoningengines$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -186726,7 +172708,8 @@ export namespace aiplatform_v1 {
     patch(
       params: Params$Resource$Reasoningengines$Patch,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -187568,7 +173551,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Reasoningengines$Memories$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -187869,7 +173853,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Reasoningengines$Memories$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -188333,7 +174318,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Reasoningengines$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -188633,7 +174619,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Reasoningengines$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -189189,7 +175176,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Reasoningengines$Sandboxenvironments$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -189334,7 +175322,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Reasoningengines$Sandboxenvironments$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -189870,302 +175859,6 @@ export namespace aiplatform_v1 {
     }
 
     /**
-     * Pauses the specific SandboxEnvironment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.reasoningEngines.sandboxEnvironments.pause({
-     *     // Required. The resource name of the sandbox environment to pause. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/sandboxEnvironments/{sandbox_environment\}`
-     *     name: 'reasoningEngines/my-reasoningEngine/sandboxEnvironments/my-sandboxEnvironment',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    pause(
-      params: Params$Resource$Reasoningengines$Sandboxenvironments$Pause,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    pause(
-      params?: Params$Resource$Reasoningengines$Sandboxenvironments$Pause,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    pause(
-      params: Params$Resource$Reasoningengines$Sandboxenvironments$Pause,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    pause(
-      params: Params$Resource$Reasoningengines$Sandboxenvironments$Pause,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    pause(
-      params: Params$Resource$Reasoningengines$Sandboxenvironments$Pause,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    pause(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    pause(
-      paramsOrCallback?:
-        | Params$Resource$Reasoningengines$Sandboxenvironments$Pause
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Reasoningengines$Sandboxenvironments$Pause;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Reasoningengines$Sandboxenvironments$Pause;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:pause').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Resumes the specific SandboxEnvironment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.reasoningEngines.sandboxEnvironments.resume({
-     *     // Required. The resource name of the sandbox environment to resume. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/sandboxEnvironments/{sandbox_environment\}`
-     *     name: 'reasoningEngines/my-reasoningEngine/sandboxEnvironments/my-sandboxEnvironment',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    resume(
-      params: Params$Resource$Reasoningengines$Sandboxenvironments$Resume,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    resume(
-      params?: Params$Resource$Reasoningengines$Sandboxenvironments$Resume,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    resume(
-      params: Params$Resource$Reasoningengines$Sandboxenvironments$Resume,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    resume(
-      params: Params$Resource$Reasoningengines$Sandboxenvironments$Resume,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    resume(
-      params: Params$Resource$Reasoningengines$Sandboxenvironments$Resume,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    resume(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    resume(
-      paramsOrCallback?:
-        | Params$Resource$Reasoningengines$Sandboxenvironments$Resume
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Reasoningengines$Sandboxenvironments$Resume;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Reasoningengines$Sandboxenvironments$Resume;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:resume').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
      * Snapshots the specific SandboxEnvironment resource and creates a SandboxEnvironmentSnapshot resource.
      * @example
      * ```js
@@ -190257,7 +175950,8 @@ export namespace aiplatform_v1 {
     snapshot(
       params: Params$Resource$Reasoningengines$Sandboxenvironments$Snapshot,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     snapshot(
@@ -190380,28 +176074,6 @@ export namespace aiplatform_v1 {
      * Required. The resource name of the reasoning engine to list sandbox environments from. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}`
      */
     parent?: string;
-  }
-  export interface Params$Resource$Reasoningengines$Sandboxenvironments$Pause extends StandardParameters {
-    /**
-     * Required. The resource name of the sandbox environment to pause. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/sandboxEnvironments/{sandbox_environment\}`
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1PauseSandboxEnvironmentRequest;
-  }
-  export interface Params$Resource$Reasoningengines$Sandboxenvironments$Resume extends StandardParameters {
-    /**
-     * Required. The resource name of the sandbox environment to resume. Format: `projects/{project\}/locations/{location\}/reasoningEngines/{reasoning_engine\}/sandboxEnvironments/{sandbox_environment\}`
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1ResumeSandboxEnvironmentRequest;
   }
   export interface Params$Resource$Reasoningengines$Sandboxenvironments$Snapshot extends StandardParameters {
     /**
@@ -190764,7 +176436,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Reasoningengines$Sandboxenvironments$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -190909,7 +176582,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Reasoningengines$Sandboxenvironments$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -191093,7 +176767,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Reasoningengines$Sandboxenvironmentsnapshots$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -191860,7 +177535,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Reasoningengines$Sandboxenvironmentsnapshots$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -192007,7 +177683,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Reasoningengines$Sandboxenvironmentsnapshots$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -192206,7 +177883,8 @@ export namespace aiplatform_v1 {
     create(
       params: Params$Resource$Reasoningengines$Sandboxenvironmenttemplates$Create,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -192351,7 +178029,8 @@ export namespace aiplatform_v1 {
     delete(
       params: Params$Resource$Reasoningengines$Sandboxenvironmenttemplates$Delete,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -193126,7 +178805,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Reasoningengines$Sandboxenvironmenttemplates$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -193273,7 +178953,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Reasoningengines$Sandboxenvironmenttemplates$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -193728,7 +179409,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Reasoningengines$Sessions$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -194029,7 +179711,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Reasoningengines$Sessions$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -194502,7 +180185,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Schedules$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -194802,7 +180486,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Schedules$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -194911,785 +180596,6 @@ export namespace aiplatform_v1 {
     returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Schedules$Operations$Wait extends StandardParameters {
-    /**
-     * The name of the operation resource to wait on.
-     */
-    name?: string;
-    /**
-     * The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     */
-    timeout?: string;
-  }
-
-  export class Resource$Semanticgovernancepolicies {
-    context: APIRequestContext;
-    operations: Resource$Semanticgovernancepolicies$Operations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.operations = new Resource$Semanticgovernancepolicies$Operations(
-        this.context
-      );
-    }
-  }
-
-  export class Resource$Semanticgovernancepolicies$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.semanticGovernancePolicies.operations.cancel({
-     *     // The name of the operation resource to be cancelled.
-     *     name: 'semanticGovernancePolicies/my-semanticGovernancePolicie/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    cancel(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$Cancel,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    cancel(
-      params?: Params$Resource$Semanticgovernancepolicies$Operations$Cancel,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
-    cancel(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$Cancel,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    cancel(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$Cancel,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    cancel(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$Cancel,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    cancel(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    cancel(
-      paramsOrCallback?:
-        | Params$Resource$Semanticgovernancepolicies$Operations$Cancel
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Semanticgovernancepolicies$Operations$Cancel;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Semanticgovernancepolicies$Operations$Cancel;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.semanticGovernancePolicies.operations.delete({
-     *     // The name of the operation resource to be deleted.
-     *     name: 'semanticGovernancePolicies/my-semanticGovernancePolicie/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Semanticgovernancepolicies$Operations$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
-    delete(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$Delete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Semanticgovernancepolicies$Operations$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Semanticgovernancepolicies$Operations$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Semanticgovernancepolicies$Operations$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.semanticGovernancePolicies.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'semanticGovernancePolicies/my-semanticGovernancePolicie/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Semanticgovernancepolicies$Operations$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    get(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$Get,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$Get,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Semanticgovernancepolicies$Operations$Get
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Semanticgovernancepolicies$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Semanticgovernancepolicies$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.semanticGovernancePolicies.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'semanticGovernancePolicies/my-semanticGovernancePolicie',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *     // When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     *     returnPartialSuccess: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Semanticgovernancepolicies$Operations$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-    >;
-    list(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$List,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Semanticgovernancepolicies$Operations$List
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleLongrunningListOperationsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Semanticgovernancepolicies$Operations$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Semanticgovernancepolicies$Operations$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}/operations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.semanticGovernancePolicies.operations.wait({
-     *     // The name of the operation resource to wait on.
-     *     name: 'semanticGovernancePolicies/my-semanticGovernancePolicie/operations/my-operation',
-     *     // The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     *     timeout: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    wait(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$Wait,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    wait(
-      params?: Params$Resource$Semanticgovernancepolicies$Operations$Wait,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    wait(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$Wait,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    wait(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$Wait,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      params: Params$Resource$Semanticgovernancepolicies$Operations$Wait,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      paramsOrCallback?:
-        | Params$Resource$Semanticgovernancepolicies$Operations$Wait
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Semanticgovernancepolicies$Operations$Wait;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Semanticgovernancepolicies$Operations$Wait;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Semanticgovernancepolicies$Operations$Cancel extends StandardParameters {
-    /**
-     * The name of the operation resource to be cancelled.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Semanticgovernancepolicies$Operations$Delete extends StandardParameters {
-    /**
-     * The name of the operation resource to be deleted.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Semanticgovernancepolicies$Operations$Get extends StandardParameters {
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Semanticgovernancepolicies$Operations$List extends StandardParameters {
-    /**
-     * The standard list filter.
-     */
-    filter?: string;
-    /**
-     * The name of the operation's parent resource.
-     */
-    name?: string;
-    /**
-     * The standard list page size.
-     */
-    pageSize?: number;
-    /**
-     * The standard list page token.
-     */
-    pageToken?: string;
-    /**
-     * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
-     */
-    returnPartialSuccess?: boolean;
-  }
-  export interface Params$Resource$Semanticgovernancepolicies$Operations$Wait extends StandardParameters {
     /**
      * The name of the operation resource to wait on.
      */
@@ -196053,7 +180959,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Skills$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -196353,7 +181260,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Skills$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -196825,7 +181733,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Specialistpools$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -197125,7 +182034,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Specialistpools$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -197599,7 +182509,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Studies$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -197899,7 +182810,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Studies$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -198371,7 +183283,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Studies$Trials$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -198671,7 +183584,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Studies$Trials$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -199160,7 +184074,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Tensorboards$Experiments$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -199460,7 +184375,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Tensorboards$Experiments$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -199940,7 +184856,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Tensorboards$Experiments$Runs$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -200242,7 +185159,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Tensorboards$Experiments$Runs$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -200727,7 +185645,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Tensorboards$Experiments$Runs$Timeseries$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -201031,7 +185950,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Tensorboards$Experiments$Runs$Timeseries$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -201495,7 +186415,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Tensorboards$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -201795,7 +186716,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Tensorboards$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -202267,7 +187189,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Trainingpipelines$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -202567,7 +187490,8 @@ export namespace aiplatform_v1 {
     wait(
       params: Params$Resource$Trainingpipelines$Operations$Wait,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -203039,7 +187963,8 @@ export namespace aiplatform_v1 {
     get(
       params: Params$Resource$Tuningjobs$Operations$Get,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -203262,149 +188187,6 @@ export namespace aiplatform_v1 {
         );
       }
     }
-
-    /**
-     * Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/aiplatform.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const aiplatform = google.aiplatform('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await aiplatform.tuningJobs.operations.wait({
-     *     // The name of the operation resource to wait on.
-     *     name: 'tuningJobs/my-tuningJob/operations/my-operation',
-     *     // The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     *     timeout: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    wait(
-      params: Params$Resource$Tuningjobs$Operations$Wait,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    wait(
-      params?: Params$Resource$Tuningjobs$Operations$Wait,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
-    wait(
-      params: Params$Resource$Tuningjobs$Operations$Wait,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    wait(
-      params: Params$Resource$Tuningjobs$Operations$Wait,
-      options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      params: Params$Resource$Tuningjobs$Operations$Wait,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    wait(
-      paramsOrCallback?:
-        | Params$Resource$Tuningjobs$Operations$Wait
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Tuningjobs$Operations$Wait;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Tuningjobs$Operations$Wait;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Tuningjobs$Operations$Cancel extends StandardParameters {
@@ -203446,16 +188228,6 @@ export namespace aiplatform_v1 {
      * When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.
      */
     returnPartialSuccess?: boolean;
-  }
-  export interface Params$Resource$Tuningjobs$Operations$Wait extends StandardParameters {
-    /**
-     * The name of the operation resource to wait on.
-     */
-    name?: string;
-    /**
-     * The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     */
-    timeout?: string;
   }
 
   export class Resource$V1 {
@@ -203547,7 +188319,8 @@ export namespace aiplatform_v1 {
     evaluateDataset(
       params: Params$Resource$V1$Evaluatedataset,
       options:
-        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     evaluateDataset(
