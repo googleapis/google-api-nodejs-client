@@ -480,6 +480,31 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "getPolicy": {
+              "description": "Get the policy for a key.",
+              "flatPath": "v1/projects/{projectsId}/keys/{keysId}/policy",
+              "httpMethod": "GET",
+              "id": "recaptchaenterprise.projects.keys.getPolicy",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the policy to get, in the format `projects/{project}/keys/{key}/policy`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/keys/[^/]+/policy$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1Policy"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "list": {
               "description": "Returns the list of all keys that belong to a project.",
               "flatPath": "v1/projects/{projectsId}/keys",
@@ -666,6 +691,40 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "updatePolicy": {
+              "description": "Updates the policy for a key.",
+              "flatPath": "v1/projects/{projectsId}/keys/{keysId}/policy",
+              "httpMethod": "PATCH",
+              "id": "recaptchaenterprise.projects.keys.updatePolicy",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. Resource name for this policy. Format: \"projects/{project}/keys/{key}/policy\" for a policy under a key.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/keys/[^/]+/policy$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The mask to control which fields of the policy get updated. If the mask is not present, all fields are updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1Policy"
+              },
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1Policy"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           }
         },
@@ -786,11 +845,11 @@
       }
     }
   },
-  "revision": "20260505",
+  "revision": "20260719",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
-      "description": "Account defender risk assessment.",
+      "description": "Account defense risk assessment.",
       "id": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment",
       "properties": {
         "accountTakeoverVerdict": {
@@ -824,7 +883,7 @@
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReason": {
-      "description": "Risk explainability reasons for account defender.",
+      "description": "Risk explainability reasons for Account defense.",
       "id": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountRiskReason",
       "properties": {
         "reason": {
@@ -833,13 +892,15 @@
             "RISK_REASON_UNSPECIFIED",
             "CLIENT_HISTORICAL_BOT_ACTIVITY",
             "ACCOUNT_IN_LARGE_RELATED_GROUP",
-            "CLIENT_ACCESSED_MANY_ACCOUNTS"
+            "CLIENT_ACCESSED_MANY_ACCOUNTS",
+            "DISPOSABLE_EMAIL_DOMAIN"
           ],
           "enumDescriptions": [
             "Default unspecified type.",
             "The client has been observed sending bot-like traffic to this site in the past. This reason incorporates historical reputation and indicates that the client is known to use bots, even if the current request is being made by a human.",
             "The account is part of a large group of related accounts, indicating that it may be part of a fraudulent network. Related accounts are identified based on having similar traffic patterns and request characteristics.",
-            "The client has been observed accessing many accounts on this site."
+            "The client has been observed accessing many accounts on this site.",
+            "This email domain is a suspected provider of disposable email addresses."
           ],
           "readOnly": true,
           "type": "string"
@@ -877,7 +938,7 @@
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReason": {
-      "description": "Trust explainability reasons for account defender.",
+      "description": "Trust explainability reasons for Account defense.",
       "id": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReason",
       "properties": {
         "reason": {
@@ -885,12 +946,16 @@
           "enum": [
             "TRUST_REASON_UNSPECIFIED",
             "PROFILE_MATCH",
-            "ACCOUNT_HISTORY_REPUTABLE"
+            "ACCOUNT_HISTORY_REPUTABLE",
+            "IDENTITY_GLOBAL_ACTIVITY_REPUTABLE",
+            "IDENTITY_HISTORY_REPUTABLE"
           ],
           "enumDescriptions": [
             "Default unspecified type.",
             "The request matches a trusted profile associated with this account. Equivalent to `AccountDefenderLabel.PROFILE_MATCH`.",
-            "The account's historical activity is reputable. It is unlikely that the account has been compromised in the past."
+            "The account's historical activity is reputable. It is unlikely that the account has been compromised in the past.",
+            "The identity shows a global pattern of reputable activity based on `userInfo` and associated identifiers.",
+            "The identity shows a long-standing history of reputable activity based on `userInfo` and associated identifiers."
           ],
           "readOnly": true,
           "type": "string"
@@ -1110,7 +1175,7 @@
       "properties": {
         "accountDefenderAssessment": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment",
-          "description": "Output only. Assessment returned by account defender when an account identifier is provided.",
+          "description": "Output only. Assessment returned by Account defense when an account identifier is provided.",
           "readOnly": true
         },
         "accountVerification": {
@@ -1147,7 +1212,12 @@
         },
         "phoneFraudAssessment": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment",
-          "description": "Output only. Assessment returned when a site key, a token, and a phone number as `user_id` are provided. Account defender and SMS toll fraud protection need to be enabled.",
+          "description": "Output only. Assessment returned when a site key, a token, and a phone number as `user_id` are provided. SMS defense needs to be enabled.",
+          "readOnly": true
+        },
+        "policyEvaluation": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1PolicyEvaluation",
+          "description": "Output only. Provides information about the policy evaluation for this assessment.",
           "readOnly": true
         },
         "privatePasswordLeakVerification": {
@@ -1203,7 +1273,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Optional. Enumerated string value that indicates the identity of the bot, formatted in kebab-case. Current example values include the following: * google-agent * browser-base * chat-gpt * aws-bedrock * cybaa-bot * cloudflare * payhawk Ensure that your applications can handle identifier values not explicitly listed here. Deprecated values might take some time to stop showing up in responses. New values can be pushed so this list should be taken as non exhaustive.",
+          "description": "Optional. Enumerated string value that indicates the identity of the bot, formatted in kebab-case. Current example values include the following: * google-agent - AI_AGENT * browser-base - AI_AGENT * chat-gpt - AI_AGENT * aws-bedrock - AI_AGENT * cybaa-bot - AI_AGENT * cloudflare - AI_AGENT * payhawk - AI_AGENT * duck-duck-go - SEARCH_INDEXER * mediaboard - CONTENT_SCRAPER * marker-io - AI_AGENT * broadcom - AI_AGENT * anchor-browser - AI_AGENT * shopify - AI_AGENT * stackscope - CONTENT_SCRAPER * manus - AI_AGENT * kernel-sh - AI_AGENT * zvelo - SEARCH_INDEXER Ensure that your applications can handle identifier values not explicitly listed here. Deprecated values might take some time to stop showing up in responses. New values can be pushed so this list should be taken as non exhaustive.",
           "type": "string"
         }
       },
@@ -1232,6 +1302,103 @@
           "description": "Count of nocaptchas (successful verification without a challenge) plus submitted challenge solutions that were correct and resulted in verification.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1ChallengeRule": {
+      "description": "A rule to configure the behavior of reCAPTCHA for conditionally presenting a challenge.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ChallengeRule",
+      "properties": {
+        "challenge": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1ChallengeRuleChallengeOutcome",
+          "description": "Present a challenge to the user."
+        },
+        "condition": {
+          "description": "Optional. A CEL condition that must be met for this rule to apply. If unspecified, the rule applies unconditionally. The following fields can be referenced in the condition: * `score` * `user_ip_address` * `user_asn` * `user_agent` * `verified_bots.name` * `verified_bots.bot_type` Examples: * `score < 0.5` * `user_ip_address == \"123.45.67.89\"` * `user_agent.contains(\"Chrome\")` * `score < 0.5 && user_ip_address == \"123.45.67.89\"`",
+          "type": "string"
+        },
+        "noChallenge": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1ChallengeRuleNoChallengeOutcome",
+          "description": "Do not present a challenge to the user."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1ChallengeRuleChallengeOutcome": {
+      "description": "An outcome that indicates that a challenge of a specified difficulty should be presented to the user.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ChallengeRuleChallengeOutcome",
+      "properties": {
+        "difficulty": {
+          "description": "Optional. The difficulty of the challenge to present to the user. If unspecified, `BALANCE` is used.",
+          "enum": [
+            "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED",
+            "USABILITY",
+            "BALANCE",
+            "SECURITY"
+          ],
+          "enumDescriptions": [
+            "Default type that indicates this enum hasn't been specified.",
+            "Key tends to show fewer and easier challenges.",
+            "Key tends to show balanced (in amount and difficulty) challenges.",
+            "Key tends to show more and harder challenges."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1ChallengeRuleEvaluation": {
+      "description": "Information about the evaluation of a `ChallengeRule`.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ChallengeRuleEvaluation",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1ChallengeRuleGroup": {
+      "description": "A collection of challenge rules that applies to one or more actions.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ChallengeRuleGroup",
+      "properties": {
+        "actions": {
+          "description": "Required. Action name provided at token generation. The action name is not case-sensitive and can only contain alphanumeric characters, slashes, and underscores. If \"*\" is provided, the rule group applies to all actions. If multiple actions are provided, the rule group is applied to all of them. This field is required.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "challengeRules": {
+          "description": "Required. A list of rules that configure when and how reCAPTCHA presents a challenge. reCAPTCHA evaluates these rules in order and applies the first one that matches.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1ChallengeRule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1ChallengeRuleNoChallengeOutcome": {
+      "description": "An outcome that indicates that no challenge should be presented to the user.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ChallengeRuleNoChallengeOutcome",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1ClientSettings": {
+      "description": "Configuration for clients to protect with reCAPTCHA.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ClientSettings",
+      "properties": {
+        "allowAllDomains": {
+          "description": "Optional. If set to true, it means allowed_domains are not enforced.",
+          "type": "boolean"
+        },
+        "allowedDomains": {
+          "description": "Optional. Domains or subdomains of websites allowed to use the policy. All subdomains of an allowed domain are automatically allowed. A valid domain requires a host and must not include any path, port, query or fragment. Examples: 'example.com' or 'subdomain.example.com' Each policy supports a maximum of 250 domains. To use a policy on more domains, set `allow_all_domains` to true. When this is set, you are responsible for validating the hostname by checking the `token_properties.hostname` field in each assessment response against your list of allowed domains.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "protectedEndpointGroup": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1ProtectedEndpointGroup",
+          "description": "Optional. Configuration for all API endpoints to protect with reCAPTCHA. If this field is not set, reCAPTCHA will not automatically request tokens on any API endpoints."
         }
       },
       "type": "object"
@@ -1267,7 +1434,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1Event",
       "properties": {
         "expectedAction": {
-          "description": "Optional. The expected action for this type of event. This should be the same action provided at token generation time on client-side platforms already integrated with recaptcha enterprise.",
+          "description": "Optional. The expected action for this type of event. This should be the same action provided at token generation time on client-side platforms already integrated with recaptcha enterprise. Required for Universal keys.",
           "type": "string"
         },
         "express": {
@@ -1734,6 +1901,10 @@
           "$ref": "GoogleCloudRecaptchaenterpriseV1TestingOptions",
           "description": "Optional. Options for user acceptance testing."
         },
+        "universalSettings": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1UniversalKeySettings",
+          "description": "Settings for keys that are configured through their Policy."
+        },
         "wafSettings": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1WafSettings",
           "description": "Optional. Settings for Web Application Firewall (WAF)."
@@ -1905,6 +2076,40 @@
       },
       "type": "object"
     },
+    "GoogleCloudRecaptchaenterpriseV1Policy": {
+      "description": "A complete configuration set containing multiple grouped rules defining the behavior of reCAPTCHA for fraud detection and prevention.",
+      "id": "GoogleCloudRecaptchaenterpriseV1Policy",
+      "properties": {
+        "challengeRuleGroups": {
+          "description": "Optional. Rules to configure the behavior of reCAPTCHA for showing a challenge. Rule groups are evaluated in order. Evaluation stops when the first matching rule group is found.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1ChallengeRuleGroup"
+          },
+          "type": "array"
+        },
+        "clientSettings": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1ClientSettings",
+          "description": "Required. Configuration for clients protected by this policy."
+        },
+        "name": {
+          "description": "Identifier. Resource name for this policy. Format: \"projects/{project}/keys/{key}/policy\" for a policy under a key.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1PolicyEvaluation": {
+      "description": "Information about the policy evaluation.",
+      "id": "GoogleCloudRecaptchaenterpriseV1PolicyEvaluation",
+      "properties": {
+        "challengeRuleEvaluation": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1ChallengeRuleEvaluation",
+          "description": "Output only. Populated if one or more Challenge rules were matched. Its presence in the assessment indicates that at least one challenge rule was matched and determined whether a challenge was presented to the user.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification": {
       "description": "Private password leak verification info.",
       "id": "GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification",
@@ -1933,6 +2138,35 @@
           "format": "byte",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1ProtectedEndpoint": {
+      "description": "Configuration for an API endpoint to protect with reCAPTCHA.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ProtectedEndpoint",
+      "properties": {
+        "action": {
+          "description": "Required. Action name to be used for token generation for this endpoint. The action name can only contain alphanumeric characters, slashes, and underscores.",
+          "type": "string"
+        },
+        "path": {
+          "description": "Required. URI path of the API endpoint to protect. Must start with '/'. Supports glob characters '*' to match a single path segment and '**' to match multiple path segments. Standalone root catch-alls ('/*' and '/**') are invalid because it can negatively impact performance to trigger reCAPTCHA on every single request to your backend. Matching is evaluated against the URL path only (domain, scheme, and query parameters are ignored). Examples: - `/login` matches `/login`, `https://example.com/login`, and `/login?query=1`, but not `/login/step1`. - `/products/*` matches `/products/123`, but not `/products/123/456`. - `/content/**` matches `/content/articles/2024/01/01`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1ProtectedEndpointGroup": {
+      "description": "Configuration for API endpoints to protect with reCAPTCHA.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ProtectedEndpointGroup",
+      "properties": {
+        "protectedEndpoints": {
+          "description": "Optional. List of API endpoints to automatically protect with reCAPTCHA. If any of these endpoints is invoked from a page where a key bound to this policy is installed, a reCAPTCHA token is automatically generated and attached to the request. If multiple protected endpoints match a given API endpoint, the first one in the list is used.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1ProtectedEndpoint"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2022,7 +2256,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1RiskAnalysis",
       "properties": {
         "challenge": {
-          "description": "Output only. Challenge information for POLICY_BASED_CHALLENGE and INVISIBLE keys.",
+          "description": "Output only. Challenge information for Universal, `POLICY_BASED_CHALLENGE` and `INVISIBLE` keys.",
           "enum": [
             "CHALLENGE_UNSPECIFIED",
             "NOCAPTCHA",
@@ -2045,6 +2279,21 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "lastChallengeType": {
+          "description": "Output only. Type of the last challenge presented to the user for Universal, `POLICY_BASED_CHALLENGE` and `INVISIBLE` keys. The field is only set when a challenge was presented to the user.",
+          "enum": [
+            "CHALLENGE_TYPE_UNSPECIFIED",
+            "CHALLENGE_TYPE_VISUAL",
+            "CHALLENGE_TYPE_AUDIO"
+          ],
+          "enumDescriptions": [
+            "Default unspecified type.",
+            "A visual challenge.",
+            "An audio challenge."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "reasons": {
           "description": "Output only. Reasons contributing to the risk analysis verdict.",
@@ -2454,7 +2703,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1TransactionDataUser",
       "properties": {
         "accountId": {
-          "description": "Optional. Unique account identifier for this user. If using account defender, this should match the hashed_account_id field. Otherwise, a unique and persistent identifier for this account.",
+          "description": "Optional. Unique account identifier for this user. If using Account defense, this should match the hashed_account_id field. Otherwise, a unique and persistent identifier for this account.",
           "type": "string"
         },
         "creationMs": {
@@ -2546,6 +2795,12 @@
           "type": "number"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1UniversalKeySettings": {
+      "description": "Settings for keys that are configured through their Policy.",
+      "id": "GoogleCloudRecaptchaenterpriseV1UniversalKeySettings",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1UserId": {
