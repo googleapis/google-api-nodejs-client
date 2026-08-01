@@ -3436,7 +3436,7 @@
       }
     }
   },
-  "revision": "20260501",
+  "revision": "20260622",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "Ack": {
@@ -4195,9 +4195,37 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "isolationLevel": {
+          "description": "The isolation level used for the read-write transaction.",
+          "enum": [
+            "ISOLATION_LEVEL_UNSPECIFIED",
+            "SERIALIZABLE",
+            "REPEATABLE_READ"
+          ],
+          "enumDescriptions": [
+            "Default value. If the value is not specified, the `SERIALIZABLE` isolation level is used.",
+            "All transactions appear as if they executed in a serial order, even if some of the reads, writes, and other operations of distinct transactions actually occurred in parallel. Spanner assigns commit timestamps that reflect the order of committed transactions to implement this property. Spanner offers a stronger guarantee than serializability called external consistency. For more information, see [TrueTime and external consistency](https://cloud.google.com/spanner/docs/true-time-external-consistency#serializability).",
+            "All reads performed during the transaction observe a consistent snapshot of the database, and the transaction is only successfully committed in the absence of conflicts between its updates and any concurrent updates that have occurred since that snapshot. Consequently, in contrast to `SERIALIZABLE` transactions, only write-write conflicts are detected in snapshot transactions. This isolation level does not support read-only and partitioned DML transactions. When `REPEATABLE_READ` is specified on a read-write transaction, the locking semantics default to `OPTIMISTIC`."
+          ],
+          "type": "string"
+        },
         "precommitToken": {
           "$ref": "MultiplexedSessionPrecommitToken",
           "description": "If specified, transaction has not committed yet. You must retry the commit with the new precommit token."
+        },
+        "readLockMode": {
+          "description": "The read lock mode used for the read-write transaction.",
+          "enum": [
+            "READ_LOCK_MODE_UNSPECIFIED",
+            "PESSIMISTIC",
+            "OPTIMISTIC"
+          ],
+          "enumDescriptions": [
+            "Default value. * If isolation level is SERIALIZABLE, locking semantics default to `PESSIMISTIC`. * If isolation level is REPEATABLE_READ, locking semantics default to `OPTIMISTIC`. * See [Concurrency control](https://cloud.google.com/spanner/docs/concurrency-control) for more details.",
+            "Pessimistic lock mode. Lock acquisition behavior depends on the isolation level in use. In SERIALIZABLE isolation, reads and writes acquire necessary locks during transaction statement execution. In REPEATABLE_READ isolation, reads that explicitly request to be locked and writes acquire locks. See [Concurrency control](https://cloud.google.com/spanner/docs/concurrency-control) for details on the types of locks acquired at each transaction step.",
+            "Optimistic lock mode. Lock acquisition behavior depends on the isolation level in use. In both SERIALIZABLE and REPEATABLE_READ isolation, reads and writes do not acquire locks during transaction statement execution. See [Concurrency control](https://cloud.google.com/spanner/docs/concurrency-control) for details on how the guarantees of each isolation level are provided at commit time."
+          ],
+          "type": "string"
         },
         "snapshotTimestamp": {
           "description": "If `TransactionOptions.isolation_level` is set to `IsolationLevel.REPEATABLE_READ`, then the snapshot timestamp is the timestamp at which all reads in the transaction ran. This timestamp is never returned.",
@@ -5710,12 +5738,12 @@
           "type": "string"
         },
         "nodeCount": {
-          "description": "The number of nodes allocated to this instance partition. Users can set the `node_count` field to specify the target number of nodes allocated to the instance partition. This may be zero in API responses for instance partitions that are not yet in state `READY`.",
+          "description": "The number of nodes allocated to this instance partition. Users can set the `node_count` field to specify the target number of nodes allocated to the instance partition. If autoscaling is enabled, node_count is treated as an OUTPUT_ONLY field and reflects the current number of nodes allocated to the instance partition. This may be zero in API responses for instance partitions that are not yet in state `READY`.",
           "format": "int32",
           "type": "integer"
         },
         "processingUnits": {
-          "description": "The number of processing units allocated to this instance partition. Users can set the `processing_units` field to specify the target number of processing units allocated to the instance partition. This might be zero in API responses for instance partitions that are not yet in the `READY` state.",
+          "description": "The number of processing units allocated to this instance partition. Users can set the `processing_units` field to specify the target number of processing units allocated to the instance partition. If autoscaling is enabled, processing_units is treated as an OUTPUT_ONLY field and reflects the current number of processing units allocated to the instance partition. This might be zero in API responses for instance partitions that are not yet in the `READY` state.",
           "format": "int32",
           "type": "integer"
         },
