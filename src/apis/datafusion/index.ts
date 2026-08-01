@@ -35,10 +35,7 @@ export function datafusion<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | datafusion_v1.Options
-    | 'v1beta1'
-    | datafusion_v1beta1.Options
+    'v1' | datafusion_v1.Options | 'v1beta1' | datafusion_v1beta1.Options
 ) {
   return getAPI<T>('datafusion', versionOrOptions, VERSIONS, this);
 }
