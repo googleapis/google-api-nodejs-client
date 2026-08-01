@@ -1276,8 +1276,7 @@ export namespace doubleclicksearch_v2 {
     updateAvailability(
       params: Params$Resource$Conversion$Updateavailability,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
+        MethodOptions | BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
       callback: BodyResponseCallback<Schema$UpdateAvailabilityResponse>
     ): void;
     updateAvailability(
@@ -1587,8 +1586,7 @@ export namespace doubleclicksearch_v2 {
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Report>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Report> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
@@ -1732,8 +1730,7 @@ export namespace doubleclicksearch_v2 {
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Report>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Report> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
@@ -2167,8 +2164,7 @@ export namespace doubleclicksearch_v2 {
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Report>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Report> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
