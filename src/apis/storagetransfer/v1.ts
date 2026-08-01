@@ -543,6 +543,10 @@ export namespace storagetransfer_v1 {
      */
     includePrefixes?: string[] | null;
     /**
+     * Optional. If specified, objects in the source matching any of the storage classes in this field will be transferred. Objects in storage classes not included in this field will be skipped. If empty, the default behavior regarding the storage classes is applied. This includes all storage classes except "GLACIER" as per default behavior. Currently, this field only supports S3 data source. For the list of valid Amazon S3 storage classnames, please refer to the AWS documentation: https://docs.aws.amazon.com/AmazonS3/latest/userguide/sc-howtoset.html
+     */
+    includeStorageClasses?: string[] | null;
+    /**
      * If specified, only objects with a "last modification time" before this timestamp and objects that don't have a "last modification time" are transferred.
      */
     lastModifiedBefore?: string | null;
@@ -948,7 +952,7 @@ export namespace storagetransfer_v1 {
      */
     deleteObjectsFromSourceAfterTransfer?: boolean | null;
     /**
-     * Whether objects that exist only in the sink should be deleted. **Note:** This option and delete_objects_from_source_after_transfer are mutually exclusive.
+     * Whether objects that exist only in the sink should be deleted from the sink. **Note:** This option and delete_objects_from_source_after_transfer are mutually exclusive.
      */
     deleteObjectsUniqueInSink?: boolean | null;
     /**
@@ -1124,8 +1128,7 @@ export namespace storagetransfer_v1 {
     get(
       params: Params$Resource$Googleserviceaccounts$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleServiceAccount>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleServiceAccount>,
       callback: BodyResponseCallback<Schema$GoogleServiceAccount>
     ): void;
     get(
@@ -1321,8 +1324,7 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Schema$AgentPool>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AgentPool>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AgentPool> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AgentPool>>
@@ -1457,8 +1459,7 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1595,8 +1596,7 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Schema$AgentPool>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AgentPool>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AgentPool> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AgentPool>>
@@ -1719,8 +1719,7 @@ export namespace storagetransfer_v1 {
     list(
       params: Params$Resource$Projects$Agentpools$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAgentPoolsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAgentPoolsResponse>,
       callback: BodyResponseCallback<Schema$ListAgentPoolsResponse>
     ): void;
     list(
@@ -1893,8 +1892,7 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Schema$AgentPool>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AgentPool>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AgentPool> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AgentPool>>
@@ -2264,8 +2262,7 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2536,8 +2533,7 @@ export namespace storagetransfer_v1 {
     list(
       params: Params$Resource$Transferjobs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTransferJobsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTransferJobsResponse>,
       callback: BodyResponseCallback<Schema$ListTransferJobsResponse>
     ): void;
     list(
@@ -2862,8 +2858,7 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3070,8 +3065,7 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3209,8 +3203,7 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3336,8 +3329,7 @@ export namespace storagetransfer_v1 {
     list(
       params: Params$Resource$Transferoperations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -3495,8 +3487,7 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3634,8 +3625,7 @@ export namespace storagetransfer_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
