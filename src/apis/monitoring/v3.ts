@@ -2723,8 +2723,7 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Folders$Timeseries$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTimeSeriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTimeSeriesResponse>,
       callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>
     ): void;
     list(
@@ -2983,8 +2982,7 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Organizations$Timeseries$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTimeSeriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTimeSeriesResponse>,
       callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>
     ): void;
     list(
@@ -3426,8 +3424,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3706,8 +3703,7 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Projects$Alertpolicies$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAlertPoliciesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAlertPoliciesResponse>,
       callback: BodyResponseCallback<Schema$ListAlertPoliciesResponse>
     ): void;
     list(
@@ -4116,8 +4112,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Alert>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Alert>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Alert> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Alert>>
@@ -4641,8 +4636,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Group>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Group> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Group>>
@@ -4778,8 +4772,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4920,8 +4913,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Group>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Group> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Group>>
@@ -5224,8 +5216,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Group>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Group> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Group>>
@@ -5436,8 +5427,7 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Projects$Groups$Members$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListGroupMembersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListGroupMembersResponse>,
       callback: BodyResponseCallback<Schema$ListGroupMembersResponse>
     ): void;
     list(
@@ -5797,8 +5787,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7135,8 +7124,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7911,8 +7899,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8325,8 +8312,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Snooze>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Snooze>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Snooze> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Snooze>>
@@ -8469,8 +8455,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Snooze>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Snooze>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Snooze> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Snooze>>
@@ -8770,8 +8755,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Snooze>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Snooze>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Snooze> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Snooze>>
@@ -8972,8 +8956,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9119,8 +9102,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9276,8 +9258,7 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Projects$Timeseries$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTimeSeriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTimeSeriesResponse>,
       callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>
     ): void;
     list(
@@ -9432,8 +9413,7 @@ export namespace monitoring_v3 {
     query(
       params: Params$Resource$Projects$Timeseries$Query,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$QueryTimeSeriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$QueryTimeSeriesResponse>,
       callback: BodyResponseCallback<Schema$QueryTimeSeriesResponse>
     ): void;
     query(
@@ -9877,8 +9857,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10607,8 +10586,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -10744,8 +10722,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10895,8 +10872,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -11021,8 +10997,7 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Services$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListServicesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListServicesResponse>,
       callback: BodyResponseCallback<Schema$ListServicesResponse>
     ): void;
     list(
@@ -11218,8 +11193,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -11426,8 +11400,7 @@ export namespace monitoring_v3 {
     create(
       params: Params$Resource$Services$Servicelevelobjectives$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ServiceLevelObjective>,
+        MethodOptions | BodyResponseCallback<Schema$ServiceLevelObjective>,
       callback: BodyResponseCallback<Schema$ServiceLevelObjective>
     ): void;
     create(
@@ -11584,8 +11557,7 @@ export namespace monitoring_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -11712,8 +11684,7 @@ export namespace monitoring_v3 {
     get(
       params: Params$Resource$Services$Servicelevelobjectives$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ServiceLevelObjective>,
+        MethodOptions | BodyResponseCallback<Schema$ServiceLevelObjective>,
       callback: BodyResponseCallback<Schema$ServiceLevelObjective>
     ): void;
     get(
@@ -12033,8 +12004,7 @@ export namespace monitoring_v3 {
     patch(
       params: Params$Resource$Services$Servicelevelobjectives$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ServiceLevelObjective>,
+        MethodOptions | BodyResponseCallback<Schema$ServiceLevelObjective>,
       callback: BodyResponseCallback<Schema$ServiceLevelObjective>
     ): void;
     patch(
@@ -12252,8 +12222,7 @@ export namespace monitoring_v3 {
     list(
       params: Params$Resource$Uptimecheckips$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>,
       callback: BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>
     ): void;
     list(

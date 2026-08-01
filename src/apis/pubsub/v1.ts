@@ -272,7 +272,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$BigQueryConfig {
     /**
-     * Optional. When true and use_topic_schema is true, any fields that are a part of the topic schema that are not part of the BigQuery table schema are dropped when writing to BigQuery. Otherwise, the schemas must be kept in sync and any messages with extra fields are not written and remain in the subscription's backlog.
+     * Optional. If true and `use_topic_schema` is true, drops any fields that are part of the topic schema that are not part of the BigQuery table schema when writing to BigQuery. Otherwise, the schemas must be kept in sync and any messages with extra fields are not written and remain in the subscription's backlog. If true and `use_table_schema` is true, drops any fields in the message that are not part of the BigQuery table schema when writing to BigQuery. Otherwise, the write to BigQuery will fail.
      */
     dropUnknownFields?: boolean | null;
     /**
@@ -301,7 +301,7 @@ export namespace pubsub_v1 {
     writeMetadata?: boolean | null;
   }
   /**
-   * Configuration for a Bigtable subscription. The Pub/Sub message will be written to a Bigtable row as follows: - row key: subscription name and message ID delimited by #. - columns: message bytes written to a single column family "data" with an empty-string column qualifier. - cell timestamp: the message publish timestamp.
+   * Configuration for a Bigtable subscription. The Pub/Sub message will be written to a Bigtable row as follows: - row key: subscription name, message ID hash, and message ID delimited by `#`. - columns: message bytes written to a single column family `data` with an empty-string column qualifier. - cell timestamp: the message publish timestamp.
    */
   export interface Schema$BigtableConfig {
     /**
@@ -432,6 +432,19 @@ export namespace pubsub_v1 {
      * Required. The schema revision to commit.
      */
     schema?: Schema$Schema;
+  }
+  /**
+   * Configuration for compressing/decompressing message data using a user-specified compression algorithm.
+   */
+  export interface Schema$Compression {
+    /**
+     * Required. Specifies the compression algorithm to use.
+     */
+    compressionAlgorithm?: string | null;
+    /**
+     * Required. Specifies whether to compress or decompress the message.
+     */
+    compressionMode?: string | null;
   }
   /**
    * Ingestion settings for Confluent Cloud.
@@ -684,6 +697,10 @@ export namespace pubsub_v1 {
      * Optional. AI Inference. Specifies the Vertex AI endpoint that inference requests built from the Pub/Sub message data and provided parameters will be sent to.
      */
     aiInference?: Schema$AIInference;
+    /**
+     * Optional. Compression/Decompression.
+     */
+    compression?: Schema$Compression;
     /**
      * Optional. If true, the transform is disabled and will not be applied to messages. Defaults to `false`.
      */
@@ -1381,8 +1398,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Schema>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Schema>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Schema> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Schema>>
@@ -1536,8 +1552,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Schema>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Schema>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Schema> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Schema>>
@@ -1674,8 +1689,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1817,8 +1831,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Schema>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Schema>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Schema> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Schema>>
@@ -1963,8 +1976,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Schema>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Schema>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Schema> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Schema>>
@@ -2104,8 +2116,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2554,8 +2565,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Schema>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Schema>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Schema> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Schema>>
@@ -2704,8 +2714,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2834,8 +2843,7 @@ export namespace pubsub_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Schemas$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -2984,8 +2992,7 @@ export namespace pubsub_v1 {
     validate(
       params: Params$Resource$Projects$Schemas$Validate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ValidateSchemaResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ValidateSchemaResponse>,
       callback: BodyResponseCallback<Schema$ValidateSchemaResponse>
     ): void;
     validate(
@@ -3137,8 +3144,7 @@ export namespace pubsub_v1 {
     validateMessage(
       params: Params$Resource$Projects$Schemas$Validatemessage,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ValidateMessageResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ValidateMessageResponse>,
       callback: BodyResponseCallback<Schema$ValidateMessageResponse>
     ): void;
     validateMessage(
@@ -3473,8 +3479,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Snapshot>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Snapshot>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Snapshot> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
@@ -3608,8 +3613,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3748,8 +3752,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Snapshot>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Snapshot>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Snapshot> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
@@ -3889,8 +3892,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4016,8 +4018,7 @@ export namespace pubsub_v1 {
     list(
       params: Params$Resource$Projects$Snapshots$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSnapshotsResponse>,
       callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
     ): void;
     list(
@@ -4188,8 +4189,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Snapshot>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Snapshot>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Snapshot> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
@@ -4335,8 +4335,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4465,8 +4464,7 @@ export namespace pubsub_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Snapshots$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -4721,8 +4719,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5046,8 +5043,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5166,8 +5162,7 @@ export namespace pubsub_v1 {
     detach(
       params: Params$Resource$Projects$Subscriptions$Detach,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DetachSubscriptionResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DetachSubscriptionResponse>,
       callback: BodyResponseCallback<Schema$DetachSubscriptionResponse>
     ): void;
     detach(
@@ -5493,8 +5488,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5620,8 +5614,7 @@ export namespace pubsub_v1 {
     list(
       params: Params$Resource$Projects$Subscriptions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSubscriptionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSubscriptionsResponse>,
       callback: BodyResponseCallback<Schema$ListSubscriptionsResponse>
     ): void;
     list(
@@ -5789,8 +5782,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5935,8 +5927,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6548,8 +6539,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6678,8 +6668,7 @@ export namespace pubsub_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Subscriptions$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -7024,8 +7013,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Topic>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Topic> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Topic>>
@@ -7159,8 +7147,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7306,8 +7293,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Topic>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Topic> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Topic>>
@@ -7447,8 +7433,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -7751,8 +7736,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Topic>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Topic>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Topic> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Topic>>
@@ -8046,8 +8030,7 @@ export namespace pubsub_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -8176,8 +8159,7 @@ export namespace pubsub_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Topics$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -8424,8 +8406,7 @@ export namespace pubsub_v1 {
     list(
       params: Params$Resource$Projects$Topics$Snapshots$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTopicSnapshotsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTopicSnapshotsResponse>,
       callback: BodyResponseCallback<Schema$ListTopicSnapshotsResponse>
     ): void;
     list(

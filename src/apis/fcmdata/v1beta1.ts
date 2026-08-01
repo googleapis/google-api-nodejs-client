@@ -187,7 +187,7 @@ export namespace fcmdata_v1beta1 {
      */
     delayedDeviceOffline?: number | null;
     /**
-     * The percentage of accepted messages that were delayed due to message throttling, such as [collapsible message throttling](https://firebase.google.com/docs/cloud-messaging/concept-options#collapsible_throttling) or [maximum message rate throttling](https://firebase.google.com/docs/cloud-messaging/concept-options#device_throttling).
+     * The percentage of accepted messages that were delayed due to message throttling, such as [collapsible message throttling](https://firebase.google.com/docs/cloud-messaging/concept-options#collapsible_throttling).
      */
     delayedMessageThrottled?: number | null;
     /**

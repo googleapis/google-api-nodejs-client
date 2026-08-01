@@ -37,10 +37,7 @@ export function gameservices<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | gameservices_v1.Options
-    | 'v1beta'
-    | gameservices_v1beta.Options
+    'v1' | gameservices_v1.Options | 'v1beta' | gameservices_v1beta.Options
 ) {
   return getAPI<T>('gameservices', versionOrOptions, VERSIONS, this);
 }

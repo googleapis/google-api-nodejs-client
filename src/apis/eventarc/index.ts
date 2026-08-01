@@ -31,10 +31,7 @@ export function eventarc(
 export function eventarc<T = eventarc_v1.Eventarc | eventarc_v1beta1.Eventarc>(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | eventarc_v1.Options
-    | 'v1beta1'
-    | eventarc_v1beta1.Options
+    'v1' | eventarc_v1.Options | 'v1beta1' | eventarc_v1beta1.Options
 ) {
   return getAPI<T>('eventarc', versionOrOptions, VERSIONS, this);
 }

@@ -343,8 +343,10 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
                     "https://www.googleapis.com/auth/agentregistry.read-write",
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
                   ]
                 },
                 "delete": {
@@ -374,8 +376,10 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
                     "https://www.googleapis.com/auth/agentregistry.read-write",
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
                   ]
                 },
                 "fetchAvailable": {
@@ -540,8 +544,10 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
                     "https://www.googleapis.com/auth/agentregistry.read-write",
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
                   ]
                 }
               }
@@ -868,6 +874,77 @@
                 }
               }
             },
+            "publishers": {
+              "methods": {
+                "get": {
+                  "description": "Fetches details of a specific Publisher.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/publishers/{publishersId}",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.publishers.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Target publisher resource name. Format: `projects/{project}/locations/{location}/publishers/{publisher}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/publishers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Publisher"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all Publishers in a location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/publishers",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.publishers.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Page limit size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page offset token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent location to query. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/publishers",
+                  "response": {
+                    "$ref": "ListPublishersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                }
+              }
+            },
             "services": {
               "methods": {
                 "create": {
@@ -905,8 +982,10 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
                     "https://www.googleapis.com/auth/agentregistry.read-write",
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
                   ]
                 },
                 "delete": {
@@ -936,8 +1015,10 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
                     "https://www.googleapis.com/auth/agentregistry.read-write",
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
                   ]
                 },
                 "get": {
@@ -1048,9 +1129,426 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
                     "https://www.googleapis.com/auth/agentregistry.read-write",
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
                   ]
+                }
+              }
+            },
+            "skills": {
+              "methods": {
+                "create": {
+                  "description": "========================================================================= # Skills Collection APIs Creates a Skill resource container, optionally publishing the initial SkillRevision inline in a single, atomic CRUD roundtrip.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/skills",
+                  "httpMethod": "POST",
+                  "id": "agentregistry.projects.locations.skills.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The project and location location to bootstrap.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. Signed UUID request idempotency token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "skillId": {
+                      "description": "Required. Custom, user-defined unique container identifier. Must be unique within the parent project and location. This value should be 4-63 characters, and valid characters are `/a-z-/`.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/skills",
+                  "request": {
+                    "$ref": "Skill"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a Skill container along with all its revisions.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/skills/{skillsId}",
+                  "httpMethod": "DELETE",
+                  "id": "agentregistry.projects.locations.skills.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "force": {
+                      "description": "Optional. If set to true, any child SkillRevisions under this Skill will also be deleted. Otherwise, the request will only succeed if the Skill has no child SkillRevisions.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Required. Target Skill container name to remove.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/skills/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. Signed UUID request idempotency token.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "get": {
+                  "description": "Fetches the active configuration and metadata of a Skill.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/skills/{skillsId}",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.skills.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Target resource container name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/skills/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Skill"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "list": {
+                  "description": "Lists logical Skills available in a project.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/skills",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.skills.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Use this field to specify filter criteria on list results. Filter expressions can be used to restrict results based upon filterable fields, where equality operators can be used. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `<`, `>`, `NOT`, `AND`, `OR`, and `()`. | Field | `=` | `<`, `>` | |--------------|-----|----------| | state | Yes | No | | targetState | Yes | No | | createTime | Yes | Yes | | updateTime | Yes | Yes | Examples: * `state=ACTIVE` to restrict results to skills in the `ACTIVE` state.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListSkillsRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/skills",
+                  "response": {
+                    "$ref": "ListSkillsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates Skill metadata or overrides active pointers/state using REST standard PATCH.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/skills/{skillsId}",
+                  "httpMethod": "PATCH",
+                  "id": "agentregistry.projects.locations.skills.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Resource name of the Skill. Format: `projects/{project}/locations/{location}/skills/{skill}` The `{skill}` segment acts as the resource ID. If the skill is associated with a Publisher, this segment typically uses a hyphenated namespace prefix corresponding to the publisher (e.g., `google-workspace-create-docs`).",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/skills/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. Signed UUID request idempotency token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Standard update target mask mapping relative fields.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "Skill"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "search": {
+                  "description": "Custom deep-search method to filter by frontmatter or query SKILL.md text blobs.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/skills:search",
+                  "httpMethod": "GET",
+                  "id": "agentregistry.projects.locations.skills.search",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Use this field to specify additional filter criteria on search results. Filter expressions can be used to restrict results based upon filterable fields, where equality operators can be used. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `<`, `>`, `NOT`, `AND`, `OR`, and `()`. | Field | `=` | `<`, `>` | |--------------|-----|----------| | state | Yes | No | | targetState | Yes | No | | createTime | Yes | Yes | | updateTime | Yes | Yes | Examples: * `state=ACTIVE` to restrict results to skills in the `ACTIVE` state.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of search results to return per page. The page size is capped at `100`, even if a larger value is specified. A negative value will result in an `INVALID_ARGUMENT` error. If unspecified or set to `0`, a default value of `20` will be used. The server may return fewer results than requested.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. If present, retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters, must be identical to those in the previous call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for SearchSkillsRequest. Format: `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "searchString": {
+                      "description": "Optional. Search criteria used to select the Skills to return. If no search criteria is specified then all accessible Skills will be returned. Search expressions can be used to restrict results based upon searchable fields, where the operators can be used along with the suffix wildcard symbol `*`. See [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more details. Allowed operators: `=`, `:`, `NOT`, `AND`, `OR`, and `()`. Searchable fields: | Field | `=` | `:` | `*` | Keyword Search | |---------------------------|-----|-----|-----|----------------| | skillId | Yes | Yes | Yes | Included | | name | No | Yes | Yes | Included | | displayName | No | Yes | Yes | Included | | description | No | Yes | No | Included | | frontmatter.name | No | Yes | No | Included | | frontmatter.description | No | Yes | No | Included | | frontmatter.compatibility | No | Yes | No | Included | | frontmatter.license | No | Yes | No | Included | Examples: * `skillId=\"urn:skill:projects-1234:locations:global:private-important-skill\"` to find the skill with the specified skill ID. * `name:important` to find skills whose name contains `important` as a word. * `displayName:works*` to find skills whose display name contains words that start with `works`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "searchType": {
+                      "description": "Optional. The type of search.",
+                      "enum": [
+                        "SEARCH_TYPE_UNSPECIFIED",
+                        "KEYWORD",
+                        "SEMANTIC"
+                      ],
+                      "enumDescriptions": [
+                        "Invalid search type.",
+                        "Search for a keyword across all searchable fields.",
+                        "Search based on the meaning and intent of a natural language query."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/skills:search",
+                  "response": {
+                    "$ref": "SearchSkillsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/agentregistry.read-only",
+                    "https://www.googleapis.com/auth/agentregistry.read-write",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                }
+              },
+              "resources": {
+                "revisions": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new immutable revision and triggers validation pipelines.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/skills/{skillsId}/revisions",
+                      "httpMethod": "POST",
+                      "id": "agentregistry.projects.locations.skills.revisions.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. Parent logical container name.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/skills/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. Signed UUID request idempotency token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "skillRevisionId": {
+                          "description": "Optional. Custom, user-defined unique revision identifier. Format: 4-63 characters, matching regex `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/revisions",
+                      "request": {
+                        "$ref": "SkillRevision"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/agentregistry.read-only",
+                        "https://www.googleapis.com/auth/agentregistry.read-write",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a specific revision (restricted to admins to purge accidentally committed secrets).",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/skills/{skillsId}/revisions/{revisionsId}",
+                      "httpMethod": "DELETE",
+                      "id": "agentregistry.projects.locations.skills.revisions.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Target revision name to remove.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/skills/[^/]+/revisions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. Signed UUID request idempotency token.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/agentregistry.read-only",
+                        "https://www.googleapis.com/auth/agentregistry.read-write",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single immutable Revision.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/skills/{skillsId}/revisions/{revisionsId}",
+                      "httpMethod": "GET",
+                      "id": "agentregistry.projects.locations.skills.revisions.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Target revision name.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/skills/[^/]+/revisions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "SkillRevision"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/agentregistry.read-only",
+                        "https://www.googleapis.com/auth/agentregistry.read-write",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ],
+                      "supportsMediaDownload": true,
+                      "useMediaDownloadService": true
+                    },
+                    "list": {
+                      "description": "Lists all revisions belonging to a parent Skill.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/skills/{skillsId}/revisions",
+                      "httpMethod": "GET",
+                      "id": "agentregistry.projects.locations.skills.revisions.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. Page limit size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. Page offset token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Parent logical container name to query.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/skills/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/revisions",
+                      "response": {
+                        "$ref": "ListSkillRevisionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/agentregistry.read-only",
+                        "https://www.googleapis.com/auth/agentregistry.read-write",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -1059,9 +1557,47 @@
       }
     }
   },
-  "revision": "20260430",
+  "revision": "20260722",
   "rootUrl": "https://agentregistry.googleapis.com/",
   "schemas": {
+    "A2ASkill": {
+      "description": "Represents the skills of an Agent.",
+      "id": "A2ASkill",
+      "properties": {
+        "description": {
+          "description": "Output only. A more detailed description of the skill.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "examples": {
+          "description": "Output only. Example prompts or scenarios this skill can handle.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "id": {
+          "description": "Output only. A unique identifier for the agent's skill.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. A human-readable name for the agent's skill.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tags": {
+          "description": "Output only. Keywords describing the skill.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Agent": {
       "description": "Represents an Agent. \"A2A\" below refers to the Agent-to-Agent protocol.",
       "id": "Agent",
@@ -1124,7 +1660,7 @@
         "skills": {
           "description": "Output only. Skills the agent possesses, often obtained from the A2A Agent Card.",
           "items": {
-            "$ref": "Skill"
+            "$ref": "A2ASkill"
           },
           "readOnly": true,
           "type": "array"
@@ -1204,6 +1740,18 @@
         "title": {
           "description": "Output only. A human-readable title for the tool.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ArchiveUploadSource": {
+      "description": "Direct write-only raw archive payload upload.",
+      "id": "ArchiveUploadSource",
+      "properties": {
+        "archiveContent": {
+          "description": "Required. Input only. Write-only raw ZIP/TAR archive payload bytes containing the skill package.",
+          "format": "byte",
           "type": "string"
         }
       },
@@ -1417,6 +1965,52 @@
       },
       "type": "object"
     },
+    "Frontmatter": {
+      "description": "Structured metadata attributes extracted from the package's local SKILL.md frontmatter.",
+      "id": "Frontmatter",
+      "properties": {
+        "compatibility": {
+          "description": "Optional. Environmental dependencies or local sidecars.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Required. Functional description.",
+          "type": "string"
+        },
+        "license": {
+          "description": "Optional. License.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Extensible flattened map mapping custom tags, authors, and version parameters.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Required. The name of the skill.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GcsSource": {
+      "description": "Specifications for Cloud Storage objects.",
+      "id": "GcsSource",
+      "properties": {
+        "generation": {
+          "description": "Optional. Cloud Storage object generation ID. If not specified, the latest generation is used.",
+          "format": "int64",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Required. Cloud Storage object URI. Format: `gs://{bucket_name}/{object_name}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Interface": {
       "description": "Represents the connection details for an Agent or MCP Server.",
       "id": "Interface",
@@ -1559,6 +2153,24 @@
       },
       "type": "object"
     },
+    "ListPublishersResponse": {
+      "description": "Response listing Publishers.",
+      "id": "ListPublishersResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Page offset continuation token.",
+          "type": "string"
+        },
+        "publishers": {
+          "description": "The returned list of Publishers.",
+          "items": {
+            "$ref": "Publisher"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListServicesResponse": {
       "description": "Message for response to listing Services",
       "id": "ListServicesResponse",
@@ -1571,6 +2183,49 @@
           "description": "The list of Service resources matching the parent and filter criteria in the request. Each Service resource follows the format: `projects/{project}/locations/{location}/services/{service}`.",
           "items": {
             "$ref": "Service"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListSkillRevisionsResponse": {
+      "description": "Response listing Revisions.",
+      "id": "ListSkillRevisionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Page offset continuation token.",
+          "type": "string"
+        },
+        "skillRevisions": {
+          "description": "Returned version snapshot list.",
+          "items": {
+            "$ref": "SkillRevision"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListSkillsResponse": {
+      "description": "Response structure listing logical Skills.",
+      "id": "ListSkillsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Page continuation continuation token.",
+          "type": "string"
+        },
+        "skills": {
+          "description": "Returned container list.",
+          "items": {
+            "$ref": "Skill"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unreachable locations or failures.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -1820,6 +2475,50 @@
       },
       "type": "object"
     },
+    "Publisher": {
+      "description": "Represents a verified Publisher of Skills. Prepopulated publishers include `publishers/cloud.google.com` and `publishers/workspace.google.com`.",
+      "id": "Publisher",
+      "properties": {
+        "displayName": {
+          "description": "Optional. Human readable display name of the publisher.",
+          "type": "string"
+        },
+        "documentationUri": {
+          "description": "Optional. URI pointing to official publisher documentation.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Resource name of the publisher. Format: `projects/{project}/locations/{location}/publishers/{publisher}`",
+          "type": "string"
+        },
+        "publisherTier": {
+          "description": "Output only. The curation tier of the publisher.",
+          "enum": [
+            "PUBLISHER_TIER_UNSPECIFIED",
+            "FIRST_PARTY",
+            "THIRD_PARTY",
+            "PRIVATE"
+          ],
+          "enumDescriptions": [
+            "Default value. Unspecified.",
+            "First-party Google-curated and verified global publishers.",
+            "Third-party verified enterprise partner publishers.",
+            "Private publishers within the developer's workspace/project."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "supportUri": {
+          "description": "Optional. URI pointing to the support portal or email.",
+          "type": "string"
+        },
+        "verifiedPrefix": {
+          "description": "Required. The verified prefix (e.g. \"snowflake-\", \"google-\") associated with this publisher. The system uses this prefix to enforce name-squatting rules during Skill registration. Must be globally unique across all publishers.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SearchAgentsRequest": {
       "description": "Message for searching Agents",
       "id": "SearchAgentsRequest",
@@ -1896,6 +2595,24 @@
       },
       "type": "object"
     },
+    "SearchSkillsResponse": {
+      "description": "Response listing searched Skills.",
+      "id": "SearchSkillsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Query page offset continuation token.",
+          "type": "string"
+        },
+        "skills": {
+          "description": "Matched Skills list.",
+          "items": {
+            "$ref": "Skill"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Service": {
       "description": "Represents a user-defined Service.",
       "id": "Service",
@@ -1952,39 +2669,181 @@
       "type": "object"
     },
     "Skill": {
-      "description": "Represents the skills of an Agent.",
+      "description": "Represents an Executable Agent Skill or a Composite Tool Suite (Bundle). Sibling resource with Agent and McpServer under agentregistry.googleapis.com.",
       "id": "Skill",
       "properties": {
+        "createTime": {
+          "description": "Output only. Create time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "defaultRevision": {
+          "description": "Optional. The full resource name of the revision currently served by default (floating track). Format: `projects/{project}/locations/{location}/skills/{skill}/revisions/{revision}`",
+          "type": "string"
+        },
         "description": {
-          "description": "Output only. A more detailed description of the skill.",
-          "readOnly": true,
+          "description": "Optional. Brief summary describing the capabilities of the skill. Maximum length is 2048 characters.",
           "type": "string"
         },
-        "examples": {
-          "description": "Output only. Example prompts or scenarios this skill can handle.",
-          "items": {
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "id": {
-          "description": "Output only. A unique identifier for the agent's skill.",
-          "readOnly": true,
+        "displayName": {
+          "description": "Required. Human-readable display name of the skill. Maximum length is 128 characters.",
           "type": "string"
+        },
+        "frontmatter": {
+          "$ref": "Frontmatter",
+          "description": "Output only. Lightweight frontmatter metadata attributes copied from the default revision.",
+          "readOnly": true
+        },
+        "initialRevision": {
+          "$ref": "SkillRevision",
+          "description": "Optional. Input only. Optional nested initial revision payload to support standard one-shot creation. The server processes this field on input during creation but must never return it in responses."
         },
         "name": {
-          "description": "Output only. A human-readable name for the agent's skill.",
+          "description": "Identifier. Resource name of the Skill. Format: `projects/{project}/locations/{location}/skills/{skill}` The `{skill}` segment acts as the resource ID. If the skill is associated with a Publisher, this segment typically uses a hyphenated namespace prefix corresponding to the publisher (e.g., `google-workspace-create-docs`).",
+          "type": "string"
+        },
+        "publisher": {
+          "description": "Optional. The publisher resource associated with this skill. Format: `projects/{project}/locations/{location}/publishers/{publisher}` The publisher dictates the allowed namespace prefixes for the skill's name and logical `skill_id` (e.g., Publisher `google` authorizes the `google-*` prefix).",
+          "type": "string"
+        },
+        "skillId": {
+          "description": "Output only. A stable, globally unique logical identifier for the skill. It is securely constructed by the backend by combining the associated `publisher`'s verified namespace and the skill's resource ID to enforce strict ownership. For example, the prefix `google-` is reserved exclusively for first-party Google publishers to prevent namespace squatting. Example: `urn:skill:google-workspace:create-docs`",
           "readOnly": true,
           "type": "string"
         },
-        "tags": {
-          "description": "Output only. Keywords describing the skill.",
-          "items": {
-            "type": "string"
-          },
+        "state": {
+          "description": "Output only. The system-managed state of the skill.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STATE_CREATING",
+            "STATE_DRAFT",
+            "STATE_ACTIVE",
+            "STATE_DISABLED",
+            "STATE_DEPRECATED",
+            "STATE_DECOMMISSIONED",
+            "STATE_DELETING"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The skill is being created. It is not served.",
+            "The skill is in draft, or lacks a valid payload. It is not served.",
+            "The skill is active and is served.",
+            "The skill is disabled and is not served.",
+            "The skill is deprecated. It is served, but emits warnings.",
+            "The skill is decommissioned and is not served.",
+            "The skill is being deleted. It is not served."
+          ],
           "readOnly": true,
-          "type": "array"
+          "type": "string"
+        },
+        "targetState": {
+          "description": "Required. User-managed target state of the skill.",
+          "enum": [
+            "TARGET_STATE_UNSPECIFIED",
+            "TARGET_STATE_DRAFT",
+            "TARGET_STATE_ACTIVE",
+            "TARGET_STATE_DISABLED",
+            "TARGET_STATE_DEPRECATED",
+            "TARGET_STATE_DECOMMISSIONED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The skill is in draft and cannot be served.",
+            "The skill is active and can be served.",
+            "The skill is disabled and cannot be served.",
+            "The skill is deprecated. It can still be served, but emits warnings.",
+            "The skill is decommissioned and cannot be served."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Structural deployment type (SIMPLE leaf vs COMPOSITE bundle).",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "SIMPLE"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "A standard, leaf executable skill containing natural language and code."
+          ],
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. Universally unique identifier (UUID4) for the logical container.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Update time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SkillRevision": {
+      "description": "Represents an immutable, versioned snapshot of a Skill package.",
+      "id": "SkillRevision",
+      "properties": {
+        "archiveUploadSource": {
+          "$ref": "ArchiveUploadSource",
+          "description": "Optional. Immutable. Direct write-only raw archive upload source."
+        },
+        "createTime": {
+          "description": "Output only. Revision creation timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "frontmatter": {
+          "$ref": "Frontmatter",
+          "description": "Output only. Extracted YAML frontmatter configuration snapshot.",
+          "readOnly": true
+        },
+        "gcsSource": {
+          "$ref": "GcsSource",
+          "description": "Optional. Immutable. Cloud Storage object generation URI."
+        },
+        "name": {
+          "description": "Identifier. Resource name of the SkillRevision. Format: `projects/{project}/locations/{location}/skills/{skill}/revisions/{revision}`",
+          "type": "string"
+        },
+        "sha256Hash": {
+          "description": "Output only. Cryptographic SHA-256 integrity and deduplication digest of the payload zip.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sizeBytes": {
+          "description": "Output only. Size of the compiled zip payload in bytes (assists client download progress).",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The system-managed lifecycle state of this revision.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "FAILED",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The revision is being created.",
+            "The revision is active.",
+            "The revision failed to compile or ingest.",
+            "The revision is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. Universally unique identifier (UUID4) for the skill revision.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

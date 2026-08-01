@@ -155,6 +155,15 @@ export namespace saasservicemgmt_v1 {
     version?: string | null;
   }
   /**
+   * A representation of a decimal value, such as 2.5. Clients may convert values into language-native decimal formats, such as Java's [BigDecimal](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/BigDecimal.html) or Python's [decimal.Decimal](https://docs.python.org/3/library/decimal.html).
+   */
+  export interface Schema$Decimal {
+    /**
+     * The decimal value, as a string. The string representation consists of an optional sign, `+` (`U+002B`) or `-` (`U+002D`), followed by a sequence of zero or more decimal digits ("the integer"), optionally followed by a fraction, optionally followed by an exponent. An empty string **should** be interpreted as `0`. The fraction consists of a decimal point followed by zero or more decimal digits. The string must contain at least one digit in either the integer or the fraction. The number formed by the sign, the integer and the fraction is referred to as the significand. The exponent consists of the character `e` (`U+0065`) or `E` (`U+0045`) followed by one or more decimal digits. Services **should** normalize decimal values before storing them by: - Removing an explicitly-provided `+` sign (`+2.5` -\> `2.5`). - Replacing a zero-length integer value with `0` (`.5` -\> `0.5`). - Coercing the exponent character to upper-case, with explicit sign (`2.5e8` -\> `2.5E+8`). - Removing an explicitly-provided zero exponent (`2.5E0` -\> `2.5`). Services **may** perform additional normalization based on its own needs and the internal decimal implementation selected, such as shifting the decimal point and exponent value together (example: `2.5E-1` <-\> `0.25`). Additionally, services **may** preserve trailing zeroes in the fraction to indicate increased precision, but are not required to do so. Note that only the `.` character is supported to divide the integer and the fraction; `,` **should not** be supported regardless of locale. Additionally, thousand separators **should not** be supported. If a service does support them, values **must** be normalized. The ENBF grammar is: DecimalString = '' | [Sign] Significand [Exponent]; Sign = '+' | '-'; Significand = Digits '.' | [Digits] '.' Digits; Exponent = ('e' | 'E') [Sign] Digits; Digits = { '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' \}; Services **should** clearly document the range of supported values, the maximum supported precision (total number of digits), and, if applicable, the scale (number of digits after the decimal point), as well as how it behaves when receiving out-of-bounds values. Services **may** choose to accept values passed as input even when the value has a higher precision or scale than the service supports, and **should** round the value to fit the supported scale. Alternatively, the service **may** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if precision would be lost. Services **should** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if the service receives a value outside of the supported range.
+     */
+    value?: string | null;
+  }
+  /**
    * Dependency represent a single dependency with another unit kind by alias.
    */
   export interface Schema$Dependency {
@@ -592,7 +601,7 @@ export namespace saasservicemgmt_v1 {
     runParams?: Schema$RunRolloutActionParams;
   }
   /**
-   * An object that describes various settings of Rollout execution. Includes built-in policies across GCP and GDC, and customizable policies.
+   * An object that describes various settings of Rollout execution. Includes built-in and customizable policies.
    */
   export interface Schema$RolloutKind {
     /**
@@ -635,6 +644,10 @@ export namespace saasservicemgmt_v1 {
      * Required. Immutable. UnitKind that this rollout kind corresponds to. Rollouts stemming from this rollout kind will target the units of this unit kind. In other words, this defines the population of target units to be upgraded by rollouts.
      */
     unitKind?: string | null;
+    /**
+     * Optional. Settings for controlling the pacing of rollouts i.e. the number of units to be rolled out in parallel in a region.
+     */
+    unitUpdatePacing?: Schema$UnitUpdatePacing;
     /**
      * Output only. The timestamp when the resource was last updated. Any change to the resource made by users must refresh this value. Changes to a resource made by the service should refresh this value.
      */
@@ -703,7 +716,7 @@ export namespace saasservicemgmt_v1 {
      */
     name?: string | null;
     /**
-     * Output only. State of the Saas. It is always in ACTIVE state if the application_template is empty.
+     * Output only. State of the Saas. It is always in STATE_ACTIVE state if the application_template is empty.
      */
     state?: string | null;
     /**
@@ -980,6 +993,10 @@ export namespace saasservicemgmt_v1 {
      */
     annotations?: {[key: string]: string} | null;
     /**
+     * Optional. Output only. BoundaryType describes the type of boundary the Unit Kind represents.
+     */
+    boundaryType?: string | null;
+    /**
      * Output only. The timestamp when the resource was created.
      */
     createTime?: string | null;
@@ -1000,7 +1017,7 @@ export namespace saasservicemgmt_v1 {
      */
     etag?: string | null;
     /**
-     * Optional. List of inputVariables for this release that will either be retrieved from a dependency’s outputVariables, or will be passed on to a dependency’s inputVariables. Maximum 100.
+     * Optional. List of inputVariables for this release that will either be retrieved from a dependency's outputVariables, or will be passed on to a dependency's inputVariables. Maximum 100.
      */
     inputVariableMappings?: Schema$VariableMapping[];
     /**
@@ -1052,6 +1069,9 @@ export namespace saasservicemgmt_v1 {
      * Output only. The timestamp when the resource was marked for deletion (deletion is an asynchronous operation).
      */
     deleteTime?: string | null;
+    /**
+     * Optional. Deprovision operation.
+     */
     deprovision?: Schema$Deprovision;
     /**
      * Optional. Output only. The engine state for on-going deployment engine operation(s). This field is opaque for external usage.
@@ -1065,6 +1085,9 @@ export namespace saasservicemgmt_v1 {
      * Output only. An opaque value that uniquely identifies a version or generation of a resource. It can be used to confirm that the client and server agree on the ordering of a resource being written.
      */
     etag?: string | null;
+    /**
+     * Optional. Flag update operation.
+     */
     flagUpdate?: Schema$FlagUpdate;
     /**
      * Optional. The labels on the resource, which can be used for categorization. similar to Kubernetes resource labels.
@@ -1078,6 +1101,9 @@ export namespace saasservicemgmt_v1 {
      * Optional. Reference to parent resource: UnitOperation. If an operation needs to create other operations as part of its workflow, each of the child operations should have this field set to the parent. This can be used for tracing. (Optional)
      */
     parentUnitOperation?: string | null;
+    /**
+     * Optional. Provision operation.
+     */
     provision?: Schema$Provision;
     /**
      * Optional. Specifies which rollout created this Unit Operation. This cannot be modified and is used for filtering purposes only. If a dependent unit and unit operation are created as part of another unit operation, they will use the same rolloutId.
@@ -1103,6 +1129,9 @@ export namespace saasservicemgmt_v1 {
      * Output only. The timestamp when the resource was last updated. Any change to the resource made by users must refresh this value. Changes to a resource made by the service should refresh this value.
      */
     updateTime?: string | null;
+    /**
+     * Optional. Upgrade operation.
+     */
     upgrade?: Schema$Upgrade;
   }
   /**
@@ -1129,6 +1158,19 @@ export namespace saasservicemgmt_v1 {
      * Required. Type of the condition.
      */
     type?: string | null;
+  }
+  /**
+   * UnitUpdatePacing defines the policy for the maximum number of unit operations that can run for a rollout in parallel in a single region.
+   */
+  export interface Schema$UnitUpdatePacing {
+    /**
+     * Optional. An absolute cap on concurrent units operations. If both percent and count are provided, the system uses the MINIMUM (most restrictive).
+     */
+    maxConcurrentOperationsCount?: number | null;
+    /**
+     * Optional. The maximum percentage of total units in the scope that can be in-flight. Example: 10.5 for 10.5%. If both percent and count are provided, the system uses the MINIMUM (most restrictive).
+     */
+    maxConcurrentOperationsPercent?: Schema$Decimal;
   }
   /**
    * UnitVariable describes a parameter for a Unit.
@@ -1435,8 +1477,7 @@ export namespace saasservicemgmt_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1563,7 +1604,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1667,8 +1711,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Release>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Release> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
@@ -1739,7 +1782,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1809,8 +1855,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1878,7 +1923,11 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1956,8 +2005,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Release>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Release> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
@@ -2025,7 +2073,11 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2083,8 +2135,7 @@ export namespace saasservicemgmt_v1 {
     list(
       params: Params$Resource$Projects$Locations$Releases$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListReleasesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListReleasesResponse>,
       callback: BodyResponseCallback<Schema$ListReleasesResponse>
     ): void;
     list(
@@ -2175,7 +2226,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2279,8 +2333,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Release>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Release>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Release> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Release>>
@@ -2448,7 +2501,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2480,6 +2536,7 @@ export namespace saasservicemgmt_v1 {
      *       //   "uid": "my_uid",
      *       //   "unitFilter": "my_unitFilter",
      *       //   "unitKind": "my_unitKind",
+     *       //   "unitUpdatePacing": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "updateUnitKindStrategy": "my_updateUnitKindStrategy"
      *       // }
@@ -2499,6 +2556,7 @@ export namespace saasservicemgmt_v1 {
      *   //   "uid": "my_uid",
      *   //   "unitFilter": "my_unitFilter",
      *   //   "unitKind": "my_unitKind",
+     *   //   "unitUpdatePacing": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "updateUnitKindStrategy": "my_updateUnitKindStrategy"
      *   // }
@@ -2622,7 +2680,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2692,8 +2753,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2761,7 +2821,11 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2787,6 +2851,7 @@ export namespace saasservicemgmt_v1 {
      *   //   "uid": "my_uid",
      *   //   "unitFilter": "my_unitFilter",
      *   //   "unitKind": "my_unitKind",
+     *   //   "unitUpdatePacing": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "updateUnitKindStrategy": "my_updateUnitKindStrategy"
      *   // }
@@ -2907,7 +2972,11 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2965,8 +3034,7 @@ export namespace saasservicemgmt_v1 {
     list(
       params: Params$Resource$Projects$Locations$Rolloutkinds$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRolloutKindsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRolloutKindsResponse>,
       callback: BodyResponseCallback<Schema$ListRolloutKindsResponse>
     ): void;
     list(
@@ -3057,7 +3125,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3089,6 +3160,7 @@ export namespace saasservicemgmt_v1 {
      *       //   "uid": "my_uid",
      *       //   "unitFilter": "my_unitFilter",
      *       //   "unitKind": "my_unitKind",
+     *       //   "unitUpdatePacing": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "updateUnitKindStrategy": "my_updateUnitKindStrategy"
      *       // }
@@ -3108,6 +3180,7 @@ export namespace saasservicemgmt_v1 {
      *   //   "uid": "my_uid",
      *   //   "unitFilter": "my_unitFilter",
      *   //   "unitKind": "my_unitKind",
+     *   //   "unitUpdatePacing": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "updateUnitKindStrategy": "my_updateUnitKindStrategy"
      *   // }
@@ -3328,7 +3401,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3452,8 +3528,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Rollout>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Rollout>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Rollout> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Rollout>>
@@ -3524,7 +3599,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3594,8 +3672,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3663,7 +3740,11 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3751,8 +3832,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Rollout>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Rollout>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Rollout> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Rollout>>
@@ -3820,7 +3900,11 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3878,8 +3962,7 @@ export namespace saasservicemgmt_v1 {
     list(
       params: Params$Resource$Projects$Locations$Rollouts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRolloutsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRolloutsResponse>,
       callback: BodyResponseCallback<Schema$ListRolloutsResponse>
     ): void;
     list(
@@ -3970,7 +4053,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4094,8 +4180,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Rollout>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Rollout>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Rollout> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Rollout>>
@@ -4263,7 +4348,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4363,8 +4451,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Saas>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Saas>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Saas> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Saas>>
@@ -4432,7 +4519,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4502,8 +4592,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4571,7 +4660,11 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4647,8 +4740,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Saas>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Saas>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Saas> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Saas>>
@@ -4716,7 +4808,11 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4861,7 +4957,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4961,8 +5060,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Saas>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Saas>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Saas> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Saas>>
@@ -5130,7 +5228,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5226,8 +5327,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Tenant>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Tenant>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Tenant> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Tenant>>
@@ -5298,7 +5398,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5368,8 +5471,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5437,7 +5539,11 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5511,8 +5617,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Tenant>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Tenant>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Tenant> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Tenant>>
@@ -5580,7 +5685,11 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5728,7 +5837,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5824,8 +5936,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Tenant>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Tenant>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Tenant> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Tenant>>
@@ -5993,7 +6104,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6016,6 +6130,7 @@ export namespace saasservicemgmt_v1 {
      *       // request body parameters
      *       // {
      *       //   "annotations": {},
+     *       //   "boundaryType": "my_boundaryType",
      *       //   "createTime": "my_createTime",
      *       //   "defaultFlagRevisions": [],
      *       //   "defaultRelease": "my_defaultRelease",
@@ -6036,6 +6151,7 @@ export namespace saasservicemgmt_v1 {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "boundaryType": "my_boundaryType",
      *   //   "createTime": "my_createTime",
      *   //   "defaultFlagRevisions": [],
      *   //   "defaultRelease": "my_defaultRelease",
@@ -6097,8 +6213,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$UnitKind>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UnitKind>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UnitKind> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UnitKind>>
@@ -6169,7 +6284,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6239,8 +6357,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6308,7 +6425,11 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6325,6 +6446,7 @@ export namespace saasservicemgmt_v1 {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "boundaryType": "my_boundaryType",
      *   //   "createTime": "my_createTime",
      *   //   "defaultFlagRevisions": [],
      *   //   "defaultRelease": "my_defaultRelease",
@@ -6386,8 +6508,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$UnitKind>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UnitKind>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UnitKind> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UnitKind>>
@@ -6455,7 +6576,11 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6513,8 +6638,7 @@ export namespace saasservicemgmt_v1 {
     list(
       params: Params$Resource$Projects$Locations$Unitkinds$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListUnitKindsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListUnitKindsResponse>,
       callback: BodyResponseCallback<Schema$ListUnitKindsResponse>
     ): void;
     list(
@@ -6605,7 +6729,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6628,6 +6755,7 @@ export namespace saasservicemgmt_v1 {
      *       // request body parameters
      *       // {
      *       //   "annotations": {},
+     *       //   "boundaryType": "my_boundaryType",
      *       //   "createTime": "my_createTime",
      *       //   "defaultFlagRevisions": [],
      *       //   "defaultRelease": "my_defaultRelease",
@@ -6648,6 +6776,7 @@ export namespace saasservicemgmt_v1 {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "boundaryType": "my_boundaryType",
      *   //   "createTime": "my_createTime",
      *   //   "defaultFlagRevisions": [],
      *   //   "defaultRelease": "my_defaultRelease",
@@ -6709,8 +6838,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$UnitKind>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$UnitKind>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$UnitKind> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$UnitKind>>
@@ -6878,7 +7006,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7070,7 +7201,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7140,8 +7274,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7209,7 +7342,11 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7364,7 +7501,11 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7422,8 +7563,7 @@ export namespace saasservicemgmt_v1 {
     list(
       params: Params$Resource$Projects$Locations$Unitoperations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListUnitOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListUnitOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListUnitOperationsResponse>
     ): void;
     list(
@@ -7516,7 +7656,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7805,7 +7948,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7935,8 +8081,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Unit>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Unit>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Unit> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Unit>>
@@ -8007,7 +8152,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8077,8 +8225,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8146,7 +8293,11 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8237,8 +8388,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Unit>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Unit>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Unit> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Unit>>
@@ -8306,7 +8456,11 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8454,7 +8608,10 @@ export namespace saasservicemgmt_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/saasservicemgmt.read-write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8584,8 +8741,7 @@ export namespace saasservicemgmt_v1 {
         | BodyResponseCallback<Schema$Unit>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Unit>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Unit> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Unit>>

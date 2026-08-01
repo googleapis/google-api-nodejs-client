@@ -3533,6 +3533,152 @@
                 }
               }
             },
+            "contentPolicies": {
+              "methods": {
+                "create": {
+                  "description": "Create a ContentPolicy.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/contentPolicies",
+                  "httpMethod": "POST",
+                  "id": "dlp.projects.locations.contentPolicies.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Parent resource name. The format of this value varies depending on the scope of the request (project or organization): + Projects scope: `projects/{project_id}/locations/{location_id}` + Organizations scope: `organizations/{org_id}/locations/{location_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/contentPolicies",
+                  "request": {
+                    "$ref": "GooglePrivacyDlpV2CreateContentPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2ContentPolicy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete a ContentPolicy.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/contentPolicies/{contentPoliciesId}",
+                  "httpMethod": "DELETE",
+                  "id": "dlp.projects.locations.contentPolicies.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the ContentPolicy to be deleted, in the format: `projects/{project}/locations/{location}/contentPolicies/{content_policy}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/contentPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Get a ContentPolicy.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/contentPolicies/{contentPoliciesId}",
+                  "httpMethod": "GET",
+                  "id": "dlp.projects.locations.contentPolicies.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name in the format: `projects/{project}/locations/{location}/contentPolicies/{content_policy}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/contentPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2ContentPolicy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists ContentPolicies in a parent.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/contentPolicies",
+                  "httpMethod": "GET",
+                  "id": "dlp.projects.locations.contentPolicies.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Number of results per page, max 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token from a previous page to return the next set of results. If set, all other request fields must match the original request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Resource name of the organization or project, for example, `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/contentPolicies",
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2ListContentPoliciesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update a ContentPolicy.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/contentPolicies/{contentPoliciesId}",
+                  "httpMethod": "PATCH",
+                  "id": "dlp.projects.locations.contentPolicies.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name in the format: `projects/{project}/locations/{location}/contentPolicies/{content_policy}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/contentPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "GooglePrivacyDlpV2UpdateContentPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "GooglePrivacyDlpV2ContentPolicy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "deidentifyTemplates": {
               "methods": {
                 "create": {
@@ -5128,7 +5274,7 @@
       }
     }
   },
-  "revision": "20260516",
+  "revision": "20260711",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -5416,27 +5562,33 @@
       "properties": {
         "categoricalStatsResult": {
           "$ref": "GooglePrivacyDlpV2CategoricalStatsResult",
-          "description": "Categorical stats result"
+          "description": "Output only. Categorical stats result",
+          "readOnly": true
         },
         "deltaPresenceEstimationResult": {
           "$ref": "GooglePrivacyDlpV2DeltaPresenceEstimationResult",
-          "description": "Delta-presence result"
+          "description": "Output only. Delta-presence result",
+          "readOnly": true
         },
         "kAnonymityResult": {
           "$ref": "GooglePrivacyDlpV2KAnonymityResult",
-          "description": "K-anonymity result"
+          "description": "Output only. K-anonymity result",
+          "readOnly": true
         },
         "kMapEstimationResult": {
           "$ref": "GooglePrivacyDlpV2KMapEstimationResult",
-          "description": "K-map result"
+          "description": "Output only. K-map result",
+          "readOnly": true
         },
         "lDiversityResult": {
           "$ref": "GooglePrivacyDlpV2LDiversityResult",
-          "description": "L-divesity result"
+          "description": "Output only. L-divesity result",
+          "readOnly": true
         },
         "numericalStatsResult": {
           "$ref": "GooglePrivacyDlpV2NumericalStatsResult",
-          "description": "Numerical stats result"
+          "description": "Output only. Numerical stats result",
+          "readOnly": true
         },
         "requestedOptions": {
           "$ref": "GooglePrivacyDlpV2RequestedRiskAnalysisOptions",
@@ -5508,6 +5660,29 @@
         "allAssetInventoryAssets": {
           "description": "All AWS assets stored in Asset Inventory that didn't match other AWS discovery configs.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2BatchContentItem": {
+      "description": "Represents a batch of content to inspect or redact.",
+      "id": "GooglePrivacyDlpV2BatchContentItem",
+      "properties": {
+        "stringValueBatch": {
+          "$ref": "GooglePrivacyDlpV2StringValueBatch",
+          "description": "Optional. Represents a batch of string values to inspect or redact."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2BatchContentLocation": {
+      "description": "Location within a batch of content.",
+      "id": "GooglePrivacyDlpV2BatchContentLocation",
+      "properties": {
+        "itemIndex": {
+          "description": "Matches an index of a batch item in the batch provided in the request.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -6523,6 +6698,10 @@
       "description": "Type of content to inspect.",
       "id": "GooglePrivacyDlpV2ContentItem",
       "properties": {
+        "batchContentItem": {
+          "$ref": "GooglePrivacyDlpV2BatchContentItem",
+          "description": "Represents a batch of items to inspect."
+        },
         "byteItem": {
           "$ref": "GooglePrivacyDlpV2ByteContentItem",
           "description": "Content data to inspect or redact. Replaces `type` and `data`."
@@ -6550,6 +6729,10 @@
       "description": "Precise location of the finding within a document, record, image, or metadata container.",
       "id": "GooglePrivacyDlpV2ContentLocation",
       "properties": {
+        "batchContentLocation": {
+          "$ref": "GooglePrivacyDlpV2BatchContentLocation",
+          "description": "Location within a batch of content."
+        },
         "containerName": {
           "description": "Name of the container where the finding is located. The top level name is the source file name or table name. Names of some common storage containers are formatted as follows: * BigQuery tables: `{project_id}:{dataset_id}.{table_id}` * Cloud Storage files: `gs://{bucket}/{path}` * Datastore namespace: {namespace} Nested names could be absent if the embedded object has no string identifier (for example, an image contained within a document).",
           "type": "string"
@@ -6590,12 +6773,94 @@
       "description": "Metadata on content to be scanned.",
       "id": "GooglePrivacyDlpV2ContentMetadata",
       "properties": {
+        "fileLabels": {
+          "description": "Optional. The file labels associated with the content.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2FileLabel"
+          },
+          "type": "array"
+        },
         "properties": {
           "description": "User provided key-value pairs of content metadata.",
           "items": {
             "$ref": "GooglePrivacyDlpV2KeyValueMetadataProperty"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2ContentPolicy": {
+      "description": "A policy to apply to content based on its inspection findings.",
+      "id": "GooglePrivacyDlpV2ContentPolicy",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The creation timestamp of a contentPolicy; output-only field.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "defaultAction": {
+          "$ref": "GooglePrivacyDlpV2PolicyAction",
+          "description": "Action to take if the content is scanned and no rules match. Defaults to returning an ALLOW verdict if not set."
+        },
+        "displayName": {
+          "description": "Optional. Display name (max 63 chars)",
+          "type": "string"
+        },
+        "errors": {
+          "description": "Output only. A stream of errors encountered when the policy was applied. Output only field. Will return the last 100 errors. Whenever the policy is modified this list will be cleared.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2Error"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "failedToScanSupportedFileType": {
+          "$ref": "GooglePrivacyDlpV2PolicyAction",
+          "description": "Optional. Action to take if the content is a supported file type and size but fails to be scanned, for example because the file is encrypted or corrupted."
+        },
+        "inputTooLarge": {
+          "$ref": "GooglePrivacyDlpV2PolicyAction",
+          "description": "Optional. Action to take if the content is a supported file type but is too large to be scanned."
+        },
+        "inspectConfig": {
+          "$ref": "GooglePrivacyDlpV2InspectConfig",
+          "description": "Optional. InspectConfig to use to produce findings."
+        },
+        "inspectTemplate": {
+          "$ref": "GooglePrivacyDlpV2InspectTemplate",
+          "deprecated": true,
+          "description": "Optional. InspectTemplate to use to produce findings. Deprecated: use inspect_config instead."
+        },
+        "loggingConfigs": {
+          "description": "Optional. Log the actions taken by the content policy to external systems.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2LoggingConfig"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. Resource name of the policy.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "rules": {
+          "description": "Required. Policies to apply, based on the findings returned by inspection. The first rule to match applies.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2PolicyRule"
+          },
+          "type": "array"
+        },
+        "unsupportedFileType": {
+          "$ref": "GooglePrivacyDlpV2PolicyAction",
+          "description": "Optional. Action to take if the content is an unsupported file type."
+        },
+        "updateTime": {
+          "description": "Output only. The last update timestamp of a contentPolicy; output-only field.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -6653,7 +6918,7 @@
           "type": "string"
         },
         "participantId": {
-          "description": "Optional. The identifier of the participant. For example 'test-user' or 'gemini'. The participant ID can contain lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`. The maximum length is 63 characters.",
+          "description": "Optional. The identifier of the participant, for example 'test-user' or 'gemini'. The participant ID can contain lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`. The maximum length is 63 characters.",
           "type": "string"
         }
       },
@@ -6666,6 +6931,21 @@
         "connection": {
           "$ref": "GooglePrivacyDlpV2Connection",
           "description": "Required. The connection resource."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2CreateContentPolicyRequest": {
+      "description": "Request message for CreateContentPolicy.",
+      "id": "GooglePrivacyDlpV2CreateContentPolicyRequest",
+      "properties": {
+        "contentPolicy": {
+          "$ref": "GooglePrivacyDlpV2ContentPolicy",
+          "description": "Required. The content_policy resource."
+        },
+        "contentPolicyId": {
+          "description": "Optional. The content policy ID can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: `[a-zA-Z\\d-_]+`. The maximum length is 100 characters. If empty, the system will generate a random id.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6905,6 +7185,10 @@
             "A finding of this custom info type will be excluded from final results, but can still affect rule execution."
           ],
           "type": "string"
+        },
+        "fileLabelInfoType": {
+          "$ref": "GooglePrivacyDlpV2FileLabelInfoType",
+          "description": "File label to detect."
         },
         "infoType": {
           "$ref": "GooglePrivacyDlpV2InfoType",
@@ -8021,7 +8305,8 @@
           "type": "string"
         },
         "name": {
-          "description": "Unique resource name for the DiscoveryConfig, assigned by the service when the DiscoveryConfig is created, for example `projects/dlp-test-project/locations/global/discoveryConfigs/53234423`.",
+          "description": "Output only. Unique resource name for the DiscoveryConfig, assigned by the service when the DiscoveryConfig is created, for example `projects/dlp-test-project/locations/global/discoveryConfigs/53234423`.",
+          "readOnly": true,
           "type": "string"
         },
         "orgConfig": {
@@ -8401,27 +8686,31 @@
       "id": "GooglePrivacyDlpV2DlpJob",
       "properties": {
         "actionDetails": {
-          "description": "Events that should occur after the job has completed.",
+          "description": "Output only. Events that should occur after the job has completed.",
           "items": {
             "$ref": "GooglePrivacyDlpV2ActionDetails"
           },
+          "readOnly": true,
           "type": "array"
         },
         "createTime": {
-          "description": "Time when the job was created.",
+          "description": "Output only. Time when the job was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "endTime": {
-          "description": "Time when the job finished.",
+          "description": "Output only. Time when the job finished.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "errors": {
-          "description": "A stream of errors encountered running the job.",
+          "description": "Output only. A stream of errors encountered running the job.",
           "items": {
             "$ref": "GooglePrivacyDlpV2Error"
           },
+          "readOnly": true,
           "type": "array"
         },
         "inspectDetails": {
@@ -8429,16 +8718,19 @@
           "description": "Results from inspecting a data source."
         },
         "jobTriggerName": {
-          "description": "If created by a job trigger, the resource name of the trigger that instantiated the job.",
+          "description": "Output only. If created by a job trigger, the resource name of the trigger that instantiated the job.",
+          "readOnly": true,
           "type": "string"
         },
         "lastModified": {
-          "description": "Time when the job was last modified by the system.",
+          "description": "Output only. Time when the job was last modified by the system.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
-          "description": "The server-assigned name.",
+          "description": "Output only. The server-assigned name.",
+          "readOnly": true,
           "type": "string"
         },
         "riskDetails": {
@@ -8446,12 +8738,13 @@
           "description": "Results from analyzing risk of a data source."
         },
         "startTime": {
-          "description": "Time when the job started.",
+          "description": "Output only. Time when the job started.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "state": {
-          "description": "State of a job.",
+          "description": "Output only. State of a job.",
           "enum": [
             "JOB_STATE_UNSPECIFIED",
             "PENDING",
@@ -8470,6 +8763,7 @@
             "The job had an error and did not complete.",
             "The job is currently accepting findings via hybridInspect. A hybrid job in ACTIVE state may continue to have findings added to it through the calling of hybridInspect. After the job has finished no more calls to hybridInspect may be made. ACTIVE jobs can transition to DONE."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "type": {
@@ -8880,6 +9174,36 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2FileLabel": {
+      "description": "Represents a file label.",
+      "id": "GooglePrivacyDlpV2FileLabel",
+      "properties": {
+        "googleDriveLabel": {
+          "$ref": "GooglePrivacyDlpV2GoogleDriveLabelMetadata",
+          "description": "Google Drive labels published by Google."
+        },
+        "sensitivityLabel": {
+          "$ref": "GooglePrivacyDlpV2SensitivityLabelMetadata",
+          "description": "Sensitivity labels published by Microsoft."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2FileLabelInfoType": {
+      "description": "Configuration for a custom infoType that detects file labels.",
+      "id": "GooglePrivacyDlpV2FileLabelInfoType",
+      "properties": {
+        "googleDriveLabel": {
+          "$ref": "GooglePrivacyDlpV2GoogleDriveLabel",
+          "description": "Google Drive labels published by Google."
+        },
+        "sensitivityLabel": {
+          "$ref": "GooglePrivacyDlpV2SensitivityLabel",
+          "description": "Sensitivity labels published by Microsoft."
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2FileSet": {
       "description": "Set of files to scan.",
       "id": "GooglePrivacyDlpV2FileSet",
@@ -9250,6 +9574,42 @@
       "description": "Processing occurs in the global region.",
       "id": "GooglePrivacyDlpV2GlobalProcessing",
       "properties": {},
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2GoogleDriveLabel": {
+      "description": "Google Drive labels published by Google.",
+      "id": "GooglePrivacyDlpV2GoogleDriveLabel",
+      "properties": {
+        "labelFieldsToMatch": {
+          "description": "The field values of the Google Drive label to match.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2LabelField"
+          },
+          "type": "array"
+        },
+        "labelId": {
+          "description": "The [label ID](https://developers.google.com/workspace/drive/labels/guides/overview) of the Google Drive label.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2GoogleDriveLabelMetadata": {
+      "description": "Google Drive labels published by Google.",
+      "id": "GooglePrivacyDlpV2GoogleDriveLabelMetadata",
+      "properties": {
+        "labelFields": {
+          "description": "The field values of the Google Drive label",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2LabelFieldMetadata"
+          },
+          "type": "array"
+        },
+        "labelId": {
+          "description": "The [label ID](https://developers.google.com/workspace/drive/labels/guides/overview) of the Google Drive label.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GooglePrivacyDlpV2HotwordRule": {
@@ -9683,6 +10043,26 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2InfoTypeCondition": {
+      "description": "A info type based condition.",
+      "id": "GooglePrivacyDlpV2InfoTypeCondition",
+      "properties": {
+        "anyInfoType": {
+          "$ref": "GoogleProtobufEmpty",
+          "description": "match any info types."
+        },
+        "infoTypes": {
+          "$ref": "GooglePrivacyDlpV2InfoTypes",
+          "description": "match any of these info types."
+        },
+        "minCount": {
+          "description": "Optional. The minimum total number of findings of all matching info types required for this condition to evaluate to true. Defaults to 1 if unset.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2InfoTypeDescription": {
       "description": "InfoType description.",
       "id": "GooglePrivacyDlpV2InfoTypeDescription",
@@ -9880,6 +10260,20 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2InfoTypes": {
+      "description": "Info types to match.",
+      "id": "GooglePrivacyDlpV2InfoTypes",
+      "properties": {
+        "infoTypeNames": {
+          "description": "Required. A list of info types to match.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2InspectConfig": {
       "description": "Configuration description of the scanning process. When used with redactContent only info_types and min_likelihood are currently used.",
       "id": "GooglePrivacyDlpV2InspectConfig",
@@ -10008,7 +10402,8 @@
         },
         "result": {
           "$ref": "GooglePrivacyDlpV2Result",
-          "description": "A summary of the outcome of this inspection job."
+          "description": "Output only. A summary of the outcome of this inspection job.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -10180,7 +10575,8 @@
           "type": "string"
         },
         "name": {
-          "description": "Unique resource name for the triggeredJob, assigned by the service when the triggeredJob is created, for example `projects/dlp-test-project/jobTriggers/53234423`.",
+          "description": "Output only. Unique resource name for the triggeredJob, assigned by the service when the triggeredJob is created, for example `projects/dlp-test-project/jobTriggers/53234423`.",
+          "readOnly": true,
           "type": "string"
         },
         "status": {
@@ -10560,6 +10956,36 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2LabelField": {
+      "description": "The field values of the Google Drive label to match.",
+      "id": "GooglePrivacyDlpV2LabelField",
+      "properties": {
+        "id": {
+          "description": "The identifier of the Label Field.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value of the Label Field to match.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2LabelFieldMetadata": {
+      "description": "The field values of the Google Drive label",
+      "id": "GooglePrivacyDlpV2LabelFieldMetadata",
+      "properties": {
+        "id": {
+          "description": "The identifier of the Label Field.",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "GooglePrivacyDlpV2Value",
+          "description": "The value of the Label Field."
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2LargeCustomDictionaryConfig": {
       "description": "Configuration for a custom dictionary created from a data source of any size up to the maximum size defined in the [limits](https://cloud.google.com/sensitive-data-protection/limits) page. The artifacts of dictionary creation are stored in the specified Cloud Storage location. Consider using `CustomInfoType.Dictionary` for smaller dictionaries that satisfy the size requirements.",
       "id": "GooglePrivacyDlpV2LargeCustomDictionaryConfig",
@@ -10655,6 +11081,24 @@
           "description": "List of connections.",
           "items": {
             "$ref": "GooglePrivacyDlpV2Connection"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results. An empty value means there are no more results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2ListContentPoliciesResponse": {
+      "description": "Response message for ListContentPolicies.",
+      "id": "GooglePrivacyDlpV2ListContentPoliciesResponse",
+      "properties": {
+        "contentPolicies": {
+          "description": "List of content policies.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2ContentPolicy"
           },
           "type": "array"
         },
@@ -10891,6 +11335,36 @@
             "Feature may be used anywhere. Default value."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2LogToBigQuery": {
+      "description": "Configuration for logging content policy actions to BigQuery.",
+      "id": "GooglePrivacyDlpV2LogToBigQuery",
+      "properties": {
+        "datasetId": {
+          "description": "Required. The ID of the dataset containing the BigQuery table to write to.",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "Required. The ID of the project containing the BigQuery table to write to.",
+          "type": "string"
+        },
+        "tableId": {
+          "description": "Required. The ID of the BigQuery table to write to.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2LoggingConfig": {
+      "description": "A single logging configuration.",
+      "id": "GooglePrivacyDlpV2LoggingConfig",
+      "properties": {
+        "logToBigQuery": {
+          "$ref": "GooglePrivacyDlpV2LogToBigQuery",
+          "description": "Optional. Log the actions taken to a BigQuery table."
         }
       },
       "type": "object"
@@ -11194,6 +11668,71 @@
         },
         "name": {
           "description": "The name of the entity. A name matching regex `__.*__` is reserved/read-only. A name must not be more than 1500 bytes when UTF-8 encoded. Cannot be `\"\"`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2PolicyAction": {
+      "description": "A possible action to take when applying a content policy.",
+      "id": "GooglePrivacyDlpV2PolicyAction",
+      "properties": {
+        "returnVerdict": {
+          "description": "Optional. If set, the verdict will be returned to the user.",
+          "enum": [
+            "CONTENT_POLICY_VERDICT_UNSPECIFIED",
+            "ALLOW",
+            "BLOCK"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "The policy allows the provided content to be used.",
+            "The policy prevents the provided content from being used. This should result in a blocked file upload, exclusion from training dataset, or other similar block action. (specific action will depend on the caller)."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2PolicyCondition": {
+      "description": "A condition that must match for this rule to apply.",
+      "id": "GooglePrivacyDlpV2PolicyCondition",
+      "properties": {
+        "infoTypeCondition": {
+          "$ref": "GooglePrivacyDlpV2InfoTypeCondition",
+          "description": "A condition based on info types."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2PolicyRule": {
+      "description": "A single policy rule. The first rule to match from the list above controls the result.",
+      "id": "GooglePrivacyDlpV2PolicyRule",
+      "properties": {
+        "action": {
+          "$ref": "GooglePrivacyDlpV2PolicyAction",
+          "description": "Required. Action to take if this rule applies."
+        },
+        "conditions": {
+          "description": "Optional. Conditions that must match for this rule to apply. All conditions must match (`AND`). For `OR` conditions, use multiple rules.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2PolicyCondition"
+          },
+          "type": "array"
+        },
+        "returnVerdict": {
+          "deprecated": true,
+          "description": "If set, the verdict will be returned to the user. Deprecated: Use `action` instead.",
+          "enum": [
+            "CONTENT_POLICY_VERDICT_UNSPECIFIED",
+            "ALLOW",
+            "BLOCK"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "The policy allows the provided content to be used.",
+            "The policy prevents the provided content from being used. This should result in a blocked file upload, exclusion from training dataset, or other similar block action. (specific action will depend on the caller)."
+          ],
           "type": "string"
         }
       },
@@ -11927,7 +12466,8 @@
         },
         "snapshotInspectTemplate": {
           "$ref": "GooglePrivacyDlpV2InspectTemplate",
-          "description": "If run with an InspectTemplate, a snapshot of its state at the time of this run."
+          "description": "Output only. If run with an InspectTemplate, a snapshot of its state at the time of this run.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -12142,6 +12682,28 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2SensitivityLabel": {
+      "description": "Sensitivity labels published by Microsoft.",
+      "id": "GooglePrivacyDlpV2SensitivityLabel",
+      "properties": {
+        "guid": {
+          "description": "The GUID of the sensitivity label.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2SensitivityLabelMetadata": {
+      "description": "Sensitivity labels published by Microsoft.",
+      "id": "GooglePrivacyDlpV2SensitivityLabelMetadata",
+      "properties": {
+        "guid": {
+          "description": "Required. The GUID of the sensitivity label.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2SensitivityScore": {
       "description": "Score is calculated from of all elements in the data profile. A higher level means the data is more sensitive.",
       "id": "GooglePrivacyDlpV2SensitivityScore",
@@ -12236,7 +12798,8 @@
           "description": "Current version of the stored info type."
         },
         "name": {
-          "description": "Resource name.",
+          "description": "Output only. Resource name.",
+          "readOnly": true,
           "type": "string"
         },
         "pendingVersions": {
@@ -12296,19 +12859,21 @@
           "description": "StoredInfoType configuration."
         },
         "createTime": {
-          "description": "Create timestamp of the version. Read-only, determined by the system when the version is created.",
+          "description": "Output only. Create timestamp of the version. Read-only, determined by the system when the version is created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "errors": {
-          "description": "Errors that occurred when creating this storedInfoType version, or anomalies detected in the storedInfoType data that render it unusable. Only the five most recent errors will be displayed, with the most recent error appearing first. For example, some of the data for stored custom dictionaries is put in the user's Cloud Storage bucket, and if this data is modified or deleted by the user or another system, the dictionary becomes invalid. If any errors occur, fix the problem indicated by the error message and use the UpdateStoredInfoType API method to create another version of the storedInfoType to continue using it, reusing the same `config` if it was not the source of the error.",
+          "description": "Output only. Errors that occurred when creating this storedInfoType version, or anomalies detected in the storedInfoType data that render it unusable. Only the five most recent errors will be displayed, with the most recent error appearing first. For example, some of the data for stored custom dictionaries is put in the user's Cloud Storage bucket, and if this data is modified or deleted by the user or another system, the dictionary becomes invalid. If any errors occur, fix the problem indicated by the error message and use the UpdateStoredInfoType API method to create another version of the storedInfoType to continue using it, reusing the same `config` if it was not the source of the error.",
           "items": {
             "$ref": "GooglePrivacyDlpV2Error"
           },
+          "readOnly": true,
           "type": "array"
         },
         "state": {
-          "description": "Stored info type version state. Read-only, updated by the system during dictionary creation.",
+          "description": "Output only. Stored info type version state. Read-only, updated by the system during dictionary creation.",
           "enum": [
             "STORED_INFO_TYPE_STATE_UNSPECIFIED",
             "PENDING",
@@ -12323,11 +12888,13 @@
             "StoredInfoType creation failed. All relevant error messages are returned in the `StoredInfoTypeVersion` message.",
             "StoredInfoType is no longer valid because artifacts stored in user-controlled storage were modified. To fix an invalid StoredInfoType, use the `UpdateStoredInfoType` method to create a new version."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "stats": {
           "$ref": "GooglePrivacyDlpV2StoredInfoTypeStats",
-          "description": "Statistics about this storedInfoType version."
+          "description": "Output only. Statistics about this storedInfoType version.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -12344,6 +12911,20 @@
         "name": {
           "description": "Resource name of the requested `StoredInfoType`, for example `organizations/433245324/storedInfoTypes/432452342` or `projects/project-id/storedInfoTypes/432452342`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2StringValueBatch": {
+      "description": "Represents a batch of string values to inspect or redact.",
+      "id": "GooglePrivacyDlpV2StringValueBatch",
+      "properties": {
+        "values": {
+          "description": "Optional. Represents string data to inspect or redact.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -13142,6 +13723,22 @@
         "connection": {
           "$ref": "GooglePrivacyDlpV2Connection",
           "description": "Required. The connection with new values for the relevant fields."
+        },
+        "updateMask": {
+          "description": "Optional. Mask to control which fields get updated.",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2UpdateContentPolicyRequest": {
+      "description": "Request message for UpdateContentPolicy.",
+      "id": "GooglePrivacyDlpV2UpdateContentPolicyRequest",
+      "properties": {
+        "contentPolicy": {
+          "$ref": "GooglePrivacyDlpV2ContentPolicy",
+          "description": "Required. The content_policy with new values for the relevant fields."
         },
         "updateMask": {
           "description": "Optional. Mask to control which fields get updated.",

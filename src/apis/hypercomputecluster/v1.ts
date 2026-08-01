@@ -102,7 +102,7 @@ export namespace hypercomputecluster_v1 {
   /**
    * Cluster Director API
    *
-   * The Cluster Director API allows you to deploy, manage, and monitor clusters that run AI, ML, or HPC workloads.
+   * The Cluster Director API lets you deploy, manage, and monitor clusters that run artificial intelligence (AI), machine learning (ML), or high performance computing (HPC) workloads.
    *
    * @example
    * ```js
@@ -129,11 +129,11 @@ export namespace hypercomputecluster_v1 {
    */
   export interface Schema$BootDisk {
     /**
-     * Required. Immutable. Size of the disk in gigabytes. Must be at least 40GB.
+     * Optional. The size of the disk in gigabytes (GB), which must be at least 40 GB.
      */
     sizeGb?: string | null;
     /**
-     * Required. Immutable. [Persistent disk type](https://cloud.google.com/compute/docs/disks#disk-types), in the format `projects/{project\}/zones/{zone\}/diskTypes/{disk_type\}`.
+     * Optional. [Persistent disk type](https://cloud.google.com/compute/docs/disks#disk-types), in the format `projects/{project\}/zones/{zone\}/diskTypes/{disk_type\}`.
      */
     type?: string | null;
   }
@@ -167,7 +167,7 @@ export namespace hypercomputecluster_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. User-provided description of the cluster. Maximum of 2048 characters.
+     * Optional. A description for your cluster. You can use up to 2,048 characters.
      */
     description?: string | null;
     /**
@@ -578,7 +578,7 @@ export namespace hypercomputecluster_v1 {
      */
     config?: Schema$NetworkResourceConfig;
     /**
-     * Output only. Reference to a network in Google Compute Engine.
+     * Output only. A reference to a network in Google Compute Engine.
      */
     network?: Schema$NetworkReference;
   }
@@ -629,7 +629,7 @@ export namespace hypercomputecluster_v1 {
      */
     fileShares?: Schema$FileShareConfig[];
     /**
-     * Required. Immutable. Name of the Filestore instance to create, in the format `projects/{project\}/locations/{location\}/instances/{instance\}`
+     * Required. Immutable. Name of the Filestore instance to create, in the format `projects/{project\}/locations/{location\}/instances/{instance\}`.
      */
     filestore?: string | null;
     /**
@@ -962,7 +962,7 @@ export namespace hypercomputecluster_v1 {
    */
   export interface Schema$SlurmNodeSet {
     /**
-     * Required. ID of the compute resource on which this nodeset will run. Must match a key in the cluster's compute_resources.
+     * Required. The ID of the compute resource on which this nodeset runs. Must match a key in the cluster's compute_resources.
      */
     computeId?: string | null;
     /**
@@ -970,7 +970,7 @@ export namespace hypercomputecluster_v1 {
      */
     computeInstance?: Schema$ComputeInstanceSlurmNodeSet;
     /**
-     * Required. Identifier for the nodeset, which allows it to be referenced by partitions. Must conform to [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case, alphanumeric, and at most 63 characters).
+     * Required. The ID for the nodeset, which allows it to be referenced by cluster partitions. The nodeset ID must start with a lowercase letter (`a`-`z`), use only lowercase letters or numbers, and contain up to 15 characters. For example, specify `nodeset001`.
      */
     id?: string | null;
     /**
@@ -1059,11 +1059,11 @@ export namespace hypercomputecluster_v1 {
     localMount?: string | null;
   }
   /**
-   * A resource representing a form of persistent storage that can be mounted onto compute resources in the cluster.
+   * Represents a form of persistent storage that you can mount onto compute resources in the cluster.
    */
   export interface Schema$StorageResource {
     /**
-     * Output only. Reference to a Google Cloud Storage bucket. Populated if and only if the storage resource was configured to use Google Cloud Storage.
+     * Output only. A reference to a Google Cloud Storage bucket. Populated if and only if the storage resource was configured to use Google Cloud Storage.
      */
     bucket?: Schema$BucketReference;
     /**
@@ -1071,11 +1071,11 @@ export namespace hypercomputecluster_v1 {
      */
     config?: Schema$StorageResourceConfig;
     /**
-     * Output only. Reference to a Filestore instance. Populated if and only if the storage resource was configured to use Filestore.
+     * Output only. A reference to a Filestore instance. Populated if and only if the storage resource was configured to use Filestore.
      */
     filestore?: Schema$FilestoreReference;
     /**
-     * Output only. Reference to a Managed Lustre instance. Populated if and only if the storage resource was configured to use Managed Lustre.
+     * Output only. A reference to a Managed Lustre instance. Populated if and only if the storage resource was configured to use Managed Lustre.
      */
     lustre?: Schema$LustreReference;
   }
@@ -1248,8 +1248,7 @@ export namespace hypercomputecluster_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -1374,8 +1373,7 @@ export namespace hypercomputecluster_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1511,7 +1509,7 @@ export namespace hypercomputecluster_v1 {
      *
      *   // Do the magic
      *   const res = await hypercomputecluster.projects.locations.clusters.create({
-     *     // Required. ID of the cluster to create. Must conform to [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case, alphanumeric, and at most 63 characters).
+     *     // Required. The ID of the cluster to create. The cluster ID must start with a lowercase letter (`a`-`z`), use only lowercase letters or numbers, and contain up to 10 characters. For example, specify `cluster001`.
      *     clusterId: 'placeholder-value',
      *     // Required. Parent location in which the cluster should be created, in the format `projects/{project\}/locations/{location\}`.
      *     parent: 'projects/my-project/locations/my-location',
@@ -1593,8 +1591,7 @@ export namespace hypercomputecluster_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1737,8 +1734,7 @@ export namespace hypercomputecluster_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1881,8 +1877,7 @@ export namespace hypercomputecluster_v1 {
         | BodyResponseCallback<Schema$Cluster>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Cluster>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Cluster> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>
@@ -2008,8 +2003,7 @@ export namespace hypercomputecluster_v1 {
     list(
       params: Params$Resource$Projects$Locations$Clusters$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListClustersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListClustersResponse>,
       callback: BodyResponseCallback<Schema$ListClustersResponse>
     ): void;
     list(
@@ -2191,8 +2185,7 @@ export namespace hypercomputecluster_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2241,7 +2234,7 @@ export namespace hypercomputecluster_v1 {
 
   export interface Params$Resource$Projects$Locations$Clusters$Create extends StandardParameters {
     /**
-     * Required. ID of the cluster to create. Must conform to [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case, alphanumeric, and at most 63 characters).
+     * Required. The ID of the cluster to create. The cluster ID must start with a lowercase letter (`a`-`z`), use only lowercase letters or numbers, and contain up to 10 characters. For example, specify `cluster001`.
      */
     clusterId?: string;
     /**
@@ -2414,8 +2407,7 @@ export namespace hypercomputecluster_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2547,8 +2539,7 @@ export namespace hypercomputecluster_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2686,8 +2677,7 @@ export namespace hypercomputecluster_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2813,8 +2803,7 @@ export namespace hypercomputecluster_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(

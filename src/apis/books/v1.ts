@@ -1328,8 +1328,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Bookshelf>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Bookshelf>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Bookshelf> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Bookshelf>>
@@ -1646,8 +1645,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Volumes>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Volumes>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Volumes> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Volumes>>
@@ -1807,8 +1805,7 @@ export namespace books_v1 {
     addBook(
       params: Params$Resource$Cloudloading$Addbook,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BooksCloudloadingResource>,
+        MethodOptions | BodyResponseCallback<Schema$BooksCloudloadingResource>,
       callback: BodyResponseCallback<Schema$BooksCloudloadingResource>
     ): void;
     addBook(
@@ -1964,8 +1961,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2094,8 +2090,7 @@ export namespace books_v1 {
     updateBook(
       params: Params$Resource$Cloudloading$Updatebook,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BooksCloudloadingResource>,
+        MethodOptions | BodyResponseCallback<Schema$BooksCloudloadingResource>,
       callback: BodyResponseCallback<Schema$BooksCloudloadingResource>
     ): void;
     updateBook(
@@ -2292,8 +2287,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Metadata>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Metadata>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Metadata> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Metadata>>
@@ -2444,8 +2438,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$FamilyInfo>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$FamilyInfo>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$FamilyInfo> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$FamilyInfo>>
@@ -2583,8 +2576,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2722,8 +2714,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3261,8 +3252,7 @@ export namespace books_v1 {
     get(
       params: Params$Resource$Layers$Annotationdata$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DictionaryAnnotationdata>,
+        MethodOptions | BodyResponseCallback<Schema$DictionaryAnnotationdata>,
       callback: BodyResponseCallback<Schema$DictionaryAnnotationdata>
     ): void;
     get(
@@ -4560,8 +4550,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Volumes>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Volumes>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Volumes> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Volumes>>
@@ -4958,8 +4947,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5140,8 +5128,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Annotation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Annotation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Annotation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Annotation>>
@@ -5619,8 +5606,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Annotation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Annotation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Annotation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Annotation>>
@@ -5873,8 +5859,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6009,8 +5994,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6156,8 +6140,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Bookshelf>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Bookshelf>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Bookshelf> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Bookshelf>>
@@ -6435,8 +6418,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6575,8 +6557,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6815,8 +6796,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Volumes>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Volumes>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Volumes> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Volumes>>
@@ -7149,8 +7129,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7516,8 +7495,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Category>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Category>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Category> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Category>>
@@ -7663,8 +7641,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Volume2>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Volume2>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Volume2> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Volume2>>
@@ -8013,8 +7990,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8160,8 +8136,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8308,8 +8283,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Offers>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Offers>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Offers> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Offers>>
@@ -8545,8 +8519,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Series>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Series>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Series> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Series>>
@@ -8890,8 +8863,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Volume>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Volume>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Volume> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Volume>>
@@ -9054,8 +9026,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Volumes>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Volumes>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Volumes> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Volumes>>
@@ -9293,8 +9264,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Volumes>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Volumes>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Volumes> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Volumes>>
@@ -9474,8 +9444,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Volumes>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Volumes>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Volumes> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Volumes>>
@@ -9655,8 +9624,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Volumes>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Volumes>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Volumes> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Volumes>>
@@ -9997,8 +9965,7 @@ export namespace books_v1 {
         | BodyResponseCallback<Schema$Volumes>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Volumes>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Volumes> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Volumes>>

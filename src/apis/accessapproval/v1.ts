@@ -518,8 +518,7 @@ export namespace accessapproval_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -649,8 +648,7 @@ export namespace accessapproval_v1 {
     getAccessApprovalSettings(
       params: Params$Resource$Folders$Getaccessapprovalsettings,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+        MethodOptions | BodyResponseCallback<Schema$AccessApprovalSettings>,
       callback: BodyResponseCallback<Schema$AccessApprovalSettings>
     ): void;
     getAccessApprovalSettings(
@@ -968,8 +966,7 @@ export namespace accessapproval_v1 {
     updateAccessApprovalSettings(
       params: Params$Resource$Folders$Updateaccessapprovalsettings,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+        MethodOptions | BodyResponseCallback<Schema$AccessApprovalSettings>,
       callback: BodyResponseCallback<Schema$AccessApprovalSettings>
     ): void;
     updateAccessApprovalSettings(
@@ -1995,8 +1992,7 @@ export namespace accessapproval_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2127,8 +2123,7 @@ export namespace accessapproval_v1 {
     getAccessApprovalSettings(
       params: Params$Resource$Organizations$Getaccessapprovalsettings,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+        MethodOptions | BodyResponseCallback<Schema$AccessApprovalSettings>,
       callback: BodyResponseCallback<Schema$AccessApprovalSettings>
     ): void;
     getAccessApprovalSettings(
@@ -2446,8 +2441,7 @@ export namespace accessapproval_v1 {
     updateAccessApprovalSettings(
       params: Params$Resource$Organizations$Updateaccessapprovalsettings,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+        MethodOptions | BodyResponseCallback<Schema$AccessApprovalSettings>,
       callback: BodyResponseCallback<Schema$AccessApprovalSettings>
     ): void;
     updateAccessApprovalSettings(
@@ -3475,8 +3469,7 @@ export namespace accessapproval_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3606,8 +3599,7 @@ export namespace accessapproval_v1 {
     getAccessApprovalSettings(
       params: Params$Resource$Projects$Getaccessapprovalsettings,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+        MethodOptions | BodyResponseCallback<Schema$AccessApprovalSettings>,
       callback: BodyResponseCallback<Schema$AccessApprovalSettings>
     ): void;
     getAccessApprovalSettings(
@@ -3925,8 +3917,7 @@ export namespace accessapproval_v1 {
     updateAccessApprovalSettings(
       params: Params$Resource$Projects$Updateaccessapprovalsettings,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AccessApprovalSettings>,
+        MethodOptions | BodyResponseCallback<Schema$AccessApprovalSettings>,
       callback: BodyResponseCallback<Schema$AccessApprovalSettings>
     ): void;
     updateAccessApprovalSettings(

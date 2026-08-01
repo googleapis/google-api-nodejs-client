@@ -15,6 +15,13 @@
   "description": "Allows administrators to create managed developer environments in the cloud. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/workstations",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://rep-wkstn.us-central1.rep.googleapis.com/",
+      "location": "us-central1"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -1136,6 +1143,34 @@
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
+                        "suspend": {
+                          "description": "Suspends a workstation to reduce costs.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/workstationClusters/{workstationClustersId}/workstationConfigs/{workstationConfigsId}/workstations/{workstationsId}:suspend",
+                          "httpMethod": "POST",
+                          "id": "workstations.projects.locations.workstationClusters.workstationConfigs.workstations.suspend",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. Name of the workstation to suspend.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/workstationClusters/[^/]+/workstationConfigs/[^/]+/workstations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/{+name}:suspend",
+                          "request": {
+                            "$ref": "SuspendWorkstationRequest"
+                          },
+                          "response": {
+                            "$ref": "Operation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
                         "testIamPermissions": {
                           "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
                           "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/workstationClusters/{workstationClustersId}/workstationConfigs/{workstationConfigsId}/workstations/{workstationsId}:testIamPermissions",
@@ -1175,7 +1210,7 @@
       }
     }
   },
-  "revision": "20260506",
+  "revision": "20260705",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1446,6 +1481,11 @@
           "format": "google-duration",
           "type": "string"
         },
+        "maxSizeGb": {
+          "description": "Optional. Maximum size in GB to which this persistent directory can be resized. Defaults to unlimited if not set.",
+          "format": "int32",
+          "type": "integer"
+        },
         "reclaimPolicy": {
           "description": "Optional. Whether the persistent disk should be deleted when the workstation is deleted. Valid values are `DELETE` and `RETAIN`. Defaults to `DELETE`.",
           "enum": [
@@ -1634,6 +1674,11 @@
         "fsType": {
           "description": "Optional. Type of file system that the disk should be formatted with. The workstation image must support this file system type. Must be empty if source_snapshot is set. Defaults to `\"ext4\"`.",
           "type": "string"
+        },
+        "maxSizeGb": {
+          "description": "Optional. Maximum size in GB to which this persistent directory can be resized. Defaults to unlimited if not set.",
+          "format": "int32",
+          "type": "integer"
         },
         "reclaimPolicy": {
           "description": "Optional. Whether the persistent disk should be deleted when the workstation is deleted. Valid values are `DELETE` and `RETAIN`. Defaults to `DELETE`.",
@@ -1901,24 +1946,29 @@
       "type": "object"
     },
     "OAuthToken": {
-      "description": "OAuth token.",
+      "description": "Represents an OAuth 2.0 access token and its associated metadata.",
       "id": "OAuthToken",
       "properties": {
         "accessToken": {
-          "description": "Required. The OAuth token.",
+          "description": "Required. The OAuth 2.0 access token value.",
           "type": "string"
         },
         "email": {
-          "description": "Optional. The email address encapsulated in the OAuth token.",
+          "description": "Optional. The email address associated with the OAuth 2.0 access token.",
           "type": "string"
         },
         "expireTime": {
-          "description": "Optional. The time the OAuth access token will expire. This should be the time the access token was generated plus the expires_in offset returned from the Access Token Response.",
+          "description": "Optional. The time the OAuth access token will expire. This should be the time the access token was generated plus the expires_in offset returned from the Access Token Response. Only one of `expire_time` or `expires_in` should be specified.",
           "format": "google-datetime",
           "type": "string"
         },
+        "expiresIn": {
+          "description": "Optional. The lifetime duration of the access token. Only one of `expire_time` or `expires_in` should be specified.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "scopes": {
-          "description": "Optional. The scopes encapsulated in the OAuth token. See https://developers.google.com/identity/protocols/oauth2/scopes for more information.",
+          "description": "Optional. The scopes associated with the OAuth 2.0 access token. See https://developers.google.com/identity/protocols/oauth2/scopes for more information.",
           "type": "string"
         }
       },
@@ -2104,7 +2154,7 @@
       "properties": {
         "applicationDefaultCredentials": {
           "$ref": "OAuthToken",
-          "description": "Optional. Credentials used by Cloud Client Libraries, Google API Client Libraries, and other tooling within the user conainer: https://cloud.google.com/docs/authentication/application-default-credentials"
+          "description": "Optional. Credentials used by Cloud Client Libraries, Google API Client Libraries, and other tooling within the user container. For more information, see https://cloud.google.com/docs/authentication/application-default-credentials"
         }
       },
       "type": "object"
@@ -2235,6 +2285,21 @@
     "StopWorkstationRequest": {
       "description": "Request message for StopWorkstation.",
       "id": "StopWorkstationRequest",
+      "properties": {
+        "etag": {
+          "description": "Optional. If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "Optional. If set, validate the request and preview the result, but do not actually apply it.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SuspendWorkstationRequest": {
+      "description": "Request message for SuspendWorkstation.",
+      "id": "SuspendWorkstationRequest",
       "properties": {
         "etag": {
           "description": "Optional. If set, the request will be rejected if the latest version of the workstation on the server does not have this ETag.",
@@ -2399,14 +2464,18 @@
             "STATE_STARTING",
             "STATE_RUNNING",
             "STATE_STOPPING",
-            "STATE_STOPPED"
+            "STATE_STOPPED",
+            "STATE_SUSPENDING",
+            "STATE_SUSPENDED"
           ],
           "enumDescriptions": [
             "Do not use.",
             "The workstation is not yet ready to accept requests from users but will be soon.",
             "The workstation is ready to accept requests from users.",
             "The workstation is being stopped.",
-            "The workstation is stopped and will not be able to receive requests until it is started."
+            "The workstation is stopped and will not be able to receive requests until it is started.",
+            "The workstation is being suspended.",
+            "The workstation is suspended."
           ],
           "readOnly": true,
           "type": "string"
@@ -2656,6 +2725,20 @@
           "$ref": "HttpOptions",
           "description": "Optional. HTTP options that customize the behavior of the workstation service's HTTP proxy."
         },
+        "idleAction": {
+          "description": "Optional. The action to take when the workstation has been idle for the duration specified in idle_timeout. Defaults to STOP.",
+          "enum": [
+            "IDLE_ACTION_UNSPECIFIED",
+            "STOP",
+            "SUSPEND"
+          ],
+          "enumDescriptions": [
+            "Defaults to STOP.",
+            "Stop the workstation after idle_timeout.",
+            "Suspend the workstation after idle_timeout."
+          ],
+          "type": "string"
+        },
         "idleTimeout": {
           "description": "Optional. Number of seconds to wait before automatically stopping a workstation after it last received user traffic. A value of `\"0s\"` indicates that Cloud Workstations VMs created with this configuration should never time out due to idleness. Provide [duration](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#duration) terminated by `s` for seconds—for example, `\"7200s\"` (2 hours). The default is `\"1200s\"` (20 minutes).",
           "format": "google-duration",
@@ -2732,31 +2815,10 @@
       },
       "type": "object"
     },
-    "WorkstationGceRegionalPersistentDisk": {
-      "description": "A Persistent Directory backed by a Compute Engine regional persistent disk within the workstation.",
-      "id": "WorkstationGceRegionalPersistentDisk",
-      "properties": {
-        "name": {
-          "description": "The name of the persistent directory.",
-          "type": "string"
-        },
-        "sizeGb": {
-          "description": "Required. The desired size of the persistent directory in GB.",
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
     "WorkstationPersistentDirectory": {
       "description": "A directory to persist across workstation sessions. Updates to this field will only take effect on this workstation after it is restarted.",
       "id": "WorkstationPersistentDirectory",
       "properties": {
-        "gcePd": {
-          "$ref": "WorkstationGceRegionalPersistentDisk",
-          "deprecated": true,
-          "description": "A PersistentDirectory backed by a Compute Engine persistent disk."
-        },
         "mountPath": {
           "description": "Optional. The mount path of the persistent directory.",
           "type": "string"

@@ -1127,6 +1127,10 @@ export namespace analyticsadmin_v1beta {
    */
   export interface Schema$GoogleAnalyticsAdminV1betaPropertySummary {
     /**
+     * If true, then the user has a Google Analytics role that permits them to edit the property.
+     */
+    canEdit?: boolean | null;
+    /**
      * Display name for the property referred to in this property summary.
      */
     displayName?: string | null;
@@ -1743,7 +1747,7 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
-     * Returns all accounts accessible by the caller. Note that these accounts might not currently have GA properties. Soft-deleted (ie: "trashed") accounts are excluded by default. Returns an empty list if no relevant accounts are found.
+     * Returns all accounts accessible by the caller. Note that these accounts might not currently have GA properties. Soft-deleted (ie: "trashed") accounts are excluded by default. Returns an empty list if no relevant accounts are found. Note: The easiest way to retrieve a list of all properties you have access to is by using `ListAccountSummaries`.
      * @example
      * ```js
      * // Before running the sample:

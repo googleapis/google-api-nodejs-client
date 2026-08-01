@@ -325,6 +325,10 @@ export namespace workstations_v1 {
      */
     archiveTimeout?: string | null;
     /**
+     * Optional. Maximum size in GB to which this persistent directory can be resized. Defaults to unlimited if not set.
+     */
+    maxSizeGb?: number | null;
+    /**
      * Optional. Whether the persistent disk should be deleted when the workstation is deleted. Valid values are `DELETE` and `RETAIN`. Defaults to `DELETE`.
      */
     reclaimPolicy?: string | null;
@@ -464,6 +468,10 @@ export namespace workstations_v1 {
      * Optional. Type of file system that the disk should be formatted with. The workstation image must support this file system type. Must be empty if source_snapshot is set. Defaults to `"ext4"`.
      */
     fsType?: string | null;
+    /**
+     * Optional. Maximum size in GB to which this persistent directory can be resized. Defaults to unlimited if not set.
+     */
+    maxSizeGb?: number | null;
     /**
      * Optional. Whether the persistent disk should be deleted when the workstation is deleted. Valid values are `DELETE` and `RETAIN`. Defaults to `DELETE`.
      */
@@ -952,6 +960,10 @@ export namespace workstations_v1 {
      */
     name?: string | null;
     /**
+     * Optional. Directories to persist across workstation sessions.
+     */
+    persistentDirectories?: Schema$WorkstationPersistentDirectory[];
+    /**
      * Output only. Indicates whether this workstation is currently being updated to match its intended state.
      */
     reconciling?: boolean | null;
@@ -1178,6 +1190,19 @@ export namespace workstations_v1 {
      */
     updateTime?: string | null;
   }
+  /**
+   * A directory to persist across workstation sessions. Updates to this field will only take effect on this workstation after it is restarted.
+   */
+  export interface Schema$WorkstationPersistentDirectory {
+    /**
+     * Optional. The mount path of the persistent directory.
+     */
+    mountPath?: string | null;
+    /**
+     * Optional. Size of the persistent directory in GB. If specified in an update request, this is the desired size of the directory.
+     */
+    sizeGb?: number | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -1293,8 +1318,7 @@ export namespace workstations_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -1418,8 +1442,7 @@ export namespace workstations_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1885,8 +1908,7 @@ export namespace workstations_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2011,8 +2033,7 @@ export namespace workstations_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -2262,8 +2283,7 @@ export namespace workstations_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2410,8 +2430,7 @@ export namespace workstations_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2890,8 +2909,7 @@ export namespace workstations_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3167,8 +3185,7 @@ export namespace workstations_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3318,8 +3335,7 @@ export namespace workstations_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3625,8 +3641,7 @@ export namespace workstations_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4122,8 +4137,7 @@ export namespace workstations_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4273,8 +4287,7 @@ export namespace workstations_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4405,8 +4418,7 @@ export namespace workstations_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -4670,6 +4682,7 @@ export namespace workstations_v1 {
      *           //   "kmsKey": "my_kmsKey",
      *           //   "labels": {},
      *           //   "name": "my_name",
+     *           //   "persistentDirectories": [],
      *           //   "reconciling": false,
      *           //   "runtimeHost": {},
      *           //   "sourceWorkstation": "my_sourceWorkstation",
@@ -4739,8 +4752,7 @@ export namespace workstations_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4888,8 +4900,7 @@ export namespace workstations_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5143,6 +5154,7 @@ export namespace workstations_v1 {
      *   //   "kmsKey": "my_kmsKey",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "persistentDirectories": [],
      *   //   "reconciling": false,
      *   //   "runtimeHost": {},
      *   //   "sourceWorkstation": "my_sourceWorkstation",
@@ -5343,8 +5355,7 @@ export namespace workstations_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5475,8 +5486,7 @@ export namespace workstations_v1 {
     list(
       params: Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListWorkstationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListWorkstationsResponse>,
       callback: BodyResponseCallback<Schema$ListWorkstationsResponse>
     ): void;
     list(
@@ -5755,6 +5765,7 @@ export namespace workstations_v1 {
      *           //   "kmsKey": "my_kmsKey",
      *           //   "labels": {},
      *           //   "name": "my_name",
+     *           //   "persistentDirectories": [],
      *           //   "reconciling": false,
      *           //   "runtimeHost": {},
      *           //   "sourceWorkstation": "my_sourceWorkstation",
@@ -5824,8 +5835,7 @@ export namespace workstations_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5975,8 +5985,7 @@ export namespace workstations_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6130,8 +6139,7 @@ export namespace workstations_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6281,8 +6289,7 @@ export namespace workstations_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6410,8 +6417,7 @@ export namespace workstations_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Workstationclusters$Workstationconfigs$Workstations$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(

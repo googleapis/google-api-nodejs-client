@@ -2106,7 +2106,7 @@
       }
     }
   },
-  "revision": "20260429",
+  "revision": "20260610",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "Action": {
@@ -7282,7 +7282,7 @@
       "type": "object"
     },
     "SearchRequest": {
-      "description": "The search API request. NEXT ID: 25",
+      "description": "The search API request. NEXT ID: 26",
       "id": "SearchRequest",
       "properties": {
         "contextAttributes": {
@@ -7335,7 +7335,7 @@
       "type": "object"
     },
     "SearchResponse": {
-      "description": "The search API response. NEXT ID: 19",
+      "description": "The search API response. NEXT ID: 20",
       "id": "SearchResponse",
       "properties": {
         "debugInfo": {
@@ -7400,7 +7400,7 @@
       "type": "object"
     },
     "SearchResult": {
-      "description": "Results containing indexed information for a document. Next ID: 16",
+      "description": "Results containing indexed information for a document. Next ID: 17",
       "id": "SearchResult",
       "properties": {
         "clusteredResults": {

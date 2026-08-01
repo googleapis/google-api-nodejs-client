@@ -1110,6 +1110,10 @@ export namespace beyondcorp_v1 {
      */
     deviceInfo?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDeviceInfo;
     /**
+     * Optional. The dispatch information configuration.
+     */
+    dispatchInfo?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfo;
+    /**
      * Optional. Group details.
      */
     groupInfo?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGroupInfo;
@@ -1128,6 +1132,15 @@ export namespace beyondcorp_v1 {
   export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDeviceInfo {
     /**
      * Optional. The output type details for the delegated device.
+     */
+    outputType?: string | null;
+  }
+  /**
+   * The delegated dispatch information configuration.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfo {
+    /**
+     * Optional. The output type details for the delegated dispatch information.
      */
     outputType?: string | null;
   }
@@ -1767,8 +1780,7 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1900,8 +1912,7 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2021,8 +2032,7 @@ export namespace beyondcorp_v1 {
     get(
       params: Params$Resource$Organizations$Locations$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -2762,8 +2772,7 @@ export namespace beyondcorp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Appconnections$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -2911,8 +2920,7 @@ export namespace beyondcorp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Appconnections$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -3540,8 +3548,7 @@ export namespace beyondcorp_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Appconnections$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -4321,8 +4328,7 @@ export namespace beyondcorp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Appconnectors$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -4470,8 +4476,7 @@ export namespace beyondcorp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Appconnectors$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -5089,8 +5094,7 @@ export namespace beyondcorp_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Appconnectors$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -5242,8 +5246,7 @@ export namespace beyondcorp_v1 {
     reportStatus(
       params: Params$Resource$Projects$Locations$Appconnectors$Reportstatus,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     reportStatus(
@@ -6019,8 +6022,7 @@ export namespace beyondcorp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Appgateways$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -6168,8 +6170,7 @@ export namespace beyondcorp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Appgateways$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -6336,8 +6337,7 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Schema$AppGateway>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AppGateway>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AppGateway> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AppGateway>>
@@ -6608,8 +6608,7 @@ export namespace beyondcorp_v1 {
     list(
       params: Params$Resource$Projects$Locations$Appgateways$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAppGatewaysResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAppGatewaysResponse>,
       callback: BodyResponseCallback<Schema$ListAppGatewaysResponse>
     ): void;
     list(
@@ -7185,8 +7184,7 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7317,8 +7315,7 @@ export namespace beyondcorp_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7437,8 +7434,7 @@ export namespace beyondcorp_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -7816,8 +7812,7 @@ export namespace beyondcorp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Securitygateways$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -7966,8 +7961,7 @@ export namespace beyondcorp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Securitygateways$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -8590,8 +8584,7 @@ export namespace beyondcorp_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Securitygateways$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -9186,8 +9179,7 @@ export namespace beyondcorp_v1 {
     create(
       params: Params$Resource$Projects$Locations$Securitygateways$Applications$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -9337,8 +9329,7 @@ export namespace beyondcorp_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Securitygateways$Applications$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -9960,8 +9951,7 @@ export namespace beyondcorp_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Securitygateways$Applications$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(

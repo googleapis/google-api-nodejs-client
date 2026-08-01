@@ -211,12 +211,12 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. A [filter string](https://google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `partner_link_id = 123456789`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. Supported operations: - `AND` - `=` - `!=` Supported fields: - `partner_link_id` - `owning_account.account_type` - `owning_account.account_id` - `partner_account.account_type` - `partner_account.account_id` Example: `owning_account.account_type = \"GOOGLE_ADS\" AND partner_account.account_id = 987654321`",
+                      "description": "Optional. A [filter string](https://google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `partner_link_id = 123456789`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. Supported operations: - `AND` - `=` - `!=` Supported fields: - `partner_link_id` - `owning_account.account_type` - `owning_account.account_id` - `partner_account.account_type` - `partner_account.account_id` - `feature_set` For partner links with the FEATURE_SET_AD_EVENT_MANAGEMENT feature set, the following fields are also supported: - `partner_customer_account.account_id` Example: `owning_account.account_type = \"GOOGLE_ADS\" AND partner_account.account_id = 987654321`",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "The maximum number of partner links to return. The service may return fewer than this value. If unspecified, at most 10 partner links will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                      "description": "The maximum number of partner links to return. The service may return fewer than this value. If unspecified, at most 50 partner links will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -310,7 +310,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `>` - `>=` - `<` - `<=` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`",
+                      "description": "Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `>` - `>=` - `<` - `<=` **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(user_list_id, 123, 456)` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`",
                       "location": "query",
                       "type": "string"
                     },
@@ -442,7 +442,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `>` - `>=` - `<` - `<=` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`",
+                      "description": "Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `>` - `>=` - `<` - `<=` **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(user_list_id, 123, 456)` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`",
                       "location": "query",
                       "type": "string"
                     },
@@ -521,7 +521,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `>` - `>=` - `<` - `<=` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`",
+                          "description": "Optional. A [filter string](https://google.aip.dev/160) to apply to the list request. All fields need to be on the left hand side of each condition (for example: `user_list_id = 123`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. **Supported Operations:** - `AND` - `=` - `!=` - `>` - `>=` - `<` - `<=` **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(user_list_id, 123, 456)` **Unsupported Fields:** - `name` (use get method instead) - `historical_pricings` and all its subfields - `pricing.start_time` - `pricing.end_time`",
                           "location": "query",
                           "type": "string"
                         },
@@ -656,7 +656,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. A [filter string](https://google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `display_name = \"list 1\"`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. Supported operations: - `AND` - `=` - `!=` - `>` - `>=` - `<` - `<=` - `:` (has) Supported fields: - `id` - `display_name` - `description` - `membership_status` - `integration_code` - `access_reason` - `ingested_user_list_info.upload_key_types`",
+                      "description": "Optional. A [filter string](https://google.aip.dev/160). All fields need to be on the left hand side of each condition (for example: `display_name = \"list 1\"`). Fields must be specified using either all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of camel case and snake case. Supported operations: - `AND` - `=` - `!=` - `>` - `>=` - `<` - `<=` - `:` (has) **Supported Functions:** - `IN(field, value1, value2, ...)`: returns true if the field matches any of the values. Example: `IN(display_name, \"name1\", \"name2\")` Supported fields: - `id` - `display_name` - `description` - `membership_status` - `integration_code` - `access_reason` - `ingested_user_list_info.upload_key_types`",
                       "location": "query",
                       "type": "string"
                     },
@@ -729,6 +729,28 @@
               }
             }
           }
+        }
+      }
+    },
+    "adEvents": {
+      "methods": {
+        "ingest": {
+          "description": "Uploads a list of AdEvent resources to Google Analytics. This feature is only available to accounts on an allowlist.",
+          "flatPath": "v1/adEvents:ingest",
+          "httpMethod": "POST",
+          "id": "datamanager.adEvents.ingest",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/adEvents:ingest",
+          "request": {
+            "$ref": "IngestAdEventsRequest"
+          },
+          "response": {
+            "$ref": "IngestAdEventsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/datamanager"
+          ]
         }
       }
     },
@@ -820,13 +842,336 @@
       }
     }
   },
-  "revision": "20260507",
+  "revision": "20260708",
   "rootUrl": "https://datamanager.googleapis.com/",
   "schemas": {
+    "AdEvent": {
+      "description": "An ad event.",
+      "id": "AdEvent",
+      "properties": {
+        "adFormat": {
+          "description": "Enum value for ad format.",
+          "enum": [
+            "AD_FORMAT_UNSPECIFIED",
+            "AD_FORMAT_AR",
+            "AD_FORMAT_AUDIO",
+            "AD_FORMAT_BANNER",
+            "AD_FORMAT_BUMPER",
+            "AD_FORMAT_CAROUSEL",
+            "AD_FORMAT_COLLECTION",
+            "AD_FORMAT_IMAGE",
+            "AD_FORMAT_INTERACTIVE",
+            "AD_FORMAT_INTERSTITIAL",
+            "AD_FORMAT_IN_FEED",
+            "AD_FORMAT_IN_STREAM",
+            "AD_FORMAT_IN_STREAM_SKIPPABLE",
+            "AD_FORMAT_IN_STREAM_NON_SKIPPABLE",
+            "AD_FORMAT_NATIVE",
+            "AD_FORMAT_SHORTS",
+            "AD_FORMAT_STORY",
+            "AD_FORMAT_SPONSORED",
+            "AD_FORMAT_VIDEO"
+          ],
+          "enumDescriptions": [
+            "Unspecified ad format.",
+            "AR ad.",
+            "Audio ad.",
+            "Banner ad.",
+            "Bumper ad.",
+            "Carousel ad.",
+            "Collection ad.",
+            "Image ad.",
+            "Interactive ad.",
+            "Interstitial ad.",
+            "In-feed ad.",
+            "In-stream ad.",
+            "In-stream skippable ad.",
+            "In-stream non-skippable ad.",
+            "Native ad.",
+            "Shorts ad.",
+            "Story ad.",
+            "Sponsored ad.",
+            "Video ad."
+          ],
+          "type": "string"
+        },
+        "adFormatString": {
+          "description": "String value for ad format.",
+          "type": "string"
+        },
+        "adGroupId": {
+          "description": "Optional. The ID of the associated ad group.",
+          "type": "string"
+        },
+        "adHeight": {
+          "description": "Optional. The height of the ad in pixels.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "adId": {
+          "description": "Optional. The ID of the associated ad within the group.",
+          "type": "string"
+        },
+        "adPlacement": {
+          "description": "Enum value for ad placement.",
+          "enum": [
+            "AD_PLACEMENT_UNSPECIFIED",
+            "AD_PLACEMENT_DISCOVER",
+            "AD_PLACEMENT_FEED",
+            "AD_PLACEMENT_FOOTER",
+            "AD_PLACEMENT_HEADER",
+            "AD_PLACEMENT_HOME",
+            "AD_PLACEMENT_IN_CONTENT",
+            "AD_PLACEMENT_PROMOTED",
+            "AD_PLACEMENT_SEARCH",
+            "AD_PLACEMENT_STORY"
+          ],
+          "enumDescriptions": [
+            "Unspecified ad placement.",
+            "Discover placement.",
+            "Feed placement.",
+            "Footer placement.",
+            "Header placement.",
+            "Home placement.",
+            "In-content placement.",
+            "Promoted placement.",
+            "Search placement.",
+            "Story placement."
+          ],
+          "type": "string"
+        },
+        "adPlacementString": {
+          "description": "String value for ad placement.",
+          "type": "string"
+        },
+        "adType": {
+          "description": "Enum value for ad type.",
+          "enum": [
+            "AD_TYPE_UNSPECIFIED",
+            "AD_TYPE_DISPLAY",
+            "AD_TYPE_TEXT",
+            "AD_TYPE_IMAGE",
+            "AD_TYPE_RICH_MEDIA",
+            "AD_TYPE_HTML",
+            "AD_TYPE_AUDIO",
+            "AD_TYPE_VIDEO"
+          ],
+          "enumDescriptions": [
+            "Unspecified ad type.",
+            "Display ad.",
+            "Text ad.",
+            "Image ad.",
+            "Rich media ad.",
+            "HTML ad.",
+            "Audio ad.",
+            "Video ad."
+          ],
+          "type": "string"
+        },
+        "adTypeString": {
+          "description": "String value for ad type.",
+          "type": "string"
+        },
+        "adWidth": {
+          "description": "Optional. The width of the ad in pixels.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "advertiserId": {
+          "description": "Required. The ID of the advertiser for the ad event. This must match the ID sent in the linking flow.",
+          "type": "string"
+        },
+        "attributionHint": {
+          "description": "Optional. The partner-assumed attribution status for this ad event. This acts only as a signal for how the partner assumed attribution played out, and does not force an end result in final reports.",
+          "enum": [
+            "ATTRIBUTION_HINT_UNSPECIFIED",
+            "ATTRIBUTION_HINT_CONVERTED",
+            "ATTRIBUTION_HINT_NOT_CONVERTED"
+          ],
+          "enumDescriptions": [
+            "Unknown attribution status.",
+            "Converted status.",
+            "Not converted status."
+          ],
+          "type": "string"
+        },
+        "campaignId": {
+          "description": "Required. The ID of the associated campaign.",
+          "type": "string"
+        },
+        "campaignName": {
+          "description": "Required. The name of the associated campaign.",
+          "type": "string"
+        },
+        "deviceInfo": {
+          "$ref": "DeviceInfo",
+          "description": "Optional. Information gathered about the device being used when the ad event happened."
+        },
+        "eventId": {
+          "description": "Optional. An ID created and managed by the caller that uniquely identifies this event. Required if you want to deduplicate ad events that are included in multiple requests. Otherwise, this field is optional.",
+          "type": "string"
+        },
+        "eventSubtype": {
+          "description": "Enum value for event subtype.",
+          "enum": [
+            "EVENT_SUBTYPE_UNSPECIFIED",
+            "EVENT_SUBTYPE_IMPRESSION",
+            "EVENT_SUBTYPE_ENGAGED_VIEW",
+            "EVENT_SUBTYPE_ONSITE_CLICK",
+            "EVENT_SUBTYPE_OUTBOUND_CLICK"
+          ],
+          "enumDescriptions": [
+            "Unspecified event subtype.",
+            "Impression event.",
+            "Engaged view event.",
+            "Onsite click event.",
+            "Outbound click event."
+          ],
+          "type": "string"
+        },
+        "eventSubtypeString": {
+          "description": "String value for event subtype.",
+          "type": "string"
+        },
+        "eventType": {
+          "description": "Required. The type of the event.",
+          "enum": [
+            "EVENT_TYPE_UNSPECIFIED",
+            "EVENT_TYPE_VIEW",
+            "EVENT_TYPE_CLICK"
+          ],
+          "enumDescriptions": [
+            "Unspecified event type.",
+            "View event.",
+            "Click event."
+          ],
+          "type": "string"
+        },
+        "measurementAllowed": {
+          "description": "Optional. Represents if the row is allowed to be used for measurement purposes, as governed by applicable privacy laws within regional jurisdiction.",
+          "type": "boolean"
+        },
+        "medium": {
+          "description": "Required. The medium of the ad, akin to the Google Analytics medium.",
+          "type": "string"
+        },
+        "mobileDeviceId": {
+          "description": "Optional. The device ID of the device that the ad was served to.",
+          "type": "string"
+        },
+        "platform": {
+          "description": "Enum value for platform.",
+          "enum": [
+            "PLATFORM_UNSPECIFIED",
+            "PLATFORM_IOS",
+            "PLATFORM_ANDROID",
+            "PLATFORM_WEB"
+          ],
+          "enumDescriptions": [
+            "Unspecified platform.",
+            "iOS platform.",
+            "Android platform.",
+            "Web platform."
+          ],
+          "type": "string"
+        },
+        "platformString": {
+          "description": "String value for platform.",
+          "type": "string"
+        },
+        "platformType": {
+          "description": "Enum value for platform type.",
+          "enum": [
+            "PLATFORM_TYPE_UNSPECIFIED",
+            "PLATFORM_TYPE_MOBILE",
+            "PLATFORM_TYPE_DESKTOP",
+            "PLATFORM_TYPE_CTV",
+            "PLATFORM_TYPE_PHONE",
+            "PLATFORM_TYPE_TABLET"
+          ],
+          "enumDescriptions": [
+            "Unspecified platform type.",
+            "Mobile platform.",
+            "Desktop platform.",
+            "CTV platform.",
+            "Phone platform.",
+            "Tablet platform."
+          ],
+          "type": "string"
+        },
+        "platformTypeString": {
+          "description": "String value for platform type.",
+          "type": "string"
+        },
+        "regionCode": {
+          "description": "Required. The ISO 3166-2 country plus subdivision.",
+          "type": "string"
+        },
+        "source": {
+          "description": "Required. The platform source of the ad, akin to the Google Analytics source.",
+          "type": "string"
+        },
+        "targetingType": {
+          "description": "Enum value for targeting type.",
+          "enum": [
+            "TARGETING_TYPE_UNSPECIFIED",
+            "TARGETING_TYPE_AUDIENCE",
+            "TARGETING_TYPE_CONTEXTUAL",
+            "TARGETING_TYPE_DEMOGRAPHIC",
+            "TARGETING_TYPE_DEVICE",
+            "TARGETING_TYPE_GEO",
+            "TARGETING_TYPE_INTEREST",
+            "TARGETING_TYPE_PURCHASE_INTENT",
+            "TARGETING_TYPE_REMARKETING"
+          ],
+          "enumDescriptions": [
+            "Unspecified targeting type.",
+            "Audience targeting.",
+            "Contextual targeting.",
+            "Demographic targeting.",
+            "Device targeting.",
+            "Geo targeting.",
+            "Interest targeting.",
+            "Purchase intent targeting.",
+            "Remarketing targeting."
+          ],
+          "type": "string"
+        },
+        "targetingTypeString": {
+          "description": "String value for targeting type.",
+          "type": "string"
+        },
+        "timestamp": {
+          "description": "Required. The time the event occurred.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "userData": {
+          "$ref": "UserData",
+          "description": "Optional. Multiple pieces of user-provided data, representing the user the event is associated with. It is possible to provide multiple instances of the same type of data (e.g. email address). The more data provided, the more likely a match will be found."
+        },
+        "viewabilityInfo": {
+          "$ref": "ViewabilityInfo",
+          "description": "Required. Details of the viewability of the ad served."
+        }
+      },
+      "type": "object"
+    },
     "AdIdentifiers": {
       "description": "Identifiers and other information used to match the conversion event with other online activity (such as ad clicks).",
       "id": "AdIdentifiers",
       "properties": {
+        "dclid": {
+          "description": "Optional. The display click ID associated with this event.",
+          "type": "string"
+        },
+        "encryptedUserIds": {
+          "description": "Optional. Any number of encrypted user IDs.",
+          "items": {
+            "$ref": "EncryptedUserId"
+          },
+          "type": "array"
+        },
         "gbraid": {
           "description": "Optional. The click identifier for clicks associated with app events and originating from iOS devices starting with iOS14.",
           "type": "string"
@@ -835,9 +1180,17 @@
           "description": "Optional. The Google click ID (gclid) associated with this event.",
           "type": "string"
         },
+        "impressionId": {
+          "description": "Optional. The impression ID associated with this event.",
+          "type": "string"
+        },
         "landingPageDeviceInfo": {
           "$ref": "DeviceInfo",
           "description": "Optional. Information gathered about the device being used (if any) at the time of landing onto the advertiser’s site after interacting with the ad."
+        },
+        "matchId": {
+          "description": "Optional. The match ID field used to join this event with a previous event.",
+          "type": "string"
         },
         "mobileDeviceId": {
           "description": "Optional. The mobile identifier for advertisers. This would be IDFA on iOS, AdID on Android, or other platforms’ identifiers for advertisers.",
@@ -881,6 +1234,10 @@
       "description": "The audience member to be operated on.",
       "id": "AudienceMember",
       "properties": {
+        "compositeData": {
+          "$ref": "CompositeData",
+          "description": "Group of multiple identifier types."
+        },
         "consent": {
           "$ref": "Consent",
           "description": "Optional. The consent setting for the user."
@@ -999,6 +1356,24 @@
       },
       "type": "object"
     },
+    "CompositeData": {
+      "description": "Composite data holding identifiers and associated data for a user. At least one of `user_data` or `ip_data` is required.",
+      "id": "CompositeData",
+      "properties": {
+        "ipData": {
+          "description": "Optional. IP address data representing customer interaction used to build the audience.",
+          "items": {
+            "$ref": "IpData"
+          },
+          "type": "array"
+        },
+        "userData": {
+          "$ref": "UserData",
+          "description": "Optional. User-provided data that identifies the user."
+        }
+      },
+      "type": "object"
+    },
     "Consent": {
       "description": "[Digital Markets Act (DMA)](//digital-markets-act.ec.europa.eu/index_en) consent settings for the user.",
       "id": "Consent",
@@ -1065,6 +1440,17 @@
       },
       "type": "object"
     },
+    "CoordinatorKeyInfo": {
+      "description": "Information about the coordinator key.",
+      "id": "CoordinatorKeyInfo",
+      "properties": {
+        "keyId": {
+          "description": "Required. The ID of the chosen coordinator key.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CustomVariable": {
       "description": "Custom variable for ads conversions.",
       "id": "CustomVariable",
@@ -1082,6 +1468,36 @@
         },
         "variable": {
           "description": "Optional. The name of the custom variable to set. If the variable is not found for the given destination, it will be ignored.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataTypeCount": {
+      "description": "The count for a specific data type.",
+      "id": "DataTypeCount",
+      "properties": {
+        "count": {
+          "description": "The count for this data type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of data.",
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "EMAIL",
+            "PHONE_NUMBER",
+            "ADDRESS",
+            "IP_ADDRESS"
+          ],
+          "enumDescriptions": [
+            "The data type is unspecified.",
+            "The data is an email address.",
+            "The data is a phone number.",
+            "The data is a physical address.",
+            "The data is an IP address."
+          ],
           "type": "string"
         }
       },
@@ -1177,6 +1593,58 @@
       "properties": {},
       "type": "object"
     },
+    "EncryptedUserId": {
+      "description": "A user identifier issued to be used for attribution. All fields are required if this is used.",
+      "id": "EncryptedUserId",
+      "properties": {
+        "encryptedId": {
+          "description": "Required. The alphanumeric encrypted id.",
+          "type": "string"
+        },
+        "entityId": {
+          "description": "Required. The encryption entity ID. This should match the encryption configuration for ad serving or Data Transfer.",
+          "format": "int64",
+          "type": "string"
+        },
+        "entityType": {
+          "description": "Required. The encryption entity type. This should match the encryption configuration for ad serving or Data Transfer.",
+          "enum": [
+            "ENCRYPTION_ENTITY_TYPE_UNSPECIFIED",
+            "CAMPAIGN_MANAGER_ACCOUNT",
+            "CAMPAIGN_MANAGER_ADVERTISER",
+            "DISPLAY_VIDEO_PARTNER",
+            "DISPLAY_VIDEO_ADVERTISER",
+            "GOOGLE_ADS_CUSTOMER",
+            "GOOGLE_AD_MANAGER_NETWORK_CODE"
+          ],
+          "enumDescriptions": [
+            "Unspecified encryption entity type.",
+            "Campaign Manager 360 account.",
+            "Campaign Manager 360 advertiser.",
+            "Display & Video 360 partner.",
+            "Display & Video 360 advertiser.",
+            "Google Ads customer.",
+            "Google Ad Manager network code."
+          ],
+          "type": "string"
+        },
+        "source": {
+          "description": "Required. Describes whether the encrypted cookie was received from ad serving (the %m macro) or from Data Transfer.",
+          "enum": [
+            "ENCRYPTION_SOURCE_UNSPECIFIED",
+            "AD_SERVING",
+            "DATA_TRANSFER"
+          ],
+          "enumDescriptions": [
+            "Unspecified encryption source.",
+            "Ad serving encryption source.",
+            "Data transfer encryption source."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EncryptionInfo": {
       "description": "Encryption information for the data being ingested.",
       "id": "EncryptionInfo",
@@ -1184,6 +1652,10 @@
         "awsWrappedKeyInfo": {
           "$ref": "AwsWrappedKeyInfo",
           "description": "Amazon Web Services wrapped key information."
+        },
+        "coordinatorKeyInfo": {
+          "$ref": "CoordinatorKeyInfo",
+          "description": "Key information for the chosen coordinator key. This is not supported for the IngestEvents, IngestAudienceMembers, and RemoveAudienceMembers methods."
         },
         "gcpWrappedKeyInfo": {
           "$ref": "GcpWrappedKeyInfo",
@@ -1227,7 +1699,23 @@
             "PROCESSING_ERROR_REASON_AWS_AUTH_FAILED",
             "PROCESSING_ERROR_REASON_USER_IDENTIFIER_DECRYPTION_ERROR",
             "PROCESSING_ERROR_OPERATING_ACCOUNT_MISMATCH_FOR_AD_IDENTIFIER",
-            "PROCESSING_ERROR_REASON_ONE_PER_CLICK_CONVERSION_ACTION_NOT_PERMITTED_WITH_BRAID"
+            "PROCESSING_ERROR_REASON_ONE_PER_CLICK_CONVERSION_ACTION_NOT_PERMITTED_WITH_BRAID",
+            "PROCESSING_ERROR_REASON_MATCH_ID_NOT_FOUND",
+            "PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_MATCH_ID",
+            "PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_GCLID",
+            "PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_DCLID",
+            "PROCESSING_ERROR_REASON_INVALID_AD_IDENTIFIERS",
+            "PROCESSING_ERROR_REASON_INVALID_MOBILE_ID_FORMAT",
+            "PROCESSING_ERROR_REASON_ORIGINAL_CONVERSIONS_NOT_FOUND",
+            "PROCESSING_ERROR_REASON_EVENT_ID_DECODE_ERROR",
+            "PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_IMPRESSION_ID",
+            "PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND",
+            "PROCESSING_ERROR_REASON_CONVERSION_PRECEDES_CLICK",
+            "PROCESSING_ERROR_REASON_TOO_RECENT_CLICK",
+            "PROCESSING_ERROR_REASON_INVALID_CLICK",
+            "PROCESSING_ERROR_REASON_INVALID_OPERATING_ACCOUNT_FOR_CLICK",
+            "PROCESSING_ERROR_REASON_CLICK_NOT_FOUND",
+            "PROCESSING_ERROR_REASON_EXTERNAL_ATTRIBUTION_DATA_MISSING"
           ],
           "enumDescriptions": [
             "The processing error reason is unknown.",
@@ -1258,7 +1746,23 @@
             "The system failed to authenticate with AWS.",
             "Failed to decrypt the UserIdentifier data using the DEK.",
             "The user attempted to ingest events with an ad identifier that isn't from the operating account's ads.",
-            "One-per-click conversion actions cannot be used with BRAIDs."
+            "One-per-click conversion actions cannot be used with BRAIDs.",
+            "The match ID can not be found.",
+            "The user ID can not be found for the match ID.",
+            "The user ID can not be found for the GCLID.",
+            "The user ID can not be found for the DCLID.",
+            "There are ad identifiers that are invalid.",
+            "The mobile ID format is invalid.",
+            "The original conversions can't be found.",
+            "The event ID (dclid or impression ID) cannot be decoded.",
+            "The user ID cannot be found for the given impression ID.",
+            "The user ID cannot be found.",
+            "The event timestamp on the event was earlier than the associated click.",
+            "The click occurred too recently.",
+            "The event can't be attributed to a click (GCLID). This may be because the click did not come from a Google Ads campaign, for example.",
+            "The click from the event isn't associated with the `operating_account` of the destination.",
+            "A corresponding click can't be found that matches the provided attributes.",
+            "External attribution data is missing. Sending events to a destination for an external attribution conversion action isn't supported."
           ],
           "type": "string"
         },
@@ -1314,6 +1818,11 @@
         "consent": {
           "$ref": "Consent",
           "description": "Optional. Information about whether the associated user has provided different types of consent."
+        },
+        "conversionCount": {
+          "description": "Optional. The conversion quantity associated with the event, for counting-based conversions.",
+          "format": "double",
+          "type": "number"
         },
         "conversionValue": {
           "description": "Optional. The conversion value associated with the event, for value-based conversions.",
@@ -1504,6 +2013,34 @@
       },
       "type": "object"
     },
+    "IngestAdEventsRequest": {
+      "description": "Request to upload ad events.",
+      "id": "IngestAdEventsRequest",
+      "properties": {
+        "adEvents": {
+          "description": "Required. Required (at least 1). A list of ad events.",
+          "items": {
+            "$ref": "AdEvent"
+          },
+          "type": "array"
+        },
+        "encryptionInfo": {
+          "$ref": "EncryptionInfo",
+          "description": "Optional. Information about encryption keys which are used to encrypt the data."
+        },
+        "validateOnly": {
+          "description": "Optional. If true, the request is validated, but not executed.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "IngestAdEventsResponse": {
+      "description": "Response from an ad event ingestion operation.",
+      "id": "IngestAdEventsResponse",
+      "properties": {},
+      "type": "object"
+    },
     "IngestAudienceMembersRequest": {
       "description": "Request to upload audience members to the provided destinations. Returns an IngestAudienceMembersResponse.",
       "id": "IngestAudienceMembersRequest",
@@ -1570,6 +2107,10 @@
       "description": "The status of the ingest audience members request.",
       "id": "IngestAudienceMembersStatus",
       "properties": {
+        "compositeDataIngestionStatus": {
+          "$ref": "IngestCompositeDataStatus",
+          "description": "The status of the composite data ingestion to the destination."
+        },
         "mobileDataIngestionStatus": {
           "$ref": "IngestMobileDataStatus",
           "description": "The status of the mobile data ingestion to the destination."
@@ -1589,6 +2130,55 @@
         "userIdDataIngestionStatus": {
           "$ref": "IngestUserIdDataStatus",
           "description": "The status of the user id data ingestion to the destination."
+        }
+      },
+      "type": "object"
+    },
+    "IngestCompositeDataStatus": {
+      "description": "The status of the composite data ingestion to the destination containing stats related to the ingestion.",
+      "id": "IngestCompositeDataStatus",
+      "properties": {
+        "dataTypeCounts": {
+          "description": "The total count of data types sent in the upload request for the destination, broken down by data type. Includes all data types in the request, regardless of whether they were successfully ingested or not.",
+          "items": {
+            "$ref": "DataTypeCount"
+          },
+          "type": "array"
+        },
+        "recordCount": {
+          "description": "The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.",
+          "format": "int64",
+          "type": "string"
+        },
+        "uploadMatchRateRange": {
+          "description": "The match rate range of the upload.",
+          "enum": [
+            "MATCH_RATE_RANGE_UNKNOWN",
+            "MATCH_RATE_RANGE_NOT_ELIGIBLE",
+            "MATCH_RATE_RANGE_LESS_THAN_20",
+            "MATCH_RATE_RANGE_20_TO_30",
+            "MATCH_RATE_RANGE_31_TO_40",
+            "MATCH_RATE_RANGE_41_TO_50",
+            "MATCH_RATE_RANGE_51_TO_60",
+            "MATCH_RATE_RANGE_61_TO_70",
+            "MATCH_RATE_RANGE_71_TO_80",
+            "MATCH_RATE_RANGE_81_TO_90",
+            "MATCH_RATE_RANGE_91_TO_100"
+          ],
+          "enumDescriptions": [
+            "The match rate range is unknown.",
+            "The match rate range is not eligible.",
+            "The match rate range is less than 20% (in the interval `[0, 20)`).",
+            "The match rate range is between 20% and 30% (in the interval `[20, 31)`).",
+            "The match rate range is between 31% and 40% (in the interval `[31, 41)`).",
+            "The match rate range is between 41% and 50% (in the interval `[41, 51)`).",
+            "The match rate range is between 51% and 60% (in the interval `[51, 61)`.",
+            "The match rate range is between 61% and 70% (in the interval `[61, 71)`).",
+            "The match rate range is between 71% and 80% (in the interval `[71, 81)`).",
+            "The match rate range is between 81% and 90% (in the interval `[81, 91)`).",
+            "The match rate range is between 91% and 100% (in the interval `[91, 100]`)."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1828,6 +2418,27 @@
         "userIdInfo": {
           "$ref": "UserIdInfo",
           "description": "Optional. Additional information when `USER_ID` is one of the `upload_key_types`."
+        }
+      },
+      "type": "object"
+    },
+    "IpData": {
+      "description": "IP address information for a user. We recommend including observe_start_time and observe_end_time to help improve Customer Match match rates.",
+      "id": "IpData",
+      "properties": {
+        "ipAddress": {
+          "description": "Required. IP address captured at the time of customer interaction. Accepts standard string formats for both IPv4 and IPv6.",
+          "type": "string"
+        },
+        "observeEndTime": {
+          "description": "Optional. Last recorded interaction time from this IP address in a session.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "observeStartTime": {
+          "description": "Optional. First recorded interaction time from this IP address in a session.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2230,10 +2841,43 @@
       },
       "type": "object"
     },
+    "PartnerCustomerAccount": {
+      "description": "Represents a customer account in the partner's system.",
+      "id": "PartnerCustomerAccount",
+      "properties": {
+        "accountId": {
+          "description": "Required. The identifier of the customer account in the partner's ID space.",
+          "type": "string"
+        },
+        "accountName": {
+          "description": "Optional. The name of the account.",
+          "type": "string"
+        },
+        "accountType": {
+          "description": "Optional. The type of the account. Can be used to distinguish between advertiser accounts and business level accounts, for example.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PartnerLink": {
       "description": "A partner link between an owning account and a partner account.",
       "id": "PartnerLink",
       "properties": {
+        "featureSet": {
+          "description": "Optional. Immutable. The set of features supported for the partner link. If not specified, the system behavior defaults to FEATURE_SET_AUDIENCE_AND_EVENT_MANAGEMENT.",
+          "enum": [
+            "FEATURE_SET_UNSPECIFIED",
+            "FEATURE_SET_AUDIENCE_AND_EVENT_MANAGEMENT",
+            "FEATURE_SET_AD_EVENT_MANAGEMENT"
+          ],
+          "enumDescriptions": [
+            "Unspecified feature set. If unspecified, the system behavior defaults to FEATURE_SET_AUDIENCE_AND_EVENT_MANAGEMENT.",
+            "Indicates a link used for audience and event management.",
+            "Indicates a link used for ad event management."
+          ],
+          "type": "string"
+        },
         "name": {
           "description": "Identifier. The name of the partner link. Format: accountTypes/{account_type}/accounts/{account}/partnerLinks/{partner_link}",
           "type": "string"
@@ -2246,10 +2890,32 @@
           "$ref": "ProductAccount",
           "description": "Required. The partner account granted access by the owning account."
         },
+        "partnerCustomerAccount": {
+          "$ref": "PartnerCustomerAccount",
+          "description": "Optional. The customer account in the partner system. This is required for partner links with the FEATURE_SET_AD_EVENT_MANAGEMENT feature set."
+        },
         "partnerLinkId": {
           "description": "Output only. The partner link ID.",
           "readOnly": true,
           "type": "string"
+        },
+        "partnerLinkMetadata": {
+          "$ref": "PartnerLinkMetadata",
+          "description": "Optional. Metadata associated with the partner link. This is optional and only accepted for partner links with the FEATURE_SET_AD_EVENT_MANAGEMENT."
+        }
+      },
+      "type": "object"
+    },
+    "PartnerLinkMetadata": {
+      "description": "Represents metadata associated with a partner link.",
+      "id": "PartnerLinkMetadata",
+      "properties": {
+        "implicitAccounts": {
+          "description": "Optional. The list of implicit accounts.",
+          "items": {
+            "$ref": "PartnerCustomerAccount"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2277,7 +2943,7 @@
           "type": "string"
         },
         "accountType": {
-          "description": "Optional. The type of the account. For example, `GOOGLE_ADS`. Either `account_type` or the deprecated `product` is required. If both are set, the values must match.",
+          "description": "Required. The type of the account. For example, `GOOGLE_ADS`. Either `account_type` or the deprecated `product` is required. If both are set, the values must match.",
           "enum": [
             "ACCOUNT_TYPE_UNSPECIFIED",
             "GOOGLE_ADS",
@@ -2285,7 +2951,8 @@
             "DISPLAY_VIDEO_ADVERTISER",
             "DATA_PARTNER",
             "GOOGLE_ANALYTICS_PROPERTY",
-            "GOOGLE_AD_MANAGER_AUDIENCE_LINK"
+            "GOOGLE_AD_MANAGER_AUDIENCE_LINK",
+            "FLOODLIGHT_CONFIG"
           ],
           "enumDescriptions": [
             "Unspecified product. Should never be used.",
@@ -2294,7 +2961,8 @@
             "Display & Video 360 advertiser.",
             "Data Partner.",
             "Google Analytics.",
-            "Google Ad Manager audience link."
+            "Google Ad Manager audience link.",
+            "Floodlight configuration."
           ],
           "type": "string"
         },
@@ -2407,6 +3075,10 @@
       "description": "The status of the remove audience members request.",
       "id": "RemoveAudienceMembersStatus",
       "properties": {
+        "compositeDataRemovalStatus": {
+          "$ref": "RemoveCompositeDataStatus",
+          "description": "The status of the composite data removal from the destination."
+        },
         "mobileDataRemovalStatus": {
           "$ref": "RemoveMobileDataStatus",
           "description": "The status of the mobile data removal from the destination."
@@ -2426,6 +3098,25 @@
         "userIdDataRemovalStatus": {
           "$ref": "RemoveUserIdDataStatus",
           "description": "The status of the user id data removal from the destination."
+        }
+      },
+      "type": "object"
+    },
+    "RemoveCompositeDataStatus": {
+      "description": "The status of the composite data removal from the destination.",
+      "id": "RemoveCompositeDataStatus",
+      "properties": {
+        "dataTypeCounts": {
+          "description": "The total count of data types sent in the removal request, broken down by data type. Includes all data types in the request, regardless of whether they were successfully removed or not.",
+          "items": {
+            "$ref": "DataTypeCount"
+          },
+          "type": "array"
+        },
+        "recordCount": {
+          "description": "The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3323,6 +4014,76 @@
         "value": {
           "description": "Required. The string representation of the value of the user property to use.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ViewabilityInfo": {
+      "description": "Details of the viewability of the ad served.",
+      "id": "ViewabilityInfo",
+      "properties": {
+        "mediaDuration": {
+          "description": "Optional. The duration of the ad media.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "mediaQuartile": {
+          "description": "Optional. The amount of the media that was played as discrete quartiles.",
+          "enum": [
+            "MEDIA_QUARTILE_UNSPECIFIED",
+            "MEDIA_QUARTILE_START",
+            "MEDIA_QUARTILE_FIRST_QUARTILE",
+            "MEDIA_QUARTILE_MIDPOINT",
+            "MEDIA_QUARTILE_THIRD_QUARTILE",
+            "MEDIA_QUARTILE_COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Unspecified media quartile.",
+            "Start.",
+            "First quartile.",
+            "Midpoint.",
+            "Third quartile.",
+            "Complete."
+          ],
+          "type": "string"
+        },
+        "mediaSkippable": {
+          "description": "Optional. Whether the ad media was skippable or not.",
+          "type": "boolean"
+        },
+        "mediaVolumePercent": {
+          "description": "Optional. The numerical percent (0-100) of the volume of the media playback.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "playbackDuration": {
+          "description": "Optional. The duration of playback of the ad media, regardless of whether it was viewable or not.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "viewType": {
+          "description": "Required. The type of the event.",
+          "enum": [
+            "VIEW_TYPE_UNSPECIFIED",
+            "VIEW_TYPE_MRC_VIEWED",
+            "VIEW_TYPE_MRC_RENDERED"
+          ],
+          "enumDescriptions": [
+            "Unspecified view type.",
+            "MRC viewed.",
+            "MRC rendered."
+          ],
+          "type": "string"
+        },
+        "viewableDuration": {
+          "description": "Optional. The amount of time the ad was viewable for.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "viewablePercent": {
+          "description": "Optional. The numerical percent (0-100) of the pixels that were viewable.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"

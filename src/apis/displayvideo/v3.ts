@@ -116,7 +116,6 @@ export namespace displayvideo_v3 {
     combinedAudiences: Resource$Combinedaudiences;
     customBiddingAlgorithms: Resource$Custombiddingalgorithms;
     customLists: Resource$Customlists;
-    firstAndThirdPartyAudiences: Resource$Firstandthirdpartyaudiences;
     floodlightGroups: Resource$Floodlightgroups;
     googleAudiences: Resource$Googleaudiences;
     guaranteedOrders: Resource$Guaranteedorders;
@@ -139,8 +138,6 @@ export namespace displayvideo_v3 {
         this.context
       );
       this.customLists = new Resource$Customlists(this.context);
-      this.firstAndThirdPartyAudiences =
-        new Resource$Firstandthirdpartyaudiences(this.context);
       this.floodlightGroups = new Resource$Floodlightgroups(this.context);
       this.googleAudiences = new Resource$Googleaudiences(this.context);
       this.guaranteedOrders = new Resource$Guaranteedorders(this.context);
@@ -262,23 +259,23 @@ export namespace displayvideo_v3 {
      */
     bumperAd?: Schema$BumperAd;
     /**
-     * Optional. The DCM tracking ad info. Only valid for Demand Gen ads. To remove the DCM tracking ad info, please leave this field empty. Retrieval and management of Demand Gen resources is currently in beta. This field is only available to allowlisted users.
+     * Optional. The DCM tracking ad info. Only valid for Demand Gen ads. To remove the DCM tracking ad info, please leave this field empty.
      */
     dcmTrackingInfo?: Schema$DcmTrackingInfo;
     /**
-     * Details of a [Demand Gen carousel ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#CarouselAd). Retrieval and management of Demand Gen resources is currently in beta. This field is only available to allowlisted users.
+     * Details of a [Demand Gen carousel ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#CarouselAd).
      */
     demandGenCarouselAd?: Schema$DemandGenCarouselAd;
     /**
-     * Details of a [Demand Gen image ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#ImageAd). Retrieval and management of Demand Gen resources is currently in beta. This field is only available to allowlisted users.
+     * Details of a [Demand Gen image ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#ImageAd).
      */
     demandGenImageAd?: Schema$DemandGenImageAd;
     /**
-     * Details of a [Demand Gen product ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#Product-onlyAd). Retrieval and management of Demand Gen resources is currently in beta. This field is only available to allowlisted users.
+     * Details of a [Demand Gen product ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#Product-onlyAd).
      */
     demandGenProductAd?: Schema$DemandGenProductAd;
     /**
-     * Details of a [Demand Gen video ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#VideoAd). Retrieval and management of Demand Gen resources is currently in beta. This field is only available to allowlisted users.
+     * Details of a [Demand Gen video ad](//support.google.com/displayvideo/answer/15598924?&sjid=11207068802760924844-NC#VideoAd).
      */
     demandGenVideoAd?: Schema$DemandGenVideoAd;
     /**
@@ -360,8 +357,7 @@ export namespace displayvideo_v3 {
      * Optional. Crime and Harmful Acts Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
      */
     crimeHarmfulActsIndividualsSocietyHumanRightsViolationsContent?:
-      | string
-      | null;
+      string | null;
     /**
      * Optional. Death, Injury, or Military Conflict Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
      */
@@ -799,6 +795,14 @@ export namespace displayvideo_v3 {
      * Settings that control how advertiser data may be accessed.
      */
     dataAccessConfig?: Schema$AdvertiserDataAccessConfig;
+    /**
+     * Optional. The default business name for the advertiser. This is the value used by YouTube and Demand Gen ads under this advertiser if a business name is not provided.
+     */
+    defaultBusinessName?: string | null;
+    /**
+     * Optional. The asset ID of the default logo image for the advertiser. This is the asset ID that will be used by YouTube and Demand ads under this advertiser if a logo asset is not provided. You must use advertisers.adAssets.upload to upload this asset using the API.
+     */
+    defaultLogoAssetId?: string | null;
     /**
      * Required. The display name of the advertiser. Must be UTF-8 encoded with a maximum size of 240 bytes.
      */
@@ -1457,6 +1461,10 @@ export namespace displayvideo_v3 {
      * YouTube channel details. This field will be populated when the targeting_type is `TARGETING_TYPE_YOUTUBE_CHANNEL`.
      */
     youtubeChannelDetails?: Schema$YoutubeChannelAssignedTargetingOptionDetails;
+    /**
+     * YouTube channel pack details. This field will be populated when the targeting_type is `TARGETING_TYPE_YOUTUBE_CHANNEL_PACK`.
+     */
+    youtubeChannelPackDetails?: Schema$YoutubeChannelPackAssignedTargetingOptionDetails;
     /**
      * YouTube video details. This field will be populated when the targeting_type is `TARGETING_TYPE_YOUTUBE_VIDEO`.
      */
@@ -2416,61 +2424,6 @@ export namespace displayvideo_v3 {
     video?: Schema$YoutubeVideoDetails;
   }
   /**
-   * User consent status.
-   */
-  export interface Schema$Consent {
-    /**
-     * Represents consent for ad personalization.
-     */
-    adPersonalization?: string | null;
-    /**
-     * Represents consent for ad user data.
-     */
-    adUserData?: string | null;
-  }
-  /**
-   * Contact information defining a Customer Match audience member.
-   */
-  export interface Schema$ContactInfo {
-    /**
-     * Country code of the member. Must also be set with the following fields: * hashed_first_name * hashed_last_name * zip_codes
-     */
-    countryCode?: string | null;
-    /**
-     * A list of SHA256 hashed email of the member. Before hashing, remove all whitespace and make sure the string is all lowercase.
-     */
-    hashedEmails?: string[] | null;
-    /**
-     * SHA256 hashed first name of the member. Before hashing, remove all whitespace and make sure the string is all lowercase. Must also be set with the following fields: * country_code * hashed_last_name * zip_codes
-     */
-    hashedFirstName?: string | null;
-    /**
-     * SHA256 hashed last name of the member. Before hashing, remove all whitespace and make sure the string is all lowercase. Must also be set with the following fields: * country_code * hashed_first_name * zip_codes
-     */
-    hashedLastName?: string | null;
-    /**
-     * A list of SHA256 hashed phone numbers of the member. Before hashing, all phone numbers must be formatted using the [E.164 format](//en.wikipedia.org/wiki/E.164) and include the country calling code.
-     */
-    hashedPhoneNumbers?: string[] | null;
-    /**
-     * A list of zip codes of the member. Must also be set with the following fields: * country_code * hashed_first_name * hashed_last_name
-     */
-    zipCodes?: string[] | null;
-  }
-  /**
-   * Wrapper message for a list of contact information defining Customer Match audience members.
-   */
-  export interface Schema$ContactInfoList {
-    /**
-     * Input only. The consent setting for the users in contact_infos. Leaving this field unset indicates that consent is not specified. If ad_user_data or ad_personalization fields are set to `CONSENT_STATUS_DENIED`, the request will return an error.
-     */
-    consent?: Schema$Consent;
-    /**
-     * A list of ContactInfo objects defining Customer Match audience members. The size of members after splitting the contact_infos mustn't be greater than 500,000.
-     */
-    contactInfos?: Schema$ContactInfo[];
-  }
-  /**
    * Details for content duration assigned targeting option. This will be populated in the content_duration_details field when targeting_type is `TARGETING_TYPE_CONTENT_DURATION`. Explicitly targeting all options is not supported. Remove all content duration targeting options to achieve this effect.
    */
   export interface Schema$ContentDurationAssignedTargetingOptionDetails {
@@ -2623,7 +2576,7 @@ export namespace displayvideo_v3 {
      */
     postViewCountPercentageMillis?: string | null;
     /**
-     * Optional. The attribution model to use for conversion measurement. This attribution model will determine how conversions are counted. The Primary model can be set by you for a floodlight config or group. More details [here](https://support.google.com/displayvideo/answer/7409983). Only applicable to Demand Gen line items. Retrieval and management of Demand Gen resources is currently in beta. This field is only available to allowlisted users.
+     * Optional. The attribution model to use for conversion measurement. This attribution model will determine how conversions are counted. The Primary model can be set by you for a floodlight config or group. More details [here](https://support.google.com/displayvideo/answer/7409983). Only applicable to Demand Gen line items.
      */
     primaryAttributionModelId?: string | null;
   }
@@ -2856,6 +2809,10 @@ export namespace displayvideo_v3 {
      * Optional. Whether the user can choose to skip a video creative. This field is only supported for the following creative_type: * `CREATIVE_TYPE_VIDEO`
      */
     skippable?: boolean | null;
+    /**
+     * Optional. Whether the creative contains synthetic content or was created using AI.
+     */
+    syntheticContentAttestationStatus?: string | null;
     /**
      * Optional. The original third-party tag used for the creative. Required and only valid for third-party tag creatives. Third-party tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE`
      */
@@ -3224,7 +3181,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$DemandGenCarouselAd {
     /**
-     * Required. The business name shown on the ad.
+     * Optional. The business name shown on the ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.
      */
     businessName?: string | null;
     /**
@@ -3252,7 +3209,7 @@ export namespace displayvideo_v3 {
      */
     headline?: string | null;
     /**
-     * Required. The logo image used by this ad.
+     * Optional. The logo image used by this ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.
      */
     logo?: Schema$ImageAsset;
     /**
@@ -3269,7 +3226,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$DemandGenImageAd {
     /**
-     * Required. The business name shown on the ad.
+     * Optional. The business name shown on the ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.
      */
     businessName?: string | null;
     /**
@@ -3301,7 +3258,7 @@ export namespace displayvideo_v3 {
      */
     headlines?: string[] | null;
     /**
-     * The list of logo images shown on the ad.
+     * The list of logo images shown on the ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.
      */
     logoImages?: Schema$ImageAsset[];
     /**
@@ -3330,7 +3287,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$DemandGenProductAd {
     /**
-     * Required. The business name shown on the ad.
+     * Optional. The business name shown on the ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.
      */
     businessName?: string | null;
     /**
@@ -3366,7 +3323,7 @@ export namespace displayvideo_v3 {
      */
     headline?: string | null;
     /**
-     * Required. The logo image used by this ad.
+     * Optional. The logo image used by this ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.
      */
     logo?: Schema$ImageAsset;
     /**
@@ -3400,7 +3357,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$DemandGenVideoAd {
     /**
-     * Required. The business name shown on the ad.
+     * Optional. The business name shown on the ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.
      */
     businessName?: string | null;
     /**
@@ -3444,7 +3401,7 @@ export namespace displayvideo_v3 {
      */
     headlines?: string[] | null;
     /**
-     * Required. The logo image used by this ad.
+     * Optional. The logo image used by this ad. This setting is required unless a default value is set at the advertiser level. If left unset, the default value will be applied.
      */
     logo?: Schema$ImageAsset;
     /**
@@ -3678,40 +3635,6 @@ export namespace displayvideo_v3 {
     duplicateLineItemId?: string | null;
   }
   /**
-   * Request message for FirstAndThirdPartyAudienceService.EditCustomerMatchMembers.
-   */
-  export interface Schema$EditCustomerMatchMembersRequest {
-    /**
-     * Input only. A list of contact information to define the members to be added.
-     */
-    addedContactInfoList?: Schema$ContactInfoList;
-    /**
-     * Input only. A list of mobile device IDs to define the members to be added.
-     */
-    addedMobileDeviceIdList?: Schema$MobileDeviceIdList;
-    /**
-     * Required. The ID of the owner advertiser of the updated Customer Match FirstAndThirdPartyAudience.
-     */
-    advertiserId?: string | null;
-    /**
-     * Input only. A list of contact information to define the members to be removed.
-     */
-    removedContactInfoList?: Schema$ContactInfoList;
-    /**
-     * Input only. A list of mobile device IDs to define the members to be removed.
-     */
-    removedMobileDeviceIdList?: Schema$MobileDeviceIdList;
-  }
-  /**
-   * The response of FirstAndThirdPartyAudienceService.EditCustomerMatchMembers.
-   */
-  export interface Schema$EditCustomerMatchMembersResponse {
-    /**
-     * Required. The ID of the updated Customer Match FirstAndThirdPartyAudience.
-     */
-    firstAndThirdPartyAudienceId?: string | null;
-  }
-  /**
    * Request message for GuaranteedOrderService.EditGuaranteedOrderReadAccessors.
    */
   export interface Schema$EditGuaranteedOrderReadAccessorsRequest {
@@ -3845,83 +3768,6 @@ export namespace displayvideo_v3 {
      * Required. The click through URL of the exit event. This is required when type is: * `EXIT_EVENT_TYPE_DEFAULT` * `EXIT_EVENT_TYPE_BACKUP`
      */
     url?: string | null;
-  }
-  /**
-   * Describes a first or third party audience list used for targeting. First party audiences are created via usage of client data. Third party audiences are provided by Third Party data providers and can only be licensed to customers.
-   */
-  export interface Schema$FirstAndThirdPartyAudience {
-    /**
-     * Output only. The estimated audience size for the Display network in the past month. If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits. Only returned in GET request.
-     */
-    activeDisplayAudienceSize?: string | null;
-    /**
-     * The app_id matches with the type of the mobile_device_ids being uploaded. Only applicable to audience_type `CUSTOMER_MATCH_DEVICE_ID`
-     */
-    appId?: string | null;
-    /**
-     * Output only. The source of the audience.
-     */
-    audienceSource?: string | null;
-    /**
-     * The type of the audience.
-     */
-    audienceType?: string | null;
-    /**
-     * Input only. A list of contact information to define the initial audience members. Only applicable to audience_type `CUSTOMER_MATCH_CONTACT_INFO`
-     */
-    contactInfoList?: Schema$ContactInfoList;
-    /**
-     * The user-provided description of the audience. Only applicable to first party audiences.
-     */
-    description?: string | null;
-    /**
-     * Output only. The estimated audience size for the Display network. If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits. Only returned in GET request.
-     */
-    displayAudienceSize?: string | null;
-    /**
-     * Output only. The estimated desktop audience size in Display network. If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits. Only applicable to first party audiences. Only returned in GET request.
-     */
-    displayDesktopAudienceSize?: string | null;
-    /**
-     * Output only. The estimated mobile app audience size in Display network. If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits. Only applicable to first party audiences. Only returned in GET request.
-     */
-    displayMobileAppAudienceSize?: string | null;
-    /**
-     * Output only. The estimated mobile web audience size in Display network. If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits. Only applicable to first party audiences. Only returned in GET request.
-     */
-    displayMobileWebAudienceSize?: string | null;
-    /**
-     * The display name of the first and third party audience.
-     */
-    displayName?: string | null;
-    /**
-     * Output only. The unique ID of the first and third party audience. Assigned by the system.
-     */
-    firstAndThirdPartyAudienceId?: string | null;
-    /**
-     * Whether the audience is a first or third party audience.
-     */
-    firstAndThirdPartyAudienceType?: string | null;
-    /**
-     * Output only. The estimated audience size for Gmail network. If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits. Only applicable to first party audiences. Only returned in GET request.
-     */
-    gmailAudienceSize?: string | null;
-    /**
-     * The duration in days that an entry remains in the audience after the qualifying event. The set value must be greater than 0 and less than or equal to 540. Only applicable to first party audiences. This field is required if one of the following audience_type is used: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID`
-     */
-    membershipDurationDays?: string | null;
-    /**
-     * Input only. A list of mobile device IDs to define the initial audience members. Only applicable to audience_type `CUSTOMER_MATCH_DEVICE_ID`
-     */
-    mobileDeviceIdList?: Schema$MobileDeviceIdList;
-    /**
-     * Output only. The resource name of the first and third party audience.
-     */
-    name?: string | null;
-    /**
-     * Output only. The estimated audience size for YouTube network. If the size is less than 1000, the number will be hidden and 0 will be returned due to privacy reasons. Otherwise, the number will be rounded off to two significant digits. Only applicable to first party audiences. Only returned in GET request.
-     */
-    youtubeAudienceSize?: string | null;
   }
   /**
    * Details of first and third party audience group. All first and third party audience targeting settings are logically ‘OR’ of each other.
@@ -4744,7 +4590,7 @@ export namespace displayvideo_v3 {
      */
     creativeIds?: string[] | null;
     /**
-     * Optional. Settings specific to Demand Gen line items. Only applicable to Demand Gen line items. Retrieval and management of Demand Gen resources is currently in beta. This field is only available to allowlisted users.
+     * Optional. Settings specific to Demand Gen line items. Only applicable to Demand Gen line items.
      */
     demandGenSettings?: Schema$DemandGenSettings;
     /**
@@ -5030,16 +4876,6 @@ export namespace displayvideo_v3 {
     customLists?: Schema$CustomList[];
     /**
      * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListCustomLists` method to retrieve the next page of results.
-     */
-    nextPageToken?: string | null;
-  }
-  export interface Schema$ListFirstAndThirdPartyAudiencesResponse {
-    /**
-     * The list of first and third party audiences. Audience size properties will not be included. This list will be absent if empty.
-     */
-    firstAndThirdPartyAudiences?: Schema$FirstAndThirdPartyAudience[];
-    /**
-     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListFirstAndThirdPartyAudiences` method to retrieve the next page of results.
      */
     nextPageToken?: string | null;
   }
@@ -5368,19 +5204,6 @@ export namespace displayvideo_v3 {
      * Output only. The app publisher.
      */
     publisher?: string | null;
-  }
-  /**
-   * Wrapper message for a list of mobile device IDs defining Customer Match audience members.
-   */
-  export interface Schema$MobileDeviceIdList {
-    /**
-     * Input only. The consent setting for the users in mobile_device_ids. Leaving this field unset indicates that consent is not specified. If ad_user_data or ad_personalization fields are set to `CONSENT_STATUS_DENIED`, the request will return an error.
-     */
-    consent?: Schema$Consent;
-    /**
-     * A list of mobile device IDs defining Customer Match audience members. The size of mobile_device_ids mustn't be greater than 500,000.
-     */
-    mobileDeviceIds?: string[] | null;
   }
   /**
    * Details for native content position assigned targeting option. This will be populated in the native_content_position_details field when targeting_type is `TARGETING_TYPE_NATIVE_CONTENT_POSITION`. Explicitly targeting all options is not supported. Remove all native content position targeting options to achieve this effect.
@@ -6297,7 +6120,7 @@ export namespace displayvideo_v3 {
      */
     enableOptimizedTargeting?: boolean | null;
     /**
-     * Optional. Whether to exclude demographic expansion for Optimized Targeting. This field can only be set for Demand Gen ad groups. Retrieval and management of Demand Gen resources is currently in beta. This field is only available to allowlisted users.
+     * Optional. Whether to exclude demographic expansion for Optimized Targeting. This field can only be set for Demand Gen ad groups.
      */
     excludeDemographicExpansion?: boolean | null;
   }
@@ -6459,7 +6282,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$ThirdPartyMeasurementConfigs {
     /**
-     * Optional. The third-party vendors measuring brand lift. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_DYNATA` * `THIRD_PARTY_VENDOR_KANTAR` * `THIRD_PARTY_VENDOR_INTAGE` * `THIRD_PARTY_VENDOR_NIELSEN` * `THIRD_PARTY_VENDOR_MACROMILL`
+     * Optional. The third-party vendors measuring brand lift. The following third-party vendors are applicable: * `THIRD_PARTY_VENDOR_DYNATA` * `THIRD_PARTY_VENDOR_KANTAR` * `THIRD_PARTY_VENDOR_INTAGE` * `THIRD_PARTY_VENDOR_MACROMILL`
      */
     brandLiftVendorConfigs?: Schema$ThirdPartyVendorConfig[];
     /**
@@ -6945,6 +6768,19 @@ export namespace displayvideo_v3 {
     negative?: boolean | null;
   }
   /**
+   * Details for YouTube channel pack assigned targeting option. This will be populated in the youtube_channel_pack_details field when targeting_type is `TARGETING_TYPE_YOUTUBE_CHANNEL_PACK`.
+   */
+  export interface Schema$YoutubeChannelPackAssignedTargetingOptionDetails {
+    /**
+     * Required. The ID of the YouTube channel pack.
+     */
+    channelPackId?: string | null;
+    /**
+     * Optional. Indicates if this option is being negatively targeted.
+     */
+    negative?: boolean | null;
+  }
+  /**
    * Details for YouTube video assigned targeting option. This will be populated in the youtube_video_details field when targeting_type is `TARGETING_TYPE_YOUTUBE_VIDEO`.
    */
   export interface Schema$YoutubeVideoAssignedTargetingOptionDetails {
@@ -7090,8 +6926,7 @@ export namespace displayvideo_v3 {
     audit(
       params: Params$Resource$Advertisers$Audit,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AuditAdvertiserResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AuditAdvertiserResponse>,
       callback: BodyResponseCallback<Schema$AuditAdvertiserResponse>
     ): void;
     audit(
@@ -7200,6 +7035,8 @@ export namespace displayvideo_v3 {
      *       //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *       //   "creativeConfig": {},
      *       //   "dataAccessConfig": {},
+     *       //   "defaultBusinessName": "my_defaultBusinessName",
+     *       //   "defaultLogoAssetId": "my_defaultLogoAssetId",
      *       //   "displayName": "my_displayName",
      *       //   "entityStatus": "my_entityStatus",
      *       //   "generalConfig": {},
@@ -7222,6 +7059,8 @@ export namespace displayvideo_v3 {
      *   //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *   //   "creativeConfig": {},
      *   //   "dataAccessConfig": {},
+     *   //   "defaultBusinessName": "my_defaultBusinessName",
+     *   //   "defaultLogoAssetId": "my_defaultLogoAssetId",
      *   //   "displayName": "my_displayName",
      *   //   "entityStatus": "my_entityStatus",
      *   //   "generalConfig": {},
@@ -7280,8 +7119,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Advertiser>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Advertiser>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Advertiser> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>
@@ -7412,8 +7250,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7661,6 +7498,8 @@ export namespace displayvideo_v3 {
      *   //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *   //   "creativeConfig": {},
      *   //   "dataAccessConfig": {},
+     *   //   "defaultBusinessName": "my_defaultBusinessName",
+     *   //   "defaultLogoAssetId": "my_defaultLogoAssetId",
      *   //   "displayName": "my_displayName",
      *   //   "entityStatus": "my_entityStatus",
      *   //   "generalConfig": {},
@@ -7719,8 +7558,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Advertiser>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Advertiser>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Advertiser> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>
@@ -7846,8 +7684,7 @@ export namespace displayvideo_v3 {
     list(
       params: Params$Resource$Advertisers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAdvertisersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAdvertisersResponse>,
       callback: BodyResponseCallback<Schema$ListAdvertisersResponse>
     ): void;
     list(
@@ -8113,6 +7950,8 @@ export namespace displayvideo_v3 {
      *       //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *       //   "creativeConfig": {},
      *       //   "dataAccessConfig": {},
+     *       //   "defaultBusinessName": "my_defaultBusinessName",
+     *       //   "defaultLogoAssetId": "my_defaultLogoAssetId",
      *       //   "displayName": "my_displayName",
      *       //   "entityStatus": "my_entityStatus",
      *       //   "generalConfig": {},
@@ -8135,6 +7974,8 @@ export namespace displayvideo_v3 {
      *   //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *   //   "creativeConfig": {},
      *   //   "dataAccessConfig": {},
+     *   //   "defaultBusinessName": "my_defaultBusinessName",
+     *   //   "defaultLogoAssetId": "my_defaultLogoAssetId",
      *   //   "displayName": "my_displayName",
      *   //   "entityStatus": "my_entityStatus",
      *   //   "generalConfig": {},
@@ -8193,8 +8034,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Advertiser>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Advertiser>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Advertiser> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Advertiser>>
@@ -8349,7 +8189,7 @@ export namespace displayvideo_v3 {
     }
 
     /**
-     * Creates an ad group ad. This method is only supported for Demand Gen ads. Retrieval and management of Demand Gen resources is currently in beta. This method is only available to allowlisted users.
+     * Creates an ad group ad. This method is only supported for Demand Gen ads.
      * @example
      * ```js
      * // Before running the sample:
@@ -8484,8 +8324,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$AdGroupAd>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AdGroupAd>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AdGroupAd> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AdGroupAd>>
@@ -8533,7 +8372,7 @@ export namespace displayvideo_v3 {
     }
 
     /**
-     * Deletes an ad group ad. This method is only supported for Demand Gen ads. Retrieval and management of Demand Gen resources is currently in beta. This method is only available to allowlisted users.
+     * Deletes an ad group ad. This method is only supported for Demand Gen ads.
      * @example
      * ```js
      * // Before running the sample:
@@ -8620,8 +8459,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8779,8 +8617,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$AdGroupAd>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AdGroupAd>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AdGroupAd> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AdGroupAd>>
@@ -8907,8 +8744,7 @@ export namespace displayvideo_v3 {
     list(
       params: Params$Resource$Advertisers$Adgroupads$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAdGroupAdsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAdGroupAdsResponse>,
       callback: BodyResponseCallback<Schema$ListAdGroupAdsResponse>
     ): void;
     list(
@@ -8976,7 +8812,7 @@ export namespace displayvideo_v3 {
     }
 
     /**
-     * Updates an ad group ad. This method is only supported for Demand Gen ads. Retrieval and management of Demand Gen resources is currently in beta. This method is only available to allowlisted users.
+     * Updates an ad group ad. This method is only supported for Demand Gen ads.
      * @example
      * ```js
      * // Before running the sample:
@@ -9115,8 +8951,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$AdGroupAd>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AdGroupAd>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AdGroupAd> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AdGroupAd>>
@@ -9249,7 +9084,7 @@ export namespace displayvideo_v3 {
     }
 
     /**
-     * Bulk edits targeting options for multiple ad groups. The same set of delete and create requests will be applied to all specified ad groups. Specifically, the operation will delete the assigned targeting options provided in BulkEditAdGroupAssignedTargetingOptionsRequest.delete_requests from each ad group, and then create the assigned targeting options provided in BulkEditAdGroupAssignedTargetingOptionsRequest.create_requests. This method is only supported for Demand Gen ad groups. Retrieval and management of Demand Gen resources is currently in beta. This method is only available to allowlisted users.
+     * Bulk edits targeting options for multiple ad groups. The same set of delete and create requests will be applied to all specified ad groups. Specifically, the operation will delete the assigned targeting options provided in BulkEditAdGroupAssignedTargetingOptionsRequest.delete_requests from each ad group, and then create the assigned targeting options provided in BulkEditAdGroupAssignedTargetingOptionsRequest.create_requests. This method is only supported for Demand Gen ad groups.
      * @example
      * ```js
      * // Before running the sample:
@@ -9572,7 +9407,7 @@ export namespace displayvideo_v3 {
     }
 
     /**
-     * Creates a new ad group. Returns the newly created ad group if successful. This method is only supported for Demand Gen ad groups. Retrieval and management of Demand Gen resources is currently in beta. This method is only available to allowlisted users.
+     * Creates a new ad group. Returns the newly created ad group if successful. This method is only supported for Demand Gen ad groups.
      * @example
      * ```js
      * // Before running the sample:
@@ -9687,8 +9522,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$AdGroup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AdGroup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AdGroup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AdGroup>>
@@ -9737,7 +9571,7 @@ export namespace displayvideo_v3 {
     }
 
     /**
-     * Deletes a AdGroup. Returns error code `NOT_FOUND` if the ad group does not exist. This method is only supported for Demand Gen ad groups. Retrieval and management of Demand Gen resources is currently in beta. This method is only available to allowlisted users.
+     * Deletes a AdGroup. Returns error code `NOT_FOUND` if the ad group does not exist. This method is only supported for Demand Gen ad groups.
      * @example
      * ```js
      * // Before running the sample:
@@ -9824,8 +9658,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9972,8 +9805,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$AdGroup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AdGroup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AdGroup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AdGroup>>
@@ -10099,8 +9931,7 @@ export namespace displayvideo_v3 {
     list(
       params: Params$Resource$Advertisers$Adgroups$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAdGroupsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAdGroupsResponse>,
       callback: BodyResponseCallback<Schema$ListAdGroupsResponse>
     ): void;
     list(
@@ -10169,7 +10000,7 @@ export namespace displayvideo_v3 {
     }
 
     /**
-     * Updates an existing ad group. Returns the updated ad group if successful. This method is only supported for Demand Gen ad groups. Retrieval and management of Demand Gen resources is currently in beta. This method is only available to allowlisted users.
+     * Updates an existing ad group. Returns the updated ad group if successful. This method is only supported for Demand Gen ad groups.
      * @example
      * ```js
      * // Before running the sample:
@@ -10288,8 +10119,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$AdGroup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AdGroup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AdGroup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AdGroup>>
@@ -10466,7 +10296,7 @@ export namespace displayvideo_v3 {
     }
 
     /**
-     * Assigns a targeting option to an ad group. Returns the assigned targeting option if successful. This method is only supported for Demand Gen ad groups. Retrieval and management of Demand Gen resources is currently in beta. This method is only available to allowlisted users.
+     * Assigns a targeting option to an ad group. Returns the assigned targeting option if successful. This method is only supported for Demand Gen ad groups.
      * @example
      * ```js
      * // Before running the sample:
@@ -10562,6 +10392,7 @@ export namespace displayvideo_v3 {
      *           //   "videoPlayerSizeDetails": {},
      *           //   "viewabilityDetails": {},
      *           //   "youtubeChannelDetails": {},
+     *           //   "youtubeChannelPackDetails": {},
      *           //   "youtubeVideoDetails": {}
      *           // }
      *         },
@@ -10624,6 +10455,7 @@ export namespace displayvideo_v3 {
      *   //   "videoPlayerSizeDetails": {},
      *   //   "viewabilityDetails": {},
      *   //   "youtubeChannelDetails": {},
+     *   //   "youtubeChannelPackDetails": {},
      *   //   "youtubeVideoDetails": {}
      *   // }
      * }
@@ -10656,8 +10488,7 @@ export namespace displayvideo_v3 {
     create(
       params: Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+        MethodOptions | BodyResponseCallback<Schema$AssignedTargetingOption>,
       callback: BodyResponseCallback<Schema$AssignedTargetingOption>
     ): void;
     create(
@@ -10729,7 +10560,7 @@ export namespace displayvideo_v3 {
     }
 
     /**
-     * Deletes an assigned targeting option from an ad group. This method is only supported for Demand Gen ad groups with the AdGroupFormat `AD_GROUP_FORMAT_DEMAND_GEN`. Retrieval and management of Demand Gen resources is currently in beta. This method is only available to allowlisted users.
+     * Deletes an assigned targeting option from an ad group. This method is only supported for Demand Gen ad groups with the AdGroupFormat `AD_GROUP_FORMAT_DEMAND_GEN`.
      * @example
      * ```js
      * // Before running the sample:
@@ -10823,8 +10654,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10983,6 +10813,7 @@ export namespace displayvideo_v3 {
      *   //   "videoPlayerSizeDetails": {},
      *   //   "viewabilityDetails": {},
      *   //   "youtubeChannelDetails": {},
+     *   //   "youtubeChannelPackDetails": {},
      *   //   "youtubeVideoDetails": {}
      *   // }
      * }
@@ -11015,8 +10846,7 @@ export namespace displayvideo_v3 {
     get(
       params: Params$Resource$Advertisers$Adgroups$Targetingtypes$Assignedtargetingoptions$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+        MethodOptions | BodyResponseCallback<Schema$AssignedTargetingOption>,
       callback: BodyResponseCallback<Schema$AssignedTargetingOption>
     ): void;
     get(
@@ -11655,8 +11485,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Campaign>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Campaign>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Campaign> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>
@@ -11794,8 +11623,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -11945,8 +11773,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Campaign>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Campaign>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Campaign> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>
@@ -12076,8 +11903,7 @@ export namespace displayvideo_v3 {
     list(
       params: Params$Resource$Advertisers$Campaigns$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCampaignsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCampaignsResponse>,
       callback: BodyResponseCallback<Schema$ListCampaignsResponse>
     ): void;
     list(
@@ -12265,8 +12091,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Campaign>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Campaign>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Campaign> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Campaign>>
@@ -12506,8 +12331,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -12653,8 +12477,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -12782,8 +12605,7 @@ export namespace displayvideo_v3 {
     list(
       params: Params$Resource$Advertisers$Channels$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListChannelsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListChannelsResponse>,
       callback: BodyResponseCallback<Schema$ListChannelsResponse>
     ): void;
     list(
@@ -12965,8 +12787,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -13182,8 +13003,7 @@ export namespace displayvideo_v3 {
     bulkEdit(
       params: Params$Resource$Advertisers$Channels$Sites$Bulkedit,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BulkEditSitesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BulkEditSitesResponse>,
       callback: BodyResponseCallback<Schema$BulkEditSitesResponse>
     ): void;
     bulkEdit(
@@ -13355,8 +13175,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Site>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Site> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
@@ -13496,8 +13315,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -13777,8 +13595,7 @@ export namespace displayvideo_v3 {
     replace(
       params: Params$Resource$Advertisers$Channels$Sites$Replace,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ReplaceSitesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ReplaceSitesResponse>,
       callback: BodyResponseCallback<Schema$ReplaceSitesResponse>
     ): void;
     replace(
@@ -14027,6 +13844,7 @@ export namespace displayvideo_v3 {
      *       //   "reviewStatus": {},
      *       //   "skipOffset": {},
      *       //   "skippable": false,
+     *       //   "syntheticContentAttestationStatus": "my_syntheticContentAttestationStatus",
      *       //   "thirdPartyTag": "my_thirdPartyTag",
      *       //   "thirdPartyUrls": [],
      *       //   "timerEvents": [],
@@ -14081,6 +13899,7 @@ export namespace displayvideo_v3 {
      *   //   "reviewStatus": {},
      *   //   "skipOffset": {},
      *   //   "skippable": false,
+     *   //   "syntheticContentAttestationStatus": "my_syntheticContentAttestationStatus",
      *   //   "thirdPartyTag": "my_thirdPartyTag",
      *   //   "thirdPartyUrls": [],
      *   //   "timerEvents": [],
@@ -14139,8 +13958,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Creative>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Creative> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
@@ -14275,8 +14093,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -14402,6 +14219,7 @@ export namespace displayvideo_v3 {
      *   //   "reviewStatus": {},
      *   //   "skipOffset": {},
      *   //   "skippable": false,
+     *   //   "syntheticContentAttestationStatus": "my_syntheticContentAttestationStatus",
      *   //   "thirdPartyTag": "my_thirdPartyTag",
      *   //   "thirdPartyUrls": [],
      *   //   "timerEvents": [],
@@ -14460,8 +14278,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Creative>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Creative> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
@@ -14588,8 +14405,7 @@ export namespace displayvideo_v3 {
     list(
       params: Params$Resource$Advertisers$Creatives$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCreativesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCreativesResponse>,
       callback: BodyResponseCallback<Schema$ListCreativesResponse>
     ): void;
     list(
@@ -14736,6 +14552,7 @@ export namespace displayvideo_v3 {
      *       //   "reviewStatus": {},
      *       //   "skipOffset": {},
      *       //   "skippable": false,
+     *       //   "syntheticContentAttestationStatus": "my_syntheticContentAttestationStatus",
      *       //   "thirdPartyTag": "my_thirdPartyTag",
      *       //   "thirdPartyUrls": [],
      *       //   "timerEvents": [],
@@ -14790,6 +14607,7 @@ export namespace displayvideo_v3 {
      *   //   "reviewStatus": {},
      *   //   "skipOffset": {},
      *   //   "skippable": false,
+     *   //   "syntheticContentAttestationStatus": "my_syntheticContentAttestationStatus",
      *   //   "thirdPartyTag": "my_thirdPartyTag",
      *   //   "thirdPartyUrls": [],
      *   //   "timerEvents": [],
@@ -14848,8 +14666,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Creative>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Creative>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Creative> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Creative>>
@@ -15241,8 +15058,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -15937,8 +15753,7 @@ export namespace displayvideo_v3 {
     list(
       params: Params$Resource$Advertisers$Invoices$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListInvoicesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListInvoicesResponse>,
       callback: BodyResponseCallback<Schema$ListInvoicesResponse>
     ): void;
     list(
@@ -16823,8 +16638,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$LineItem>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LineItem>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LineItem> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>
@@ -16959,8 +16773,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -17089,8 +16902,7 @@ export namespace displayvideo_v3 {
     duplicate(
       params: Params$Resource$Advertisers$Lineitems$Duplicate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DuplicateLineItemResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DuplicateLineItemResponse>,
       callback: BodyResponseCallback<Schema$DuplicateLineItemResponse>
     ): void;
     duplicate(
@@ -17277,8 +17089,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$LineItem>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LineItem>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LineItem> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>
@@ -17405,8 +17216,7 @@ export namespace displayvideo_v3 {
     list(
       params: Params$Resource$Advertisers$Lineitems$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLineItemsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLineItemsResponse>,
       callback: BodyResponseCallback<Schema$ListLineItemsResponse>
     ): void;
     list(
@@ -17627,8 +17437,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$LineItem>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LineItem>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LineItem> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LineItem>>
@@ -17928,6 +17737,7 @@ export namespace displayvideo_v3 {
      *           //   "videoPlayerSizeDetails": {},
      *           //   "viewabilityDetails": {},
      *           //   "youtubeChannelDetails": {},
+     *           //   "youtubeChannelPackDetails": {},
      *           //   "youtubeVideoDetails": {}
      *           // }
      *         },
@@ -17990,6 +17800,7 @@ export namespace displayvideo_v3 {
      *   //   "videoPlayerSizeDetails": {},
      *   //   "viewabilityDetails": {},
      *   //   "youtubeChannelDetails": {},
+     *   //   "youtubeChannelPackDetails": {},
      *   //   "youtubeVideoDetails": {}
      *   // }
      * }
@@ -18022,8 +17833,7 @@ export namespace displayvideo_v3 {
     create(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+        MethodOptions | BodyResponseCallback<Schema$AssignedTargetingOption>,
       callback: BodyResponseCallback<Schema$AssignedTargetingOption>
     ): void;
     create(
@@ -18189,8 +17999,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -18349,6 +18158,7 @@ export namespace displayvideo_v3 {
      *   //   "videoPlayerSizeDetails": {},
      *   //   "viewabilityDetails": {},
      *   //   "youtubeChannelDetails": {},
+     *   //   "youtubeChannelPackDetails": {},
      *   //   "youtubeVideoDetails": {}
      *   // }
      * }
@@ -18381,8 +18191,7 @@ export namespace displayvideo_v3 {
     get(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+        MethodOptions | BodyResponseCallback<Schema$AssignedTargetingOption>,
       callback: BodyResponseCallback<Schema$AssignedTargetingOption>
     ): void;
     get(
@@ -19095,8 +18904,7 @@ export namespace displayvideo_v3 {
     list(
       params: Params$Resource$Advertisers$Locationlists$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationListsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationListsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationListsResponse>
     ): void;
     list(
@@ -19796,8 +19604,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -20329,8 +20136,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -21309,8 +21115,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -21876,6 +21681,7 @@ export namespace displayvideo_v3 {
      *           //   "videoPlayerSizeDetails": {},
      *           //   "viewabilityDetails": {},
      *           //   "youtubeChannelDetails": {},
+     *           //   "youtubeChannelPackDetails": {},
      *           //   "youtubeVideoDetails": {}
      *           // }
      *         },
@@ -21938,6 +21744,7 @@ export namespace displayvideo_v3 {
      *   //   "videoPlayerSizeDetails": {},
      *   //   "viewabilityDetails": {},
      *   //   "youtubeChannelDetails": {},
+     *   //   "youtubeChannelPackDetails": {},
      *   //   "youtubeVideoDetails": {}
      *   // }
      * }
@@ -21970,8 +21777,7 @@ export namespace displayvideo_v3 {
     create(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+        MethodOptions | BodyResponseCallback<Schema$AssignedTargetingOption>,
       callback: BodyResponseCallback<Schema$AssignedTargetingOption>
     ): void;
     create(
@@ -22135,8 +21941,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -22289,6 +22094,7 @@ export namespace displayvideo_v3 {
      *   //   "videoPlayerSizeDetails": {},
      *   //   "viewabilityDetails": {},
      *   //   "youtubeChannelDetails": {},
+     *   //   "youtubeChannelPackDetails": {},
      *   //   "youtubeVideoDetails": {}
      *   // }
      * }
@@ -22321,8 +22127,7 @@ export namespace displayvideo_v3 {
     get(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+        MethodOptions | BodyResponseCallback<Schema$AssignedTargetingOption>,
       callback: BodyResponseCallback<Schema$AssignedTargetingOption>
     ): void;
     get(
@@ -23077,8 +22882,7 @@ export namespace displayvideo_v3 {
     create(
       params: Params$Resource$Custombiddingalgorithms$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CustomBiddingAlgorithm>,
+        MethodOptions | BodyResponseCallback<Schema$CustomBiddingAlgorithm>,
       callback: BodyResponseCallback<Schema$CustomBiddingAlgorithm>
     ): void;
     create(
@@ -23228,8 +23032,7 @@ export namespace displayvideo_v3 {
     get(
       params: Params$Resource$Custombiddingalgorithms$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CustomBiddingAlgorithm>,
+        MethodOptions | BodyResponseCallback<Schema$CustomBiddingAlgorithm>,
       callback: BodyResponseCallback<Schema$CustomBiddingAlgorithm>
     ): void;
     get(
@@ -23551,8 +23354,7 @@ export namespace displayvideo_v3 {
     patch(
       params: Params$Resource$Custombiddingalgorithms$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CustomBiddingAlgorithm>,
+        MethodOptions | BodyResponseCallback<Schema$CustomBiddingAlgorithm>,
       callback: BodyResponseCallback<Schema$CustomBiddingAlgorithm>
     ): void;
     patch(
@@ -23841,8 +23643,7 @@ export namespace displayvideo_v3 {
     uploadScript(
       params: Params$Resource$Custombiddingalgorithms$Uploadscript,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CustomBiddingScriptRef>,
+        MethodOptions | BodyResponseCallback<Schema$CustomBiddingScriptRef>,
       callback: BodyResponseCallback<Schema$CustomBiddingScriptRef>
     ): void;
     uploadScript(
@@ -25199,8 +25000,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$CustomList>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$CustomList>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$CustomList> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$CustomList>>
@@ -25326,8 +25126,7 @@ export namespace displayvideo_v3 {
     list(
       params: Params$Resource$Customlists$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCustomListsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCustomListsResponse>,
       callback: BodyResponseCallback<Schema$ListCustomListsResponse>
     ): void;
     list(
@@ -25423,946 +25222,6 @@ export namespace displayvideo_v3 {
      * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomLists` method. If not specified, the first page of results will be returned.
      */
     pageToken?: string;
-  }
-
-  export class Resource$Firstandthirdpartyaudiences {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Creates a FirstAndThirdPartyAudience. Only supported for the following audience_type: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID`
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.firstAndThirdPartyAudiences.create({
-     *     // Required. The ID of the advertiser under whom the FirstAndThirdPartyAudience will be created.
-     *     advertiserId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "activeDisplayAudienceSize": "my_activeDisplayAudienceSize",
-     *       //   "appId": "my_appId",
-     *       //   "audienceSource": "my_audienceSource",
-     *       //   "audienceType": "my_audienceType",
-     *       //   "contactInfoList": {},
-     *       //   "description": "my_description",
-     *       //   "displayAudienceSize": "my_displayAudienceSize",
-     *       //   "displayDesktopAudienceSize": "my_displayDesktopAudienceSize",
-     *       //   "displayMobileAppAudienceSize": "my_displayMobileAppAudienceSize",
-     *       //   "displayMobileWebAudienceSize": "my_displayMobileWebAudienceSize",
-     *       //   "displayName": "my_displayName",
-     *       //   "firstAndThirdPartyAudienceId": "my_firstAndThirdPartyAudienceId",
-     *       //   "firstAndThirdPartyAudienceType": "my_firstAndThirdPartyAudienceType",
-     *       //   "gmailAudienceSize": "my_gmailAudienceSize",
-     *       //   "membershipDurationDays": "my_membershipDurationDays",
-     *       //   "mobileDeviceIdList": {},
-     *       //   "name": "my_name",
-     *       //   "youtubeAudienceSize": "my_youtubeAudienceSize"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activeDisplayAudienceSize": "my_activeDisplayAudienceSize",
-     *   //   "appId": "my_appId",
-     *   //   "audienceSource": "my_audienceSource",
-     *   //   "audienceType": "my_audienceType",
-     *   //   "contactInfoList": {},
-     *   //   "description": "my_description",
-     *   //   "displayAudienceSize": "my_displayAudienceSize",
-     *   //   "displayDesktopAudienceSize": "my_displayDesktopAudienceSize",
-     *   //   "displayMobileAppAudienceSize": "my_displayMobileAppAudienceSize",
-     *   //   "displayMobileWebAudienceSize": "my_displayMobileWebAudienceSize",
-     *   //   "displayName": "my_displayName",
-     *   //   "firstAndThirdPartyAudienceId": "my_firstAndThirdPartyAudienceId",
-     *   //   "firstAndThirdPartyAudienceType": "my_firstAndThirdPartyAudienceType",
-     *   //   "gmailAudienceSize": "my_gmailAudienceSize",
-     *   //   "membershipDurationDays": "my_membershipDurationDays",
-     *   //   "mobileDeviceIdList": {},
-     *   //   "name": "my_name",
-     *   //   "youtubeAudienceSize": "my_youtubeAudienceSize"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Firstandthirdpartyaudiences$Create,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    create(
-      params?: Params$Resource$Firstandthirdpartyaudiences$Create,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$FirstAndThirdPartyAudience>>;
-    create(
-      params: Params$Resource$Firstandthirdpartyaudiences$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Firstandthirdpartyaudiences$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>,
-      callback: BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-    ): void;
-    create(
-      params: Params$Resource$Firstandthirdpartyaudiences$Create,
-      callback: BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-    ): void;
-    create(
-      callback: BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Firstandthirdpartyaudiences$Create
-        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$FirstAndThirdPartyAudience>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Firstandthirdpartyaudiences$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Firstandthirdpartyaudiences$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3/firstAndThirdPartyAudiences').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$FirstAndThirdPartyAudience>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$FirstAndThirdPartyAudience>(parameters);
-      }
-    }
-
-    /**
-     * Updates the member list of a Customer Match audience. Only supported for the following audience_type: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID`
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.firstAndThirdPartyAudiences.editCustomerMatchMembers({
-     *       // Required. The ID of the Customer Match FirstAndThirdPartyAudience whose members will be edited.
-     *       firstAndThirdPartyAudienceId: '[^/]+',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "addedContactInfoList": {},
-     *         //   "addedMobileDeviceIdList": {},
-     *         //   "advertiserId": "my_advertiserId",
-     *         //   "removedContactInfoList": {},
-     *         //   "removedMobileDeviceIdList": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "firstAndThirdPartyAudienceId": "my_firstAndThirdPartyAudienceId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    editCustomerMatchMembers(
-      params: Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    editCustomerMatchMembers(
-      params?: Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$EditCustomerMatchMembersResponse>
-    >;
-    editCustomerMatchMembers(
-      params: Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    editCustomerMatchMembers(
-      params: Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$EditCustomerMatchMembersResponse>,
-      callback: BodyResponseCallback<Schema$EditCustomerMatchMembersResponse>
-    ): void;
-    editCustomerMatchMembers(
-      params: Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers,
-      callback: BodyResponseCallback<Schema$EditCustomerMatchMembersResponse>
-    ): void;
-    editCustomerMatchMembers(
-      callback: BodyResponseCallback<Schema$EditCustomerMatchMembersResponse>
-    ): void;
-    editCustomerMatchMembers(
-      paramsOrCallback?:
-        | Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers
-        | BodyResponseCallback<Schema$EditCustomerMatchMembersResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$EditCustomerMatchMembersResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$EditCustomerMatchMembersResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$EditCustomerMatchMembersResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v3/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}:editCustomerMatchMembers'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['firstAndThirdPartyAudienceId'],
-        pathParams: ['firstAndThirdPartyAudienceId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$EditCustomerMatchMembersResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$EditCustomerMatchMembersResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Gets a first and third party audience.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.firstAndThirdPartyAudiences.get({
-     *     // The ID of the advertiser that has access to the fetched first and third party audience.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the first and third party audience to fetch.
-     *     firstAndThirdPartyAudienceId: '[^/]+',
-     *     // The ID of the partner that has access to the fetched first and third party audience.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activeDisplayAudienceSize": "my_activeDisplayAudienceSize",
-     *   //   "appId": "my_appId",
-     *   //   "audienceSource": "my_audienceSource",
-     *   //   "audienceType": "my_audienceType",
-     *   //   "contactInfoList": {},
-     *   //   "description": "my_description",
-     *   //   "displayAudienceSize": "my_displayAudienceSize",
-     *   //   "displayDesktopAudienceSize": "my_displayDesktopAudienceSize",
-     *   //   "displayMobileAppAudienceSize": "my_displayMobileAppAudienceSize",
-     *   //   "displayMobileWebAudienceSize": "my_displayMobileWebAudienceSize",
-     *   //   "displayName": "my_displayName",
-     *   //   "firstAndThirdPartyAudienceId": "my_firstAndThirdPartyAudienceId",
-     *   //   "firstAndThirdPartyAudienceType": "my_firstAndThirdPartyAudienceType",
-     *   //   "gmailAudienceSize": "my_gmailAudienceSize",
-     *   //   "membershipDurationDays": "my_membershipDurationDays",
-     *   //   "mobileDeviceIdList": {},
-     *   //   "name": "my_name",
-     *   //   "youtubeAudienceSize": "my_youtubeAudienceSize"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Firstandthirdpartyaudiences$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Firstandthirdpartyaudiences$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$FirstAndThirdPartyAudience>>;
-    get(
-      params: Params$Resource$Firstandthirdpartyaudiences$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Firstandthirdpartyaudiences$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>,
-      callback: BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-    ): void;
-    get(
-      params: Params$Resource$Firstandthirdpartyaudiences$Get,
-      callback: BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Firstandthirdpartyaudiences$Get
-        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$FirstAndThirdPartyAudience>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Firstandthirdpartyaudiences$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Firstandthirdpartyaudiences$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v3/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['firstAndThirdPartyAudienceId'],
-        pathParams: ['firstAndThirdPartyAudienceId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$FirstAndThirdPartyAudience>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$FirstAndThirdPartyAudience>(parameters);
-      }
-    }
-
-    /**
-     * Lists first and third party audiences. The order is defined by the order_by parameter.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.firstAndThirdPartyAudiences.list({
-     *     // The ID of the advertiser that has access to the fetched first and third party audiences.
-     *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by first and third party audience fields. Supported syntax: * Filter expressions for first and third party audiences can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `displayName` Examples: * All first and third party audiences for which the display name contains "Google": `displayName:"Google"`. The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `firstAndThirdPartyAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `5000`. If unspecified, this value defaults to `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListFirstAndThirdPartyAudiences` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *     // The ID of the partner that has access to the fetched first and third party audiences.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "firstAndThirdPartyAudiences": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Firstandthirdpartyaudiences$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Firstandthirdpartyaudiences$List,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$ListFirstAndThirdPartyAudiencesResponse>
-    >;
-    list(
-      params: Params$Resource$Firstandthirdpartyaudiences$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Firstandthirdpartyaudiences$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFirstAndThirdPartyAudiencesResponse>,
-      callback: BodyResponseCallback<Schema$ListFirstAndThirdPartyAudiencesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Firstandthirdpartyaudiences$List,
-      callback: BodyResponseCallback<Schema$ListFirstAndThirdPartyAudiencesResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$ListFirstAndThirdPartyAudiencesResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Firstandthirdpartyaudiences$List
-        | BodyResponseCallback<Schema$ListFirstAndThirdPartyAudiencesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListFirstAndThirdPartyAudiencesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListFirstAndThirdPartyAudiencesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$ListFirstAndThirdPartyAudiencesResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Firstandthirdpartyaudiences$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Firstandthirdpartyaudiences$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3/firstAndThirdPartyAudiences').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListFirstAndThirdPartyAudiencesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListFirstAndThirdPartyAudiencesResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Updates an existing FirstAndThirdPartyAudience. Only supported for the following audience_type: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID`
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.firstAndThirdPartyAudiences.patch({
-     *     // Required. The ID of the owner advertiser of the updated FirstAndThirdPartyAudience.
-     *     advertiserId: 'placeholder-value',
-     *     // Output only. The unique ID of the first and third party audience. Assigned by the system.
-     *     firstAndThirdPartyAudienceId: '[^/]+',
-     *     // Required. The mask to control which fields to update. Updates are only supported for the following fields: * `displayName` * `description` * `membershipDurationDays`
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "activeDisplayAudienceSize": "my_activeDisplayAudienceSize",
-     *       //   "appId": "my_appId",
-     *       //   "audienceSource": "my_audienceSource",
-     *       //   "audienceType": "my_audienceType",
-     *       //   "contactInfoList": {},
-     *       //   "description": "my_description",
-     *       //   "displayAudienceSize": "my_displayAudienceSize",
-     *       //   "displayDesktopAudienceSize": "my_displayDesktopAudienceSize",
-     *       //   "displayMobileAppAudienceSize": "my_displayMobileAppAudienceSize",
-     *       //   "displayMobileWebAudienceSize": "my_displayMobileWebAudienceSize",
-     *       //   "displayName": "my_displayName",
-     *       //   "firstAndThirdPartyAudienceId": "my_firstAndThirdPartyAudienceId",
-     *       //   "firstAndThirdPartyAudienceType": "my_firstAndThirdPartyAudienceType",
-     *       //   "gmailAudienceSize": "my_gmailAudienceSize",
-     *       //   "membershipDurationDays": "my_membershipDurationDays",
-     *       //   "mobileDeviceIdList": {},
-     *       //   "name": "my_name",
-     *       //   "youtubeAudienceSize": "my_youtubeAudienceSize"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activeDisplayAudienceSize": "my_activeDisplayAudienceSize",
-     *   //   "appId": "my_appId",
-     *   //   "audienceSource": "my_audienceSource",
-     *   //   "audienceType": "my_audienceType",
-     *   //   "contactInfoList": {},
-     *   //   "description": "my_description",
-     *   //   "displayAudienceSize": "my_displayAudienceSize",
-     *   //   "displayDesktopAudienceSize": "my_displayDesktopAudienceSize",
-     *   //   "displayMobileAppAudienceSize": "my_displayMobileAppAudienceSize",
-     *   //   "displayMobileWebAudienceSize": "my_displayMobileWebAudienceSize",
-     *   //   "displayName": "my_displayName",
-     *   //   "firstAndThirdPartyAudienceId": "my_firstAndThirdPartyAudienceId",
-     *   //   "firstAndThirdPartyAudienceType": "my_firstAndThirdPartyAudienceType",
-     *   //   "gmailAudienceSize": "my_gmailAudienceSize",
-     *   //   "membershipDurationDays": "my_membershipDurationDays",
-     *   //   "mobileDeviceIdList": {},
-     *   //   "name": "my_name",
-     *   //   "youtubeAudienceSize": "my_youtubeAudienceSize"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Firstandthirdpartyaudiences$Patch,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    patch(
-      params?: Params$Resource$Firstandthirdpartyaudiences$Patch,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$FirstAndThirdPartyAudience>>;
-    patch(
-      params: Params$Resource$Firstandthirdpartyaudiences$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Firstandthirdpartyaudiences$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>,
-      callback: BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-    ): void;
-    patch(
-      params: Params$Resource$Firstandthirdpartyaudiences$Patch,
-      callback: BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Firstandthirdpartyaudiences$Patch
-        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$FirstAndThirdPartyAudience>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Firstandthirdpartyaudiences$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Firstandthirdpartyaudiences$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v3/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['firstAndThirdPartyAudienceId'],
-        pathParams: ['firstAndThirdPartyAudienceId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$FirstAndThirdPartyAudience>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$FirstAndThirdPartyAudience>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Firstandthirdpartyaudiences$Create extends StandardParameters {
-    /**
-     * Required. The ID of the advertiser under whom the FirstAndThirdPartyAudience will be created.
-     */
-    advertiserId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$FirstAndThirdPartyAudience;
-  }
-  export interface Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers extends StandardParameters {
-    /**
-     * Required. The ID of the Customer Match FirstAndThirdPartyAudience whose members will be edited.
-     */
-    firstAndThirdPartyAudienceId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$EditCustomerMatchMembersRequest;
-  }
-  export interface Params$Resource$Firstandthirdpartyaudiences$Get extends StandardParameters {
-    /**
-     * The ID of the advertiser that has access to the fetched first and third party audience.
-     */
-    advertiserId?: string;
-    /**
-     * Required. The ID of the first and third party audience to fetch.
-     */
-    firstAndThirdPartyAudienceId?: string;
-    /**
-     * The ID of the partner that has access to the fetched first and third party audience.
-     */
-    partnerId?: string;
-  }
-  export interface Params$Resource$Firstandthirdpartyaudiences$List extends StandardParameters {
-    /**
-     * The ID of the advertiser that has access to the fetched first and third party audiences.
-     */
-    advertiserId?: string;
-    /**
-     * Allows filtering by first and third party audience fields. Supported syntax: * Filter expressions for first and third party audiences can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `displayName` Examples: * All first and third party audiences for which the display name contains "Google": `displayName:"Google"`. The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
-     */
-    filter?: string;
-    /**
-     * Field by which to sort the list. Acceptable values are: * `firstAndThirdPartyAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     */
-    orderBy?: string;
-    /**
-     * Requested page size. Must be between `1` and `5000`. If unspecified, this value defaults to `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     */
-    pageSize?: number;
-    /**
-     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListFirstAndThirdPartyAudiences` method. If not specified, the first page of results will be returned.
-     */
-    pageToken?: string;
-    /**
-     * The ID of the partner that has access to the fetched first and third party audiences.
-     */
-    partnerId?: string;
-  }
-  export interface Params$Resource$Firstandthirdpartyaudiences$Patch extends StandardParameters {
-    /**
-     * Required. The ID of the owner advertiser of the updated FirstAndThirdPartyAudience.
-     */
-    advertiserId?: string;
-    /**
-     * Output only. The unique ID of the first and third party audience. Assigned by the system.
-     */
-    firstAndThirdPartyAudienceId?: string;
-    /**
-     * Required. The mask to control which fields to update. Updates are only supported for the following fields: * `displayName` * `description` * `membershipDurationDays`
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$FirstAndThirdPartyAudience;
   }
 
   export class Resource$Floodlightgroups {
@@ -28413,8 +27272,7 @@ export namespace displayvideo_v3 {
     create(
       params: Params$Resource$Inventorysourcegroups$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InventorySourceGroup>,
+        MethodOptions | BodyResponseCallback<Schema$InventorySourceGroup>,
       callback: BodyResponseCallback<Schema$InventorySourceGroup>
     ): void;
     create(
@@ -28572,8 +27430,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -28696,8 +27553,7 @@ export namespace displayvideo_v3 {
     get(
       params: Params$Resource$Inventorysourcegroups$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InventorySourceGroup>,
+        MethodOptions | BodyResponseCallback<Schema$InventorySourceGroup>,
       callback: BodyResponseCallback<Schema$InventorySourceGroup>
     ): void;
     get(
@@ -29010,8 +27866,7 @@ export namespace displayvideo_v3 {
     patch(
       params: Params$Resource$Inventorysourcegroups$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InventorySourceGroup>,
+        MethodOptions | BodyResponseCallback<Schema$InventorySourceGroup>,
       callback: BodyResponseCallback<Schema$InventorySourceGroup>
     ): void;
     patch(
@@ -29425,8 +28280,7 @@ export namespace displayvideo_v3 {
     create(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AssignedInventorySource>,
+        MethodOptions | BodyResponseCallback<Schema$AssignedInventorySource>,
       callback: BodyResponseCallback<Schema$AssignedInventorySource>
     ): void;
     create(
@@ -29590,8 +28444,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -29961,8 +28814,7 @@ export namespace displayvideo_v3 {
     download(
       params: Params$Resource$Media$Download,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleBytestreamMedia>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleBytestreamMedia>,
       callback: BodyResponseCallback<Schema$GoogleBytestreamMedia>
     ): void;
     download(
@@ -30116,8 +28968,7 @@ export namespace displayvideo_v3 {
     upload(
       params: Params$Resource$Media$Upload,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleBytestreamMedia>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleBytestreamMedia>,
       callback: BodyResponseCallback<Schema$GoogleBytestreamMedia>
     ): void;
     upload(
@@ -30484,8 +29335,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Partner>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Partner>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Partner> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Partner>>
@@ -30609,8 +29459,7 @@ export namespace displayvideo_v3 {
     list(
       params: Params$Resource$Partners$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPartnersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPartnersResponse>,
       callback: BodyResponseCallback<Schema$ListPartnersResponse>
     ): void;
     list(
@@ -30829,8 +29678,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -30976,8 +29824,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -31105,8 +29952,7 @@ export namespace displayvideo_v3 {
     list(
       params: Params$Resource$Partners$Channels$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListChannelsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListChannelsResponse>,
       callback: BodyResponseCallback<Schema$ListChannelsResponse>
     ): void;
     list(
@@ -31288,8 +30134,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -31505,8 +30350,7 @@ export namespace displayvideo_v3 {
     bulkEdit(
       params: Params$Resource$Partners$Channels$Sites$Bulkedit,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BulkEditSitesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BulkEditSitesResponse>,
       callback: BodyResponseCallback<Schema$BulkEditSitesResponse>
     ): void;
     bulkEdit(
@@ -31678,8 +30522,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Site>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Site> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
@@ -31818,8 +30661,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -32098,8 +30940,7 @@ export namespace displayvideo_v3 {
     replace(
       params: Params$Resource$Partners$Channels$Sites$Replace,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ReplaceSitesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ReplaceSitesResponse>,
       callback: BodyResponseCallback<Schema$ReplaceSitesResponse>
     ): void;
     replace(
@@ -32378,6 +31219,7 @@ export namespace displayvideo_v3 {
      *         //   "videoPlayerSizeDetails": {},
      *         //   "viewabilityDetails": {},
      *         //   "youtubeChannelDetails": {},
+     *         //   "youtubeChannelPackDetails": {},
      *         //   "youtubeVideoDetails": {}
      *         // }
      *       },
@@ -32439,6 +31281,7 @@ export namespace displayvideo_v3 {
      *   //   "videoPlayerSizeDetails": {},
      *   //   "viewabilityDetails": {},
      *   //   "youtubeChannelDetails": {},
+     *   //   "youtubeChannelPackDetails": {},
      *   //   "youtubeVideoDetails": {}
      *   // }
      * }
@@ -32471,8 +31314,7 @@ export namespace displayvideo_v3 {
     create(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+        MethodOptions | BodyResponseCallback<Schema$AssignedTargetingOption>,
       callback: BodyResponseCallback<Schema$AssignedTargetingOption>
     ): void;
     create(
@@ -32634,8 +31476,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -32784,6 +31625,7 @@ export namespace displayvideo_v3 {
      *   //   "videoPlayerSizeDetails": {},
      *   //   "viewabilityDetails": {},
      *   //   "youtubeChannelDetails": {},
+     *   //   "youtubeChannelPackDetails": {},
      *   //   "youtubeVideoDetails": {}
      *   // }
      * }
@@ -32816,8 +31658,7 @@ export namespace displayvideo_v3 {
     get(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+        MethodOptions | BodyResponseCallback<Schema$AssignedTargetingOption>,
       callback: BodyResponseCallback<Schema$AssignedTargetingOption>
     ): void;
     get(
@@ -33231,8 +32072,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -33389,8 +32229,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -34264,8 +33103,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -34395,8 +33233,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -34536,8 +33373,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -34832,8 +33668,7 @@ export namespace displayvideo_v3 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>

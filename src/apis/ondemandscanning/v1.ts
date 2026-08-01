@@ -525,6 +525,10 @@ export namespace ondemandscanning_v1 {
      */
     confidentialityImpact?: string | null;
     exploitabilityScore?: number | null;
+    /**
+     * Exploit Maturity (E). Defined in CVSS v4.
+     */
+    exploitMaturity?: string | null;
     impactScore?: number | null;
     /**
      * Integrity Impact (I). Defined in CVSS v2, v3.
@@ -717,6 +721,10 @@ export namespace ondemandscanning_v1 {
      * Category of the finding.
      */
     category?: string | null;
+    /**
+     * Description of the finding category.
+     */
+    details?: string | null;
     /**
      * Location (path and line) where the finding was detected.
      */
@@ -950,6 +958,20 @@ export namespace ondemandscanning_v1 {
      * This contains layer-specific metadata, if populated it has length "distance" and is ordered with [distance] being the layer immediately following the base image and [1] being the final layer.
      */
     layerInfo?: Schema$Layer[];
+  }
+  /**
+   * Indicates where an extracted package originates from.
+   */
+  export interface Schema$IngestionSource {
+    /**
+     * The attachment URI that this package was extracted from.
+     */
+    attachmentUri?: string | null;
+    /**
+     * The resource URL of the resource that was scanned to find this package.
+     */
+    resourceUrl?: string | null;
+    source?: string | null;
   }
   export interface Schema$InTotoProvenance {
     /**
@@ -1315,6 +1337,10 @@ export namespace ondemandscanning_v1 {
      * HashDigest stores the SHA512 hash digest of the jar file if the package is of type Maven. This field will be unset for non Maven packages.
      */
     hashDigest?: string | null;
+    /**
+     * The list of sources that were scanned to find this package. This can be a Docker image, an SBOM attachment, or both, for example.
+     */
+    ingestionSources?: Schema$IngestionSource[];
     layerDetails?: Schema$LayerDetails;
     /**
      * The list of licenses found that are related to a given package. Note that licenses may also be stored on the BinarySourceInfo. If there is no BinarySourceInfo (because there's no concept of source vs binary), then it will be stored here, while if there are BinarySourceInfos, it will be stored there, as one source can have multiple binaries with different licenses.
@@ -1972,6 +1998,10 @@ export namespace ondemandscanning_v1 {
      */
     cvssv3?: Schema$CVSS;
     /**
+     * The cvss v4 score for the vulnerability.
+     */
+    cvssV4?: Schema$CVSS;
+    /**
      * Output only. CVSS version used to populate cvss_score and severity.
      */
     cvssVersion?: string | null;
@@ -2165,8 +2195,7 @@ export namespace ondemandscanning_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2298,8 +2327,7 @@ export namespace ondemandscanning_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2437,8 +2465,7 @@ export namespace ondemandscanning_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2564,8 +2591,7 @@ export namespace ondemandscanning_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -2728,8 +2754,7 @@ export namespace ondemandscanning_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2938,8 +2963,7 @@ export namespace ondemandscanning_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

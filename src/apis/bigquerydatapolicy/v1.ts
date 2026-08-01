@@ -456,8 +456,7 @@ export namespace bigquerydatapolicy_v1 {
         | BodyResponseCallback<Schema$DataPolicy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DataPolicy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DataPolicy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>
@@ -597,8 +596,7 @@ export namespace bigquerydatapolicy_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -739,8 +737,7 @@ export namespace bigquerydatapolicy_v1 {
         | BodyResponseCallback<Schema$DataPolicy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DataPolicy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DataPolicy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>
@@ -890,8 +887,7 @@ export namespace bigquerydatapolicy_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -1021,8 +1017,7 @@ export namespace bigquerydatapolicy_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datapolicies$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDataPoliciesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDataPoliciesResponse>,
       callback: BodyResponseCallback<Schema$ListDataPoliciesResponse>
     ): void;
     list(
@@ -1202,8 +1197,7 @@ export namespace bigquerydatapolicy_v1 {
         | BodyResponseCallback<Schema$DataPolicy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DataPolicy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DataPolicy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>
@@ -1352,8 +1346,7 @@ export namespace bigquerydatapolicy_v1 {
         | BodyResponseCallback<Schema$DataPolicy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DataPolicy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DataPolicy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DataPolicy>>
@@ -1504,8 +1497,7 @@ export namespace bigquerydatapolicy_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -1640,8 +1632,7 @@ export namespace bigquerydatapolicy_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Datapolicies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(

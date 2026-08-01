@@ -125,6 +125,28 @@ export namespace travelimpactmodel_v1 {
   }
 
   /**
+   * Input definition for the ComputeDetailedFlightEmissions request.
+   */
+  export interface Schema$ComputeDetailedFlightEmissionsRequest {
+    /**
+     * Required. Direct flights to return emission estimates for.
+     */
+    flights?: Schema$Flight[];
+  }
+  /**
+   * Output definition for the ComputeDetailedFlightEmissions response.
+   */
+  export interface Schema$ComputeDetailedFlightEmissionsResponse {
+    /**
+     * List of flight legs with emission estimates.
+     */
+    flightsWithDetailedEmissions?: Schema$FlightWithDetailedEmissions[];
+    /**
+     * The model version under which emission estimates for all flights in this response were computed.
+     */
+    modelVersion?: Schema$ModelVersion;
+  }
+  /**
    * Input definition for the ComputeFlightEmissions request.
    */
   export interface Schema$ComputeFlightEmissionsRequest {
@@ -233,6 +255,19 @@ export namespace travelimpactmodel_v1 {
     safDiscountPercentage?: number | null;
   }
   /**
+   * Details about the various emissions portions of the total emissions_grams_per_pax value. The value of the summed breakdowns should always equal emissions_grams_per_pax.
+   */
+  export interface Schema$EmissionsBreakdown {
+    /**
+     * Per-passenger tank-to-wake emission estimate numbers. Will not be present if emissions could not be computed. For the list of reasons why emissions could not be computed, see ComputeFlightEmissions.
+     */
+    ttwEmissionsGramsPerPax?: Schema$EmissionsGramsPerPax;
+    /**
+     * Per-passenger well-to-tank emission estimate numbers. Will not be present if emissions could not be computed. For the list of reasons why emissions could not be computed, see ComputeFlightEmissions.
+     */
+    wttEmissionsGramsPerPax?: Schema$EmissionsGramsPerPax;
+  }
+  /**
    * Grouped emissions per seating class results.
    */
   export interface Schema$EmissionsGramsPerPax {
@@ -252,6 +287,89 @@ export namespace travelimpactmodel_v1 {
      * Emissions for one passenger in premium economy class in grams. This field is always computed and populated, regardless of whether the aircraft has premium economy class seats or not.
      */
     premiumEconomy?: number | null;
+  }
+  /**
+   * All additional metadata.
+   */
+  export interface Schema$EmissionsMetadata {
+    /**
+     * Output only. Metadata about the EASA Flight Emissions Label. Only set when the emissions data source is EASA.
+     */
+    easaLabelMetadata?: Schema$EasaLabelMetadata;
+    /**
+     * Output only. Details about the provenance of data used to calculate the emissions data, including the contributing factors with their data sources.
+     */
+    emissionsProvenance?: Schema$EmissionsProvenance;
+    /**
+     * Output only. Link to the `travelimpactmodel.org` Emissions Calculator website. Example: https://travelimpactmodel.org/lookup/flight?itinerary=ZRH-BOS-LX-52-20261225.
+     */
+    timWebsiteEmissionsCalculatorUrl?: string | null;
+  }
+  /**
+   * Information about the provenance of the data used to calculate emissions estimates, including contributing factors and their data sources.
+   */
+  export interface Schema$EmissionsProvenance {
+    /**
+     * Output only. All contributing factors used to calculate emissions.
+     */
+    provenanceEntries?: Schema$EmissionsProvenanceEntry[];
+  }
+  /**
+   * Details about a single contributing factor in emissions calculations.
+   */
+  export interface Schema$EmissionsProvenanceEntry {
+    /**
+     * Output only. The cargo mass fraction value. If not set, the cargo mass fraction value is not available.
+     */
+    cargoMassFractionData?: number | null;
+    /**
+     * Output only. Strategy for T100 cargo mass fraction.
+     */
+    cargoMassFractionT100Strategy?: string | null;
+    /**
+     * Output only. Data category of the data source.
+     */
+    dataCategory?: string | null;
+    /**
+     * Output only. Strategy for distance adjustment.
+     */
+    distanceAdjustmentStrategy?: string | null;
+    /**
+     * Output only. The estimated distance flown in CCD flight phase in kilometers value calculated using the distance adjustment factor (DAF). If not set, the estimated flight distance value is not available.
+     */
+    estimatedFlightDistanceKm?: number | null;
+    /**
+     * Output only. Strategy for EEA fuel burn.
+     */
+    fuelBurnEeaStrategy?: string | null;
+    /**
+     * Output only. Strategy for CH Aviation load factors.
+     */
+    loadFactorsChAviationStrategy?: string | null;
+    /**
+     * Output only. The load factors data value. If not set, the load factors value is not available.
+     */
+    loadFactorsData?: number | null;
+    /**
+     * Output only. Strategy for T100 load factors.
+     */
+    loadFactorsT100Strategy?: string | null;
+    /**
+     * Output only. The type of the provenance entry.
+     */
+    provenanceEntryType?: string | null;
+    /**
+     * Output only. Strategy for IATA seat area ratios.
+     */
+    seatAreaRatioIataStrategy?: string | null;
+    /**
+     * Output only. The source of the data.
+     */
+    source?: string | null;
+    /**
+     * Output only. The version of the source data. For example, "2025/04".
+     */
+    sourceVersion?: string | null;
   }
   /**
    * All details related to a single request item for a direct flight emission estimates.
@@ -277,6 +395,44 @@ export namespace travelimpactmodel_v1 {
      * Required. IATA airport code for flight origin, e.g. "LHR".
      */
     origin?: string | null;
+  }
+  /**
+   * Details about the specific flight's emissions.
+   */
+  export interface Schema$FlightEmissionsDetails {
+    /**
+     * Output only. The significance of contrails warming impact compared to the total CO2e emissions impact.
+     */
+    contrailsImpactBucket?: string | null;
+    /**
+     * Output only. Details about the various emissions portions of the total emissions_grams_per_pax value. The value of the summed breakdowns should always equal emissions_grams_per_pax.
+     */
+    emissionsBreakdown?: Schema$EmissionsBreakdown;
+    /**
+     * Output only. Per-passenger emission estimate numbers. Will not be present if emissions could not be computed. For the list of reasons why emissions could not be computed, see ComputeDetailedFlightEmissions
+     */
+    emissionsGramsPerPax?: Schema$EmissionsGramsPerPax;
+    /**
+     * Output only. The source of the emissions data.
+     */
+    source?: string | null;
+  }
+  /**
+   * Direct flight with emission estimates details.
+   */
+  export interface Schema$FlightWithDetailedEmissions {
+    /**
+     * Output only. Additional metadata about the flight emissions calculation.
+     */
+    emissionsMetadata?: Schema$EmissionsMetadata;
+    /**
+     * Output only. Matches the flight identifiers in the request. Note: all IATA codes are capitalized.
+     */
+    flight?: Schema$Flight;
+    /**
+     * Output only. All the flight emissions data.
+     */
+    flightEmissionsDetails?: Schema$FlightEmissionsDetails;
   }
   /**
    * Direct flight with emission estimates.
@@ -416,7 +572,160 @@ export namespace travelimpactmodel_v1 {
     }
 
     /**
-     * Stateless method to retrieve emission estimates. Details on how emission estimates are computed are in [GitHub](https://github.com/google/travel-impact-model). The response will contain all entries that match the input flight legs, in the same order. If there are no estimates available for a certain flight leg, the response will return the flight leg object with empty emission fields. The request will still be considered successful. Reasons for missing emission estimates include: * The flight is unknown to the server. * The input flight leg is missing one or more identifiers. * The flight date is in the past. * The aircraft type is not supported by the model. * Missing seat configuration. The request can contain up to 1000 flight legs. If the request has more than 1000 direct flights, if will fail with an INVALID_ARGUMENT error.
+     * Retrieves detailed emission estimates. Detailed Flight Emissions are transparent per-passenger greenhouse gas emission estimates supplemented by comprehensive metadata detailing the calculation methodology, emissions breakdown, contrail impact, and data provenance. Details on how emission estimates are computed are in [GitHub](https://github.com/google/travel-impact-model). The response will contain all entries that match the input flight legs, in the same order. If there are no estimates available for a certain flight leg, the response will return the flight leg object with empty emission fields. The request will still be considered successful. Reasons for missing emission estimates include: * The flight is unknown to the server. * The input flight leg is missing one or more identifiers. * The flight date is in the past. * The aircraft type is not supported by the model. * Missing seat configuration. The request can contain up to 100 flight legs. If the request has more than 100 flight legs, it will fail with an INVALID_ARGUMENT error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/travelimpactmodel.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const travelimpactmodel = google.travelimpactmodel('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await travelimpactmodel.flights.computeDetailedFlightEmissions({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "flights": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "flightsWithDetailedEmissions": [],
+     *   //   "modelVersion": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    computeDetailedFlightEmissions(
+      params: Params$Resource$Flights$Computedetailedflightemissions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    computeDetailedFlightEmissions(
+      params?: Params$Resource$Flights$Computedetailedflightemissions,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ComputeDetailedFlightEmissionsResponse>
+    >;
+    computeDetailedFlightEmissions(
+      params: Params$Resource$Flights$Computedetailedflightemissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    computeDetailedFlightEmissions(
+      params: Params$Resource$Flights$Computedetailedflightemissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ComputeDetailedFlightEmissionsResponse>,
+      callback: BodyResponseCallback<Schema$ComputeDetailedFlightEmissionsResponse>
+    ): void;
+    computeDetailedFlightEmissions(
+      params: Params$Resource$Flights$Computedetailedflightemissions,
+      callback: BodyResponseCallback<Schema$ComputeDetailedFlightEmissionsResponse>
+    ): void;
+    computeDetailedFlightEmissions(
+      callback: BodyResponseCallback<Schema$ComputeDetailedFlightEmissionsResponse>
+    ): void;
+    computeDetailedFlightEmissions(
+      paramsOrCallback?:
+        | Params$Resource$Flights$Computedetailedflightemissions
+        | BodyResponseCallback<Schema$ComputeDetailedFlightEmissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ComputeDetailedFlightEmissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ComputeDetailedFlightEmissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ComputeDetailedFlightEmissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Flights$Computedetailedflightemissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Flights$Computedetailedflightemissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://travelimpactmodel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/flights:computeDetailedFlightEmissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ComputeDetailedFlightEmissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ComputeDetailedFlightEmissionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Retrieves emission estimates. Details on how emission estimates are computed are in [GitHub](https://github.com/google/travel-impact-model). The response will contain all entries that match the input flight legs, in the same order. If there are no estimates available for a certain flight leg, the response will return the flight leg object with empty emission fields. The request will still be considered successful. Reasons for missing emission estimates include: * The flight is unknown to the server. * The input flight leg is missing one or more identifiers. * The flight date is in the past. * The aircraft type is not supported by the model. * Missing seat configuration. The request can contain up to 1000 flight legs. If the request has more than 1000 direct flights, if will fail with an INVALID_ARGUMENT error.
      * @example
      * ```js
      * // Before running the sample:
@@ -566,7 +875,7 @@ export namespace travelimpactmodel_v1 {
     }
 
     /**
-     * Stateless method to retrieve GHG emissions estimates for a set of flight segments for Scope 3 reporting. The response will contain all entries that match the input Scope3FlightSegment flight segments, in the same order provided. The estimates will be computed using the following cascading logic (using the first one that is available): 1. TIM-based emissions given origin, destination, carrier, flightNumber, departureDate, and cabinClass. 2. Typical flight emissions given origin, destination, year in departureDate, and cabinClass. 3. Distance-based emissions calculated using distanceKm, year in departureDate, and cabinClass. If there is a future flight requested in this calendar year, we do not support Tier 1 emissions and will fallback to Tier 2 or 3 emissions. If the requested future flight is in not in this calendar year, we will return an empty response. We recommend that for future flights, computeFlightEmissions API is used instead. If there are no estimates available for a certain flight with any of the three methods, the response will return a Scope3FlightEmissions object with empty emission fields. The request will still be considered successful. Generally, missing emissions estimates occur when the flight is unknown to the server (e.g. no specific flight exists, or typical flight emissions are not available for the requested pair). The request will fail with an `INVALID_ARGUMENT` error if: * The request contains more than 1,000 flight legs. * The input flight leg is missing one or more identifiers. For example, missing origin/destination without a valid distance for TIM_EMISSIONS or TYPICAL_FLIGHT_EMISSIONS type matching, or missing distance for a DISTANCE_BASED_EMISSIONS type matching (if you want to fallback to distance-based emissions or want a distance-based emissions estimate, you need to specify a distance). * The flight date is before 2019 (Scope 3 data is only available for 2019 and after). * The flight distance is 0 or lower. * Missing cabin class. Because the request is processed with fallback logic, it is possible that misconfigured requests return valid emissions estimates using fallback methods. For example, if a request has the wrong flight number but specifies the origin and destination, the request will still succeed, but the returned emissions will be based solely on the typical flight emissions. Similarly, if a request is missing the origin for a typical flight emissions request, but specifies a valid distance, the request could succeed based solely on the distance-based emissions. Consequently, one should check the source of the returned emissions (source) to confirm the results are as expected.
+     * Retrieves GHG emissions estimates for a set of flight segments for Scope 3 reporting. The response will contain all entries that match the input Scope3FlightSegment flight segments, in the same order provided. The estimates will be computed using the following cascading logic (using the first one that is available): 1. TIM-based emissions given origin, destination, carrier, flightNumber, departureDate, and cabinClass. 2. Typical flight emissions given origin, destination, year in departureDate, and cabinClass. 3. Distance-based emissions calculated using distanceKm, year in departureDate, and cabinClass. If there is a future flight requested in this calendar year, we do not support Tier 1 emissions and will fallback to Tier 2 or 3 emissions. If the requested future flight is in not in this calendar year, we will return an empty response. We recommend that for future flights, computeFlightEmissions API is used instead. If there are no estimates available for a certain flight with any of the three methods, the response will return a Scope3FlightEmissions object with empty emission fields. The request will still be considered successful. Generally, missing emissions estimates occur when the flight is unknown to the server (e.g. no specific flight exists, or typical flight emissions are not available for the requested pair). The request will fail with an `INVALID_ARGUMENT` error if: * The request contains more than 1,000 flight legs. * The input flight leg is missing one or more identifiers. For example, missing origin/destination without a valid distance for TIM_EMISSIONS or TYPICAL_FLIGHT_EMISSIONS type matching, or missing distance for a DISTANCE_BASED_EMISSIONS type matching (if you want to fallback to distance-based emissions or want a distance-based emissions estimate, you need to specify a distance). * The flight date is before 2019 (Scope 3 data is only available for 2019 and after). * The flight distance is 0 or lower. * Missing cabin class. Because the request is processed with fallback logic, it is possible that misconfigured requests return valid emissions estimates using fallback methods. For example, if a request has the wrong flight number but specifies the origin and destination, the request will still succeed, but the returned emissions will be based solely on the typical flight emissions. Similarly, if a request is missing the origin for a typical flight emissions request, but specifies a valid distance, the request could succeed based solely on the distance-based emissions. Consequently, one should check the source of the returned emissions (source) to confirm the results are as expected.
      * @example
      * ```js
      * // Before running the sample:
@@ -874,6 +1183,12 @@ export namespace travelimpactmodel_v1 {
     }
   }
 
+  export interface Params$Resource$Flights$Computedetailedflightemissions extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ComputeDetailedFlightEmissionsRequest;
+  }
   export interface Params$Resource$Flights$Computeflightemissions extends StandardParameters {
     /**
      * Request body metadata

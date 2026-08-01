@@ -2010,8 +2010,7 @@ export namespace people_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2293,8 +2292,7 @@ export namespace people_v1 {
     list(
       params: Params$Resource$Contactgroups$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListContactGroupsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListContactGroupsResponse>,
       callback: BodyResponseCallback<Schema$ListContactGroupsResponse>
     ): void;
     list(
@@ -2913,8 +2911,7 @@ export namespace people_v1 {
         | BodyResponseCallback<Schema$Person>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Person>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Person> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Person>>
@@ -3045,8 +3042,7 @@ export namespace people_v1 {
     list(
       params: Params$Resource$Othercontacts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOtherContactsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOtherContactsResponse>,
       callback: BodyResponseCallback<Schema$ListOtherContactsResponse>
     ): void;
     list(
@@ -3554,8 +3550,7 @@ export namespace people_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3924,8 +3919,7 @@ export namespace people_v1 {
         | BodyResponseCallback<Schema$Person>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Person>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Person> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Person>>
@@ -4059,8 +4053,7 @@ export namespace people_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4182,8 +4175,7 @@ export namespace people_v1 {
     deleteContactPhoto(
       params: Params$Resource$People$Deletecontactphoto,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeleteContactPhotoResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DeleteContactPhotoResponse>,
       callback: BodyResponseCallback<Schema$DeleteContactPhotoResponse>
     ): void;
     deleteContactPhoto(
@@ -4397,8 +4389,7 @@ export namespace people_v1 {
         | BodyResponseCallback<Schema$Person>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Person>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Person> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Person>>
@@ -5233,8 +5224,7 @@ export namespace people_v1 {
         | BodyResponseCallback<Schema$Person>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Person>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Person> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Person>>
@@ -5362,8 +5352,7 @@ export namespace people_v1 {
     updateContactPhoto(
       params: Params$Resource$People$Updatecontactphoto,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UpdateContactPhotoResponse>,
+        MethodOptions | BodyResponseCallback<Schema$UpdateContactPhotoResponse>,
       callback: BodyResponseCallback<Schema$UpdateContactPhotoResponse>
     ): void;
     updateContactPhoto(
@@ -5731,8 +5720,7 @@ export namespace people_v1 {
     list(
       params: Params$Resource$People$Connections$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListConnectionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListConnectionsResponse>,
       callback: BodyResponseCallback<Schema$ListConnectionsResponse>
     ): void;
     list(

@@ -200,15 +200,6 @@ export namespace firebaseappcheck_v1 {
     configs?: Schema$GoogleFirebaseAppcheckV1RecaptchaV3Config[];
   }
   /**
-   * Response message for the BatchGetSafetyNetConfigs method.
-   */
-  export interface Schema$GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse {
-    /**
-     * SafetyNetConfigs retrieved.
-     */
-    configs?: Schema$GoogleFirebaseAppcheckV1SafetyNetConfig[];
-  }
-  /**
    * Request message for the BatchUpdateResourcePolicies method.
    */
   export interface Schema$GoogleFirebaseAppcheckV1BatchUpdateResourcePoliciesRequest {
@@ -269,7 +260,7 @@ export namespace firebaseappcheck_v1 {
      */
     name?: string | null;
     /**
-     * Required. Input only. Immutable. The secret token itself. Must be provided during creation, and must be a UUID4, case insensitive. This field is immutable once set, and cannot be provided during an UpdateDebugToken request. You can, however, delete this debug token using DeleteDebugToken to revoke it. For security reasons, this field will never be populated in any response.
+     * Required. Input only. Immutable. The secret token itself. Must be provided during creation, and must be a UUID4, case insensitive. This field is immutable once set, and cannot be provided during a UpdateDebugToken request. You can, however, delete this debug token using DeleteDebugToken to revoke it. For security reasons, this field will never be populated in any response.
      */
     token?: string | null;
     /**
@@ -366,6 +357,10 @@ export namespace firebaseappcheck_v1 {
      */
     customToken?: string | null;
     /**
+     * Optional. When `limited_use` is set to `true`, this field specifies the desired `jti` claim (Section 4.1.7 of RFC 7519) in the returned App Check token. *Limited use* App Check tokens with the same `jti` will be counted as the same token for the purposes of replay protection. An error is returned if this field is specified without setting `limited_use` to `true`. The size of this field is limited to 500 bytes. If specified, its length must be at least 16 bytes. If this field is omitted or is empty and `limited_use` is set to `true`, a randomly generated `jti` claim with length between 16 and 500 bytes (inclusive) will be used in the returned App Check token. Leaving this field empty is only recommended if your custom attestation provider itself is not vulnerable to replay attacks. When `limited_use` is set to `false`, the presence and the contents of the `jti` claim in the returned App Check token are unspecified. To ensure that the returned App Check token is eligible for limited-use functionality, set `limited_use` to `true`.
+     */
+    jti?: string | null;
+    /**
      * Specifies whether this attestation is for use in a *limited use* (`true`) or *session based* (`false`) context. To enable this attestation to be used with the *replay protection* feature, set this to `true`. The default value is `false`.
      */
     limitedUse?: boolean | null;
@@ -434,15 +429,6 @@ export namespace firebaseappcheck_v1 {
      * Required. The reCAPTCHA token as returned by the [reCAPTCHA v3 JavaScript API](https://developers.google.com/recaptcha/docs/v3).
      */
     recaptchaV3Token?: string | null;
-  }
-  /**
-   * Request message for the ExchangeSafetyNetToken method.
-   */
-  export interface Schema$GoogleFirebaseAppcheckV1ExchangeSafetyNetTokenRequest {
-    /**
-     * Required. The [SafetyNet attestation response](https://developer.android.com/training/safetynet/attestation#request-attestation-step) issued to your app.
-     */
-    safetyNetToken?: string | null;
   }
   /**
    * Request message for the GenerateAppAttestChallenge method.
@@ -667,7 +653,7 @@ export namespace firebaseappcheck_v1 {
    */
   export interface Schema$GoogleFirebaseAppcheckV1ResourcePolicy {
     /**
-     * Required. The App Check enforcement mode for this resource. This will override the App Check overall EnforcementMode setting on the service.
+     * Required. The baseline protection EnforcementMode for this resource. This will override the service-level baseline protection EnforcementMode.
      */
     enforcementMode?: string | null;
     /**
@@ -688,24 +674,11 @@ export namespace firebaseappcheck_v1 {
     updateTime?: string | null;
   }
   /**
-   * An app's SafetyNet configuration object. This configuration controls certain properties of the `AppCheckToken` returned by ExchangeSafetyNetToken, such as its ttl. Note that your registered SHA-256 certificate fingerprints are used to validate tokens issued by SafetyNet; please register them via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v11/projects.androidApps.sha/create).
-   */
-  export interface Schema$GoogleFirebaseAppcheckV1SafetyNetConfig {
-    /**
-     * Required. The relative resource name of the SafetyNet configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/safetyNetConfig ```
-     */
-    name?: string | null;
-    /**
-     * Specifies the duration for which App Check tokens exchanged from SafetyNet tokens will be valid. If unset, a default value of 1 hour is assumed. Must be between 30 minutes and 7 days, inclusive.
-     */
-    tokenTtl?: string | null;
-  }
-  /**
    * The enforcement configuration for a Firebase service supported by App Check.
    */
   export interface Schema$GoogleFirebaseAppcheckV1Service {
     /**
-     * Required. The App Check enforcement mode for this service.
+     * Required. The baseline protection EnforcementMode for this service.
      */
     enforcementMode?: string | null;
     /**
@@ -713,11 +686,11 @@ export namespace firebaseappcheck_v1 {
      */
     etag?: string | null;
     /**
-     * Required. The relative resource name of the service configuration object, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore) * `oauth2.googleapis.com` (Google Identity for iOS)
+     * Required. The relative resource name of the service configuration object, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported. Firebase and Google Cloud services: * `identitytoolkit.googleapis.com` (Firebase Authentication) * `firebasedataconnect.googleapis.com` (Firebase SQL Connect) * `firestore.googleapis.com` (Cloud Firestore) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebaseml.googleapis.com` (Firebase AI Logic) Google Maps Platform services: * `maps-backend.googleapis.com` (Maps JavaScript API) * `places.googleapis.com` (Places API (New)) Other supported Google services: * `oauth2.googleapis.com` (Google Identity for iOS) Note: While all the supported `service_id`s may appear to be subdomains of `googleapis.com`, the `service_id` has no semantic meaning beyond identifying the service to App Check. It is not intended to represent the actual domain to which your apps send traffic, nor is it necessarily the API that should be enabled to use the service. For information on using these Google services, consult their documentation.
      */
     name?: string | null;
     /**
-     * Optional. The replay protection enforcement mode for this service. Note that this field cannot be set to a level higher than the overall App Check enforcement mode. For example, if the overall App Check enforcement mode is set to `UNENFORCED`, this field cannot be set to `ENFORCED`. In order to enforce replay protection, you must first enforce App Check. An HTTP 400 error will be returned in this case. By default, this field is set to `OFF`. Setting this field to `UNENFORCED` or `ENFORCED` is considered opting into replay protection. Once opted in, requests to your protected services may experience higher latency. To opt out of replay protection after opting in, set this field to `OFF`.
+     * Optional. The replay protection EnforcementMode for this service. Note that this field cannot be set to a level higher than that of baseline protection. For example, if the enforcement mode for baseline protection is set to `UNENFORCED`, this field cannot be set to `ENFORCED`. In order to enforce replay protection, you must first enforce App Check's baseline protection. An HTTP 400 error will be returned in this case. By default, this field is set to `OFF`. Setting this field to `UNENFORCED` or `ENFORCED` is considered opting into replay protection. Opting in can impact your requests by adding some latency and sometimes cost (depending on your attestation provider). To opt out of replay protection after opting in, set this field to `OFF`.
      */
     replayProtection?: string | null;
     /**
@@ -730,7 +703,7 @@ export namespace firebaseappcheck_v1 {
    */
   export interface Schema$GoogleFirebaseAppcheckV1UpdateResourcePolicyRequest {
     /**
-     * Required. The ResourcePolicy to update. The ResourcePolicy's `name` field is used to identify the ResourcePolicy to be updated, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS)
+     * Required. The ResourcePolicy to update. The ResourcePolicy's `name` field is used to identify the ResourcePolicy to be updated, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ``` Note that the `service_id` element must be a supported service ID. Consult the ResourcePolicy.name field for a list of supported service IDs.
      */
     resourcePolicy?: Schema$GoogleFirebaseAppcheckV1ResourcePolicy;
     /**
@@ -743,7 +716,7 @@ export namespace firebaseappcheck_v1 {
    */
   export interface Schema$GoogleFirebaseAppcheckV1UpdateServiceRequest {
     /**
-     * Required. The Service to update. The Service's `name` field is used to identify the Service to be updated, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore) * `oauth2.googleapis.com` (Google Identity for iOS)
+     * Required. The Service to update. The Service's `name` field is used to identify the Service to be updated, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Consult the Service.name field for a list of supported service IDs.
      */
     service?: Schema$GoogleFirebaseAppcheckV1Service;
     /**
@@ -1634,7 +1607,6 @@ export namespace firebaseappcheck_v1 {
     playIntegrityConfig: Resource$Projects$Apps$Playintegrityconfig;
     recaptchaEnterpriseConfig: Resource$Projects$Apps$Recaptchaenterpriseconfig;
     recaptchaV3Config: Resource$Projects$Apps$Recaptchav3config;
-    safetyNetConfig: Resource$Projects$Apps$Safetynetconfig;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.appAttestConfig = new Resource$Projects$Apps$Appattestconfig(
@@ -1650,9 +1622,6 @@ export namespace firebaseappcheck_v1 {
       this.recaptchaEnterpriseConfig =
         new Resource$Projects$Apps$Recaptchaenterpriseconfig(this.context);
       this.recaptchaV3Config = new Resource$Projects$Apps$Recaptchav3config(
-        this.context
-      );
-      this.safetyNetConfig = new Resource$Projects$Apps$Safetynetconfig(
         this.context
       );
     }
@@ -2028,6 +1997,7 @@ export namespace firebaseappcheck_v1 {
      *       // request body parameters
      *       // {
      *       //   "customToken": "my_customToken",
+     *       //   "jti": "my_jti",
      *       //   "limitedUse": false
      *       // }
      *     },
@@ -2954,166 +2924,6 @@ export namespace firebaseappcheck_v1 {
     }
 
     /**
-     * Validates a [SafetyNet token](https://developer.android.com/training/safetynet/attestation#request-attestation-step). If valid, returns an AppCheckToken.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const firebaseappcheck = google.firebaseappcheck('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await firebaseappcheck.projects.apps.exchangeSafetyNetToken({
-     *     // Required. The relative resource name of the Android app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
-     *     app: 'projects/my-project/apps/my-app',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "safetyNetToken": "my_safetyNetToken"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "token": "my_token",
-     *   //   "ttl": "my_ttl"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    exchangeSafetyNetToken(
-      params: Params$Resource$Projects$Apps$Exchangesafetynettoken,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    exchangeSafetyNetToken(
-      params?: Params$Resource$Projects$Apps$Exchangesafetynettoken,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
-    >;
-    exchangeSafetyNetToken(
-      params: Params$Resource$Projects$Apps$Exchangesafetynettoken,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    exchangeSafetyNetToken(
-      params: Params$Resource$Projects$Apps$Exchangesafetynettoken,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1AppCheckToken>,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
-    ): void;
-    exchangeSafetyNetToken(
-      params: Params$Resource$Projects$Apps$Exchangesafetynettoken,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
-    ): void;
-    exchangeSafetyNetToken(
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
-    ): void;
-    exchangeSafetyNetToken(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Apps$Exchangesafetynettoken
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1AppCheckToken>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Apps$Exchangesafetynettoken;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Apps$Exchangesafetynettoken;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+app}:exchangeSafetyNetToken').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['app'],
-        pathParams: ['app'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleFirebaseAppcheckV1AppCheckToken>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1AppCheckToken>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * Generates a challenge that protects the integrity of an immediately following call to ExchangeAppAttestAttestation or ExchangeAppAttestAssertion. A challenge should not be reused for multiple calls.
      * @example
      * ```js
@@ -3518,17 +3328,6 @@ export namespace firebaseappcheck_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1ExchangeRecaptchaV3TokenRequest;
-  }
-  export interface Params$Resource$Projects$Apps$Exchangesafetynettoken extends StandardParameters {
-    /**
-     * Required. The relative resource name of the Android app, in the format: ``` projects/{project_number\}/apps/{app_id\} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.
-     */
-    app?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleFirebaseAppcheckV1ExchangeSafetyNetTokenRequest;
   }
   export interface Params$Resource$Projects$Apps$Generateappattestchallenge extends StandardParameters {
     /**
@@ -6741,7 +6540,7 @@ export namespace firebaseappcheck_v1 {
     }
 
     /**
-     * Updates the RecaptchaV3Config for the specified app. While this configuration is incomplete or invalid, the app will be unable to exchange reCAPTCHA V3 tokens for App Check tokens. For security reasons, the `site_secret` field is never populated in the response.
+     * Updates the RecaptchaV3Config for the specified app. While this configuration is incomplete or invalid, the app will be unable to exchange reCAPTCHA v3 tokens for App Check tokens. For security reasons, the `site_secret` field is never populated in the response.
      * @example
      * ```js
      * // Before running the sample:
@@ -6937,506 +6736,6 @@ export namespace firebaseappcheck_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1RecaptchaV3Config;
-  }
-
-  export class Resource$Projects$Apps$Safetynetconfig {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Atomically gets the SafetyNetConfigs for the specified list of apps.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const firebaseappcheck = google.firebaseappcheck('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await firebaseappcheck.projects.apps.safetyNetConfig.batchGet({
-     *     // Required. The relative resource names of the SafetyNetConfigs to retrieve, in the format ``` projects/{project_number\}/apps/{app_id\}/safetyNetConfig ``` A maximum of 100 objects can be retrieved in a batch.
-     *     names: 'placeholder-value',
-     *     // Required. The parent project name shared by all SafetyNetConfigs being retrieved, in the format ``` projects/{project_number\} ``` The parent collection in the `name` field of any resource being retrieved must match this field, or the entire batch fails.
-     *     parent: 'projects/my-project',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "configs": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    batchGet(
-      params: Params$Resource$Projects$Apps$Safetynetconfig$Batchget,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    batchGet(
-      params?: Params$Resource$Projects$Apps$Safetynetconfig$Batchget,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse>
-    >;
-    batchGet(
-      params: Params$Resource$Projects$Apps$Safetynetconfig$Batchget,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    batchGet(
-      params: Params$Resource$Projects$Apps$Safetynetconfig$Batchget,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse>
-    ): void;
-    batchGet(
-      params: Params$Resource$Projects$Apps$Safetynetconfig$Batchget,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse>
-    ): void;
-    batchGet(
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse>
-    ): void;
-    batchGet(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Apps$Safetynetconfig$Batchget
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Apps$Safetynetconfig$Batchget;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Apps$Safetynetconfig$Batchget;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1/{+parent}/apps/-/safetyNetConfig:batchGet'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Gets the SafetyNetConfig for the specified app.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const firebaseappcheck = google.firebaseappcheck('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await firebaseappcheck.projects.apps.safetyNetConfig.get({
-     *     // Required. The relative resource name of the SafetyNetConfig, in the format: ``` projects/{project_number\}/apps/{app_id\}/safetyNetConfig ```
-     *     name: 'projects/my-project/apps/my-app/safetyNetConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "tokenTtl": "my_tokenTtl"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Apps$Safetynetconfig$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Apps$Safetynetconfig$Get,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
-    >;
-    get(
-      params: Params$Resource$Projects$Apps$Safetynetconfig$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Apps$Safetynetconfig$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Apps$Safetynetconfig$Get,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Apps$Safetynetconfig$Get
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Apps$Safetynetconfig$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Apps$Safetynetconfig$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Updates the SafetyNetConfig for the specified app. While this configuration is incomplete or invalid, the app will be unable to exchange SafetyNet tokens for App Check tokens.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const firebaseappcheck = google.firebaseappcheck('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/firebase',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await firebaseappcheck.projects.apps.safetyNetConfig.patch({
-     *     // Required. The relative resource name of the SafetyNet configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/safetyNetConfig ```
-     *     name: 'projects/my-project/apps/my-app/safetyNetConfig',
-     *     // Required. A comma-separated list of names of fields in the SafetyNetConfig to update. Example: `token_ttl`.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "name": "my_name",
-     *       //   "tokenTtl": "my_tokenTtl"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "tokenTtl": "my_tokenTtl"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Apps$Safetynetconfig$Patch,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    patch(
-      params?: Params$Resource$Projects$Apps$Safetynetconfig$Patch,
-      options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
-    >;
-    patch(
-      params: Params$Resource$Projects$Apps$Safetynetconfig$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Apps$Safetynetconfig$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Apps$Safetynetconfig$Patch,
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Apps$Safetynetconfig$Patch
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>
-        >
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Apps$Safetynetconfig$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Apps$Safetynetconfig$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1SafetyNetConfig>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Apps$Safetynetconfig$Batchget extends StandardParameters {
-    /**
-     * Required. The relative resource names of the SafetyNetConfigs to retrieve, in the format ``` projects/{project_number\}/apps/{app_id\}/safetyNetConfig ``` A maximum of 100 objects can be retrieved in a batch.
-     */
-    names?: string[];
-    /**
-     * Required. The parent project name shared by all SafetyNetConfigs being retrieved, in the format ``` projects/{project_number\} ``` The parent collection in the `name` field of any resource being retrieved must match this field, or the entire batch fails.
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Projects$Apps$Safetynetconfig$Get extends StandardParameters {
-    /**
-     * Required. The relative resource name of the SafetyNetConfig, in the format: ``` projects/{project_number\}/apps/{app_id\}/safetyNetConfig ```
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Apps$Safetynetconfig$Patch extends StandardParameters {
-    /**
-     * Required. The relative resource name of the SafetyNet configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/safetyNetConfig ```
-     */
-    name?: string;
-    /**
-     * Required. A comma-separated list of names of fields in the SafetyNetConfig to update. Example: `token_ttl`.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleFirebaseAppcheckV1SafetyNetConfig;
   }
 
   export class Resource$Projects$Services {
@@ -7643,7 +6942,7 @@ export namespace firebaseappcheck_v1 {
      *
      *   // Do the magic
      *   const res = await firebaseappcheck.projects.services.get({
-     *     // Required. The relative resource name of the Service to retrieve, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore) * `oauth2.googleapis.com` (Google Identity for iOS)
+     *     // Required. The relative resource name of the Service to retrieve, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Consult the Service.name field for a list of supported service IDs.
      *     name: 'projects/my-project/services/my-service',
      *   });
      *   console.log(res.data);
@@ -7947,7 +7246,7 @@ export namespace firebaseappcheck_v1 {
      *
      *   // Do the magic
      *   const res = await firebaseappcheck.projects.services.patch({
-     *     // Required. The relative resource name of the service configuration object, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore) * `oauth2.googleapis.com` (Google Identity for iOS)
+     *     // Required. The relative resource name of the service configuration object, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported. Firebase and Google Cloud services: * `identitytoolkit.googleapis.com` (Firebase Authentication) * `firebasedataconnect.googleapis.com` (Firebase SQL Connect) * `firestore.googleapis.com` (Cloud Firestore) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebaseml.googleapis.com` (Firebase AI Logic) Google Maps Platform services: * `maps-backend.googleapis.com` (Maps JavaScript API) * `places.googleapis.com` (Places API (New)) Other supported Google services: * `oauth2.googleapis.com` (Google Identity for iOS) Note: While all the supported `service_id`s may appear to be subdomains of `googleapis.com`, the `service_id` has no semantic meaning beyond identifying the service to App Check. It is not intended to represent the actual domain to which your apps send traffic, nor is it necessarily the API that should be enabled to use the service. For information on using these Google services, consult their documentation.
      *     name: 'projects/my-project/services/my-service',
      *     // Required. A comma-separated list of names of fields in the Service to update. Example: `enforcement_mode`.
      *     updateMask: 'placeholder-value',
@@ -8089,7 +7388,7 @@ export namespace firebaseappcheck_v1 {
   }
   export interface Params$Resource$Projects$Services$Get extends StandardParameters {
     /**
-     * Required. The relative resource name of the Service to retrieve, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore) * `oauth2.googleapis.com` (Google Identity for iOS)
+     * Required. The relative resource name of the Service to retrieve, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Consult the Service.name field for a list of supported service IDs.
      */
     name?: string;
   }
@@ -8109,7 +7408,7 @@ export namespace firebaseappcheck_v1 {
   }
   export interface Params$Resource$Projects$Services$Patch extends StandardParameters {
     /**
-     * Required. The relative resource name of the service configuration object, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore) * `oauth2.googleapis.com` (Google Identity for iOS)
+     * Required. The relative resource name of the service configuration object, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported. Firebase and Google Cloud services: * `identitytoolkit.googleapis.com` (Firebase Authentication) * `firebasedataconnect.googleapis.com` (Firebase SQL Connect) * `firestore.googleapis.com` (Cloud Firestore) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebaseml.googleapis.com` (Firebase AI Logic) Google Maps Platform services: * `maps-backend.googleapis.com` (Maps JavaScript API) * `places.googleapis.com` (Places API (New)) Other supported Google services: * `oauth2.googleapis.com` (Google Identity for iOS) Note: While all the supported `service_id`s may appear to be subdomains of `googleapis.com`, the `service_id` has no semantic meaning beyond identifying the service to App Check. It is not intended to represent the actual domain to which your apps send traffic, nor is it necessarily the API that should be enabled to use the service. For information on using these Google services, consult their documentation.
      */
     name?: string;
     /**
@@ -8324,7 +7623,7 @@ export namespace firebaseappcheck_v1 {
      *
      *   // Do the magic
      *   const res = await firebaseappcheck.projects.services.resourcePolicies.create({
-     *     // Required. The relative resource name of the parent Service in which the specified ResourcePolicy will be created, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS)
+     *     // Required. The relative resource name of the parent Service in which the specified ResourcePolicy will be created, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Consult the ResourcePolicy.name field for a list of supported service IDs.
      *     parent: 'projects/my-project/services/my-service',
      *
      *     // Request body metadata
@@ -8631,7 +7930,7 @@ export namespace firebaseappcheck_v1 {
      *
      *   // Do the magic
      *   const res = await firebaseappcheck.projects.services.resourcePolicies.get({
-     *     // Required. The relative resource name of the ResourcePolicy to retrieve, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS)
+     *     // Required. The relative resource name of the ResourcePolicy to retrieve, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ``` Note that the `service_id` element must be a supported service ID. Consult the ResourcePolicy.name field for a list of supported service IDs.
      *     name: 'projects/my-project/services/my-service/resourcePolicies/my-resourcePolicie',
      *   });
      *   console.log(res.data);
@@ -8789,7 +8088,7 @@ export namespace firebaseappcheck_v1 {
      *     pageSize: 'placeholder-value',
      *     // Token returned from a previous call to ListResourcePolicies indicating where in the set of ResourcePolicy objects to resume listing. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListResourcePolicies must match the call that provided the page token; if they do not match, the result is undefined.
      *     pageToken: 'placeholder-value',
-     *     // Required. The relative resource name of the parent Service for which to list each associated ResourcePolicy, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS)
+     *     // Required. The relative resource name of the parent Service for which to list each associated ResourcePolicy, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Consult the ResourcePolicy.name field for a list of supported service IDs.
      *     parent: 'projects/my-project/services/my-service',
      *   });
      *   console.log(res.data);
@@ -9087,7 +8386,7 @@ export namespace firebaseappcheck_v1 {
   }
   export interface Params$Resource$Projects$Services$Resourcepolicies$Create extends StandardParameters {
     /**
-     * Required. The relative resource name of the parent Service in which the specified ResourcePolicy will be created, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS)
+     * Required. The relative resource name of the parent Service in which the specified ResourcePolicy will be created, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Consult the ResourcePolicy.name field for a list of supported service IDs.
      */
     parent?: string;
 
@@ -9108,7 +8407,7 @@ export namespace firebaseappcheck_v1 {
   }
   export interface Params$Resource$Projects$Services$Resourcepolicies$Get extends StandardParameters {
     /**
-     * Required. The relative resource name of the ResourcePolicy to retrieve, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS)
+     * Required. The relative resource name of the ResourcePolicy to retrieve, in the format: ``` projects/{project_number\}/services/{service_id\}/resourcePolicies/{resource_policy_id\} ``` Note that the `service_id` element must be a supported service ID. Consult the ResourcePolicy.name field for a list of supported service IDs.
      */
     name?: string;
   }
@@ -9126,7 +8425,7 @@ export namespace firebaseappcheck_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The relative resource name of the parent Service for which to list each associated ResourcePolicy, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `oauth2.googleapis.com` (Google Identity for iOS)
+     * Required. The relative resource name of the parent Service for which to list each associated ResourcePolicy, in the format: ``` projects/{project_number\}/services/{service_id\} ``` Note that the `service_id` element must be a supported service ID. Consult the ResourcePolicy.name field for a list of supported service IDs.
      */
     parent?: string;
   }

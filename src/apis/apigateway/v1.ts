@@ -1606,8 +1606,7 @@ export namespace apigateway_v1 {
     list(
       params: Params$Resource$Projects$Locations$Apis$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ApigatewayListApisResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ApigatewayListApisResponse>,
       callback: BodyResponseCallback<Schema$ApigatewayListApisResponse>
     ): void;
     list(
@@ -4946,8 +4945,7 @@ export namespace apigateway_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5078,8 +5076,7 @@ export namespace apigateway_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>

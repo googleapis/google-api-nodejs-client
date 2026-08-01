@@ -388,6 +388,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      */
     createTime?: string | null;
     /**
+     * Optional. Immutable. The visibility of the combined curation package fee and data segment fees (the total curation fee).
+     */
+    curationFeeVisibility?: string | null;
+    /**
      * Optional. A description of the curated package, provided by the curator.
      */
     description?: string | null;
@@ -403,6 +407,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      * Optional. The minimum CPM a buyer has to bid to participate in auctions for inventory in this curated package. Can be used to filter the response of the curatedPackages.list method.
      */
     floorPriceCpm?: Schema$Money;
+    /**
+     * Optional. The fee will be charged as a percentage of the impression cost, represented in millipercent. For example, 1% is represented as 1000.
+     */
+    millipercentOfMediaFee?: string | null;
     /**
      * Identifier. The unique resource name for the curated package. Format: `curators/{accountId\}/curatedPackages/{curatedPackageId\}`
      */
@@ -421,7 +429,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     updateTime?: string | null;
   }
   /**
-   * Defines an identifier for a segment of inventory that can be targeted by curators or media planners in the deals or auction packages UI. Curation of inventory is done by curators on external platforms.
+   * Defines an identifier for a segment of inventory that can be targeted by curators or media planners in the deals or auction packages UI. Curation of inventory is done by curators on external platforms. -- Next ID: 9 --
    */
   export interface Schema$DataSegment {
     /**
@@ -432,6 +440,10 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      * Output only. Time the data segment was created.
      */
     createTime?: string | null;
+    /**
+     * Optional. The fee will be charged as a percentage of the impression cost, represented in millipercent. For example, 1% is represented as 1000.
+     */
+    millipercentOfMediaFee?: string | null;
     /**
      * Immutable. Identifier. The unique identifier for the data segment. Account ID corresponds to the account ID that created the segment. v1alpha format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}` v1beta format: `curators/{curatorAccountId\}/dataSegments/{curatorDataSegmentId\}`
      */
@@ -1924,8 +1936,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     list(
       params: Params$Resource$Bidders$Finalizeddeals$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFinalizedDealsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListFinalizedDealsResponse>,
       callback: BodyResponseCallback<Schema$ListFinalizedDealsResponse>
     ): void;
     list(
@@ -3335,8 +3346,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Client>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Client> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
@@ -3493,8 +3503,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Client>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Client> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
@@ -3644,8 +3653,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Client>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Client> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
@@ -3789,8 +3797,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Client>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Client> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
@@ -4093,8 +4100,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Client>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Client> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
@@ -4318,8 +4324,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Schema$ClientUser>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ClientUser>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ClientUser> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ClientUser>>
@@ -4470,8 +4475,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Schema$ClientUser>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ClientUser>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ClientUser> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ClientUser>>
@@ -4620,8 +4624,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Schema$ClientUser>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ClientUser>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ClientUser> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ClientUser>>
@@ -4758,8 +4761,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4897,8 +4899,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Schema$ClientUser>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ClientUser>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ClientUser> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ClientUser>>
@@ -5021,8 +5022,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     list(
       params: Params$Resource$Buyers$Clients$Users$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListClientUsersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListClientUsersResponse>,
       callback: BodyResponseCallback<Schema$ListClientUsersResponse>
     ): void;
     list(
@@ -5206,6 +5206,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      *   // {
      *   //   "cpmFee": {},
      *   //   "createTime": "my_createTime",
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
@@ -5350,6 +5351,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      *       // {
      *       //   "cpmFee": {},
      *       //   "createTime": "my_createTime",
+     *       //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *       //   "name": "my_name",
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
@@ -5362,6 +5364,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      *   // {
      *   //   "cpmFee": {},
      *   //   "createTime": "my_createTime",
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
@@ -5512,6 +5515,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      *   // {
      *   //   "cpmFee": {},
      *   //   "createTime": "my_createTime",
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
@@ -5656,6 +5660,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      *   // {
      *   //   "cpmFee": {},
      *   //   "createTime": "my_createTime",
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
@@ -5832,8 +5837,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     list(
       params: Params$Resource$Buyers$Datasegments$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDataSegmentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDataSegmentsResponse>,
       callback: BodyResponseCallback<Schema$ListDataSegmentsResponse>
     ): void;
     list(
@@ -5946,6 +5950,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      *       // {
      *       //   "cpmFee": {},
      *       //   "createTime": "my_createTime",
+     *       //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *       //   "name": "my_name",
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
@@ -5958,6 +5963,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      *   // {
      *   //   "cpmFee": {},
      *   //   "createTime": "my_createTime",
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
@@ -6510,8 +6516,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     list(
       params: Params$Resource$Buyers$Finalizeddeals$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFinalizedDealsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListFinalizedDealsResponse>,
       callback: BodyResponseCallback<Schema$ListFinalizedDealsResponse>
     ): void;
     list(
@@ -7236,8 +7241,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -7402,8 +7406,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -7567,8 +7570,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -7725,8 +7727,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -7851,8 +7852,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     list(
       params: Params$Resource$Buyers$Proposals$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListProposalsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListProposalsResponse>,
       callback: BodyResponseCallback<Schema$ListProposalsResponse>
     ): void;
     list(
@@ -8057,8 +8057,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -8231,8 +8230,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Schema$Proposal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Proposal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Proposal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Proposal>>
@@ -8453,8 +8451,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     batchUpdate(
       params: Params$Resource$Buyers$Proposals$Deals$Batchupdate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchUpdateDealsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchUpdateDealsResponse>,
       callback: BodyResponseCallback<Schema$BatchUpdateDealsResponse>
     ): void;
     batchUpdate(
@@ -8638,8 +8635,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Schema$Deal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Deal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Deal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Deal>>
@@ -8976,8 +8972,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
         | BodyResponseCallback<Schema$Deal>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Deal>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Deal> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Deal>>
@@ -9473,10 +9468,12 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      *   // {
      *   //   "accessSettings": {},
      *   //   "createTime": "my_createTime",
+     *   //   "curationFeeVisibility": "my_curationFeeVisibility",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "feeCpm": {},
      *   //   "floorPriceCpm": {},
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "targeting": {},
@@ -9623,10 +9620,12 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      *         // {
      *         //   "accessSettings": {},
      *         //   "createTime": "my_createTime",
+     *         //   "curationFeeVisibility": "my_curationFeeVisibility",
      *         //   "description": "my_description",
      *         //   "displayName": "my_displayName",
      *         //   "feeCpm": {},
      *         //   "floorPriceCpm": {},
+     *         //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *         //   "name": "my_name",
      *         //   "state": "my_state",
      *         //   "targeting": {},
@@ -9641,10 +9640,12 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      *   // {
      *   //   "accessSettings": {},
      *   //   "createTime": "my_createTime",
+     *   //   "curationFeeVisibility": "my_curationFeeVisibility",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "feeCpm": {},
      *   //   "floorPriceCpm": {},
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "targeting": {},
@@ -9797,10 +9798,12 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      *   // {
      *   //   "accessSettings": {},
      *   //   "createTime": "my_createTime",
+     *   //   "curationFeeVisibility": "my_curationFeeVisibility",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "feeCpm": {},
      *   //   "floorPriceCpm": {},
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "targeting": {},
@@ -9946,10 +9949,12 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      *   // {
      *   //   "accessSettings": {},
      *   //   "createTime": "my_createTime",
+     *   //   "curationFeeVisibility": "my_curationFeeVisibility",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "feeCpm": {},
      *   //   "floorPriceCpm": {},
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "targeting": {},
@@ -10245,10 +10250,12 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      *       // {
      *       //   "accessSettings": {},
      *       //   "createTime": "my_createTime",
+     *       //   "curationFeeVisibility": "my_curationFeeVisibility",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "feeCpm": {},
      *       //   "floorPriceCpm": {},
+     *       //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *       //   "name": "my_name",
      *       //   "state": "my_state",
      *       //   "targeting": {},
@@ -10262,10 +10269,12 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      *   // {
      *   //   "accessSettings": {},
      *   //   "createTime": "my_createTime",
+     *   //   "curationFeeVisibility": "my_curationFeeVisibility",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "feeCpm": {},
      *   //   "floorPriceCpm": {},
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "targeting": {},
@@ -10483,7 +10492,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      *     filter: 'placeholder-value',
      *     // The maximum number of media planners to return. If unspecified, at most 100 media planners will be returned. The maximum value is 500; values above 500 will be coerced to 500.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. This value is received from a previous `ListMediaPlanners` call in ListMediaPlannersResponse.nextPageToken.
+     *     // Optional. A token identifying a page of results the server should return. This value is received from a previous `ListMediaPlanners` call in ListMediaPlannersResponse.nextPageToken.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -10523,8 +10532,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
     list(
       params: Params$Resource$Mediaplanners$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListMediaPlannersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListMediaPlannersResponse>,
       callback: BodyResponseCallback<Schema$ListMediaPlannersResponse>
     ): void;
     list(
@@ -10607,7 +10615,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return. This value is received from a previous `ListMediaPlanners` call in ListMediaPlannersResponse.nextPageToken.
+     * Optional. A token identifying a page of results the server should return. This value is received from a previous `ListMediaPlanners` call in ListMediaPlannersResponse.nextPageToken.
      */
     pageToken?: string;
   }

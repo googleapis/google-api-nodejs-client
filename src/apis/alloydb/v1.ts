@@ -620,6 +620,10 @@ export namespace alloydb_v1 {
      */
     authproxyPoolerCount?: number | null;
     /**
+     * Optional. The scaling type of the AuthProxy pooler.
+     */
+    authproxyPoolerScalingType?: string | null;
+    /**
      * Optional. Whether to enable Managed Connection Pool (MCP).
      */
     enabled?: boolean | null;
@@ -631,6 +635,10 @@ export namespace alloydb_v1 {
      * Output only. The number of running poolers per instance.
      */
     poolerCount?: number | null;
+    /**
+     * Optional. The scaling type of the regular pooler.
+     */
+    poolerScalingType?: string | null;
   }
   /**
    * ContinuousBackupConfig describes the continuous backups recovery configurations of a cluster.
@@ -1960,13 +1968,25 @@ export namespace alloydb_v1 {
      * Required. Type feed to be ingested into condor
      */
     feedType?: string | null;
+    /**
+     * Observability metric data.
+     */
     observabilityMetricData?: Schema$StorageDatabasecenterPartnerapiV1mainObservabilityMetricData;
+    /**
+     * Database resource recommendation signal data.
+     */
     recommendationSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData;
+    /**
+     * Database resource health signal data.
+     */
     resourceHealthSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData;
     /**
      * Primary key associated with the Resource. resource_id is available in individual feed level as well.
      */
     resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
+    /**
+     * Database resource metadata.
+     */
     resourceMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata;
     /**
      * Optional. If true, the feed won't be ingested by DB Center. This indicates that the feed is intentionally skipped. For example, BackupDR feeds are only needed for resources integrated with DB Center (e.g., CloudSQL, AlloyDB). Feeds for non-integrated resources (e.g., Compute Engine, Persistent Disk) can be skipped.
@@ -2033,6 +2053,9 @@ export namespace alloydb_v1 {
      * Required. Type of signal, for example, `AVAILABLE_IN_MULTIPLE_ZONES`, `LOGGING_MOST_ERRORS`, etc.
      */
     signalType?: string | null;
+    /**
+     * Required. The state of the signal, such as if it's ACTIVE or RESOLVED.
+     */
     state?: string | null;
   }
   /**
@@ -2048,7 +2071,7 @@ export namespace alloydb_v1 {
      */
     providerDescription?: string | null;
     /**
-     * Required. The type of resource this ID is identifying. Ex go/keep-sorted start alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance compute.googleapis.com/Instance firestore.googleapis.com/Database, redis.googleapis.com/Instance, redis.googleapis.com/Cluster, oracledatabase.googleapis.com/CloudExadataInfrastructure oracledatabase.googleapis.com/CloudVmCluster oracledatabase.googleapis.com/AutonomousDatabase spanner.googleapis.com/Instance, spanner.googleapis.com/Database, sqladmin.googleapis.com/Instance, go/keep-sorted end REQUIRED Please refer go/condor-common-datamodel
+     * Required. The type of resource this ID is identifying. Ex go/keep-sorted start alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance compute.googleapis.com/Instance firestore.googleapis.com/Database, memorystore.googleapis.com/Instance, redis.googleapis.com/Instance, redis.googleapis.com/Cluster, oracledatabase.googleapis.com/CloudExadataInfrastructure oracledatabase.googleapis.com/CloudVmCluster oracledatabase.googleapis.com/AutonomousDatabase spanner.googleapis.com/Instance, spanner.googleapis.com/Database, sqladmin.googleapis.com/Instance, go/keep-sorted end REQUIRED Please refer go/condor-common-datamodel
      */
     resourceType?: string | null;
     /**
@@ -2057,9 +2080,13 @@ export namespace alloydb_v1 {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 32
+   * Common model for database resource instance metadata. Next ID: 35
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata {
+    /**
+     * Field to ingest additional metadata whichd does not support proto format.
+     */
+    additionalMetadata?: {[key: string]: any} | null;
     /**
      * Availability configuration for this instance
      */
@@ -2112,6 +2139,14 @@ export namespace alloydb_v1 {
      * The type of the instance. Specified at creation time.
      */
     instanceType?: string | null;
+    /**
+     * Field to ingest additional metadata which support proto format.
+     */
+    internalAdditionalMetadata?: {[key: string]: any} | null;
+    /**
+     * Optional. Private and public IP address of the resource.
+     */
+    ipAddress?: Schema$StorageDatabasecenterPartnerapiV1mainIpAddress;
     /**
      * Optional. Whether deletion protection is enabled for this resource.
      */
@@ -2293,12 +2328,28 @@ export namespace alloydb_v1 {
      * Whether deletion protection is enabled for this internal resource.
      */
     isDeletionProtectionEnabled?: boolean | null;
+    /**
+     * The product this resource represents.
+     */
     product?: Schema$StorageDatabasecenterProtoCommonProduct;
     resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
     /**
      * Required. internal resource name for spanner this will be database name e.g."spanner.googleapis.com/projects/123/abc/instances/inst1/databases/db1"
      */
     resourceName?: string | null;
+  }
+  /**
+   * Used to send IP address information for a database resource.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainIpAddress {
+    /**
+     * The private IP address assigned to the resource within a Virtual Private Cloud (VPC). This IP is only reachable from within the same VPC network. Stored in standard string format (e.g., "10.0.0.2").
+     */
+    privateIp?: string | null;
+    /**
+     * The public IP address assigned to the resource. This IP is reachable from the internet. Stored in standard string format (e.g., "34.72.1.1").
+     */
+    publicIp?: string | null;
   }
   /**
    * MachineConfiguration describes the configuration of a machine specific to Database Resource.
@@ -2424,6 +2475,10 @@ export namespace alloydb_v1 {
      */
     maintenanceVersion?: string | null;
     /**
+     * Optional. List of next available maintenance versions.
+     */
+    nextAvailableMaintenanceVersions?: string[] | null;
+    /**
      * Optional. Upcoming maintenance for the database resource. This field is populated once SLM generates and publishes upcoming maintenance window.
      */
     upcomingMaintenance?: Schema$StorageDatabasecenterPartnerapiV1mainUpcomingMaintenance;
@@ -2450,11 +2505,17 @@ export namespace alloydb_v1 {
      * Duration based retention period i.e. 172800 seconds (2 days)
      */
     durationBasedRetention?: string | null;
+    /**
+     * Quantity based retention period i.e. 7 backups
+     */
     quantityBasedRetention?: number | null;
     /**
      * The unit that 'retained_backups' represents.
      */
     retentionUnit?: string | null;
+    /**
+     * Duration based retention period i.e. 172800 seconds (2 days)
+     */
     timeBasedRetention?: string | null;
     /**
      * Timestamp based retention period i.e. 2024-05-01T00:00:00Z
@@ -3246,8 +3307,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3393,8 +3453,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3552,8 +3611,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Backup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Backup>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Backup> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Backup>>
@@ -3878,8 +3936,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4185,8 +4242,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4377,8 +4433,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4527,8 +4582,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4676,8 +4730,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4849,8 +4902,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Cluster>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Cluster>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Cluster> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>
@@ -4999,8 +5051,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5125,8 +5176,7 @@ export namespace alloydb_v1 {
     list(
       params: Params$Resource$Projects$Locations$Clusters$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListClustersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListClustersResponse>,
       callback: BodyResponseCallback<Schema$ListClustersResponse>
     ): void;
     list(
@@ -5339,8 +5389,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5487,8 +5536,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5643,8 +5691,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5794,8 +5841,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5944,8 +5990,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6096,8 +6141,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6494,8 +6538,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6682,8 +6725,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6830,8 +6872,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6978,8 +7019,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7149,8 +7189,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Instance>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Instance> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Instance>>
@@ -7445,8 +7484,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7575,8 +7613,7 @@ export namespace alloydb_v1 {
     list(
       params: Params$Resource$Projects$Locations$Clusters$Instances$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListInstancesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListInstancesResponse>,
       callback: BodyResponseCallback<Schema$ListInstancesResponse>
     ): void;
     list(
@@ -7784,8 +7821,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7933,8 +7969,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8267,8 +8302,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -8406,8 +8440,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8544,8 +8577,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -8849,8 +8881,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -9087,8 +9118,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9219,8 +9249,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9357,8 +9386,7 @@ export namespace alloydb_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9483,8 +9511,7 @@ export namespace alloydb_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(

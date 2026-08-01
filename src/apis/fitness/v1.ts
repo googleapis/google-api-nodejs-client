@@ -861,8 +861,7 @@ export namespace fitness_v1 {
         | BodyResponseCallback<Schema$DataSource>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DataSource>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DataSource> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
@@ -1019,8 +1018,7 @@ export namespace fitness_v1 {
         | BodyResponseCallback<Schema$DataSource>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DataSource>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DataSource> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
@@ -1187,8 +1185,7 @@ export namespace fitness_v1 {
         | BodyResponseCallback<Schema$DataSource>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DataSource>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DataSource> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
@@ -1330,8 +1327,7 @@ export namespace fitness_v1 {
     list(
       params: Params$Resource$Users$Datasources$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDataSourcesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDataSourcesResponse>,
       callback: BodyResponseCallback<Schema$ListDataSourcesResponse>
     ): void;
     list(
@@ -1523,8 +1519,7 @@ export namespace fitness_v1 {
         | BodyResponseCallback<Schema$DataSource>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DataSource>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DataSource> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DataSource>>
@@ -2105,8 +2100,7 @@ export namespace fitness_v1 {
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Dataset>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Dataset> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>
@@ -2274,8 +2268,7 @@ export namespace fitness_v1 {
         | BodyResponseCallback<Schema$Dataset>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Dataset>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Dataset> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Dataset>>
@@ -2626,8 +2619,7 @@ export namespace fitness_v1 {
     list(
       params: Params$Resource$Users$Sessions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSessionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSessionsResponse>,
       callback: BodyResponseCallback<Schema$ListSessionsResponse>
     ): void;
     list(
@@ -2812,8 +2804,7 @@ export namespace fitness_v1 {
         | BodyResponseCallback<Schema$Session>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Session>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Session> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Session>>

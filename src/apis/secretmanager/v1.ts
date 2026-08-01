@@ -208,6 +208,23 @@ export namespace secretmanager_v1 {
     role?: string | null;
   }
   /**
+   * These are the credentials required for Cloud SQL DB for Single user Managed Rotation.
+   */
+  export interface Schema$CloudSQLSingleUserCredentials {
+    /**
+     * Required. Instance ID of the Cloud SQL instance.
+     */
+    instanceId?: string | null;
+    /**
+     * Optional. Password of the Cloud SQL instance. If this is not provided, a random password will be generated.
+     */
+    password?: string | null;
+    /**
+     * Required. Username of the Cloud SQL instance.
+     */
+    username?: string | null;
+  }
+  /**
    * Configuration for encrypting secret payloads using customer-managed encryption keys (CMEK).
    */
   export interface Schema$CustomerManagedEncryption {
@@ -247,6 +264,15 @@ export namespace secretmanager_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Request message for SecretManagerService.EnableManagedRotation.
+   */
+  export interface Schema$EnableManagedRotationRequest {
+    /**
+     * Credentials required for Cloud SQL DB for Single user Managed Rotation.
+     */
+    cloudSqlSingleUserCredentials?: Schema$CloudSQLSingleUserCredentials;
+  }
   /**
    * Request message for SecretManagerService.EnableSecretVersion.
    */
@@ -348,6 +374,19 @@ export namespace secretmanager_v1 {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
+  }
+  /**
+   * Represents the status of a managed rotation. This is applicable only to Typed Secrets. It indicates whether the rotation is active and any errors that may have occurred during the asynchronous managed rotation.
+   */
+  export interface Schema$ManagedRotationStatus {
+    /**
+     * Output only. Displays customer-facing issues that occurred during an asynchronous managed rotation. For example, if there are some permission errors.
+     */
+    error?: Schema$Status;
+    /**
+     * Output only. Indicates whether the Managed Rotation is active or not.
+     */
+    state?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -502,9 +541,30 @@ export namespace secretmanager_v1 {
     userManaged?: Schema$UserManagedStatus;
   }
   /**
+   * Output-only policy member strings of a Google Cloud resource's built-in identity.
+   */
+  export interface Schema$ResourcePolicyMember {
+    /**
+     * Output only. IAM policy binding member referring to a Google Cloud resource by user-assigned name (https://google.aip.dev/122). If a resource is deleted and recreated with the same name, the binding will be applicable to the new resource. Example: `principal://parametermanager.googleapis.com/projects/12345/name/locations/us-central1-a/parameters/my-parameter`
+     */
+    iamPolicyNamePrincipal?: string | null;
+    /**
+     * Output only. IAM policy binding member referring to a Google Cloud resource by system-assigned unique identifier (https://google.aip.dev/148#uid). If a resource is deleted and recreated with the same name, the binding will not be applicable to the new resource Example: `principal://parametermanager.googleapis.com/projects/12345/uid/locations/us-central1-a/parameters/a918fed5`
+     */
+    iamPolicyUidPrincipal?: string | null;
+  }
+  /**
+   * Request message for SecretManagerService.RotateSecret.
+   */
+  export interface Schema$RotateSecretRequest {}
+  /**
    * The rotation time and period for a Secret. At next_rotation_time, Secret Manager will send a Pub/Sub notification to the topics configured on the Secret. Secret.topics must be set to configure rotation.
    */
   export interface Schema$Rotation {
+    /**
+     * Output only. The current status of the managed rotation. This field is only applicable to Typed Secrets. This field is set by the service and cannot be set by the user.
+     */
+    managedRotationStatus?: Schema$ManagedRotationStatus;
     /**
      * Optional. Timestamp in UTC at which the Secret is scheduled to rotate. Cannot be set to less than 300s (5 min) in the future and at most 3153600000s (100 years). next_rotation_time MUST be set if rotation_period is set.
      */
@@ -547,6 +607,10 @@ export namespace secretmanager_v1 {
      */
     name?: string | null;
     /**
+     * Output only. Defines the policy member for the secret. This will be used to check if the caller has the permission to perform certain operations on the typed secret.
+     */
+    policyMember?: Schema$ResourcePolicyMember;
+    /**
      * Optional. Immutable. The replication policy of the secret data attached to the Secret. The replication policy cannot be changed after the Secret has been created.
      */
     replication?: Schema$Replication;
@@ -554,6 +618,10 @@ export namespace secretmanager_v1 {
      * Optional. Rotation policy attached to the Secret. May be excluded if there is no rotation policy.
      */
     rotation?: Schema$Rotation;
+    /**
+     * Optional. Immutable. This defines the type of the secret. Enforces certain structural requirements on the SecretVersions. For secret of type UNSPECIFIED, the SecretVersions can be of any type.
+     */
+    secretType?: string | null;
     /**
      * Optional. Input only. Immutable. Mapping of Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing" Tags are used to organize and group resources. Tags can be used to control policy evaluation for the resource.
      */
@@ -816,8 +884,7 @@ export namespace secretmanager_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -942,8 +1009,7 @@ export namespace secretmanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1253,8 +1319,10 @@ export namespace secretmanager_v1 {
      *       //   "expireTime": "my_expireTime",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "policyMember": {},
      *       //   "replication": {},
      *       //   "rotation": {},
+     *       //   "secretType": "my_secretType",
      *       //   "tags": {},
      *       //   "topics": [],
      *       //   "ttl": "my_ttl",
@@ -1274,8 +1342,10 @@ export namespace secretmanager_v1 {
      *   //   "expireTime": "my_expireTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "policyMember": {},
      *   //   "replication": {},
      *   //   "rotation": {},
+     *   //   "secretType": "my_secretType",
      *   //   "tags": {},
      *   //   "topics": [],
      *   //   "ttl": "my_ttl",
@@ -1330,8 +1400,7 @@ export namespace secretmanager_v1 {
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Secret>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Secret> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Secret>>
@@ -1468,8 +1537,7 @@ export namespace secretmanager_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1512,6 +1580,164 @@ export namespace secretmanager_v1 {
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Enables the managed rotation feature for a Secret. This method can only be triggered once for a secret. In order to do further rotations, RotateSecret should be used. This method will add a secret version and update the password in Cloud SQL.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await secretmanager.projects.locations.secrets.enableManagedRotation({
+     *       // Required. The resource name of the Secret to associate with the SecretVersion in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
+     *       parent: 'projects/my-project/locations/my-location/secrets/my-secret',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "cloudSqlSingleUserCredentials": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
+     *   //   "scheduledDestroyTime": "my_scheduledDestroyTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enableManagedRotation(
+      params: Params$Resource$Projects$Locations$Secrets$Enablemanagedrotation,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    enableManagedRotation(
+      params?: Params$Resource$Projects$Locations$Secrets$Enablemanagedrotation,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>;
+    enableManagedRotation(
+      params: Params$Resource$Projects$Locations$Secrets$Enablemanagedrotation,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enableManagedRotation(
+      params: Params$Resource$Projects$Locations$Secrets$Enablemanagedrotation,
+      options: MethodOptions | BodyResponseCallback<Schema$SecretVersion>,
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    enableManagedRotation(
+      params: Params$Resource$Projects$Locations$Secrets$Enablemanagedrotation,
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    enableManagedRotation(
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    enableManagedRotation(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Enablemanagedrotation
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Enablemanagedrotation;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Secrets$Enablemanagedrotation;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:enableManagedRotation').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SecretVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SecretVersion>(parameters);
       }
     }
 
@@ -1560,8 +1786,10 @@ export namespace secretmanager_v1 {
      *   //   "expireTime": "my_expireTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "policyMember": {},
      *   //   "replication": {},
      *   //   "rotation": {},
+     *   //   "secretType": "my_secretType",
      *   //   "tags": {},
      *   //   "topics": [],
      *   //   "ttl": "my_ttl",
@@ -1616,8 +1844,7 @@ export namespace secretmanager_v1 {
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Secret>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Secret> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Secret>>
@@ -1756,8 +1983,7 @@ export namespace secretmanager_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -1999,8 +2225,10 @@ export namespace secretmanager_v1 {
      *       //   "expireTime": "my_expireTime",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "policyMember": {},
      *       //   "replication": {},
      *       //   "rotation": {},
+     *       //   "secretType": "my_secretType",
      *       //   "tags": {},
      *       //   "topics": [],
      *       //   "ttl": "my_ttl",
@@ -2020,8 +2248,10 @@ export namespace secretmanager_v1 {
      *   //   "expireTime": "my_expireTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "policyMember": {},
      *   //   "replication": {},
      *   //   "rotation": {},
+     *   //   "secretType": "my_secretType",
      *   //   "tags": {},
      *   //   "topics": [],
      *   //   "ttl": "my_ttl",
@@ -2076,8 +2306,7 @@ export namespace secretmanager_v1 {
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Secret>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Secret> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Secret>>
@@ -2120,6 +2349,158 @@ export namespace secretmanager_v1 {
         );
       } else {
         return createAPIRequest<Schema$Secret>(parameters);
+      }
+    }
+
+    /**
+     * Do a managed rotation for a Secret. This can only be triggered after Managed rotation has been enabled. This method will add a secret version and update the password in Cloud SQL.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.locations.secrets.rotateSecret({
+     *     // Required. The resource name of the Secret to associate with the SecretVersion in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
+     *     parent: 'projects/my-project/locations/my-location/secrets/my-secret',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
+     *   //   "scheduledDestroyTime": "my_scheduledDestroyTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rotateSecret(
+      params: Params$Resource$Projects$Locations$Secrets$Rotatesecret,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    rotateSecret(
+      params?: Params$Resource$Projects$Locations$Secrets$Rotatesecret,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>;
+    rotateSecret(
+      params: Params$Resource$Projects$Locations$Secrets$Rotatesecret,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rotateSecret(
+      params: Params$Resource$Projects$Locations$Secrets$Rotatesecret,
+      options: MethodOptions | BodyResponseCallback<Schema$SecretVersion>,
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    rotateSecret(
+      params: Params$Resource$Projects$Locations$Secrets$Rotatesecret,
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    rotateSecret(callback: BodyResponseCallback<Schema$SecretVersion>): void;
+    rotateSecret(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Secrets$Rotatesecret
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Secrets$Rotatesecret;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Secrets$Rotatesecret;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:rotateSecret').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SecretVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SecretVersion>(parameters);
       }
     }
 
@@ -2223,8 +2604,7 @@ export namespace secretmanager_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2353,8 +2733,7 @@ export namespace secretmanager_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Secrets$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -2463,6 +2842,17 @@ export namespace secretmanager_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Secrets$Enablemanagedrotation extends StandardParameters {
+    /**
+     * Required. The resource name of the Secret to associate with the SecretVersion in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EnableManagedRotationRequest;
+  }
   export interface Params$Resource$Projects$Locations$Secrets$Get extends StandardParameters {
     /**
      * Required. The resource name of the Secret, in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
@@ -2511,6 +2901,17 @@ export namespace secretmanager_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Secret;
+  }
+  export interface Params$Resource$Projects$Locations$Secrets$Rotatesecret extends StandardParameters {
+    /**
+     * Required. The resource name of the Secret to associate with the SecretVersion in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RotateSecretRequest;
   }
   export interface Params$Resource$Projects$Locations$Secrets$Setiampolicy extends StandardParameters {
     /**
@@ -3365,8 +3766,7 @@ export namespace secretmanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Secrets$Versions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSecretVersionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSecretVersionsResponse>,
       callback: BodyResponseCallback<Schema$ListSecretVersionsResponse>
     ): void;
     list(
@@ -3711,8 +4111,10 @@ export namespace secretmanager_v1 {
      *       //   "expireTime": "my_expireTime",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "policyMember": {},
      *       //   "replication": {},
      *       //   "rotation": {},
+     *       //   "secretType": "my_secretType",
      *       //   "tags": {},
      *       //   "topics": [],
      *       //   "ttl": "my_ttl",
@@ -3732,8 +4134,10 @@ export namespace secretmanager_v1 {
      *   //   "expireTime": "my_expireTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "policyMember": {},
      *   //   "replication": {},
      *   //   "rotation": {},
+     *   //   "secretType": "my_secretType",
      *   //   "tags": {},
      *   //   "topics": [],
      *   //   "ttl": "my_ttl",
@@ -3788,8 +4192,7 @@ export namespace secretmanager_v1 {
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Secret>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Secret> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Secret>>
@@ -3926,8 +4329,7 @@ export namespace secretmanager_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3970,6 +4372,162 @@ export namespace secretmanager_v1 {
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Enables the managed rotation feature for a Secret. This method can only be triggered once for a secret. In order to do further rotations, RotateSecret should be used. This method will add a secret version and update the password in Cloud SQL.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.enableManagedRotation({
+     *     // Required. The resource name of the Secret to associate with the SecretVersion in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
+     *     parent: 'projects/my-project/secrets/my-secret',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cloudSqlSingleUserCredentials": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
+     *   //   "scheduledDestroyTime": "my_scheduledDestroyTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enableManagedRotation(
+      params: Params$Resource$Projects$Secrets$Enablemanagedrotation,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    enableManagedRotation(
+      params?: Params$Resource$Projects$Secrets$Enablemanagedrotation,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>;
+    enableManagedRotation(
+      params: Params$Resource$Projects$Secrets$Enablemanagedrotation,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enableManagedRotation(
+      params: Params$Resource$Projects$Secrets$Enablemanagedrotation,
+      options: MethodOptions | BodyResponseCallback<Schema$SecretVersion>,
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    enableManagedRotation(
+      params: Params$Resource$Projects$Secrets$Enablemanagedrotation,
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    enableManagedRotation(
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    enableManagedRotation(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Secrets$Enablemanagedrotation
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Secrets$Enablemanagedrotation;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Secrets$Enablemanagedrotation;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:enableManagedRotation').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SecretVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SecretVersion>(parameters);
       }
     }
 
@@ -4018,8 +4576,10 @@ export namespace secretmanager_v1 {
      *   //   "expireTime": "my_expireTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "policyMember": {},
      *   //   "replication": {},
      *   //   "rotation": {},
+     *   //   "secretType": "my_secretType",
      *   //   "tags": {},
      *   //   "topics": [],
      *   //   "ttl": "my_ttl",
@@ -4074,8 +4634,7 @@ export namespace secretmanager_v1 {
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Secret>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Secret> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Secret>>
@@ -4214,8 +4773,7 @@ export namespace secretmanager_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4457,8 +5015,10 @@ export namespace secretmanager_v1 {
      *       //   "expireTime": "my_expireTime",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "policyMember": {},
      *       //   "replication": {},
      *       //   "rotation": {},
+     *       //   "secretType": "my_secretType",
      *       //   "tags": {},
      *       //   "topics": [],
      *       //   "ttl": "my_ttl",
@@ -4478,8 +5038,10 @@ export namespace secretmanager_v1 {
      *   //   "expireTime": "my_expireTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "policyMember": {},
      *   //   "replication": {},
      *   //   "rotation": {},
+     *   //   "secretType": "my_secretType",
      *   //   "tags": {},
      *   //   "topics": [],
      *   //   "ttl": "my_ttl",
@@ -4534,8 +5096,7 @@ export namespace secretmanager_v1 {
         | BodyResponseCallback<Schema$Secret>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Secret>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Secret> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Secret>>
@@ -4578,6 +5139,158 @@ export namespace secretmanager_v1 {
         );
       } else {
         return createAPIRequest<Schema$Secret>(parameters);
+      }
+    }
+
+    /**
+     * Do a managed rotation for a Secret. This can only be triggered after Managed rotation has been enabled. This method will add a secret version and update the password in Cloud SQL.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/secretmanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const secretmanager = google.secretmanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await secretmanager.projects.secrets.rotateSecret({
+     *     // Required. The resource name of the Secret to associate with the SecretVersion in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
+     *     parent: 'projects/my-project/secrets/my-secret',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryption": {},
+     *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "replicationStatus": {},
+     *   //   "scheduledDestroyTime": "my_scheduledDestroyTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rotateSecret(
+      params: Params$Resource$Projects$Secrets$Rotatesecret,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    rotateSecret(
+      params?: Params$Resource$Projects$Secrets$Rotatesecret,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>;
+    rotateSecret(
+      params: Params$Resource$Projects$Secrets$Rotatesecret,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rotateSecret(
+      params: Params$Resource$Projects$Secrets$Rotatesecret,
+      options: MethodOptions | BodyResponseCallback<Schema$SecretVersion>,
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    rotateSecret(
+      params: Params$Resource$Projects$Secrets$Rotatesecret,
+      callback: BodyResponseCallback<Schema$SecretVersion>
+    ): void;
+    rotateSecret(callback: BodyResponseCallback<Schema$SecretVersion>): void;
+    rotateSecret(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Secrets$Rotatesecret
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecretVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SecretVersion>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Secrets$Rotatesecret;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Secrets$Rotatesecret;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://secretmanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:rotateSecret').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SecretVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SecretVersion>(parameters);
       }
     }
 
@@ -4681,8 +5394,7 @@ export namespace secretmanager_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4809,8 +5521,7 @@ export namespace secretmanager_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Secrets$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -4918,6 +5629,17 @@ export namespace secretmanager_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Secrets$Enablemanagedrotation extends StandardParameters {
+    /**
+     * Required. The resource name of the Secret to associate with the SecretVersion in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EnableManagedRotationRequest;
+  }
   export interface Params$Resource$Projects$Secrets$Get extends StandardParameters {
     /**
      * Required. The resource name of the Secret, in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
@@ -4966,6 +5688,17 @@ export namespace secretmanager_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Secret;
+  }
+  export interface Params$Resource$Projects$Secrets$Rotatesecret extends StandardParameters {
+    /**
+     * Required. The resource name of the Secret to associate with the SecretVersion in the format `projects/x/secrets/x` or `projects/x/locations/x/secrets/x`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RotateSecretRequest;
   }
   export interface Params$Resource$Projects$Secrets$Setiampolicy extends StandardParameters {
     /**
@@ -5816,8 +6549,7 @@ export namespace secretmanager_v1 {
     list(
       params: Params$Resource$Projects$Secrets$Versions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSecretVersionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSecretVersionsResponse>,
       callback: BodyResponseCallback<Schema$ListSecretVersionsResponse>
     ): void;
     list(

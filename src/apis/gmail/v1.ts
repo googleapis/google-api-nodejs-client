@@ -1151,8 +1151,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Profile>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Profile>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Profile> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Profile>>
@@ -1624,8 +1623,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Draft>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Draft>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Draft> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Draft>>
@@ -1912,8 +1910,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Draft>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Draft>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Draft> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Draft>>
@@ -2227,8 +2224,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Message> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
@@ -2388,8 +2384,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Draft>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Draft>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Draft> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Draft>>
@@ -2882,8 +2877,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Label>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Label>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Label> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Label>>
@@ -3172,8 +3166,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Label>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Label>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Label> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Label>>
@@ -3483,8 +3476,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Label>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Label>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Label> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Label>>
@@ -3652,8 +3644,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Label>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Label>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Label> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Label>>
@@ -4302,8 +4293,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Message> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
@@ -4481,8 +4471,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Message> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
@@ -4659,8 +4648,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Message> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
@@ -4798,8 +4786,7 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Messages$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListMessagesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListMessagesResponse>,
       callback: BodyResponseCallback<Schema$ListMessagesResponse>
     ): void;
     list(
@@ -4980,8 +4967,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Message> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
@@ -5152,8 +5138,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Message> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
@@ -5306,8 +5291,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Message> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
@@ -5456,8 +5440,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Message>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Message> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Message>>
@@ -8003,8 +7986,7 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Settings$Cse$Identities$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCseIdentitiesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCseIdentitiesResponse>,
       callback: BodyResponseCallback<Schema$ListCseIdentitiesResponse>
     ): void;
     list(
@@ -8329,6 +8311,8 @@ export namespace gmail_v1 {
      *
      *   // Do the magic
      *   const res = await gmail.users.settings.cse.keypairs.create({
+     *     // The type of certificate chain validation to perform at creation. The request will be rejected if the uploaded chain fails to satisfy the requested validation checks. When unspecified, this parameter defaults to `all`.
+     *     chainValidation: 'placeholder-value',
      *     // The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
      *     userId: 'placeholder-value',
      *
@@ -8406,8 +8390,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$CseKeyPair>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$CseKeyPair>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$CseKeyPair> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>
@@ -8559,8 +8542,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$CseKeyPair>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$CseKeyPair>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$CseKeyPair> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>
@@ -8713,8 +8695,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$CseKeyPair>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$CseKeyPair>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$CseKeyPair> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>
@@ -8864,8 +8845,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$CseKeyPair>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$CseKeyPair>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$CseKeyPair> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$CseKeyPair>>
@@ -8994,8 +8974,7 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Settings$Cse$Keypairs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCseKeyPairsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCseKeyPairsResponse>,
       callback: BodyResponseCallback<Schema$ListCseKeyPairsResponse>
     ): void;
     list(
@@ -9206,6 +9185,10 @@ export namespace gmail_v1 {
 
   export interface Params$Resource$Users$Settings$Cse$Keypairs$Create extends StandardParameters {
     /**
+     * The type of certificate chain validation to perform at creation. The request will be rejected if the uploaded chain fails to satisfy the requested validation checks. When unspecified, this parameter defaults to `all`.
+     */
+    chainValidation?: string;
+    /**
      * The requester's primary email address. To indicate the authenticated user, you can use the special value `me`.
      */
     userId?: string;
@@ -9389,8 +9372,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Delegate>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Delegate>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Delegate> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Delegate>>
@@ -9665,8 +9647,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Delegate>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Delegate>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Delegate> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Delegate>>
@@ -9789,8 +9770,7 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Settings$Delegates$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDelegatesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDelegatesResponse>,
       callback: BodyResponseCallback<Schema$ListDelegatesResponse>
     ): void;
     list(
@@ -10002,8 +9982,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Filter>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Filter>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Filter> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Filter>>
@@ -10278,8 +10257,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Filter>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Filter>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Filter> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Filter>>
@@ -11245,8 +11223,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$SendAs>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SendAs>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SendAs> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>
@@ -11528,8 +11505,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$SendAs>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SendAs>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SendAs> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>
@@ -11835,8 +11811,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$SendAs>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SendAs>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SendAs> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>
@@ -12000,8 +11975,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$SendAs>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SendAs>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SendAs> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SendAs>>
@@ -12506,8 +12480,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$SmimeInfo>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SmimeInfo>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SmimeInfo> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SmimeInfo>>
@@ -12668,8 +12641,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$SmimeInfo>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SmimeInfo>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SmimeInfo> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SmimeInfo>>
@@ -12795,8 +12767,7 @@ export namespace gmail_v1 {
     list(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSmimeInfoResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSmimeInfoResponse>,
       callback: BodyResponseCallback<Schema$ListSmimeInfoResponse>
     ): void;
     list(
@@ -13314,8 +13285,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Thread>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Thread>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Thread> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Thread>>
@@ -13622,8 +13592,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Thread>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Thread>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Thread> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Thread>>
@@ -13766,8 +13735,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Thread>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Thread>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Thread> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Thread>>
@@ -13910,8 +13878,7 @@ export namespace gmail_v1 {
         | BodyResponseCallback<Schema$Thread>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Thread>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Thread> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Thread>>

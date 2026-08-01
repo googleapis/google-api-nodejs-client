@@ -1000,7 +1000,7 @@ export namespace cloudchannel_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. Indicate if a customer is attesting about the correctness of provided information. Only required if creating a GCP Entitlement.
+     * Optional. Indicate if a customer is attesting about the correctness of provided information. Only required if creating a GCP Entitlement. NOTE: This field will be mandatory for all new GCP customers starting Aug 31st, 2026 and this field will also be required for all existing customers purchasing new GCP Entitlements.
      */
     customerAttestationState?: string | null;
     /**
@@ -7669,8 +7669,7 @@ export namespace cloudchannel_v1 {
     provisionCloudIdentity(
       params: Params$Resource$Accounts$Customers$Provisioncloudidentity,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     provisionCloudIdentity(
@@ -7975,8 +7974,7 @@ export namespace cloudchannel_v1 {
     transferEntitlements(
       params: Params$Resource$Accounts$Customers$Transferentitlements,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     transferEntitlements(
@@ -8130,8 +8128,7 @@ export namespace cloudchannel_v1 {
     transferEntitlementsToGoogle(
       params: Params$Resource$Accounts$Customers$Transferentitlementstogoogle,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     transferEntitlementsToGoogle(
@@ -9286,8 +9283,7 @@ export namespace cloudchannel_v1 {
     activate(
       params: Params$Resource$Accounts$Customers$Entitlements$Activate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     activate(
@@ -9439,8 +9435,7 @@ export namespace cloudchannel_v1 {
     cancel(
       params: Params$Resource$Accounts$Customers$Entitlements$Cancel,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     cancel(
@@ -9594,8 +9589,7 @@ export namespace cloudchannel_v1 {
     changeOffer(
       params: Params$Resource$Accounts$Customers$Entitlements$Changeoffer,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     changeOffer(
@@ -9751,8 +9745,7 @@ export namespace cloudchannel_v1 {
     changeParameters(
       params: Params$Resource$Accounts$Customers$Entitlements$Changeparameters,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     changeParameters(
@@ -9907,8 +9900,7 @@ export namespace cloudchannel_v1 {
     changeRenewalSettings(
       params: Params$Resource$Accounts$Customers$Entitlements$Changerenewalsettings,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     changeRenewalSettings(
@@ -10062,8 +10054,7 @@ export namespace cloudchannel_v1 {
     create(
       params: Params$Resource$Accounts$Customers$Entitlements$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -10675,8 +10666,7 @@ export namespace cloudchannel_v1 {
     lookupOffer(
       params: Params$Resource$Accounts$Customers$Entitlements$Lookupoffer,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudChannelV1Offer>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleCloudChannelV1Offer>,
       callback: BodyResponseCallback<Schema$GoogleCloudChannelV1Offer>
     ): void;
     lookupOffer(
@@ -10830,8 +10820,7 @@ export namespace cloudchannel_v1 {
     startPaidService(
       params: Params$Resource$Accounts$Customers$Entitlements$Startpaidservice,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     startPaidService(
@@ -10984,8 +10973,7 @@ export namespace cloudchannel_v1 {
     suspend(
       params: Params$Resource$Accounts$Customers$Entitlements$Suspend,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     suspend(
@@ -11803,8 +11791,7 @@ export namespace cloudchannel_v1 {
     run(
       params: Params$Resource$Accounts$Reports$Run,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     run(
@@ -13121,8 +13108,7 @@ export namespace cloudchannel_v1 {
     get(
       params: Params$Resource$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(

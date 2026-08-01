@@ -309,7 +309,7 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Required. The maximum number of devices to show in a page of results. Must be between 1 and 100 inclusive.",
+                  "description": "Optional. The maximum number of devices to show in a page of results. If unset or 0, defaults to 1000. If a value greater than 1000 is specified, it will be coerced to 1000.",
                   "format": "int64",
                   "location": "query",
                   "type": "string"
@@ -851,7 +851,7 @@
       }
     }
   },
-  "revision": "20250331",
+  "revision": "20260712",
   "rootUrl": "https://androiddeviceprovisioning.googleapis.com/",
   "schemas": {
     "ClaimDeviceRequest": {

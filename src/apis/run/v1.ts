@@ -355,6 +355,10 @@ export namespace run_v1 {
      */
     resources?: Schema$ResourceRequirements;
     /**
+     * Optional. Indicates that this container can act as a sandbox supervisor and launch sandboxes.
+     */
+    sandboxLauncher?: boolean | null;
+    /**
      * Not supported by Cloud Run.
      */
     securityContext?: Schema$SecurityContext;
@@ -2004,7 +2008,7 @@ export namespace run_v1 {
     value?: string | null;
   }
   /**
-   * Instance represents the configuration of a single Instance, which references a container image which is run to completion.
+   * An Instance represents the configuration of a single instance that references a container image and runs to completion.
    */
   export interface Schema$Instance {
     /**
@@ -2020,11 +2024,11 @@ export namespace run_v1 {
      */
     metadata?: Schema$ObjectMeta;
     /**
-     * Optional. Specification of the desired behavior of a Instance.
+     * Optional. Specification of the desired behavior of an Instance.
      */
     spec?: Schema$InstanceSpec;
     /**
-     * Output only. Current status of a Instance.
+     * Output only. Current status of an Instance.
      */
     status?: Schema$InstanceStatus;
   }
@@ -2040,6 +2044,10 @@ export namespace run_v1 {
      * Optional. The Node Selector configuration. Map of selector key to a value which matches a node.
      */
     nodeSelector?: {[key: string]: string} | null;
+    /**
+     * Optional. Restart policy for the Instance. Allowable values are 'Always', 'OnFailure', or 'Never'.
+     */
+    restartPolicy?: string | null;
     /**
      * Optional. Email address of the IAM service account associated with the Instance. The service account represents the identity of the running container, and determines what permissions the Instance has. If not provided, the Instance will use the project's default service account.
      */
@@ -2067,7 +2075,7 @@ export namespace run_v1 {
     revisionName?: string | null;
   }
   /**
-   * InstanceStatus represents the current state of a Instance.
+   * InstanceStatus represents the current state of an Instance.
    */
   export interface Schema$InstanceStatus {
     /**
@@ -2516,7 +2524,7 @@ export namespace run_v1 {
    */
   export interface Schema$ObjectMeta {
     /**
-     * Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/base-images`: Service, Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/build-base-image`: Service. * `run.googleapis.com/build-enable-automatic-updates`: Service. * `run.googleapis.com/build-environment-variables`: Service. * `run.googleapis.com/build-function-target`: Service, Revision. * `run.googleapis.com/build-id`: Service, Revision. * `run.googleapis.com/build-image-uri`: Service. * `run.googleapis.com/build-name`: Service. * `run.googleapis.com/build-service-account`: Service. * `run.googleapis.com/build-source-location`: Service, Revision. * `run.googleapis.com/build-worker-pool`: Service. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution . * `run.googleapis.com/container-dependencies`: Revision . * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/default-url-disabled`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution . * `run.googleapis.com/execution-environment`: Revision, Execution . * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/gpu-zonal-redundancy-disabled`: Revision. * `run.googleapis.com/health-check-disabled`: Revision. * `run.googleapis.com/ingress`: Service, Instance. * `run.googleapis.com/invoker-iam-disabled`: Service, Instance. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/minScale`: Service. * `run.googleapis.com/maxScale`: Service. * `run.googleapis.com/manualInstanceCount`: Service. * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. `run.googleapis.com/scalingMode`: Service. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution . * `run.googleapis.com/vpc-access-egress`: Revision, Execution.
+     * Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/base-images`: Service, Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/build-base-image`: Service. * `run.googleapis.com/build-enable-automatic-updates`: Service. * `run.googleapis.com/build-environment-variables`: Service. * `run.googleapis.com/build-function-target`: Service, Revision. * `run.googleapis.com/build-id`: Service, Revision. * `run.googleapis.com/build-image-uri`: Service. * `run.googleapis.com/build-name`: Service. * `run.googleapis.com/build-service-account`: Service. * `run.googleapis.com/build-source-location`: Service, Revision. * `run.googleapis.com/build-worker-pool`: Service. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution, Instance. * `run.googleapis.com/container-dependencies`: Revision . * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/default-url-disabled`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution, Instance. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/gpu-zonal-redundancy-disabled`: Revision. * `run.googleapis.com/health-check-disabled`: Revision. * `run.googleapis.com/ingress`: Service, Instance. * `run.googleapis.com/invoker-iam-disabled`: Service, Instance. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/minScale`: Service. * `run.googleapis.com/maxScale`: Service. * `run.googleapis.com/manualInstanceCount`: Service. * `run.googleapis.com/network-interfaces`: Revision, Execution, Instance. * `run.googleapis.com/post-key-revocation-action-type`: Revision. `run.googleapis.com/scalingMode`: Service. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution, Instance.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -3042,7 +3050,12 @@ export namespace run_v1 {
   /**
    * Request message for starting a stopped Instance.
    */
-  export interface Schema$StartInstanceRequest {}
+  export interface Schema$StartInstanceRequest {
+    /**
+     * Optional. Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string | null;
+  }
   /**
    * Status is a return value for calls that don't return other objects.
    */
@@ -3121,7 +3134,12 @@ export namespace run_v1 {
   /**
    * Request message for stopping a running Instance.
    */
-  export interface Schema$StopInstanceRequest {}
+  export interface Schema$StopInstanceRequest {
+    /**
+     * Optional. Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string | null;
+  }
   /**
    * Task represents a single run of a container to completion.
    */
@@ -3862,8 +3880,7 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Namespaces$Configurations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListConfigurationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListConfigurationsResponse>,
       callback: BodyResponseCallback<Schema$ListConfigurationsResponse>
     ): void;
     list(
@@ -4241,8 +4258,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Status>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Status> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
@@ -4527,8 +4543,7 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Namespaces$Domainmappings$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
       callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>
     ): void;
     list(
@@ -4783,8 +4798,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Execution> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
@@ -4933,8 +4947,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Status>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Status> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
@@ -5078,8 +5091,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Execution> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
@@ -5219,8 +5231,7 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Namespaces$Executions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListExecutionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListExecutionsResponse>,
       callback: BodyResponseCallback<Schema$ListExecutionsResponse>
     ): void;
     list(
@@ -5365,7 +5376,7 @@ export namespace run_v1 {
     }
 
     /**
-     * Create a Instance.
+     * Create an Instance.
      * @example
      * ```js
      * // Before running the sample:
@@ -5398,7 +5409,9 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.instances.create({
-     *     // Required. The namespace in which the Instance should be created. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     // Optional. Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
+     *     // Required. The resource's parent. In Cloud Run, it may be one of the following: * `{project_id_or_number\}` * `namespaces/{project_id_or_number\}` * `namespaces/{project_id_or_number\}/instances` * `projects/{project_id_or_number\}/locations/{region\}` * `projects/{project_id_or_number\}/regions/{region\}` Parent resource namespace.
      *     parent: 'namespaces/my-namespace',
      *
      *     // Request body metadata
@@ -5471,8 +5484,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Instance>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Instance> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Instance>>
@@ -5520,7 +5532,7 @@ export namespace run_v1 {
     }
 
     /**
-     * Delete a Instance.
+     * Delete an Instance.
      * @example
      * ```js
      * // Before running the sample:
@@ -5555,9 +5567,11 @@ export namespace run_v1 {
      *   const res = await run.namespaces.instances.delete({
      *     // Optional. Cloud Run currently ignores this parameter.
      *     apiVersion: 'placeholder-value',
+     *     // Optional. Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
      *     // Optional. Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // Required. The name of the Instance to delete. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     // Required. The fully qualified name of the Instance to delete. It can be any of the following forms: * `namespaces/{project_id_or_number\}/instances/{instance_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/instances/{instance_name\}` * `projects/{project_id_or_number\}/regions/{region\}/instances/{instance_name\}` Parent resource namespace.
      *     name: 'namespaces/my-namespace/instances/my-instance',
      *     // Optional. Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -5621,8 +5635,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Status>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Status> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
@@ -5705,7 +5718,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.instances.get({
-     *     // Required. The name of the Instance to retrieve. It takes the form namespaces/{namespace\}/instances/{Instance_name\} and the `endpoint` must be regional. Replace {namespace\} with the project ID or number.
+     *     // Required. The fully qualified name of the Instance to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/instances/{instance_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/instances/{instance_name\}` * `projects/{project_id_or_number\}/regions/{region\}/instances/{instance_name\}` Parent resource namespace.
      *     name: 'namespaces/my-namespace/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -5766,8 +5779,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Instance>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Instance> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Instance>>
@@ -5860,7 +5872,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // Required. The namespace from which the Instances should be listed. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     // Required. The parent from where the resources should be listed. In Cloud Run, it may be one of the following: * `{project_id_or_number\}` * `namespaces/{project_id_or_number\}` * `namespaces/{project_id_or_number\}/instances` * `projects/{project_id_or_number\}/locations/{region\}` * `projects/{project_id_or_number\}/regions/{region\}` Parent resource namespace.
      *     parent: 'namespaces/my-namespace',
      *     // Optional. Not supported by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -5907,8 +5919,7 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Namespaces$Instances$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListInstancesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListInstancesResponse>,
       callback: BodyResponseCallback<Schema$ListInstancesResponse>
     ): void;
     list(
@@ -6009,7 +6020,9 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.instances.replaceInstance({
-     *     // Required. The name of the Instance being replaced. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     *     // Optional. Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
+     *     // Required. The fully qualified name of the Instance being replaced. It can be any of the following forms: * `namespaces/{project_id_or_number\}/instances/{instance_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/instances/{instance_name\}` * `projects/{project_id_or_number\}/regions/{region\}/instances/{instance_name\}` Parent resource namespace.
      *     name: 'namespaces/my-namespace/instances/my-instance',
      *
      *     // Request body metadata
@@ -6082,8 +6095,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Instance>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Instance> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Instance>>
@@ -6171,7 +6183,9 @@ export namespace run_v1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "dryRun": "my_dryRun"
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -6232,8 +6246,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Instance>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Instance> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Instance>>
@@ -6320,7 +6333,9 @@ export namespace run_v1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "dryRun": "my_dryRun"
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -6381,8 +6396,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Instance>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Instance> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Instance>>
@@ -6433,7 +6447,11 @@ export namespace run_v1 {
 
   export interface Params$Resource$Namespaces$Instances$Create extends StandardParameters {
     /**
-     * Required. The namespace in which the Instance should be created. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     * Optional. Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
+    /**
+     * Required. The resource's parent. In Cloud Run, it may be one of the following: * `{project_id_or_number\}` * `namespaces/{project_id_or_number\}` * `namespaces/{project_id_or_number\}/instances` * `projects/{project_id_or_number\}/locations/{region\}` * `projects/{project_id_or_number\}/regions/{region\}` Parent resource namespace.
      */
     parent?: string;
 
@@ -6448,11 +6466,15 @@ export namespace run_v1 {
      */
     apiVersion?: string;
     /**
+     * Optional. Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
+    /**
      * Optional. Cloud Run currently ignores this parameter.
      */
     kind?: string;
     /**
-     * Required. The name of the Instance to delete. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     * Required. The fully qualified name of the Instance to delete. It can be any of the following forms: * `namespaces/{project_id_or_number\}/instances/{instance_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/instances/{instance_name\}` * `projects/{project_id_or_number\}/regions/{region\}/instances/{instance_name\}` Parent resource namespace.
      */
     name?: string;
     /**
@@ -6462,7 +6484,7 @@ export namespace run_v1 {
   }
   export interface Params$Resource$Namespaces$Instances$Get extends StandardParameters {
     /**
-     * Required. The name of the Instance to retrieve. It takes the form namespaces/{namespace\}/instances/{Instance_name\} and the `endpoint` must be regional. Replace {namespace\} with the project ID or number.
+     * Required. The fully qualified name of the Instance to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number\}/instances/{instance_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/instances/{instance_name\}` * `projects/{project_id_or_number\}/regions/{region\}/instances/{instance_name\}` Parent resource namespace.
      */
     name?: string;
   }
@@ -6488,7 +6510,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * Required. The namespace from which the Instances should be listed. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     * Required. The parent from where the resources should be listed. In Cloud Run, it may be one of the following: * `{project_id_or_number\}` * `namespaces/{project_id_or_number\}` * `namespaces/{project_id_or_number\}/instances` * `projects/{project_id_or_number\}/locations/{region\}` * `projects/{project_id_or_number\}/regions/{region\}` Parent resource namespace.
      */
     parent?: string;
     /**
@@ -6502,7 +6524,11 @@ export namespace run_v1 {
   }
   export interface Params$Resource$Namespaces$Instances$Replaceinstance extends StandardParameters {
     /**
-     * Required. The name of the Instance being replaced. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
+     * Optional. Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
+    /**
+     * Required. The fully qualified name of the Instance being replaced. It can be any of the following forms: * `namespaces/{project_id_or_number\}/instances/{instance_name\}` (only when the `endpoint` is regional) * `projects/{project_id_or_number\}/locations/{region\}/instances/{instance_name\}` * `projects/{project_id_or_number\}/regions/{region\}/instances/{instance_name\}` Parent resource namespace.
      */
     name?: string;
 
@@ -6574,6 +6600,8 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.jobs.create({
+     *     // Optional. Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
      *     // Required. The namespace in which the job should be created. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     parent: 'namespaces/my-namespace',
      *
@@ -6647,8 +6675,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -6731,6 +6758,8 @@ export namespace run_v1 {
      *   const res = await run.namespaces.jobs.delete({
      *     // Optional. Cloud Run currently ignores this parameter.
      *     apiVersion: 'placeholder-value',
+     *     // Optional. Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
      *     // Optional. Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
      *     // Required. The name of the job to delete. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
@@ -6797,8 +6826,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Status>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Status> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
@@ -6942,8 +6970,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -7183,6 +7210,8 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.jobs.replaceJob({
+     *     // Optional. Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
      *     // Required. The name of the job being replaced. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      *     name: 'namespaces/my-namespace/jobs/my-job',
      *
@@ -7256,8 +7285,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -7408,8 +7436,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Execution> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
@@ -7460,6 +7487,10 @@ export namespace run_v1 {
 
   export interface Params$Resource$Namespaces$Jobs$Create extends StandardParameters {
     /**
+     * Optional. Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
+    /**
      * Required. The namespace in which the job should be created. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
     parent?: string;
@@ -7474,6 +7505,10 @@ export namespace run_v1 {
      * Optional. Cloud Run currently ignores this parameter.
      */
     apiVersion?: string;
+    /**
+     * Optional. Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
     /**
      * Optional. Cloud Run currently ignores this parameter.
      */
@@ -7528,6 +7563,10 @@ export namespace run_v1 {
     watch?: boolean;
   }
   export interface Params$Resource$Namespaces$Jobs$Replacejob extends StandardParameters {
+    /**
+     * Optional. Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
     /**
      * Required. The name of the job being replaced. Replace {namespace\} with the project ID or number. It takes the form namespaces/{namespace\}. For example: namespaces/PROJECT_ID
      */
@@ -7660,8 +7699,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Status>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Status> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
@@ -7805,8 +7843,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Revision>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Revision>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Revision> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Revision>>
@@ -7946,8 +7983,7 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Namespaces$Revisions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRevisionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRevisionsResponse>,
       callback: BodyResponseCallback<Schema$ListRevisionsResponse>
     ): void;
     list(
@@ -8180,8 +8216,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Route>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Route>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Route> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Route>>
@@ -8544,8 +8579,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -8696,8 +8730,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Status>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Status> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
@@ -8841,8 +8874,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -8982,8 +9014,7 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Namespaces$Services$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListServicesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListServicesResponse>,
       callback: BodyResponseCallback<Schema$ListServicesResponse>
     ): void;
     list(
@@ -9159,8 +9190,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -9404,8 +9434,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Task>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Task>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Task> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Task>>
@@ -9768,8 +9797,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$WorkerPool>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$WorkerPool>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$WorkerPool> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$WorkerPool>>
@@ -9914,8 +9942,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Status>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Status> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
@@ -10059,8 +10086,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$WorkerPool>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$WorkerPool>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$WorkerPool> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$WorkerPool>>
@@ -10192,8 +10218,7 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Namespaces$Workerpools$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListWorkerPoolsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListWorkerPoolsResponse>,
       callback: BodyResponseCallback<Schema$ListWorkerPoolsResponse>
     ): void;
     list(
@@ -10369,8 +10394,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$WorkerPool>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$WorkerPool>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$WorkerPool> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$WorkerPool>>
@@ -10789,8 +10813,7 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -11297,8 +11320,7 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Projects$Locations$Configurations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListConfigurationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListConfigurationsResponse>,
       callback: BodyResponseCallback<Schema$ListConfigurationsResponse>
     ): void;
     list(
@@ -11678,8 +11700,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Status>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Status> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
@@ -11958,8 +11979,7 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Projects$Locations$Domainmappings$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDomainMappingsResponse>,
       callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>
     ): void;
     list(
@@ -12115,7 +12135,7 @@ export namespace run_v1 {
     }
 
     /**
-     * Get the IAM Access Control policy currently in effect for the given instance. This result does not include any inherited policies.
+     * Gets the IAM Access Control policy currently in effect for the given instance. This result does not include any inherited policies.
      * @example
      * ```js
      * // Before running the sample:
@@ -12211,8 +12231,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -12364,8 +12383,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -12496,8 +12514,7 @@ export namespace run_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Instances$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -12705,8 +12722,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -12857,8 +12873,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -12988,8 +13003,7 @@ export namespace run_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Jobs$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -13189,8 +13203,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -13313,8 +13326,7 @@ export namespace run_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -13628,8 +13640,7 @@ export namespace run_v1 {
     wait(
       params: Params$Resource$Projects$Locations$Operations$Wait,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     wait(
@@ -13853,8 +13864,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Status>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Status> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
@@ -13995,8 +14005,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Revision>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Revision>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Revision> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Revision>>
@@ -14133,8 +14142,7 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Projects$Locations$Revisions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRevisionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRevisionsResponse>,
       callback: BodyResponseCallback<Schema$ListRevisionsResponse>
     ): void;
     list(
@@ -14368,8 +14376,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Route>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Route>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Route> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Route>>
@@ -14730,8 +14737,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -14883,8 +14889,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Status>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Status>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Status> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Status>>
@@ -15025,8 +15030,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -15168,8 +15172,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -15309,8 +15312,7 @@ export namespace run_v1 {
     list(
       params: Params$Resource$Projects$Locations$Services$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListServicesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListServicesResponse>,
       callback: BodyResponseCallback<Schema$ListServicesResponse>
     ): void;
     list(
@@ -15487,8 +15489,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -15637,8 +15638,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -15768,8 +15768,7 @@ export namespace run_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Services$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -16070,8 +16069,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -16224,8 +16222,7 @@ export namespace run_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -16357,8 +16354,7 @@ export namespace run_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Workerpools$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(

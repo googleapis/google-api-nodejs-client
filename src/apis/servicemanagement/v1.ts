@@ -2308,8 +2308,7 @@ export namespace servicemanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2437,8 +2436,7 @@ export namespace servicemanagement_v1 {
     list(
       params: Params$Resource$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -2646,8 +2644,7 @@ export namespace servicemanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2787,8 +2784,7 @@ export namespace servicemanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3260,8 +3256,7 @@ export namespace servicemanagement_v1 {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -3414,8 +3409,7 @@ export namespace servicemanagement_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3546,8 +3540,7 @@ export namespace servicemanagement_v1 {
     list(
       params: Params$Resource$Services$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListServicesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListServicesResponse>,
       callback: BodyResponseCallback<Schema$ListServicesResponse>
     ): void;
     list(
@@ -3715,8 +3708,7 @@ export namespace servicemanagement_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3848,8 +3840,7 @@ export namespace servicemanagement_v1 {
     testIamPermissions(
       params: Params$Resource$Services$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -4015,8 +4006,7 @@ export namespace servicemanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4323,8 +4313,7 @@ export namespace servicemanagement_v1 {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -4498,8 +4487,7 @@ export namespace servicemanagement_v1 {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -4627,8 +4615,7 @@ export namespace servicemanagement_v1 {
     list(
       params: Params$Resource$Services$Configs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListServiceConfigsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListServiceConfigsResponse>,
       callback: BodyResponseCallback<Schema$ListServiceConfigsResponse>
     ): void;
     list(
@@ -4803,8 +4790,7 @@ export namespace servicemanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5014,8 +5000,7 @@ export namespace servicemanagement_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5167,8 +5152,7 @@ export namespace servicemanagement_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5300,8 +5284,7 @@ export namespace servicemanagement_v1 {
     testIamPermissions(
       params: Params$Resource$Services$Consumers$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -5522,8 +5505,7 @@ export namespace servicemanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5673,8 +5655,7 @@ export namespace servicemanagement_v1 {
         | BodyResponseCallback<Schema$Rollout>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Rollout>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Rollout> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Rollout>>

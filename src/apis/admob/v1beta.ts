@@ -200,7 +200,7 @@ export namespace admob_v1beta {
      */
     adTypes?: string[] | null;
     /**
-     * The externally visible ID of the ad unit which can be used to integrate with the AdMob SDK. This is a read only property. Example: ca-app-pub-9876543210987654/0123456789
+     * The externally visible ID of the ad unit which can be used to integrate with AdMob. This is a read only property. Example: ca-app-pub-9876543210987654/0123456789
      */
     adUnitId?: string | null;
     /**
@@ -267,7 +267,7 @@ export namespace admob_v1beta {
      */
     appApprovalState?: string | null;
     /**
-     * The externally visible ID of the app which can be used to integrate with the AdMob SDK. This is a read only property. Example: ca-app-pub-9876543210987654~0123456789
+     * The externally visible ID of the app which can be used to integrate with AdMob. This is a read only property. Example: ca-app-pub-9876543210987654~0123456789
      */
     appId?: string | null;
     /**
@@ -1402,8 +1402,7 @@ export namespace admob_v1beta {
     list(
       params: Params$Resource$Accounts$Adsources$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAdSourcesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAdSourcesResponse>,
       callback: BodyResponseCallback<Schema$ListAdSourcesResponse>
     ): void;
     list(
@@ -1568,8 +1567,7 @@ export namespace admob_v1beta {
     list(
       params: Params$Resource$Accounts$Adsources$Adapters$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAdaptersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAdaptersResponse>,
       callback: BodyResponseCallback<Schema$ListAdaptersResponse>
     ): void;
     list(
@@ -1944,8 +1942,7 @@ export namespace admob_v1beta {
         | BodyResponseCallback<Schema$AdUnit>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AdUnit>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AdUnit> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AdUnit>>
@@ -2398,8 +2395,7 @@ export namespace admob_v1beta {
     list(
       params: Params$Resource$Accounts$Adunits$Adunitmappings$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAdUnitMappingsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAdUnitMappingsResponse>,
       callback: BodyResponseCallback<Schema$ListAdUnitMappingsResponse>
     ): void;
     list(
@@ -2612,8 +2608,7 @@ export namespace admob_v1beta {
         | BodyResponseCallback<Schema$App>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$App>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$App> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$App>>
@@ -3625,8 +3620,7 @@ export namespace admob_v1beta {
     create(
       params: Params$Resource$Accounts$Mediationgroups$Mediationabexperiments$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$MediationAbExperiment>,
+        MethodOptions | BodyResponseCallback<Schema$MediationAbExperiment>,
       callback: BodyResponseCallback<Schema$MediationAbExperiment>
     ): void;
     create(
@@ -3783,8 +3777,7 @@ export namespace admob_v1beta {
     stop(
       params: Params$Resource$Accounts$Mediationgroups$Mediationabexperiments$Stop,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$MediationAbExperiment>,
+        MethodOptions | BodyResponseCallback<Schema$MediationAbExperiment>,
       callback: BodyResponseCallback<Schema$MediationAbExperiment>
     ): void;
     stop(

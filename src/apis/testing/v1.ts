@@ -1835,8 +1835,7 @@ export namespace testing_v1 {
     getApkDetails(
       params: Params$Resource$Applicationdetailservice$Getapkdetails,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GetApkDetailsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GetApkDetailsResponse>,
       callback: BodyResponseCallback<Schema$GetApkDetailsResponse>
     ): void;
     getApkDetails(
@@ -2027,8 +2026,7 @@ export namespace testing_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2456,8 +2454,7 @@ export namespace testing_v1 {
     list(
       params: Params$Resource$Projects$Devicesessions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDeviceSessionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDeviceSessionsResponse>,
       callback: BodyResponseCallback<Schema$ListDeviceSessionsResponse>
     ): void;
     list(
@@ -2830,8 +2827,7 @@ export namespace testing_v1 {
     cancel(
       params: Params$Resource$Projects$Testmatrices$Cancel,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CancelTestMatrixResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CancelTestMatrixResponse>,
       callback: BodyResponseCallback<Schema$CancelTestMatrixResponse>
     ): void;
     cancel(
@@ -3025,8 +3021,7 @@ export namespace testing_v1 {
         | BodyResponseCallback<Schema$TestMatrix>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TestMatrix>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TestMatrix> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TestMatrix>>
@@ -3180,8 +3175,7 @@ export namespace testing_v1 {
         | BodyResponseCallback<Schema$TestMatrix>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TestMatrix>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TestMatrix> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TestMatrix>>
@@ -3352,8 +3346,7 @@ export namespace testing_v1 {
     get(
       params: Params$Resource$Testenvironmentcatalog$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestEnvironmentCatalog>,
+        MethodOptions | BodyResponseCallback<Schema$TestEnvironmentCatalog>,
       callback: BodyResponseCallback<Schema$TestEnvironmentCatalog>
     ): void;
     get(

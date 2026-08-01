@@ -4729,7 +4729,7 @@
       }
     }
   },
-  "revision": "20260522",
+  "revision": "20260531",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -8008,6 +8008,11 @@
           "readOnly": true,
           "type": "array"
         },
+        "archivalTime": {
+          "description": "Output only. User's account archival time. (Read-only)",
+          "readOnly": true,
+          "type": "string"
+        },
         "archived": {
           "description": "Indicates if user is archived.",
           "type": "boolean"
@@ -8210,6 +8215,11 @@
         },
         "suspensionReason": {
           "description": "Output only. Has the reason a user account is suspended either by the administrator or by Google at the time of suspension. The property is returned only if the `suspended` property is `true`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "suspensionTime": {
+          "description": "Output only. User's account suspension time. (Read-only)",
           "readOnly": true,
           "type": "string"
         },

@@ -129,19 +129,19 @@ export namespace cloudnumberregistry_v1alpha {
    */
   export interface Schema$AggregatedData {
     /**
-     * Output only. Number of custom ranges in the RegistryBook.
+     * Output only. Number of CustomRanges in the RegistryBook.
      */
     customRangesCount?: number | null;
     /**
-     * Output only. Number of custom realms in the RegistryBook.
+     * Output only. Number of custom Realms in the RegistryBook.
      */
     customRealmsCount?: number | null;
     /**
-     * Output only. Number of discovered ranges in the RegistryBook.
+     * Output only. Number of DiscoveredRanges in the RegistryBook.
      */
     discoveredRangesCount?: number | null;
     /**
-     * Output only. Number of discovered realms in the RegistryBook.
+     * Output only. Number of discovered Realms in the RegistryBook.
      */
     discoveredRealmsCount?: number | null;
     /**
@@ -150,15 +150,15 @@ export namespace cloudnumberregistry_v1alpha {
     uniqueScopesCount?: number | null;
   }
   /**
-   * Message describing Attribute object
+   * A key-value pair representing a custom attribute associated with a resource.
    */
   export interface Schema$Attribute {
     /**
-     * Required. Key of attribute
+     * Required. The key of the attribute.
      */
     key?: string | null;
     /**
-     * Required. Value of attribute
+     * Required. The value of the attribute.
      */
     value?: string | null;
   }
@@ -167,7 +167,7 @@ export namespace cloudnumberregistry_v1alpha {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * Message for response to checking the availability of IpamAdminScopes
+   * Response message for the CloudNumberRegistry.CheckAvailabilityIpamAdminScopes method.
    */
   export interface Schema$CheckAvailabilityIpamAdminScopesResponse {
     /**
@@ -176,7 +176,7 @@ export namespace cloudnumberregistry_v1alpha {
     scopeAvailabilities?: Schema$IpamAdminScopeAvailability[];
   }
   /**
-   * Message for cleaning up a IpamAdminScope
+   * Request message for the CloudNumberRegistry.CleanupIpamAdminScope method.
    */
   export interface Schema$CleanupIpamAdminScopeRequest {
     /**
@@ -185,7 +185,7 @@ export namespace cloudnumberregistry_v1alpha {
     requestId?: string | null;
   }
   /**
-   * Message describing CustomRange object
+   * A CustomRange represents a user-defined IP address range.
    */
   export interface Schema$CustomRange {
     /**
@@ -193,7 +193,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     attributes?: Schema$Attribute[];
     /**
-     * Optional. Description of the CustomRange.
+     * Optional. The description of the CustomRange.
      */
     description?: string | null;
     /**
@@ -205,28 +205,28 @@ export namespace cloudnumberregistry_v1alpha {
      */
     ipv6CidrRange?: string | null;
     /**
-     * Optional. Labels as key value pairs
+     * Optional. User-defined labels.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. Identifier. name of resource
+     * Required. Identifier. The resource name of the CustomRange, in the format `projects/{project\}/locations/{location\}/customRanges/{custom_range\}`.
      */
     name?: string | null;
     /**
-     * Optional. The parent range of the CustomRange. Do not allow setting parent range if realm is specified. Format must follow this pattern: projects/{project\}/locations/{location\}/customRanges/{custom_range\}
+     * Optional. The resource name of the parent CustomRange, in the format `projects/{project\}/locations/{location\}/customRanges/{custom_range\}`. If specified, the parent CustomRange must be in the same RegistryBook. This field is mutually exclusive with the `realm` field, as the Realm is inherited from the parent CustomRange.
      */
     parentRange?: string | null;
     /**
-     * Optional. The realm of the CustomRange. The realm must be in the same project as the custom range. Do not allow setting realm if parent range is specified, since the realm should be inherited from the parent range. Format must follow this pattern: projects/{project\}/locations/{location\}/realms/{realm\}
+     * Optional. The resource name of the Realm associated with the CustomRange, in the format `projects/{project\}/locations/{location\}/realms/{realm\}`. The Realm must be in the same project as the CustomRange. This field must not be set if the `parent_range` field is set, as the Realm will be inherited from the parent CustomRange.
      */
     realm?: string | null;
     /**
-     * Output only. The registry book of the CustomRange. This field is inherited from the realm or parent range depending on which one is specified.
+     * Output only. The RegistryBook of the CustomRange. This field is inherited from the Realm or parent CustomRange depending on which one is specified.
      */
     registryBook?: string | null;
   }
   /**
-   * Message for disabling a IpamAdminScope
+   * Request message for the CloudNumberRegistry.DisableIpamAdminScope method.
    */
   export interface Schema$DisableIpamAdminScopeRequest {
     /**
@@ -235,7 +235,7 @@ export namespace cloudnumberregistry_v1alpha {
     requestId?: string | null;
   }
   /**
-   * Message describing DiscoveredRange object
+   * A DiscoveredRange represents an IP address range automatically detected by the discovery pipeline.
    */
   export interface Schema$DiscoveredRange {
     /**
@@ -243,11 +243,11 @@ export namespace cloudnumberregistry_v1alpha {
      */
     attributes?: Schema$Attribute[];
     /**
-     * Output only. If true, allow child ranges of this range to overlap with each other.
+     * Output only. If true, allows child DiscoveredRanges of this DiscoveredRange to overlap with each other.
      */
     childCidrOverlapAllowed?: boolean | null;
     /**
-     * Output only. [Output only] Create time stamp
+     * Output only. The time at which the DiscoveredRange was created.
      */
     createTime?: string | null;
     /**
@@ -267,32 +267,32 @@ export namespace cloudnumberregistry_v1alpha {
      */
     ipv6CidrRange?: string | null;
     /**
-     * Optional. Labels as key value pairs
+     * Optional. User-defined labels.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. Identifier. Name of the DiscoveredRange.
+     * Required. Identifier. The resource name of the DiscoveredRange, in the format `projects/{project\}/locations/{location\}/discoveredRanges/{discovered_range\}`.
      */
     name?: string | null;
     /**
-     * Optional. The parent range of the DiscoveredRange.
+     * Optional. The resource name of the parent DiscoveredRange, in the format `projects/{project\}/locations/{location\}/discoveredRanges/{discovered_range\}`.
      */
     parentRange?: string | null;
     /**
-     * Optional. The realm of the DiscoveredRange.
+     * Optional. The Realm of the DiscoveredRange.
      */
     realm?: string | null;
     /**
-     * Output only. The registry book of the DiscoveredRange.
+     * Output only. The RegistryBook of the DiscoveredRange.
      */
     registryBook?: string | null;
     /**
-     * Output only. [Output only] Update time stamp
+     * Output only. The time at which the DiscoveredRange was last updated.
      */
     updateTime?: string | null;
   }
   /**
-   * Discovery metadata of the discovered resource.
+   * Metadata about a discovered resource, tracking event times, state, and source information.
    */
   export interface Schema$DiscoveryMetadata {
     /**
@@ -316,7 +316,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     sourceId?: string | null;
     /**
-     * Output only. A single source resource can be the source of multiple CNR resources. This sub_id is used to distinguish between the different CNR resources derived from the same upstream resource. For example, a single subnetwork can be the source of multiple ranges, one for each protocol. In this case, the sub_id could be "private-ipv4" or "private-ipv6".
+     * Output only. A single source resource can be the source of multiple CNR resources. This sub_id is used to distinguish between the different CNR resources derived from the same upstream resource. For example, a single subnetwork can be the source of multiple Ranges, one for each protocol. In this case, the sub_id could be "private-ipv4" or "private-ipv6".
      */
     sourceSubId?: string | null;
     /**
@@ -333,41 +333,41 @@ export namespace cloudnumberregistry_v1alpha {
    */
   export interface Schema$Empty {}
   /**
-   * Message for the response to finding free IP ranges.
+   * Response message for the CloudNumberRegistry.FindCustomRangeFreeIpRanges method.
    */
   export interface Schema$FindCustomRangeFreeIpRangesResponse {
     /**
-     * Output only. Free IP CIDR ranges found in the CustomRange.
+     * Output only. The free IP CIDR ranges found.
      */
     freeIpCidrRanges?: string[] | null;
   }
   /**
-   * Message for the response to finding free IP ranges.
+   * Response message for the CloudNumberRegistry.FindDiscoveredRangeFreeIpRanges method.
    */
   export interface Schema$FindDiscoveredRangeFreeIpRangesResponse {
     /**
-     * Output only. Free IP CIDR ranges found in the DiscoveredRange.
+     * Output only. The free IP CIDR ranges found.
      */
     freeIpCidrRanges?: string[] | null;
   }
   /**
-   * Message describing IpamAdminScope object
+   * An IpamAdminScope defines the administrative boundary for IP address discovery and management. It configures which platforms and organizational scopes are enabled for IP tracking.
    */
   export interface Schema$IpamAdminScope {
     /**
-     * Output only. [Output only] Create time stamp
+     * Output only. The time at which the IpamAdminScope was created.
      */
     createTime?: string | null;
     /**
-     * Required. Addon platforms that are enabled for this IPAM admin scope. Cloud Number Registry only discovers the IP addresses from the enabled platforms.
+     * Required. Add-on platforms that are enabled for this IpamAdminScope. Cloud Number Registry only discovers the IP addresses from the enabled platforms.
      */
     enabledAddonPlatforms?: string[] | null;
     /**
-     * Optional. Labels as key value pairs
+     * Optional. User-defined labels.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. Identifier. name of resource
+     * Required. Identifier. The resource name of the IpamAdminScope.
      */
     name?: string | null;
     /**
@@ -379,12 +379,12 @@ export namespace cloudnumberregistry_v1alpha {
      */
     state?: string | null;
     /**
-     * Output only. [Output only] Update time stamp
+     * Output only. The time at which the IpamAdminScope was last updated.
      */
     updateTime?: string | null;
   }
   /**
-   * Message for the availability of an IpamAdminScope
+   * Availability details for a specific IpamAdminScope.
    */
   export interface Schema$IpamAdminScopeAvailability {
     /**
@@ -401,15 +401,15 @@ export namespace cloudnumberregistry_v1alpha {
     scope?: string | null;
   }
   /**
-   * Message for response to listing CustomRanges
+   * Response message for the CloudNumberRegistry.ListCustomRanges method.
    */
   export interface Schema$ListCustomRangesResponse {
     /**
-     * The list of CustomRange
+     * The list of CustomRanges.
      */
     customRanges?: Schema$CustomRange[];
     /**
-     * A token identifying a page of results the server should return.
+     * A token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string | null;
     /**
@@ -418,15 +418,15 @@ export namespace cloudnumberregistry_v1alpha {
     unreachable?: string[] | null;
   }
   /**
-   * Message for response to listing DiscoveredRanges
+   * Response message for the CloudNumberRegistry.ListDiscoveredRanges method.
    */
   export interface Schema$ListDiscoveredRangesResponse {
     /**
-     * The list of DiscoveredRange
+     * The list of DiscoveredRanges.
      */
     discoveredRanges?: Schema$DiscoveredRange[];
     /**
-     * A token identifying a page of results the server should return.
+     * A token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string | null;
     /**
@@ -435,15 +435,15 @@ export namespace cloudnumberregistry_v1alpha {
     unreachable?: string[] | null;
   }
   /**
-   * Message for response to listing ipamAdminScopes
+   * Response message for the CloudNumberRegistry.ListIpamAdminScopes method.
    */
   export interface Schema$ListIpamAdminScopesResponse {
     /**
-     * The list of IpamAdminScope
+     * The list of IpamAdminScopes.
      */
     ipamAdminScopes?: Schema$IpamAdminScope[];
     /**
-     * A token identifying a page of results the server should return.
+     * A token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string | null;
     /**
@@ -482,7 +482,7 @@ export namespace cloudnumberregistry_v1alpha {
     unreachable?: string[] | null;
   }
   /**
-   * Message for response to listing Realms
+   * Response message for the CloudNumberRegistry.ListRealms method.
    */
   export interface Schema$ListRealmsResponse {
     /**
@@ -490,7 +490,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     nextPageToken?: string | null;
     /**
-     * The list of Realm
+     * The list of Realms.
      */
     realms?: Schema$Realm[];
     /**
@@ -499,7 +499,7 @@ export namespace cloudnumberregistry_v1alpha {
     unreachable?: string[] | null;
   }
   /**
-   * Message for response to listing RegistryBooks
+   * Response message for the CloudNumberRegistry.ListRegistryBooks method.
    */
   export interface Schema$ListRegistryBooksResponse {
     /**
@@ -599,41 +599,41 @@ export namespace cloudnumberregistry_v1alpha {
     verb?: string | null;
   }
   /**
-   * Message describing either a CustomRange or a DiscoveredRange.
+   * Represents either a CustomRange or a DiscoveredRange.
    */
   export interface Schema$Range {
     /**
-     * A custom range.
+     * A CustomRange.
      */
     customRange?: Schema$CustomRange;
     /**
-     * A discovered range.
+     * A DiscoveredRange.
      */
     discoveredRange?: Schema$DiscoveredRange;
     /**
-     * The utilization of the range.
+     * The utilization of the Range.
      */
     utilization?: Schema$RangeUtilization;
   }
   /**
-   * Message for the utilization of an IP range
+   * Utilization metrics for an IP Range, including consumed and produced address counts.
    */
   export interface Schema$RangeUtilization {
     /**
-     * Output only. The total number of IP addresses consumed in the range.
+     * Output only. The total number of IP addresses consumed in the Range.
      */
     totalConsumed?: string | null;
     /**
-     * Output only. The total number of IP addresses produced in the range.
+     * Output only. The total number of IP addresses produced in the Range.
      */
     totalProduced?: string | null;
     /**
-     * Output only. The usage of the range as a percentage. This is marked as optional so that we have presence tracking and API responses show 0.0 instead of NULL.
+     * Output only. The usage of the Range as a percentage. This is marked as optional so that we have presence tracking and API responses show 0.0 instead of NULL.
      */
     usage?: number | null;
   }
   /**
-   * Message describing Realm object
+   * A Realm represents a distinct network domain or security zone. It groups Ranges that share the same traffic and management characteristics. All the ranges in a Realm are routable to each other, meaning that they cannot overlap.
    */
   export interface Schema$Realm {
     /**
@@ -641,39 +641,39 @@ export namespace cloudnumberregistry_v1alpha {
      */
     aggregatedData?: Schema$RealmAggregatedData;
     /**
-     * Output only. [Output only] Create time stamp
+     * Output only. The time at which the Realm was created.
      */
     createTime?: string | null;
     /**
-     * Output only. Discovery metadata of the realm.
+     * Output only. Discovery metadata of the Realm.
      */
     discoveryMetadata?: Schema$DiscoveryMetadata;
     /**
-     * Optional. IP version of the realm.
+     * Optional. IP version of the Realm.
      */
     ipVersion?: string | null;
     /**
-     * Optional. Labels as key value pairs
+     * Optional. User-defined labels.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. Management type of realm.
+     * Optional. Management type of the Realm.
      */
     managementType?: string | null;
     /**
-     * Required. Identifier. Unique name/ID of the realm
+     * Required. Identifier. The resource name of the Realm.
      */
     name?: string | null;
     /**
-     * Required. URI of the registry book that claims the realm.
+     * Required. Name of the RegistryBook that claims the Realm.
      */
     registryBook?: string | null;
     /**
-     * Required. Traffic type of realm.
+     * Required. Traffic type of the Realm.
      */
     trafficType?: string | null;
     /**
-     * Output only. [Output only] Update time stamp
+     * Output only. The time at which the Realm was last updated.
      */
     updateTime?: string | null;
   }
@@ -682,16 +682,16 @@ export namespace cloudnumberregistry_v1alpha {
    */
   export interface Schema$RealmAggregatedData {
     /**
-     * Output only. Number of custom ranges in the Realm.
+     * Output only. Number of CustomRanges in the Realm.
      */
     customRangesCount?: number | null;
     /**
-     * Output only. Number of discovered ranges in the Realm.
+     * Output only. Number of DiscoveredRanges in the Realm.
      */
     discoveredRangesCount?: number | null;
   }
   /**
-   * Message describing RegistryBook object
+   * A RegistryBook organizes and manages IP address space. It claims specific scopes (such as projects) and groups related Realms and Ranges.
    */
   export interface Schema$RegistryBook {
     /**
@@ -703,7 +703,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     claimedScopes?: string[] | null;
     /**
-     * Output only. [Output only] Create time stamp
+     * Output only. The time at which the RegistryBook was created.
      */
     createTime?: string | null;
     /**
@@ -711,24 +711,24 @@ export namespace cloudnumberregistry_v1alpha {
      */
     isDefault?: boolean | null;
     /**
-     * Optional. Labels as key value pairs
+     * Optional. User-defined labels.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. Identifier. name of resource
+     * Required. Identifier. The resource name of the RegistryBook.
      */
     name?: string | null;
     /**
-     * Output only. [Output only] Update time stamp
+     * Output only. The time at which the RegistryBook was last updated.
      */
     updateTime?: string | null;
   }
   /**
-   * Message for searching IP resources
+   * Request message for the CloudNumberRegistry.SearchIpResources method.
    */
   export interface Schema$SearchIpResourcesRequest {
     /**
-     * Optional. Hint for how to order the results
+     * Optional. Hint for how to order the results. Supported sort fields are: - `name`: Sort alphabetically by the resource name. - `create_time`: Sort by the creation timestamp of the resource. - `update_time`: Sort by the last update timestamp of the resource. Supported directions are `asc` (ascending) and `desc` (descending). If unspecified, direction defaults to `asc`. Only sorting by a single field is supported.
      */
     orderBy?: string | null;
     /**
@@ -740,20 +740,20 @@ export namespace cloudnumberregistry_v1alpha {
      */
     pageToken?: string | null;
     /**
-     * Optional. Search query. This string filters resources in an AIP-160-like format. It has some limitations. You can only specify top level conjunctions or attribute level negations. Each restriction can only be used once except the attribute restriction. The available restrictions for ranges are: - `realm`: The realm name to search in. - `ip_address`: The IP address to search for within ranges. - `ip_version`: The IP version to filter by (e.g., "IPV4", "IPV6"). - `parent_range`: The parent range of the range to search for. - `attribute_text`: The attribute text to search for within ranges. - `attribute`: The attribute key and value to filter by. The available restrictions for realms are: - `ip_version`: The IP version to search for. Only one of attribute_text or multiple attribute filters can be specified. Examples: - `realm=test-realm` - `realm=test-realm AND ip_address=10.0.0.0` - `realm=test-realm AND ip_version=IPV6` - `realm=test-realm AND attribute_text=test` - `ip_address=10.0.0.0 AND attribute:(key1=value1) AND attribute:(key2=value2)` - `attribute_text=test AND parent_range=projects/123/locations/global/discoveredRanges/test-parent-range`
+     * Optional. Search query. This string filters resources in an AIP-160-like format. It has some limitations. You can only specify top level conjunctions or attribute level negations. Each restriction can only be used once except the attribute restriction. The available restrictions for Ranges are: - `realm`: The Realm name to search in. - `ip_address`: The IP address to search for within Ranges. - `ip_version`: The IP version to filter by (e.g., "IPV4", "IPV6"). - `parent_range`: The parent Range of the Range to search for. - `attribute_text`: The attribute text to search for within Ranges. - `attribute`: The attribute key and value to filter by. The available restrictions for Realms are: - `ip_version`: The IP version to search for. - `management_type`: The management type of the Realm (e.g., "CNR", "USER"). Only one of attribute_text or multiple attribute filters can be specified. Examples: - `realm=test-realm` - `realm=test-realm AND ip_address=10.0.0.0` - `realm=test-realm AND ip_version=IPV6` - `realm=test-realm AND attribute_text=test` - `ip_address=10.0.0.0 AND attribute:(key1=value1) AND attribute:(key2=value2)` - `attribute_text=test AND parent_range=projects/123/locations/global/discoveredRanges/test-parent-range` - `management_type=CNR`
      */
     query?: string | null;
     /**
-     * Optional. The type of resources to search for. If not specified, the server will return ranges.
+     * Optional. The type of resources to search for. If not specified, the server will return Ranges.
      */
     searchResourceTypes?: string[] | null;
     /**
-     * Optional. Whether to show the utilization of the ranges in the response.
+     * Optional. Whether to show the utilization of the Ranges in the response.
      */
     showUtilization?: boolean | null;
   }
   /**
-   * Message for response to searching IP resources
+   * Response message for the CloudNumberRegistry.SearchIpResources method.
    */
   export interface Schema$SearchIpResourcesResponse {
     /**
@@ -761,7 +761,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     nextPageToken?: string | null;
     /**
-     * Deprecated: Use results field instead. The list of ranges matching the search query.
+     * Deprecated: Use results field instead. The list of Ranges matching the search query.
      */
     ranges?: Schema$Range[];
     /**
@@ -774,20 +774,20 @@ export namespace cloudnumberregistry_v1alpha {
     unreachable?: string[] | null;
   }
   /**
-   * A result matching the search query, which can be either a range or a realm.
+   * A result matching the search query, which can be either a Range or a Realm.
    */
   export interface Schema$SearchIpResourcesResult {
     /**
-     * A range matching the search query.
+     * A Range matching the search query.
      */
     range?: Schema$Range;
     /**
-     * A realm matching the search query.
+     * A Realm matching the search query.
      */
     realm?: Schema$Realm;
   }
   /**
-   * Message for the response to getting the utilization of a CustomRange
+   * Response message for the CloudNumberRegistry.ShowCustomRangeUtilization method.
    */
   export interface Schema$ShowCustomRangeUtilizationResponse {
     /**
@@ -795,12 +795,12 @@ export namespace cloudnumberregistry_v1alpha {
      */
     customRange?: Schema$CustomRange;
     /**
-     * The utilization of the CustomRange.
+     * The utilization details of the CustomRange.
      */
     rangeUtilization?: Schema$RangeUtilization;
   }
   /**
-   * Message for the response to getting the utilization of a DiscoveredRange
+   * Response message for the CloudNumberRegistry.ShowDiscoveredRangeUtilization method.
    */
   export interface Schema$ShowDiscoveredRangeUtilizationResponse {
     /**
@@ -808,7 +808,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     discoveredRange?: Schema$DiscoveredRange;
     /**
-     * The utilization of the DiscoveredRange.
+     * The utilization details of the DiscoveredRange.
      */
     rangeUtilization?: Schema$RangeUtilization;
   }
@@ -959,8 +959,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -1085,8 +1084,7 @@ export namespace cloudnumberregistry_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1222,9 +1220,9 @@ export namespace cloudnumberregistry_v1alpha {
      *
      *   // Do the magic
      *   const res = await cloudnumberregistry.projects.locations.customRanges.create({
-     *     // Required. Id of the requesting object.
+     *     // Required. The ID to use for the CustomRange, which will become the final segment of the resource name.
      *     customRangeId: 'placeholder-value',
-     *     // Required. Value for parent.
+     *     // Required. The parent resource name where the CustomRange will be created.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
@@ -1303,8 +1301,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1386,7 +1383,7 @@ export namespace cloudnumberregistry_v1alpha {
      *   const res = await cloudnumberregistry.projects.locations.customRanges.delete({
      *     // Optional. If set to true, all associated resources will be deleted.
      *     force: 'placeholder-value',
-     *     // Required. Name of the resource
+     *     // Required. The resource name of the CustomRange to delete.
      *     name: 'projects/my-project/locations/my-location/customRanges/my-customRange',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
@@ -1449,8 +1446,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1530,7 +1526,7 @@ export namespace cloudnumberregistry_v1alpha {
      *     await cloudnumberregistry.projects.locations.customRanges.findFreeIpRanges({
      *       // Required. The prefix length of the free IP ranges to find.
      *       cidrPrefixLength: 'placeholder-value',
-     *       // Required. Name of the CustomRange.
+     *       // Required. The resource name of the CustomRange to search within.
      *       name: 'projects/my-project/locations/my-location/customRanges/my-customRange',
      *       // Optional. The number of free IP ranges to find.
      *       rangeCount: 'placeholder-value',
@@ -1683,7 +1679,7 @@ export namespace cloudnumberregistry_v1alpha {
      *
      *   // Do the magic
      *   const res = await cloudnumberregistry.projects.locations.customRanges.get({
-     *     // Required. Name of the resource
+     *     // Required. The resource name of the CustomRange to retrieve.
      *     name: 'projects/my-project/locations/my-location/customRanges/my-customRange',
      *   });
      *   console.log(res.data);
@@ -1826,7 +1822,7 @@ export namespace cloudnumberregistry_v1alpha {
      *
      *   // Do the magic
      *   const res = await cloudnumberregistry.projects.locations.customRanges.list({
-     *     // Optional. Filtering results.
+     *     // Optional. Filter expression to filter the results.
      *     filter: 'placeholder-value',
      *     // Optional. Hint for how to order the results.
      *     orderBy: 'placeholder-value',
@@ -1834,7 +1830,7 @@ export namespace cloudnumberregistry_v1alpha {
      *     pageSize: 'placeholder-value',
      *     // Optional. A token identifying a page of results the server should return.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent value for ListCustomRangesRequest
+     *     // Required. The parent resource name, for example `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1875,8 +1871,7 @@ export namespace cloudnumberregistry_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Customranges$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCustomRangesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCustomRangesResponse>,
       callback: BodyResponseCallback<Schema$ListCustomRangesResponse>
     ): void;
     list(
@@ -1976,7 +1971,7 @@ export namespace cloudnumberregistry_v1alpha {
      *
      *   // Do the magic
      *   const res = await cloudnumberregistry.projects.locations.customRanges.patch({
-     *     // Required. Identifier. name of resource
+     *     // Required. Identifier. The resource name of the CustomRange, in the format `projects/{project\}/locations/{location\}/customRanges/{custom_range\}`.
      *     name: 'projects/my-project/locations/my-location/customRanges/my-customRange',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
@@ -2057,8 +2052,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2136,7 +2130,7 @@ export namespace cloudnumberregistry_v1alpha {
      *   // Do the magic
      *   const res =
      *     await cloudnumberregistry.projects.locations.customRanges.showUtilization({
-     *       // Required. Name of the resource
+     *       // Required. The resource name of the CustomRange.
      *       name: 'projects/my-project/locations/my-location/customRanges/my-customRange',
      *     });
      *   console.log(res.data);
@@ -2258,11 +2252,11 @@ export namespace cloudnumberregistry_v1alpha {
 
   export interface Params$Resource$Projects$Locations$Customranges$Create extends StandardParameters {
     /**
-     * Required. Id of the requesting object.
+     * Required. The ID to use for the CustomRange, which will become the final segment of the resource name.
      */
     customRangeId?: string;
     /**
-     * Required. Value for parent.
+     * Required. The parent resource name where the CustomRange will be created.
      */
     parent?: string;
     /**
@@ -2281,7 +2275,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     force?: boolean;
     /**
-     * Required. Name of the resource
+     * Required. The resource name of the CustomRange to delete.
      */
     name?: string;
     /**
@@ -2295,7 +2289,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     cidrPrefixLength?: number;
     /**
-     * Required. Name of the CustomRange.
+     * Required. The resource name of the CustomRange to search within.
      */
     name?: string;
     /**
@@ -2309,13 +2303,13 @@ export namespace cloudnumberregistry_v1alpha {
   }
   export interface Params$Resource$Projects$Locations$Customranges$Get extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The resource name of the CustomRange to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Customranges$List extends StandardParameters {
     /**
-     * Optional. Filtering results.
+     * Optional. Filter expression to filter the results.
      */
     filter?: string;
     /**
@@ -2331,13 +2325,13 @@ export namespace cloudnumberregistry_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. Parent value for ListCustomRangesRequest
+     * Required. The parent resource name, for example `projects/x/locations/x`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Customranges$Patch extends StandardParameters {
     /**
-     * Required. Identifier. name of resource
+     * Required. Identifier. The resource name of the CustomRange, in the format `projects/{project\}/locations/{location\}/customRanges/{custom_range\}`.
      */
     name?: string;
     /**
@@ -2356,7 +2350,7 @@ export namespace cloudnumberregistry_v1alpha {
   }
   export interface Params$Resource$Projects$Locations$Customranges$Showutilization extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The resource name of the CustomRange.
      */
     name?: string;
   }
@@ -2402,7 +2396,7 @@ export namespace cloudnumberregistry_v1alpha {
      *       {
      *         // Required. The prefix length of the free IP ranges to find.
      *         cidrPrefixLength: 'placeholder-value',
-     *         // Required. Name of the DiscoveredRange.
+     *         // Required. The resource name of the DiscoveredRange to search within.
      *         name: 'projects/my-project/locations/my-location/discoveredRanges/my-discoveredRange',
      *         // Optional. The number of free IP ranges to find.
      *         rangeCount: 'placeholder-value',
@@ -2557,7 +2551,7 @@ export namespace cloudnumberregistry_v1alpha {
      *   // Do the magic
      *   const res = await cloudnumberregistry.projects.locations.discoveredRanges.get(
      *     {
-     *       // Required. Name of the resource
+     *       // Required. The resource name of the DiscoveredRange to retrieve.
      *       name: 'projects/my-project/locations/my-location/discoveredRanges/my-discoveredRange',
      *     },
      *   );
@@ -2706,7 +2700,7 @@ export namespace cloudnumberregistry_v1alpha {
      *   // Do the magic
      *   const res =
      *     await cloudnumberregistry.projects.locations.discoveredRanges.list({
-     *       // Optional. Filtering results.
+     *       // Optional. Filter expression to filter the results.
      *       filter: 'placeholder-value',
      *       // Optional. Hint for how to order the results.
      *       orderBy: 'placeholder-value',
@@ -2714,7 +2708,7 @@ export namespace cloudnumberregistry_v1alpha {
      *       pageSize: 'placeholder-value',
      *       // Optional. A token identifying a page of results the server should return.
      *       pageToken: 'placeholder-value',
-     *       // Required. Parent value for ListDiscoveredRangesRequest
+     *       // Required. The parent resource name, for example `projects/x/locations/x`.
      *       parent: 'projects/my-project/locations/my-location',
      *     });
      *   console.log(res.data);
@@ -2862,7 +2856,7 @@ export namespace cloudnumberregistry_v1alpha {
      *   const res =
      *     await cloudnumberregistry.projects.locations.discoveredRanges.showUtilization(
      *       {
-     *         // Required. Name of the resource
+     *         // Required. The resource name of the DiscoveredRange.
      *         name: 'projects/my-project/locations/my-location/discoveredRanges/my-discoveredRange',
      *       },
      *     );
@@ -2989,7 +2983,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     cidrPrefixLength?: number;
     /**
-     * Required. Name of the DiscoveredRange.
+     * Required. The resource name of the DiscoveredRange to search within.
      */
     name?: string;
     /**
@@ -3003,13 +2997,13 @@ export namespace cloudnumberregistry_v1alpha {
   }
   export interface Params$Resource$Projects$Locations$Discoveredranges$Get extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The resource name of the DiscoveredRange to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Discoveredranges$List extends StandardParameters {
     /**
-     * Optional. Filtering results.
+     * Optional. Filter expression to filter the results.
      */
     filter?: string;
     /**
@@ -3025,13 +3019,13 @@ export namespace cloudnumberregistry_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. Parent value for ListDiscoveredRangesRequest
+     * Required. The parent resource name, for example `projects/x/locations/x`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Discoveredranges$Showutilization extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The resource name of the DiscoveredRange.
      */
     name?: string;
   }
@@ -3043,7 +3037,7 @@ export namespace cloudnumberregistry_v1alpha {
     }
 
     /**
-     * Checks the availability of IPAM admin scopes in a given project and location.
+     * Checks the availability of IpamAdminScopes in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -3075,9 +3069,9 @@ export namespace cloudnumberregistry_v1alpha {
      *   const res =
      *     await cloudnumberregistry.projects.locations.ipamAdminScopes.checkAvailability(
      *       {
-     *         // Required. Parent value for the IpamAdminScopes.
+     *         // Required. The parent resource name, for example `projects/x/locations/x`.
      *         parent: 'projects/my-project/locations/my-location',
-     *         // Required. The scopes of the IpamAdminScopes to look for.
+     *         // Required. The administrative scopes to check for availability.
      *         scopes: 'placeholder-value',
      *       },
      *     );
@@ -3227,7 +3221,7 @@ export namespace cloudnumberregistry_v1alpha {
      *   // Do the magic
      *   const res =
      *     await cloudnumberregistry.projects.locations.ipamAdminScopes.cleanup({
-     *       // Required. Name of the resource
+     *       // Required. The resource name of the IpamAdminScope to clean up.
      *       name: 'projects/my-project/locations/my-location/ipamAdminScopes/my-ipamAdminScope',
      *
      *       // Request body metadata
@@ -3296,8 +3290,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3379,9 +3372,9 @@ export namespace cloudnumberregistry_v1alpha {
      *   // Do the magic
      *   const res =
      *     await cloudnumberregistry.projects.locations.ipamAdminScopes.create({
-     *       // Required. Id of the requesting object.
+     *       // Required. The ID to use for the IpamAdminScope, which will become the final segment of the resource name.
      *       ipamAdminScopeId: 'placeholder-value',
-     *       // Required. Value for parent.
+     *       // Required. The parent resource name where the IpamAdminScope will be created.
      *       parent: 'projects/my-project/locations/my-location',
      *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
@@ -3458,8 +3451,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3543,7 +3535,7 @@ export namespace cloudnumberregistry_v1alpha {
      *     await cloudnumberregistry.projects.locations.ipamAdminScopes.delete({
      *       // Optional. If set to true, all associated resources will be deleted.
      *       force: 'placeholder-value',
-     *       // Required. Name of the resource
+     *       // Required. The resource name of the IpamAdminScope to delete.
      *       name: 'projects/my-project/locations/my-location/ipamAdminScopes/my-ipamAdminScope',
      *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
@@ -3606,8 +3598,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3686,7 +3677,7 @@ export namespace cloudnumberregistry_v1alpha {
      *   // Do the magic
      *   const res =
      *     await cloudnumberregistry.projects.locations.ipamAdminScopes.disable({
-     *       // Required. Name of the resource
+     *       // Required. The resource name of the IpamAdminScope to disable.
      *       name: 'projects/my-project/locations/my-location/ipamAdminScopes/my-ipamAdminScope',
      *
      *       // Request body metadata
@@ -3755,8 +3746,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3837,7 +3827,7 @@ export namespace cloudnumberregistry_v1alpha {
      *
      *   // Do the magic
      *   const res = await cloudnumberregistry.projects.locations.ipamAdminScopes.get({
-     *     // Required. Name of the resource
+     *     // Required. The resource name of the IpamAdminScope to retrieve.
      *     name: 'projects/my-project/locations/my-location/ipamAdminScopes/my-ipamAdminScope',
      *   });
      *   console.log(res.data);
@@ -3948,7 +3938,7 @@ export namespace cloudnumberregistry_v1alpha {
     }
 
     /**
-     * List all IPAM admin scopes in a given project and location.
+     * Lists IpamAdminScopes in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -3979,15 +3969,15 @@ export namespace cloudnumberregistry_v1alpha {
      *   // Do the magic
      *   const res = await cloudnumberregistry.projects.locations.ipamAdminScopes.list(
      *     {
-     *       // Optional. Filtering results
+     *       // Optional. Filter expression to filter the results.
      *       filter: 'placeholder-value',
-     *       // Optional. Hint for how to order the results
+     *       // Optional. Hint for how to order the results.
      *       orderBy: 'placeholder-value',
      *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
      *       // Optional. A token identifying a page of results the server should return.
      *       pageToken: 'placeholder-value',
-     *       // Required. Parent value for ListIpamAdminScopesRequest
+     *       // Required. The parent resource name, for example `projects/x/locations/x`.
      *       parent: 'projects/my-project/locations/my-location',
      *     },
      *   );
@@ -4133,7 +4123,7 @@ export namespace cloudnumberregistry_v1alpha {
      *   // Do the magic
      *   const res =
      *     await cloudnumberregistry.projects.locations.ipamAdminScopes.patch({
-     *       // Required. Identifier. name of resource
+     *       // Required. Identifier. The resource name of the IpamAdminScope.
      *       name: 'projects/my-project/locations/my-location/ipamAdminScopes/my-ipamAdminScope',
      *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
@@ -4212,8 +4202,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4262,17 +4251,17 @@ export namespace cloudnumberregistry_v1alpha {
 
   export interface Params$Resource$Projects$Locations$Ipamadminscopes$Checkavailability extends StandardParameters {
     /**
-     * Required. Parent value for the IpamAdminScopes.
+     * Required. The parent resource name, for example `projects/x/locations/x`.
      */
     parent?: string;
     /**
-     * Required. The scopes of the IpamAdminScopes to look for.
+     * Required. The administrative scopes to check for availability.
      */
     scopes?: string[];
   }
   export interface Params$Resource$Projects$Locations$Ipamadminscopes$Cleanup extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The resource name of the IpamAdminScope to clean up.
      */
     name?: string;
 
@@ -4283,11 +4272,11 @@ export namespace cloudnumberregistry_v1alpha {
   }
   export interface Params$Resource$Projects$Locations$Ipamadminscopes$Create extends StandardParameters {
     /**
-     * Required. Id of the requesting object.
+     * Required. The ID to use for the IpamAdminScope, which will become the final segment of the resource name.
      */
     ipamAdminScopeId?: string;
     /**
-     * Required. Value for parent.
+     * Required. The parent resource name where the IpamAdminScope will be created.
      */
     parent?: string;
     /**
@@ -4306,7 +4295,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     force?: boolean;
     /**
-     * Required. Name of the resource
+     * Required. The resource name of the IpamAdminScope to delete.
      */
     name?: string;
     /**
@@ -4316,7 +4305,7 @@ export namespace cloudnumberregistry_v1alpha {
   }
   export interface Params$Resource$Projects$Locations$Ipamadminscopes$Disable extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The resource name of the IpamAdminScope to disable.
      */
     name?: string;
 
@@ -4327,17 +4316,17 @@ export namespace cloudnumberregistry_v1alpha {
   }
   export interface Params$Resource$Projects$Locations$Ipamadminscopes$Get extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The resource name of the IpamAdminScope to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Ipamadminscopes$List extends StandardParameters {
     /**
-     * Optional. Filtering results
+     * Optional. Filter expression to filter the results.
      */
     filter?: string;
     /**
-     * Optional. Hint for how to order the results
+     * Optional. Hint for how to order the results.
      */
     orderBy?: string;
     /**
@@ -4349,13 +4338,13 @@ export namespace cloudnumberregistry_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. Parent value for ListIpamAdminScopesRequest
+     * Required. The parent resource name, for example `projects/x/locations/x`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Ipamadminscopes$Patch extends StandardParameters {
     /**
-     * Required. Identifier. name of resource
+     * Required. Identifier. The resource name of the IpamAdminScope.
      */
     name?: string;
     /**
@@ -4471,8 +4460,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4607,8 +4595,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4746,8 +4733,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4873,8 +4859,7 @@ export namespace cloudnumberregistry_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -5027,9 +5012,9 @@ export namespace cloudnumberregistry_v1alpha {
      *
      *   // Do the magic
      *   const res = await cloudnumberregistry.projects.locations.realms.create({
-     *     // Required. Value for parent.
+     *     // Required. The parent resource name where the Realm will be created.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Required. Id of the requesting object.
+     *     // Required. The ID to use for the Realm, which will become the final segment of the resource name.
      *     realmId: 'placeholder-value',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request.
      *     requestId: 'placeholder-value',
@@ -5109,8 +5094,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5192,7 +5176,7 @@ export namespace cloudnumberregistry_v1alpha {
      *   const res = await cloudnumberregistry.projects.locations.realms.delete({
      *     // Optional. If set to true, all associated resources will be deleted.
      *     force: 'placeholder-value',
-     *     // Required. Name of the resource
+     *     // Required. The resource name of the Realm to delete.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request.
      *     requestId: 'placeholder-value',
@@ -5255,8 +5239,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5333,9 +5316,9 @@ export namespace cloudnumberregistry_v1alpha {
      *
      *   // Do the magic
      *   const res = await cloudnumberregistry.projects.locations.realms.get({
-     *     // Required. Name of the resource
+     *     // Required. The resource name of the Realm to retrieve.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
-     *     // Optional. The view of the Realm.
+     *     // Optional. The view of the Realm to retrieve.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5401,8 +5384,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Realm>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Realm>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Realm> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Realm>>
@@ -5479,17 +5461,17 @@ export namespace cloudnumberregistry_v1alpha {
      *
      *   // Do the magic
      *   const res = await cloudnumberregistry.projects.locations.realms.list({
-     *     // Optional. Filtering results
+     *     // Optional. Filter expression to filter the results.
      *     filter: 'placeholder-value',
-     *     // Optional. Hint for how to order the results
+     *     // Optional. Hint for how to order the results.
      *     orderBy: 'placeholder-value',
      *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
      *     // Optional. A token identifying a page of results the server should return.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent value for ListRealmsRequest
+     *     // Required. The parent resource name, for example `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Optional. The view of the Realm.
+     *     // Optional. The view of the Realm to retrieve.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5629,7 +5611,7 @@ export namespace cloudnumberregistry_v1alpha {
      *
      *   // Do the magic
      *   const res = await cloudnumberregistry.projects.locations.realms.patch({
-     *     // Required. Identifier. Unique name/ID of the realm
+     *     // Required. Identifier. The resource name of the Realm.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request.
      *     requestId: 'placeholder-value',
@@ -5711,8 +5693,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5761,11 +5742,11 @@ export namespace cloudnumberregistry_v1alpha {
 
   export interface Params$Resource$Projects$Locations$Realms$Create extends StandardParameters {
     /**
-     * Required. Value for parent.
+     * Required. The parent resource name where the Realm will be created.
      */
     parent?: string;
     /**
-     * Required. Id of the requesting object.
+     * Required. The ID to use for the Realm, which will become the final segment of the resource name.
      */
     realmId?: string;
     /**
@@ -5784,7 +5765,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     force?: boolean;
     /**
-     * Required. Name of the resource
+     * Required. The resource name of the Realm to delete.
      */
     name?: string;
     /**
@@ -5794,21 +5775,21 @@ export namespace cloudnumberregistry_v1alpha {
   }
   export interface Params$Resource$Projects$Locations$Realms$Get extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The resource name of the Realm to retrieve.
      */
     name?: string;
     /**
-     * Optional. The view of the Realm.
+     * Optional. The view of the Realm to retrieve.
      */
     view?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$List extends StandardParameters {
     /**
-     * Optional. Filtering results
+     * Optional. Filter expression to filter the results.
      */
     filter?: string;
     /**
-     * Optional. Hint for how to order the results
+     * Optional. Hint for how to order the results.
      */
     orderBy?: string;
     /**
@@ -5820,17 +5801,17 @@ export namespace cloudnumberregistry_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. Parent value for ListRealmsRequest
+     * Required. The parent resource name, for example `projects/x/locations/x`.
      */
     parent?: string;
     /**
-     * Optional. The view of the Realm.
+     * Optional. The view of the Realm to retrieve.
      */
     view?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$Patch extends StandardParameters {
     /**
-     * Required. Identifier. Unique name/ID of the realm
+     * Required. Identifier. The resource name of the Realm.
      */
     name?: string;
     /**
@@ -5886,9 +5867,9 @@ export namespace cloudnumberregistry_v1alpha {
      *   // Do the magic
      *   const res = await cloudnumberregistry.projects.locations.registryBooks.create(
      *     {
-     *       // Required. Value for parent.
+     *       // Required. The parent resource name where the RegistryBook will be created.
      *       parent: 'projects/my-project/locations/my-location',
-     *       // Required. Id of the requesting object.
+     *       // Required. The ID to use for the RegistryBook, which will become the final segment of the resource name.
      *       registryBookId: 'placeholder-value',
      *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
@@ -5966,8 +5947,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6050,7 +6030,7 @@ export namespace cloudnumberregistry_v1alpha {
      *     {
      *       // Optional. If set to true, all associated resources will be deleted.
      *       force: 'placeholder-value',
-     *       // Required. Name of the resource
+     *       // Required. The resource name of the RegistryBook to delete.
      *       name: 'projects/my-project/locations/my-location/registryBooks/my-registryBook',
      *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
@@ -6114,8 +6094,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6192,9 +6171,9 @@ export namespace cloudnumberregistry_v1alpha {
      *
      *   // Do the magic
      *   const res = await cloudnumberregistry.projects.locations.registryBooks.get({
-     *     // Required. Name of the resource
+     *     // Required. The resource name of the RegistryBook to retrieve.
      *     name: 'projects/my-project/locations/my-location/registryBooks/my-registryBook',
-     *     // Optional. The view of the RegistryBook.
+     *     // Optional. The view of the RegistryBook to retrieve.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6335,17 +6314,17 @@ export namespace cloudnumberregistry_v1alpha {
      *
      *   // Do the magic
      *   const res = await cloudnumberregistry.projects.locations.registryBooks.list({
-     *     // Optional. Filtering results
+     *     // Optional. Filter expression to filter the results.
      *     filter: 'placeholder-value',
-     *     // Optional. Hint for how to order the results
+     *     // Optional. Hint for how to order the results.
      *     orderBy: 'placeholder-value',
      *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
      *     // Optional. A token identifying a page of results the server should return.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent value for ListRegistryBooksRequest
+     *     // Required. The parent resource name, for example `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Optional. The view of the RegistryBook.
+     *     // Optional. The view of the RegistryBook to retrieve.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6386,8 +6365,7 @@ export namespace cloudnumberregistry_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Registrybooks$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRegistryBooksResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRegistryBooksResponse>,
       callback: BodyResponseCallback<Schema$ListRegistryBooksResponse>
     ): void;
     list(
@@ -6489,7 +6467,7 @@ export namespace cloudnumberregistry_v1alpha {
      *
      *   // Do the magic
      *   const res = await cloudnumberregistry.projects.locations.registryBooks.patch({
-     *     // Required. Identifier. name of resource
+     *     // Required. Identifier. The resource name of the RegistryBook.
      *     name: 'projects/my-project/locations/my-location/registryBooks/my-registryBook',
      *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
@@ -6568,8 +6546,7 @@ export namespace cloudnumberregistry_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6648,7 +6625,7 @@ export namespace cloudnumberregistry_v1alpha {
      *   const res =
      *     await cloudnumberregistry.projects.locations.registryBooks.searchIpResources(
      *       {
-     *         // Required. The name of the RegistryBook to search in.
+     *         // Required. The resource name of the RegistryBook to search in.
      *         name: 'projects/my-project/locations/my-location/registryBooks/my-registryBook',
      *
      *         // Request body metadata
@@ -6704,8 +6681,7 @@ export namespace cloudnumberregistry_v1alpha {
     searchIpResources(
       params: Params$Resource$Projects$Locations$Registrybooks$Searchipresources,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SearchIpResourcesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SearchIpResourcesResponse>,
       callback: BodyResponseCallback<Schema$SearchIpResourcesResponse>
     ): void;
     searchIpResources(
@@ -6780,11 +6756,11 @@ export namespace cloudnumberregistry_v1alpha {
 
   export interface Params$Resource$Projects$Locations$Registrybooks$Create extends StandardParameters {
     /**
-     * Required. Value for parent.
+     * Required. The parent resource name where the RegistryBook will be created.
      */
     parent?: string;
     /**
-     * Required. Id of the requesting object.
+     * Required. The ID to use for the RegistryBook, which will become the final segment of the resource name.
      */
     registryBookId?: string;
     /**
@@ -6803,7 +6779,7 @@ export namespace cloudnumberregistry_v1alpha {
      */
     force?: boolean;
     /**
-     * Required. Name of the resource
+     * Required. The resource name of the RegistryBook to delete.
      */
     name?: string;
     /**
@@ -6813,21 +6789,21 @@ export namespace cloudnumberregistry_v1alpha {
   }
   export interface Params$Resource$Projects$Locations$Registrybooks$Get extends StandardParameters {
     /**
-     * Required. Name of the resource
+     * Required. The resource name of the RegistryBook to retrieve.
      */
     name?: string;
     /**
-     * Optional. The view of the RegistryBook.
+     * Optional. The view of the RegistryBook to retrieve.
      */
     view?: string;
   }
   export interface Params$Resource$Projects$Locations$Registrybooks$List extends StandardParameters {
     /**
-     * Optional. Filtering results
+     * Optional. Filter expression to filter the results.
      */
     filter?: string;
     /**
-     * Optional. Hint for how to order the results
+     * Optional. Hint for how to order the results.
      */
     orderBy?: string;
     /**
@@ -6839,17 +6815,17 @@ export namespace cloudnumberregistry_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. Parent value for ListRegistryBooksRequest
+     * Required. The parent resource name, for example `projects/x/locations/x`.
      */
     parent?: string;
     /**
-     * Optional. The view of the RegistryBook.
+     * Optional. The view of the RegistryBook to retrieve.
      */
     view?: string;
   }
   export interface Params$Resource$Projects$Locations$Registrybooks$Patch extends StandardParameters {
     /**
-     * Required. Identifier. name of resource
+     * Required. Identifier. The resource name of the RegistryBook.
      */
     name?: string;
     /**
@@ -6868,7 +6844,7 @@ export namespace cloudnumberregistry_v1alpha {
   }
   export interface Params$Resource$Projects$Locations$Registrybooks$Searchipresources extends StandardParameters {
     /**
-     * Required. The name of the RegistryBook to search in.
+     * Required. The resource name of the RegistryBook to search in.
      */
     name?: string;
 

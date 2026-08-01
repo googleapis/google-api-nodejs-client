@@ -736,6 +736,41 @@
                     "https://www.googleapis.com/auth/bigquery",
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "patch": {
+                  "description": "Updates an existing reservation group resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reservationGroups/{reservationGroupsId}",
+                  "httpMethod": "PATCH",
+                  "id": "bigqueryreservation.projects.locations.reservationGroups.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the reservation group, e.g., `projects/*/locations/*/reservationGroups/team1-prod`. The reservation_group_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/reservationGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Standard field mask for the set of fields to be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "ReservationGroup"
+                  },
+                  "response": {
+                    "$ref": "ReservationGroup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
@@ -1282,7 +1317,7 @@
       }
     }
   },
-  "revision": "20260410",
+  "revision": "20260717",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -1540,7 +1575,7 @@
           ],
           "enumDeprecated": [
             false,
-            false,
+            true,
             true,
             true,
             false,
@@ -1552,7 +1587,7 @@
           ],
           "enumDescriptions": [
             "Invalid plan value. Requests with this value will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.",
-            "Flex commitments have committed period of 1 minute after becoming ACTIVE. After that, they are not in a committed period anymore and can be removed any time.",
+            "Deprecated: Flex commitments are deprecated. Please use Edition-based capacity commitments. Flex commitments have committed period of 1 minute after becoming ACTIVE. After that, they are not in a committed period anymore and can be removed any time.",
             "Same as FLEX, should only be used if flat-rate commitments are still available.",
             "Trial commitments have a committed period of 182 days after becoming ACTIVE. After that, they are converted to a new commitment based on the `renewal_plan`. Default `renewal_plan` for Trial commitment is Flex so that it can be deleted right after committed period ends.",
             "Monthly commitments have a committed period of 30 days after becoming ACTIVE. After that, they are not in a committed period anymore and can be removed any time.",
@@ -1580,7 +1615,7 @@
           ],
           "enumDeprecated": [
             false,
-            false,
+            true,
             true,
             true,
             false,
@@ -1592,7 +1627,7 @@
           ],
           "enumDescriptions": [
             "Invalid plan value. Requests with this value will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.",
-            "Flex commitments have committed period of 1 minute after becoming ACTIVE. After that, they are not in a committed period anymore and can be removed any time.",
+            "Deprecated: Flex commitments are deprecated. Please use Edition-based capacity commitments. Flex commitments have committed period of 1 minute after becoming ACTIVE. After that, they are not in a committed period anymore and can be removed any time.",
             "Same as FLEX, should only be used if flat-rate commitments are still available.",
             "Trial commitments have a committed period of 182 days after becoming ACTIVE. After that, they are converted to a new commitment based on the `renewal_plan`. Default `renewal_plan` for Trial commitment is Flex so that it can be deleted right after committed period ends.",
             "Monthly commitments have a committed period of 30 days after becoming ACTIVE. After that, they are not in a committed period anymore and can be removed any time.",
@@ -1924,6 +1959,14 @@
           "description": "Optional. The reservation group that this reservation belongs to. You can set this property when you create or update a reservation. Reservations do not need to belong to a reservation group. Format: projects/{project}/locations/{location}/reservationGroups/{reservation_group} or just {reservation_group}",
           "type": "string"
         },
+        "reservationGroupPath": {
+          "description": "Output only. The reservation group path of the reservation from root to leaf. The order of elements matters: the first element is the top level group and the last element is the direct parent reservation group. For example, if a reservation is under group-1 -> group-2 -> group-3, then the reservation group path is [\"group-1\", \"group-2\", \"group-3\"].",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "scalingMode": {
           "description": "Optional. The scaling mode for the reservation. If the field is present but max_slots is not present, requests will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.",
           "enum": [
@@ -1968,6 +2011,10 @@
       "properties": {
         "name": {
           "description": "Identifier. The resource name of the reservation group, e.g., `projects/*/locations/*/reservationGroups/team1-prod`. The reservation_group_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.",
+          "type": "string"
+        },
+        "parentGroup": {
+          "description": "Optional. The parent reservation group of the reservation group. Format: `projects/*/locations/*/reservationGroups/team1-prod` for non-root reservation groups, or `projects/*/locations/*` for root reservation groups.",
           "type": "string"
         }
       },

@@ -494,6 +494,10 @@ export namespace bigqueryreservation_v1 {
      */
     reservationGroup?: string | null;
     /**
+     * Output only. The reservation group path of the reservation from root to leaf. The order of elements matters: the first element is the top level group and the last element is the direct parent reservation group. For example, if a reservation is under group-1 -\> group-2 -\> group-3, then the reservation group path is ["group-1", "group-2", "group-3"].
+     */
+    reservationGroupPath?: string[] | null;
+    /**
      * Optional. The scaling mode for the reservation. If the field is present but max_slots is not present, requests will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.
      */
     scalingMode?: string | null;
@@ -522,6 +526,10 @@ export namespace bigqueryreservation_v1 {
      * Identifier. The resource name of the reservation group, e.g., `projects/x/locations/x/reservationGroups/team1-prod`. The reservation_group_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      */
     name?: string | null;
+    /**
+     * Optional. The parent reservation group of the reservation group. Format: `projects/x/locations/x/reservationGroups/team1-prod` for non-root reservation groups, or `projects/x/locations/x` for root reservation groups.
+     */
+    parentGroup?: string | null;
   }
   /**
    * The scheduling policy controls how a reservation's resources are distributed.
@@ -1054,8 +1062,7 @@ export namespace bigqueryreservation_v1 {
     searchAssignments(
       params: Params$Resource$Projects$Locations$Searchassignments,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SearchAssignmentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SearchAssignmentsResponse>,
       callback: BodyResponseCallback<Schema$SearchAssignmentsResponse>
     ): void;
     searchAssignments(
@@ -1614,8 +1621,7 @@ export namespace bigqueryreservation_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2591,7 +2597,8 @@ export namespace bigqueryreservation_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
-     *         //   "name": "my_name"
+     *         //   "name": "my_name",
+     *         //   "parentGroup": "my_parentGroup"
      *         // }
      *       },
      *     });
@@ -2599,7 +2606,8 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "parentGroup": "my_parentGroup"
      *   // }
      * }
      *
@@ -2790,8 +2798,7 @@ export namespace bigqueryreservation_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2880,7 +2887,8 @@ export namespace bigqueryreservation_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "parentGroup": "my_parentGroup"
      *   // }
      * }
      *
@@ -3130,6 +3138,158 @@ export namespace bigqueryreservation_v1 {
         );
       }
     }
+
+    /**
+     * Updates an existing reservation group resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await bigqueryreservation.projects.locations.reservationGroups.patch({
+     *       // Identifier. The resource name of the reservation group, e.g., `projects/x/locations/x/reservationGroups/team1-prod`. The reservation_group_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
+     *       name: 'projects/my-project/locations/my-location/reservationGroups/my-reservationGroup',
+     *       // Optional. Standard field mask for the set of fields to be updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "name": "my_name",
+     *         //   "parentGroup": "my_parentGroup"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "parentGroup": "my_parentGroup"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Reservationgroups$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Reservationgroups$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ReservationGroup>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Reservationgroups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Reservationgroups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$ReservationGroup>,
+      callback: BodyResponseCallback<Schema$ReservationGroup>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Reservationgroups$Patch,
+      callback: BodyResponseCallback<Schema$ReservationGroup>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$ReservationGroup>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reservationgroups$Patch
+        | BodyResponseCallback<Schema$ReservationGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReservationGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReservationGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ReservationGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reservationgroups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Reservationgroups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReservationGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReservationGroup>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Reservationgroups$Create extends StandardParameters {
@@ -3172,6 +3332,21 @@ export namespace bigqueryreservation_v1 {
      * Required. The parent resource name containing project and location, e.g.: `projects/myproject/locations/US`
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Reservationgroups$Patch extends StandardParameters {
+    /**
+     * Identifier. The resource name of the reservation group, e.g., `projects/x/locations/x/reservationGroups/team1-prod`. The reservation_group_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
+     */
+    name?: string;
+    /**
+     * Optional. Standard field mask for the set of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReservationGroup;
   }
 
   export class Resource$Projects$Locations$Reservations {
@@ -3239,6 +3414,7 @@ export namespace bigqueryreservation_v1 {
      *       //   "primaryLocation": "my_primaryLocation",
      *       //   "replicationStatus": {},
      *       //   "reservationGroup": "my_reservationGroup",
+     *       //   "reservationGroupPath": [],
      *       //   "scalingMode": "my_scalingMode",
      *       //   "schedulingPolicy": {},
      *       //   "secondaryLocation": "my_secondaryLocation",
@@ -3264,6 +3440,7 @@ export namespace bigqueryreservation_v1 {
      *   //   "primaryLocation": "my_primaryLocation",
      *   //   "replicationStatus": {},
      *   //   "reservationGroup": "my_reservationGroup",
+     *   //   "reservationGroupPath": [],
      *   //   "scalingMode": "my_scalingMode",
      *   //   "schedulingPolicy": {},
      *   //   "secondaryLocation": "my_secondaryLocation",
@@ -3457,8 +3634,7 @@ export namespace bigqueryreservation_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3569,6 +3745,7 @@ export namespace bigqueryreservation_v1 {
      *   //   "primaryLocation": "my_primaryLocation",
      *   //   "replicationStatus": {},
      *   //   "reservationGroup": "my_reservationGroup",
+     *   //   "reservationGroupPath": [],
      *   //   "scalingMode": "my_scalingMode",
      *   //   "schedulingPolicy": {},
      *   //   "secondaryLocation": "my_secondaryLocation",
@@ -3730,6 +3907,7 @@ export namespace bigqueryreservation_v1 {
      *   //   "primaryLocation": "my_primaryLocation",
      *   //   "replicationStatus": {},
      *   //   "reservationGroup": "my_reservationGroup",
+     *   //   "reservationGroupPath": [],
      *   //   "scalingMode": "my_scalingMode",
      *   //   "schedulingPolicy": {},
      *   //   "secondaryLocation": "my_secondaryLocation",
@@ -3929,8 +4107,7 @@ export namespace bigqueryreservation_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4058,8 +4235,7 @@ export namespace bigqueryreservation_v1 {
     list(
       params: Params$Resource$Projects$Locations$Reservations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListReservationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListReservationsResponse>,
       callback: BodyResponseCallback<Schema$ListReservationsResponse>
     ): void;
     list(
@@ -4184,6 +4360,7 @@ export namespace bigqueryreservation_v1 {
      *       //   "primaryLocation": "my_primaryLocation",
      *       //   "replicationStatus": {},
      *       //   "reservationGroup": "my_reservationGroup",
+     *       //   "reservationGroupPath": [],
      *       //   "scalingMode": "my_scalingMode",
      *       //   "schedulingPolicy": {},
      *       //   "secondaryLocation": "my_secondaryLocation",
@@ -4209,6 +4386,7 @@ export namespace bigqueryreservation_v1 {
      *   //   "primaryLocation": "my_primaryLocation",
      *   //   "replicationStatus": {},
      *   //   "reservationGroup": "my_reservationGroup",
+     *   //   "reservationGroupPath": [],
      *   //   "scalingMode": "my_scalingMode",
      *   //   "schedulingPolicy": {},
      *   //   "secondaryLocation": "my_secondaryLocation",
@@ -4415,8 +4593,7 @@ export namespace bigqueryreservation_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4551,8 +4728,7 @@ export namespace bigqueryreservation_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Reservations$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -4848,8 +5024,7 @@ export namespace bigqueryreservation_v1 {
         | BodyResponseCallback<Schema$Assignment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Assignment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Assignment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Assignment>>
@@ -4991,8 +5166,7 @@ export namespace bigqueryreservation_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5139,8 +5313,7 @@ export namespace bigqueryreservation_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5270,8 +5443,7 @@ export namespace bigqueryreservation_v1 {
     list(
       params: Params$Resource$Projects$Locations$Reservations$Assignments$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAssignmentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAssignmentsResponse>,
       callback: BodyResponseCallback<Schema$ListAssignmentsResponse>
     ): void;
     list(
@@ -5448,8 +5620,7 @@ export namespace bigqueryreservation_v1 {
         | BodyResponseCallback<Schema$Assignment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Assignment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Assignment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Assignment>>
@@ -5612,8 +5783,7 @@ export namespace bigqueryreservation_v1 {
         | BodyResponseCallback<Schema$Assignment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Assignment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Assignment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Assignment>>
@@ -5767,8 +5937,7 @@ export namespace bigqueryreservation_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5903,8 +6072,7 @@ export namespace bigqueryreservation_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Reservations$Assignments$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(

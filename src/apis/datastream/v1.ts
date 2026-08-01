@@ -153,6 +153,10 @@ export namespace datastream_v1 {
      */
     postgresqlExcludedObjects?: Schema$PostgresqlRdbms;
     /**
+     * Source catalog data source objects to avoid backfilling. This is mainly used to represent SaaS applications objects.
+     */
+    saasExcludedObjects?: Schema$SourceCatalog;
+    /**
      * Salesforce data source objects to avoid backfilling
      */
     salesforceExcludedObjects?: Schema$SalesforceOrg;
@@ -350,6 +354,10 @@ export namespace datastream_v1 {
      */
     createTime?: string | null;
     /**
+     * Profile for connecting to a Dataverse source.
+     */
+    dataverseProfile?: Schema$DataverseProfile;
+    /**
      * Required. Display name.
      */
     displayName?: string | null;
@@ -390,6 +398,10 @@ export namespace datastream_v1 {
      */
     privateConnectivity?: Schema$PrivateConnectivity;
     /**
+     * Profile for connecting to a Salesforce Marketing Cloud source.
+     */
+    salesforceMarketingCloudProfile?: Schema$SalesforceMarketingCloudProfile;
+    /**
      * Profile for connecting to a Salesforce source.
      */
     salesforceProfile?: Schema$SalesforceProfile;
@@ -401,6 +413,10 @@ export namespace datastream_v1 {
      * Output only. Reserved for future use.
      */
     satisfiesPzs?: boolean | null;
+    /**
+     * Profile for connecting to a ServiceNow source.
+     */
+    serviceNowProfile?: Schema$ServiceNowProfile;
     /**
      * Profile for connecting to a Spanner source.
      */
@@ -417,6 +433,10 @@ export namespace datastream_v1 {
      * Output only. The update time of the resource.
      */
     updateTime?: string | null;
+    /**
+     * Optional. Profile for connecting to a Workday source.
+     */
+    workdayProfile?: Schema$WorkdayProfile;
   }
   /**
    * A customization rule to apply to a set of objects.
@@ -447,6 +467,40 @@ export namespace datastream_v1 {
      * Required. The geographic location where the dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.
      */
     location?: string | null;
+  }
+  /**
+   * Profile for connecting to a Dataverse source.
+   */
+  export interface Schema$DataverseProfile {
+    /**
+     * Required. Environment URL of the Microsoft Dataverse instance. Example: `.crm.dynamics.com`
+     */
+    environmentUrl?: string | null;
+    /**
+     * Required. Credentials for authenticating with the Dataverse API.
+     */
+    oauthClientCredentials?: Schema$OauthClientCredentials;
+    /**
+     * Required. Tenant id of the Microsoft Dataverse instance.
+     */
+    tenantId?: string | null;
+  }
+  /**
+   * Configuration for syncing data from a Dataverse source.
+   */
+  export interface Schema$DataverseSourceConfig {
+    /**
+     * Optional. The objects to exclude from the stream.
+     */
+    excludeObjects?: Schema$SourceCatalog;
+    /**
+     * Optional. The objects to retrieve from the source.
+     */
+    includeObjects?: Schema$SourceCatalog;
+    /**
+     * Required. Incremental sync polling interval for all objects. If not set, a default value of `5 minutes` is used. The duration must be from `5 minutes` to `24 hours`, inclusive.
+     */
+    pollingInterval?: string | null;
   }
   /**
    * Describes additional debugging info.
@@ -519,6 +573,10 @@ export namespace datastream_v1 {
      */
     salesforceOrg?: Schema$SalesforceOrg;
     /**
+     * Optional. Source catalog to enrich with child data objects and metadata. This is mainly used to represent SaaS sources databases.
+     */
+    sourceCatalog?: Schema$SourceCatalog;
+    /**
      * Optional. Spanner database to enrich with child data objects and metadata.
      */
     spannerDatabase?: Schema$SpannerDatabase;
@@ -551,6 +609,10 @@ export namespace datastream_v1 {
      * Enriched Salesforce organization.
      */
     salesforceOrg?: Schema$SalesforceOrg;
+    /**
+     * Enriched source catalog. This is mainly used to represent SaaS sources databases.
+     */
+    sourceCatalog?: Schema$SourceCatalog;
     /**
      * Enriched Spanner database.
      */
@@ -623,7 +685,7 @@ export namespace datastream_v1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * The reason of the error. This is a constant value that identifies the proximate cause of the error. Error reasons are unique within a particular domain of errors. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.
+     * The reason for the error. This is a constant value that identifies the proximate cause of the error. Error reasons are unique within a particular domain of errors. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.
      */
     reason?: string | null;
   }
@@ -666,7 +728,7 @@ export namespace datastream_v1 {
      */
     localizedMessage?: Schema$LocalizedMessage;
     /**
-     * The reason of the field-level error. This is a constant value that identifies the proximate cause of the field-level error. It should uniquely identify the type of the FieldViolation within the scope of the google.rpc.ErrorInfo.domain. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.
+     * The reason for the field-level error. This is a constant value that identifies the proximate cause of the field-level error. It should uniquely identify the type of the FieldViolation within the scope of the google.rpc.ErrorInfo.domain. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.
      */
     reason?: string | null;
   }
@@ -1377,6 +1439,32 @@ export namespace datastream_v1 {
      * Optional. A reference to a Secret Manager resource name storing the Salesforce OAuth2 client_secret. Mutually exclusive with the `client_secret` field.
      */
     secretManagerStoredClientSecret?: string | null;
+  }
+  /**
+   * OAuth Client Credentials.
+   */
+  export interface Schema$OauthClientCredentials {
+    /**
+     * Required. Client ID for OAuth Client Credentials.
+     */
+    clientId?: string | null;
+    /**
+     * Required. Client secret for OAuth Client Credentials.
+     */
+    clientSecret?: Schema$Secret;
+  }
+  /**
+   * OAuth Refresh Token Credentials.
+   */
+  export interface Schema$OauthRefreshTokenCredentials {
+    /**
+     * Required. Specifies the OAuth Client Credentials.
+     */
+    oauthClientCredentials?: Schema$OauthClientCredentials;
+    /**
+     * Required. Specifies the OAuth Refresh Token.
+     */
+    refreshToken?: Schema$Secret;
   }
   /**
    * Object filter to apply the rules to.
@@ -2098,6 +2186,40 @@ export namespace datastream_v1 {
     nillable?: boolean | null;
   }
   /**
+   * Profile for connecting to a Salesforce Marketing Cloud source.
+   */
+  export interface Schema$SalesforceMarketingCloudProfile {
+    /**
+     * Required. Input only. Credentials for authenticating with the Salesforce Marketing Cloud API.
+     */
+    oauthClientCredentials?: Schema$OauthClientCredentials;
+    /**
+     * Required. Subdomain for the Salesforce Marketing Cloud connection. Example: if your specific endpoint is `https://{your-specific-subdomain\}.rest.marketingcloudapis.com/`, the subdomain is `{your-specific-subdomain\}`. Must be 1-63 characters, start and end with an alphanumeric character, and contain only lowercase letters, numbers, and hyphens (-).
+     */
+    subdomain?: string | null;
+  }
+  /**
+   * Configuration for syncing data from a Salesforce Marketing Cloud source.
+   */
+  export interface Schema$SalesforceMarketingCloudSourceConfig {
+    /**
+     * Optional. The objects to exclude from the stream.
+     */
+    excludeObjects?: Schema$SourceCatalog;
+    /**
+     * Required. Specifies the polling interval for a full refresh of objects that do not support incremental sync. If not set, a default value of 24 hours is used. The duration must be between 1 and 24 hours, inclusive.
+     */
+    fullRefreshPollingInterval?: string | null;
+    /**
+     * Optional. The objects to retrieve from the source.
+     */
+    includeObjects?: Schema$SourceCatalog;
+    /**
+     * Required. Incremental sync polling interval for all objects. If not set, a default value of `5 minutes` is used. The duration must be from `5 minutes` to `24 hours`, inclusive.
+     */
+    pollingInterval?: string | null;
+  }
+  /**
    * Salesforce object.
    */
   export interface Schema$SalesforceObject {
@@ -2141,7 +2263,7 @@ export namespace datastream_v1 {
      */
     oauth2ClientCredentials?: Schema$Oauth2ClientCredentials;
     /**
-     * User-password authentication.
+     * Deprecated: Salesforce is retiring Username-Password authentication. Use `oauth2_client_credentials` instead.
      */
     userCredentials?: Schema$UserCredentials;
   }
@@ -2161,6 +2283,19 @@ export namespace datastream_v1 {
      * Required. Salesforce objects polling interval. The interval at which new changes will be polled for each object. The duration must be from `5 minutes` to `24 hours`, inclusive.
      */
     pollingInterval?: string | null;
+  }
+  /**
+   * A confidential piece of information where the actual value is either directly specified in the message as a raw string or stored in GCP secret manager.
+   */
+  export interface Schema$Secret {
+    /**
+     * Optional. Input only. The actual raw value of the secret as plain text.
+     */
+    rawValue?: string | null;
+    /**
+     * Optional. A Secret Manager resource name storing the actual value of the secret. Supported formats: * projects/{project\}/locations/{location\}/secrets/{secret\}/versions/{version\} * projects/{project\}/secrets/{secret\}/versions/{version\}
+     */
+    secretVersion?: string | null;
   }
   /**
    * Message represents the option where Datastream will enforce the encryption and authenticate the server identity as well as the client identity. ca_certificate, client_certificate and client_key must be set if user selects this option.
@@ -2197,6 +2332,40 @@ export namespace datastream_v1 {
     serverCertificateHostname?: string | null;
   }
   /**
+   * Profile for connecting to a ServiceNow source.
+   */
+  export interface Schema$ServiceNowProfile {
+    /**
+     * Required. The instance of the ServiceNow account. This is the `` part of the URL `https://.service-now.com`.
+     */
+    instance?: string | null;
+    /**
+     * Credentials for authenticating with the ServiceNow API.
+     */
+    oauthClientCredentials?: Schema$OauthClientCredentials;
+    /**
+     * User-password authentication.
+     */
+    userPasswordCredentials?: Schema$UserPasswordCredentials;
+  }
+  /**
+   * Configuration for syncing data from a ServiceNow source.
+   */
+  export interface Schema$ServiceNowSourceConfig {
+    /**
+     * Optional. The objects to exclude from the stream.
+     */
+    excludeObjects?: Schema$SourceCatalog;
+    /**
+     * Optional. The objects to retrieve from the source.
+     */
+    includeObjects?: Schema$SourceCatalog;
+    /**
+     * Required. Incremental sync polling interval for all objects. If not set, a default value of `5 minutes` is used. The duration must be from `5 minutes` to `24 hours`, inclusive.
+     */
+    pollingInterval?: string | null;
+  }
+  /**
    * A single target dataset to which all data will be streamed.
    */
   export interface Schema$SingleTargetDataset {
@@ -2206,9 +2375,22 @@ export namespace datastream_v1 {
     datasetId?: string | null;
   }
   /**
+   * Source catalog.
+   */
+  export interface Schema$SourceCatalog {
+    /**
+     * Optional. Source objects in the catalog.
+     */
+    objects?: Schema$SourceObject[];
+  }
+  /**
    * The configuration of the stream source.
    */
   export interface Schema$SourceConfig {
+    /**
+     * Dataverse data source configuration.
+     */
+    dataverseSourceConfig?: Schema$DataverseSourceConfig;
     /**
      * MongoDB data source configuration.
      */
@@ -2226,9 +2408,17 @@ export namespace datastream_v1 {
      */
     postgresqlSourceConfig?: Schema$PostgresqlSourceConfig;
     /**
+     * Salesforce Marketing Cloud data source configuration.
+     */
+    salesforceMarketingCloudSourceConfig?: Schema$SalesforceMarketingCloudSourceConfig;
+    /**
      * Salesforce data source configuration.
      */
     salesforceSourceConfig?: Schema$SalesforceSourceConfig;
+    /**
+     * ServiceNow data source configuration.
+     */
+    serviceNowSourceConfig?: Schema$ServiceNowSourceConfig;
     /**
      * Required. Source connection profile resource. Format: `projects/{project\}/locations/{location\}/connectionProfiles/{name\}`
      */
@@ -2241,6 +2431,10 @@ export namespace datastream_v1 {
      * SQLServer data source configuration.
      */
     sqlServerSourceConfig?: Schema$SqlServerSourceConfig;
+    /**
+     * Optional. Workday data source configuration.
+     */
+    workdaySourceConfig?: Schema$WorkdaySourceConfig;
   }
   /**
    * Destination datasets are created so that hierarchy of the destination data objects matches the source hierarchy.
@@ -2254,6 +2448,19 @@ export namespace datastream_v1 {
      * Optional. The project id of the BigQuery dataset. If not specified, the project will be inferred from the stream resource.
      */
     projectId?: string | null;
+  }
+  /**
+   * Source object.
+   */
+  export interface Schema$SourceObject {
+    /**
+     * Required. The object name.
+     */
+    objectName?: string | null;
+    /**
+     * Optional. Source properties. When unspecified as part of include objects, includes everything, when unspecified as part of exclude objects, excludes nothing.
+     */
+    properties?: Schema$SourceProperty[];
   }
   /**
    * Represents an identifier of an object in the data source.
@@ -2287,6 +2494,23 @@ export namespace datastream_v1 {
      * SQLServer data source object identifier.
      */
     sqlServerIdentifier?: Schema$SqlServerObjectIdentifier;
+  }
+  /**
+   * Source property.
+   */
+  export interface Schema$SourceProperty {
+    /**
+     * Optional. Whether or not the property is a primary key.
+     */
+    primaryKey?: boolean | null;
+    /**
+     * Optional. Source properties. When specified, it means that the current property contains nested properties of its own. When unspecified as part of include objects, includes everything, when unspecified as part of exclude objects, excludes nothing.
+     */
+    properties?: Schema$SourceProperty[];
+    /**
+     * Required. The property name.
+     */
+    propertyName?: string | null;
   }
   /**
    * Represents a position in a Spanner change stream from which to start replicating.
@@ -2815,7 +3039,7 @@ export namespace datastream_v1 {
     partitioningTimeGranularity?: string | null;
   }
   /**
-   * Username-password credentials.
+   * Deprecated: Salesforce is retiring Username-Password authentication. Use `Oauth2ClientCredentials` instead.
    */
   export interface Schema$UserCredentials {
     /**
@@ -2836,6 +3060,19 @@ export namespace datastream_v1 {
     securityToken?: string | null;
     /**
      * Required. Username for the Salesforce connection.
+     */
+    username?: string | null;
+  }
+  /**
+   * User-password credentials.
+   */
+  export interface Schema$UserPasswordCredentials {
+    /**
+     * Required. Password for the connection.
+     */
+    password?: Schema$Secret;
+    /**
+     * Required. Username for the connection.
      */
     username?: string | null;
   }
@@ -2902,6 +3139,40 @@ export namespace datastream_v1 {
      * Required. Fully qualified name of the VPC that Datastream will peer to. Format: `projects/{project\}/global/{networks\}/{name\}`
      */
     vpc?: string | null;
+  }
+  /**
+   * Profile for connecting to a Workday source.
+   */
+  export interface Schema$WorkdayProfile {
+    /**
+     * Required. Host for the Workday connection. Must be a valid hostname (e.g., `wd3-impl-services1.workday.com`).
+     */
+    host?: string | null;
+    /**
+     * Required. Credentials for authenticating with the Workday API. OAuth Refresh Token credentials for authenticating with the Workday API.
+     */
+    oauthRefreshTokenCredentials?: Schema$OauthRefreshTokenCredentials;
+    /**
+     * Required. Tenant for the Workday connection (e.g., `google12`).
+     */
+    tenant?: string | null;
+  }
+  /**
+   * Configuration for syncing data from a Workday source.
+   */
+  export interface Schema$WorkdaySourceConfig {
+    /**
+     * Optional. The objects to exclude from the stream.
+     */
+    excludeObjects?: Schema$SourceCatalog;
+    /**
+     * Optional. The objects to retrieve from the source.
+     */
+    includeObjects?: Schema$SourceCatalog;
+    /**
+     * Required. Incremental sync polling interval for all objects. If not set, a default value of `5 minutes` is used. The duration must be from `5 minutes` to `24 hours`, inclusive.
+     */
+    pollingInterval?: string | null;
   }
 
   export class Resource$Projects {
@@ -3006,8 +3277,7 @@ export namespace datastream_v1 {
     fetchStaticIps(
       params: Params$Resource$Projects$Locations$Fetchstaticips,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FetchStaticIpsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$FetchStaticIpsResponse>,
       callback: BodyResponseCallback<Schema$FetchStaticIpsResponse>
     ): void;
     fetchStaticIps(
@@ -3169,8 +3439,7 @@ export namespace datastream_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -3294,8 +3563,7 @@ export namespace datastream_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -3461,6 +3729,7 @@ export namespace datastream_v1 {
      *       // {
      *       //   "bigqueryProfile": {},
      *       //   "createTime": "my_createTime",
+     *       //   "dataverseProfile": {},
      *       //   "displayName": "my_displayName",
      *       //   "forwardSshConnectivity": {},
      *       //   "gcsProfile": {},
@@ -3471,13 +3740,16 @@ export namespace datastream_v1 {
      *       //   "oracleProfile": {},
      *       //   "postgresqlProfile": {},
      *       //   "privateConnectivity": {},
+     *       //   "salesforceMarketingCloudProfile": {},
      *       //   "salesforceProfile": {},
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
+     *       //   "serviceNowProfile": {},
      *       //   "spannerProfile": {},
      *       //   "sqlServerProfile": {},
      *       //   "staticServiceIpConnectivity": {},
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "workdayProfile": {}
      *       // }
      *     },
      *   });
@@ -3539,8 +3811,7 @@ export namespace datastream_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3683,8 +3954,7 @@ export namespace datastream_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3777,6 +4047,7 @@ export namespace datastream_v1 {
      *       //   "oracleRdbms": {},
      *       //   "postgresqlRdbms": {},
      *       //   "salesforceOrg": {},
+     *       //   "sourceCatalog": {},
      *       //   "spannerDatabase": {},
      *       //   "sqlServerRdbms": {}
      *       // }
@@ -3791,6 +4062,7 @@ export namespace datastream_v1 {
      *   //   "oracleRdbms": {},
      *   //   "postgresqlRdbms": {},
      *   //   "salesforceOrg": {},
+     *   //   "sourceCatalog": {},
      *   //   "spannerDatabase": {},
      *   //   "sqlServerRdbms": {}
      *   // }
@@ -3941,6 +4213,7 @@ export namespace datastream_v1 {
      *   // {
      *   //   "bigqueryProfile": {},
      *   //   "createTime": "my_createTime",
+     *   //   "dataverseProfile": {},
      *   //   "displayName": "my_displayName",
      *   //   "forwardSshConnectivity": {},
      *   //   "gcsProfile": {},
@@ -3951,13 +4224,16 @@ export namespace datastream_v1 {
      *   //   "oracleProfile": {},
      *   //   "postgresqlProfile": {},
      *   //   "privateConnectivity": {},
+     *   //   "salesforceMarketingCloudProfile": {},
      *   //   "salesforceProfile": {},
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
+     *   //   "serviceNowProfile": {},
      *   //   "spannerProfile": {},
      *   //   "sqlServerProfile": {},
      *   //   "staticServiceIpConnectivity": {},
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "workdayProfile": {}
      *   // }
      * }
      *
@@ -4256,6 +4532,7 @@ export namespace datastream_v1 {
      *       // {
      *       //   "bigqueryProfile": {},
      *       //   "createTime": "my_createTime",
+     *       //   "dataverseProfile": {},
      *       //   "displayName": "my_displayName",
      *       //   "forwardSshConnectivity": {},
      *       //   "gcsProfile": {},
@@ -4266,13 +4543,16 @@ export namespace datastream_v1 {
      *       //   "oracleProfile": {},
      *       //   "postgresqlProfile": {},
      *       //   "privateConnectivity": {},
+     *       //   "salesforceMarketingCloudProfile": {},
      *       //   "salesforceProfile": {},
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
+     *       //   "serviceNowProfile": {},
      *       //   "spannerProfile": {},
      *       //   "sqlServerProfile": {},
      *       //   "staticServiceIpConnectivity": {},
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "workdayProfile": {}
      *       // }
      *     },
      *   });
@@ -4334,8 +4614,7 @@ export namespace datastream_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4584,8 +4863,7 @@ export namespace datastream_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4716,8 +4994,7 @@ export namespace datastream_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4854,8 +5131,7 @@ export namespace datastream_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4980,8 +5256,7 @@ export namespace datastream_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -5224,8 +5499,7 @@ export namespace datastream_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5370,8 +5644,7 @@ export namespace datastream_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5905,8 +6178,7 @@ export namespace datastream_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6050,8 +6322,7 @@ export namespace datastream_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6193,8 +6464,7 @@ export namespace datastream_v1 {
         | BodyResponseCallback<Schema$Route>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Route>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Route> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Route>>
@@ -6582,8 +6852,7 @@ export namespace datastream_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6725,8 +6994,7 @@ export namespace datastream_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6874,8 +7142,7 @@ export namespace datastream_v1 {
         | BodyResponseCallback<Schema$Stream>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Stream>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Stream> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Stream>>
@@ -7190,8 +7457,7 @@ export namespace datastream_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7337,8 +7603,7 @@ export namespace datastream_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7710,8 +7975,7 @@ export namespace datastream_v1 {
     list(
       params: Params$Resource$Projects$Locations$Streams$Objects$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListStreamObjectsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListStreamObjectsResponse>,
       callback: BodyResponseCallback<Schema$ListStreamObjectsResponse>
     ): void;
     list(
@@ -8014,8 +8278,7 @@ export namespace datastream_v1 {
     startBackfillJob(
       params: Params$Resource$Projects$Locations$Streams$Objects$Startbackfilljob,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$StartBackfillJobResponse>,
+        MethodOptions | BodyResponseCallback<Schema$StartBackfillJobResponse>,
       callback: BodyResponseCallback<Schema$StartBackfillJobResponse>
     ): void;
     startBackfillJob(
@@ -8164,8 +8427,7 @@ export namespace datastream_v1 {
     stopBackfillJob(
       params: Params$Resource$Projects$Locations$Streams$Objects$Stopbackfilljob,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$StopBackfillJobResponse>,
+        MethodOptions | BodyResponseCallback<Schema$StopBackfillJobResponse>,
       callback: BodyResponseCallback<Schema$StopBackfillJobResponse>
     ): void;
     stopBackfillJob(

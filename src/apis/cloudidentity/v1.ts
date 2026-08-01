@@ -1935,8 +1935,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2190,8 +2189,7 @@ export namespace cloudidentity_v1 {
     isInvitableUser(
       params: Params$Resource$Customers$Userinvitations$Isinvitableuser,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$IsInvitableUserResponse>,
+        MethodOptions | BodyResponseCallback<Schema$IsInvitableUserResponse>,
       callback: BodyResponseCallback<Schema$IsInvitableUserResponse>
     ): void;
     isInvitableUser(
@@ -2512,8 +2510,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2725,8 +2722,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2906,8 +2902,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3046,8 +3041,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3531,8 +3525,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3768,8 +3761,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3918,8 +3910,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4065,8 +4056,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4209,8 +4199,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4841,8 +4830,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5456,8 +5444,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5676,8 +5663,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5817,8 +5803,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5964,8 +5949,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Group>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Group>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Group> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Group>>
@@ -6375,8 +6359,7 @@ export namespace cloudidentity_v1 {
     lookup(
       params: Params$Resource$Groups$Lookup,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LookupGroupNameResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LookupGroupNameResponse>,
       callback: BodyResponseCallback<Schema$LookupGroupNameResponse>
     ): void;
     lookup(
@@ -6557,8 +6540,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6684,8 +6666,7 @@ export namespace cloudidentity_v1 {
     search(
       params: Params$Resource$Groups$Search,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SearchGroupsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SearchGroupsResponse>,
       callback: BodyResponseCallback<Schema$SearchGroupsResponse>
     ): void;
     search(
@@ -6858,8 +6839,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7285,8 +7265,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7430,8 +7409,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7575,8 +7553,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Membership>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Membership>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Membership> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Membership>>
@@ -7720,8 +7697,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7850,8 +7826,7 @@ export namespace cloudidentity_v1 {
     list(
       params: Params$Resource$Groups$Memberships$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListMembershipsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListMembershipsResponse>,
       callback: BodyResponseCallback<Schema$ListMembershipsResponse>
     ): void;
     list(
@@ -8230,7 +8205,7 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * Searches direct groups of a member.
+     * Searches direct groups of a member. Groups for which the actor does not have the permission to view memberships are silently filtered out.
      * @example
      * ```js
      * // Before running the sample:
@@ -8312,8 +8287,7 @@ export namespace cloudidentity_v1 {
     searchDirectGroups(
       params: Params$Resource$Groups$Memberships$Searchdirectgroups,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SearchDirectGroupsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SearchDirectGroupsResponse>,
       callback: BodyResponseCallback<Schema$SearchDirectGroupsResponse>
     ): void;
     searchDirectGroups(
@@ -8948,8 +8922,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9093,8 +9066,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9218,8 +9190,7 @@ export namespace cloudidentity_v1 {
     get(
       params: Params$Resource$Inboundoidcssoprofiles$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InboundOidcSsoProfile>,
+        MethodOptions | BodyResponseCallback<Schema$InboundOidcSsoProfile>,
       callback: BodyResponseCallback<Schema$InboundOidcSsoProfile>
     ): void;
     get(
@@ -9551,8 +9522,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9761,8 +9731,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9906,8 +9875,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10031,8 +9999,7 @@ export namespace cloudidentity_v1 {
     get(
       params: Params$Resource$Inboundsamlssoprofiles$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InboundSamlSsoProfile>,
+        MethodOptions | BodyResponseCallback<Schema$InboundSamlSsoProfile>,
       callback: BodyResponseCallback<Schema$InboundSamlSsoProfile>
     ): void;
     get(
@@ -10364,8 +10331,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10569,8 +10535,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10715,8 +10680,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10985,8 +10949,7 @@ export namespace cloudidentity_v1 {
     list(
       params: Params$Resource$Inboundsamlssoprofiles$Idpcredentials$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListIdpCredentialsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListIdpCredentialsResponse>,
       callback: BodyResponseCallback<Schema$ListIdpCredentialsResponse>
     ): void;
     list(
@@ -11211,8 +11174,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11356,8 +11318,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11485,8 +11446,7 @@ export namespace cloudidentity_v1 {
     get(
       params: Params$Resource$Inboundssoassignments$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InboundSsoAssignment>,
+        MethodOptions | BodyResponseCallback<Schema$InboundSsoAssignment>,
       callback: BodyResponseCallback<Schema$InboundSsoAssignment>
     ): void;
     get(
@@ -11822,8 +11782,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12025,8 +11984,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12163,8 +12121,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12304,8 +12261,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -12384,9 +12340,9 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.policies.list({
-     *     // Optional. A CEL expression for filtering the results. Policies can be filtered by application with this expression: setting.type.matches('^settings/gmail\\..*$') Policies can be filtered by setting type with this expression: setting.type.matches('^.*\\.service_status$') Policies can be filtered by customer with this expression: customer == "customers/{customer\}" Where `customer` is the `id` from the [Admin SDK `Customer` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). You may use `customers/my_customer` to specify your own organization. When no customer is mentioned it will be default to customers/my_customer. You may only filter on policies for a single customer at a time. The above clauses can be combined together in a single filter expression with the `&&` and `||` operators, like in the following example: customer == "customers/my_customer" && ( setting.type.matches('^settings/gmail\\..*$') || setting.type.matches('^.*\\.service_status$') )
+     *     // Optional. A CEL expression for filtering the results. Policies can be filtered using the expression in the following ways: - Filter by application: `setting.type.matches('^settings/gmail\\..*$')` - Filter by setting type: `setting.type.matches('^.*\\.service_status$')` - Filter by customer: `customer == "customers/{customer\}"` Where `customer` is the `id` from the [Admin SDK `Customer` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). You may use `customers/my_customer` to specify your own organization. When no `customer` is mentioned it will be default to `customers/my_customer`. You may only filter on policies for a single customer at a time. The above clauses can be combined together in a single filter expression with the `&&` and `||` operators, like in the following example: `customer == "customers/my_customer" && ( setting.type.matches('^settings/gmail\\..*$') || setting.type.matches('^.*\\.service_status$') )`.
      *     filter: 'placeholder-value',
-     *     // Optional. The maximum number of results to return. The service can return fewer than this number. If omitted or set to 0, the default is 50 results per page. The maximum allowed value is 100. `page_size` values greater than 100 default to 100.
+     *     // Optional. The maximum number of results to return. The service can return fewer than this number. If omitted or set to `0`, the default is `50` results per page. The maximum allowed value is `100`. `page_size` values greater than `100` default to `100`.
      *     pageSize: 'placeholder-value',
      *     // Optional. The pagination token received from a prior call to PoliciesService.ListPolicies to retrieve the next page of results. When paginating, all other parameters provided to `ListPoliciesRequest` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
@@ -12428,8 +12384,7 @@ export namespace cloudidentity_v1 {
     list(
       params: Params$Resource$Policies$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPoliciesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPoliciesResponse>,
       callback: BodyResponseCallback<Schema$ListPoliciesResponse>
     ): void;
     list(
@@ -12598,8 +12553,7 @@ export namespace cloudidentity_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12665,11 +12619,11 @@ export namespace cloudidentity_v1 {
   }
   export interface Params$Resource$Policies$List extends StandardParameters {
     /**
-     * Optional. A CEL expression for filtering the results. Policies can be filtered by application with this expression: setting.type.matches('^settings/gmail\\..*$') Policies can be filtered by setting type with this expression: setting.type.matches('^.*\\.service_status$') Policies can be filtered by customer with this expression: customer == "customers/{customer\}" Where `customer` is the `id` from the [Admin SDK `Customer` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). You may use `customers/my_customer` to specify your own organization. When no customer is mentioned it will be default to customers/my_customer. You may only filter on policies for a single customer at a time. The above clauses can be combined together in a single filter expression with the `&&` and `||` operators, like in the following example: customer == "customers/my_customer" && ( setting.type.matches('^settings/gmail\\..*$') || setting.type.matches('^.*\\.service_status$') )
+     * Optional. A CEL expression for filtering the results. Policies can be filtered using the expression in the following ways: - Filter by application: `setting.type.matches('^settings/gmail\\..*$')` - Filter by setting type: `setting.type.matches('^.*\\.service_status$')` - Filter by customer: `customer == "customers/{customer\}"` Where `customer` is the `id` from the [Admin SDK `Customer` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). You may use `customers/my_customer` to specify your own organization. When no `customer` is mentioned it will be default to `customers/my_customer`. You may only filter on policies for a single customer at a time. The above clauses can be combined together in a single filter expression with the `&&` and `||` operators, like in the following example: `customer == "customers/my_customer" && ( setting.type.matches('^settings/gmail\\..*$') || setting.type.matches('^.*\\.service_status$') )`.
      */
     filter?: string;
     /**
-     * Optional. The maximum number of results to return. The service can return fewer than this number. If omitted or set to 0, the default is 50 results per page. The maximum allowed value is 100. `page_size` values greater than 100 default to 100.
+     * Optional. The maximum number of results to return. The service can return fewer than this number. If omitted or set to `0`, the default is `50` results per page. The maximum allowed value is `100`. `page_size` values greater than `100` default to `100`.
      */
     pageSize?: number;
     /**

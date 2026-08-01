@@ -2086,7 +2086,7 @@
       }
     }
   },
-  "revision": "20260507",
+  "revision": "20260701",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -2950,6 +2950,11 @@
           "readOnly": true,
           "type": "array"
         },
+        "pscAutoDnsName": {
+          "description": "Output only. Specifies the DNS name to use with PSC service automation for the Instance.",
+          "readOnly": true,
+          "type": "string"
+        },
         "pscDnsName": {
           "description": "Output only. The DNS name to use with PSC for the Instance.",
           "readOnly": true,
@@ -2973,6 +2978,22 @@
           "readOnly": true,
           "type": "integer"
         },
+        "authproxyPoolerScalingType": {
+          "description": "Optional. The scaling type of the AuthProxy pooler.",
+          "enum": [
+            "POOLER_SCALING_TYPE_UNSPECIFIED",
+            "POOLER_NONE",
+            "POOLER_MACHINE_SIZED",
+            "POOLER_MANUAL_OVERRIDE"
+          ],
+          "enumDescriptions": [
+            "The scaling type is not specified.",
+            "No pooler is enabled.",
+            "The number of poolers is automatically determined by the service based on the VM size.",
+            "The number of poolers is kept unchanged no matter the machine size."
+          ],
+          "type": "string"
+        },
         "enabled": {
           "description": "Optional. Whether to enable Managed Connection Pool (MCP).",
           "type": "boolean"
@@ -2989,6 +3010,22 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "poolerScalingType": {
+          "description": "Optional. The scaling type of the regular pooler.",
+          "enum": [
+            "POOLER_SCALING_TYPE_UNSPECIFIED",
+            "POOLER_NONE",
+            "POOLER_MACHINE_SIZED",
+            "POOLER_MANUAL_OVERRIDE"
+          ],
+          "enumDescriptions": [
+            "The scaling type is not specified.",
+            "No pooler is enabled.",
+            "The number of poolers is automatically determined by the service based on the VM size.",
+            "The number of poolers is kept unchanged no matter the machine size."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -5057,7 +5094,7 @@
             "AVAILABILITY_TYPE_OTHER"
           ],
           "enumDescriptions": [
-            "",
+            "Unspecified availability type.",
             "Zonal available instance.",
             "Regional available instance.",
             "Multi regional instance",
@@ -5166,7 +5203,7 @@
             "FAILED"
           ],
           "enumDescriptions": [
-            "",
+            "Unspecified status.",
             "The backup was successful.",
             "The backup was unsuccessful."
           ],
@@ -5292,7 +5329,7 @@
             "DATABASE_RESOURCE_SIGNAL_DATA"
           ],
           "enumDescriptions": [
-            "",
+            "Unspecified feed type. Not expected to be used.",
             "Database resource metadata feed from control plane",
             "Database resource monitoring data",
             "Database resource security health signal data",
@@ -5304,13 +5341,16 @@
           "type": "string"
         },
         "observabilityMetricData": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData"
+          "$ref": "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData",
+          "description": "Observability metric data."
         },
         "recommendationSignalData": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData"
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData",
+          "description": "Database resource recommendation signal data."
         },
         "resourceHealthSignalData": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData"
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData",
+          "description": "Database resource health signal data."
         },
         "resourceId": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
@@ -5318,7 +5358,8 @@
           "description": "Primary key associated with the Resource. resource_id is available in individual feed level as well."
         },
         "resourceMetadata": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata"
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata",
+          "description": "Database resource metadata."
         },
         "skipIngestion": {
           "description": "Optional. If true, the feed won't be ingested by DB Center. This indicates that the feed is intentionally skipped. For example, BackupDR feeds are only needed for resources integrated with DB Center (e.g., CloudSQL, AlloyDB). Feeds for non-integrated resources (e.g., Compute Engine, Persistent Disk) can be skipped.",
@@ -5379,7 +5420,7 @@
             "PROVIDER_OTHER"
           ],
           "enumDescriptions": [
-            "",
+            "Unspecified provider.",
             "Google cloud platform provider",
             "Amazon web service",
             "Azure web service",
@@ -5548,7 +5589,10 @@
             "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
             "SIGNAL_TYPE_EXTENDED_SUPPORT",
             "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
-            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE"
+            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+            "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
+            "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+            "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION"
           ],
           "enumDeprecated": [
             false,
@@ -5650,6 +5694,9 @@
             false,
             false,
             true,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -5766,11 +5813,15 @@
             "Recommended maintenance policy.",
             "Resource version is in extended support.",
             "Change in performance KPIs.",
-            "Database version nearing end of life."
+            "Database version nearing end of life.",
+            "Indicates a high risk of maintenance downtime.",
+            "Indicates both a low cache hit rate and a risk of maintenance downtime.",
+            "Indicates that the resource is missing enhanced protection."
           ],
           "type": "string"
         },
         "state": {
+          "description": "Required. The state of the signal, such as if it's ACTIVE or RESOLVED.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -5804,7 +5855,7 @@
             "PROVIDER_OTHER"
           ],
           "enumDescriptions": [
-            "",
+            "Unspecified provider.",
             "Google cloud platform provider",
             "Amazon web service",
             "Azure web service",
@@ -5819,7 +5870,7 @@
           "type": "string"
         },
         "resourceType": {
-          "description": "Required. The type of resource this ID is identifying. Ex go/keep-sorted start alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance compute.googleapis.com/Instance firestore.googleapis.com/Database, redis.googleapis.com/Instance, redis.googleapis.com/Cluster, oracledatabase.googleapis.com/CloudExadataInfrastructure oracledatabase.googleapis.com/CloudVmCluster oracledatabase.googleapis.com/AutonomousDatabase spanner.googleapis.com/Instance, spanner.googleapis.com/Database, sqladmin.googleapis.com/Instance, go/keep-sorted end REQUIRED Please refer go/condor-common-datamodel",
+          "description": "Required. The type of resource this ID is identifying. Ex go/keep-sorted start alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance compute.googleapis.com/Instance firestore.googleapis.com/Database, memorystore.googleapis.com/Instance, redis.googleapis.com/Instance, redis.googleapis.com/Cluster, oracledatabase.googleapis.com/CloudExadataInfrastructure oracledatabase.googleapis.com/CloudVmCluster oracledatabase.googleapis.com/AutonomousDatabase spanner.googleapis.com/Instance, spanner.googleapis.com/Database, sqladmin.googleapis.com/Instance, go/keep-sorted end REQUIRED Please refer go/condor-common-datamodel",
           "type": "string"
         },
         "uniqueId": {
@@ -5830,9 +5881,17 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata": {
-      "description": "Common model for database resource instance metadata. Next ID: 32",
+      "description": "Common model for database resource instance metadata. Next ID: 35",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata",
       "properties": {
+        "additionalMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Field to ingest additional metadata whichd does not support proto format.",
+          "type": "object"
+        },
         "availabilityConfiguration": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainAvailabilityConfiguration",
           "description": "Availability configuration for this instance"
@@ -5986,6 +6045,18 @@
           ],
           "type": "string"
         },
+        "internalAdditionalMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Field to ingest additional metadata which support proto format.",
+          "type": "object"
+        },
+        "ipAddress": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainIpAddress",
+          "description": "Optional. Private and public IP address of the resource."
+        },
         "isDeletionProtectionEnabled": {
           "description": "Optional. Whether deletion protection is enabled for this resource.",
           "type": "boolean"
@@ -6009,13 +6080,17 @@
               "MODE_UNSPECIFIED",
               "MODE_NATIVE",
               "MODE_MONGODB_COMPATIBLE",
-              "MODE_DATASTORE"
+              "MODE_DATASTORE",
+              "MODE_CLUSTER_ENABLED",
+              "MODE_CLUSTER_DISABLED"
             ],
             "enumDescriptions": [
               "Default mode.",
               "Native mode.",
               "MongoDB compatible mode.",
-              "Datastore mode."
+              "Datastore mode.",
+              "Memorystore/ValKey: Cluster enabled mode.",
+              "Memorystore/ValKey: Cluster disabled mode."
             ],
             "type": "string"
           },
@@ -6252,7 +6327,10 @@
             "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
             "SIGNAL_TYPE_EXTENDED_SUPPORT",
             "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
-            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE"
+            "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+            "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
+            "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+            "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION"
           ],
           "enumDeprecated": [
             false,
@@ -6354,6 +6432,9 @@
             false,
             false,
             true,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -6470,7 +6551,10 @@
             "Recommended maintenance policy.",
             "Resource version is in extended support.",
             "Change in performance KPIs.",
-            "Database version nearing end of life."
+            "Database version nearing end of life.",
+            "Indicates a high risk of maintenance downtime.",
+            "Indicates both a low cache hit rate and a risk of maintenance downtime.",
+            "Indicates that the resource is missing enhanced protection."
           ],
           "type": "string"
         }
@@ -6636,13 +6720,29 @@
           "type": "boolean"
         },
         "product": {
-          "$ref": "StorageDatabasecenterProtoCommonProduct"
+          "$ref": "StorageDatabasecenterProtoCommonProduct",
+          "description": "The product this resource represents."
         },
         "resourceId": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId"
         },
         "resourceName": {
           "description": "Required. internal resource name for spanner this will be database name e.g.\"spanner.googleapis.com/projects/123/abc/instances/inst1/databases/db1\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterPartnerapiV1mainIpAddress": {
+      "description": "Used to send IP address information for a database resource.",
+      "id": "StorageDatabasecenterPartnerapiV1mainIpAddress",
+      "properties": {
+        "privateIp": {
+          "description": "The private IP address assigned to the resource within a Virtual Private Cloud (VPC). This IP is only reachable from within the same VPC network. Stored in standard string format (e.g., \"10.0.0.2\").",
+          "type": "string"
+        },
+        "publicIp": {
+          "description": "The public IP address assigned to the resource. This IP is reachable from the internet. Stored in standard string format (e.g., \"34.72.1.1\").",
           "type": "string"
         }
       },
@@ -6869,6 +6969,13 @@
           "description": "Optional. Current Maintenance version of the database resource. Example: \"MYSQL_8_0_41.R20250531.01_15\"",
           "type": "string"
         },
+        "nextAvailableMaintenanceVersions": {
+          "description": "Optional. List of next available maintenance versions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "upcomingMaintenance": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainUpcomingMaintenance",
           "description": "Optional. Upcoming maintenance for the database resource. This field is populated once SLM generates and publishes upcoming maintenance window."
@@ -6938,6 +7045,7 @@
           "type": "string"
         },
         "quantityBasedRetention": {
+          "description": "Quantity based retention period i.e. 7 backups",
           "format": "int32",
           "type": "integer"
         },
@@ -6962,6 +7070,7 @@
         },
         "timeBasedRetention": {
           "deprecated": true,
+          "description": "Duration based retention period i.e. 172800 seconds (2 days)",
           "format": "google-duration",
           "type": "string"
         },
@@ -7052,6 +7161,7 @@
             "ENGINE_CLOUD_SPANNER_WITH_GOOGLESQL_DIALECT",
             "ENGINE_MEMORYSTORE_FOR_REDIS",
             "ENGINE_MEMORYSTORE_FOR_REDIS_CLUSTER",
+            "ENGINE_MEMORYSTORE_FOR_VALKEY",
             "ENGINE_OTHER",
             "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
             "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
@@ -7078,6 +7188,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -7094,6 +7205,7 @@
             "Cloud Spanner with Google SQL dialect.",
             "Memorystore with Redis dialect.",
             "Memorystore with Redis cluster dialect.",
+            "Memorystore with Valkey.",
             "Other refers to rest of other database engine. This is to be when engine is known, but it is not present in this enum.",
             "Firestore with native mode.",
             "Firestore with datastore mode.",
@@ -7613,12 +7725,18 @@
           "enum": [
             "USER_TYPE_UNSPECIFIED",
             "ALLOYDB_BUILT_IN",
-            "ALLOYDB_IAM_USER"
+            "ALLOYDB_IAM_USER",
+            "ALLOYDB_IAM_GROUP",
+            "ALLOYDB_IAM_GROUP_USER",
+            "ALLOYDB_IAM_GROUP_SERVICE_ACCOUNT"
           ],
           "enumDescriptions": [
             "Unspecified user type.",
             "The default user type that authenticates via password-based authentication.",
-            "Database user that can authenticate via IAM-Based authentication."
+            "Database user that can authenticate via IAM-Based authentication.",
+            "Database user that represents an IAM group whose members can authenticate via IAM group-based authentication.",
+            "Represents a user that belongs to an IAM group.",
+            "Represents a service account that belongs to an IAM group."
           ],
           "type": "string"
         }

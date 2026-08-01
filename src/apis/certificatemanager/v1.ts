@@ -215,6 +215,10 @@ export namespace certificatemanager_v1 {
      */
     selfManaged?: Schema$SelfManagedCertificate;
     /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     */
+    tags?: {[key: string]: string} | null;
+    /**
      * Output only. The last update timestamp of a Certificate.
      */
     updateTime?: string | null;
@@ -278,6 +282,10 @@ export namespace certificatemanager_v1 {
      */
     rotationWindowPercentage?: number | null;
     /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     */
+    tags?: {[key: string]: string} | null;
+    /**
      * Output only. The last update timestamp of a CertificateIssuanceConfig.
      */
     updateTime?: string | null;
@@ -306,6 +314,10 @@ export namespace certificatemanager_v1 {
      * Identifier. A user-defined name of the Certificate Map. Certificate Map names must be unique globally and match pattern `projects/x/locations/x/certificateMaps/x`.
      */
     name?: string | null;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     */
+    tags?: {[key: string]: string} | null;
     /**
      * Output only. The update timestamp of a Certificate Map.
      */
@@ -397,6 +409,10 @@ export namespace certificatemanager_v1 {
      * Identifier. A user-defined name of the dns authorization. DnsAuthorization names must be unique globally and match pattern `projects/x/locations/x/dnsAuthorizations/x`.
      */
     name?: string | null;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     */
+    tags?: {[key: string]: string} | null;
     /**
      * Optional. Immutable. Type of DnsAuthorization. If unset during resource creation the following default will be used: - in location `global`: FIXED_RECORD, - in other locations: PER_PROJECT_RECORD.
      */
@@ -846,6 +862,10 @@ export namespace certificatemanager_v1 {
      */
     spiffeTrustStores?: {[key: string]: Schema$TrustStore} | null;
     /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     */
+    tags?: {[key: string]: string} | null;
+    /**
      * Optional. Set of trust stores to perform validation against. This field is supported when TrustConfig is configured with Load Balancers, currently not supported for SPIFFE certificate validation. Only one TrustStore specified is currently allowed.
      */
     trustStores?: Schema$TrustStore[];
@@ -1008,8 +1028,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -1134,8 +1153,7 @@ export namespace certificatemanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1290,6 +1308,7 @@ export namespace certificatemanager_v1 {
      *           //   "lifetime": "my_lifetime",
      *           //   "name": "my_name",
      *           //   "rotationWindowPercentage": 0,
+     *           //   "tags": {},
      *           //   "updateTime": "my_updateTime"
      *           // }
      *         },
@@ -1353,8 +1372,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1499,8 +1517,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1594,6 +1611,7 @@ export namespace certificatemanager_v1 {
      *   //   "lifetime": "my_lifetime",
      *   //   "name": "my_name",
      *   //   "rotationWindowPercentage": 0,
+     *   //   "tags": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -1626,8 +1644,7 @@ export namespace certificatemanager_v1 {
     get(
       params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CertificateIssuanceConfig>,
+        MethodOptions | BodyResponseCallback<Schema$CertificateIssuanceConfig>,
       callback: BodyResponseCallback<Schema$CertificateIssuanceConfig>
     ): void;
     get(
@@ -1906,6 +1923,7 @@ export namespace certificatemanager_v1 {
      *           //   "lifetime": "my_lifetime",
      *           //   "name": "my_name",
      *           //   "rotationWindowPercentage": 0,
+     *           //   "tags": {},
      *           //   "updateTime": "my_updateTime"
      *           // }
      *         },
@@ -1969,8 +1987,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2140,6 +2157,7 @@ export namespace certificatemanager_v1 {
      *         //   "gclbTargets": [],
      *         //   "labels": {},
      *         //   "name": "my_name",
+     *         //   "tags": {},
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
@@ -2202,8 +2220,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2346,8 +2363,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2437,6 +2453,7 @@ export namespace certificatemanager_v1 {
      *   //   "gclbTargets": [],
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "tags": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -2732,6 +2749,7 @@ export namespace certificatemanager_v1 {
      *         //   "gclbTargets": [],
      *         //   "labels": {},
      *         //   "name": "my_name",
+     *         //   "tags": {},
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
@@ -2795,8 +2813,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3028,8 +3045,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3174,8 +3190,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3645,8 +3660,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3816,6 +3830,7 @@ export namespace certificatemanager_v1 {
      *       //   "sanDnsnames": [],
      *       //   "scope": "my_scope",
      *       //   "selfManaged": {},
+     *       //   "tags": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "usedBy": []
      *       // }
@@ -3879,8 +3894,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4021,8 +4035,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4117,6 +4130,7 @@ export namespace certificatemanager_v1 {
      *   //   "sanDnsnames": [],
      *   //   "scope": "my_scope",
      *   //   "selfManaged": {},
+     *   //   "tags": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "usedBy": []
      *   // }
@@ -4295,8 +4309,7 @@ export namespace certificatemanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Certificates$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCertificatesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCertificatesResponse>,
       callback: BodyResponseCallback<Schema$ListCertificatesResponse>
     ): void;
     list(
@@ -4416,6 +4429,7 @@ export namespace certificatemanager_v1 {
      *       //   "sanDnsnames": [],
      *       //   "scope": "my_scope",
      *       //   "selfManaged": {},
+     *       //   "tags": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "usedBy": []
      *       // }
@@ -4479,8 +4493,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4645,6 +4658,7 @@ export namespace certificatemanager_v1 {
      *         //   "domain": "my_domain",
      *         //   "labels": {},
      *         //   "name": "my_name",
+     *         //   "tags": {},
      *         //   "type": "my_type",
      *         //   "updateTime": "my_updateTime"
      *         // }
@@ -4708,8 +4722,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4852,8 +4865,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4946,6 +4958,7 @@ export namespace certificatemanager_v1 {
      *   //   "domain": "my_domain",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "tags": {},
      *   //   "type": "my_type",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -5247,6 +5260,7 @@ export namespace certificatemanager_v1 {
      *         //   "domain": "my_domain",
      *         //   "labels": {},
      *         //   "name": "my_name",
+     *         //   "tags": {},
      *         //   "type": "my_type",
      *         //   "updateTime": "my_updateTime"
      *         // }
@@ -5310,8 +5324,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5522,8 +5535,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5655,8 +5667,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5794,8 +5805,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5921,8 +5931,7 @@ export namespace certificatemanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -6091,6 +6100,7 @@ export namespace certificatemanager_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "spiffeTrustStores": {},
+     *       //   "tags": {},
      *       //   "trustStores": [],
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -6154,8 +6164,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6298,8 +6307,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6390,6 +6398,7 @@ export namespace certificatemanager_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "spiffeTrustStores": {},
+     *   //   "tags": {},
      *   //   "trustStores": [],
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -6568,8 +6577,7 @@ export namespace certificatemanager_v1 {
     list(
       params: Params$Resource$Projects$Locations$Trustconfigs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTrustConfigsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTrustConfigsResponse>,
       callback: BodyResponseCallback<Schema$ListTrustConfigsResponse>
     ): void;
     list(
@@ -6685,6 +6693,7 @@ export namespace certificatemanager_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "spiffeTrustStores": {},
+     *       //   "tags": {},
      *       //   "trustStores": [],
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -6748,8 +6757,7 @@ export namespace certificatemanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

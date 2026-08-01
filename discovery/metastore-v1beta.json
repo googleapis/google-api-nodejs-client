@@ -1807,7 +1807,7 @@
       }
     }
   },
-  "revision": "20260427",
+  "revision": "20260716",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AlterMetadataResourceLocationRequest": {
@@ -3120,7 +3120,8 @@
             "SUCCEEDED",
             "FAILED",
             "CANCELLED",
-            "DELETING"
+            "DELETING",
+            "ROLLED_BACK"
           ],
           "enumDescriptions": [
             "The state of the migration execution is unknown.",
@@ -3131,7 +3132,8 @@
             "The migration execution has completed successfully.",
             "The migration execution has failed.",
             "The migration execution is cancelled.",
-            "The migration execution is being deleted."
+            "The migration execution is being deleted.",
+            "The migration execution has been rolled back. This occurs when CancelMigration is invoked after the migration has completed and the metastore service is in the PROXY state, returning the service to the ACTIVE state. This enables rollback support when the customer wants to resume using DPMS after a successful migration."
           ],
           "readOnly": true,
           "type": "string"
@@ -3708,7 +3710,8 @@
             "DELETING",
             "ERROR",
             "AUTOSCALING",
-            "MIGRATING"
+            "MIGRATING",
+            "PROXY"
           ],
           "enumDescriptions": [
             "The state of the metastore service is unknown.",
@@ -3720,7 +3723,8 @@
             "The metastore service is undergoing deletion. It cannot be used.",
             "The metastore service has encountered an error and cannot be used. The metastore service should be deleted.",
             "The Dataproc Metastore service 2 is being scaled up or down.",
-            "The metastore service is processing a managed migration."
+            "The metastore service is processing a managed migration.",
+            "The metastore service has completed managed migration and is now proxying requests to the Lakehouse runtime catalog."
           ],
           "readOnly": true,
           "type": "string"

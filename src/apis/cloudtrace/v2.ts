@@ -547,8 +547,7 @@ export namespace cloudtrace_v2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -740,8 +739,7 @@ export namespace cloudtrace_v2 {
         | BodyResponseCallback<Schema$Span>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Span>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Span> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Span>>

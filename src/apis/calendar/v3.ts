@@ -158,10 +158,11 @@ export namespace calendar_v3 {
      */
     kind?: string | null;
     /**
-     * The role assigned to the scope. Possible values are:
+     * The role assigned to the scope. Possible values are:  
      * - "none" - Provides no access.
      * - "freeBusyReader" - Provides read access to free/busy information.
      * - "reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.
+     * - "writerWithoutPrivateAccess" - Provides read and write access to the calendar. Private events will appear to users with writerWithoutPrivateAccess access, but event details will be hidden.
      * - "writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. Provides read access to the calendar's ACLs.
      * - "owner" - Provides manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to modify access levels of other users.
      * Important: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.
@@ -202,6 +203,10 @@ export namespace calendar_v3 {
      */
     kind?: string | null;
     /**
+     * Label properties defined on this calendar. If specified, overwrites the existing label properties. If not specified, the label properties remain unchanged.
+     */
+    labelProperties?: Schema$LabelProperties;
+    /**
      * Geographic location of the calendar as free-form text. Optional.
      */
     location?: string | null;
@@ -238,9 +243,10 @@ export namespace calendar_v3 {
   }
   export interface Schema$CalendarListEntry {
     /**
-     * The effective access role that the authenticated user has on the calendar. Read-only. Possible values are:
+     * The effective access role that the authenticated user has on the calendar. Read-only. Possible values are:  
      * - "freeBusyReader" - Provides read access to free/busy information.
      * - "reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.
+     * - "writerWithoutPrivateAccess" - Provides read and write access to the calendar. Private events will appear to users with writerWithoutPrivateAccess access, but event details will be hidden.
      * - "writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible.
      * - "owner" - Provides manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to see and modify access levels of other users.
      * Important: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.
@@ -331,18 +337,18 @@ export namespace calendar_v3 {
   }
   export interface Schema$CalendarNotification {
     /**
-     * The method used to deliver the notification. The possible value is:
-     * - "email" - Notifications are sent via email.
+     * The method used to deliver the notification. The possible value is:  
+     * - "email" - Notifications are sent via email.  
      * Required when adding a notification.
      */
     method?: string | null;
     /**
-     * The type of notification. Possible values are:
+     * The type of notification. Possible values are:  
      * - "eventCreation" - Notification sent when a new event is put on the calendar.
      * - "eventChange" - Notification sent when an event is changed.
      * - "eventCancellation" - Notification sent when an event is cancelled.
      * - "eventResponse" - Notification sent when an attendee responds to the event invitation.
-     * - "agenda" - An agenda with the events of the day (sent out in the morning).
+     * - "agenda" - An agenda with the events of the day (sent out in the morning).  
      * Required when adding a notification.
      */
     type?: string | null;
@@ -421,7 +427,7 @@ export namespace calendar_v3 {
     /**
      * The ID of the conference.
      * Can be used by developers to keep track of conferences, should not be displayed to users.
-     * The ID value is formed differently for each conference solution type:
+     * The ID value is formed differently for each conference solution type:  
      * - eventHangout: ID is not set. (This conference type is deprecated.)
      * - eventNamedHangout: ID is the name of the Hangout. (This conference type is deprecated.)
      * - hangoutsMeet: ID is the 10-letter meeting code, for example aaa-bbbb-ccc.
@@ -473,7 +479,7 @@ export namespace calendar_v3 {
   export interface Schema$ConferenceProperties {
     /**
      * The types of conference solutions that are supported for this calendar.
-     * The possible values are:
+     * The possible values are:  
      * - "eventHangout"
      * - "eventNamedHangout"
      * - "hangoutsMeet"  Optional.
@@ -483,7 +489,7 @@ export namespace calendar_v3 {
   export interface Schema$ConferenceRequestStatus {
     /**
      * The current status of the conference create request. Read-only.
-     * The possible values are:
+     * The possible values are:  
      * - "pending": the conference create request is still being processed.
      * - "success": the conference create request succeeded, the entry points are populated.
      * - "failure": the conference create request failed, there are no entry points.
@@ -508,7 +514,7 @@ export namespace calendar_v3 {
     /**
      * The conference solution type.
      * If a client encounters an unfamiliar or empty type, it should still be able to display the entry points. However, it should disallow modifications.
-     * The possible values are:
+     * The possible values are:  
      * - "eventHangout" for Hangouts for consumers (deprecated; existing events may show this conference solution type but new conferences cannot be created)
      * - "eventNamedHangout" for classic Hangouts for Google Workspace users (deprecated; existing events may show this conference solution type but new conferences cannot be created)
      * - "hangoutsMeet" for Google Meet (http://meet.google.com)
@@ -544,7 +550,7 @@ export namespace calendar_v3 {
     entryPointFeatures?: string[] | null;
     /**
      * The type of the conference entry point.
-     * Possible values are:
+     * Possible values are:  
      * - "video" - joining a conference over HTTP. A conference can have zero or one video entry point.
      * - "phone" - joining a conference by dialing a phone number. A conference can have zero or more phone entry points.
      * - "sip" - joining a conference over SIP. A conference can have zero or one sip entry point.
@@ -553,11 +559,11 @@ export namespace calendar_v3 {
     entryPointType?: string | null;
     /**
      * The label for the URI. Visible to end users. Not localized. The maximum length is 512 characters.
-     * Examples:
+     * Examples:  
      * - for video: meet.google.com/aaa-bbbb-ccc
      * - for phone: +1 123 268 2601
      * - for sip: 12345678@altostrat.com
-     * - for more: should not be filled
+     * - for more: should not be filled  
      * Optional.
      */
     label?: string | null;
@@ -591,7 +597,7 @@ export namespace calendar_v3 {
     regionCode?: string | null;
     /**
      * The URI of the entry point. The maximum length is 1300 characters.
-     * Format:
+     * Format:  
      * - for video, http: or https: schema is required.
      * - for phone, tel: schema is required. The URI should include the entire dial sequence (e.g., tel:+12345678900,,,123456789;1234).
      * - for sip, sip: schema is required, e.g., sip:12345678@myprovider.com.
@@ -605,7 +611,7 @@ export namespace calendar_v3 {
      */
     domain?: string | null;
     /**
-     * Specific reason for the error. Some of the possible values are:
+     * Specific reason for the error. Some of the possible values are:  
      * - "groupTooBig" - The group of users requested is too large for a single query.
      * - "tooManyCalendarsRequested" - The number of calendars requested is too large for a single query.
      * - "notFound" - The requested resource was not found.
@@ -674,7 +680,13 @@ export namespace calendar_v3 {
      */
     etag?: string | null;
     /**
-     * Specific type of the event. This cannot be modified after the event is created. Possible values are:
+     * The ID of the event label assigned to the event. Optional. This refers to the ID of an entry in the labelProperties.eventLabels property of the calendar (see the Calendars.get endpoint.)
+     * This property supersedes the index-based colorId property. To set or change this property, you need to specify eventLabelVersion=1 in the parameters of the insert, import, update, and patch methods.
+     * Setting an empty string, or not setting this field at all, will remove the existing label from the event.
+     */
+    eventLabelId?: string | null;
+    /**
+     * Specific type of the event. This cannot be modified after the event is created. Possible values are:  
      * - "birthday" - A special all-day event with an annual recurrence.
      * - "default" - A regular event or not further specified.
      * - "focusTime" - A focus-time event.
@@ -733,7 +745,7 @@ export namespace calendar_v3 {
      */
     iCalUID?: string | null;
     /**
-     * Opaque identifier of the event. When creating new single or recurring events, you can specify their IDs. Provided IDs must follow these rules:
+     * Opaque identifier of the event. When creating new single or recurring events, you can specify their IDs. Provided IDs must follow these rules:  
      * - characters allowed in the ID are those used in base32hex encoding, i.e. lowercase letters a-v and digits 0-9, see section 3.1.2 in RFC2938
      * - the length of the ID must be between 5 and 1024 characters
      * - the ID must be unique per calendar  Due to the globally distributed nature of the system, we cannot guarantee that ID collisions will be detected at event creation time. To minimize the risk of collisions we recommend using an established UUID algorithm such as one described in RFC4122.
@@ -802,13 +814,13 @@ export namespace calendar_v3 {
      */
     start?: Schema$EventDateTime;
     /**
-     * Status of the event. Optional. Possible values are:
+     * Status of the event. Optional. Possible values are:  
      * - "confirmed" - The event is confirmed. This is the default status.
      * - "tentative" - The event is tentatively confirmed.
      * - "cancelled" - The event is cancelled (deleted). The list method returns cancelled events only on incremental sync (when syncToken or updatedMin are specified) or if the showDeleted flag is set to true. The get method always returns them.
-     * A cancelled status represents two different states depending on the event type:
+     * A cancelled status represents two different states depending on the event type:  
      * - Cancelled exceptions of an uncancelled recurring event indicate that this instance should no longer be presented to the user. Clients should store these events for the lifetime of the parent recurring event.
-     * Cancelled exceptions are only guaranteed to have values for the id, recurringEventId and originalStartTime fields populated. The other fields might be empty.
+     * Cancelled exceptions are only guaranteed to have values for the id, recurringEventId and originalStartTime fields populated. The other fields might be empty.  
      * - All other cancelled events represent deleted events. Clients should remove their locally synced copies. Such cancelled events will eventually disappear, so do not rely on them being available indefinitely.
      * Deleted events are only guaranteed to have the id field populated.   On the organizer's calendar, cancelled events continue to expose event details (summary, location, etc.) so that they can be restored (undeleted). Similarly, the events to which the user was invited and that they manually removed continue to provide details. However, incremental sync requests with showDeleted set to false will not return these details.
      * If an event changes its organizer (for example via the move operation) and the original organizer is not on the attendee list, it will leave behind a cancelled event where only the id field is guaranteed to be populated.
@@ -819,7 +831,7 @@ export namespace calendar_v3 {
      */
     summary?: string | null;
     /**
-     * Whether the event blocks time on the calendar. Optional. Possible values are:
+     * Whether the event blocks time on the calendar. Optional. Possible values are:  
      * - "opaque" - Default value. The event does block time on the calendar. This is equivalent to setting Show me as to Busy in the Calendar UI.
      * - "transparent" - The event does not block time on the calendar. This is equivalent to setting Show me as to Available in the Calendar UI.
      */
@@ -829,11 +841,12 @@ export namespace calendar_v3 {
      */
     updated?: string | null;
     /**
-     * Visibility of the event. Optional. Possible values are:
+     * Visibility of the event. Optional. Possible values are:  
      * - "default" - Uses the default visibility for events on the calendar. This is the default value.
      * - "public" - The event is public and event details are visible to all readers of the calendar.
      * - "private" - The event is private and only event attendees may view event details.
-     * - "confidential" - The event is private. This value is provided for compatibility reasons.
+     * - "confidential" - The event is private. This value is provided for compatibility reasons.  
+     * Note on recurring events: Changing the visibility of a single instance of a recurring event can affect all instances of the series. If the new setting is more restrictive (e.g. from public to private), it is applied to all instances. If the new setting is less restrictive (e.g. from private to public), the change is ignored. To make a recurring event less restrictive, you must update the parent recurring event.
      */
     visibility?: string | null;
     /**
@@ -873,7 +886,7 @@ export namespace calendar_v3 {
     additionalGuests?: number | null;
     /**
      * If present, indicates the status of an asynchronous operation ongoing for this attendee (e.g. listing of members of large attendee groups). Read-only. The default is to not be present.
-     * Possible values are:
+     * Possible values are:  
      * - "inProgress" - The asynchronous operation is in progress.
      * - (not present) - Otherwise.
      */
@@ -908,7 +921,7 @@ export namespace calendar_v3 {
      */
     resource?: boolean | null;
     /**
-     * The attendee's response status. Possible values are:
+     * The attendee's response status. Possible values are:  
      * - "needsAction" - The attendee has not responded to the invitation (recommended for new events).
      * - "declined" - The attendee has declined the invitation.
      * - "tentative" - The attendee has tentatively accepted the invitation.
@@ -930,7 +943,7 @@ export namespace calendar_v3 {
      */
     customTypeName?: string | null;
     /**
-     * Type of birthday or special event. Possible values are:
+     * Type of birthday or special event. Possible values are:  
      * - "anniversary" - An anniversary other than birthday. Always has a contact.
      * - "birthday" - A birthday event. This is the default value.
      * - "custom" - A special date whose label is further specified in the customTypeName field. Always has a contact.
@@ -967,7 +980,22 @@ export namespace calendar_v3 {
      */
     declineMessage?: string | null;
   }
-  export interface Schema$EventLabel {}
+  export interface Schema$EventLabel {
+    /**
+     * Background color of the label in hexadecimal format, such as "#039be5". Events with this label are displayed in this color. Required.
+     */
+    backgroundColor?: string | null;
+    /**
+     * The ID of the label. Optional when inserting a new label. If not provided, a unique ID will be generated. Required when updating a label.
+     * If provided, the ID must be unique within the calendar and follow UUID format.
+     */
+    id?: string | null;
+    /**
+     * Name of the label. Optional.
+     * If provided this must have at most 50 characters.
+     */
+    name?: string | null;
+  }
   export interface Schema$EventOutOfOfficeProperties {
     /**
      * Whether to decline meeting invitations which overlap Out of office events. Valid values are declineNone, meaning that no meeting invitations are declined; declineAllConflictingInvitations, meaning that all conflicting meeting invitations that conflict with the event are declined; and declineOnlyNewConflictingInvitations, meaning that only new conflicting meeting invitations which arrive while the Out of office event is present are to be declined.
@@ -980,9 +1008,9 @@ export namespace calendar_v3 {
   }
   export interface Schema$EventReminder {
     /**
-     * The method used by this reminder. Possible values are:
+     * The method used by this reminder. Possible values are:  
      * - "email" - Reminders are sent via email.
-     * - "popup" - Reminders are sent via a UI popup.
+     * - "popup" - Reminders are sent via a UI popup.  
      * Required when adding a reminder.
      */
     method?: string | null;
@@ -994,10 +1022,11 @@ export namespace calendar_v3 {
   }
   export interface Schema$Events {
     /**
-     * The user's access role for this calendar. Read-only. Possible values are:
+     * The user's access role for this calendar. Read-only. Possible values are:  
      * - "none" - The user has no access.
      * - "freeBusyReader" - The user has read access to free/busy information.
      * - "reader" - The user has read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.
+     * - "writerWithoutPrivateAccess" - The user has read and write access to the calendar. Private events will appear to users with writerWithoutPrivateAccess access, but event details will be hidden.
      * - "writer" - The user has read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible.
      * - "owner" - The user has manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to see and modify access levels of other users.
      * Important: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.
@@ -1064,7 +1093,7 @@ export namespace calendar_v3 {
       label?: string;
     } | null;
     /**
-     * Type of the working location. Possible values are:
+     * Type of the working location. Possible values are:  
      * - "homeOffice" - The user is working at home.
      * - "officeLocation" - The user is working from an office.
      * - "customLocation" - The user is working from a custom location.  Any details are specified in a sub-field of the specified name, but this field may be missing if empty. Any other fields are ignored.
@@ -1146,7 +1175,14 @@ export namespace calendar_v3 {
      */
     timeMin?: string | null;
   }
-  export interface Schema$LabelProperties {}
+  export interface Schema$LabelProperties {
+    /**
+     * Event labels defined on this calendar. If this is present when updating the calendar, it will replace the existing event labels.
+     * Extend the list to add a new event label, and remove entities from the list to delete a label from calendar.
+     * Each calendar can have a maximum of 200 labels.
+     */
+    eventLabels?: Schema$EventLabel[];
+  }
   export interface Schema$Setting {
     /**
      * ETag of the resource.
@@ -1436,8 +1472,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$AclRule>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AclRule>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AclRule> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AclRule>>
@@ -1592,8 +1627,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$AclRule>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AclRule>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AclRule> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AclRule>>
@@ -1747,8 +1781,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Acl>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Acl>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Acl> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Acl>>
@@ -1906,8 +1939,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$AclRule>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AclRule>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AclRule> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AclRule>>
@@ -2064,8 +2096,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$AclRule>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$AclRule>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$AclRule> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$AclRule>>
@@ -2240,8 +2271,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -2951,8 +2981,10 @@ export namespace calendar_v3 {
      *     showDeleted: 'placeholder-value',
      *     // Whether to show hidden entries. Optional. The default is False.
      *     showHidden: 'placeholder-value',
+     *     // Whether to show only entries for calendars from the organization. This parameter is only applicable to Google Workspace users. Optional. The default is False.
+     *     showOwnOrganizationOnly: 'placeholder-value',
      *     // Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False.
-     *     // To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken.
+     *     // To ensure client state consistency minAccessRole and showOwnOrganizationOnly query parameters cannot be specified together with nextSyncToken.
      *     // If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
      *     // Learn more about incremental synchronization.
      *     // Optional. The default is to return all entries.
@@ -3491,8 +3523,10 @@ export namespace calendar_v3 {
      *     showDeleted: 'placeholder-value',
      *     // Whether to show hidden entries. Optional. The default is False.
      *     showHidden: 'placeholder-value',
+     *     // Whether to show only entries for calendars from the organization. This parameter is only applicable to Google Workspace users. Optional. The default is False.
+     *     showOwnOrganizationOnly: 'placeholder-value',
      *     // Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False.
-     *     // To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken.
+     *     // To ensure client state consistency minAccessRole and showOwnOrganizationOnly query parameters cannot be specified together with nextSyncToken.
      *     // If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
      *     // Learn more about incremental synchronization.
      *     // Optional. The default is to return all entries.
@@ -3578,8 +3612,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -3673,8 +3706,12 @@ export namespace calendar_v3 {
      */
     showHidden?: boolean;
     /**
+     * Whether to show only entries for calendars from the organization. This parameter is only applicable to Google Workspace users. Optional. The default is False.
+     */
+    showOwnOrganizationOnly?: boolean;
+    /**
      * Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False.
-     * To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken.
+     * To ensure client state consistency minAccessRole and showOwnOrganizationOnly query parameters cannot be specified together with nextSyncToken.
      * If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
      * Learn more about incremental synchronization.
      * Optional. The default is to return all entries.
@@ -3733,8 +3770,12 @@ export namespace calendar_v3 {
      */
     showHidden?: boolean;
     /**
+     * Whether to show only entries for calendars from the organization. This parameter is only applicable to Google Workspace users. Optional. The default is False.
+     */
+    showOwnOrganizationOnly?: boolean;
+    /**
      * Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False.
-     * To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken.
+     * To ensure client state consistency minAccessRole and showOwnOrganizationOnly query parameters cannot be specified together with nextSyncToken.
      * If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
      * Learn more about incremental synchronization.
      * Optional. The default is to return all entries.
@@ -4068,6 +4109,7 @@ export namespace calendar_v3 {
      *   //   "etag": "my_etag",
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "labelProperties": {},
      *   //   "location": "my_location",
      *   //   "summary": "my_summary",
      *   //   "timeZone": "my_timeZone"
@@ -4120,8 +4162,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Calendar>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Calendar>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Calendar> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Calendar>>
@@ -4217,6 +4258,7 @@ export namespace calendar_v3 {
      *       //   "etag": "my_etag",
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
+     *       //   "labelProperties": {},
      *       //   "location": "my_location",
      *       //   "summary": "my_summary",
      *       //   "timeZone": "my_timeZone"
@@ -4234,6 +4276,7 @@ export namespace calendar_v3 {
      *   //   "etag": "my_etag",
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "labelProperties": {},
      *   //   "location": "my_location",
      *   //   "summary": "my_summary",
      *   //   "timeZone": "my_timeZone"
@@ -4286,8 +4329,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Calendar>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Calendar>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Calendar> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Calendar>>
@@ -4383,6 +4425,7 @@ export namespace calendar_v3 {
      *       //   "etag": "my_etag",
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
+     *       //   "labelProperties": {},
      *       //   "location": "my_location",
      *       //   "summary": "my_summary",
      *       //   "timeZone": "my_timeZone"
@@ -4400,6 +4443,7 @@ export namespace calendar_v3 {
      *   //   "etag": "my_etag",
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "labelProperties": {},
      *   //   "location": "my_location",
      *   //   "summary": "my_summary",
      *   //   "timeZone": "my_timeZone"
@@ -4452,8 +4496,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Calendar>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Calendar>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Calendar> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Calendar>>
@@ -4497,6 +4540,144 @@ export namespace calendar_v3 {
         );
       } else {
         return createAPIRequest<Schema$Calendar>(parameters);
+      }
+    }
+
+    /**
+     * Transfers a secondary calendar between users within a Google Workspace organization. Requires user authentication with Manage Calendars administrator privilege, and one of the following authorization scopes:
+     * - https://www.googleapis.com/auth/calendar
+     * - https://www.googleapis.com/auth/calendar.calendars In the request, set useAdminAccess to true. The secondary calendar must be active to be transferred. Transferring disabled or deleted calendars isn't supported.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const calendar = google.calendar('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/calendar',
+     *       'https://www.googleapis.com/auth/calendar.calendars',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await calendar.calendars.transferOwnership({
+     *     // Calendar identifier. To retrieve calendar IDs, call the calendarList.list method.
+     *     calendarId: 'placeholder-value',
+     *     // The email address of a user who will become the data owner of the calendar.
+     *     newDataOwner: 'placeholder-value',
+     *     // When true, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the Manage Calendars privilege. This method currently only supports admin access, thus only true is accepted for this field.
+     *     useAdminAccess: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    transferOwnership(
+      params: Params$Resource$Calendars$Transferownership,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    transferOwnership(
+      params?: Params$Resource$Calendars$Transferownership,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
+    transferOwnership(
+      params: Params$Resource$Calendars$Transferownership,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    transferOwnership(
+      params: Params$Resource$Calendars$Transferownership,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    transferOwnership(
+      params: Params$Resource$Calendars$Transferownership,
+      callback: BodyResponseCallback<void>
+    ): void;
+    transferOwnership(callback: BodyResponseCallback<void>): void;
+    transferOwnership(
+      paramsOrCallback?:
+        | Params$Resource$Calendars$Transferownership
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Calendars$Transferownership;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Calendars$Transferownership;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/calendar/v3/calendars/{calendarId}/transferOwnership'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['calendarId', 'newDataOwner', 'useAdminAccess'],
+        pathParams: ['calendarId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
       }
     }
 
@@ -4549,6 +4730,7 @@ export namespace calendar_v3 {
      *       //   "etag": "my_etag",
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
+     *       //   "labelProperties": {},
      *       //   "location": "my_location",
      *       //   "summary": "my_summary",
      *       //   "timeZone": "my_timeZone"
@@ -4566,6 +4748,7 @@ export namespace calendar_v3 {
      *   //   "etag": "my_etag",
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
+     *   //   "labelProperties": {},
      *   //   "location": "my_location",
      *   //   "summary": "my_summary",
      *   //   "timeZone": "my_timeZone"
@@ -4618,8 +4801,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Calendar>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Calendar>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Calendar> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Calendar>>
@@ -4701,6 +4883,20 @@ export namespace calendar_v3 {
      * Request body metadata
      */
     requestBody?: Schema$Calendar;
+  }
+  export interface Params$Resource$Calendars$Transferownership extends StandardParameters {
+    /**
+     * Calendar identifier. To retrieve calendar IDs, call the calendarList.list method.
+     */
+    calendarId?: string;
+    /**
+     * The email address of a user who will become the data owner of the calendar.
+     */
+    newDataOwner?: string;
+    /**
+     * When true, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the Manage Calendars privilege. This method currently only supports admin access, thus only true is accepted for this field.
+     */
+    useAdminAccess?: boolean;
   }
   export interface Params$Resource$Calendars$Update extends StandardParameters {
     /**
@@ -4990,8 +5186,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Colors>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Colors>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Colors> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Colors>>
@@ -5257,6 +5452,7 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
+     *   //   "eventLabelId": "my_eventLabelId",
      *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "focusTimeProperties": {},
@@ -5336,8 +5532,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Event>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Event> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Event>>
@@ -5424,6 +5619,8 @@ export namespace calendar_v3 {
      *     calendarId: 'placeholder-value',
      *     // Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
      *     conferenceDataVersion: 'placeholder-value',
+     *     // Version number of the event label feature supported by the API client. Version 0 assumes no event label support and processes the colorId field for color management. Version 1 enables support for event labels, and processes the eventLabelId in the event's body. In this case, the colorId field is ignored. The default is 0.
+     *     eventLabelVersion: 'placeholder-value',
      *     // Whether API client performing operation supports event attachments. Optional. The default is False.
      *     supportsAttachments: 'placeholder-value',
      *
@@ -5444,6 +5641,7 @@ export namespace calendar_v3 {
      *       //   "end": {},
      *       //   "endTimeUnspecified": false,
      *       //   "etag": "my_etag",
+     *       //   "eventLabelId": "my_eventLabelId",
      *       //   "eventType": "my_eventType",
      *       //   "extendedProperties": {},
      *       //   "focusTimeProperties": {},
@@ -5494,6 +5692,7 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
+     *   //   "eventLabelId": "my_eventLabelId",
      *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "focusTimeProperties": {},
@@ -5573,8 +5772,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Event>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Event> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Event>>
@@ -5660,6 +5858,8 @@ export namespace calendar_v3 {
      *     calendarId: 'placeholder-value',
      *     // Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
      *     conferenceDataVersion: 'placeholder-value',
+     *     // Version number of the event label feature supported by the API client. Version 0 assumes no event label support and processes the colorId field for color management. Version 1 enables support for event labels, and processes the eventLabelId in the event's body. In this case, the colorId field is ignored. The default is 0.
+     *     eventLabelVersion: 'placeholder-value',
      *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      *     maxAttendees: 'placeholder-value',
      *     // Deprecated. Please use sendUpdates instead.
@@ -5688,6 +5888,7 @@ export namespace calendar_v3 {
      *       //   "end": {},
      *       //   "endTimeUnspecified": false,
      *       //   "etag": "my_etag",
+     *       //   "eventLabelId": "my_eventLabelId",
      *       //   "eventType": "my_eventType",
      *       //   "extendedProperties": {},
      *       //   "focusTimeProperties": {},
@@ -5738,6 +5939,7 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
+     *   //   "eventLabelId": "my_eventLabelId",
      *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "focusTimeProperties": {},
@@ -5817,8 +6019,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Event>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Event> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Event>>
@@ -5992,8 +6193,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Events>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Events>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Events> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Events>>
@@ -6210,8 +6410,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Events>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Events>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Events> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Events>>
@@ -6322,6 +6521,7 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
+     *   //   "eventLabelId": "my_eventLabelId",
      *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "focusTimeProperties": {},
@@ -6401,8 +6601,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Event>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Event> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Event>>
@@ -6493,6 +6692,8 @@ export namespace calendar_v3 {
      *     conferenceDataVersion: 'placeholder-value',
      *     // Event identifier.
      *     eventId: 'placeholder-value',
+     *     // Version number of the event label feature supported by the API client. Version 0 assumes no event label support and processes the colorId field for color management. Version 1 enables support for event labels, and processes the eventLabelId in the event's body. In this case, the colorId field is ignored. The default is 0.
+     *     eventLabelVersion: 'placeholder-value',
      *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      *     maxAttendees: 'placeholder-value',
      *     // Deprecated. Please use sendUpdates instead.
@@ -6521,6 +6722,7 @@ export namespace calendar_v3 {
      *       //   "end": {},
      *       //   "endTimeUnspecified": false,
      *       //   "etag": "my_etag",
+     *       //   "eventLabelId": "my_eventLabelId",
      *       //   "eventType": "my_eventType",
      *       //   "extendedProperties": {},
      *       //   "focusTimeProperties": {},
@@ -6571,6 +6773,7 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
+     *   //   "eventLabelId": "my_eventLabelId",
      *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "focusTimeProperties": {},
@@ -6650,8 +6853,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Event>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Event> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Event>>
@@ -6761,6 +6963,7 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
+     *   //   "eventLabelId": "my_eventLabelId",
      *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "focusTimeProperties": {},
@@ -6840,8 +7043,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Event>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Event> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Event>>
@@ -6931,6 +7133,8 @@ export namespace calendar_v3 {
      *     conferenceDataVersion: 'placeholder-value',
      *     // Event identifier.
      *     eventId: 'placeholder-value',
+     *     // Version number of the event label feature supported by the API client. Version 0 assumes no event label support and processes the colorId field for color management. Version 1 enables support for event labels, and processes the eventLabelId in the event's body. In this case, the colorId field is ignored. The default is 0.
+     *     eventLabelVersion: 'placeholder-value',
      *     // The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      *     maxAttendees: 'placeholder-value',
      *     // Deprecated. Please use sendUpdates instead.
@@ -6959,6 +7163,7 @@ export namespace calendar_v3 {
      *       //   "end": {},
      *       //   "endTimeUnspecified": false,
      *       //   "etag": "my_etag",
+     *       //   "eventLabelId": "my_eventLabelId",
      *       //   "eventType": "my_eventType",
      *       //   "extendedProperties": {},
      *       //   "focusTimeProperties": {},
@@ -7009,6 +7214,7 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
+     *   //   "eventLabelId": "my_eventLabelId",
      *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "focusTimeProperties": {},
@@ -7088,8 +7294,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Event>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Event> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Event>>
@@ -7321,8 +7526,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -7421,6 +7625,10 @@ export namespace calendar_v3 {
      */
     conferenceDataVersion?: number;
     /**
+     * Version number of the event label feature supported by the API client. Version 0 assumes no event label support and processes the colorId field for color management. Version 1 enables support for event labels, and processes the eventLabelId in the event's body. In this case, the colorId field is ignored. The default is 0.
+     */
+    eventLabelVersion?: number;
+    /**
      * Whether API client performing operation supports event attachments. Optional. The default is False.
      */
     supportsAttachments?: boolean;
@@ -7439,6 +7647,10 @@ export namespace calendar_v3 {
      * Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
      */
     conferenceDataVersion?: number;
+    /**
+     * Version number of the event label feature supported by the API client. Version 0 assumes no event label support and processes the colorId field for color management. Version 1 enables support for event labels, and processes the eventLabelId in the event's body. In this case, the colorId field is ignored. The default is 0.
+     */
+    eventLabelVersion?: number;
     /**
      * The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      */
@@ -7655,6 +7867,10 @@ export namespace calendar_v3 {
      */
     eventId?: string;
     /**
+     * Version number of the event label feature supported by the API client. Version 0 assumes no event label support and processes the colorId field for color management. Version 1 enables support for event labels, and processes the eventLabelId in the event's body. In this case, the colorId field is ignored. The default is 0.
+     */
+    eventLabelVersion?: number;
+    /**
      * The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      */
     maxAttendees?: number;
@@ -7715,6 +7931,10 @@ export namespace calendar_v3 {
      * Event identifier.
      */
     eventId?: string;
+    /**
+     * Version number of the event label feature supported by the API client. Version 0 assumes no event label support and processes the colorId field for color management. Version 1 enables support for event labels, and processes the eventLabelId in the event's body. In this case, the colorId field is ignored. The default is 0.
+     */
+    eventLabelVersion?: number;
     /**
      * The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      */
@@ -8119,8 +8339,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Setting>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Setting>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Setting> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Setting>>
@@ -8270,8 +8489,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Settings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Settings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
@@ -8443,8 +8661,7 @@ export namespace calendar_v3 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>

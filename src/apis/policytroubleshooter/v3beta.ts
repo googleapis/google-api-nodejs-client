@@ -125,6 +125,27 @@ export namespace policytroubleshooter_v3beta {
   }
 
   /**
+   * Information about the principal, resource, and permission for the ErrorInfoId.
+   */
+  export interface Schema$GoogleCloudPolicytroubleshooterIamV3betaAccessContext {
+    /**
+     * The relative resource name, not including the / prefix. For example, `projects/project-id`, `projects/-/serviceAccounts/11112222`
+     */
+    name?: string | null;
+    /**
+     * The full resource name of the parent where IAM policy is configured. For example, `//cloudresourcemanager.googleapis.com/folders/444446666`
+     */
+    parent?: string | null;
+    /**
+     * Required. The IAM permission name provided by the user in the access denied request.
+     */
+    permission?: string | null;
+    /**
+     * The email address of the principal who requested access. For example, `alice@example.com` or `my-service-account@my-project.iam.gserviceaccount.com`. The principal must be a Google Account or a service account. Other types of principals are not supported.
+     */
+    principal?: string | null;
+  }
+  /**
    * Information about the principal, resource, and permission to check.
    */
   export interface Schema$GoogleCloudPolicytroubleshooterIamV3betaAccessTuple {
@@ -602,6 +623,10 @@ export namespace policytroubleshooter_v3beta {
      */
     combinedResourceInclusionState?: string | null;
     /**
+     * The relevance of the combined resource inclusion state to the overall access state.
+     */
+    combinedResourceRelevance?: string | null;
+    /**
      * Required. The effect of the rule which describes the access relationship.
      */
     effect?: string | null;
@@ -609,6 +634,10 @@ export namespace policytroubleshooter_v3beta {
      * List of resources that were explained to check the principal's access to specified resource, with annotations to indicate how each resource contributes to the overall access state.
      */
     explainedResources?: Schema$GoogleCloudPolicytroubleshooterIamV3betaExplainedPABRuleExplainedResource[];
+    /**
+     * Output only. Unsupported features detected in this rule. Supported values: * `OPERATION`: Permission Subsetting (Operation constraints). See google.iam.v3.PrincipalAccessBoundaryPolicyRule.operation.
+     */
+    pabUnsupportedFeatures?: string[] | null;
     /**
      * The relevance of this rule to the overall access state.
      */
@@ -672,6 +701,40 @@ export namespace policytroubleshooter_v3beta {
      * The relevance of the principal access boundary access state to the overall access state.
      */
     relevance?: string | null;
+  }
+  /**
+   * Request to troubleshoot access denial with the IAM error identifier.
+   */
+  export interface Schema$GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorRequest {
+    /**
+     * This identifier is returned in the `ErrorInfo.metadata` with key 'error_info_id' when an access requests is denied by the IAM service.
+     */
+    errorInfoId?: string | null;
+  }
+  /**
+   * Response for troubleshoot access denial with the IAM error identifier.
+   */
+  export interface Schema$GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse {
+    /**
+     * The access context associated with the ErrorInfoId.
+     */
+    accessContext?: Schema$GoogleCloudPolicytroubleshooterIamV3betaAccessContext;
+    /**
+     * An explanation of how the applicable IAM allow policies affect the final access state.
+     */
+    allowPolicyExplanation?: Schema$GoogleCloudPolicytroubleshooterIamV3betaAllowPolicyExplanation;
+    /**
+     * An explanation of how the applicable IAM deny policies affect the final access state.
+     */
+    denyPolicyExplanation?: Schema$GoogleCloudPolicytroubleshooterIamV3betaDenyPolicyExplanation;
+    /**
+     * Indicates whether the principal has the permission to access the resource, based on evaluating all types of the applicable IAM policies.
+     */
+    overallAccessState?: string | null;
+    /**
+     * An explanation of how the applicable principal access boundary policies affect the final access state.
+     */
+    pabPolicyExplanation?: Schema$GoogleCloudPolicytroubleshooterIamV3betaPABPolicyExplanation;
   }
   /**
    * Request for TroubleshootIamPolicy.
@@ -983,6 +1046,10 @@ export namespace policytroubleshooter_v3beta {
      */
     effect?: string | null;
     /**
+     * Optional. A list of Resource Manager resources. If an excluded resource is listed in the rule, then the rule does not apply for that resource and its descendants. This takes precedence over the `resources` field. The number of excluded resources in this field is limited to 500 across all rules in the policy. The following resource types are supported: * Organizations, such as `//cloudresourcemanager.googleapis.com/organizations/123`. * Folders, such as `//cloudresourcemanager.googleapis.com/folders/123`. * Projects, such as `//cloudresourcemanager.googleapis.com/projects/123` or `//cloudresourcemanager.googleapis.com/projects/my-project-id`.
+     */
+    excludedResources?: string[] | null;
+    /**
      * Optional. The operation attributes that determine whether this rule applies to a request. If this field is not specified, the rule applies to all operations.
      */
     operation?: Schema$GoogleIamV3PrincipalAccessBoundaryPolicyRuleOperation;
@@ -996,11 +1063,11 @@ export namespace policytroubleshooter_v3beta {
    */
   export interface Schema$GoogleIamV3PrincipalAccessBoundaryPolicyRuleOperation {
     /**
-     * Optional. Specifies the permissions that this rule excludes from the set of affected permissions given by `permissions`. The number of excluded permission strings in this field is limited to 50. If a permission appears in both `permissions` and `excluded_permissions` then it will _not_ be subject to the policy effect. The excluded permissions can be specified using the same syntax as `permissions`.
+     * Optional. Specifies the permissions that this rule excludes from the set of affected permissions given by `permissions`. The number of excluded permission strings in this field is limited to 50 across all rules in the policy. If a permission appears in both `permissions` and `excluded_permissions` then it will _not_ be subject to the policy effect. The excluded permissions can be specified using the same syntax as `permissions`.
      */
     excludedPermissions?: string[] | null;
     /**
-     * Optional. The permissions that are explicitly affected by this rule. The number of permission strings in this field is limited to 50. Each permission uses the format `{service_fqdn\}/{resource\}.{verb\}`, where `{service_fqdn\}` is the fully qualified domain name for the service. `*` can be used as a wildcard to match all permissions for a specific service, resource type, or verb. The following formats are supported: * `{service_fqdn\}/{resource\}.{verb\}`: A specific permission. * `{service_fqdn\}/{resource\}.*`: All permissions for a specific resource type. * `{service_fqdn\}/x.*`: All permissions for all resource types under a specific service. * `{service_fqdn\}/x.{verb\}`: All permissions with a specific verb under a specific service. * `*`: All permissions across all services. For example, `compute.googleapis.com/x.setIamPolicy` refers to all setIamPolicy permissions for any compute resource. Wildcards expand only to the permissions specified in the `enforcement_version` of the policy. If the `enforcement_version` is updated, the wildcard will automatically expand to include new permissions in the updated version.
+     * Optional. The permissions that are explicitly affected by this rule. The number of permission strings in this field is limited to 50 across all rules in the policy. Each permission uses the format `{service_fqdn\}/{resource\}.{verb\}`, where `{service_fqdn\}` is the fully qualified domain name for the service. `*` can be used as a wildcard to match all permissions for a specific service, resource type, or verb. The following formats are supported: * `{service_fqdn\}/{resource\}.{verb\}`: A specific permission. * `{service_fqdn\}/{resource\}.*`: All permissions for a specific resource type. * `{service_fqdn\}/x.*`: All permissions for all resource types under a specific service. * `{service_fqdn\}/x.{verb\}`: All permissions with a specific verb under a specific service. * `*`: All permissions across all services. For example, `compute.googleapis.com/x.setIamPolicy` refers to all setIamPolicy permissions for any compute resource. Wildcards expand only to the permissions specified in the `enforcement_version` of the policy. If the `enforcement_version` is updated, the wildcard will automatically expand to include new permissions in the updated version.
      */
     permissions?: string[] | null;
   }
@@ -1204,6 +1271,163 @@ export namespace policytroubleshooter_v3beta {
         );
       }
     }
+
+    /**
+     * Checks the access request associated with the error identifier and explains why the access is denied by IAM policies.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/policytroubleshooter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const policytroubleshooter = google.policytroubleshooter('v3beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await policytroubleshooter.iam.troubleshootError({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "errorInfoId": "my_errorInfoId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessContext": {},
+     *   //   "allowPolicyExplanation": {},
+     *   //   "denyPolicyExplanation": {},
+     *   //   "overallAccessState": "my_overallAccessState",
+     *   //   "pabPolicyExplanation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    troubleshootError(
+      params: Params$Resource$Iam$Troubleshooterror,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    troubleshootError(
+      params?: Params$Resource$Iam$Troubleshooterror,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse>
+    >;
+    troubleshootError(
+      params: Params$Resource$Iam$Troubleshooterror,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    troubleshootError(
+      params: Params$Resource$Iam$Troubleshooterror,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse>
+    ): void;
+    troubleshootError(
+      params: Params$Resource$Iam$Troubleshooterror,
+      callback: BodyResponseCallback<Schema$GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse>
+    ): void;
+    troubleshootError(
+      callback: BodyResponseCallback<Schema$GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse>
+    ): void;
+    troubleshootError(
+      paramsOrCallback?:
+        | Params$Resource$Iam$Troubleshooterror
+        | BodyResponseCallback<Schema$GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Iam$Troubleshooterror;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Iam$Troubleshooterror;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://policytroubleshooter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta/iam:troubleshootError').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Iam$Troubleshoot extends StandardParameters {
@@ -1211,5 +1435,11 @@ export namespace policytroubleshooter_v3beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyRequest;
+  }
+  export interface Params$Resource$Iam$Troubleshooterror extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorRequest;
   }
 }

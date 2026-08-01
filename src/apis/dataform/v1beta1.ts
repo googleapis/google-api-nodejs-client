@@ -420,7 +420,7 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$CompilationError {
     /**
-     * Output only. The identifier of the action where this error occurred, if available. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:CompilationError)
+     * Output only. The identifier of the action where this error occurred, if available.
      */
     actionTarget?: Schema$Target;
     /**
@@ -866,13 +866,17 @@ export namespace dataform_v1beta1 {
      */
     authenticationTokenSecretVersion?: string | null;
     /**
-     * Optional. The Git remote's default branch name. If not set `main` will be used.
+     * Optional. The Git remote's default branch name. If not set, `main` will be used.
      */
     defaultBranch?: string | null;
     /**
      * Output only. The Git remote's effective default branch name. This is the default branch name of the Git remote if it is set, otherwise it is `main`.
      */
     effectiveDefaultBranch?: string | null;
+    /**
+     * Optional. Resource name for the `GitRepositoryLink` used for machine credentials. Must be in the format `projects/x/locations/x/connections/x/gitRepositoryLinks/x`
+     */
+    gitRepositoryLink?: string | null;
     /**
      * Optional. Authentication fields for remote uris using SSH protocol.
      */
@@ -1004,7 +1008,7 @@ export namespace dataform_v1beta1 {
      */
     nextPageToken?: string | null;
     /**
-     * Locations which could not be reached. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListCompilationResultsResponse)
+     * Locations which could not be reached.
      */
     unreachable?: string[] | null;
   }
@@ -1051,7 +1055,7 @@ export namespace dataform_v1beta1 {
      */
     releaseConfigs?: Schema$ReleaseConfig[];
     /**
-     * Locations which could not be reached. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListReleaseConfigsResponse)
+     * Locations which could not be reached.
      */
     unreachable?: string[] | null;
   }
@@ -1665,7 +1669,7 @@ export namespace dataform_v1beta1 {
      */
     gitCommitish?: string | null;
     /**
-     * Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ReleaseConfig)
+     * Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.
      */
     internalMetadata?: string | null;
     /**
@@ -1936,6 +1940,19 @@ export namespace dataform_v1beta1 {
     message?: string | null;
   }
   /**
+   * Represents a table update trigger configuration.
+   */
+  export interface Schema$TableUpdateTrigger {
+    /**
+     * The target table to trigger the workflow.
+     */
+    table?: Schema$Target;
+    /**
+     * Output only. The modification time of this table that resulted in an invocation of the workflow. This would be updated by the triggering service after a successful workflow invocation.
+     */
+    triggerUpdateTime?: string | null;
+  }
+  /**
    * Represents an action identifier. If the action writes output, the output will be written to the referenced database object.
    */
   export interface Schema$Target {
@@ -2022,6 +2039,19 @@ export namespace dataform_v1beta1 {
     permissions?: string[] | null;
   }
   /**
+   * A record of an attempt to evaluate trigger conditions.
+   */
+  export interface Schema$TriggerEvaluationRecord {
+    /**
+     * Output only. The timestamp of this trigger evaluation attempt.
+     */
+    evaluationTime?: string | null;
+    /**
+     * Output only. The status of the trigger evaluation. Success is indicated by a code of 0 (OK). Message will only be present if the status code is non-zero.
+     */
+    status?: Schema$Status;
+  }
+  /**
    * Represents the Git state of a file with uncommitted changes.
    */
   export interface Schema$UncommittedFileChange {
@@ -2078,6 +2108,10 @@ export namespace dataform_v1beta1 {
      * Output only. The timestamp of when the WorkflowConfig was last updated.
      */
     updateTime?: string | null;
+    /**
+     * Optional. Optional trigger configuration for this workflow. If present, the workflow will be triggered based on the specified triggers.
+     */
+    workflowTriggerConfig?: Schema$WorkflowTriggerConfig;
   }
   /**
    * Represents a single invocation of a compilation result.
@@ -2164,6 +2198,44 @@ export namespace dataform_v1beta1 {
      * Output only. This action's identifier. Unique within the workflow invocation.
      */
     target?: Schema$Target;
+  }
+  /**
+   * The trigger definition to invoke a workflow.
+   */
+  export interface Schema$WorkflowTrigger {
+    /**
+     * The table update trigger configuration.
+     */
+    tableUpdateTrigger?: Schema$TableUpdateTrigger;
+  }
+  /**
+   * Represents a trigger configuration for a workflow.
+   */
+  export interface Schema$WorkflowTriggerConfig {
+    /**
+     * Optional. The condition to use when triggering the workflow.
+     */
+    condition?: string | null;
+    /**
+     * Output only. The timestamp of the last successful trigger evaluation.
+     */
+    lastSuccessfulEvaluationTime?: string | null;
+    /**
+     * Optional. The effective maximum wait time duration for the trigger condition to be met. If not specified, the workflow won't be triggered until conditions are met.
+     */
+    maxWaitDuration?: string | null;
+    /**
+     * Optional. Minimum duration between two consecutive executions. If not specified, the workflow will be executed every time trigger conditions are met and no ongoing workflow execution.
+     */
+    minExecutionDuration?: string | null;
+    /**
+     * Output only. Records of the 10 most recent trigger evaluations, ordered in descending order of `evaluation_time`. Updated whenever the service evaluates the trigger conditions (via polling or upon receiving a push event).
+     */
+    recentTriggerEvaluationRecords?: Schema$TriggerEvaluationRecord[];
+    /**
+     * Required. The trigger definitions to invoke a workflow.
+     */
+    workflowTriggers?: Schema$WorkflowTrigger[];
   }
   /**
    * Represents a Dataform Git workspace.
@@ -2362,8 +2434,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -2501,8 +2572,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Config>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Config>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Config> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Config>>
@@ -2629,8 +2699,7 @@ export namespace dataform_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -2957,8 +3026,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Config>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Config>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Config> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Config>>
@@ -3197,8 +3265,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Folder>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Folder>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Folder> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Folder>>
@@ -3335,8 +3402,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3484,8 +3550,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3631,8 +3696,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Folder>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Folder>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Folder> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Folder>>
@@ -3772,8 +3836,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3924,8 +3987,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4088,8 +4150,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Folder>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Folder>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Folder> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Folder>>
@@ -4389,8 +4450,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4519,8 +4579,7 @@ export namespace dataform_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Folders$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -4812,8 +4871,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4950,8 +5008,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5091,8 +5148,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5220,8 +5276,7 @@ export namespace dataform_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -5800,8 +5855,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Repository>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Repository>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Repository> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Repository>>
@@ -5940,8 +5994,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5987,7 +6040,7 @@ export namespace dataform_v1beta1 {
     }
 
     /**
-     * Deletes a single Repository asynchronously.
+     * Deletes a single repository asynchronously.
      * @example
      * ```js
      * // Before running the sample:
@@ -6089,8 +6142,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6541,8 +6593,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Repository>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Repository>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Repository> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Repository>>
@@ -6683,8 +6734,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6816,8 +6866,7 @@ export namespace dataform_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRepositoriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRepositoriesResponse>,
       callback: BodyResponseCallback<Schema$ListRepositoriesResponse>
     ): void;
     list(
@@ -6988,8 +7037,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7164,8 +7212,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Repository>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Repository>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Repository> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Repository>>
@@ -7448,8 +7495,7 @@ export namespace dataform_v1beta1 {
     readFile(
       params: Params$Resource$Projects$Locations$Repositories$Readfile,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ReadRepositoryFileResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ReadRepositoryFileResponse>,
       callback: BodyResponseCallback<Schema$ReadRepositoryFileResponse>
     ): void;
     readFile(
@@ -7621,8 +7667,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -7755,8 +7800,7 @@ export namespace dataform_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Repositories$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -8238,7 +8282,7 @@ export namespace dataform_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await dataform.projects.locations.repositories.compilationResults.get({
-     *       // Required. The compilation result's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:GetCompilationResultRequest)
+     *       // Required. The compilation result's name.
      *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/compilationResults/my-compilationResult',
      *     });
      *   console.log(res.data);
@@ -8388,7 +8432,7 @@ export namespace dataform_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await dataform.projects.locations.repositories.compilationResults.list({
-     *       // Optional. Filter for the returned list. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListCompilationResultsRequest)
+     *       // Optional. Filter for the returned list.
      *       filter: 'placeholder-value',
      *       // Optional. This field only supports ordering by `name` and `create_time`. If unspecified, the server will choose the ordering. If specified, the default order is ascending for the `name` field.
      *       orderBy: 'placeholder-value',
@@ -8685,13 +8729,13 @@ export namespace dataform_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Repositories$Compilationresults$Get extends StandardParameters {
     /**
-     * Required. The compilation result's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:GetCompilationResultRequest)
+     * Required. The compilation result's name.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Repositories$Compilationresults$List extends StandardParameters {
     /**
-     * Optional. Filter for the returned list. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListCompilationResultsRequest)
+     * Optional. Filter for the returned list.
      */
     filter?: string;
     /**
@@ -8774,7 +8818,7 @@ export namespace dataform_v1beta1 {
      *       // Required. The repository in which to create the release config. Must be in the format `projects/x/locations/x/repositories/x`.
      *       parent:
      *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *       // Required. The ID to use for the release config, which will become the final component of the release config's resource name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:CreateReleaseConfigRequest)
+     *       // Required. The ID to use for the release config, which will become the final component of the release config's resource name.
      *       releaseConfigId: 'placeholder-value',
      *
      *       // Request body metadata
@@ -8940,7 +8984,7 @@ export namespace dataform_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await dataform.projects.locations.repositories.releaseConfigs.delete({
-     *       // Required. The release config's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:DeleteReleaseConfigRequest)
+     *       // Required. The release config's name.
      *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/releaseConfigs/my-releaseConfig',
      *     });
      *   console.log(res.data);
@@ -8995,8 +9039,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9077,7 +9120,7 @@ export namespace dataform_v1beta1 {
      *   // Do the magic
      *   const res = await dataform.projects.locations.repositories.releaseConfigs.get(
      *     {
-     *       // Required. The release config's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:GetReleaseConfigRequest)
+     *       // Required. The release config's name.
      *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/releaseConfigs/my-releaseConfig',
      *     },
      *   );
@@ -9227,7 +9270,7 @@ export namespace dataform_v1beta1 {
      *     await dataform.projects.locations.repositories.releaseConfigs.list({
      *       // Optional. Maximum number of release configs to return. The server may return fewer items than requested. If unspecified, the server will pick an appropriate default.
      *       pageSize: 'placeholder-value',
-     *       // Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListReleaseConfigsRequest)
+     *       // Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
      *       // Required. The repository in which to list release configs. Must be in the format `projects/x/locations/x/repositories/x`.
      *       parent:
@@ -9271,8 +9314,7 @@ export namespace dataform_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Releaseconfigs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListReleaseConfigsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListReleaseConfigsResponse>,
       callback: BodyResponseCallback<Schema$ListReleaseConfigsResponse>
     ): void;
     list(
@@ -9515,7 +9557,7 @@ export namespace dataform_v1beta1 {
      */
     parent?: string;
     /**
-     * Required. The ID to use for the release config, which will become the final component of the release config's resource name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:CreateReleaseConfigRequest)
+     * Required. The ID to use for the release config, which will become the final component of the release config's resource name.
      */
     releaseConfigId?: string;
 
@@ -9526,13 +9568,13 @@ export namespace dataform_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Repositories$Releaseconfigs$Delete extends StandardParameters {
     /**
-     * Required. The release config's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:DeleteReleaseConfigRequest)
+     * Required. The release config's name.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Repositories$Releaseconfigs$Get extends StandardParameters {
     /**
-     * Required. The release config's name. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:GetReleaseConfigRequest)
+     * Required. The release config's name.
      */
     name?: string;
   }
@@ -9542,7 +9584,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token. LINT.ThenChange(//depot/google3/google/cloud/dataform/v2main/data_pipelines.proto:ListReleaseConfigsRequest)
+     * Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -9626,7 +9668,8 @@ export namespace dataform_v1beta1 {
      *         //   "recentScheduledExecutionRecords": [],
      *         //   "releaseConfig": "my_releaseConfig",
      *         //   "timeZone": "my_timeZone",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "workflowTriggerConfig": {}
      *         // }
      *       },
      *     });
@@ -9643,7 +9686,8 @@ export namespace dataform_v1beta1 {
      *   //   "recentScheduledExecutionRecords": [],
      *   //   "releaseConfig": "my_releaseConfig",
      *   //   "timeZone": "my_timeZone",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "workflowTriggerConfig": {}
      *   // }
      * }
      *
@@ -9833,8 +9877,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9931,7 +9974,8 @@ export namespace dataform_v1beta1 {
      *   //   "recentScheduledExecutionRecords": [],
      *   //   "releaseConfig": "my_releaseConfig",
      *   //   "timeZone": "my_timeZone",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "workflowTriggerConfig": {}
      *   // }
      * }
      *
@@ -10234,7 +10278,8 @@ export namespace dataform_v1beta1 {
      *         //   "recentScheduledExecutionRecords": [],
      *         //   "releaseConfig": "my_releaseConfig",
      *         //   "timeZone": "my_timeZone",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "workflowTriggerConfig": {}
      *         // }
      *       },
      *     });
@@ -10251,7 +10296,8 @@ export namespace dataform_v1beta1 {
      *   //   "recentScheduledExecutionRecords": [],
      *   //   "releaseConfig": "my_releaseConfig",
      *   //   "timeZone": "my_timeZone",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "workflowTriggerConfig": {}
      *   // }
      * }
      *
@@ -10827,8 +10873,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -11683,8 +11728,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Workspace>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Workspace>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Workspace> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Workspace>>
@@ -11822,8 +11866,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -11946,8 +11989,7 @@ export namespace dataform_v1beta1 {
     fetchFileDiff(
       params: Params$Resource$Projects$Locations$Repositories$Workspaces$Fetchfilediff,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FetchFileDiffResponse>,
+        MethodOptions | BodyResponseCallback<Schema$FetchFileDiffResponse>,
       callback: BodyResponseCallback<Schema$FetchFileDiffResponse>
     ): void;
     fetchFileDiff(
@@ -12415,8 +12457,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Workspace>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Workspace>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Workspace> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Workspace>>
@@ -12559,8 +12600,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -12690,8 +12730,7 @@ export namespace dataform_v1beta1 {
     installNpmPackages(
       params: Params$Resource$Projects$Locations$Repositories$Workspaces$Installnpmpackages,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InstallNpmPackagesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$InstallNpmPackagesResponse>,
       callback: BodyResponseCallback<Schema$InstallNpmPackagesResponse>
     ): void;
     installNpmPackages(
@@ -12846,8 +12885,7 @@ export namespace dataform_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Workspaces$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListWorkspacesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListWorkspacesResponse>,
       callback: BodyResponseCallback<Schema$ListWorkspacesResponse>
     ): void;
     list(
@@ -12997,8 +13035,7 @@ export namespace dataform_v1beta1 {
     makeDirectory(
       params: Params$Resource$Projects$Locations$Repositories$Workspaces$Makedirectory,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$MakeDirectoryResponse>,
+        MethodOptions | BodyResponseCallback<Schema$MakeDirectoryResponse>,
       callback: BodyResponseCallback<Schema$MakeDirectoryResponse>
     ): void;
     makeDirectory(
@@ -13151,8 +13188,7 @@ export namespace dataform_v1beta1 {
     moveDirectory(
       params: Params$Resource$Projects$Locations$Repositories$Workspaces$Movedirectory,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$MoveDirectoryResponse>,
+        MethodOptions | BodyResponseCallback<Schema$MoveDirectoryResponse>,
       callback: BodyResponseCallback<Schema$MoveDirectoryResponse>
     ): void;
     moveDirectory(
@@ -13453,8 +13489,7 @@ export namespace dataform_v1beta1 {
     pull(
       params: Params$Resource$Projects$Locations$Repositories$Workspaces$Pull,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PullGitCommitsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PullGitCommitsResponse>,
       callback: BodyResponseCallback<Schema$PullGitCommitsResponse>
     ): void;
     pull(
@@ -13602,8 +13637,7 @@ export namespace dataform_v1beta1 {
     push(
       params: Params$Resource$Projects$Locations$Repositories$Workspaces$Push,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PushGitCommitsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PushGitCommitsResponse>,
       callback: BodyResponseCallback<Schema$PushGitCommitsResponse>
     ): void;
     push(
@@ -14059,8 +14093,7 @@ export namespace dataform_v1beta1 {
     removeDirectory(
       params: Params$Resource$Projects$Locations$Repositories$Workspaces$Removedirectory,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RemoveDirectoryResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RemoveDirectoryResponse>,
       callback: BodyResponseCallback<Schema$RemoveDirectoryResponse>
     ): void;
     removeDirectory(
@@ -14689,8 +14722,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -14824,8 +14856,7 @@ export namespace dataform_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Repositories$Workspaces$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -15447,8 +15478,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$TeamFolder>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TeamFolder>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TeamFolder> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TeamFolder>>
@@ -15585,8 +15615,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -15734,8 +15763,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15880,8 +15908,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$TeamFolder>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TeamFolder>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TeamFolder> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TeamFolder>>
@@ -16022,8 +16049,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -16183,8 +16209,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$TeamFolder>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TeamFolder>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TeamFolder> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TeamFolder>>
@@ -16426,7 +16451,7 @@ export namespace dataform_v1beta1 {
      *     location: 'projects/my-project/locations/my-location',
      *     // Optional. Field to additionally sort results by. Supported keywords: `display_name` (default), `create_time`, `last_modified_time`. Examples: * `orderBy="display_name"` * `orderBy="display_name desc"`
      *     orderBy: 'placeholder-value',
-     *     // Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick a default of page_size = 50.
+     *     // Optional. Maximum number of `TeamFolders` to return. The server may return fewer items than requested. If unspecified, the server will pick a default of `page_size` = 50.
      *     pageSize: 'placeholder-value',
      *     // Optional. Page token received from a previous `SearchTeamFolders` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchTeamFolders`, with the exception of `page_size`, must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
@@ -16468,8 +16493,7 @@ export namespace dataform_v1beta1 {
     search(
       params: Params$Resource$Projects$Locations$Teamfolders$Search,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SearchTeamFoldersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SearchTeamFoldersResponse>,
       callback: BodyResponseCallback<Schema$SearchTeamFoldersResponse>
     ): void;
     search(
@@ -16641,8 +16665,7 @@ export namespace dataform_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -16773,8 +16796,7 @@ export namespace dataform_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Teamfolders$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -16945,7 +16967,7 @@ export namespace dataform_v1beta1 {
      */
     orderBy?: string;
     /**
-     * Optional. Maximum number of TeamFolders to return. The server may return fewer items than requested. If unspecified, the server will pick a default of page_size = 50.
+     * Optional. Maximum number of `TeamFolders` to return. The server may return fewer items than requested. If unspecified, the server will pick a default of `page_size` = 50.
      */
     pageSize?: number;
     /**

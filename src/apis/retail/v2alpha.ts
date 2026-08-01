@@ -1231,7 +1231,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaEnrollSolutionResponse {
     /**
-     * Retail API solution that the project has enrolled.
+     * AI Commerce Search API solution that the project has enrolled.
      */
     enrolledSolution?: string | null;
   }
@@ -1765,7 +1765,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaListEnrolledSolutionsResponse {
     /**
-     * Retail API solutions that the project has enrolled.
+     * AI Commerce Search API solutions that the project has enrolled.
      */
     enrolledSolutions?: string[] | null;
   }
@@ -2499,7 +2499,7 @@ export namespace retail_v2alpha {
      */
     retrievableFields?: string | null;
     /**
-     * The size of the product. To represent different size systems or size types, consider using this format: [[[size_system:]size_type:]size_value]. For example, in "US:MENS:M", "US" represents size system; "MENS" represents size type; "M" represents size value. In "GIRLS:27", size system is empty; "GIRLS" represents size type; "27" represents size value. In "32 inches", both size system and size type are empty, while size value is "32 inches". A maximum of 20 values are allowed per Product. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [size](https://support.google.com/merchants/answer/6324492), [size_type](https://support.google.com/merchants/answer/6324497), and [size_system](https://support.google.com/merchants/answer/6324502). Schema.org property [Product.size](https://schema.org/size).
+     * The size of the product. To represent different size systems or size types, consider using this format: [[[size_system:]size_type:]size_value]. For example, in "US:MENS:M", "US" represents size system; "MENS" represents size type; "M" represents size value. In "GIRLS:27", size system is empty; "GIRLS" represents size type; "27" represents size value. In "32 inches", both size system and size type are empty, while size value is "32 inches". A maximum of 20 values are allowed per Product by default. This limit can be increased using dynamic override configurations. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [size](https://support.google.com/merchants/answer/6324492), [size_type](https://support.google.com/merchants/answer/6324497), and [size_system](https://support.google.com/merchants/answer/6324502). Schema.org property [Product.size](https://schema.org/size).
      */
     sizes?: string[] | null;
     /**
@@ -2610,7 +2610,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaProject {
     /**
-     * Output only. Retail API solutions that the project has enrolled.
+     * Output only. AI Commerce Search API solutions that the project has enrolled.
      */
     enrolledSolutions?: string[] | null;
     /**
@@ -3778,11 +3778,11 @@ export namespace retail_v2alpha {
     updateMask?: string | null;
   }
   /**
-   * UserEvent captures all metadata information Retail API needs to know about how end users interact with customers' website.
+   * UserEvent captures all metadata information AI Commerce Search API needs to know about how end users interact with customers' website.
    */
   export interface Schema$GoogleCloudRetailV2alphaUserEvent {
     /**
-     * Extra user event features to include in the recommendation model. If you provide custom attributes for ingested user events, also include them in the user events that you associate with prediction requests. Custom attribute formatting must be consistent between imported events and events provided with prediction requests. This lets the Retail API use those custom attributes when training models and serving predictions, which helps improve recommendation quality. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * The key must be a UTF-8 encoded string with a length limit of 5,000 characters. * For text attributes, at most 400 values are allowed. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 256 characters. * For number attributes, at most 400 values are allowed. For product recommendations, an example of extra user information is traffic_channel, which is how a user arrives at the site. Users can arrive at the site by coming to the site directly, coming through Google search, or in other ways.
+     * Extra user event features to include in the recommendation model. If you provide custom attributes for ingested user events, also include them in the user events that you associate with prediction requests. Custom attribute formatting must be consistent between imported events and events provided with prediction requests. This lets the AI Commerce Search API use those custom attributes when training models and serving predictions, which helps improve recommendation quality. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * The key must be a UTF-8 encoded string with a length limit of 5,000 characters. * For text attributes, at most 400 values are allowed. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 256 characters. * For number attributes, at most 400 values are allowed. For product recommendations, an example of extra user information is traffic_channel, which is how a user arrives at the site. Users can arrive at the site by coming to the site directly, coming through Google search, or in other ways.
      */
     attributes?: {
       [key: string]: Schema$GoogleCloudRetailV2alphaCustomAttribute;
@@ -3812,7 +3812,7 @@ export namespace retail_v2alpha {
      */
     eventType?: string | null;
     /**
-     * A list of identifiers for the independent experiment groups this user event belongs to. This is used to distinguish between user events associated with different experiment setups (e.g. using Retail API, using different recommendation models).
+     * A list of identifiers for the independent experiment groups this user event belongs to. This is used to distinguish between user events associated with different experiment setups (such as by using AI Commerce Search API, or using different recommendation models).
      */
     experimentIds?: string[] | null;
     /**
@@ -4800,7 +4800,7 @@ export namespace retail_v2alpha {
     }
 
     /**
-     * The method enrolls a solution of type Retail Search into a project. The Recommendations AI solution type is enrolled by default when your project enables Retail API, so you don't need to call the enrollSolution method for recommendations.
+     * The method enrolls a solution of type Retail Search into a project. The Recommendations AI solution type is enrolled by default when your project enables AI Commerce Search API, so you don't need to call the enrollSolution method for recommendations.
      * @example
      * ```js
      * // Before running the sample:
@@ -4881,8 +4881,7 @@ export namespace retail_v2alpha {
     enrollSolution(
       params: Params$Resource$Projects$Enrollsolution,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     enrollSolution(
@@ -5244,7 +5243,7 @@ export namespace retail_v2alpha {
     }
 
     /**
-     * Gets the project. Throws `NOT_FOUND` if the project wasn't initialized for the Retail API service.
+     * Gets the project. Throws `NOT_FOUND` if the project wasn't initialized for the AI Commerce Search API service.
      * @example
      * ```js
      * // Before running the sample:
@@ -5385,7 +5384,7 @@ export namespace retail_v2alpha {
     }
 
     /**
-     * Lists all the retail API solutions the project has enrolled.
+     * Lists all the AI Commerce Search API solutions the project has enrolled.
      * @example
      * ```js
      * // Before running the sample:
@@ -6229,8 +6228,7 @@ export namespace retail_v2alpha {
     exportAnalyticsMetrics(
       params: Params$Resource$Projects$Locations$Catalogs$Exportanalyticsmetrics,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     exportAnalyticsMetrics(
@@ -9657,8 +9655,7 @@ export namespace retail_v2alpha {
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -9827,8 +9824,7 @@ export namespace retail_v2alpha {
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Places$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -9999,8 +9995,7 @@ export namespace retail_v2alpha {
     addFulfillmentPlaces(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addfulfillmentplaces,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     addFulfillmentPlaces(
@@ -10160,8 +10155,7 @@ export namespace retail_v2alpha {
     addLocalInventories(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addlocalinventories,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     addLocalInventories(
@@ -10678,8 +10672,7 @@ export namespace retail_v2alpha {
     export(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Export,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     export(
@@ -11015,8 +11008,7 @@ export namespace retail_v2alpha {
     import(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -11551,8 +11543,7 @@ export namespace retail_v2alpha {
     purge(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Purge,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     purge(
@@ -11712,8 +11703,7 @@ export namespace retail_v2alpha {
     removeFulfillmentPlaces(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removefulfillmentplaces,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     removeFulfillmentPlaces(
@@ -11871,8 +11861,7 @@ export namespace retail_v2alpha {
     removeLocalInventories(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removelocalinventories,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     removeLocalInventories(
@@ -12028,8 +12017,7 @@ export namespace retail_v2alpha {
     setInventory(
       params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setinventory,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     setInventory(
@@ -12355,8 +12343,7 @@ export namespace retail_v2alpha {
     import(
       params: Params$Resource$Projects$Locations$Catalogs$Completiondata$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -13703,8 +13690,7 @@ export namespace retail_v2alpha {
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -14186,8 +14172,7 @@ export namespace retail_v2alpha {
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Models$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -15287,8 +15272,7 @@ export namespace retail_v2alpha {
     tune(
       params: Params$Resource$Projects$Locations$Catalogs$Models$Tune,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     tune(
@@ -15529,8 +15513,7 @@ export namespace retail_v2alpha {
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -18220,7 +18203,7 @@ export namespace retail_v2alpha {
     }
 
     /**
-     * Writes a single user event from the browser. For larger user event payload over 16 KB, the POST method should be used instead, otherwise a 400 Bad Request error is returned. This method is used only by the Retail API JavaScript pixel and Google Tag Manager. Users should not call this method directly.
+     * Writes a single user event from the browser. For larger user event payload over 16 KB, the POST method should be used instead, otherwise a 400 Bad Request error is returned. This method is used only by the AI Commerce Search API JavaScript pixel and Google Tag Manager. Users should not call this method directly.
      * @example
      * ```js
      * // Before running the sample:
@@ -18454,8 +18437,7 @@ export namespace retail_v2alpha {
     export(
       params: Params$Resource$Projects$Locations$Catalogs$Userevents$Export,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     export(
@@ -18609,8 +18591,7 @@ export namespace retail_v2alpha {
     import(
       params: Params$Resource$Projects$Locations$Catalogs$Userevents$Import,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     import(
@@ -18764,8 +18745,7 @@ export namespace retail_v2alpha {
     purge(
       params: Params$Resource$Projects$Locations$Catalogs$Userevents$Purge,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     purge(
@@ -18918,8 +18898,7 @@ export namespace retail_v2alpha {
     rejoin(
       params: Params$Resource$Projects$Locations$Catalogs$Userevents$Rejoin,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     rejoin(
@@ -19342,8 +19321,7 @@ export namespace retail_v2alpha {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -19677,8 +19655,7 @@ export namespace retail_v2alpha {
     get(
       params: Params$Resource$Projects$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(

@@ -2666,8 +2666,7 @@ export namespace games_v1 {
     reveal(
       params: Params$Resource$Achievements$Reveal,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AchievementRevealResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AchievementRevealResponse>,
       callback: BodyResponseCallback<Schema$AchievementRevealResponse>
     ): void;
     reveal(
@@ -2957,8 +2956,7 @@ export namespace games_v1 {
     unlock(
       params: Params$Resource$Achievements$Unlock,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AchievementUnlockResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AchievementUnlockResponse>,
       callback: BodyResponseCallback<Schema$AchievementUnlockResponse>
     ): void;
     unlock(
@@ -3495,8 +3493,7 @@ export namespace games_v1 {
         | BodyResponseCallback<Schema$EndPoint>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$EndPoint>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$EndPoint> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$EndPoint>>
@@ -3743,8 +3740,7 @@ export namespace games_v1 {
     verify(
       params: Params$Resource$Applications$Verify,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ApplicationVerifyResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ApplicationVerifyResponse>,
       callback: BodyResponseCallback<Schema$ApplicationVerifyResponse>
     ): void;
     verify(
@@ -3928,8 +3924,7 @@ export namespace games_v1 {
     listByPlayer(
       params: Params$Resource$Events$Listbyplayer,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PlayerEventListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PlayerEventListResponse>,
       callback: BodyResponseCallback<Schema$PlayerEventListResponse>
     ): void;
     listByPlayer(
@@ -4556,8 +4551,7 @@ export namespace games_v1 {
     list(
       params: Params$Resource$Leaderboards$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LeaderboardListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LeaderboardListResponse>,
       callback: BodyResponseCallback<Schema$LeaderboardListResponse>
     ): void;
     list(
@@ -4875,8 +4869,7 @@ export namespace games_v1 {
     listCategoriesByPlayer(
       params: Params$Resource$Metagame$Listcategoriesbyplayer,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CategoryListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CategoryListResponse>,
       callback: BodyResponseCallback<Schema$CategoryListResponse>
     ): void;
     listCategoriesByPlayer(
@@ -5080,8 +5073,7 @@ export namespace games_v1 {
         | BodyResponseCallback<Schema$Player>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Player>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Player> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Player>>
@@ -6121,8 +6113,7 @@ export namespace games_v1 {
     resetPersona(
       params: Params$Resource$Recall$Resetpersona,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ResetPersonaResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ResetPersonaResponse>,
       callback: BodyResponseCallback<Schema$ResetPersonaResponse>
     ): void;
     resetPersona(
@@ -6412,8 +6403,7 @@ export namespace games_v1 {
     unlinkPersona(
       params: Params$Resource$Recall$Unlinkpersona,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UnlinkPersonaResponse>,
+        MethodOptions | BodyResponseCallback<Schema$UnlinkPersonaResponse>,
       callback: BodyResponseCallback<Schema$UnlinkPersonaResponse>
     ): void;
     unlinkPersona(
@@ -6603,8 +6593,7 @@ export namespace games_v1 {
     check(
       params: Params$Resource$Revisions$Check,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RevisionCheckResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RevisionCheckResponse>,
       callback: BodyResponseCallback<Schema$RevisionCheckResponse>
     ): void;
     check(
@@ -7379,8 +7368,7 @@ export namespace games_v1 {
     submitMultiple(
       params: Params$Resource$Scores$Submitmultiple,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$PlayerScoreListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$PlayerScoreListResponse>,
       callback: BodyResponseCallback<Schema$PlayerScoreListResponse>
     ): void;
     submitMultiple(
@@ -7680,8 +7668,7 @@ export namespace games_v1 {
         | BodyResponseCallback<Schema$Snapshot>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Snapshot>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Snapshot> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
@@ -7809,8 +7796,7 @@ export namespace games_v1 {
     list(
       params: Params$Resource$Snapshots$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SnapshotListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SnapshotListResponse>,
       callback: BodyResponseCallback<Schema$SnapshotListResponse>
     ): void;
     list(

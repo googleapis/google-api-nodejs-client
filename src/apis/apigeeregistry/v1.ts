@@ -918,8 +918,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -1042,8 +1041,7 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1272,8 +1270,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Api>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Api>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Api> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Api>>
@@ -1407,8 +1404,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1551,8 +1547,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Api>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Api>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Api> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Api>>
@@ -1690,8 +1685,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2002,8 +1996,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Api>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Api>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Api> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Api>>
@@ -2147,8 +2140,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2275,8 +2267,7 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -2574,8 +2565,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Artifact>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Artifact> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Artifact>>
@@ -2710,8 +2700,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2853,8 +2842,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Artifact>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Artifact> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Artifact>>
@@ -2991,8 +2979,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -3136,8 +3123,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3266,8 +3252,7 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListArtifactsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListArtifactsResponse>,
       callback: BodyResponseCallback<Schema$ListArtifactsResponse>
     ): void;
     list(
@@ -3449,8 +3434,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Artifact>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Artifact> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Artifact>>
@@ -3597,8 +3581,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3728,8 +3711,7 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Artifacts$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -4175,8 +4157,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4618,8 +4599,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4748,8 +4728,7 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Apis$Deployments$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListApiDeploymentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListApiDeploymentsResponse>,
       callback: BodyResponseCallback<Schema$ListApiDeploymentsResponse>
     ): void;
     list(
@@ -5413,8 +5392,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5707,8 +5685,7 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -6054,8 +6031,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Artifact>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Artifact> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Artifact>>
@@ -6192,8 +6168,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6337,8 +6312,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Artifact>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Artifact> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Artifact>>
@@ -6478,8 +6452,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -6610,8 +6583,7 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Apis$Deployments$Artifacts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListArtifactsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListArtifactsResponse>,
       callback: BodyResponseCallback<Schema$ListArtifactsResponse>
     ): void;
     list(
@@ -6796,8 +6768,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Artifact>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Artifact> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Artifact>>
@@ -7040,8 +7011,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$ApiVersion>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ApiVersion>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ApiVersion> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ApiVersion>>
@@ -7178,8 +7148,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7321,8 +7290,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$ApiVersion>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ApiVersion>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ApiVersion> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ApiVersion>>
@@ -7462,8 +7430,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -7592,8 +7559,7 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Apis$Versions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListApiVersionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListApiVersionsResponse>,
       callback: BodyResponseCallback<Schema$ListApiVersionsResponse>
     ): void;
     list(
@@ -7778,8 +7744,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$ApiVersion>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ApiVersion>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ApiVersion> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ApiVersion>>
@@ -7925,8 +7890,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -8056,8 +8020,7 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Versions$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -8357,8 +8320,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Artifact>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Artifact> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Artifact>>
@@ -8495,8 +8457,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8640,8 +8601,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Artifact>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Artifact> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Artifact>>
@@ -8781,8 +8741,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -8928,8 +8887,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -9060,8 +9018,7 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListArtifactsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListArtifactsResponse>,
       callback: BodyResponseCallback<Schema$ListArtifactsResponse>
     ): void;
     list(
@@ -9246,8 +9203,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Artifact>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Artifact> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Artifact>>
@@ -9396,8 +9352,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -9529,8 +9484,7 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Versions$Artifacts$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -9839,8 +9793,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$ApiSpec>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ApiSpec>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ApiSpec> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ApiSpec>>
@@ -9979,8 +9932,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10129,8 +10081,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$ApiSpec>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ApiSpec>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ApiSpec> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ApiSpec>>
@@ -10281,8 +10232,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$ApiSpec>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ApiSpec>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ApiSpec> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ApiSpec>>
@@ -10420,8 +10370,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -10565,8 +10514,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -10696,8 +10644,7 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListApiSpecsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListApiSpecsResponse>,
       callback: BodyResponseCallback<Schema$ListApiSpecsResponse>
     ): void;
     list(
@@ -11048,8 +10995,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$ApiSpec>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ApiSpec>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ApiSpec> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ApiSpec>>
@@ -11206,8 +11152,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$ApiSpec>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ApiSpec>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ApiSpec> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ApiSpec>>
@@ -11357,8 +11302,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -11518,8 +11462,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$ApiSpec>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ApiSpec>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ApiSpec> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ApiSpec>>
@@ -11651,8 +11594,7 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -12006,8 +11948,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Artifact>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Artifact> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Artifact>>
@@ -12146,8 +12087,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -12291,8 +12231,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Artifact>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Artifact> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Artifact>>
@@ -12432,8 +12371,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -12579,8 +12517,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -12711,8 +12648,7 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListArtifactsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListArtifactsResponse>,
       callback: BodyResponseCallback<Schema$ListArtifactsResponse>
     ): void;
     list(
@@ -12897,8 +12833,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Artifact>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Artifact> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Artifact>>
@@ -13047,8 +12982,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -13180,8 +13114,7 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Versions$Specs$Artifacts$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -13473,8 +13406,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Artifact>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Artifact> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Artifact>>
@@ -13609,8 +13541,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -13752,8 +13683,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Artifact>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Artifact> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Artifact>>
@@ -13889,8 +13819,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -14031,8 +13960,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -14161,8 +14089,7 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Artifacts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListArtifactsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListArtifactsResponse>,
       callback: BodyResponseCallback<Schema$ListArtifactsResponse>
     ): void;
     list(
@@ -14345,8 +14272,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Artifact>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Artifact>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Artifact> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Artifact>>
@@ -14491,8 +14417,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -14622,8 +14547,7 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Artifacts$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -14893,8 +14817,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -15042,8 +14965,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -15172,8 +15094,7 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Documents$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -15393,8 +15314,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15535,8 +15455,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15676,8 +15595,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Instance>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Instance> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Instance>>
@@ -15815,8 +15733,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -15964,8 +15881,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -16095,8 +16011,7 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Instances$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -16327,8 +16242,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -16460,8 +16374,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -16599,8 +16512,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -16723,8 +16635,7 @@ export namespace apigeeregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -16934,8 +16845,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -17082,8 +16992,7 @@ export namespace apigeeregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -17211,8 +17120,7 @@ export namespace apigeeregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Runtime$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(

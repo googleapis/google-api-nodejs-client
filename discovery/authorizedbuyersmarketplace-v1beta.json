@@ -501,7 +501,7 @@
               "type": "integer"
             },
             "pageToken": {
-              "description": "A token identifying a page of results the server should return. This value is received from a previous `ListMediaPlanners` call in ListMediaPlannersResponse.nextPageToken.",
+              "description": "Optional. A token identifying a page of results the server should return. This value is received from a previous `ListMediaPlanners` call in ListMediaPlannersResponse.nextPageToken.",
               "location": "query",
               "type": "string"
             }
@@ -517,7 +517,7 @@
       }
     }
   },
-  "revision": "20251211",
+  "revision": "20260723",
   "rootUrl": "https://authorizedbuyersmarketplace.googleapis.com/",
   "schemas": {
     "AccessControlSettings": {
@@ -618,6 +618,20 @@
           "readOnly": true,
           "type": "string"
         },
+        "curationFeeVisibility": {
+          "description": "Optional. Immutable. The visibility of the combined curation package fee and data segment fees (the total curation fee).",
+          "enum": [
+            "CURATION_FEE_VISIBILITY_UNSPECIFIED",
+            "DISCLOSED",
+            "NON_DISCLOSED"
+          ],
+          "enumDescriptions": [
+            "The total curation fee visibility is unspecified.",
+            "The total curation fee is visible to all buyers. This is the default value if not set.",
+            "The total curation fee is not visible to all buyers."
+          ],
+          "type": "string"
+        },
         "description": {
           "description": "Optional. A description of the curated package, provided by the curator.",
           "type": "string"
@@ -633,6 +647,11 @@
         "floorPriceCpm": {
           "$ref": "Money",
           "description": "Optional. The minimum CPM a buyer has to bid to participate in auctions for inventory in this curated package. Can be used to filter the response of the curatedPackages.list method."
+        },
+        "millipercentOfMediaFee": {
+          "description": "Optional. The fee will be charged as a percentage of the impression cost, represented in millipercent. For example, 1% is represented as 1000.",
+          "format": "int64",
+          "type": "string"
         },
         "name": {
           "description": "Identifier. The unique resource name for the curated package. Format: `curators/{accountId}/curatedPackages/{curatedPackageId}`",
@@ -667,7 +686,7 @@
       "type": "object"
     },
     "DataSegment": {
-      "description": "Defines an identifier for a segment of inventory that can be targeted by curators or media planners in the deals or auction packages UI. Curation of inventory is done by curators on external platforms.",
+      "description": "Defines an identifier for a segment of inventory that can be targeted by curators or media planners in the deals or auction packages UI. Curation of inventory is done by curators on external platforms. -- Next ID: 9 --",
       "id": "DataSegment",
       "properties": {
         "cpmFee": {
@@ -680,6 +699,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "millipercentOfMediaFee": {
+          "description": "Optional. The fee will be charged as a percentage of the impression cost, represented in millipercent. For example, 1% is represented as 1000.",
+          "format": "int64",
+          "type": "string"
+        },
         "name": {
           "description": "Immutable. Identifier. The unique identifier for the data segment. Account ID corresponds to the account ID that created the segment. v1alpha format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}` v1beta format: `curators/{curatorAccountId}/dataSegments/{curatorDataSegmentId}`",
           "type": "string"
@@ -689,12 +713,14 @@
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
-            "INACTIVE"
+            "INACTIVE",
+            "SUSPENDED"
           ],
           "enumDescriptions": [
             "Default value.",
             "The data segment is active.",
-            "The data segment is inactive."
+            "The data segment is inactive.",
+            "The data segment is suspended and cannot be activated."
           ],
           "readOnly": true,
           "type": "string"

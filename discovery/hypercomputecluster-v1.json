@@ -12,7 +12,7 @@
   "baseUrl": "https://hypercomputecluster.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Hypercompute Cluster",
-  "description": "The Cluster Director API allows you to deploy, manage, and monitor clusters that run AI, ML, or HPC workloads.",
+  "description": "The Cluster Director API lets you deploy, manage, and monitor clusters that run artificial intelligence (AI), machine learning (ML), or high performance computing (HPC) workloads.",
   "discoveryVersion": "v1",
   "documentationLink": "https://docs.cloud.google.com/cluster-director/docs",
   "fullyEncodeReservedExpansion": true,
@@ -195,7 +195,7 @@
                   ],
                   "parameters": {
                     "clusterId": {
-                      "description": "Required. ID of the cluster to create. Must conform to [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case, alphanumeric, and at most 63 characters).",
+                      "description": "Required. The ID of the cluster to create. The cluster ID must start with a lowercase letter (`a`-`z`), use only lowercase letters or numbers, and contain up to 10 characters. For example, specify `cluster001`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -498,7 +498,7 @@
       }
     }
   },
-  "revision": "20260506",
+  "revision": "20260617",
   "rootUrl": "https://hypercomputecluster.googleapis.com/",
   "schemas": {
     "BootDisk": {
@@ -506,12 +506,12 @@
       "id": "BootDisk",
       "properties": {
         "sizeGb": {
-          "description": "Required. Immutable. Size of the disk in gigabytes. Must be at least 40GB.",
+          "description": "Optional. The size of the disk in gigabytes (GB), which must be at least 40 GB.",
           "format": "int64",
           "type": "string"
         },
         "type": {
-          "description": "Required. Immutable. [Persistent disk type](https://cloud.google.com/compute/docs/disks#disk-types), in the format `projects/{project}/zones/{zone}/diskTypes/{disk_type}`.",
+          "description": "Optional. [Persistent disk type](https://cloud.google.com/compute/docs/disks#disk-types), in the format `projects/{project}/zones/{zone}/diskTypes/{disk_type}`.",
           "type": "string"
         }
       },
@@ -559,7 +559,7 @@
           "type": "string"
         },
         "description": {
-          "description": "Optional. User-provided description of the cluster. Maximum of 2048 characters.",
+          "description": "Optional. A description for your cluster. You can use up to 2,048 characters.",
           "type": "string"
         },
         "labels": {
@@ -1124,7 +1124,7 @@
         },
         "network": {
           "$ref": "NetworkReference",
-          "description": "Output only. Reference to a network in Google Compute Engine.",
+          "description": "Output only. A reference to a network in Google Compute Engine.",
           "readOnly": true
         }
       },
@@ -1198,7 +1198,7 @@
           "type": "array"
         },
         "filestore": {
-          "description": "Required. Immutable. Name of the Filestore instance to create, in the format `projects/{project}/locations/{location}/instances/{instance}`",
+          "description": "Required. Immutable. Name of the Filestore instance to create, in the format `projects/{project}/locations/{location}/instances/{instance}`.",
           "type": "string"
         },
         "protocol": {
@@ -1658,7 +1658,7 @@
       "id": "SlurmNodeSet",
       "properties": {
         "computeId": {
-          "description": "Required. ID of the compute resource on which this nodeset will run. Must match a key in the cluster's compute_resources.",
+          "description": "Required. The ID of the compute resource on which this nodeset runs. Must match a key in the cluster's compute_resources.",
           "type": "string"
         },
         "computeInstance": {
@@ -1666,7 +1666,7 @@
           "description": "Optional. If set, indicates that the nodeset should be backed by Compute Engine instances."
         },
         "id": {
-          "description": "Required. Identifier for the nodeset, which allows it to be referenced by partitions. Must conform to [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034) (lower-case, alphanumeric, and at most 63 characters).",
+          "description": "Required. The ID for the nodeset, which allows it to be referenced by cluster partitions. The nodeset ID must start with a lowercase letter (`a`-`z`), use only lowercase letters or numbers, and contain up to 15 characters. For example, specify `nodeset001`.",
           "type": "string"
         },
         "maxDynamicNodeCount": {
@@ -1793,12 +1793,12 @@
       "type": "object"
     },
     "StorageResource": {
-      "description": "A resource representing a form of persistent storage that can be mounted onto compute resources in the cluster.",
+      "description": "Represents a form of persistent storage that you can mount onto compute resources in the cluster.",
       "id": "StorageResource",
       "properties": {
         "bucket": {
           "$ref": "BucketReference",
-          "description": "Output only. Reference to a Google Cloud Storage bucket. Populated if and only if the storage resource was configured to use Google Cloud Storage.",
+          "description": "Output only. A reference to a Google Cloud Storage bucket. Populated if and only if the storage resource was configured to use Google Cloud Storage.",
           "readOnly": true
         },
         "config": {
@@ -1807,12 +1807,12 @@
         },
         "filestore": {
           "$ref": "FilestoreReference",
-          "description": "Output only. Reference to a Filestore instance. Populated if and only if the storage resource was configured to use Filestore.",
+          "description": "Output only. A reference to a Filestore instance. Populated if and only if the storage resource was configured to use Filestore.",
           "readOnly": true
         },
         "lustre": {
           "$ref": "LustreReference",
-          "description": "Output only. Reference to a Managed Lustre instance. Populated if and only if the storage resource was configured to use Managed Lustre.",
+          "description": "Output only. A reference to a Managed Lustre instance. Populated if and only if the storage resource was configured to use Managed Lustre.",
           "readOnly": true
         }
       },

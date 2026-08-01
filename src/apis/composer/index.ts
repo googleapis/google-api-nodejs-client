@@ -31,10 +31,7 @@ export function composer(
 export function composer<T = composer_v1.Composer | composer_v1beta1.Composer>(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | composer_v1.Options
-    | 'v1beta1'
-    | composer_v1beta1.Options
+    'v1' | composer_v1.Options | 'v1beta1' | composer_v1beta1.Options
 ) {
   return getAPI<T>('composer', versionOrOptions, VERSIONS, this);
 }

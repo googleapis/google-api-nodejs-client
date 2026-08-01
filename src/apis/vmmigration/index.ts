@@ -37,10 +37,7 @@ export function vmmigration<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | vmmigration_v1.Options
-    | 'v1alpha1'
-    | vmmigration_v1alpha1.Options
+    'v1' | vmmigration_v1.Options | 'v1alpha1' | vmmigration_v1alpha1.Options
 ) {
   return getAPI<T>('vmmigration', versionOrOptions, VERSIONS, this);
 }

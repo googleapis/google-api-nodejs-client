@@ -39,10 +39,7 @@ export function identitytoolkit<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v2'
-    | identitytoolkit_v2.Options
-    | 'v3'
-    | identitytoolkit_v3.Options
+    'v2' | identitytoolkit_v2.Options | 'v3' | identitytoolkit_v3.Options
 ) {
   return getAPI<T>('identitytoolkit', versionOrOptions, VERSIONS, this);
 }

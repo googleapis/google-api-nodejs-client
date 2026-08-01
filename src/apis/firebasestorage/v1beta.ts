@@ -146,7 +146,7 @@ export namespace firebasestorage_v1beta {
      */
     bucket?: Schema$Bucket;
     /**
-     * Immutable. Location of the default bucket.
+     * Required. Immutable. Location of the default bucket.
      */
     location?: string | null;
     /**
@@ -279,8 +279,7 @@ export namespace firebasestorage_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -586,8 +585,7 @@ export namespace firebasestorage_v1beta {
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Bucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Bucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
@@ -727,8 +725,7 @@ export namespace firebasestorage_v1beta {
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Bucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Bucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
@@ -1015,8 +1012,7 @@ export namespace firebasestorage_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>

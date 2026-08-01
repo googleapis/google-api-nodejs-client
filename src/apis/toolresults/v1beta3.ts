@@ -732,6 +732,10 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$LauncherActivityNotFound {}
   /**
+   * Licensing protection termination (Pairip) was detected.
+   */
+  export interface Schema$LicensingProtectionTermination {}
+  /**
    * Response message for EnvironmentService.ListEnvironments.
    */
   export interface Schema$ListEnvironmentsResponse {
@@ -2201,8 +2205,7 @@ export namespace toolresults_v1beta3 {
         | BodyResponseCallback<Schema$History>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$History>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$History> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$History>>
@@ -2342,8 +2345,7 @@ export namespace toolresults_v1beta3 {
         | BodyResponseCallback<Schema$History>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$History>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$History> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$History>>
@@ -2468,8 +2470,7 @@ export namespace toolresults_v1beta3 {
     list(
       params: Params$Resource$Projects$Histories$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListHistoriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListHistoriesResponse>,
       callback: BodyResponseCallback<Schema$ListHistoriesResponse>
     ): void;
     list(
@@ -2712,8 +2713,7 @@ export namespace toolresults_v1beta3 {
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Execution> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
@@ -2860,8 +2860,7 @@ export namespace toolresults_v1beta3 {
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Execution> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
@@ -2986,8 +2985,7 @@ export namespace toolresults_v1beta3 {
     list(
       params: Params$Resource$Projects$Histories$Executions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListExecutionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListExecutionsResponse>,
       callback: BodyResponseCallback<Schema$ListExecutionsResponse>
     ): void;
     list(
@@ -3171,8 +3169,7 @@ export namespace toolresults_v1beta3 {
         | BodyResponseCallback<Schema$Execution>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Execution>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Execution> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Execution>>
@@ -3880,8 +3877,7 @@ export namespace toolresults_v1beta3 {
     list(
       params: Params$Resource$Projects$Histories$Executions$Environments$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
       callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>
     ): void;
     list(
@@ -4301,8 +4297,7 @@ export namespace toolresults_v1beta3 {
         | BodyResponseCallback<Schema$Step>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Step>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Step> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Step>>
@@ -4459,8 +4454,7 @@ export namespace toolresults_v1beta3 {
         | BodyResponseCallback<Schema$Step>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Step>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Step> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Step>>
@@ -4942,8 +4936,7 @@ export namespace toolresults_v1beta3 {
         | BodyResponseCallback<Schema$Step>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Step>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Step> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Step>>
@@ -5109,8 +5102,7 @@ export namespace toolresults_v1beta3 {
         | BodyResponseCallback<Schema$Step>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Step>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Step> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Step>>
@@ -6333,8 +6325,7 @@ export namespace toolresults_v1beta3 {
     list(
       params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPerfSamplesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPerfSamplesResponse>,
       callback: BodyResponseCallback<Schema$ListPerfSamplesResponse>
     ): void;
     list(
@@ -6585,8 +6576,7 @@ export namespace toolresults_v1beta3 {
         | BodyResponseCallback<Schema$TestCase>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$TestCase>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$TestCase> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$TestCase>>
@@ -6729,8 +6719,7 @@ export namespace toolresults_v1beta3 {
     list(
       params: Params$Resource$Projects$Histories$Executions$Steps$Testcases$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTestCasesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTestCasesResponse>,
       callback: BodyResponseCallback<Schema$ListTestCasesResponse>
     ): void;
     list(
@@ -6937,8 +6926,7 @@ export namespace toolresults_v1beta3 {
     list(
       params: Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListStepThumbnailsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListStepThumbnailsResponse>,
       callback: BodyResponseCallback<Schema$ListStepThumbnailsResponse>
     ): void;
     list(

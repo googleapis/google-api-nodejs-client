@@ -554,8 +554,7 @@ export namespace binaryauthorization_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -717,8 +716,7 @@ export namespace binaryauthorization_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -895,8 +893,7 @@ export namespace binaryauthorization_v1beta1 {
         | BodyResponseCallback<Schema$Attestor>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Attestor>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Attestor> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Attestor>>
@@ -1031,8 +1028,7 @@ export namespace binaryauthorization_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1170,8 +1166,7 @@ export namespace binaryauthorization_v1beta1 {
         | BodyResponseCallback<Schema$Attestor>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Attestor>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Attestor> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Attestor>>
@@ -1309,8 +1304,7 @@ export namespace binaryauthorization_v1beta1 {
         | BodyResponseCallback<Schema$IamPolicy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$IamPolicy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$IamPolicy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$IamPolicy>>
@@ -1434,8 +1428,7 @@ export namespace binaryauthorization_v1beta1 {
     list(
       params: Params$Resource$Projects$Attestors$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAttestorsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAttestorsResponse>,
       callback: BodyResponseCallback<Schema$ListAttestorsResponse>
     ): void;
     list(
@@ -1602,8 +1595,7 @@ export namespace binaryauthorization_v1beta1 {
         | BodyResponseCallback<Schema$IamPolicy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$IamPolicy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$IamPolicy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$IamPolicy>>
@@ -1730,8 +1722,7 @@ export namespace binaryauthorization_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Attestors$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -1906,8 +1897,7 @@ export namespace binaryauthorization_v1beta1 {
         | BodyResponseCallback<Schema$Attestor>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Attestor>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Attestor> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Attestor>>
@@ -2308,8 +2298,7 @@ export namespace binaryauthorization_v1beta1 {
         | BodyResponseCallback<Schema$IamPolicy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$IamPolicy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$IamPolicy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$IamPolicy>>
@@ -2456,8 +2445,7 @@ export namespace binaryauthorization_v1beta1 {
         | BodyResponseCallback<Schema$IamPolicy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$IamPolicy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$IamPolicy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$IamPolicy>>
@@ -2584,8 +2572,7 @@ export namespace binaryauthorization_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Policy$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -2794,8 +2781,7 @@ export namespace binaryauthorization_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>

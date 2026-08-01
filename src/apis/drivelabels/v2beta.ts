@@ -4516,7 +4516,7 @@ export namespace drivelabels_v2beta {
      *   // Do the magic
      *   const res = await drivelabels.labels.permissions.delete({
      *     // Required. Label permission resource name.
-     *     name: 'labels/my-label/permissions/my-permission',
+     *     name: 'labels/my-label/permissions/.*',
      *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      *     useAdminAccess: 'placeholder-value',
      *   });
@@ -5739,7 +5739,7 @@ export namespace drivelabels_v2beta {
      *   // Do the magic
      *   const res = await drivelabels.labels.revisions.permissions.delete({
      *     // Required. Label permission resource name.
-     *     name: 'labels/my-label/revisions/my-revision/permissions/my-permission',
+     *     name: 'labels/my-label/revisions/my-revision/permissions/.*',
      *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      *     useAdminAccess: 'placeholder-value',
      *   });

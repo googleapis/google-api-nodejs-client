@@ -241,7 +241,7 @@ export namespace analyticshub_v1 {
     selectedResources?: Schema$SelectedResource[];
   }
   /**
-   * Configuration for a Bigtable subscription. The Pub/Sub message will be written to a Bigtable row as follows: - row key: subscription name and message ID delimited by #. - columns: message bytes written to a single column family "data" with an empty-string column qualifier. - cell timestamp: the message publish timestamp.
+   * Configuration for a Bigtable subscription. The Pub/Sub message will be written to a Bigtable row as follows: - row key: subscription name, message ID hash, and message ID delimited by `#`. - columns: message bytes written to a single column family `data` with an empty-string column qualifier. - cell timestamp: the message publish timestamp.
    */
   export interface Schema$BigtableConfig {
     /**
@@ -322,6 +322,19 @@ export namespace analyticshub_v1 {
      * Optional. If set, message data will be written to Cloud Storage in text format.
      */
     textConfig?: Schema$TextConfig;
+  }
+  /**
+   * Configuration for compressing/decompressing message data using a user-specified compression algorithm.
+   */
+  export interface Schema$Compression {
+    /**
+     * Required. Specifies the compression algorithm to use.
+     */
+    compressionAlgorithm?: string | null;
+    /**
+     * Required. Specifies whether to compress or decompress the message.
+     */
+    compressionMode?: string | null;
   }
   /**
    * A data exchange is a container that lets you share data. Along with the descriptive information about the data exchange, it contains listings that reference shared datasets.
@@ -829,6 +842,10 @@ export namespace analyticshub_v1 {
      * Optional. AI Inference. Specifies the Vertex AI endpoint that inference requests built from the Pub/Sub message data and provided parameters will be sent to.
      */
     aiInference?: Schema$AIInference;
+    /**
+     * Optional. Compression/Decompression.
+     */
+    compression?: Schema$Compression;
     /**
      * Optional. If true, the transform is disabled and will not be applied to messages. Defaults to `false`.
      */
@@ -1858,8 +1875,7 @@ export namespace analyticshub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2153,8 +2169,7 @@ export namespace analyticshub_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2281,8 +2296,7 @@ export namespace analyticshub_v1 {
     list(
       params: Params$Resource$Projects$Locations$Dataexchanges$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDataExchangesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDataExchangesResponse>,
       callback: BodyResponseCallback<Schema$ListDataExchangesResponse>
     ): void;
     list(
@@ -2781,8 +2795,7 @@ export namespace analyticshub_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2937,8 +2950,7 @@ export namespace analyticshub_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3070,8 +3082,7 @@ export namespace analyticshub_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Dataexchanges$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -3409,8 +3420,7 @@ export namespace analyticshub_v1 {
         | BodyResponseCallback<Schema$Listing>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Listing>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Listing> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Listing>>
@@ -3551,8 +3561,7 @@ export namespace analyticshub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3708,8 +3717,7 @@ export namespace analyticshub_v1 {
         | BodyResponseCallback<Schema$Listing>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Listing>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Listing> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Listing>>
@@ -3859,8 +3867,7 @@ export namespace analyticshub_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3990,8 +3997,7 @@ export namespace analyticshub_v1 {
     list(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListListingsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListListingsResponse>,
       callback: BodyResponseCallback<Schema$ListListingsResponse>
     ): void;
     list(
@@ -4362,8 +4368,7 @@ export namespace analyticshub_v1 {
         | BodyResponseCallback<Schema$Listing>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Listing>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Listing> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Listing>>
@@ -4514,8 +4519,7 @@ export namespace analyticshub_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4647,8 +4651,7 @@ export namespace analyticshub_v1 {
     subscribe(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Subscribe,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SubscribeListingResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SubscribeListingResponse>,
       callback: BodyResponseCallback<Schema$SubscribeListingResponse>
     ): void;
     subscribe(
@@ -4804,8 +4807,7 @@ export namespace analyticshub_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Dataexchanges$Listings$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -5424,8 +5426,7 @@ export namespace analyticshub_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5699,8 +5700,7 @@ export namespace analyticshub_v1 {
     list(
       params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListQueryTemplatesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListQueryTemplatesResponse>,
       callback: BodyResponseCallback<Schema$ListQueryTemplatesResponse>
     ): void;
     list(
@@ -6273,8 +6273,7 @@ export namespace analyticshub_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6573,8 +6572,7 @@ export namespace analyticshub_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6703,8 +6701,7 @@ export namespace analyticshub_v1 {
     list(
       params: Params$Resource$Projects$Locations$Subscriptions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSubscriptionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSubscriptionsResponse>,
       callback: BodyResponseCallback<Schema$ListSubscriptionsResponse>
     ): void;
     list(
@@ -6875,8 +6872,7 @@ export namespace analyticshub_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7003,8 +6999,7 @@ export namespace analyticshub_v1 {
     revoke(
       params: Params$Resource$Projects$Locations$Subscriptions$Revoke,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RevokeSubscriptionResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RevokeSubscriptionResponse>,
       callback: BodyResponseCallback<Schema$RevokeSubscriptionResponse>
     ): void;
     revoke(
@@ -7175,8 +7170,7 @@ export namespace analyticshub_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>

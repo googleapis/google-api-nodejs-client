@@ -37,10 +37,7 @@ export function serviceusage<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | serviceusage_v1.Options
-    | 'v1beta1'
-    | serviceusage_v1beta1.Options
+    'v1' | serviceusage_v1.Options | 'v1beta1' | serviceusage_v1beta1.Options
 ) {
   return getAPI<T>('serviceusage', versionOrOptions, VERSIONS, this);
 }

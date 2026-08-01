@@ -251,6 +251,32 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * The request for checking an artifact for streaming.
+   */
+  export interface Schema$CheckPrewarmedArtifactRequest {
+    /**
+     * Optional. The location of the prewarmed artifact. multi-region is not supported for this field.
+     */
+    streamLocation?: string | null;
+    /**
+     * Optional. The artifact tag Format:projects/{project\}/locations/{location\}/repositories/{repository\}/packages/{package\}/tags/{tag\}
+     */
+    tag?: string | null;
+    /**
+     * Optional. The artifact version Format: projects/{project\}/locations/{location\}/repositories/{repository\}/packages/{package\}/versions/{version\}
+     */
+    version?: string | null;
+  }
+  /**
+   * The response for checking an artifact for streaming.
+   */
+  export interface Schema$CheckPrewarmedArtifactResponse {
+    /**
+     * The prewarmed artifact that was checked.
+     */
+    prewarmedArtifact?: Schema$PrewarmedArtifact;
+  }
+  /**
    * Artifact policy configuration for repository cleanup policies.
    */
   export interface Schema$CleanupPolicy {
@@ -975,6 +1001,19 @@ export namespace artifactregistry_v1 {
     packages?: Schema$Package[];
   }
   /**
+   * The response for listing artifacts for streaming.
+   */
+  export interface Schema$ListPrewarmedArtifactsResponse {
+    /**
+     * The token to retrieve the next page of prewarmed artifacts, or empty if there are no more streamings to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The prewarmed artifacts.
+     */
+    prewarmedArtifacts?: Schema$PrewarmedArtifact[];
+  }
+  /**
    * The response from listing python packages.
    */
   export interface Schema$ListPythonPackagesResponse {
@@ -1124,6 +1163,10 @@ export namespace artifactregistry_v1 {
     versionPolicy?: string | null;
   }
   /**
+   * The configuration for the no-cache fetching mode, which acts as a non-caching proxy.
+   */
+  export interface Schema$NoCacheFetching {}
+  /**
    * NpmPackage represents an npm artifact.
    */
   export interface Schema$NpmPackage {
@@ -1250,6 +1293,74 @@ export namespace artifactregistry_v1 {
     version?: number | null;
   }
   /**
+   * The request for prewarming an artifact for streaming.
+   */
+  export interface Schema$PrewarmArtifactRequest {
+    /**
+     * Optional. If true, old artifact will be evicted to make room for the new artifact.
+     */
+    force?: boolean | null;
+    /**
+     * Optional. The platform (architecture and OS) of the image or tag.
+     */
+    platform?: Schema$PrewarmPlatform;
+    /**
+     * Optional. The retention days of the prewarmed artifact. If not specified, the artifact will be cached for 3 days.
+     */
+    retentionDays?: string | null;
+    /**
+     * Optional. The location to cache the artifact in. If not specified, the artifact will be cached in the same location as the artifact. multi-region is not supported for this field.
+     */
+    streamLocation?: string | null;
+    /**
+     * Optional. The artifact tag Format:projects/{project\}/locations/{location\}/repositories/{repository\}/packages/{package\}/tags/{tag\}
+     */
+    tag?: string | null;
+    /**
+     * Optional. The artifact version Format: projects/{project\}/locations/{location\}/repositories/{repository\}/packages/{package\}/versions/{version\}
+     */
+    version?: string | null;
+  }
+  /**
+   * The response for prewarming an artifact for streaming.
+   */
+  export interface Schema$PrewarmArtifactResponse {
+    /**
+     * The prewarmed artifact that was prewarmed.
+     */
+    prewarmedArtifact?: Schema$PrewarmedArtifact;
+  }
+  /**
+   * PrewarmedArtifact represents a streamed artifact. This is not a request message, so field_behavior annotations are not required.
+   */
+  export interface Schema$PrewarmedArtifact {
+    /**
+     * The expiration time of the prewarmed artifact.
+     */
+    expirationTime?: string | null;
+    /**
+     * The location of the prewarmed artifact.
+     */
+    location?: string | null;
+    /**
+     * URL to access the image. Example: us-west4-docker.pkg.dev/test-project/test-repo/nginx@sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf
+     */
+    uri?: string | null;
+  }
+  /**
+   * The platform (architecture and OS) of the image. This is a sub-message.
+   */
+  export interface Schema$PrewarmPlatform {
+    /**
+     * Optional. The architecture of the image or tag. For example, "arm64" or "amd64".
+     */
+    architecture?: string | null;
+    /**
+     * Optional. The OS of the image or tag. For example, "linux" or "windows".
+     */
+    os?: string | null;
+  }
+  /**
    * The Artifact Registry logging configurations that apply to a Project.
    */
   export interface Schema$ProjectConfig {
@@ -1350,6 +1461,10 @@ export namespace artifactregistry_v1 {
      */
     mavenRepository?: Schema$MavenRepository;
     /**
+     * The remote repository will act as a non-caching proxy.
+     */
+    noCache?: Schema$NoCacheFetching;
+    /**
      * Specific settings for an Npm remote repository.
      */
     npmRepository?: Schema$NpmRepository;
@@ -1365,6 +1480,32 @@ export namespace artifactregistry_v1 {
      * Specific settings for a Yum remote repository.
      */
     yumRepository?: Schema$YumRepository;
+  }
+  /**
+   * The request for removing an artifact from streaming.
+   */
+  export interface Schema$RemovePrewarmedArtifactRequest {
+    /**
+     * Optional. The location of the prewarmed artifact. multi-region is not supported for this field.
+     */
+    streamLocation?: string | null;
+    /**
+     * Optional. The artifact tag Format:projects/{project\}/locations/{location\}/repositories/{repository\}/packages/{package\}/tags/{tag\}
+     */
+    tag?: string | null;
+    /**
+     * Optional. The artifact version Format: projects/{project\}/locations/{location\}/repositories/{repository\}/packages/{package\}/versions/{version\}
+     */
+    version?: string | null;
+  }
+  /**
+   * The response for removing an artifact from streaming.
+   */
+  export interface Schema$RemovePrewarmedArtifactResponse {
+    /**
+     * The prewarmed artifact that was removed.
+     */
+    prewarmedArtifact?: Schema$PrewarmedArtifact;
   }
   /**
    * A Repository for storing artifacts with a specific format.
@@ -2268,8 +2409,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -2596,7 +2736,7 @@ export namespace artifactregistry_v1 {
     }
 
     /**
-     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the [ListLocationsRequest.name] field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
+     * Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project\}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.
      * @example
      * ```js
      * // Before running the sample:
@@ -2629,7 +2769,7 @@ export namespace artifactregistry_v1 {
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2677,8 +2817,7 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -3064,7 +3203,7 @@ export namespace artifactregistry_v1 {
   }
   export interface Params$Resource$Projects$Locations$List extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -3213,8 +3352,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3355,8 +3493,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3434,6 +3571,7 @@ export namespace artifactregistry_v1 {
     mavenArtifacts: Resource$Projects$Locations$Repositories$Mavenartifacts;
     npmPackages: Resource$Projects$Locations$Repositories$Npmpackages;
     packages: Resource$Projects$Locations$Repositories$Packages;
+    prewarmedArtifacts: Resource$Projects$Locations$Repositories$Prewarmedartifacts;
     pythonPackages: Resource$Projects$Locations$Repositories$Pythonpackages;
     rules: Resource$Projects$Locations$Repositories$Rules;
     yumArtifacts: Resource$Projects$Locations$Repositories$Yumartifacts;
@@ -3470,6 +3608,10 @@ export namespace artifactregistry_v1 {
       this.packages = new Resource$Projects$Locations$Repositories$Packages(
         this.context
       );
+      this.prewarmedArtifacts =
+        new Resource$Projects$Locations$Repositories$Prewarmedartifacts(
+          this.context
+        );
       this.pythonPackages =
         new Resource$Projects$Locations$Repositories$Pythonpackages(
           this.context
@@ -3479,6 +3621,168 @@ export namespace artifactregistry_v1 {
       );
       this.yumArtifacts =
         new Resource$Projects$Locations$Repositories$Yumartifacts(this.context);
+    }
+
+    /**
+     * Checks an artifact streaming.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.checkPrewarmedArtifact(
+     *       {
+     *         // Required. The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. If the package or version ID parts contain slashes, the slashes are escaped.
+     *         repository:
+     *           'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "streamLocation": "my_streamLocation",
+     *           //   "tag": "my_tag",
+     *           //   "version": "my_version"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "prewarmedArtifact": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    checkPrewarmedArtifact(
+      params: Params$Resource$Projects$Locations$Repositories$Checkprewarmedartifact,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    checkPrewarmedArtifact(
+      params?: Params$Resource$Projects$Locations$Repositories$Checkprewarmedartifact,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckPrewarmedArtifactResponse>>;
+    checkPrewarmedArtifact(
+      params: Params$Resource$Projects$Locations$Repositories$Checkprewarmedartifact,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkPrewarmedArtifact(
+      params: Params$Resource$Projects$Locations$Repositories$Checkprewarmedartifact,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckPrewarmedArtifactResponse>,
+      callback: BodyResponseCallback<Schema$CheckPrewarmedArtifactResponse>
+    ): void;
+    checkPrewarmedArtifact(
+      params: Params$Resource$Projects$Locations$Repositories$Checkprewarmedartifact,
+      callback: BodyResponseCallback<Schema$CheckPrewarmedArtifactResponse>
+    ): void;
+    checkPrewarmedArtifact(
+      callback: BodyResponseCallback<Schema$CheckPrewarmedArtifactResponse>
+    ): void;
+    checkPrewarmedArtifact(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Checkprewarmedartifact
+        | BodyResponseCallback<Schema$CheckPrewarmedArtifactResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckPrewarmedArtifactResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckPrewarmedArtifactResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CheckPrewarmedArtifactResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Checkprewarmedartifact;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Checkprewarmedartifact;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+repository}:checkPrewarmedArtifact').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['repository'],
+        pathParams: ['repository'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckPrewarmedArtifactResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckPrewarmedArtifactResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -3603,8 +3907,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3745,8 +4048,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3896,8 +4198,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4058,8 +4359,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Repository>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Repository>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Repository> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Repository>>
@@ -4202,8 +4502,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4335,8 +4634,7 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRepositoriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRepositoriesResponse>,
       callback: BodyResponseCallback<Schema$ListRepositoriesResponse>
     ): void;
     list(
@@ -4543,8 +4841,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Repository>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Repository>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Repository> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Repository>>
@@ -4587,6 +4884,327 @@ export namespace artifactregistry_v1 {
         );
       } else {
         return createAPIRequest<Schema$Repository>(parameters);
+      }
+    }
+
+    /**
+     * Prewarms an artifact for streaming.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.prewarmArtifact({
+     *       // Required. The repository name, for example: `projects/p1/locations/us-central1/repositories/repo1`. If the package or version ID parts contain slashes, the slashes are escaped.
+     *       repository:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "force": false,
+     *         //   "platform": {},
+     *         //   "retentionDays": "my_retentionDays",
+     *         //   "streamLocation": "my_streamLocation",
+     *         //   "tag": "my_tag",
+     *         //   "version": "my_version"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    prewarmArtifact(
+      params: Params$Resource$Projects$Locations$Repositories$Prewarmartifact,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    prewarmArtifact(
+      params?: Params$Resource$Projects$Locations$Repositories$Prewarmartifact,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    prewarmArtifact(
+      params: Params$Resource$Projects$Locations$Repositories$Prewarmartifact,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    prewarmArtifact(
+      params: Params$Resource$Projects$Locations$Repositories$Prewarmartifact,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    prewarmArtifact(
+      params: Params$Resource$Projects$Locations$Repositories$Prewarmartifact,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    prewarmArtifact(callback: BodyResponseCallback<Schema$Operation>): void;
+    prewarmArtifact(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Prewarmartifact
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Prewarmartifact;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Prewarmartifact;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+repository}:prewarmArtifact').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['repository'],
+        pathParams: ['repository'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Removes an artifact from streaming.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.removePrewarmedArtifact(
+     *       {
+     *         // Required. The repository name, for example: `projects/p1/locations/us-central1/repositories/repo1`.
+     *         repository:
+     *           'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "streamLocation": "my_streamLocation",
+     *           //   "tag": "my_tag",
+     *           //   "version": "my_version"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "prewarmedArtifact": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removePrewarmedArtifact(
+      params: Params$Resource$Projects$Locations$Repositories$Removeprewarmedartifact,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    removePrewarmedArtifact(
+      params?: Params$Resource$Projects$Locations$Repositories$Removeprewarmedartifact,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RemovePrewarmedArtifactResponse>>;
+    removePrewarmedArtifact(
+      params: Params$Resource$Projects$Locations$Repositories$Removeprewarmedartifact,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removePrewarmedArtifact(
+      params: Params$Resource$Projects$Locations$Repositories$Removeprewarmedartifact,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemovePrewarmedArtifactResponse>,
+      callback: BodyResponseCallback<Schema$RemovePrewarmedArtifactResponse>
+    ): void;
+    removePrewarmedArtifact(
+      params: Params$Resource$Projects$Locations$Repositories$Removeprewarmedartifact,
+      callback: BodyResponseCallback<Schema$RemovePrewarmedArtifactResponse>
+    ): void;
+    removePrewarmedArtifact(
+      callback: BodyResponseCallback<Schema$RemovePrewarmedArtifactResponse>
+    ): void;
+    removePrewarmedArtifact(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Removeprewarmedartifact
+        | BodyResponseCallback<Schema$RemovePrewarmedArtifactResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RemovePrewarmedArtifactResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RemovePrewarmedArtifactResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RemovePrewarmedArtifactResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Removeprewarmedartifact;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Removeprewarmedartifact;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+repository}:removePrewarmedArtifact'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['repository'],
+        pathParams: ['repository'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RemovePrewarmedArtifactResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RemovePrewarmedArtifactResponse>(
+          parameters
+        );
       }
     }
 
@@ -4690,8 +5308,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4824,8 +5441,7 @@ export namespace artifactregistry_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Repositories$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -4898,6 +5514,17 @@ export namespace artifactregistry_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Repositories$Checkprewarmedartifact extends StandardParameters {
+    /**
+     * Required. The name of the repository, for example: `projects/p1/locations/us-central1/repositories/repo1`. If the package or version ID parts contain slashes, the slashes are escaped.
+     */
+    repository?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CheckPrewarmedArtifactRequest;
+  }
   export interface Params$Resource$Projects$Locations$Repositories$Create extends StandardParameters {
     /**
      * Required. The name of the parent resource where the repository will be created.
@@ -4982,6 +5609,28 @@ export namespace artifactregistry_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Repository;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Prewarmartifact extends StandardParameters {
+    /**
+     * Required. The repository name, for example: `projects/p1/locations/us-central1/repositories/repo1`. If the package or version ID parts contain slashes, the slashes are escaped.
+     */
+    repository?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PrewarmArtifactRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Removeprewarmedartifact extends StandardParameters {
+    /**
+     * Required. The repository name, for example: `projects/p1/locations/us-central1/repositories/repo1`.
+     */
+    repository?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemovePrewarmedArtifactRequest;
   }
   export interface Params$Resource$Projects$Locations$Repositories$Setiampolicy extends StandardParameters {
     /**
@@ -5114,8 +5763,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5482,8 +6130,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5626,8 +6273,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5774,8 +6420,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Attachment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Attachment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Attachment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Attachment>>
@@ -5904,8 +6549,7 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Attachments$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAttachmentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAttachmentsResponse>,
       callback: BodyResponseCallback<Schema$ListAttachmentsResponse>
     ): void;
     list(
@@ -6259,8 +6903,7 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Dockerimages$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDockerImagesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDockerImagesResponse>,
       callback: BodyResponseCallback<Schema$ListDockerImagesResponse>
     ): void;
     list(
@@ -6455,8 +7098,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6575,8 +7217,7 @@ export namespace artifactregistry_v1 {
     download(
       params: Params$Resource$Projects$Locations$Repositories$Files$Download,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DownloadFileResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DownloadFileResponse>,
       callback: BodyResponseCallback<Schema$DownloadFileResponse>
     ): void;
     download(
@@ -7211,8 +7852,7 @@ export namespace artifactregistry_v1 {
     upload(
       params: Params$Resource$Projects$Locations$Repositories$Files$Upload,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UploadFileMediaResponse>,
+        MethodOptions | BodyResponseCallback<Schema$UploadFileMediaResponse>,
       callback: BodyResponseCallback<Schema$UploadFileMediaResponse>
     ): void;
     upload(
@@ -7878,8 +8518,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8563,8 +9202,7 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Mavenartifacts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListMavenArtifactsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListMavenArtifactsResponse>,
       callback: BodyResponseCallback<Schema$ListMavenArtifactsResponse>
     ): void;
     list(
@@ -8761,8 +9399,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$NpmPackage>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$NpmPackage>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$NpmPackage> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$NpmPackage>>
@@ -8889,8 +9526,7 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Npmpackages$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListNpmPackagesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListNpmPackagesResponse>,
       callback: BodyResponseCallback<Schema$ListNpmPackagesResponse>
     ): void;
     list(
@@ -9090,8 +9726,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9234,8 +9869,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Package>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Package>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Package> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Package>>
@@ -9366,8 +10000,7 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPackagesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPackagesResponse>,
       callback: BodyResponseCallback<Schema$ListPackagesResponse>
     ): void;
     list(
@@ -9544,8 +10177,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Package>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Package>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Package> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Package>>
@@ -9753,8 +10385,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Tag>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Tag>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Tag> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Tag>>
@@ -9890,8 +10521,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -10031,8 +10661,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Tag>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Tag>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Tag> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Tag>>
@@ -10328,8 +10957,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Tag>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Tag>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Tag> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Tag>>
@@ -10549,8 +11177,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10697,8 +11324,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10848,8 +11474,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Version>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Version> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Version>>
@@ -10984,8 +11609,7 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListVersionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListVersionsResponse>,
       callback: BodyResponseCallback<Schema$ListVersionsResponse>
     ): void;
     list(
@@ -11170,8 +11794,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Version>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Version>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Version> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Version>>
@@ -11290,6 +11913,191 @@ export namespace artifactregistry_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Version;
+  }
+
+  export class Resource$Projects$Locations$Repositories$Prewarmedartifacts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all streamed artifacts in a repository.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.prewarmedArtifacts.list(
+     *       {
+     *         // Optional. Filter should only support The location of the prewarmed artifacts. multi-region is not supported for this field.
+     *         filter: 'placeholder-value',
+     *         // Optional. The maximum number of prewarmed artifacts to return. Maximum page size is 1,000. Default page size is 100.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. The next_page_token value returned from a previous list request, if any.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The repository of the artifact to list. Format: projects/{project\}/locations/{location\}/repositories/{repository\}
+     *         parent:
+     *           'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "prewarmedArtifacts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Prewarmedartifacts$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Repositories$Prewarmedartifacts$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPrewarmedArtifactsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Prewarmedartifacts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Prewarmedartifacts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPrewarmedArtifactsResponse>,
+      callback: BodyResponseCallback<Schema$ListPrewarmedArtifactsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Prewarmedartifacts$List,
+      callback: BodyResponseCallback<Schema$ListPrewarmedArtifactsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListPrewarmedArtifactsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Prewarmedartifacts$List
+        | BodyResponseCallback<Schema$ListPrewarmedArtifactsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPrewarmedArtifactsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPrewarmedArtifactsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPrewarmedArtifactsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Prewarmedartifacts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Prewarmedartifacts$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/prewarmedArtifacts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPrewarmedArtifactsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPrewarmedArtifactsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Prewarmedartifacts$List extends StandardParameters {
+    /**
+     * Optional. Filter should only support The location of the prewarmed artifacts. multi-region is not supported for this field.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of prewarmed artifacts to return. Maximum page size is 1,000. Default page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The repository of the artifact to list. Format: projects/{project\}/locations/{location\}/repositories/{repository\}
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Repositories$Pythonpackages {
@@ -11523,8 +12331,7 @@ export namespace artifactregistry_v1 {
     list(
       params: Params$Resource$Projects$Locations$Repositories$Pythonpackages$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPythonPackagesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPythonPackagesResponse>,
       callback: BodyResponseCallback<Schema$ListPythonPackagesResponse>
     ): void;
     list(
@@ -11880,8 +12687,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -12562,8 +13368,7 @@ export namespace artifactregistry_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

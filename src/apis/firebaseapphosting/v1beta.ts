@@ -243,7 +243,7 @@ export namespace firebaseapphosting_v1beta {
     uri?: string | null;
   }
   /**
-   * Runtime is a string that represents the runtime that is used to build the backend. Users can specify one of the following runtimes: nodejs20, nodejs22, nodejs24, nodejs. Runtime "nodejs" means that nodejs version will be determined at build time. If not specified or specified with a value that is not in the list above, the default runtime `nodejs` will be used and Automatic Base Image Updates will be disabled.
+   * Runtime is a string that represents the runtime that is used to build the backend. Users can specify one of the following runtimes: nodejs20, nodejs22, nodejs24, nodejs. Runtime "nodejs" means that nodejs version will be determined at build time. If not specified or specified with a value that is not in the list above, the default runtime `nodejs` will be used and Automatic Base Image Updates will be disabled. See [Firebase documentation](https://firebase.google.com/docs/app-hosting/frameworks-tooling#managing_runtime_versions) for more details.
    */
   export interface Schema$BackendRuntime {
     /**
@@ -348,6 +348,10 @@ export namespace firebaseapphosting_v1beta {
      * An Artifact Registry container image source.
      */
     container?: Schema$ContainerSource;
+    /**
+     * A source that was pre-built locally.
+     */
+    locallyBuilt?: Schema$LocallyBuiltSource;
   }
   /**
    * The connection to an external source repository to watch for event-driven updates to the backend.
@@ -825,6 +829,35 @@ export namespace firebaseapphosting_v1beta {
      * Output only. The state of the live migration step, indicates whether you should work to complete the step now, in the future, or have already completed it.
      */
     stepState?: string | null;
+  }
+  /**
+   * The URI of an storage archive to use as the build source.
+   */
+  export interface Schema$LocallyBuiltSource {
+    /**
+     * Optional. An optional message that describes the uploaded version of the source code.
+     */
+    description?: string | null;
+    /**
+     * Optional. Supplied runtime environment variables for a specific build. Provided at Build creation time and immutable afterwards.
+     */
+    env?: Schema$EnvironmentVariable[];
+    /**
+     * Optional. The directory relative to the root of the archive to use as the root for the deployed web app. Defaults to use the root of the repository if not provided. If deploying a [monorepo](https://firebase.google.com/docs/app-hosting/monorepos), this should be the directory that contains the built source of the app.
+     */
+    rootDirectory?: string | null;
+    /**
+     * Optional. The command to run to start the app. If provided, it will override apphosting's default run commands. See [`Override build and run scripts`](https://firebase.google.com/docs/app-hosting/configure#override-scripts)
+     */
+    runCommand?: string | null;
+    /**
+     * Optional. Additional configuration of the Cloud Run [`service`](https://cloud.google.com/run/docs/reference/rest/v2/projects.locations.services#resource:-service).
+     */
+    runConfig?: Schema$RunConfig;
+    /**
+     * URI to an archive in Cloud Storage. The object must be a gzipped archive file (.tar.gz) containing source to deploy.
+     */
+    userStorageUri?: string | null;
   }
   /**
    * A resource that represents a Google Cloud location.
@@ -1333,8 +1366,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -1459,8 +1491,7 @@ export namespace firebaseapphosting_v1beta {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1708,8 +1739,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1858,8 +1888,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2014,8 +2043,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Backend>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Backend>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Backend> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Backend>>
@@ -2143,8 +2171,7 @@ export namespace firebaseapphosting_v1beta {
     list(
       params: Params$Resource$Projects$Locations$Backends$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListBackendsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListBackendsResponse>,
       callback: BodyResponseCallback<Schema$ListBackendsResponse>
     ): void;
     list(
@@ -2342,8 +2369,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2626,8 +2652,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2776,8 +2801,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2930,8 +2954,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Build>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Build>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Build> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Build>>
@@ -3329,8 +3352,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3479,8 +3501,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3629,8 +3650,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Domain>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Domain>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Domain> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Domain>>
@@ -3951,8 +3971,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4226,8 +4245,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4379,8 +4397,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Rollout>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Rollout>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Rollout> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Rollout>>
@@ -4509,8 +4526,7 @@ export namespace firebaseapphosting_v1beta {
     list(
       params: Params$Resource$Projects$Locations$Backends$Rollouts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRolloutsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRolloutsResponse>,
       callback: BodyResponseCallback<Schema$ListRolloutsResponse>
     ): void;
     list(
@@ -4741,8 +4757,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Traffic>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Traffic>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Traffic> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Traffic>>
@@ -4905,8 +4920,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5076,8 +5090,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5212,8 +5225,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5351,8 +5363,7 @@ export namespace firebaseapphosting_v1beta {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5478,8 +5489,7 @@ export namespace firebaseapphosting_v1beta {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(

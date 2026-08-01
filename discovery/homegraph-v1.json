@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20260523",
+  "revision": "20260724",
   "rootUrl": "https://homegraph.googleapis.com/",
   "schemas": {
     "AgentDeviceId": {
@@ -241,6 +241,38 @@
         "deviceId": {
           "description": "Unique third-party device ID.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Component": {
+      "description": "Component of a provider device.",
+      "id": "Component",
+      "properties": {
+        "childComponents": {
+          "description": "Optional. Child components.",
+          "items": {
+            "$ref": "Component"
+          },
+          "type": "array"
+        },
+        "deviceTypes": {
+          "description": "Required. List of Device types associated with this component. Supported device types are defined in cs//depot/google3/home/homeservicelayer/uddm/types/uddm_device_types.proto and the type string is the enum name, for example: ON_OFF_LIGHT => \"ON_OFF_LIGHT\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Required. ID of the component from the device provider.",
+          "type": "string"
+        },
+        "traitData": {
+          "description": "Required. List of trait data associated with the component.",
+          "items": {
+            "$ref": "TraitData"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -461,6 +493,17 @@
       },
       "type": "object"
     },
+    "HomeTraitPayload": {
+      "description": "Container for UDDM trait data associated with a device.",
+      "id": "HomeTraitPayload",
+      "properties": {
+        "rootComponent": {
+          "$ref": "Component",
+          "description": "The root component of the device as reported by the provider."
+        }
+      },
+      "type": "object"
+    },
     "HomeTraitUpdates": {
       "description": "Contains the set of updates for a device.",
       "id": "HomeTraitUpdates",
@@ -485,6 +528,22 @@
       "properties": {
         "agentUserId": {
           "description": "Required. Third-party user ID.",
+          "type": "string"
+        },
+        "deviceView": {
+          "description": "Optional. Specifies the type of device data to be returned in the response. This allows callers to request traditional Smart Home traits, Unified Device Data Model (UDDM) traits, or both. If unspecified, defaults to SMART_HOME_TRAIT_ONLY.",
+          "enum": [
+            "DEVICE_VIEW_UNSPECIFIED",
+            "SMART_HOME_TRAIT_ONLY",
+            "HOME_TRAIT_ONLY",
+            "HOME_TRAIT_AND_SMART_HOME_TRAIT"
+          ],
+          "enumDescriptions": [
+            "Default value. Equivalent to SMART_HOME_TRAIT_ONLY.",
+            "Return only standard Smart Home traits in the `devices` map.",
+            "Return only Unified Device Data Model (UDDM) traits in the `home_trait_payload` map.",
+            "Return both standard Smart Home traits and UDDM traits."
+          ],
           "type": "string"
         },
         "includeDeviceMetadata": {
@@ -566,6 +625,13 @@
           },
           "description": "States of the devices. Map of third-party device ID to struct of device states.",
           "type": "object"
+        },
+        "homeTraitPayload": {
+          "additionalProperties": {
+            "$ref": "HomeTraitPayload"
+          },
+          "description": "Map of device IDs to their Unified Device Data Model (UDDM) trait payloads. This field is populated when `device_view` is set to HOME_TRAIT_ONLY or HOME_TRAIT_AND_SMART_HOME_TRAIT.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -608,7 +674,7 @@
       "type": "object"
     },
     "ReportStateAndNotificationRequest": {
-      "description": "Request type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call. It may include states, notifications, or both. States and notifications are defined per `device_id` (for example, \"123\" and \"456\" in the following example). Example: ```json { \"requestId\": \"ff36a3cc-ec34-11e6-b1a0-64510650abcf\", \"agentUserId\": \"1234\", \"payload\": { \"devices\": { \"states\": { \"123\": { \"on\": true }, \"456\": { \"on\": true, \"brightness\": 10 }, }, } } } ```",
+      "description": "Request type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call. It may include states, notifications, home_traits, home_events, or any combination thereof. Smart Home Device Traits (SHDT) `states` and `notifications` are defined per `device_id` (for example, \"123\" and \"456\" in the following example). Google Home Traits `home_traits` and `home_events` are lists of updates or events, each associated with a `device_id` (for example, \"789\" in the following example). Example: ```json { \"requestId\": \"ff36a3cc-ec34-11e6-b1a0-64510650abcf\", \"agentUserId\": \"1234\", \"payload\": { \"devices\": { \"states\": { \"123\": { \"on\": true }, \"456\": { \"on\": true, \"brightness\": 10 }, }, \"homeTraits\": [ { \"deviceId\": \"789\", \"components\": [ { \"componentId\": \"main\", \"traitData\": [ { \"trait\": { \"@type\": \"type.googleapis.com/home.graph.v1.OnOffTrait\", \"onOff\": true } } ] } ] } ], \"homeEvents\": [ { \"deviceId\": \"789\", \"events\": [ { \"componentId\": \"main\", \"events\": [ { \"eventId\": \"event-123\", \"eventTime\": \"2026-01-01T00:00:00Z\", \"event\": { \"@type\": \"type.googleapis.com/home.graph.v1.DoorbellPressTrait.DoorbellPressedEvent\" } } ] } ] } ] } } } ```",
       "id": "ReportStateAndNotificationRequest",
       "properties": {
         "agentUserId": {
@@ -639,6 +705,13 @@
       "description": "Response type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call.",
       "id": "ReportStateAndNotificationResponse",
       "properties": {
+        "deviceResults": {
+          "additionalProperties": {
+            "$ref": "Result"
+          },
+          "description": "Map from agent device ID to the result of reporting state and notifications. This is only populated for UDDM updates for now.",
+          "type": "object"
+        },
         "requestId": {
           "description": "Request ID copied from ReportStateAndNotificationRequest.",
           "type": "string"
@@ -665,6 +738,18 @@
       "description": "Response type for the [`RequestSyncDevices`](#google.home.graph.v1.HomeGraphApiService.RequestSyncDevices) call. Intentionally empty upon success. An HTTP response code is returned with more details upon failure.",
       "id": "RequestSyncDevicesResponse",
       "properties": {},
+      "type": "object"
+    },
+    "Result": {
+      "description": "Result of reporting state and notifications for a single device.",
+      "id": "Result",
+      "properties": {
+        "homeTraitCommitTime": {
+          "description": "The trait commit timestamp of the state update in Home Graph.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "StateAndNotificationPayload": {
@@ -730,6 +815,16 @@
       "description": "Contains the trait payload for a single trait.",
       "id": "TraitData",
       "properties": {
+        "commitTime": {
+          "description": "Other metadata for the trait. The time the client update was committed in the server.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "providerVersionTime": {
+          "description": "Optional in write requests (e.g. ReportStateAndNotification). If set, represents the provider version timestamp of the existing trait in the database. The server will perform optimistic locking validation if this field is present and the experiment is enabled. It will not be persisted to the database.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "trait": {
           "additionalProperties": {
             "description": "Properties of the object. Contains field @type with type URL.",

@@ -573,6 +573,11 @@
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. If set, validates the request without actually updating the registration.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1alpha2/{+name}",
@@ -976,7 +981,7 @@
       }
     }
   },
-  "revision": "20260427",
+  "revision": "20260603",
   "rootUrl": "https://domains.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1603,6 +1608,10 @@
         "tag": {
           "description": "Required. The Tag of the new registrar. Can be found at [List of registrars](https://nominet.uk/registrar-list/).",
           "type": "string"
+        },
+        "validateOnly": {
+          "description": "Optional. If set, validates the request without actually initiating the transfer.",
+          "type": "boolean"
         }
       },
       "type": "object"

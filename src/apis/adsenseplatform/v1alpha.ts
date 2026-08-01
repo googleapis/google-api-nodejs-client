@@ -529,8 +529,7 @@ export namespace adsenseplatform_v1alpha {
         | BodyResponseCallback<Schema$Platform>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Platform>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Platform> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Platform>>
@@ -654,8 +653,7 @@ export namespace adsenseplatform_v1alpha {
     list(
       params: Params$Resource$Accounts$Platforms$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPlatformsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPlatformsResponse>,
       callback: BodyResponseCallback<Schema$ListPlatformsResponse>
     ): void;
     list(
@@ -1472,8 +1470,7 @@ export namespace adsenseplatform_v1alpha {
     list(
       params: Params$Resource$Accounts$Platforms$Groups$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPlatformGroupsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPlatformGroupsResponse>,
       callback: BodyResponseCallback<Schema$ListPlatformGroupsResponse>
     ): void;
     list(
@@ -1823,8 +1820,7 @@ export namespace adsenseplatform_v1alpha {
     close(
       params: Params$Resource$Platforms$Accounts$Close,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$CloseAccountResponse>,
+        MethodOptions | BodyResponseCallback<Schema$CloseAccountResponse>,
       callback: BodyResponseCallback<Schema$CloseAccountResponse>
     ): void;
     close(
@@ -2001,8 +1997,7 @@ export namespace adsenseplatform_v1alpha {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -2148,8 +2143,7 @@ export namespace adsenseplatform_v1alpha {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -2273,8 +2267,7 @@ export namespace adsenseplatform_v1alpha {
     list(
       params: Params$Resource$Platforms$Accounts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAccountsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAccountsResponse>,
       callback: BodyResponseCallback<Schema$ListAccountsResponse>
     ): void;
     list(
@@ -2418,8 +2411,7 @@ export namespace adsenseplatform_v1alpha {
     lookup(
       params: Params$Resource$Platforms$Accounts$Lookup,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LookupAccountResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LookupAccountResponse>,
       callback: BodyResponseCallback<Schema$LookupAccountResponse>
     ): void;
     lookup(
@@ -2648,8 +2640,7 @@ export namespace adsenseplatform_v1alpha {
         | BodyResponseCallback<Schema$Event>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Event>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Event> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Event>>
@@ -2817,8 +2808,7 @@ export namespace adsenseplatform_v1alpha {
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Site>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Site> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
@@ -2953,8 +2943,7 @@ export namespace adsenseplatform_v1alpha {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3093,8 +3082,7 @@ export namespace adsenseplatform_v1alpha {
         | BodyResponseCallback<Schema$Site>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Site>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Site> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Site>>
@@ -3354,8 +3342,7 @@ export namespace adsenseplatform_v1alpha {
     requestReview(
       params: Params$Resource$Platforms$Accounts$Sites$Requestreview,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RequestSiteReviewResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RequestSiteReviewResponse>,
       callback: BodyResponseCallback<Schema$RequestSiteReviewResponse>
     ): void;
     requestReview(

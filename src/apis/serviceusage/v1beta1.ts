@@ -179,7 +179,7 @@ export namespace serviceusage_v1beta1 {
     /**
      * Output only. Analysis result of updating a policy.
      */
-    analysis?: Schema$AnalysisResult;
+    analysisResult?: Schema$AnalysisResult;
     /**
      * Output only. The type of analysis.
      */
@@ -620,11 +620,11 @@ export namespace serviceusage_v1beta1 {
    */
   export interface Schema$ConsumerPolicy {
     /**
-     * Optional. Annotations is an unstructured key-value map stored with a policy that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. [AIP-128](https://google.aip.dev/128#annotations)
+     * Output only. The time the policy was created. For singleton policies, this is the first touch of the policy.
      */
-    annotations?: {[key: string]: string} | null;
+    createTime?: string | null;
     /**
-     * Enable rules define usable services and service groups.
+     * Enable rules define usable services and groups. There can currently be at most one `EnableRule`. This restriction will be lifted in later releases.
      */
     enableRules?: Schema$EnableRule[];
     /**
@@ -632,11 +632,11 @@ export namespace serviceusage_v1beta1 {
      */
     etag?: string | null;
     /**
-     * Output only. The resource name of the policy. We only allow consumer policy name as `default` for now: `projects/12345/consumerPolicies/default`, `folders/12345/consumerPolicies/default`, `organizations/12345/consumerPolicies/default`.
+     * Output only. The resource name of the policy. Only the `default` policy is supported: `projects/12345/consumerPolicies/default`, `folders/12345/consumerPolicies/default`, `organizations/12345/consumerPolicies/default`.
      */
     name?: string | null;
     /**
-     * The last-modified time.
+     * Output only. The time the policy was last updated.
      */
     updateTime?: string | null;
   }
@@ -954,7 +954,7 @@ export namespace serviceusage_v1beta1 {
     serviceId?: string | null;
   }
   /**
-   * The consumer policy rule that defines usable services and service groups.
+   * The consumer policy rule that defines enabled services and groups.
    */
   export interface Schema$EnableRule {
     /**
@@ -962,15 +962,11 @@ export namespace serviceusage_v1beta1 {
      */
     enableType?: string | null;
     /**
-     * DEPRECATED: Please use field `values`. Service group should have prefix `groups/`. The names of the service groups that are enabled (Not Implemented). Example: `groups/googleServices`.
-     */
-    groups?: string[] | null;
-    /**
-     * DEPRECATED: Please use field `values`. Service should have prefix `services/`. The names of the services that are enabled. Example: `storage.googleapis.com`.
+     * The names of the services that are enabled. Example: `services/storage.googleapis.com`.
      */
     services?: string[] | null;
     /**
-     * The names of the services or service groups that are enabled. Example: `services/storage.googleapis.com`, `groups/googleServices`, `groups/allServices`.
+     * Deprecated: Use the `services` field instead. The names of the services or service groups that are enabled. Example: `services/storage.googleapis.com`, `groups/googleServices`, `groups/allServices`.
      */
     values?: string[] | null;
   }
@@ -1373,6 +1369,53 @@ export namespace serviceusage_v1beta1 {
     usage?: Schema$Usage;
   }
   /**
+   * A message to group the analysis information.
+   */
+  export interface Schema$GoogleApiServiceusageV2alphaAnalysis {
+    /**
+     * Output only. Analysis result of updating a policy.
+     */
+    analysisResult?: Schema$GoogleApiServiceusageV2alphaAnalysisResult;
+    /**
+     * Output only. The type of analysis.
+     */
+    analysisType?: string | null;
+    /**
+     * Output only. The user friendly display name of the analysis type. E.g. service dependency analysis, service resource usage analysis, etc.
+     */
+    displayName?: string | null;
+    /**
+     * The names of the service that has analysis result of warnings or blockers. Example: `services/storage.googleapis.com`.
+     */
+    service?: string | null;
+  }
+  /**
+   * An analysis result including blockers and warnings.
+   */
+  export interface Schema$GoogleApiServiceusageV2alphaAnalysisResult {
+    /**
+     * Blocking information that would prevent the policy changes at runtime.
+     */
+    blockers?: Schema$GoogleApiServiceusageV2alphaImpact[];
+    /**
+     * Warning information indicating that the policy changes might be unsafe, but will not block the changes at runtime.
+     */
+    warnings?: Schema$GoogleApiServiceusageV2alphaImpact[];
+  }
+  /**
+   * Metadata for the `AnalyzeConsumerPolicy` method.
+   */
+  export interface Schema$GoogleApiServiceusageV2alphaAnalyzeConsumerPolicyMetadata {}
+  /**
+   * The response of analyzing a consumer policy update.
+   */
+  export interface Schema$GoogleApiServiceusageV2alphaAnalyzeConsumerPolicyResponse {
+    /**
+     * The list of analyses returned from performing the intended policy update analysis. The analysis is grouped by service name and different analysis types. The empty analysis list means that the consumer policy can be updated without any warnings or blockers.
+     */
+    analysis?: Schema$GoogleApiServiceusageV2alphaAnalysis[];
+  }
+  /**
    * Consumer Policy is a set of rules that define what services or service groups can be used for a cloud resource hierarchy.
    */
   export interface Schema$GoogleApiServiceusageV2alphaConsumerPolicy {
@@ -1409,6 +1452,23 @@ export namespace serviceusage_v1beta1 {
      * The names of the services that are enabled. Example: `services/storage.googleapis.com`.
      */
     services?: string[] | null;
+  }
+  /**
+   * A message to group impacts of updating a policy.
+   */
+  export interface Schema$GoogleApiServiceusageV2alphaImpact {
+    /**
+     * Output only. User friendly impact detail in a free form message.
+     */
+    detail?: string | null;
+    /**
+     * Output only. The type of impact.
+     */
+    impactType?: string | null;
+    /**
+     * The parent resource that the analysis is based on and the service name that the analysis is for. Example: `projects/100/services/compute.googleapis.com`, folders/101/services/compute.googleapis.com` and `organizations/102/services/compute.googleapis.com`. Usually, the parent resource here is same as the parent resource of the analyzed policy. However, for some analysis types, the parent can be different. For example, for resource existence analysis, if the parent resource of the analyzed policy is a folder or an organization, the parent resource here can still be the project that contains the resources.
+     */
+    parent?: string | null;
   }
   /**
    * Metadata for the `UpdateConsumerPolicy` method.
@@ -1647,9 +1707,9 @@ export namespace serviceusage_v1beta1 {
      */
     impactType?: string | null;
     /**
-     * The parent resource that the analysis is based on and the service name that the analysis is for. Example: `projects/100/services/compute.googleapis.com`, folders/101/services/compute.googleapis.com` and `organizations/102/services/compute.googleapis.com`. Usually, the parent resource here is same as the parent resource of the analyzed policy. However, for some analysis types, the parent can be different. For example, for resource existence analysis, if the parent resource of the analyzed policy is a folder or an organization, the parent resource here can still be the project that contains the resources.
+     * Output only. This field will be populated only for the `DEPENDENCY_MISSING_DEPENDENCIES` impact type. Example: `services/compute.googleapis.com`. Impact.detail will be in format : `missing service dependency: {missing_dependency\}.`
      */
-    parent?: string | null;
+    missingDependency?: string | null;
   }
   /**
    * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by ImportAdminOverrides.
@@ -2062,9 +2122,17 @@ export namespace serviceusage_v1beta1 {
    */
   export interface Schema$MetricRule {
     /**
+     * Optional. Metrics to update when the selected methods are called, and the associated cost applied to each metric, iff the source of the call is an agent. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative.
+     */
+    agenticMetricCosts?: {[key: string]: string} | null;
+    /**
      * Metrics to update when the selected methods are called, and the associated cost applied to each metric. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative.
      */
     metricCosts?: {[key: string]: string} | null;
+    /**
+     * Optional. Metrics to update when the selected methods are called, and the associated cost applied to each metric, iff the source of the call is not an agent. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative.
+     */
+    nonagenticMetricCosts?: {[key: string]: string} | null;
     /**
      * Selects the methods to which this rule applies. Refer to selector for syntax details.
      */
@@ -2419,6 +2487,10 @@ export namespace serviceusage_v1beta1 {
      * Name of the quota limit. The name must be provided, and it must be unique within the service. The name can only include alphanumeric characters as well as '-'. The maximum length of the limit name is 64 characters.
      */
     name?: string | null;
+    /**
+     * Optional. This is only informational, the logic to allocate the quota to the correct metric (such as in `metric_rules`) should identify which quota metrics to allocate to.
+     */
+    trafficSource?: string | null;
     /**
      * Specify the unit of the quota limit. It uses the same syntax as MetricDescriptor.unit. The supported unit kinds are determined by the quota backend system. Here are some examples: * "1/min/{project\}" for quota per minute per project. Note: the order of unit components is insignificant. The "1" at the beginning is required to follow the metric unit syntax.
      */
@@ -2839,8 +2911,7 @@ export namespace serviceusage_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2967,8 +3038,7 @@ export namespace serviceusage_v1beta1 {
     list(
       params: Params$Resource$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -3178,8 +3248,7 @@ export namespace serviceusage_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3328,8 +3397,7 @@ export namespace serviceusage_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3477,8 +3545,7 @@ export namespace serviceusage_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3622,8 +3689,7 @@ export namespace serviceusage_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3764,8 +3830,7 @@ export namespace serviceusage_v1beta1 {
         | BodyResponseCallback<Schema$Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Service>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Service> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Service>>
@@ -3889,8 +3954,7 @@ export namespace serviceusage_v1beta1 {
     list(
       params: Params$Resource$Services$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListServicesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListServicesResponse>,
       callback: BodyResponseCallback<Schema$ListServicesResponse>
     ): void;
     list(
@@ -4284,8 +4348,7 @@ export namespace serviceusage_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4442,8 +4505,7 @@ export namespace serviceusage_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4996,8 +5058,7 @@ export namespace serviceusage_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5148,8 +5209,7 @@ export namespace serviceusage_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5277,8 +5337,7 @@ export namespace serviceusage_v1beta1 {
     list(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Adminoverrides$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAdminOverridesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAdminOverridesResponse>,
       callback: BodyResponseCallback<Schema$ListAdminOverridesResponse>
     ): void;
     list(
@@ -5466,8 +5525,7 @@ export namespace serviceusage_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5707,8 +5765,7 @@ export namespace serviceusage_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5859,8 +5916,7 @@ export namespace serviceusage_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6179,8 +6235,7 @@ export namespace serviceusage_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

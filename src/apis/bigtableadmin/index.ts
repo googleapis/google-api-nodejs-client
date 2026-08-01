@@ -35,10 +35,7 @@ export function bigtableadmin<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | bigtableadmin_v1.Options
-    | 'v2'
-    | bigtableadmin_v2.Options
+    'v1' | bigtableadmin_v1.Options | 'v2' | bigtableadmin_v2.Options
 ) {
   return getAPI<T>('bigtableadmin', versionOrOptions, VERSIONS, this);
 }

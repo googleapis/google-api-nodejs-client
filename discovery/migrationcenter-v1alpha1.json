@@ -2722,7 +2722,7 @@
       }
     }
   },
-  "revision": "20260512",
+  "revision": "20260621",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -3028,6 +3028,11 @@
           "description": "Output only. Asset information specific for AWS Elastic Network Interfaces.",
           "readOnly": true
         },
+        "awsElasticacheClusterDetails": {
+          "$ref": "AwsElastiCacheClusterDetails",
+          "description": "Output only. Asset information specific for AWS ElastiCache Clusters.",
+          "readOnly": true
+        },
         "awsElbLoadBalancerDetails": {
           "$ref": "AwsElbLoadBalancerDetails",
           "description": "Output only. Asset information specific for AWS Load Balancers.",
@@ -3259,6 +3264,10 @@
         "awsElasticNetworkInterfaceDetails": {
           "$ref": "AwsElasticNetworkInterfaceDetails",
           "description": "Optional. Asset information specific for AWS Elastic Network Interfaces."
+        },
+        "awsElasticacheClusterDetails": {
+          "$ref": "AwsElastiCacheClusterDetails",
+          "description": "Optional. Asset information specific for AWS ElastiCache Clusters."
         },
         "awsElbLoadBalancerDetails": {
           "$ref": "AwsElbLoadBalancerDetails",
@@ -3679,6 +3688,12 @@
     "AwsEksClusterDetails": {
       "description": "Asset information specific for AWS EKS clusters.",
       "id": "AwsEksClusterDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsElastiCacheClusterDetails": {
+      "description": "Details of an AWS ElastiCache Cluster.",
+      "id": "AwsElastiCacheClusterDetails",
       "properties": {},
       "type": "object"
     },

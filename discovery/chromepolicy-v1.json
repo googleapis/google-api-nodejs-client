@@ -557,7 +557,7 @@
       }
     }
   },
-  "revision": "20250504",
+  "revision": "20260726",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "GoogleChromePolicyVersionsV1AdditionalTargetKeyName": {
@@ -1789,7 +1789,7 @@
       "properties": {
         "editionDeprecated": {
           "deprecated": true,
-          "description": "copybara:strip_begin TODO(b/297898292) Deprecate and remove this field in favor of enums. copybara:strip_end",
+          "description": "copybara:strip_begin TODO(b/538805613) Deprecate and remove this field in favor of enums. copybara:strip_end",
           "type": "string"
         },
         "enumType": {

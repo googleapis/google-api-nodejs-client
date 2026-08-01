@@ -268,8 +268,7 @@ export namespace acceleratedmobilepageurl_v1 {
     batchGet(
       params: Params$Resource$Ampurls$Batchget,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
       callback: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>
     ): void;
     batchGet(

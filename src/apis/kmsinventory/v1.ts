@@ -337,6 +337,10 @@ export namespace kmsinventory_v1 {
      */
     generationFailureReason?: string | null;
     /**
+     * Output only. Field indicating that the key wrapping key is trusted. This field is only valid for key purpose AES_256_WRAPPING, and protection level HSM_SINGLE_TENANT.
+     */
+    hsmTrusted?: boolean | null;
+    /**
      * Output only. The root cause of the most recent import failure. Only present if state is IMPORT_FAILED.
      */
     importFailureReason?: string | null;
@@ -364,6 +368,10 @@ export namespace kmsinventory_v1 {
      * The current state of the CryptoKeyVersion.
      */
     state?: string | null;
+    /**
+     * Immutable. Field indicating that the key may be wrapped by a trusted key. This field can be set for all key purposes except ENCRYPT_DECRYPT, and is only valid for keys with protection level HSM_SINGLE_TENANT. This field can only be set at creation or import time via CreateCryptoKeyVersion, or ImportCryptoKeyVersion.
+     */
+    trustedWrappingEnabled?: boolean | null;
   }
   /**
    * A CryptoKeyVersionTemplate specifies the properties to use when creating a new CryptoKeyVersion, either manually with CreateCryptoKeyVersion or automatically as a result of auto-rotation.
@@ -383,11 +391,15 @@ export namespace kmsinventory_v1 {
    */
   export interface Schema$GoogleCloudKmsV1ExternalProtectionLevelOptions {
     /**
-     * The path to the external key material on the EKM when using EkmConnection e.g., "v0/my/key". Set this field instead of external_key_uri when using an EkmConnection.
+     * Optional. The resource name of the backend environment where the key material of CryptoKeyVersions is associated with. Setting this field overrides the CryptoKeyBackend. This field may be set when CryptoKeyVersions is set to EXTERNAL_VPC. Format: `projects/x/locations/x/ekmConnections/x`.
+     */
+    ekmConnectionBackendOverride?: string | null;
+    /**
+     * Optional. The path to the external key material on the EKM when using EkmConnection e.g., "v0/my/key". Set this field instead of external_key_uri when using an EkmConnection.
      */
     ekmConnectionKeyPath?: string | null;
     /**
-     * The URI for an external resource that this CryptoKeyVersion represents.
+     * Optional. The URI for an external resource that this CryptoKeyVersion represents.
      */
     externalKeyUri?: string | null;
   }

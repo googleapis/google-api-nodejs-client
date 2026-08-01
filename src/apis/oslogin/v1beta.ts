@@ -139,6 +139,10 @@ export namespace oslogin_v1beta {
      */
     appEngineInstance?: string | null;
     /**
+     * Optional. The Cloud Run resource to sign the SSH public key for. Expected formats: - `projects/{project\}/locations/{location\}/services/{service\}` - `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}` - `projects/{project\}/locations/{location\}/jobs/{job\}` - `projects/{project\}/locations/{location\}/instances/{instance\}`
+     */
+    cloudRunResource?: string | null;
+    /**
      * The Compute instance to sign the SSH public key for. Expected format: projects/{project\}/zones/{zone\}/instances/{numeric_instance_id\}
      */
     computeInstance?: string | null;
@@ -383,6 +387,7 @@ export namespace oslogin_v1beta {
      *       // request body parameters
      *       // {
      *       //   "appEngineInstance": "my_appEngineInstance",
+     *       //   "cloudRunResource": "my_cloudRunResource",
      *       //   "computeInstance": "my_computeInstance",
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "sshPublicKey": "my_sshPublicKey"
@@ -767,8 +772,7 @@ export namespace oslogin_v1beta {
     importSshPublicKey(
       params: Params$Resource$Users$Importsshpublickey,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ImportSshPublicKeyResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ImportSshPublicKeyResponse>,
       callback: BodyResponseCallback<Schema$ImportSshPublicKeyResponse>
     ): void;
     importSshPublicKey(
@@ -980,8 +984,7 @@ export namespace oslogin_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1289,8 +1292,7 @@ export namespace oslogin_v1beta {
     signSshPublicKey(
       params: Params$Resource$Users$Projects$Locations$Signsshpublickey,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SignSshPublicKeyResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SignSshPublicKeyResponse>,
       callback: BodyResponseCallback<Schema$SignSshPublicKeyResponse>
     ): void;
     signSshPublicKey(
@@ -1461,8 +1463,7 @@ export namespace oslogin_v1beta {
     signSshPublicKey(
       params: Params$Resource$Users$Projects$Zones$Signsshpublickey,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SignSshPublicKeyResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SignSshPublicKeyResponse>,
       callback: BodyResponseCallback<Schema$SignSshPublicKeyResponse>
     ): void;
     signSshPublicKey(
@@ -1794,8 +1795,7 @@ export namespace oslogin_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>

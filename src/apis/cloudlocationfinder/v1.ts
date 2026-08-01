@@ -333,8 +333,7 @@ export namespace cloudlocationfinder_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -459,8 +458,7 @@ export namespace cloudlocationfinder_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -783,8 +781,7 @@ export namespace cloudlocationfinder_v1 {
     list(
       params: Params$Resource$Projects$Locations$Cloudlocations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCloudLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCloudLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListCloudLocationsResponse>
     ): void;
     list(

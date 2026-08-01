@@ -29,10 +29,7 @@ export function apphub(options: apphub_v1alpha.Options): apphub_v1alpha.Apphub;
 export function apphub<T = apphub_v1.Apphub | apphub_v1alpha.Apphub>(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | apphub_v1.Options
-    | 'v1alpha'
-    | apphub_v1alpha.Options
+    'v1' | apphub_v1.Options | 'v1alpha' | apphub_v1alpha.Options
 ) {
   return getAPI<T>('apphub', versionOrOptions, VERSIONS, this);
 }

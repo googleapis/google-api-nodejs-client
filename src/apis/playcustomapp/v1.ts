@@ -280,8 +280,7 @@ export namespace playcustomapp_v1 {
         | BodyResponseCallback<Schema$CustomApp>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$CustomApp>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$CustomApp> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$CustomApp>>

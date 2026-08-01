@@ -209,6 +209,19 @@ export namespace accesscontextmanager_v1 {
     sessionSettings?: Schema$SessionSettings;
   }
   /**
+   * Adds a request header to the API.
+   */
+  export interface Schema$AddRequestHeader {
+    /**
+     * HTTP header key.
+     */
+    key?: string | null;
+    /**
+     * HTTP header value.
+     */
+    value?: string | null;
+  }
+  /**
    * Identification for an API Operation.
    */
   export interface Schema$ApiOperation {
@@ -464,6 +477,10 @@ export namespace accesscontextmanager_v1 {
      */
     accessLevel?: string | null;
     /**
+     * A PrivateServiceConnectEndpoint that is allowed to access data outside the perimeter. The Private Service Connect endpoint may be in any organization, not just the organization that the perimeter is defined in.
+     */
+    pscEndpoint?: Schema$PrivateServiceConnectEndpoint;
+    /**
      * A Google Cloud resource from the service perimeter that you want to allow to access data outside the perimeter. This field supports only projects. The project format is `projects/{project_number\}`. You can't use `*` in this field to allow all Google Cloud resources.
      */
     resource?: string | null;
@@ -535,7 +552,11 @@ export namespace accesscontextmanager_v1 {
      */
     name?: string | null;
     /**
-     * Optional. A list of applications that are subject to this binding's restrictions. If the list is empty, the binding restrictions will universally apply to all applications.
+     * Optional. Immutable. The principal that is subject to the access policies in this policy binding.
+     */
+    principal?: Schema$Principal;
+    /**
+     * Optional. Deprecated: use scoped_access_settings instead. A list of applications that are subject to this binding's restrictions. If the list is empty, the binding restrictions will universally apply to all applications.
      */
     restrictedClientApplications?: Schema$Application[];
     /**
@@ -611,6 +632,10 @@ export namespace accesscontextmanager_v1 {
      * An AccessLevel resource name that allow resources within the ServicePerimeters to be accessed from the internet. AccessLevels listed must be in the same policy as this ServicePerimeter. Referencing a nonexistent AccessLevel will cause an error. If no AccessLevel names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example: `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL`. If a single `*` is specified for `access_level`, then all IngressSources will be allowed.
      */
     accessLevel?: string | null;
+    /**
+     * A PrivateServiceConnectEndpoint that is allowed to access the perimeter. The Private Service Connect endpoint may be in any organization, not just the organization that the perimeter is defined in.
+     */
+    pscEndpoint?: Schema$PrivateServiceConnectEndpoint;
     /**
      * A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be allowed to access perimeter data. Currently only projects and VPCs are allowed. Project format: `projects/{project_number\}` VPC network format: `//compute.googleapis.com/projects/{PROJECT_ID\}/global/networks/{NAME\}`. The project may be in any Google Cloud organization, not just the organization that the perimeter is defined in. `*` is not allowed, the case of allowing all Google Cloud resources only is not supported.
      */
@@ -755,6 +780,15 @@ export namespace accesscontextmanager_v1 {
     permission?: string | null;
   }
   /**
+   * Modifier to apply to the API requests.
+   */
+  export interface Schema$Modifier {
+    /**
+     * Adds additional HTTP request headers.
+     */
+    addRequestHeader?: Schema$AddRequestHeader;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -818,6 +852,28 @@ export namespace accesscontextmanager_v1 {
     version?: number | null;
   }
   /**
+   * The comprehensive identity container supporting identities including groups, service accounts and federated identities. Only one of them can be set to create an access binding.
+   */
+  export interface Schema$Principal {
+    /**
+     * Immutable. Service account email used to assign policies to a specific service account. If a service account is subject to multiple policies (e.g., if there is a policy for all service accounts in a project and a policy for the service account), the closest (i.e. the most specific) dry-run policy will be used for the dry-run functionality and the closest policy will be used for the enforcement.
+     */
+    serviceAccount?: string | null;
+    /**
+     * Immutable. Cloud project number used to assign policies to all service accounts owned by the project.
+     */
+    serviceAccountProjectNumber?: string | null;
+  }
+  /**
+   * Specifies the Private Service Connect endpoint that an API call refers to.
+   */
+  export interface Schema$PrivateServiceConnectEndpoint {
+    /**
+     * The full resource name of the global forwarding rule that identifies a Private Service Connect endpoint. Forwarding rule format: `//compute.googleapis.com/projects/{PROJECT_ID\}/global/forwardingRules/{FORWARDING_RULE_ID\}`.
+     */
+    forwardingRule?: string | null;
+  }
+  /**
    * A request to replace all existing Access Levels in an Access Policy with the Access Levels provided. This is done atomically.
    */
   export interface Schema$ReplaceAccessLevelsRequest {
@@ -877,6 +933,23 @@ export namespace accesscontextmanager_v1 {
      * Optional. Application, etc. to which the access settings will be applied to. Implicitly, this is the scoped access settings key; as such, it must be unique and non-empty.
      */
     scope?: Schema$AccessScope;
+  }
+  /**
+   * Service patterns used to allow access.
+   */
+  export interface Schema$ServicePattern {
+    /**
+     * Modifiers to apply to the requests that match the URL pattern.
+     */
+    modifiers?: Schema$Modifier[];
+    /**
+     * URL pattern to allow. Only patterns of ".googleapis.com/x", "www.googleapis.com//x" and "*.appspot.com/x forms are supported, where should be alphanumerical name.
+     */
+    pattern?: string | null;
+    /**
+     * Supported service to allow.
+     */
+    service?: string | null;
   }
   /**
    * `ServicePerimeter` describes a set of Google Cloud resources which can freely import and export data amongst themselves, but not export outside of the `ServicePerimeter`. If a request with a source within this `ServicePerimeter` has a target outside of the `ServicePerimeter`, the request will be blocked. Otherwise the request is allowed. There are two types of Service Perimeter - Regular and Bridge. Regular Service Perimeters cannot overlap, a single Google Cloud project or VPC network can only belong to a single regular Service Perimeter. Service Perimeter Bridges can contain only Google Cloud projects as members, a single Google Cloud project may belong to multiple Service Perimeter Bridges.
@@ -1055,6 +1128,10 @@ export namespace accesscontextmanager_v1 {
    */
   export interface Schema$VpcAccessibleServices {
     /**
+     * Specifies which Google services are allowed to be accessed from VPC networks in the service perimeter.
+     */
+    allowedServicePatterns?: Schema$ServicePattern[];
+    /**
      * The list of APIs usable within the Service Perimeter. Must be empty unless 'enable_restriction' is True. You can specify a list of individual services, as well as include the 'RESTRICTED-SERVICES' value, which automatically includes all of the services protected by the perimeter.
      */
     allowedServices?: string[] | null;
@@ -1062,6 +1139,10 @@ export namespace accesscontextmanager_v1 {
      * Whether to restrict API calls within the Service Perimeter to the list of APIs specified in 'allowed_services'.
      */
     enableRestriction?: boolean | null;
+    /**
+     * Defines the enforcement scopes of service patterns.
+     */
+    servicePatternsEnforcementScopes?: string[] | null;
   }
   /**
    * The originating network source in Google Cloud.
@@ -1204,8 +1285,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1343,8 +1423,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1628,8 +1707,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -1753,8 +1831,7 @@ export namespace accesscontextmanager_v1 {
     list(
       params: Params$Resource$Accesspolicies$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAccessPoliciesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAccessPoliciesResponse>,
       callback: BodyResponseCallback<Schema$ListAccessPoliciesResponse>
     ): void;
     list(
@@ -1928,8 +2005,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2075,8 +2151,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2203,8 +2278,7 @@ export namespace accesscontextmanager_v1 {
     testIamPermissions(
       params: Params$Resource$Accesspolicies$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -2467,8 +2541,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2609,8 +2682,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2874,8 +2946,7 @@ export namespace accesscontextmanager_v1 {
     list(
       params: Params$Resource$Accesspolicies$Accesslevels$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAccessLevelsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAccessLevelsResponse>,
       callback: BodyResponseCallback<Schema$ListAccessLevelsResponse>
     ): void;
     list(
@@ -3050,8 +3121,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3200,8 +3270,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3329,8 +3398,7 @@ export namespace accesscontextmanager_v1 {
     testIamPermissions(
       params: Params$Resource$Accesspolicies$Accesslevels$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -3597,8 +3665,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3741,8 +3808,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4187,8 +4253,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4395,8 +4460,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4553,8 +4617,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4696,8 +4759,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5145,8 +5207,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5294,8 +5355,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5426,8 +5486,7 @@ export namespace accesscontextmanager_v1 {
     testIamPermissions(
       params: Params$Resource$Accesspolicies$Serviceperimeters$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -5684,8 +5743,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5817,8 +5875,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5956,8 +6013,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6082,8 +6138,7 @@ export namespace accesscontextmanager_v1 {
     list(
       params: Params$Resource$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -6254,6 +6309,7 @@ export namespace accesscontextmanager_v1 {
      *         //   "dryRunAccessLevels": [],
      *         //   "groupKey": "my_groupKey",
      *         //   "name": "my_name",
+     *         //   "principal": {},
      *         //   "restrictedClientApplications": [],
      *         //   "scopedAccessSettings": [],
      *         //   "sessionSettings": {}
@@ -6318,8 +6374,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6462,8 +6517,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6553,6 +6607,7 @@ export namespace accesscontextmanager_v1 {
      *   //   "dryRunAccessLevels": [],
      *   //   "groupKey": "my_groupKey",
      *   //   "name": "my_name",
+     *   //   "principal": {},
      *   //   "restrictedClientApplications": [],
      *   //   "scopedAccessSettings": [],
      *   //   "sessionSettings": {}
@@ -6587,8 +6642,7 @@ export namespace accesscontextmanager_v1 {
     get(
       params: Params$Resource$Organizations$Gcpuseraccessbindings$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GcpUserAccessBinding>,
+        MethodOptions | BodyResponseCallback<Schema$GcpUserAccessBinding>,
       callback: BodyResponseCallback<Schema$GcpUserAccessBinding>
     ): void;
     get(
@@ -6855,6 +6909,7 @@ export namespace accesscontextmanager_v1 {
      *         //   "dryRunAccessLevels": [],
      *         //   "groupKey": "my_groupKey",
      *         //   "name": "my_name",
+     *         //   "principal": {},
      *         //   "restrictedClientApplications": [],
      *         //   "scopedAccessSettings": [],
      *         //   "sessionSettings": {}
@@ -6919,8 +6974,7 @@ export namespace accesscontextmanager_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

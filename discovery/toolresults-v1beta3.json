@@ -1464,7 +1464,7 @@
       }
     }
   },
-  "revision": "20260325",
+  "revision": "20260528",
   "rootUrl": "https://toolresults.googleapis.com/",
   "schemas": {
     "ANR": {
@@ -2333,6 +2333,12 @@
     "LauncherActivityNotFound": {
       "description": "Failed to find the launcher activity of an app.",
       "id": "LauncherActivityNotFound",
+      "properties": {},
+      "type": "object"
+    },
+    "LicensingProtectionTermination": {
+      "description": "Licensing protection termination (Pairip) was detected.",
+      "id": "LicensingProtectionTermination",
       "properties": {},
       "type": "object"
     },
@@ -3640,7 +3646,8 @@
             "deviceOutOfMemory",
             "logcatCollectionError",
             "detectedAppSplashScreen",
-            "assetIssue"
+            "assetIssue",
+            "licensingProtectionTermination"
           ],
           "enumDescriptions": [
             "Default unspecified type. Do not use. For versioning only.",
@@ -3675,7 +3682,8 @@
             "Device running out of memory was detected",
             "Problems detected while collecting logcat",
             "Robo detected a splash screen provided by app (vs. Android OS splash screen).",
-            "There was an issue with the assets in this test."
+            "There was an issue with the assets in this test.",
+            "Licensing protection termination (Pairip) was detected."
           ],
           "type": "string"
         },

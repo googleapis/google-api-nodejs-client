@@ -14,27 +14,37 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {agentregistry_v1} from './v1';
 import {agentregistry_v1alpha} from './v1alpha';
 
 export const VERSIONS = {
+  v1: agentregistry_v1.Agentregistry,
   v1alpha: agentregistry_v1alpha.Agentregistry,
 };
 
+export function agentregistry(version: 'v1'): agentregistry_v1.Agentregistry;
+export function agentregistry(
+  options: agentregistry_v1.Options
+): agentregistry_v1.Agentregistry;
 export function agentregistry(
   version: 'v1alpha'
 ): agentregistry_v1alpha.Agentregistry;
 export function agentregistry(
   options: agentregistry_v1alpha.Options
 ): agentregistry_v1alpha.Agentregistry;
-export function agentregistry<T = agentregistry_v1alpha.Agentregistry>(
+export function agentregistry<
+  T = agentregistry_v1.Agentregistry | agentregistry_v1alpha.Agentregistry,
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1alpha' | agentregistry_v1alpha.Options
+  versionOrOptions:
+    'v1' | agentregistry_v1.Options | 'v1alpha' | agentregistry_v1alpha.Options
 ) {
   return getAPI<T>('agentregistry', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {agentregistry_v1};
 export {agentregistry_v1alpha};
 export {
   AuthPlus,

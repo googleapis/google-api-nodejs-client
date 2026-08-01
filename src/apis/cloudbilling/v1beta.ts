@@ -4168,8 +4168,7 @@ export namespace cloudbilling_v1beta {
     generateInsights(
       params: Params$Resource$V1beta$Generateinsights,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GenerateInsightsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GenerateInsightsResponse>,
       callback: BodyResponseCallback<Schema$GenerateInsightsResponse>
     ): void;
     generateInsights(

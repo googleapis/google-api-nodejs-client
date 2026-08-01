@@ -1476,8 +1476,7 @@ export namespace batch_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -1601,8 +1600,7 @@ export namespace batch_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1810,8 +1808,7 @@ export namespace batch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1976,8 +1973,7 @@ export namespace batch_v1 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -2118,8 +2114,7 @@ export namespace batch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2262,8 +2257,7 @@ export namespace batch_v1 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -2632,8 +2626,7 @@ export namespace batch_v1 {
         | BodyResponseCallback<Schema$Task>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Task>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Task> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Task>>
@@ -2950,8 +2943,7 @@ export namespace batch_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3082,8 +3074,7 @@ export namespace batch_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3220,8 +3211,7 @@ export namespace batch_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3346,8 +3336,7 @@ export namespace batch_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -3551,8 +3540,7 @@ export namespace batch_v1 {
     report(
       params: Params$Resource$Projects$Locations$State$Report,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ReportAgentStateResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ReportAgentStateResponse>,
       callback: BodyResponseCallback<Schema$ReportAgentStateResponse>
     ): void;
     report(

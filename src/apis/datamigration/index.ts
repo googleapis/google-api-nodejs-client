@@ -37,10 +37,7 @@ export function datamigration<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | datamigration_v1.Options
-    | 'v1beta1'
-    | datamigration_v1beta1.Options
+    'v1' | datamigration_v1.Options | 'v1beta1' | datamigration_v1beta1.Options
 ) {
   return getAPI<T>('datamigration', versionOrOptions, VERSIONS, this);
 }

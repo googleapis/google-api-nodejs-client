@@ -35,10 +35,7 @@ export function apigateway<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | apigateway_v1.Options
-    | 'v1beta'
-    | apigateway_v1beta.Options
+    'v1' | apigateway_v1.Options | 'v1beta' | apigateway_v1beta.Options
 ) {
   return getAPI<T>('apigateway', versionOrOptions, VERSIONS, this);
 }

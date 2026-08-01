@@ -113,6 +113,7 @@ export namespace health_v4 {
   export class Health {
     context: APIRequestContext;
     projects: Resource$Projects;
+    shl: Resource$Shl;
     users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -122,6 +123,7 @@ export namespace health_v4 {
       };
 
       this.projects = new Resource$Projects(this.context);
+      this.shl = new Resource$Shl(this.context);
       this.users = new Resource$Users(this.context);
     }
   }
@@ -947,7 +949,7 @@ export namespace health_v4 {
      */
     irregularRhythmNotification?: Schema$IrregularRhythmNotification;
     /**
-     * Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type\}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `total-calories` for the `total_calories` field. The `{data_point\}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
+     * Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type\}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The `{data_point\}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
      */
     name?: string | null;
     /**
@@ -1155,7 +1157,7 @@ export namespace health_v4 {
    */
   export interface Schema$Empty {}
   /**
-   * Authorization mechanism for a subscriber endpoint. For all requests sent by the Webhooks service, the JSON payload is cryptographically signed. The signature is delivered in the `X-HEALTHAPI-SIGNATURE` HTTP header. This is an ECDSA (NIST P256) signature of the JSON payload. Clients must verify this signature using Google Health API's public key to confirm the payload was sent by the Health API.
+   * Authorization mechanism for a subscriber endpoint. For all requests sent by the Webhooks service, the JSON payload is cryptographically signed. The signature is delivered in the `GOOGLE-HEALTH-API-SIGNATURE` HTTP header. This is an ECDSA (NIST P256) signature of the JSON payload. Clients must verify this signature using Google Health API's public key to confirm the payload was sent by the Health API.
    */
   export interface Schema$EndpointAuthorization {
     /**
@@ -1172,7 +1174,7 @@ export namespace health_v4 {
    */
   export interface Schema$EnergyQuantity {
     /**
-     * Required. Value representing the energy in kilocalories.
+     * Required. The energy value in kilocalories.
      */
     kcal?: number | null;
     /**
@@ -1420,6 +1422,15 @@ export namespace health_v4 {
     name?: string | null;
   }
   /**
+   * Represents a user in the Google Health API. It matches the parent resource of collections owned by the user. Clients currently do not need to interact with this resource directly.
+   */
+  export interface Schema$GoogleDevicesandservicesHealthV4User {
+    /**
+     * Identifier. The resource name of the user. The `{user\}` ID is a system-generated identifier, as described in Identity.health_user_id. Format: `users/{user\}`
+     */
+    name?: string | null;
+  }
+  /**
    * Log message for a webhook notification sent by the Google Health API to a subscriber's endpoint. Includes the HTTP response received from the endpoint.
    */
   export interface Schema$GoogleDevicesandservicesHealthV4WebhookNotificationCloudLog {
@@ -1555,6 +1566,23 @@ export namespace health_v4 {
      * Required. The time at which the height was recorded.
      */
     sampleTime?: Schema$ObservationSampleTime;
+  }
+  /**
+   * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; \} service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); \} Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); \} Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
+   */
+  export interface Schema$HttpBody {
+    /**
+     * The HTTP Content-Type header value specifying the content type of the body.
+     */
+    contentType?: string | null;
+    /**
+     * The HTTP request/response body as raw binary.
+     */
+    data?: string | null;
+    /**
+     * Application specific response metadata. Must be set in the first response for streaming APIs.
+     */
+    extensions?: Array<{[key: string]: any}> | null;
   }
   /**
    * Represents an HTTP header.
@@ -1737,6 +1765,23 @@ export namespace health_v4 {
     subscriptions?: Schema$Subscription[];
   }
   /**
+   * Represents the POST body contained in a GetShlManifestRequest This message is nested to represent that See https://build.fhir.org/ig/HL7/smart-health-cards-and-links/links-specification.html#smart-health-link-manifest-request
+   */
+  export interface Schema$ManifestParams {
+    /**
+     * Optional. Integer upper bound on the length of embedded payloads
+     */
+    embeddedLengthMax?: number | null;
+    /**
+     * Optional.
+     */
+    passcode?: string | null;
+    /**
+     * Required. A string describing the recipient (e.g.,the name of an organization or person) suitable for display to the Receiving User
+     */
+    recipient?: string | null;
+  }
+  /**
    * Software as Medical Device (SaMD) metadata. Used to construct the Unique Device Identifier (UDI).
    */
   export interface Schema$MedicalDeviceInfo {
@@ -1844,11 +1889,11 @@ export namespace health_v4 {
    */
   export interface Schema$NutrientQuantity {
     /**
-     * Required. Value representing the nutrient.
+     * Required. The nutrient type.
      */
     nutrient?: string | null;
     /**
-     * Required. Value representing the quantity of the nutrient.
+     * Required. The quantity of the nutrient, measured in grams.
      */
     quantity?: Schema$WeightQuantity;
   }
@@ -1866,47 +1911,47 @@ export namespace health_v4 {
     quantity?: Schema$WeightQuantityRollup;
   }
   /**
-   * Holds information about a user logged food. There are two ways of creating a nutrition log based on the food type: 1. Identified food: Using the food field, which is a reference to a Food resource. In this case fields `nutrients`, `energy`, `energy_from_fat`, `total_carbohydrate`, `total_fat`, `food_display_name` will be populated based on the referenced food. 2. Anonymous food: Using the `food_display_name` field and setting the `nutrients`, `energy`, `energy_from_fat`, `total_carbohydrate`, `total_fat` fields manually. The identified food is preferred over the anonymous food. Nutrition logs created from anonymous food are not be editable.
+   * Holds information about food logged by a user. There are two ways of creating a nutrition log based on the food type: 1. Identified food: Using the food field, which is a reference to a Food resource. In this case fields `nutrients`, `energy`, `energy_from_fat`, `total_carbohydrate`, `total_fat`, `food_display_name` will be populated based on the referenced food. 2. Anonymous food: Using the `food_display_name` field and setting the `nutrients`, `energy`, `energy_from_fat`, `total_carbohydrate`, `total_fat` fields manually. The identified food is preferred over the anonymous food. Nutrition logs created from anonymous food are not editable.
    */
   export interface Schema$NutritionLog {
     /**
-     * Optional. Value representing the energy of the nutrition log. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually.
+     * Optional. The total energy of the food, measured in kilocalories (`kcal`).
      */
     energy?: Schema$EnergyQuantity;
     /**
-     * Optional. Value representing the energy from fat of the nutrition log. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually.
+     * Optional. The energy from fat, measured in kilocalories (`kcal`).
      */
     energyFromFat?: Schema$EnergyQuantity;
     /**
-     * Required. Represents the food ID.
+     * Optional. The resource name of the Food item. Required when creating a nutrition log from an identified food. For anonymous food logs, use the `food_display_name` field instead.
      */
     food?: string | null;
     /**
-     * Value representing the display name of the food. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually.
+     * The display name of the food. For identified food logs, this is populated automatically from the referenced food.
      */
     foodDisplayName?: string | null;
     /**
-     * Required. Observed interval.
+     * Required. The time window when the food was logged.
      */
     interval?: Schema$SessionTimeInterval;
     /**
-     * Optional. Value representing the meal type of the nutrition log.
+     * Optional. The meal category. One of `BREAKFAST`, `LUNCH`, `DINNER`, or `SNACK`.
      */
     mealType?: string | null;
     /**
-     * Optional. Value representing the nutrients of the nutrition log.
+     * Optional. An array of individual nutrient values for the nutrition log.
      */
     nutrients?: Schema$NutrientQuantity[];
     /**
-     * Optional. Value representing the nutrition log serving.
+     * Optional. The serving information for the logged food.
      */
     serving?: Schema$Serving;
     /**
-     * Optional. Value representing the total carbohydrate of the nutrition log. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually.
+     * Optional. The total carbohydrate content, measured in grams.
      */
     totalCarbohydrate?: Schema$WeightQuantity;
     /**
-     * Optional. Value representing the total fat of the nutrition log. For nutrition logs created from an identified food, this field will be populated based on the referenced food. For anonymous food, this field will be populated manually.
+     * Optional. The total fat content, measured in grams.
      */
     totalFat?: Schema$WeightQuantity;
   }
@@ -2192,7 +2237,7 @@ export namespace health_v4 {
      */
     dailyVo2Max?: Schema$DailyVO2Max;
     /**
-     * Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type\}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `total-calories` for the `total_calories` field. The `{data_point\}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
+     * Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type\}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The `{data_point\}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
      */
     dataPointName?: string | null;
     /**
@@ -2441,7 +2486,7 @@ export namespace health_v4 {
      */
     range?: Schema$Interval;
     /**
-     * Required. The size of the time window to group data points into before applying the aggregation functions.
+     * Required. The size of the time window to group data points into before applying the aggregation functions. Must be at least 1 second.
      */
     windowSize?: string | null;
   }
@@ -2511,7 +2556,7 @@ export namespace health_v4 {
    */
   export interface Schema$Serving {
     /**
-     * Optional. Amount of food consumed, fractional values are supported.
+     * Optional. The number of servings.
      */
     amount?: number | null;
     /**
@@ -2630,7 +2675,7 @@ export namespace health_v4 {
      */
     interval?: Schema$SessionTimeInterval;
     /**
-     * Optional. Sleep metadata: processing, main, manually edited, stages status.
+     * Optional. Sleep metadata: `processed`, `main_sleep`, `manually_edited`, and `stages_status`.
      */
     metadata?: Schema$SleepMetadata;
     /**
@@ -2663,6 +2708,10 @@ export namespace health_v4 {
      */
     externalId?: string | null;
     /**
+     * Output only. `main_sleep`: the longest sleep session with stages within one day. If no sleep session has stages, then the longest sleep is the `main_sleep`. If there are multiple days of sleep in the response, there is one `main_sleep` per day.
+     */
+    mainSleep?: boolean | null;
+    /**
      * Output only. Some sleeps autodetected by algorithms can be manually edited by users.
      */
     manuallyEdited?: boolean | null;
@@ -2671,7 +2720,7 @@ export namespace health_v4 {
      */
     nap?: boolean | null;
     /**
-     * Output only. Sleep and sleep stages algorithms finished processing.
+     * Output only. Sleep and sleep stages algorithms finished processing. A `true` value indicates whether all data processing for the session is complete. A `false` value means sleep period is detected but sleep stages is still processing.
      */
     processed?: boolean | null;
     /**
@@ -2881,7 +2930,7 @@ export namespace health_v4 {
    */
   export interface Schema$Subscription {
     /**
-     * Optional. Data types subscribed to. A subscriber will only receive notifications for data types that are declared here. A subscription can only subscribe to the data types of the subscriber. Supported data types are: "altitude", "distance", "floors", "sleep", "steps", "weight".
+     * Optional. Data types subscribed to. A subscriber will only receive notifications for data types that are declared here. A subscription can only subscribe to the data types of the subscriber. The values should be in the format "users/{health_user_id\}/dataTypes/{data_type\}" where `{data_type\}` is one of "altitude", "distance", "floors", "sleep", "steps", "weight".
      */
     dataTypes?: string[] | null;
     /**
@@ -3010,7 +3059,7 @@ export namespace health_v4 {
     version?: string | null;
   }
   /**
-   * Represents the result of the rollup of the user's total calories.
+   * Represents the result of the rollup of the user's total calories. Note: Queries for the `total-calories` data type must include a time interval filter (such as `total_calories.interval.start_time` or `total_calories.interval.civil_start_time`). The maximum range is 14 days. Example filter query: `total_calories.interval.start_time \>= "2026-04-20T00:00:00Z" AND total_calories.interval.start_time < "2026-04-21T00:00:00Z"`
    */
   export interface Schema$TotalCaloriesRollupValue {
     /**
@@ -3083,7 +3132,7 @@ export namespace health_v4 {
    */
   export interface Schema$WeightQuantity {
     /**
-     * Required. Value representing the weight in grams.
+     * Required. The weight value in grams.
      */
     grams?: number | null;
     /**
@@ -3164,7 +3213,7 @@ export namespace health_v4 {
      *
      *   // Do the magic
      *   const res = await health.projects.subscribers.create({
-     *     // Required. The parent resource where this subscriber will be created. Format: projects/{project\} Example: projects/my-project-123
+     *     // Required. The parent resource where this subscriber will be created. Format: projects/{project_number\} Example: projects/1234567890
      *     parent: 'projects/my-project',
      *     // Optional. The ID to use for the subscriber, which will become the final component of the subscriber's resource name. This value should be 4-36 characters, and valid characters are /[a-z]([a-z0-9-]{2,34\}[a-z0-9])/.
      *     subscriberId: 'placeholder-value',
@@ -3237,8 +3286,7 @@ export namespace health_v4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3380,8 +3428,7 @@ export namespace health_v4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3502,8 +3549,7 @@ export namespace health_v4 {
     list(
       params: Params$Resource$Projects$Subscribers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSubscribersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSubscribersResponse>,
       callback: BodyResponseCallback<Schema$ListSubscribersResponse>
     ): void;
     list(
@@ -3679,8 +3725,7 @@ export namespace health_v4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3728,7 +3773,7 @@ export namespace health_v4 {
 
   export interface Params$Resource$Projects$Subscribers$Create extends StandardParameters {
     /**
-     * Required. The parent resource where this subscriber will be created. Format: projects/{project\} Example: projects/my-project-123
+     * Required. The parent resource where this subscriber will be created. Format: projects/{project_number\} Example: projects/1234567890
      */
     parent?: string;
     /**
@@ -4024,8 +4069,7 @@ export namespace health_v4 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4102,7 +4146,7 @@ export namespace health_v4 {
      *
      *   // Do the magic
      *   const res = await health.projects.subscribers.subscriptions.list({
-     *     // Optional. A filter to apply to the list of subscriptions. The filter syntax is described in https://google.aip.dev/160. The filter can be applied to the following fields: - `user` - `data_type` The `user` identifier (e.g., `user1` in `users/user1`) refers to the public `healthUserId` Example: user = "users/user1" Example: user = "users/user1" OR user = "users/user2" Example: user = "users/user1" AND (data_type = "sleep" OR data_type = "weight")
+     *     // Optional. A filter to apply to the list of subscriptions. The filter syntax is described in https://google.aip.dev/160. The filter can be applied to the following fields: - `user` - `data_type` The `user` identifier (e.g., `user1` in `users/user1`) refers to the public `health_user_id` Example: user = "users/user1" Example: user = "users/user1" OR user = "users/user2" Example: user = "users/user1" AND (data_type = "sleep" OR data_type = "weight")
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of subscriptions to return. The service may return fewer than this value. If unspecified, at most 50 subscriptions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
@@ -4148,8 +4192,7 @@ export namespace health_v4 {
     list(
       params: Params$Resource$Projects$Subscribers$Subscriptions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSubscriptionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSubscriptionsResponse>,
       callback: BodyResponseCallback<Schema$ListSubscriptionsResponse>
     ): void;
     list(
@@ -4391,7 +4434,7 @@ export namespace health_v4 {
   }
   export interface Params$Resource$Projects$Subscribers$Subscriptions$List extends StandardParameters {
     /**
-     * Optional. A filter to apply to the list of subscriptions. The filter syntax is described in https://google.aip.dev/160. The filter can be applied to the following fields: - `user` - `data_type` The `user` identifier (e.g., `user1` in `users/user1`) refers to the public `healthUserId` Example: user = "users/user1" Example: user = "users/user1" OR user = "users/user2" Example: user = "users/user1" AND (data_type = "sleep" OR data_type = "weight")
+     * Optional. A filter to apply to the list of subscriptions. The filter syntax is described in https://google.aip.dev/160. The filter can be applied to the following fields: - `user` - `data_type` The `user` identifier (e.g., `user1` in `users/user1`) refers to the public `health_user_id` Example: user = "users/user1" Example: user = "users/user1" OR user = "users/user2" Example: user = "users/user1" AND (data_type = "sleep" OR data_type = "weight")
      */
     filter?: string;
     /**
@@ -4421,6 +4464,340 @@ export namespace health_v4 {
      * Request body metadata
      */
     requestBody?: Schema$Subscription;
+  }
+
+  export class Resource$Shl {
+    context: APIRequestContext;
+    m: Resource$Shl$M;
+    r: Resource$Shl$R;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.m = new Resource$Shl$M(this.context);
+      this.r = new Resource$Shl$R(this.context);
+    }
+  }
+
+  export class Resource$Shl$M {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Forward a manifest request for a given SHL
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/health.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const health = google.health('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await health.shl.m.getShlManifest({
+     *     // Required. External ID mapping to a ShlSharedLinkCapabilityToken object See https://docs.google.com/document/d/1Pch20pxJHRbsaMxp0EYgs3ZU0Gu7QTUznk8LhvbQvfY/edit?tab=t.0#heading=h.17wg41voij6q
+     *     externalShlId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "embeddedLengthMax": 0,
+     *       //   "passcode": "my_passcode",
+     *       //   "recipient": "my_recipient"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getShlManifest(
+      params: Params$Resource$Shl$M$Getshlmanifest,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getShlManifest(
+      params?: Params$Resource$Shl$M$Getshlmanifest,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
+    getShlManifest(
+      params: Params$Resource$Shl$M$Getshlmanifest,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getShlManifest(
+      params: Params$Resource$Shl$M$Getshlmanifest,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    getShlManifest(
+      params: Params$Resource$Shl$M$Getshlmanifest,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    getShlManifest(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    getShlManifest(
+      paramsOrCallback?:
+        | Params$Resource$Shl$M$Getshlmanifest
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Shl$M$Getshlmanifest;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Shl$M$Getshlmanifest;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v4/shl/m/{externalShlId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['externalShlId'],
+        pathParams: ['externalShlId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Shl$M$Getshlmanifest extends StandardParameters {
+    /**
+     * Required. External ID mapping to a ShlSharedLinkCapabilityToken object See https://docs.google.com/document/d/1Pch20pxJHRbsaMxp0EYgs3ZU0Gu7QTUznk8LhvbQvfY/edit?tab=t.0#heading=h.17wg41voij6q
+     */
+    externalShlId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ManifestParams;
+  }
+
+  export class Resource$Shl$R {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Forward a resource request for a given SHL
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/health.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const health = google.health('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await health.shl.r.get({
+     *     // Required. External ID mapping to a ShlSharedLinkCapabilityToken object See https://docs.google.com/document/d/1Pch20pxJHRbsaMxp0EYgs3ZU0Gu7QTUznk8LhvbQvfY/edit?tab=t.0#heading=h.17wg41voij6q
+     *     externalShlId: 'placeholder-value',
+     *     // Required. Encoded, encrypted message containing resource access details
+     *     resourceToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Shl$R$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Shl$R$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>;
+    get(
+      params: Params$Resource$Shl$R$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Shl$R$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    get(
+      params: Params$Resource$Shl$R$Get,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Shl$R$Get
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Shl$R$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Shl$R$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://health.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v4/shl/r/{externalShlId}/{resourceToken}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['externalShlId', 'resourceToken'],
+        pathParams: ['externalShlId', 'resourceToken'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Shl$R$Get extends StandardParameters {
+    /**
+     * Required. External ID mapping to a ShlSharedLinkCapabilityToken object See https://docs.google.com/document/d/1Pch20pxJHRbsaMxp0EYgs3ZU0Gu7QTUznk8LhvbQvfY/edit?tab=t.0#heading=h.17wg41voij6q
+     */
+    externalShlId?: string;
+    /**
+     * Required. Encoded, encrypted message containing resource access details
+     */
+    resourceToken?: string;
   }
 
   export class Resource$Users {
@@ -4457,7 +4834,9 @@ export namespace health_v4 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.ecg.readonly',
      *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly',
+     *       'https://www.googleapis.com/auth/googlehealth.irn.readonly',
      *       'https://www.googleapis.com/auth/googlehealth.profile.readonly',
      *       'https://www.googleapis.com/auth/googlehealth.settings.readonly',
      *       'https://www.googleapis.com/auth/googlehealth.sleep.readonly',
@@ -4529,8 +4908,7 @@ export namespace health_v4 {
         | BodyResponseCallback<Schema$Identity>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Identity>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Identity> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Identity>>
@@ -4666,8 +5044,7 @@ export namespace health_v4 {
         | BodyResponseCallback<Schema$IrnProfile>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$IrnProfile>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$IrnProfile> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$IrnProfile>>
@@ -4806,8 +5183,7 @@ export namespace health_v4 {
         | BodyResponseCallback<Schema$Profile>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Profile>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Profile> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Profile>>
@@ -4953,8 +5329,7 @@ export namespace health_v4 {
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Settings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Settings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
@@ -5021,7 +5396,7 @@ export namespace health_v4 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/googlehealth.profile.writeonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5109,8 +5484,7 @@ export namespace health_v4 {
         | BodyResponseCallback<Schema$Profile>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Profile>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Profile> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Profile>>
@@ -5177,7 +5551,7 @@ export namespace health_v4 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: ['https://www.googleapis.com/auth/googlehealth.settings.writeonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5281,8 +5655,7 @@ export namespace health_v4 {
         | BodyResponseCallback<Schema$Settings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Settings>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Settings> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Settings>>
@@ -5420,7 +5793,16 @@ export namespace health_v4 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.location.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.nutrition.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.sleep.writeonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5498,8 +5880,7 @@ export namespace health_v4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5569,7 +5950,16 @@ export namespace health_v4 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.location.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.nutrition.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.sleep.writeonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5686,8 +6076,7 @@ export namespace health_v4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5970,8 +6359,7 @@ export namespace health_v4 {
     exportExerciseTcx(
       params: Params$Resource$Users$Datatypes$Datapoints$Exportexercisetcx,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ExportExerciseTcxResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ExportExerciseTcxResponse>,
       callback: BodyResponseCallback<Schema$ExportExerciseTcxResponse>
     ): void;
     exportExerciseTcx(
@@ -6174,8 +6562,7 @@ export namespace health_v4 {
         | BodyResponseCallback<Schema$DataPoint>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DataPoint>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DataPoint> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DataPoint>>
@@ -6302,8 +6689,7 @@ export namespace health_v4 {
     list(
       params: Params$Resource$Users$Datatypes$Datapoints$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDataPointsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDataPointsResponse>,
       callback: BodyResponseCallback<Schema$ListDataPointsResponse>
     ): void;
     list(
@@ -6393,7 +6779,16 @@ export namespace health_v4 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.location.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.logged_symptoms.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.mindfulness.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.nutrition.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.reproductive_health.writeonly',
+     *       'https://www.googleapis.com/auth/googlehealth.sleep.writeonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6402,7 +6797,7 @@ export namespace health_v4 {
      *
      *   // Do the magic
      *   const res = await health.users.dataTypes.dataPoints.patch({
-     *     // Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type\}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `total-calories` for the `total_calories` field. The `{data_point\}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
+     *     // Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type\}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The `{data_point\}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
      *     name: 'users/my-user/dataTypes/my-dataType/dataPoints/my-dataPoint',
      *
      *     // Request body metadata
@@ -6510,8 +6905,7 @@ export namespace health_v4 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6799,8 +7193,7 @@ export namespace health_v4 {
     rollUp(
       params: Params$Resource$Users$Datatypes$Datapoints$Rollup,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RollUpDataPointsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RollUpDataPointsResponse>,
       callback: BodyResponseCallback<Schema$RollUpDataPointsResponse>
     ): void;
     rollUp(
@@ -6940,7 +7333,7 @@ export namespace health_v4 {
   }
   export interface Params$Resource$Users$Datatypes$Datapoints$Patch extends StandardParameters {
     /**
-     * Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type\}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `total-calories` for the `total_calories` field. The `{data_point\}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
+     * Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of the data types, individual data points do not need to be identified and this field would be empty. Format: `users/{user\}/dataTypes/{data_type\}/dataPoints/{data_point\}` Example: `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user\}` ID is a system-generated identifier, as described in Identity.health_user_id. The `{data_type\}` ID corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The `{data_point\}` ID can be client-provided or system-generated. If client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
      */
     name?: string;
 
@@ -7205,8 +7598,7 @@ export namespace health_v4 {
     list(
       params: Params$Resource$Users$Paireddevices$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPairedDevicesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPairedDevicesResponse>,
       callback: BodyResponseCallback<Schema$ListPairedDevicesResponse>
     ): void;
     list(

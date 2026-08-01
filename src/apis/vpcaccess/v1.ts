@@ -462,8 +462,7 @@ export namespace vpcaccess_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -673,8 +672,7 @@ export namespace vpcaccess_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -814,8 +812,7 @@ export namespace vpcaccess_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -958,8 +955,7 @@ export namespace vpcaccess_v1 {
         | BodyResponseCallback<Schema$Connector>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Connector>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Connector> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Connector>>
@@ -1079,8 +1075,7 @@ export namespace vpcaccess_v1 {
     list(
       params: Params$Resource$Projects$Locations$Connectors$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListConnectorsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListConnectorsResponse>,
       callback: BodyResponseCallback<Schema$ListConnectorsResponse>
     ): void;
     list(
@@ -1260,8 +1255,7 @@ export namespace vpcaccess_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1462,8 +1456,7 @@ export namespace vpcaccess_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1588,8 +1581,7 @@ export namespace vpcaccess_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(

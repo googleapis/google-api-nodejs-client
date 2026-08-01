@@ -35,10 +35,7 @@ export function transcoder<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | transcoder_v1.Options
-    | 'v1beta1'
-    | transcoder_v1beta1.Options
+    'v1' | transcoder_v1.Options | 'v1beta1' | transcoder_v1beta1.Options
 ) {
   return getAPI<T>('transcoder', versionOrOptions, VERSIONS, this);
 }

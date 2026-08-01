@@ -143,7 +143,7 @@ export namespace networkmanagement_v1 {
      */
     projectsMissingPermission?: string[] | null;
     /**
-     * URI of the resource that caused the abort.
+     * URI of the resource that caused the abort. Format: * `projects/{project_id\}/global/networks/{network_id\}` (VPC network) * `projects/{project_id\}/zones/{zone\}/instances/{instance_id\}` (VM instance)
      */
     resourceUri?: string | null;
   }
@@ -173,7 +173,7 @@ export namespace networkmanagement_v1 {
      */
     runtime?: string | null;
     /**
-     * URI of an App Engine version.
+     * URI of the App Engine version. Format: `apps/{app_id\}/services/{service_id\}/versions/{version_id\}`
      */
     uri?: string | null;
   }
@@ -246,7 +246,7 @@ export namespace networkmanagement_v1 {
      */
     location?: string | null;
     /**
-     * URI of a Cloud Function.
+     * URI of the Cloud Function. Format: `projects/{project_id\}/locations/{location\}/functions/{function_id\}`
      */
     uri?: string | null;
     /**
@@ -267,7 +267,7 @@ export namespace networkmanagement_v1 {
      */
     location?: string | null;
     /**
-     * URI of a Cloud Run job.
+     * URI of the Cloud Run job. Format: `projects/{project_id\}/locations/{location\}/jobs/{job_id\}`
      */
     uri?: string | null;
   }
@@ -297,11 +297,11 @@ export namespace networkmanagement_v1 {
      */
     location?: string | null;
     /**
-     * URI of Cloud Run service this revision belongs to.
+     * URI of Cloud Run service this revision belongs to. Format: `projects/{project_id\}/locations/{location\}/services/{service_id\}`
      */
     serviceUri?: string | null;
     /**
-     * URI of a Cloud Run revision.
+     * URI of the Cloud Run revision. Format: `projects/{project_id\}/locations/{location\}/revisions/{revision_id\}`
      */
     uri?: string | null;
   }
@@ -322,7 +322,7 @@ export namespace networkmanagement_v1 {
      */
     internalIp?: string | null;
     /**
-     * URI of a Cloud SQL instance network or empty string if the instance does not have one.
+     * URI of a Cloud SQL instance network or empty string if the instance does not have one. In format "projects/{project\}/global/networks/{network\}".
      */
     networkUri?: string | null;
     /**
@@ -330,7 +330,7 @@ export namespace networkmanagement_v1 {
      */
     region?: string | null;
     /**
-     * URI of a Cloud SQL instance.
+     * URI of a Cloud SQL instance in format "projects/{project\}/instances/{instance\}"
      */
     uri?: string | null;
   }
@@ -416,7 +416,7 @@ export namespace networkmanagement_v1 {
      */
     pscGoogleApiTarget?: string | null;
     /**
-     * URI of the resource that the packet is delivered to.
+     * URI of the resource that the packet is delivered to. For example: * `"projects/{project\}/zones/{zone\}/instances/{instance\}"` * `"projects/{project\}/regions/{region\}/networkEndpointGroups/{network_endpoint_group\}"`
      */
     resourceUri?: string | null;
     /**
@@ -433,7 +433,7 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$DirectVpcEgressConnectionInfo {
     /**
-     * URI of direct access network.
+     * URI of the VPC network for direct egress. Format: `projects/{project_id\}/global/networks/{network_id\}`
      */
     networkUri?: string | null;
     /**
@@ -449,7 +449,7 @@ export namespace networkmanagement_v1 {
      */
     selectedIpRange?: string | null;
     /**
-     * URI of direct access subnetwork.
+     * URI of the subnetwork for direct egress. Format: `projects/{project_id\}/regions/{region\}/subnetworks/{subnetwork_id\}`
      */
     subnetworkUri?: string | null;
   }
@@ -474,7 +474,7 @@ export namespace networkmanagement_v1 {
      */
     region?: string | null;
     /**
-     * URI of the resource that caused the drop.
+     * URI of the resource that caused the drop. Format: * `projects/{project_id\}/global/firewalls/{firewall_id\}` (firewall rule) * `projects/{project_id\}/global/routes/{route_id\}` (route)
      */
     resourceUri?: string | null;
     /**
@@ -569,6 +569,10 @@ export namespace networkmanagement_v1 {
      */
     cloudFunction?: Schema$CloudFunctionEndpoint;
     /**
+     * A [Cloud Run](https://cloud.google.com/run) [job](https://docs.cloud.google.com/run/docs/reference/rest/v2/projects.locations.jobs#Job) URI. Applicable only to source endpoint. The format is: projects/{project\}/locations/{location\}/jobs/{job\}
+     */
+    cloudRunJob?: string | null;
+    /**
      * A [Cloud Run](https://cloud.google.com/run) [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get) Applicable only to source endpoint.
      */
     cloudRunRevision?: Schema$CloudRunRevisionEndpoint;
@@ -576,6 +580,10 @@ export namespace networkmanagement_v1 {
      * A [Cloud SQL](https://cloud.google.com/sql) instance URI.
      */
     cloudSqlInstance?: string | null;
+    /**
+     * A [DMS Private Connection](https://docs.cloud.google.com/database-migration/docs/reference/rest/v1/projects.locations.privateConnections) name format: projects/{project\}/locations/{location\}/privateConnections/{privateConnection\}.
+     */
+    dmsPrivateConnection?: string | null;
     /**
      * A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud load balancer. Forwarding rules are also used for protocol forwarding, Private Service Connect and other network services to provide forwarding information in the control plane. Applicable only to destination endpoint. Format: `projects/{project\}/global/forwardingRules/{id\}` or `projects/{project\}/regions/{region\}/forwardingRules/{id\}`
      */
@@ -646,7 +654,7 @@ export namespace networkmanagement_v1 {
      */
     destinationIp?: string | null;
     /**
-     * URI of the network where this packet is sent to.
+     * URI of the network where this packet is sent to. Format: `projects/{project_id\}/global/networks/{network_id\}`
      */
     destinationNetworkUri?: string | null;
     /**
@@ -666,7 +674,7 @@ export namespace networkmanagement_v1 {
      */
     sourceIp?: string | null;
     /**
-     * URI of the network where this packet originates from.
+     * URI of the network where this packet originates from. Format: `projects/{project_id\}/global/networks/{network_id\}`
      */
     sourceNetworkUri?: string | null;
     /**
@@ -716,7 +724,7 @@ export namespace networkmanagement_v1 {
      */
     firewallRuleType?: string | null;
     /**
-     * The URI of the VPC network that the firewall rule is associated with. This field is not applicable to hierarchical firewall policy rules.
+     * The URI of the VPC network that the firewall rule is associated with in format "projects/{project\}/global/networks/{network\}". This field is not applicable to hierarchical firewall policy rules.
      */
     networkUri?: string | null;
     /**
@@ -728,7 +736,7 @@ export namespace networkmanagement_v1 {
      */
     policyPriority?: number | null;
     /**
-     * The URI of the firewall policy that this rule is associated with. This field is not applicable to VPC firewall rules and implied VPC firewall rules.
+     * The URI of the firewall policy that this rule is associated with. This field is not applicable to VPC firewall rules and implied VPC firewall rules. Format: * `locations/global/firewallPolicies/{policy_id\}` (hierarchical policy) * `projects/{project_id\}/global/firewallPolicies/{policy_id\}` (global network firewall policy) * `projects/{project_id\}/regions/{region\}/firewallPolicies/{policy_id\}` (regional network firewall policy)
      */
     policyUri?: string | null;
     /**
@@ -748,7 +756,7 @@ export namespace networkmanagement_v1 {
      */
     targetType?: string | null;
     /**
-     * The URI of the firewall rule. This field is not applicable to implied VPC firewall rules.
+     * The URI of the firewall rule in format "projects/{project\}/global/firewalls/{firewall\}". This field is not applicable to implied VPC firewall rules.
      */
     uri?: string | null;
   }
@@ -761,7 +769,7 @@ export namespace networkmanagement_v1 {
      */
     ipAddress?: string | null;
     /**
-     * URI of the resource that the packet is forwarded to.
+     * URI of the resource that the packet is forwarded to. Format: * `projects/{project_id\}/global/networks/{network_id\}` (VPC peering network) * `projects/{project_id\}/regions/{region\}/vpnGateways/{vpn_gateway_id\}` (VPN gateway)
      */
     resourceUri?: string | null;
     /**
@@ -778,6 +786,10 @@ export namespace networkmanagement_v1 {
      */
     displayName?: string | null;
     /**
+     * Output only. State of the firewalls allowing health check traffic to the load balancer frontend (Envoy proxies). This is the result of the firewall configuration analysis verifying that health check traffic from required IP ranges to the the Envoy-based load balancer frontend is allowed by firewall rules with the load balancer target.
+     */
+    envoyHealthCheckFirewallsConfigState?: string | null;
+    /**
      * Name of the load balancer the forwarding rule belongs to. Empty for forwarding rules not related to load balancers (like PSC forwarding rules).
      */
     loadBalancerName?: string | null;
@@ -790,7 +802,7 @@ export namespace networkmanagement_v1 {
      */
     matchedProtocol?: string | null;
     /**
-     * Network URI.
+     * URI of a VPC network where the forwarding rule is located in format "projects/{project\}/global/networks/{network\}".
      */
     networkUri?: string | null;
     /**
@@ -798,7 +810,7 @@ export namespace networkmanagement_v1 {
      */
     pscGoogleApiTarget?: string | null;
     /**
-     * URI of the PSC service attachment this forwarding rule targets (if applicable).
+     * URI of the PSC service attachment this forwarding rule targets (if applicable) in format "projects/{project\}/regions/{region\}/serviceAttachments/{service_attachment\}".
      */
     pscServiceAttachmentUri?: string | null;
     /**
@@ -810,7 +822,7 @@ export namespace networkmanagement_v1 {
      */
     target?: string | null;
     /**
-     * URI of the forwarding rule.
+     * URI of the forwarding rule in format "projects/{project\}/global/forwardingRules/{forwarding_rule\}" (global) or "projects/{project\}/regions/{region\}/forwardingRules/{forwarding_rule\}" (regional).
      */
     uri?: string | null;
     /**
@@ -854,11 +866,11 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$GKEMasterInfo {
     /**
-     * URI of a GKE cluster network.
+     * URI of the GKE cluster network. Format: `projects/{project_id\}/global/networks/{network_id\}`
      */
     clusterNetworkUri?: string | null;
     /**
-     * URI of a GKE cluster.
+     * URI of the GKE cluster. Format: * `projects/{project_id\}/locations/{location\}/clusters/{cluster_id\}` (regional cluster) * `projects/{project_id\}/zones/{zone\}/clusters/{cluster_id\}` (zonal cluster)
      */
     clusterUri?: string | null;
     /**
@@ -913,7 +925,7 @@ export namespace networkmanagement_v1 {
      */
     ipAddress?: string | null;
     /**
-     * URI of the network containing the GKE Pod.
+     * URI of the network containing the GKE Pod. Format: `projects/{project_id\}/global/networks/{network_id\}`
      */
     networkUri?: string | null;
     /**
@@ -997,7 +1009,7 @@ export namespace networkmanagement_v1 {
      */
     region?: string | null;
     /**
-     * URI of a hybrid subnet.
+     * URI of the hybrid subnet. Format: `projects/{project_id\}/regions/{region\}/subnetworks/{subnetwork_id\}`
      */
     uri?: string | null;
   }
@@ -1026,11 +1038,11 @@ export namespace networkmanagement_v1 {
      */
     networkTags?: string[] | null;
     /**
-     * URI of a Compute Engine network.
+     * URI of a Compute Engine network in format "projects/{project\}/global/networks/{network\}"
      */
     networkUri?: string | null;
     /**
-     * URI of the PSC network attachment the NIC is attached to (if relevant).
+     * URI of the PSC network attachment the NIC is attached to (if relevant) in format "projects/{project\}/regions/{region\}/networkAttachments/{network_attachment\}"
      */
     pscNetworkAttachmentUri?: string | null;
     /**
@@ -1046,7 +1058,7 @@ export namespace networkmanagement_v1 {
      */
     status?: string | null;
     /**
-     * URI of a Compute Engine instance.
+     * URI of a Compute Engine instance in format "projects/{project\}/zones/{zone\}/instances/{instance\}"
      */
     uri?: string | null;
   }
@@ -1055,7 +1067,7 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$InterconnectAttachmentInfo {
     /**
-     * URI of the Cloud Router to be used for dynamic routing.
+     * URI of the Cloud Router to be used for dynamic routing. Format: `projects/{project_id\}/regions/{region\}/routers/{router_id\}`
      */
     cloudRouterUri?: string | null;
     /**
@@ -1063,7 +1075,7 @@ export namespace networkmanagement_v1 {
      */
     displayName?: string | null;
     /**
-     * URI of the Interconnect where the Interconnect attachment is configured.
+     * URI of the Interconnect. Format: `projects/{project_id\}/global/interconnects/{interconnect_id\}`
      */
     interconnectUri?: string | null;
     /**
@@ -1079,7 +1091,7 @@ export namespace networkmanagement_v1 {
      */
     type?: string | null;
     /**
-     * URI of an Interconnect attachment.
+     * URI of the Interconnect attachment. Format: `projects/{project_id\}/regions/{region\}/interconnectAttachments/{attachment_id\}`
      */
     uri?: string | null;
   }
@@ -1255,7 +1267,7 @@ export namespace networkmanagement_v1 {
      */
     healthCheckFirewallState?: string | null;
     /**
-     * URI of a Compute Engine instance or network endpoint.
+     * URI of the backend instance or network endpoint. Format: * `projects/{project_id\}/zones/{zone\}/instances/{instance_id\}` (instance) * `projects/{project_id\}/zones/{zone\}/networkEndpointGroups/{neg_id\}` (zonal NEG) * `projects/{project_id\}/regions/{region\}/networkEndpointGroups/{neg_id\}` (regional NEG) * `projects/{project_id\}/global/networkEndpointGroups/{neg_id\}` (global NEG)
      */
     uri?: string | null;
   }
@@ -1264,11 +1276,11 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$LoadBalancerBackendInfo {
     /**
-     * URI of the backend bucket this backend targets (if applicable).
+     * URI of the backend bucket this backend targets (if applicable) in format "projects/{project\}/global/backendBuckets/{backend_bucket\}".
      */
     backendBucketUri?: string | null;
     /**
-     * URI of the backend service this backend belongs to (if applicable).
+     * URI of the backend service this backend belongs to (if applicable) in format "projects/{project\}/regions/{region\}/backendServices/{backend_service\}" (regional) or "projects/{project\}/global/backendServices/{backend_service\}" (global).
      */
     backendServiceUri?: string | null;
     /**
@@ -1276,15 +1288,15 @@ export namespace networkmanagement_v1 {
      */
     healthCheckFirewallsConfigState?: string | null;
     /**
-     * URI of the health check attached to this backend (if applicable).
+     * URI of the health check attached to this backend (if applicable). Format: * `projects/{project_id\}/global/healthChecks/{health_check_id\}` * `projects/{project_id\}/regions/{region\}/healthChecks/{health_check_id\}` * `projects/{project_id\}/global/httpHealthChecks/{health_check_id\}` (legacy)
      */
     healthCheckUri?: string | null;
     /**
-     * URI of the instance group this backend belongs to (if applicable).
+     * URI of the instance group this backend belongs to (if applicable) in format "projects/{project\}/zones/{zone\}/instanceGroups/{instance_group\}".
      */
     instanceGroupUri?: string | null;
     /**
-     * URI of the backend instance (if applicable). Populated for instance group backends, and zonal NEG backends.
+     * URI of the backend instance (if applicable) in format "projects/{project\}/zones/{zone\}/instances/{instance\}". Populated for instance group backends, and zonal NEG backends.
      */
     instanceUri?: string | null;
     /**
@@ -1292,7 +1304,7 @@ export namespace networkmanagement_v1 {
      */
     name?: string | null;
     /**
-     * URI of the network endpoint group this backend belongs to (if applicable).
+     * URI of the network endpoint group this backend belongs to (if applicable) Format: * `projects/{project_id\}/zones/{zone\}/networkEndpointGroups/{neg_id\}` (zonal NEG) * `projects/{project_id\}/regions/{region\}/networkEndpointGroups/{neg_id\}` (regional NEG) * `projects/{project_id\}/global/networkEndpointGroups/{neg_id\}` (global NEG)
      */
     networkEndpointGroupUri?: string | null;
     /**
@@ -1300,7 +1312,7 @@ export namespace networkmanagement_v1 {
      */
     pscGoogleApiTarget?: string | null;
     /**
-     * URI of the PSC service attachment this PSC NEG backend targets (if applicable).
+     * URI of the PSC service attachment this PSC NEG backend targets (if applicable) in format "projects/{project\}/regions/{region\}/serviceAttachments/{service_attachment\}".
      */
     pscServiceAttachmentUri?: string | null;
   }
@@ -1317,7 +1329,7 @@ export namespace networkmanagement_v1 {
      */
     backendType?: string | null;
     /**
-     * Backend configuration URI.
+     * URI of the backend associated with the load balancer. Format: * `projects/{project_id\}/regions/{region\}/backendServices/{backend_service_id\}` * `projects/{project_id\}/global/backendServices/{backend_service_id\}` * `projects/{project_id\}/regions/{region\}/targetPools/{target_pool_id\}` * `projects/{project_id\}/zones/{zone\}/targetInstances/{target_instance_id\}`
      */
     backendUri?: string | null;
     /**
@@ -1448,7 +1460,7 @@ export namespace networkmanagement_v1 {
      */
     natGatewayName?: string | null;
     /**
-     * URI of the network where NAT translation takes place.
+     * URI of the VPC network where NAT translation takes place. Format: `projects/{project_id\}/global/networks/{network_id\}`
      */
     networkUri?: string | null;
     /**
@@ -1488,9 +1500,13 @@ export namespace networkmanagement_v1 {
      */
     protocol?: string | null;
     /**
-     * Uri of the Cloud Router. Only valid when type is CLOUD_NAT.
+     * URI of the Cloud Router. Only valid when type is CLOUD_NAT. Format: `projects/{project_id\}/regions/{region\}/routers/{router_id\}`
      */
     routerUri?: string | null;
+    /**
+     * The number of the NAT rule that was matched.
+     */
+    ruleNumber?: number | null;
     /**
      * Type of NAT.
      */
@@ -1509,7 +1525,7 @@ export namespace networkmanagement_v1 {
      */
     matchedIpRange?: string | null;
     /**
-     * URI of the subnet matching the source IP address of the test.
+     * URI of the subnet matching the source IP address of the test in format "projects/{project\}/regions/{region\}/subnetworks/{subnetwork\}"
      */
     matchedSubnetUri?: string | null;
     /**
@@ -1517,7 +1533,7 @@ export namespace networkmanagement_v1 {
      */
     region?: string | null;
     /**
-     * URI of a Compute Engine network.
+     * URI of a Compute Engine network in format "projects/{project\}/global/networks/{network\}"
      */
     uri?: string | null;
   }
@@ -1661,7 +1677,7 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$NgfwPacketInspectionInfo {
     /**
-     * URI of the security profile group associated with this firewall packet inspection.
+     * URI of the security profile group associated with this firewall packet inspection. Format: `organizations/{organization_id\}/locations/global/securityProfileGroups/{security_profile_group_id\}`
      */
     securityProfileGroupUri?: string | null;
   }
@@ -1824,7 +1840,7 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$ProxyConnectionInfo {
     /**
-     * URI of the network where connection is proxied.
+     * URI of the VPC network where connection is proxied. Format: `projects/{project_id\}/global/networks/{network_id\}`
      */
     networkUri?: string | null;
     /**
@@ -1864,7 +1880,7 @@ export namespace networkmanagement_v1 {
      */
     protocol?: string | null;
     /**
-     * Uri of proxy subnet.
+     * URI of the proxy subnet. Format: `projects/{project_id\}/regions/{region\}/subnetworks/{subnetwork_id\}`
      */
     subnetUri?: string | null;
   }
@@ -1944,7 +1960,7 @@ export namespace networkmanagement_v1 {
      */
     displayName?: string | null;
     /**
-     * URI of a Cloud Redis Instance network.
+     * URI of a Cloud Redis Instance network in format "projects/{project\}/global/networks/{network\}".
      */
     networkUri?: string | null;
     /**
@@ -1960,7 +1976,7 @@ export namespace networkmanagement_v1 {
      */
     region?: string | null;
     /**
-     * URI of a Cloud Redis Instance.
+     * URI of a Cloud Redis Instance in format "projects/{project\}/locations/{location\}/instances/{instance\}"
      */
     uri?: string | null;
   }
@@ -1977,7 +1993,7 @@ export namespace networkmanagement_v1 {
      */
     advertisedRouteNextHopUri?: string | null;
     /**
-     * For ADVERTISED dynamic routes, the URI of the Cloud Router that advertised the corresponding IP prefix.
+     * For ADVERTISED dynamic routes, the URI of the Cloud Router that advertised the corresponding IP prefix in format "projects/{project\}/regions/{region\}/routers/{router\}".
      */
     advertisedRouteSourceRouterUri?: string | null;
     /**
@@ -1997,19 +2013,19 @@ export namespace networkmanagement_v1 {
      */
     instanceTags?: string[] | null;
     /**
-     * For PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub, the URI of the corresponding route in NCC Hub's routing table.
+     * For PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub, the URI of the corresponding route in NCC Hub's routing table. Format: `projects/{project_id\}/locations/global/hubs/{hub_id\}/routeTables/{route_table_id\}/routes/{route_id\}`
      */
     nccHubRouteUri?: string | null;
     /**
-     * URI of the NCC Hub the route is advertised by. PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub only.
+     * URI of the NCC Hub the route is advertised by in format "projects/{project\}/locations/global/hubs/{hub\}". PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub only.
      */
     nccHubUri?: string | null;
     /**
-     * URI of the destination NCC Spoke. PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub only.
+     * URI of the destination NCC Spoke in format "projects/{project\}/locations/{location\}/spokes/{spoke\}" (regional) or "projects/{project\}/locations/global/spokes/{spoke\}" (global). PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub only.
      */
     nccSpokeUri?: string | null;
     /**
-     * URI of a VPC network where route is located.
+     * URI of a VPC network where route is located in format "projects/{project\}/global/networks/{network\}".
      */
     networkUri?: string | null;
     /**
@@ -2017,7 +2033,7 @@ export namespace networkmanagement_v1 {
      */
     nextHop?: string | null;
     /**
-     * URI of a VPC network where the next hop resource is located.
+     * URI of a VPC network where the next hop resource is located in format "projects/{project\}/global/networks/{network\}".
      */
     nextHopNetworkUri?: string | null;
     /**
@@ -2033,7 +2049,7 @@ export namespace networkmanagement_v1 {
      */
     originatingRouteDisplayName?: string | null;
     /**
-     * For PEERING_SUBNET and PEERING_STATIC routes, the URI of the originating SUBNET/STATIC route.
+     * For PEERING_SUBNET and PEERING_STATIC routes, the URI of the originating SUBNET/STATIC route. Format: `projects/{project_id\}/global/routes/{route_id\}`
      */
     originatingRouteUri?: string | null;
     /**
@@ -2065,7 +2081,7 @@ export namespace networkmanagement_v1 {
      */
     srcPortRanges?: string[] | null;
     /**
-     * URI of a route. SUBNET, STATIC, PEERING_SUBNET (only for peering network) and POLICY_BASED routes only.
+     * URI of a route in format "projects/{project\}/global/routes/{route\}". SUBNET, STATIC, PEERING_SUBNET (only for peering network) and POLICY_BASED routes only.
      */
     uri?: string | null;
   }
@@ -2083,7 +2099,7 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$ServerlessNegInfo {
     /**
-     * URI of the serverless network endpoint group.
+     * URI of the serverless network endpoint group in format "projects/{project\}/regions/{region\}/networkEndpointGroups/{network_endpoint_group\}".
      */
     negUri?: string | null;
   }
@@ -2397,7 +2413,7 @@ export namespace networkmanagement_v1 {
      */
     location?: string | null;
     /**
-     * URI of a VPC connector.
+     * URI of a VPC connector. Format: `projects/{project_id\}/locations/{location\}/connectors/{connector_id\}`
      */
     uri?: string | null;
   }
@@ -2487,7 +2503,7 @@ export namespace networkmanagement_v1 {
      */
     ipAddress?: string | null;
     /**
-     * URI of a Compute Engine network where the VPN gateway is configured.
+     * URI of the VPC network where the VPN gateway is configured. Format: `projects/{project_id\}/global/networks/{network_id\}`
      */
     networkUri?: string | null;
     /**
@@ -2495,11 +2511,11 @@ export namespace networkmanagement_v1 {
      */
     region?: string | null;
     /**
-     * URI of a VPN gateway.
+     * URI of the VPN gateway. Format: * `projects/{project_id\}/regions/{region\}/vpnGateways/{vpn_gateway_id\}` (HA VPN gateway) * `projects/{project_id\}/regions/{region\}/targetVpnGateways/{target_vpn_gateway_id\}` (Classic VPN gateway)
      */
     uri?: string | null;
     /**
-     * A VPN tunnel that is associated with this VPN gateway. There may be multiple VPN tunnels configured on a VPN gateway, and only the one relevant to the test is displayed.
+     * URI of the VPN tunnel associated with the VPN gateway. There may be multiple VPN tunnels configured on a VPN gateway, and only the one relevant to the test is displayed. Format: `projects/{project_id\}/regions/{region\}/vpnTunnels/{vpn_tunnel_id\}`
      */
     vpnTunnelUri?: string | null;
   }
@@ -2512,7 +2528,7 @@ export namespace networkmanagement_v1 {
      */
     displayName?: string | null;
     /**
-     * URI of a Compute Engine network where the VPN tunnel is configured.
+     * URI of the VPC network where the VPN tunnel is configured. Format: `projects/{project_id\}/global/networks/{network_id\}`
      */
     networkUri?: string | null;
     /**
@@ -2520,7 +2536,7 @@ export namespace networkmanagement_v1 {
      */
     region?: string | null;
     /**
-     * URI of a VPN gateway at remote end of the tunnel.
+     * URI of a VPN gateway at remote end of the tunnel. Format: * `projects/{project_id\}/regions/{region\}/vpnGateways/{vpn_gateway_id\}` (GCP HA VPN gateway) * `projects/{project_id\}/global/peerVpnGateways/{peer_vpn_gateway_id\}` (GCP peer VPN gateway)
      */
     remoteGateway?: string | null;
     /**
@@ -2532,7 +2548,7 @@ export namespace networkmanagement_v1 {
      */
     routingType?: string | null;
     /**
-     * URI of the VPN gateway at local end of the tunnel.
+     * URI of the VPN gateway at local end of the tunnel. Format: * `projects/{project_id\}/regions/{region\}/vpnGateways/{vpn_gateway_id\}` (HA VPN gateway) * `projects/{project_id\}/regions/{region\}/targetVpnGateways/{target_vpn_gateway_id\}` (Classic VPN gateway)
      */
     sourceGateway?: string | null;
     /**
@@ -2540,7 +2556,7 @@ export namespace networkmanagement_v1 {
      */
     sourceGatewayIp?: string | null;
     /**
-     * URI of a VPN tunnel.
+     * URI of the VPN tunnel. Format: `projects/{project_id\}/regions/{region\}/vpnTunnels/{vpn_tunnel_id\}`
      */
     uri?: string | null;
   }
@@ -2726,8 +2742,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -2852,8 +2867,7 @@ export namespace networkmanagement_v1 {
     list(
       params: Params$Resource$Organizations$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -3062,8 +3076,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3197,8 +3210,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3338,8 +3350,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3467,8 +3478,7 @@ export namespace networkmanagement_v1 {
     list(
       params: Params$Resource$Organizations$Locations$Global$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -3710,8 +3720,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3854,8 +3863,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4330,8 +4338,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4561,8 +4568,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -4687,8 +4693,7 @@ export namespace networkmanagement_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -4924,8 +4929,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5068,8 +5072,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5364,8 +5367,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5688,8 +5690,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5835,8 +5836,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5987,8 +5987,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6120,8 +6119,7 @@ export namespace networkmanagement_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Connectivitytests$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -6401,8 +6399,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6536,8 +6533,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6676,8 +6672,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6805,8 +6800,7 @@ export namespace networkmanagement_v1 {
     list(
       params: Params$Resource$Projects$Locations$Global$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -7055,8 +7049,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7203,8 +7196,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7635,8 +7627,7 @@ export namespace networkmanagement_v1 {
     get(
       params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$NetworkMonitoringProvider>,
+        MethodOptions | BodyResponseCallback<Schema$NetworkMonitoringProvider>,
       callback: BodyResponseCallback<Schema$NetworkMonitoringProvider>
     ): void;
     get(
@@ -8057,8 +8048,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -8204,8 +8194,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -8350,8 +8339,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$HttpBody>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HttpBody>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HttpBody> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HttpBody>>
@@ -9055,8 +9043,7 @@ export namespace networkmanagement_v1 {
     list(
       params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Networkpaths$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListNetworkPathsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListNetworkPathsResponse>,
       callback: BodyResponseCallback<Schema$ListNetworkPathsResponse>
     ): void;
     list(
@@ -9260,8 +9247,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$WebPath>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$WebPath>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$WebPath> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$WebPath>>
@@ -9387,8 +9373,7 @@ export namespace networkmanagement_v1 {
     list(
       params: Params$Resource$Projects$Locations$Networkmonitoringproviders$Webpaths$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListWebPathsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListWebPathsResponse>,
       callback: BodyResponseCallback<Schema$ListWebPathsResponse>
     ): void;
     list(
@@ -9605,8 +9590,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9749,8 +9733,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10226,8 +10209,7 @@ export namespace networkmanagement_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

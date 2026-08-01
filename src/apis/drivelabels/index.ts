@@ -35,10 +35,7 @@ export function drivelabels<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v2'
-    | drivelabels_v2.Options
-    | 'v2beta'
-    | drivelabels_v2beta.Options
+    'v2' | drivelabels_v2.Options | 'v2beta' | drivelabels_v2beta.Options
 ) {
   return getAPI<T>('drivelabels', versionOrOptions, VERSIONS, this);
 }

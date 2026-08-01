@@ -186,6 +186,10 @@ export namespace authorizedbuyersmarketplace_v1beta {
      */
     createTime?: string | null;
     /**
+     * Optional. Immutable. The visibility of the combined curation package fee and data segment fees (the total curation fee).
+     */
+    curationFeeVisibility?: string | null;
+    /**
      * Optional. A description of the curated package, provided by the curator.
      */
     description?: string | null;
@@ -201,6 +205,10 @@ export namespace authorizedbuyersmarketplace_v1beta {
      * Optional. The minimum CPM a buyer has to bid to participate in auctions for inventory in this curated package. Can be used to filter the response of the curatedPackages.list method.
      */
     floorPriceCpm?: Schema$Money;
+    /**
+     * Optional. The fee will be charged as a percentage of the impression cost, represented in millipercent. For example, 1% is represented as 1000.
+     */
+    millipercentOfMediaFee?: string | null;
     /**
      * Identifier. The unique resource name for the curated package. Format: `curators/{accountId\}/curatedPackages/{curatedPackageId\}`
      */
@@ -219,7 +227,7 @@ export namespace authorizedbuyersmarketplace_v1beta {
     updateTime?: string | null;
   }
   /**
-   * Defines an identifier for a segment of inventory that can be targeted by curators or media planners in the deals or auction packages UI. Curation of inventory is done by curators on external platforms.
+   * Defines an identifier for a segment of inventory that can be targeted by curators or media planners in the deals or auction packages UI. Curation of inventory is done by curators on external platforms. -- Next ID: 9 --
    */
   export interface Schema$DataSegment {
     /**
@@ -230,6 +238,10 @@ export namespace authorizedbuyersmarketplace_v1beta {
      * Output only. Time the data segment was created.
      */
     createTime?: string | null;
+    /**
+     * Optional. The fee will be charged as a percentage of the impression cost, represented in millipercent. For example, 1% is represented as 1000.
+     */
+    millipercentOfMediaFee?: string | null;
     /**
      * Immutable. Identifier. The unique identifier for the data segment. Account ID corresponds to the account ID that created the segment. v1alpha format: `buyers/{accountId\}/dataSegments/{curatorDataSegmentId\}` v1beta format: `curators/{curatorAccountId\}/dataSegments/{curatorDataSegmentId\}`
      */
@@ -604,10 +616,12 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *   // {
      *   //   "accessSettings": {},
      *   //   "createTime": "my_createTime",
+     *   //   "curationFeeVisibility": "my_curationFeeVisibility",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "feeCpm": {},
      *   //   "floorPriceCpm": {},
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "targeting": {},
@@ -754,10 +768,12 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *         // {
      *         //   "accessSettings": {},
      *         //   "createTime": "my_createTime",
+     *         //   "curationFeeVisibility": "my_curationFeeVisibility",
      *         //   "description": "my_description",
      *         //   "displayName": "my_displayName",
      *         //   "feeCpm": {},
      *         //   "floorPriceCpm": {},
+     *         //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *         //   "name": "my_name",
      *         //   "state": "my_state",
      *         //   "targeting": {},
@@ -772,10 +788,12 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *   // {
      *   //   "accessSettings": {},
      *   //   "createTime": "my_createTime",
+     *   //   "curationFeeVisibility": "my_curationFeeVisibility",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "feeCpm": {},
      *   //   "floorPriceCpm": {},
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "targeting": {},
@@ -928,10 +946,12 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *   // {
      *   //   "accessSettings": {},
      *   //   "createTime": "my_createTime",
+     *   //   "curationFeeVisibility": "my_curationFeeVisibility",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "feeCpm": {},
      *   //   "floorPriceCpm": {},
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "targeting": {},
@@ -1077,10 +1097,12 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *   // {
      *   //   "accessSettings": {},
      *   //   "createTime": "my_createTime",
+     *   //   "curationFeeVisibility": "my_curationFeeVisibility",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "feeCpm": {},
      *   //   "floorPriceCpm": {},
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "targeting": {},
@@ -1376,10 +1398,12 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *       // {
      *       //   "accessSettings": {},
      *       //   "createTime": "my_createTime",
+     *       //   "curationFeeVisibility": "my_curationFeeVisibility",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "feeCpm": {},
      *       //   "floorPriceCpm": {},
+     *       //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *       //   "name": "my_name",
      *       //   "state": "my_state",
      *       //   "targeting": {},
@@ -1393,10 +1417,12 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *   // {
      *   //   "accessSettings": {},
      *   //   "createTime": "my_createTime",
+     *   //   "curationFeeVisibility": "my_curationFeeVisibility",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "feeCpm": {},
      *   //   "floorPriceCpm": {},
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "targeting": {},
@@ -1625,6 +1651,7 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *   // {
      *   //   "cpmFee": {},
      *   //   "createTime": "my_createTime",
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
@@ -1769,6 +1796,7 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *       // {
      *       //   "cpmFee": {},
      *       //   "createTime": "my_createTime",
+     *       //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *       //   "name": "my_name",
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
@@ -1781,6 +1809,7 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *   // {
      *   //   "cpmFee": {},
      *   //   "createTime": "my_createTime",
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
@@ -1932,6 +1961,7 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *   // {
      *   //   "cpmFee": {},
      *   //   "createTime": "my_createTime",
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
@@ -2076,6 +2106,7 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *   // {
      *   //   "cpmFee": {},
      *   //   "createTime": "my_createTime",
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
@@ -2252,8 +2283,7 @@ export namespace authorizedbuyersmarketplace_v1beta {
     list(
       params: Params$Resource$Curators$Datasegments$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDataSegmentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDataSegmentsResponse>,
       callback: BodyResponseCallback<Schema$ListDataSegmentsResponse>
     ): void;
     list(
@@ -2366,6 +2396,7 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *       // {
      *       //   "cpmFee": {},
      *       //   "createTime": "my_createTime",
+     *       //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *       //   "name": "my_name",
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
@@ -2378,6 +2409,7 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *   // {
      *   //   "cpmFee": {},
      *   //   "createTime": "my_createTime",
+     *   //   "millipercentOfMediaFee": "my_millipercentOfMediaFee",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
@@ -2590,7 +2622,7 @@ export namespace authorizedbuyersmarketplace_v1beta {
      *     filter: 'placeholder-value',
      *     // The maximum number of media planners to return. If unspecified, at most 100 media planners will be returned. The maximum value is 500; values above 500 will be coerced to 500.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. This value is received from a previous `ListMediaPlanners` call in ListMediaPlannersResponse.nextPageToken.
+     *     // Optional. A token identifying a page of results the server should return. This value is received from a previous `ListMediaPlanners` call in ListMediaPlannersResponse.nextPageToken.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2630,8 +2662,7 @@ export namespace authorizedbuyersmarketplace_v1beta {
     list(
       params: Params$Resource$Mediaplanners$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListMediaPlannersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListMediaPlannersResponse>,
       callback: BodyResponseCallback<Schema$ListMediaPlannersResponse>
     ): void;
     list(
@@ -2714,7 +2745,7 @@ export namespace authorizedbuyersmarketplace_v1beta {
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return. This value is received from a previous `ListMediaPlanners` call in ListMediaPlannersResponse.nextPageToken.
+     * Optional. A token identifying a page of results the server should return. This value is received from a previous `ListMediaPlanners` call in ListMediaPlannersResponse.nextPageToken.
      */
     pageToken?: string;
   }

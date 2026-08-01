@@ -4459,8 +4459,7 @@ export namespace dataflow_v1b3 {
     deleteSnapshots(
       params: Params$Resource$Projects$Deletesnapshots,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
       callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
     ): void;
     deleteSnapshots(
@@ -4612,8 +4611,7 @@ export namespace dataflow_v1b3 {
     workerMessages(
       params: Params$Resource$Projects$Workermessages,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
       callback: BodyResponseCallback<Schema$SendWorkerMessagesResponse>
     ): void;
     workerMessages(
@@ -5035,8 +5033,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -5209,8 +5206,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -5356,8 +5352,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$JobMetrics>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$JobMetrics>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$JobMetrics> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$JobMetrics>>
@@ -5671,8 +5666,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Snapshot>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Snapshot>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Snapshot> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
@@ -5880,8 +5874,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -6179,8 +6172,7 @@ export namespace dataflow_v1b3 {
     getConfig(
       params: Params$Resource$Projects$Jobs$Debug$Getconfig,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GetDebugConfigResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GetDebugConfigResponse>,
       callback: BodyResponseCallback<Schema$GetDebugConfigResponse>
     ): void;
     getConfig(
@@ -6335,8 +6327,7 @@ export namespace dataflow_v1b3 {
     sendCapture(
       params: Params$Resource$Projects$Jobs$Debug$Sendcapture,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SendDebugCaptureResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SendDebugCaptureResponse>,
       callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>
     ): void;
     sendCapture(
@@ -6533,8 +6524,7 @@ export namespace dataflow_v1b3 {
     list(
       params: Params$Resource$Projects$Jobs$Messages$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListJobMessagesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListJobMessagesResponse>,
       callback: BodyResponseCallback<Schema$ListJobMessagesResponse>
     ): void;
     list(
@@ -6734,8 +6724,7 @@ export namespace dataflow_v1b3 {
     lease(
       params: Params$Resource$Projects$Jobs$Workitems$Lease,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LeaseWorkItemResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LeaseWorkItemResponse>,
       callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>
     ): void;
     lease(
@@ -7097,8 +7086,7 @@ export namespace dataflow_v1b3 {
     workerMessages(
       params: Params$Resource$Projects$Locations$Workermessages,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
       callback: BodyResponseCallback<Schema$SendWorkerMessagesResponse>
     ): void;
     workerMessages(
@@ -7275,8 +7263,7 @@ export namespace dataflow_v1b3 {
     launch(
       params: Params$Resource$Projects$Locations$Flextemplates$Launch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LaunchFlexTemplateResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LaunchFlexTemplateResponse>,
       callback: BodyResponseCallback<Schema$LaunchFlexTemplateResponse>
     ): void;
     launch(
@@ -7546,8 +7533,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -7719,8 +7705,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -8018,8 +8003,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$JobMetrics>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$JobMetrics>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$JobMetrics> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$JobMetrics>>
@@ -8335,8 +8319,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Snapshot>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Snapshot>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Snapshot> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
@@ -8545,8 +8528,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -8842,8 +8824,7 @@ export namespace dataflow_v1b3 {
     getConfig(
       params: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GetDebugConfigResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GetDebugConfigResponse>,
       callback: BodyResponseCallback<Schema$GetDebugConfigResponse>
     ): void;
     getConfig(
@@ -9162,8 +9143,7 @@ export namespace dataflow_v1b3 {
     sendCapture(
       params: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SendDebugCaptureResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SendDebugCaptureResponse>,
       callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>
     ): void;
     sendCapture(
@@ -9388,8 +9368,7 @@ export namespace dataflow_v1b3 {
     list(
       params: Params$Resource$Projects$Locations$Jobs$Messages$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListJobMessagesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListJobMessagesResponse>,
       callback: BodyResponseCallback<Schema$ListJobMessagesResponse>
     ): void;
     list(
@@ -9576,8 +9555,7 @@ export namespace dataflow_v1b3 {
     list(
       params: Params$Resource$Projects$Locations$Jobs$Snapshots$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSnapshotsResponse>,
       callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
     ): void;
     list(
@@ -9757,8 +9735,7 @@ export namespace dataflow_v1b3 {
     getExecutionDetails(
       params: Params$Resource$Projects$Locations$Jobs$Stages$Getexecutiondetails,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$StageExecutionDetails>,
+        MethodOptions | BodyResponseCallback<Schema$StageExecutionDetails>,
       callback: BodyResponseCallback<Schema$StageExecutionDetails>
     ): void;
     getExecutionDetails(
@@ -9964,8 +9941,7 @@ export namespace dataflow_v1b3 {
     lease(
       params: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LeaseWorkItemResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LeaseWorkItemResponse>,
       callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>
     ): void;
     lease(
@@ -10319,8 +10295,7 @@ export namespace dataflow_v1b3 {
     delete(
       params: Params$Resource$Projects$Locations$Snapshots$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DeleteSnapshotResponse>,
       callback: BodyResponseCallback<Schema$DeleteSnapshotResponse>
     ): void;
     delete(
@@ -10492,8 +10467,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Snapshot>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Snapshot>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Snapshot> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
@@ -10618,8 +10592,7 @@ export namespace dataflow_v1b3 {
     list(
       params: Params$Resource$Projects$Locations$Snapshots$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSnapshotsResponse>,
       callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
     ): void;
     list(
@@ -10870,8 +10843,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -11163,8 +11135,7 @@ export namespace dataflow_v1b3 {
     launch(
       params: Params$Resource$Projects$Locations$Templates$Launch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LaunchTemplateResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LaunchTemplateResponse>,
       callback: BodyResponseCallback<Schema$LaunchTemplateResponse>
     ): void;
     launch(
@@ -11408,8 +11379,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Snapshot>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Snapshot>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Snapshot> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Snapshot>>
@@ -11533,8 +11503,7 @@ export namespace dataflow_v1b3 {
     list(
       params: Params$Resource$Projects$Snapshots$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListSnapshotsResponse>,
       callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
     ): void;
     list(
@@ -11769,8 +11738,7 @@ export namespace dataflow_v1b3 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -12062,8 +12030,7 @@ export namespace dataflow_v1b3 {
     launch(
       params: Params$Resource$Projects$Templates$Launch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$LaunchTemplateResponse>,
+        MethodOptions | BodyResponseCallback<Schema$LaunchTemplateResponse>,
       callback: BodyResponseCallback<Schema$LaunchTemplateResponse>
     ): void;
     launch(

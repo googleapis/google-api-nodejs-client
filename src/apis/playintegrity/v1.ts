@@ -542,8 +542,7 @@ export namespace playintegrity_v1 {
     write(
       params: Params$Resource$Devicerecall$Write,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$WriteDeviceRecallResponse>,
+        MethodOptions | BodyResponseCallback<Schema$WriteDeviceRecallResponse>,
       callback: BodyResponseCallback<Schema$WriteDeviceRecallResponse>
     ): void;
     write(

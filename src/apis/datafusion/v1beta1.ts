@@ -971,8 +971,7 @@ export namespace datafusion_v1beta1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -1096,8 +1095,7 @@ export namespace datafusion_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1239,8 +1237,7 @@ export namespace datafusion_v1beta1 {
     removeIamPolicy(
       params: Params$Resource$Projects$Locations$Removeiampolicy,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RemoveIamPolicyResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RemoveIamPolicyResponse>,
       callback: BodyResponseCallback<Schema$RemoveIamPolicyResponse>
     ): void;
     removeIamPolicy(
@@ -1506,8 +1503,7 @@ export namespace datafusion_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1649,8 +1645,7 @@ export namespace datafusion_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1822,8 +1817,7 @@ export namespace datafusion_v1beta1 {
         | BodyResponseCallback<Schema$Instance>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Instance>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Instance> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Instance>>
@@ -1961,8 +1955,7 @@ export namespace datafusion_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2091,8 +2084,7 @@ export namespace datafusion_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Instances$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListInstancesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListInstancesResponse>,
       callback: BodyResponseCallback<Schema$ListInstancesResponse>
     ): void;
     list(
@@ -2301,8 +2293,7 @@ export namespace datafusion_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2445,8 +2436,7 @@ export namespace datafusion_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2594,8 +2584,7 @@ export namespace datafusion_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2722,8 +2711,7 @@ export namespace datafusion_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Instances$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -2892,8 +2880,7 @@ export namespace datafusion_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3177,8 +3164,7 @@ export namespace datafusion_v1beta1 {
         | BodyResponseCallback<Schema$DnsPeering>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DnsPeering>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$DnsPeering> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$DnsPeering>>
@@ -3313,8 +3299,7 @@ export namespace datafusion_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3435,8 +3420,7 @@ export namespace datafusion_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Instances$Dnspeerings$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDnsPeeringsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDnsPeeringsResponse>,
       callback: BodyResponseCallback<Schema$ListDnsPeeringsResponse>
     ): void;
     list(
@@ -3643,8 +3627,7 @@ export namespace datafusion_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3770,8 +3753,7 @@ export namespace datafusion_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Instances$Namespaces$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListNamespacesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListNamespacesResponse>,
       callback: BodyResponseCallback<Schema$ListNamespacesResponse>
     ): void;
     list(
@@ -3942,8 +3924,7 @@ export namespace datafusion_v1beta1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4074,8 +4055,7 @@ export namespace datafusion_v1beta1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Instances$Namespaces$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -4296,8 +4276,7 @@ export namespace datafusion_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4431,8 +4410,7 @@ export namespace datafusion_v1beta1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4569,8 +4547,7 @@ export namespace datafusion_v1beta1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4695,8 +4672,7 @@ export namespace datafusion_v1beta1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(

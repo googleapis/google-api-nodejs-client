@@ -3115,7 +3115,7 @@
       }
     }
   },
-  "revision": "20260319",
+  "revision": "20260602",
   "rootUrl": "https://adexchangebuyer.googleapis.com/",
   "schemas": {
     "AbsoluteDateRange": {
@@ -3514,7 +3514,15 @@
     "CompleteSetupRequest": {
       "description": "Request message for indicating that the proposal's setup step is complete.",
       "id": "CompleteSetupRequest",
-      "properties": {},
+      "properties": {
+        "externalDealIds": {
+          "description": "The external deal ids of the deals to mark as setup completed. If empty, all the deals in the proposal will be marked as setup completed.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "ContactInformation": {

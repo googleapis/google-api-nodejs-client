@@ -37,10 +37,7 @@ export function cloudidentity<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | cloudidentity_v1.Options
-    | 'v1beta1'
-    | cloudidentity_v1beta1.Options
+    'v1' | cloudidentity_v1.Options | 'v1beta1' | cloudidentity_v1beta1.Options
 ) {
   return getAPI<T>('cloudidentity', versionOrOptions, VERSIONS, this);
 }

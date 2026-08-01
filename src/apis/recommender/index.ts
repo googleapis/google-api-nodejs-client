@@ -37,10 +37,7 @@ export function recommender<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | recommender_v1.Options
-    | 'v1beta1'
-    | recommender_v1beta1.Options
+    'v1' | recommender_v1.Options | 'v1beta1' | recommender_v1beta1.Options
 ) {
   return getAPI<T>('recommender', versionOrOptions, VERSIONS, this);
 }

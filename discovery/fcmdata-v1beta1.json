@@ -154,7 +154,7 @@
       }
     }
   },
-  "revision": "20240605",
+  "revision": "20260726",
   "rootUrl": "https://fcmdata.googleapis.com/",
   "schemas": {
     "GoogleFirebaseFcmDataV1beta1AndroidDeliveryData": {
@@ -228,7 +228,7 @@
           "type": "number"
         },
         "delayedMessageThrottled": {
-          "description": "The percentage of accepted messages that were delayed due to message throttling, such as [collapsible message throttling](https://firebase.google.com/docs/cloud-messaging/concept-options#collapsible_throttling) or [maximum message rate throttling](https://firebase.google.com/docs/cloud-messaging/concept-options#device_throttling).",
+          "description": "The percentage of accepted messages that were delayed due to message throttling, such as [collapsible message throttling](https://firebase.google.com/docs/cloud-messaging/concept-options#collapsible_throttling).",
           "format": "float",
           "type": "number"
         },

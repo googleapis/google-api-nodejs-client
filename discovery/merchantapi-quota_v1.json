@@ -220,7 +220,7 @@
       }
     }
   },
-  "revision": "20260223",
+  "revision": "20260713",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AccountLimit": {
@@ -469,11 +469,13 @@
           "description": "The resource that changed, in this case it will always be `Product`.",
           "enum": [
             "RESOURCE_UNSPECIFIED",
-            "PRODUCT"
+            "PRODUCT",
+            "ACCOUNT_SERVICE"
           ],
           "enumDescriptions": [
             "Unspecified resource",
-            "Resource type : product"
+            "Resource type : product",
+            "Account service"
           ],
           "type": "string"
         }
@@ -509,7 +511,7 @@
           "type": "string"
         },
         "quotaUsage": {
-          "description": "Output only. The current quota usage, meaning the number of calls already made on a given day to the methods in the group. The daily quota limits reset at at 12:00 PM midday UTC.",
+          "description": "Output only. The current quota usage, meaning the number of calls already made on a given day to the methods in the group. The daily quota limits reset at 12:00 PM midday UTC.",
           "format": "int64",
           "readOnly": true,
           "type": "string"

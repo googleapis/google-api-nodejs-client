@@ -914,7 +914,7 @@ export namespace chromepolicy_v1 {
    */
   export interface Schema$Proto2FileDescriptorProto {
     /**
-     * copybara:strip_begin TODO(b/297898292) Deprecate and remove this field in favor of enums. copybara:strip_end
+     * copybara:strip_begin TODO(b/538805613) Deprecate and remove this field in favor of enums. copybara:strip_end
      */
     editionDeprecated?: string | null;
     enumType?: Schema$Proto2EnumDescriptorProto[];

@@ -300,8 +300,7 @@ export namespace chromewebstore_v1_1 {
         | BodyResponseCallback<Schema$Item>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Item>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Item> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Item>>
@@ -450,8 +449,7 @@ export namespace chromewebstore_v1_1 {
         | BodyResponseCallback<Schema$Item>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Item>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Item> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Item>>
@@ -610,8 +608,7 @@ export namespace chromewebstore_v1_1 {
         | BodyResponseCallback<Schema$Item2>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Item2>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Item2> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Item2>>
@@ -768,8 +765,7 @@ export namespace chromewebstore_v1_1 {
         | BodyResponseCallback<Schema$Item>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Item>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Item> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Item>>

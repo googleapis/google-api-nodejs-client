@@ -485,13 +485,15 @@
                 "freeBusyReader",
                 "owner",
                 "reader",
-                "writer"
+                "writer",
+                "writerWithoutPrivateAccess"
               ],
               "enumDescriptions": [
                 "The user can read free/busy information.",
                 "The user can read and modify events and access control lists.",
                 "The user can read events that are not private.",
-                "The user can read and modify events."
+                "The user can read and modify events.",
+                "The user can read and modify events that aren't private. The user can read free/busy information about private events. The user can't modify private events."
               ],
               "location": "query",
               "type": "string"
@@ -511,8 +513,13 @@
               "location": "query",
               "type": "boolean"
             },
+            "showOwnOrganizationOnly": {
+              "description": "Whether to show only entries for calendars from the organization. This parameter is only applicable to Google Workspace users. Optional. The default is False.",
+              "location": "query",
+              "type": "boolean"
+            },
             "syncToken": {
-              "description": "Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False.\nTo ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken.\nIf the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.\nLearn more about incremental synchronization.\nOptional. The default is to return all entries.",
+              "description": "Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False.\nTo ensure client state consistency minAccessRole and showOwnOrganizationOnly query parameters cannot be specified together with nextSyncToken.\nIf the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.\nLearn more about incremental synchronization.\nOptional. The default is to return all entries.",
               "location": "query",
               "type": "string"
             }
@@ -613,13 +620,15 @@
                 "freeBusyReader",
                 "owner",
                 "reader",
-                "writer"
+                "writer",
+                "writerWithoutPrivateAccess"
               ],
               "enumDescriptions": [
                 "The user can read free/busy information.",
                 "The user can read and modify events and access control lists.",
                 "The user can read events that are not private.",
-                "The user can read and modify events."
+                "The user can read and modify events.",
+                "The user can read and modify events that aren't private. The user can read free/busy information about private events. The user can't modify private events."
               ],
               "location": "query",
               "type": "string"
@@ -639,8 +648,13 @@
               "location": "query",
               "type": "boolean"
             },
+            "showOwnOrganizationOnly": {
+              "description": "Whether to show only entries for calendars from the organization. This parameter is only applicable to Google Workspace users. Optional. The default is False.",
+              "location": "query",
+              "type": "boolean"
+            },
             "syncToken": {
-              "description": "Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False.\nTo ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken.\nIf the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.\nLearn more about incremental synchronization.\nOptional. The default is to return all entries.",
+              "description": "Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False.\nTo ensure client state consistency minAccessRole and showOwnOrganizationOnly query parameters cannot be specified together with nextSyncToken.\nIf the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.\nLearn more about incremental synchronization.\nOptional. The default is to return all entries.",
               "location": "query",
               "type": "string"
             }
@@ -777,6 +791,41 @@
           "scopes": [
             "https://www.googleapis.com/auth/calendar",
             "https://www.googleapis.com/auth/calendar.app.created",
+            "https://www.googleapis.com/auth/calendar.calendars"
+          ]
+        },
+        "transferOwnership": {
+          "description": "Transfers a secondary calendar between users within a Google Workspace organization. Requires user authentication with Manage Calendars administrator privilege, and one of the following authorization scopes: \n- https://www.googleapis.com/auth/calendar \n- https://www.googleapis.com/auth/calendar.calendars In the request, set useAdminAccess to true. The secondary calendar must be active to be transferred. Transferring disabled or deleted calendars isn't supported.",
+          "httpMethod": "POST",
+          "id": "calendar.calendars.transferOwnership",
+          "parameterOrder": [
+            "calendarId",
+            "newDataOwner",
+            "useAdminAccess"
+          ],
+          "parameters": {
+            "calendarId": {
+              "description": "Calendar identifier. To retrieve calendar IDs, call the calendarList.list method.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "newDataOwner": {
+              "description": "The email address of a user who will become the data owner of the calendar.",
+              "location": "query",
+              "required": true,
+              "type": "string"
+            },
+            "useAdminAccess": {
+              "description": "When true, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the Manage Calendars privilege. This method currently only supports admin access, thus only true is accepted for this field.",
+              "location": "query",
+              "required": true,
+              "type": "boolean"
+            }
+          },
+          "path": "calendars/{calendarId}/transferOwnership",
+          "scopes": [
+            "https://www.googleapis.com/auth/calendar",
             "https://www.googleapis.com/auth/calendar.calendars"
           ]
         },
@@ -993,6 +1042,14 @@
               "minimum": "0",
               "type": "integer"
             },
+            "eventLabelVersion": {
+              "description": "Version number of the event label feature supported by the API client. Version 0 assumes no event label support and processes the colorId field for color management. Version 1 enables support for event labels, and processes the eventLabelId in the event's body. In this case, the colorId field is ignored. The default is 0.",
+              "format": "int32",
+              "location": "query",
+              "maximum": "1",
+              "minimum": "0",
+              "type": "integer"
+            },
             "supportsAttachments": {
               "description": "Whether API client performing operation supports event attachments. Optional. The default is False.",
               "location": "query",
@@ -1029,6 +1086,14 @@
             },
             "conferenceDataVersion": {
               "description": "Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.",
+              "format": "int32",
+              "location": "query",
+              "maximum": "1",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "eventLabelVersion": {
+              "description": "Version number of the event label feature supported by the API client. Version 0 assumes no event label support and processes the colorId field for color management. Version 1 enables support for event labels, and processes the eventLabelId in the event's body. In this case, the colorId field is ignored. The default is 0.",
               "format": "int32",
               "location": "query",
               "maximum": "1",
@@ -1422,6 +1487,14 @@
               "required": true,
               "type": "string"
             },
+            "eventLabelVersion": {
+              "description": "Version number of the event label feature supported by the API client. Version 0 assumes no event label support and processes the colorId field for color management. Version 1 enables support for event labels, and processes the eventLabelId in the event's body. In this case, the colorId field is ignored. The default is 0.",
+              "format": "int32",
+              "location": "query",
+              "maximum": "1",
+              "minimum": "0",
+              "type": "integer"
+            },
             "maxAttendees": {
               "description": "The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.",
               "format": "int32",
@@ -1555,6 +1628,14 @@
               "location": "path",
               "required": true,
               "type": "string"
+            },
+            "eventLabelVersion": {
+              "description": "Version number of the event label feature supported by the API client. Version 0 assumes no event label support and processes the colorId field for color management. Version 1 enables support for event labels, and processes the eventLabelId in the event's body. In this case, the colorId field is ignored. The default is 0.",
+              "format": "int32",
+              "location": "query",
+              "maximum": "1",
+              "minimum": "0",
+              "type": "integer"
             },
             "maxAttendees": {
               "description": "The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.",
@@ -1890,7 +1971,7 @@
       }
     }
   },
-  "revision": "20260517",
+  "revision": "20260708",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -1945,7 +2026,7 @@
               "calendar.acl.insert"
             ]
           },
-          "description": "The role assigned to the scope. Possible values are:  \n- \"none\" - Provides no access. \n- \"freeBusyReader\" - Provides read access to free/busy information. \n- \"reader\" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writer\" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. Provides read access to the calendar's ACLs. \n- \"owner\" - Provides manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to modify access levels of other users.\nImportant: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.",
+          "description": "The role assigned to the scope. Possible values are:  \n- \"none\" - Provides no access. \n- \"freeBusyReader\" - Provides read access to free/busy information. \n- \"reader\" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writerWithoutPrivateAccess\" - Provides read and write access to the calendar. Private events will appear to users with writerWithoutPrivateAccess access, but event details will be hidden. \n- \"writer\" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. Provides read access to the calendar's ACLs. \n- \"owner\" - Provides manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to modify access levels of other users.\nImportant: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.",
           "type": "string"
         },
         "scope": {
@@ -2009,6 +2090,10 @@
           "description": "Type of the resource (\"calendar#calendar\").",
           "type": "string"
         },
+        "labelProperties": {
+          "$ref": "LabelProperties",
+          "description": "Label properties defined on this calendar. If specified, overwrites the existing label properties. If not specified, the label properties remain unchanged."
+        },
         "location": {
           "description": "Geographic location of the calendar as free-form text. Optional.",
           "type": "string"
@@ -2063,7 +2148,7 @@
       "id": "CalendarListEntry",
       "properties": {
         "accessRole": {
-          "description": "The effective access role that the authenticated user has on the calendar. Read-only. Possible values are:  \n- \"freeBusyReader\" - Provides read access to free/busy information. \n- \"reader\" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writer\" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. \n- \"owner\" - Provides manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to see and modify access levels of other users.\nImportant: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.",
+          "description": "The effective access role that the authenticated user has on the calendar. Read-only. Possible values are:  \n- \"freeBusyReader\" - Provides read access to free/busy information. \n- \"reader\" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writerWithoutPrivateAccess\" - Provides read and write access to the calendar. Private events will appear to users with writerWithoutPrivateAccess access, but event details will be hidden. \n- \"writer\" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. \n- \"owner\" - Provides manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to see and modify access levels of other users.\nImportant: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.",
           "type": "string"
         },
         "autoAcceptInvitations": {
@@ -2565,6 +2650,10 @@
           "description": "ETag of the resource.",
           "type": "string"
         },
+        "eventLabelId": {
+          "description": "The ID of the event label assigned to the event. Optional. This refers to the ID of an entry in the labelProperties.eventLabels property of the calendar (see the Calendars.get endpoint.)\nThis property supersedes the index-based colorId property. To set or change this property, you need to specify eventLabelVersion=1 in the parameters of the insert, import, update, and patch methods.\nSetting an empty string, or not setting this field at all, will remove the existing label from the event.",
+          "type": "string"
+        },
         "eventType": {
           "default": "default",
           "description": "Specific type of the event. This cannot be modified after the event is created. Possible values are:  \n- \"birthday\" - A special all-day event with an annual recurrence. \n- \"default\" - A regular event or not further specified. \n- \"focusTime\" - A focus-time event. \n- \"fromGmail\" - An event from Gmail. This type of event cannot be created. \n- \"outOfOffice\" - An out-of-office event. \n- \"workingLocation\" - A working location event.",
@@ -2804,7 +2893,7 @@
         },
         "visibility": {
           "default": "default",
-          "description": "Visibility of the event. Optional. Possible values are:  \n- \"default\" - Uses the default visibility for events on the calendar. This is the default value. \n- \"public\" - The event is public and event details are visible to all readers of the calendar. \n- \"private\" - The event is private and only event attendees may view event details. \n- \"confidential\" - The event is private. This value is provided for compatibility reasons.",
+          "description": "Visibility of the event. Optional. Possible values are:  \n- \"default\" - Uses the default visibility for events on the calendar. This is the default value. \n- \"public\" - The event is public and event details are visible to all readers of the calendar. \n- \"private\" - The event is private and only event attendees may view event details. \n- \"confidential\" - The event is private. This value is provided for compatibility reasons.  \nNote on recurring events: Changing the visibility of a single instance of a recurring event can affect all instances of the series. If the new setting is more restrictive (e.g. from public to private), it is applied to all instances. If the new setting is less restrictive (e.g. from private to public), the change is ignored. To make a recurring event less restrictive, you must update the parent recurring event.",
           "type": "string"
         },
         "workingLocationProperties": {
@@ -2955,6 +3044,20 @@
     },
     "EventLabel": {
       "id": "EventLabel",
+      "properties": {
+        "backgroundColor": {
+          "description": "Background color of the label in hexadecimal format, such as \"#039be5\". Events with this label are displayed in this color. Required.",
+          "type": "string"
+        },
+        "id": {
+          "description": "The ID of the label. Optional when inserting a new label. If not provided, a unique ID will be generated. Required when updating a label.\nIf provided, the ID must be unique within the calendar and follow UUID format.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the label. Optional.\nIf provided this must have at most 50 characters.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "EventOutOfOfficeProperties": {
@@ -3040,7 +3143,7 @@
       "id": "Events",
       "properties": {
         "accessRole": {
-          "description": "The user's access role for this calendar. Read-only. Possible values are:  \n- \"none\" - The user has no access. \n- \"freeBusyReader\" - The user has read access to free/busy information. \n- \"reader\" - The user has read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writer\" - The user has read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. \n- \"owner\" - The user has manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to see and modify access levels of other users.\nImportant: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.",
+          "description": "The user's access role for this calendar. Read-only. Possible values are:  \n- \"none\" - The user has no access. \n- \"freeBusyReader\" - The user has read access to free/busy information. \n- \"reader\" - The user has read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writerWithoutPrivateAccess\" - The user has read and write access to the calendar. Private events will appear to users with writerWithoutPrivateAccess access, but event details will be hidden. \n- \"writer\" - The user has read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. \n- \"owner\" - The user has manager access to the calendar. This role has all of the permissions of the writer role with the additional ability to see and modify access levels of other users.\nImportant: the owner role is different from the calendar's data owner. A calendar has a single data owner, but can have multiple users with owner role.",
           "type": "string"
         },
         "defaultReminders": {
@@ -3221,6 +3324,15 @@
     },
     "LabelProperties": {
       "id": "LabelProperties",
+      "properties": {
+        "eventLabels": {
+          "description": "Event labels defined on this calendar. If this is present when updating the calendar, it will replace the existing event labels.\nExtend the list to add a new event label, and remove entities from the list to delete a label from calendar.\nEach calendar can have a maximum of 200 labels.",
+          "items": {
+            "$ref": "EventLabel"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "Setting": {

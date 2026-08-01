@@ -700,8 +700,7 @@ export namespace firestore_v1beta2 {
     exportDocuments(
       params: Params$Resource$Projects$Databases$Exportdocuments,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     exportDocuments(
@@ -857,8 +856,7 @@ export namespace firestore_v1beta2 {
     importDocuments(
       params: Params$Resource$Projects$Databases$Importdocuments,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     importDocuments(
@@ -1369,8 +1367,7 @@ export namespace firestore_v1beta2 {
     patch(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -1575,8 +1572,7 @@ export namespace firestore_v1beta2 {
     create(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -1737,8 +1733,7 @@ export namespace firestore_v1beta2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>

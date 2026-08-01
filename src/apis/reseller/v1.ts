@@ -517,8 +517,7 @@ export namespace reseller_v1 {
         | BodyResponseCallback<Schema$Customer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Customer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Customer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Customer>>
@@ -679,8 +678,7 @@ export namespace reseller_v1 {
         | BodyResponseCallback<Schema$Customer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Customer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Customer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Customer>>
@@ -841,8 +839,7 @@ export namespace reseller_v1 {
         | BodyResponseCallback<Schema$Customer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Customer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Customer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Customer>>
@@ -1003,8 +1000,7 @@ export namespace reseller_v1 {
         | BodyResponseCallback<Schema$Customer>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Customer>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Customer> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Customer>>
@@ -1315,8 +1311,7 @@ export namespace reseller_v1 {
     register(
       params: Params$Resource$Resellernotify$Register,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ResellernotifyResource>,
+        MethodOptions | BodyResponseCallback<Schema$ResellernotifyResource>,
       callback: BodyResponseCallback<Schema$ResellernotifyResource>
     ): void;
     register(
@@ -1455,8 +1450,7 @@ export namespace reseller_v1 {
     unregister(
       params: Params$Resource$Resellernotify$Unregister,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ResellernotifyResource>,
+        MethodOptions | BodyResponseCallback<Schema$ResellernotifyResource>,
       callback: BodyResponseCallback<Schema$ResellernotifyResource>
     ): void;
     unregister(

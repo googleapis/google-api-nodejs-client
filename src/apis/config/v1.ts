@@ -223,7 +223,7 @@ export namespace config_v1 {
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * Optional. User-defined location of Cloud Build logs and artifacts in Google Cloud Storage. Format: `gs://{bucket\}/{folder\}` A default bucket will be bootstrapped if the field is not set or empty. Default bucket format: `gs://--blueprint-config` Constraints: - The bucket needs to be in the same project as the deployment - The path cannot be within the path of `gcs_source` - The field cannot be updated, including changing its presence
+     * User-defined location of Cloud Build logs and artifacts in Google Cloud Storage. Format: `gs://{bucket\}/{folder\}` A default bucket will be bootstrapped if the field is not set or empty. Default bucket format: `gs://--blueprint-config` Constraints: - The bucket needs to be in the same project as the deployment - The path cannot be within the path of `gcs_source` - The field cannot be updated, including changing its presence
      */
     artifactsGcsBucket?: string | null;
     /**
@@ -303,7 +303,7 @@ export namespace config_v1 {
      */
     tfVersion?: string | null;
     /**
-     * Optional. The user-specified Terraform version constraint. Example: "=1.3.10".
+     * The user-specified Terraform version constraint. Example: "=1.3.10".
      */
     tfVersionConstraint?: string | null;
     /**
@@ -311,7 +311,7 @@ export namespace config_v1 {
      */
     updateTime?: string | null;
     /**
-     * Optional. The user-specified Cloud Build worker pool resource in which the Cloud Build job will execute. Format: `projects/{project\}/locations/{location\}/workerPools/{workerPoolId\}`. If this field is unspecified, the default Cloud Build worker pool will be used.
+     * The user-specified Cloud Build worker pool resource in which the Cloud Build job will execute. Format: `projects/{project\}/locations/{location\}/workerPools/{workerPoolId\}`. If this field is unspecified, the default Cloud Build worker pool will be used.
      */
     workerPool?: string | null;
   }
@@ -393,6 +393,10 @@ export namespace config_v1 {
      * Outputs and artifacts from applying a deployment.
      */
     applyResults?: Schema$ApplyResults;
+    /**
+     * Output only. Indicating if early apply results are available.
+     */
+    applyResultsAvailable?: boolean | null;
     /**
      * Output only. Cloud Build instance UUID associated with this operation.
      */
@@ -585,15 +589,15 @@ export namespace config_v1 {
    */
   export interface Schema$GitSource {
     /**
-     * Optional. Subdirectory inside the repository. Example: 'staging/my-package'
+     * Subdirectory inside the repository. Example: 'staging/my-package'
      */
     directory?: string | null;
     /**
-     * Optional. Git reference (e.g. branch or tag).
+     * Git reference (e.g. branch or tag).
      */
     ref?: string | null;
     /**
-     * Optional. Repository URL. Example: 'https://github.com/kubernetes/examples.git'
+     * Repository URL. Example: 'https://github.com/kubernetes/examples.git'
      */
     repo?: string | null;
   }
@@ -944,7 +948,7 @@ export namespace config_v1 {
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * Optional. User-defined location of Cloud Build logs, artifacts, and in Google Cloud Storage. Format: `gs://{bucket\}/{folder\}` A default bucket will be bootstrapped if the field is not set or empty Default Bucket Format: `gs://--blueprint-config` Constraints: - The bucket needs to be in the same project as the deployment - The path cannot be within the path of `gcs_source` If omitted and deployment resource ref provided has artifacts_gcs_bucket defined, that artifact bucket is used.
+     * User-defined location of Cloud Build logs, artifacts, and in Google Cloud Storage. Format: `gs://{bucket\}/{folder\}` A default bucket will be bootstrapped if the field is not set or empty Default Bucket Format: `gs://--blueprint-config` Constraints: - The bucket needs to be in the same project as the deployment - The path cannot be within the path of `gcs_source` If omitted and deployment resource ref provided has artifacts_gcs_bucket defined, that artifact bucket is used.
      */
     artifactsGcsBucket?: string | null;
     /**
@@ -1016,11 +1020,11 @@ export namespace config_v1 {
      */
     tfVersion?: string | null;
     /**
-     * Optional. The user-specified Terraform version constraint. Example: "=1.3.10".
+     * The user-specified Terraform version constraint. Example: "=1.3.10".
      */
     tfVersionConstraint?: string | null;
     /**
-     * Optional. The user-specified Worker Pool resource in which the Cloud Build job will execute. Format projects/{project\}/locations/{location\}/workerPools/{workerPoolId\} If this field is unspecified, the default Cloud Build worker pool will be used. If omitted and deployment resource ref provided has worker_pool defined, that worker pool is used.
+     * The user-specified Worker Pool resource in which the Cloud Build job will execute. Format projects/{project\}/locations/{location\}/workerPools/{workerPoolId\} If this field is unspecified, the default Cloud Build worker pool will be used. If omitted and deployment resource ref provided has worker_pool defined, that worker pool is used.
      */
     workerPool?: string | null;
   }
@@ -1656,8 +1660,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -1920,8 +1923,7 @@ export namespace config_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -2095,8 +2097,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2318,8 +2319,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2466,8 +2466,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2614,8 +2613,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3075,8 +3073,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3222,8 +3219,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3459,8 +3455,7 @@ export namespace config_v1 {
     get(
       params: Params$Resource$Projects$Locations$Deploymentgroups$Revisions$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeploymentGroupRevision>,
+        MethodOptions | BodyResponseCallback<Schema$DeploymentGroupRevision>,
       callback: BodyResponseCallback<Schema$DeploymentGroupRevision>
     ): void;
     get(
@@ -3840,8 +3835,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3987,8 +3981,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4127,8 +4120,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4270,8 +4262,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$LockInfo>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LockInfo>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$LockInfo> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$LockInfo>>
@@ -4417,8 +4408,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Statefile>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Statefile>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Statefile> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Statefile>>
@@ -4578,8 +4568,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Deployment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Deployment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Deployment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Deployment>>
@@ -4718,8 +4707,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4865,8 +4853,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Statefile>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Statefile>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Statefile> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Statefile>>
@@ -4995,8 +4982,7 @@ export namespace config_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deployments$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDeploymentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDeploymentsResponse>,
       callback: BodyResponseCallback<Schema$ListDeploymentsResponse>
     ): void;
     list(
@@ -5162,8 +5148,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5335,8 +5320,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5482,8 +5466,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5611,8 +5594,7 @@ export namespace config_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Deployments$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -5783,8 +5765,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6116,8 +6097,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Statefile>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Statefile>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Statefile> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Statefile>>
@@ -6274,8 +6254,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Revision>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Revision>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Revision> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Revision>>
@@ -6402,8 +6381,7 @@ export namespace config_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deployments$Revisions$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListRevisionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListRevisionsResponse>,
       callback: BodyResponseCallback<Schema$ListRevisionsResponse>
     ): void;
     list(
@@ -6612,8 +6590,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Resource>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Resource>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Resource> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Resource>>
@@ -6741,8 +6718,7 @@ export namespace config_v1 {
     list(
       params: Params$Resource$Projects$Locations$Deployments$Revisions$Resources$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListResourcesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListResourcesResponse>,
       callback: BodyResponseCallback<Schema$ListResourcesResponse>
     ): void;
     list(
@@ -6939,8 +6915,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7071,8 +7046,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7209,8 +7183,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7335,8 +7308,7 @@ export namespace config_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -7587,8 +7559,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7730,8 +7701,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8031,8 +8001,7 @@ export namespace config_v1 {
         | BodyResponseCallback<Schema$Preview>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Preview>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Preview> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Preview>>
@@ -8157,8 +8126,7 @@ export namespace config_v1 {
     list(
       params: Params$Resource$Projects$Locations$Previews$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPreviewsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPreviewsResponse>,
       callback: BodyResponseCallback<Schema$ListPreviewsResponse>
     ): void;
     list(
@@ -8845,8 +8813,7 @@ export namespace config_v1 {
     list(
       params: Params$Resource$Projects$Locations$Previews$Resourcedrifts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListResourceDriftsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListResourceDriftsResponse>,
       callback: BodyResponseCallback<Schema$ListResourceDriftsResponse>
     ): void;
     list(

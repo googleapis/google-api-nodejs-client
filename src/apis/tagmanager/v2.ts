@@ -265,10 +265,6 @@ export namespace tagmanager_v2 {
      */
     workspaceId?: string | null;
   }
-  export interface Schema$CompilerErrorLite {
-    errorMessage?: string | null;
-    errorType?: string | null;
-  }
   /**
    * Represents a predicate.
    */
@@ -583,10 +579,6 @@ export namespace tagmanager_v2 {
      * Compiler errors or not.
      */
     compilerError?: boolean | null;
-    /**
-     * Compiler error details.
-     */
-    compilerErrors?: Schema$CompilerErrorLite[];
     /**
      * The container version created.
      */
@@ -1219,10 +1211,6 @@ export namespace tagmanager_v2 {
      */
     compilerError?: boolean | null;
     /**
-     * Compiler error details.
-     */
-    compilerErrors?: Schema$CompilerErrorLite[];
-    /**
      * The container version created.
      */
     containerVersion?: Schema$ContainerVersion;
@@ -1235,10 +1223,6 @@ export namespace tagmanager_v2 {
      * Were there compiler errors or not.
      */
     compilerError?: boolean | null;
-    /**
-     * Compiler error details.
-     */
-    compilerErrors?: Schema$CompilerErrorLite[];
     /**
      * The quick previewed container version.
      */
@@ -2050,8 +2034,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -2175,8 +2158,7 @@ export namespace tagmanager_v2 {
     list(
       params: Params$Resource$Accounts$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAccountsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAccountsResponse>,
       callback: BodyResponseCallback<Schema$ListAccountsResponse>
     ): void;
     list(
@@ -2353,8 +2335,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Account>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Account>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Account> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Account>>
@@ -2564,8 +2545,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Container>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Container>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Container> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Container>>
@@ -2733,8 +2713,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Container>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Container>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Container> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Container>>
@@ -3015,8 +2994,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Container>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Container>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Container> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Container>>
@@ -3140,8 +3118,7 @@ export namespace tagmanager_v2 {
     list(
       params: Params$Resource$Accounts$Containers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListContainersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListContainersResponse>,
       callback: BodyResponseCallback<Schema$ListContainersResponse>
     ): void;
     list(
@@ -3314,8 +3291,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Container>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Container>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Container> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Container>>
@@ -3474,8 +3450,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Container>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Container>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Container> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Container>>
@@ -3790,8 +3765,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Container>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Container>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Container> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Container>>
@@ -4327,8 +4301,7 @@ export namespace tagmanager_v2 {
     list(
       params: Params$Resource$Accounts$Containers$Destinations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDestinationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDestinationsResponse>,
       callback: BodyResponseCallback<Schema$ListDestinationsResponse>
     ): void;
     list(
@@ -4963,8 +4936,7 @@ export namespace tagmanager_v2 {
     list(
       params: Params$Resource$Accounts$Containers$Environments$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListEnvironmentsResponse>,
       callback: BodyResponseCallback<Schema$ListEnvironmentsResponse>
     ): void;
     list(
@@ -5942,7 +5914,6 @@ export namespace tagmanager_v2 {
      *   // Example response
      *   // {
      *   //   "compilerError": false,
-     *   //   "compilerErrors": [],
      *   //   "containerVersion": {}
      *   // }
      * }
@@ -6702,8 +6673,7 @@ export namespace tagmanager_v2 {
     latest(
       params: Params$Resource$Accounts$Containers$Version_headers$Latest,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ContainerVersionHeader>,
+        MethodOptions | BodyResponseCallback<Schema$ContainerVersionHeader>,
       callback: BodyResponseCallback<Schema$ContainerVersionHeader>
     ): void;
     latest(
@@ -7252,8 +7222,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Workspace>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Workspace>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Workspace> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Workspace>>
@@ -7351,7 +7320,6 @@ export namespace tagmanager_v2 {
      *   // Example response
      *   // {
      *   //   "compilerError": false,
-     *   //   "compilerErrors": [],
      *   //   "containerVersion": {},
      *   //   "newWorkspacePath": "my_newWorkspacePath",
      *   //   "syncStatus": {}
@@ -7688,8 +7656,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Workspace>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Workspace>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Workspace> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Workspace>>
@@ -7811,8 +7778,7 @@ export namespace tagmanager_v2 {
     getStatus(
       params: Params$Resource$Accounts$Containers$Workspaces$Getstatus,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GetWorkspaceStatusResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GetWorkspaceStatusResponse>,
       callback: BodyResponseCallback<Schema$GetWorkspaceStatusResponse>
     ): void;
     getStatus(
@@ -7958,8 +7924,7 @@ export namespace tagmanager_v2 {
     list(
       params: Params$Resource$Accounts$Containers$Workspaces$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListWorkspacesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListWorkspacesResponse>,
       callback: BodyResponseCallback<Schema$ListWorkspacesResponse>
     ): void;
     list(
@@ -8068,7 +8033,6 @@ export namespace tagmanager_v2 {
      *   // Example response
      *   // {
      *   //   "compilerError": false,
-     *   //   "compilerErrors": [],
      *   //   "containerVersion": {},
      *   //   "syncStatus": {}
      *   // }
@@ -8102,8 +8066,7 @@ export namespace tagmanager_v2 {
     quick_preview(
       params: Params$Resource$Accounts$Containers$Workspaces$Quick_preview,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$QuickPreviewResponse>,
+        MethodOptions | BodyResponseCallback<Schema$QuickPreviewResponse>,
       callback: BodyResponseCallback<Schema$QuickPreviewResponse>
     ): void;
     quick_preview(
@@ -8396,8 +8359,7 @@ export namespace tagmanager_v2 {
     sync(
       params: Params$Resource$Accounts$Containers$Workspaces$Sync,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SyncWorkspaceResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SyncWorkspaceResponse>,
       callback: BodyResponseCallback<Schema$SyncWorkspaceResponse>
     ): void;
     sync(
@@ -8577,8 +8539,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Workspace>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Workspace>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Workspace> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Workspace>>
@@ -9488,8 +9449,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Client>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Client> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
@@ -9772,8 +9732,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Client>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Client> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
@@ -10039,8 +9998,7 @@ export namespace tagmanager_v2 {
     revert(
       params: Params$Resource$Accounts$Containers$Workspaces$Clients$Revert,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RevertClientResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RevertClientResponse>,
       callback: BodyResponseCallback<Schema$RevertClientResponse>
     ): void;
     revert(
@@ -10231,8 +10189,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Client>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Client>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Client> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Client>>
@@ -10460,8 +10417,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Folder>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Folder>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Folder> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Folder>>
@@ -10886,8 +10842,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Folder>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Folder>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Folder> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Folder>>
@@ -11308,8 +11263,7 @@ export namespace tagmanager_v2 {
     revert(
       params: Params$Resource$Accounts$Containers$Workspaces$Folders$Revert,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RevertFolderResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RevertFolderResponse>,
       callback: BodyResponseCallback<Schema$RevertFolderResponse>
     ): void;
     revert(
@@ -11492,8 +11446,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Folder>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Folder>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Folder> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Folder>>
@@ -11755,8 +11708,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$GtagConfig>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GtagConfig>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$GtagConfig> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$GtagConfig>>
@@ -12036,8 +11988,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$GtagConfig>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GtagConfig>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$GtagConfig> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$GtagConfig>>
@@ -12163,8 +12114,7 @@ export namespace tagmanager_v2 {
     list(
       params: Params$Resource$Accounts$Containers$Workspaces$Gtag_config$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListGtagConfigResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListGtagConfigResponse>,
       callback: BodyResponseCallback<Schema$ListGtagConfigResponse>
     ): void;
     list(
@@ -12348,8 +12298,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$GtagConfig>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GtagConfig>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$GtagConfig> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$GtagConfig>>
@@ -12599,8 +12548,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Tag>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Tag>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Tag> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Tag>>
@@ -12895,8 +12843,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Tag>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Tag>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Tag> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Tag>>
@@ -13374,8 +13321,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Tag>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Tag>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Tag> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Tag>>
@@ -14173,8 +14119,7 @@ export namespace tagmanager_v2 {
     list(
       params: Params$Resource$Accounts$Containers$Workspaces$Templates$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTemplatesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTemplatesResponse>,
       callback: BodyResponseCallback<Schema$ListTemplatesResponse>
     ): void;
     list(
@@ -14315,8 +14260,7 @@ export namespace tagmanager_v2 {
     revert(
       params: Params$Resource$Accounts$Containers$Workspaces$Templates$Revert,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RevertTemplateResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RevertTemplateResponse>,
       callback: BodyResponseCallback<Schema$RevertTemplateResponse>
     ): void;
     revert(
@@ -15787,8 +15731,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Trigger>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Trigger>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Trigger> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Trigger>>
@@ -16090,8 +16033,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Trigger>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Trigger>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Trigger> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Trigger>>
@@ -16217,8 +16159,7 @@ export namespace tagmanager_v2 {
     list(
       params: Params$Resource$Accounts$Containers$Workspaces$Triggers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTriggersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTriggersResponse>,
       callback: BodyResponseCallback<Schema$ListTriggersResponse>
     ): void;
     list(
@@ -16359,8 +16300,7 @@ export namespace tagmanager_v2 {
     revert(
       params: Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RevertTriggerResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RevertTriggerResponse>,
       callback: BodyResponseCallback<Schema$RevertTriggerResponse>
     ): void;
     revert(
@@ -16589,8 +16529,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Trigger>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Trigger>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Trigger> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Trigger>>
@@ -16834,8 +16773,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Variable>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Variable>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Variable> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Variable>>
@@ -17122,8 +17060,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Variable>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Variable>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Variable> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Variable>>
@@ -17249,8 +17186,7 @@ export namespace tagmanager_v2 {
     list(
       params: Params$Resource$Accounts$Containers$Workspaces$Variables$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListVariablesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListVariablesResponse>,
       callback: BodyResponseCallback<Schema$ListVariablesResponse>
     ): void;
     list(
@@ -17391,8 +17327,7 @@ export namespace tagmanager_v2 {
     revert(
       params: Params$Resource$Accounts$Containers$Workspaces$Variables$Revert,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RevertVariableResponse>,
+        MethodOptions | BodyResponseCallback<Schema$RevertVariableResponse>,
       callback: BodyResponseCallback<Schema$RevertVariableResponse>
     ): void;
     revert(
@@ -17591,8 +17526,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Variable>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Variable>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Variable> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Variable>>
@@ -17826,8 +17760,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Zone>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Zone>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Zone> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Zone>>
@@ -18109,8 +18042,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Zone>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Zone>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Zone> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Zone>>
@@ -18563,8 +18495,7 @@ export namespace tagmanager_v2 {
         | BodyResponseCallback<Schema$Zone>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Zone>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Zone> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Zone>>

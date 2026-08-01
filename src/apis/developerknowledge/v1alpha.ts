@@ -134,6 +134,31 @@ export namespace developerknowledge_v1alpha {
      * Contains the text of the answer.
      */
     answerText?: string | null;
+    /**
+     * Output only. Contains citations for the answer.
+     */
+    citations?: Schema$AnswerCitation[];
+    /**
+     * Output only. Contains references for the answer.
+     */
+    references?: Schema$AnswerReference[];
+  }
+  /**
+   * Citation info for a segment.
+   */
+  export interface Schema$AnswerCitation {
+    /**
+     * Output only. Indicates the end of the segment, measured in bytes (UTF-8 unicode), exclusive. If there are multi-byte characters, such as non-ASCII characters, the index measurement is longer than the string length.
+     */
+    endIndex?: number | null;
+    /**
+     * Output only. Contains citation sources for the attributed segment.
+     */
+    sources?: Schema$CitationSource[];
+    /**
+     * Output only. Indicates the start of the segment, measured in bytes (UTF-8 unicode), inclusive. If there are multi-byte characters, such as non-ASCII characters, the index measurement is longer than the string length.
+     */
+    startIndex?: number | null;
   }
   /**
    * Request message for DeveloperKnowledge.AnswerQuery.
@@ -154,6 +179,15 @@ export namespace developerknowledge_v1alpha {
     answer?: Schema$Answer;
   }
   /**
+   * Represents a reference to a source.
+   */
+  export interface Schema$AnswerReference {
+    /**
+     * Output only. The reference document.
+     */
+    documentReference?: Schema$DocumentReference;
+  }
+  /**
    * Response message for DeveloperKnowledge.BatchGetDocuments.
    */
   export interface Schema$BatchGetDocumentsResponse {
@@ -163,6 +197,15 @@ export namespace developerknowledge_v1alpha {
     documents?: Schema$Document[];
   }
   /**
+   * Citation source.
+   */
+  export interface Schema$CitationSource {
+    /**
+     * Output only. Contains the index of the Answer.AnswerReference in the `references` repeated field.
+     */
+    referenceIndex?: number | null;
+  }
+  /**
    * A Document represents a piece of content from the Developer Knowledge corpus.
    */
   export interface Schema$Document {
@@ -170,6 +213,10 @@ export namespace developerknowledge_v1alpha {
      * Output only. Contains the full content of the document in Markdown format.
      */
     content?: string | null;
+    /**
+     * Output only. The length of the `content` field in bytes.
+     */
+    contentLengthBytes?: number | null;
     /**
      * Output only. Specifies the data source of the document. Example data source: `firebase.google.com`
      */
@@ -219,6 +266,15 @@ export namespace developerknowledge_v1alpha {
      * Output only. Contains the resource name of the document this chunk is from. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
      */
     parent?: string | null;
+  }
+  /**
+   * Represents a reference to a document.
+   */
+  export interface Schema$DocumentReference {
+    /**
+     * Output only. Contains the document chunk. The `document_chunk.id` field is not set and will be empty.
+     */
+    documentChunk?: Schema$DocumentChunk;
   }
   /**
    * Response message for DeveloperKnowledge.SearchDocumentChunks.
@@ -271,7 +327,7 @@ export namespace developerknowledge_v1alpha {
      *
      *   // Do the magic
      *   const res = await developerknowledge.documents.batchGet({
-     *     // Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` If you are changing the batch size, consider the value of `maxConcurrentGCSFetches` constant in the service implementation: http://cs///depot/google3/devrel/boq/developerknowledge/service/developerknowledge.go
+     *     // Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
      *     names: 'placeholder-value',
      *     // Optional. Specifies the DocumentView of the document. If unspecified, DeveloperKnowledge.BatchGetDocuments defaults to `DOCUMENT_VIEW_CONTENT`.
      *     view: 'placeholder-value',
@@ -312,8 +368,7 @@ export namespace developerknowledge_v1alpha {
     batchGet(
       params: Params$Resource$Documents$Batchget,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetDocumentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchGetDocumentsResponse>,
       callback: BodyResponseCallback<Schema$BatchGetDocumentsResponse>
     ): void;
     batchGet(
@@ -425,6 +480,7 @@ export namespace developerknowledge_v1alpha {
      *   // Example response
      *   // {
      *   //   "content": "my_content",
+     *   //   "contentLengthBytes": 0,
      *   //   "dataSource": "my_dataSource",
      *   //   "description": "my_description",
      *   //   "name": "my_name",
@@ -481,8 +537,7 @@ export namespace developerknowledge_v1alpha {
         | BodyResponseCallback<Schema$Document>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Document>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Document> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Document>>
@@ -558,9 +613,9 @@ export namespace developerknowledge_v1alpha {
      *
      *   // Do the magic
      *   const res = await developerknowledge.documents.searchDocumentChunks({
-     *     // Optional. Applies a strict filter to the search results. The expression supports a subset of the syntax described at https://google.aip.dev/160. While `SearchDocumentChunks` returns DocumentChunks, the filter is applied to `DocumentChunk.document` fields. Supported fields for filtering: * `data_source` (STRING): The source of the document, e.g. `docs.cloud.google.com`. See https://developers.google.com/knowledge/reference/corpus-reference for the complete list of data sources in the corpus. * `update_time` (TIMESTAMP): The timestamp of when the document was last meaningfully updated. A meaningful update is one that changes document's markdown content or metadata. * `uri` (STRING): The document URI, e.g. `https://docs.cloud.google.com/bigquery/docs/tables`. STRING fields support `=` (equals) and `!=` (not equals) operators for **exact match** on the whole string. Partial match, prefix match, and regexp match are not supported. TIMESTAMP fields support `=`, `<`, `<=`, `\>`, and `\>=` operators. Timestamps must be in RFC-3339 format, e.g., `"2025-01-01T00:00:00Z"`. You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical operators. `OR` has higher precedence than `AND`. Use parentheses for explicit precedence grouping. Examples: * `data_source = "docs.cloud.google.com" OR data_source = "firebase.google.com"` * `data_source != "firebase.google.com"` * `update_time < "2024-01-01T00:00:00Z"` * `update_time \>= "2025-01-22T00:00:00Z" AND (data_source = "developer.chrome.com" OR data_source = "web.dev")` * `uri = "https://docs.cloud.google.com/release-notes"` The `filter` string must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
+     *     // Optional. Applies a strict filter to the search results. The expression supports a subset of the syntax described at https://google.aip.dev/160. While `SearchDocumentChunks` returns DocumentChunks, the filter is applied to `DocumentChunk.document` fields. Supported fields for filtering: * `data_source` (STRING): The source of the document, e.g. `docs.cloud.google.com`. See https://developers.google.com/knowledge/reference/corpus-reference for the complete list of data sources in the corpus. * `update_time` (TIMESTAMP): The timestamp of when the document was last meaningfully updated. A meaningful update is one that changes document's markdown content or metadata. * `uri` (STRING): The document URI, e.g. `https://docs.cloud.google.com/bigquery/docs/tables`. STRING fields support `=` (equals) and `!=` (not equals) operators for **exact match** on the whole string. Partial match, prefix match, and regexp match are not supported. TIMESTAMP fields support `=`, `<`, `<=`, `\>`, and `\>=` operators. Timestamps must be in RFC-3339 format, e.g., `"2025-01-01T00:00:00Z"`. Note: Field names must be in `snake_case` (e.g., `data_source`). Values on the right-hand side of filtering expressions must be string literals enclosed in double quotes (e.g., `"docs.cloud.google.com"`). You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical operators. `OR` has higher precedence than `AND`. Use parentheses for explicit precedence grouping. Examples: * `data_source = "docs.cloud.google.com" OR data_source = "firebase.google.com"` * `data_source != "firebase.google.com"` * `update_time < "2024-01-01T00:00:00Z"` * `update_time \>= "2025-01-22T00:00:00Z" AND (data_source = "developer.chrome.com" OR data_source = "web.dev")` * `uri = "https://docs.cloud.google.com/release-notes"` The `filter` string must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
      *     filter: 'placeholder-value',
-     *     // Optional. Specifies the maximum number of results to return. The service may return fewer than this value. If unspecified, at most 5 results will be returned. The maximum value is 20; values above 20 will result in an INVALID_ARGUMENT error.
+     *     // Optional. Specifies the maximum number of results to return. The service may return fewer than this value. If unspecified, at most 5 results will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      *     pageSize: 'placeholder-value',
      *     // Optional. Contains a page token, received from a previous `SearchDocumentChunks` call. Provide this to retrieve the subsequent page.
      *     pageToken: 'placeholder-value',
@@ -681,7 +736,7 @@ export namespace developerknowledge_v1alpha {
 
   export interface Params$Resource$Documents$Batchget extends StandardParameters {
     /**
-     * Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` If you are changing the batch size, consider the value of `maxConcurrentGCSFetches` constant in the service implementation: http://cs///depot/google3/devrel/boq/developerknowledge/service/developerknowledge.go
+     * Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme\}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
      */
     names?: string[];
     /**
@@ -701,11 +756,11 @@ export namespace developerknowledge_v1alpha {
   }
   export interface Params$Resource$Documents$Searchdocumentchunks extends StandardParameters {
     /**
-     * Optional. Applies a strict filter to the search results. The expression supports a subset of the syntax described at https://google.aip.dev/160. While `SearchDocumentChunks` returns DocumentChunks, the filter is applied to `DocumentChunk.document` fields. Supported fields for filtering: * `data_source` (STRING): The source of the document, e.g. `docs.cloud.google.com`. See https://developers.google.com/knowledge/reference/corpus-reference for the complete list of data sources in the corpus. * `update_time` (TIMESTAMP): The timestamp of when the document was last meaningfully updated. A meaningful update is one that changes document's markdown content or metadata. * `uri` (STRING): The document URI, e.g. `https://docs.cloud.google.com/bigquery/docs/tables`. STRING fields support `=` (equals) and `!=` (not equals) operators for **exact match** on the whole string. Partial match, prefix match, and regexp match are not supported. TIMESTAMP fields support `=`, `<`, `<=`, `\>`, and `\>=` operators. Timestamps must be in RFC-3339 format, e.g., `"2025-01-01T00:00:00Z"`. You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical operators. `OR` has higher precedence than `AND`. Use parentheses for explicit precedence grouping. Examples: * `data_source = "docs.cloud.google.com" OR data_source = "firebase.google.com"` * `data_source != "firebase.google.com"` * `update_time < "2024-01-01T00:00:00Z"` * `update_time \>= "2025-01-22T00:00:00Z" AND (data_source = "developer.chrome.com" OR data_source = "web.dev")` * `uri = "https://docs.cloud.google.com/release-notes"` The `filter` string must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
+     * Optional. Applies a strict filter to the search results. The expression supports a subset of the syntax described at https://google.aip.dev/160. While `SearchDocumentChunks` returns DocumentChunks, the filter is applied to `DocumentChunk.document` fields. Supported fields for filtering: * `data_source` (STRING): The source of the document, e.g. `docs.cloud.google.com`. See https://developers.google.com/knowledge/reference/corpus-reference for the complete list of data sources in the corpus. * `update_time` (TIMESTAMP): The timestamp of when the document was last meaningfully updated. A meaningful update is one that changes document's markdown content or metadata. * `uri` (STRING): The document URI, e.g. `https://docs.cloud.google.com/bigquery/docs/tables`. STRING fields support `=` (equals) and `!=` (not equals) operators for **exact match** on the whole string. Partial match, prefix match, and regexp match are not supported. TIMESTAMP fields support `=`, `<`, `<=`, `\>`, and `\>=` operators. Timestamps must be in RFC-3339 format, e.g., `"2025-01-01T00:00:00Z"`. Note: Field names must be in `snake_case` (e.g., `data_source`). Values on the right-hand side of filtering expressions must be string literals enclosed in double quotes (e.g., `"docs.cloud.google.com"`). You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical operators. `OR` has higher precedence than `AND`. Use parentheses for explicit precedence grouping. Examples: * `data_source = "docs.cloud.google.com" OR data_source = "firebase.google.com"` * `data_source != "firebase.google.com"` * `update_time < "2024-01-01T00:00:00Z"` * `update_time \>= "2025-01-22T00:00:00Z" AND (data_source = "developer.chrome.com" OR data_source = "web.dev")` * `uri = "https://docs.cloud.google.com/release-notes"` The `filter` string must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
      */
     filter?: string;
     /**
-     * Optional. Specifies the maximum number of results to return. The service may return fewer than this value. If unspecified, at most 5 results will be returned. The maximum value is 20; values above 20 will result in an INVALID_ARGUMENT error.
+     * Optional. Specifies the maximum number of results to return. The service may return fewer than this value. If unspecified, at most 5 results will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      */
     pageSize?: number;
     /**

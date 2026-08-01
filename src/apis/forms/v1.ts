@@ -1181,8 +1181,7 @@ export namespace forms_v1 {
     batchUpdate(
       params: Params$Resource$Forms$Batchupdate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchUpdateFormResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchUpdateFormResponse>,
       callback: BodyResponseCallback<Schema$BatchUpdateFormResponse>
     ): void;
     batchUpdate(
@@ -1366,8 +1365,7 @@ export namespace forms_v1 {
         | BodyResponseCallback<Schema$Form>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Form>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Form> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Form>>
@@ -1512,8 +1510,7 @@ export namespace forms_v1 {
         | BodyResponseCallback<Schema$Form>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Form>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Form> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Form>>
@@ -1641,8 +1638,7 @@ export namespace forms_v1 {
     setPublishSettings(
       params: Params$Resource$Forms$Setpublishsettings,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SetPublishSettingsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$SetPublishSettingsResponse>,
       callback: BodyResponseCallback<Schema$SetPublishSettingsResponse>
     ): void;
     setPublishSettings(
@@ -1988,8 +1984,7 @@ export namespace forms_v1 {
     list(
       params: Params$Resource$Forms$Responses$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListFormResponsesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListFormResponsesResponse>,
       callback: BodyResponseCallback<Schema$ListFormResponsesResponse>
     ): void;
     list(
@@ -2205,8 +2200,7 @@ export namespace forms_v1 {
         | BodyResponseCallback<Schema$Watch>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Watch>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Watch> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Watch>>
@@ -2349,8 +2343,7 @@ export namespace forms_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2651,8 +2644,7 @@ export namespace forms_v1 {
         | BodyResponseCallback<Schema$Watch>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Watch>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Watch> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Watch>>

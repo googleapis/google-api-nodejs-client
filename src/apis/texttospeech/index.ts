@@ -37,10 +37,7 @@ export function texttospeech<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | texttospeech_v1.Options
-    | 'v1beta1'
-    | texttospeech_v1beta1.Options
+    'v1' | texttospeech_v1.Options | 'v1beta1' | texttospeech_v1beta1.Options
 ) {
   return getAPI<T>('texttospeech', versionOrOptions, VERSIONS, this);
 }

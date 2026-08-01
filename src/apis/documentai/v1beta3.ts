@@ -271,7 +271,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabelStatus {
     /**
-     * The document id of the auto-labeled document. This will replace the gcs_uri.
+     * The document ID of the auto-labeled document. This will replace the gcs_uri.
      */
     documentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
     /**
@@ -306,7 +306,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus {
     /**
-     * The document id of the document.
+     * The document ID of the document.
      */
     documentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
     /**
@@ -341,7 +341,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsMetadataIndividualBatchMoveStatus {
     /**
-     * The document id of the document.
+     * The document ID of the document.
      */
     documentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
     /**
@@ -368,7 +368,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus {
     /**
-     * The document id of the document.
+     * The document ID of the document.
      */
     documentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
     /**
@@ -472,7 +472,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DocumentId {
     /**
-     * A document id within user-managed Cloud Storage.
+     * A document ID within user-managed Cloud Storage.
      */
     gcsManagedDocId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentIdGCSManagedDocumentId;
     /**
@@ -480,7 +480,7 @@ export namespace documentai_v1beta3 {
      */
     revisionRef?: Schema$GoogleCloudDocumentaiUiv1beta3RevisionRef;
     /**
-     * A document id within unmanaged dataset.
+     * A document ID within unmanaged dataset.
      */
     unmanagedDocId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentIdUnmanagedDocumentId;
   }
@@ -489,7 +489,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DocumentIdGCSManagedDocumentId {
     /**
-     * Id of the document (indexed) managed by Content Warehouse.
+     * ID of the document (indexed) managed by Content Warehouse.
      */
     cwDocId?: string | null;
     /**
@@ -502,7 +502,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DocumentIdUnmanagedDocumentId {
     /**
-     * Required. The id of the document.
+     * Required. The ID of the document.
      */
     docId?: string | null;
   }
@@ -519,7 +519,7 @@ export namespace documentai_v1beta3 {
      */
     displayName?: string | null;
     /**
-     * Optional. Document level prompt provided by the user. This custom text is injected into the AI model's prompt to provide extra, document-wide guidance for processing.
+     * Optional. Document-level prompt provided by the user. This custom text is injected into the AI model's prompt to provide extra, document-wide guidance for processing.
      */
     documentPrompt?: string | null;
     /**
@@ -556,7 +556,7 @@ export namespace documentai_v1beta3 {
      */
     enumValues?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentSchemaEntityTypeEnumValues;
     /**
-     * Name of the type. It must be unique within the schema file and cannot be a "Common Type". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility, internal infrastructure and tooling can handle any ASCII character.) - The `/` is sometimes used to denote a property of a type. For example `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.
+     * Name of the type. It must be unique within the schema file and cannot be a "Common Type". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility, internal infrastructure and tooling can handle any ASCII character.) - The `/` is sometimes used to denote a property of a type. For example, `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.
      */
     name?: string | null;
     /**
@@ -922,7 +922,7 @@ export namespace documentai_v1beta3 {
      */
     inputGcsSource?: string | null;
     /**
-     * The document id of imported document if it was successful, otherwise empty.
+     * The document ID of imported document if it was successful, otherwise empty.
      */
     outputDocumentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
     /**
@@ -961,7 +961,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3Processor {
     /**
-     * Optional. SchemaVersion used by the Processor. It is the same as Processor's DatasetSchema.schema_version Format is `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}
+     * Optional. SchemaVersion used by the Processor. It is the same as Processor's DatasetSchema.schema_version Format is `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}.
      */
     activeSchemaVersion?: string | null;
     /**
@@ -1584,7 +1584,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3BatchDeleteDocumentsMetadataIndividualBatchDeleteStatus {
     /**
-     * The document id of the document.
+     * The document ID of the document.
      */
     documentId?: Schema$GoogleCloudDocumentaiV1beta3DocumentId;
     /**
@@ -1899,7 +1899,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Document {
     /**
-     * Optional. The blob assets in this document. This is used to store the content of the inline blobs in this document, for example, image bytes, such that it can be referenced by other fields in the document via asset id.
+     * Optional. The blob assets in this document. This is used to store the content of the inline blobs in this document, for example, image bytes, such that it can be referenced by other fields in the document via asset ID.
      */
     blobAssets?: Schema$GoogleCloudDocumentaiV1beta3DocumentBlobAsset[];
     /**
@@ -1923,7 +1923,7 @@ export namespace documentai_v1beta3 {
      */
     entities?: Schema$GoogleCloudDocumentaiV1beta3DocumentEntity[];
     /**
-     * The entity revision ID that `document.entities` field is based on. If this field is set and `entities_revisions` is not empty, the entities in `document.entities` field are the entities in the entity revision with this id and `document.entity_validation_output` field is the `entity_validation_output` field in this entity revision.
+     * The entity revision ID that `document.entities` field is based on. If this field and `entities_revisions` are set, the entities in `document.entities` are the entities in the entity revision with this ID. The `document.entity_validation_output` field is the `entity_validation_output` field in this entity revision.
      */
     entitiesRevisionId?: string | null;
     /**
@@ -1989,7 +1989,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentBlobAsset {
     /**
-     * Optional. The id of the blob asset.
+     * Optional. The ID of the blob asset.
      */
     assetId?: string | null;
     /**
@@ -2104,15 +2104,15 @@ export namespace documentai_v1beta3 {
      */
     annotations?: Schema$GoogleCloudDocumentaiV1beta3DocumentAnnotations;
     /**
-     * Optional. Asset id of the inline image. If set, find the image content in the blob_assets field.
+     * Optional. Asset ID of the inline image. If set, find the image content in the blob_assets field.
      */
     blobAssetId?: string | null;
     /**
-     * Optional. Data uri of the image. It is composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,
+     * Optional. Data URI of the image. It is composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,
      */
     dataUri?: string | null;
     /**
-     * Optional. Google Cloud Storage uri of the image.
+     * Optional. Google Cloud Storage URI of the image.
      */
     gcsUri?: string | null;
   }
@@ -2176,15 +2176,15 @@ export namespace documentai_v1beta3 {
      */
     annotations?: Schema$GoogleCloudDocumentaiV1beta3DocumentAnnotations;
     /**
-     * Optional. Asset id of the inline image. If set, find the image content in the blob_assets field.
+     * Optional. Asset ID of the inline image. If set, find the image content in the blob_assets field.
      */
     blobAssetId?: string | null;
     /**
-     * Optional. Data uri of the image. It is composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,
+     * Optional. Data URI of the image. It is composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself: data:,
      */
     dataUri?: string | null;
     /**
-     * Optional. Google Cloud Storage uri of the image.
+     * Optional. Google Cloud Storage URI of the image.
      */
     gcsUri?: string | null;
     /**
@@ -2406,7 +2406,7 @@ export namespace documentai_v1beta3 {
      */
     moneyValue?: Schema$GoogleTypeMoney;
     /**
-     * A signature - a graphical representation of a person's name, often used to sign a document.
+     * A signature, which is a graphical representation of a person's name, often used to sign a document.
      */
     signatureValue?: boolean | null;
     /**
@@ -2474,7 +2474,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentId {
     /**
-     * A document id within user-managed Cloud Storage.
+     * A document ID within user-managed Cloud Storage.
      */
     gcsManagedDocId?: Schema$GoogleCloudDocumentaiV1beta3DocumentIdGCSManagedDocumentId;
     /**
@@ -2482,7 +2482,7 @@ export namespace documentai_v1beta3 {
      */
     revisionRef?: Schema$GoogleCloudDocumentaiV1beta3RevisionRef;
     /**
-     * A document id within unmanaged dataset.
+     * A document ID within unmanaged dataset.
      */
     unmanagedDocId?: Schema$GoogleCloudDocumentaiV1beta3DocumentIdUnmanagedDocumentId;
   }
@@ -2491,7 +2491,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentIdGCSManagedDocumentId {
     /**
-     * Id of the document (indexed) managed by Content Warehouse.
+     * ID of the document (indexed) managed by Content Warehouse.
      */
     cwDocId?: string | null;
     /**
@@ -2504,7 +2504,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentIdUnmanagedDocumentId {
     /**
-     * Required. The id of the document.
+     * Required. The ID of the document.
      */
     docId?: string | null;
   }
@@ -3088,7 +3088,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentProvenance {
     /**
-     * The Id of this operation. Needs to be unique within the scope of the revision.
+     * The ID of this operation. Needs to be unique within the scope of the revision.
      */
     id?: number | null;
     /**
@@ -3109,7 +3109,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentProvenanceParent {
     /**
-     * The id of the parent provenance.
+     * The ID of the parent provenance.
      */
     id?: number | null;
     /**
@@ -3126,7 +3126,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentRevision {
     /**
-     * If the change was made by a person specify the name or id of that person.
+     * If the change was made by a person specify the name or ID of that person.
      */
     agent?: string | null;
     /**
@@ -3138,7 +3138,7 @@ export namespace documentai_v1beta3 {
      */
     humanReview?: Schema$GoogleCloudDocumentaiV1beta3DocumentRevisionHumanReview;
     /**
-     * Id of the revision, internally generated by doc proto storage. Unique within the context of the document.
+     * ID of the revision, internally generated by doc proto storage. Unique within the context of the document.
      */
     id?: string | null;
     /**
@@ -3189,7 +3189,7 @@ export namespace documentai_v1beta3 {
      */
     displayName?: string | null;
     /**
-     * Optional. Document level prompt provided by the user. This custom text is injected into the AI model's prompt to provide extra, document-wide guidance for processing.
+     * Optional. Document-level prompt provided by the user. This custom text is injected into the AI model's prompt to provide extra, document-wide guidance for processing.
      */
     documentPrompt?: string | null;
     /**
@@ -3226,7 +3226,7 @@ export namespace documentai_v1beta3 {
      */
     enumValues?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeEnumValues;
     /**
-     * Name of the type. It must be unique within the schema file and cannot be a "Common Type". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility, internal infrastructure and tooling can handle any ASCII character.) - The `/` is sometimes used to denote a property of a type. For example `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.
+     * Name of the type. It must be unique within the schema file and cannot be a "Common Type". The following naming conventions are used: - Use `snake_casing`. - Name matching is case-sensitive. - Maximum 64 characters. - Must start with a letter. - Allowed characters: ASCII letters `[a-z0-9_-]`. (For backward compatibility, internal infrastructure and tooling can handle any ASCII character.) - The `/` is sometimes used to denote a property of a type. For example, `line_item/amount`. This convention is deprecated, but will still be honored for backward compatibility.
      */
     name?: string | null;
     /**
@@ -3830,7 +3830,7 @@ export namespace documentai_v1beta3 {
      */
     inputGcsSource?: string | null;
     /**
-     * The document id of imported document if it was successful, otherwise empty.
+     * The document ID of imported document if it was successful, otherwise empty.
      */
     outputDocumentId?: Schema$GoogleCloudDocumentaiV1beta3DocumentId;
     /**
@@ -4238,7 +4238,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Processor {
     /**
-     * Optional. SchemaVersion used by the Processor. It is the same as Processor's DatasetSchema.schema_version Format is `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}
+     * Optional. SchemaVersion used by the Processor. It is the same as Processor's DatasetSchema.schema_version Format is `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}.
      */
     activeSchemaVersion?: string | null;
     /**
@@ -4810,7 +4810,7 @@ export namespace documentai_v1beta3 {
      */
     learningRateMultiplier?: number | null;
     /**
-     * Optional. Resource name of a previously fine tuned version id to copy the overwritten configs from. The base_processor_version should be newer than the base processor version used to fine tune this provided processor version. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`.
+     * Optional. Resource name of a previously fine tuned version ID to copy the overwritten configs from. The base_processor_version should be newer than the base processor version used to fine tune this provided processor version. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`.
      */
     previousFineTunedProcessorVersionName?: string | null;
     /**
@@ -6090,8 +6090,7 @@ export namespace documentai_v1beta3 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -6456,8 +6455,7 @@ export namespace documentai_v1beta3 {
     batchProcess(
       params: Params$Resource$Projects$Locations$Processors$Batchprocess,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     batchProcess(
@@ -6779,8 +6777,7 @@ export namespace documentai_v1beta3 {
     delete(
       params: Params$Resource$Projects$Locations$Processors$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -6927,8 +6924,7 @@ export namespace documentai_v1beta3 {
     disable(
       params: Params$Resource$Projects$Locations$Processors$Disable,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     disable(
@@ -7078,8 +7074,7 @@ export namespace documentai_v1beta3 {
     enable(
       params: Params$Resource$Projects$Locations$Processors$Enable,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     enable(
@@ -7705,8 +7700,7 @@ export namespace documentai_v1beta3 {
     setDefaultProcessorVersion(
       params: Params$Resource$Projects$Locations$Processors$Setdefaultprocessorversion,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     setDefaultProcessorVersion(
@@ -7866,8 +7860,7 @@ export namespace documentai_v1beta3 {
     updateDataset(
       params: Params$Resource$Projects$Locations$Processors$Updatedataset,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     updateDataset(
@@ -8136,8 +8129,7 @@ export namespace documentai_v1beta3 {
     batchDeleteDocuments(
       params: Params$Resource$Projects$Locations$Processors$Dataset$Batchdeletedocuments,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     batchDeleteDocuments(
@@ -8394,7 +8386,7 @@ export namespace documentai_v1beta3 {
      *       // Required. The resource name of the dataset that the document belongs to . Format: projects/{project\}/locations/{location\}/processors/{processor\}/dataset
      *       dataset:
      *         'projects/my-project/locations/my-location/processors/my-processor/dataset',
-     *       // Id of the document (indexed) managed by Content Warehouse.
+     *       // ID of the document (indexed) managed by Content Warehouse.
      *       'documentId.gcsManagedDocId.cwDocId': 'placeholder-value',
      *       // Required. The Cloud Storage URI where the actual document is stored.
      *       'documentId.gcsManagedDocId.gcsUri': 'placeholder-value',
@@ -8404,7 +8396,7 @@ export namespace documentai_v1beta3 {
      *       'documentId.revisionRef.revisionCase': 'placeholder-value',
      *       // Reads the revision given by the id.
      *       'documentId.revisionRef.revisionId': 'placeholder-value',
-     *       // Required. The id of the document.
+     *       // Required. The ID of the document.
      *       'documentId.unmanagedDocId.docId': 'placeholder-value',
      *       // Last page number (one-based index) to be returned.
      *       'pageRange.end': 'placeholder-value',
@@ -8611,8 +8603,7 @@ export namespace documentai_v1beta3 {
     importDocuments(
       params: Params$Resource$Projects$Locations$Processors$Dataset$Importdocuments,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     importDocuments(
@@ -9037,7 +9028,7 @@ export namespace documentai_v1beta3 {
      */
     dataset?: string;
     /**
-     * Id of the document (indexed) managed by Content Warehouse.
+     * ID of the document (indexed) managed by Content Warehouse.
      */
     'documentId.gcsManagedDocId.cwDocId'?: string;
     /**
@@ -9057,7 +9048,7 @@ export namespace documentai_v1beta3 {
      */
     'documentId.revisionRef.revisionId'?: string;
     /**
-     * Required. The id of the document.
+     * Required. The ID of the document.
      */
     'documentId.unmanagedDocId.docId'?: string;
     /**
@@ -9207,8 +9198,7 @@ export namespace documentai_v1beta3 {
     reviewDocument(
       params: Params$Resource$Projects$Locations$Processors$Humanreviewconfig$Reviewdocument,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     reviewDocument(
@@ -9393,8 +9383,7 @@ export namespace documentai_v1beta3 {
     batchProcess(
       params: Params$Resource$Projects$Locations$Processors$Processorversions$Batchprocess,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     batchProcess(
@@ -9540,8 +9529,7 @@ export namespace documentai_v1beta3 {
     delete(
       params: Params$Resource$Projects$Locations$Processors$Processorversions$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -9690,8 +9678,7 @@ export namespace documentai_v1beta3 {
     deploy(
       params: Params$Resource$Projects$Locations$Processors$Processorversions$Deploy,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     deploy(
@@ -9848,8 +9835,7 @@ export namespace documentai_v1beta3 {
     evaluateProcessorVersion(
       params: Params$Resource$Projects$Locations$Processors$Processorversions$Evaluateprocessorversion,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     evaluateProcessorVersion(
@@ -10165,8 +10151,7 @@ export namespace documentai_v1beta3 {
     importProcessorVersion(
       params: Params$Resource$Projects$Locations$Processors$Processorversions$Importprocessorversion,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     importProcessorVersion(
@@ -10648,8 +10633,7 @@ export namespace documentai_v1beta3 {
     train(
       params: Params$Resource$Projects$Locations$Processors$Processorversions$Train,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     train(
@@ -10800,8 +10784,7 @@ export namespace documentai_v1beta3 {
     undeploy(
       params: Params$Resource$Projects$Locations$Processors$Processorversions$Undeploy,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     undeploy(
@@ -11895,8 +11878,7 @@ export namespace documentai_v1beta3 {
     delete(
       params: Params$Resource$Projects$Locations$Schemas$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -12731,8 +12713,7 @@ export namespace documentai_v1beta3 {
     delete(
       params: Params$Resource$Projects$Locations$Schemas$Schemaversions$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(

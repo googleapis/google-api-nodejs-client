@@ -416,8 +416,7 @@ export namespace firebaseml_v1beta2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -551,8 +550,7 @@ export namespace firebaseml_v1beta2 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -670,8 +668,7 @@ export namespace firebaseml_v1beta2 {
     download(
       params: Params$Resource$Projects$Models$Download,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DownloadModelResponse>,
+        MethodOptions | BodyResponseCallback<Schema$DownloadModelResponse>,
       callback: BodyResponseCallback<Schema$DownloadModelResponse>
     ): void;
     download(
@@ -838,8 +835,7 @@ export namespace firebaseml_v1beta2 {
         | BodyResponseCallback<Schema$Model>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Model>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Model> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Model>>
@@ -1139,8 +1135,7 @@ export namespace firebaseml_v1beta2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1347,8 +1342,7 @@ export namespace firebaseml_v1beta2 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

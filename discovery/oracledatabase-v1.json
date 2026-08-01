@@ -456,6 +456,31 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getRefreshableClones": {
+                  "description": "Gets the refreshable clones for a given Autonomous Database.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autonomousDatabases/{autonomousDatabasesId}:getRefreshableClones",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.autonomousDatabases.getRefreshableClones",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The Autonomous Database resource whose refreshable clones are to be listed. Format: projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/autonomousDatabases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:getRefreshableClones",
+                  "response": {
+                    "$ref": "AutonomousDatabaseRefreshableClones"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists the Autonomous Databases in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autonomousDatabases",
@@ -533,6 +558,34 @@
                   "path": "v1/{+name}",
                   "request": {
                     "$ref": "AutonomousDatabase"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "refresh": {
+                  "description": "Refreshes the refreshable clone of an Autonomous Database.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/autonomousDatabases/{autonomousDatabasesId}:refresh",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.autonomousDatabases.refresh",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the AutonomousDatabase resource. Format: projects/{project}/location/{location}/autonomousDatabases/{autonomous_database}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/autonomousDatabases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:refresh",
+                  "request": {
+                    "$ref": "RefreshAutonomousDatabaseRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -725,6 +778,34 @@
             },
             "cloudExadataInfrastructures": {
               "methods": {
+                "configureExascale": {
+                  "description": "Configures Exascale for a single Exadata Infrastructure.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/cloudExadataInfrastructures/{cloudExadataInfrastructuresId}:configureExascale",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.cloudExadataInfrastructures.configureExascale",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Cloud Exadata Infrastructure in the following format: projects/{project}/locations/{location}/cloudExadataInfrastructures/{cloud_exadata_infrastructure}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/cloudExadataInfrastructures/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:configureExascale",
+                  "request": {
+                    "$ref": "ConfigureExascaleCloudExadataInfrastructureRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "create": {
                   "description": "Creates a new Exadata Infrastructure in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/cloudExadataInfrastructures",
@@ -1265,7 +1346,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. An expression for filtering the results of the request. Only the gcp_oracle_zone_id field is supported in this format: `gcp_oracle_zone_id=\"{gcp_oracle_zone_id}\"`.",
+                      "description": "Optional. An expression for filtering the results of the request. The `gcp_oracle_zone_id`, `shape_family`, and `database_edition` fields are supported in the following format: `gcp_oracle_zone_id=\"{gcp_oracle_zone_id}\" AND shape_family=\"{shape_family}\" AND database_edition=\"{database_edition}\"`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1933,7 +2014,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. An expression for filtering the results of the request. Only the shape, gcp_oracle_zone and gi_version fields are supported in this format: `shape=\"{shape}\"`.",
+                      "description": "Optional. An expression for filtering the results of the request. Only the `shape` and `gcp_oracle_zone_id` fields are supported in the following format: `shape=\"{shape}\" AND gcp_oracle_zone_id=\"{gcp_oracle_zone_id}\"`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1978,7 +2059,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. An expression for filtering the results of the request. Only shapeFamily and gcp_oracle_zone_id are supported in this format: `shape_family=\"{shapeFamily}\" AND gcp_oracle_zone_id=\"{gcp_oracle_zone_id}\"`.",
+                          "description": "Optional. An expression for filtering the results of the request. Only the `shape_family` and `gcp_oracle_zone_id` fields are supported in the following format: `shape_family=\"{shape_family}\" AND gcp_oracle_zone_id=\"{gcp_oracle_zone_id}\"`.",
                           "location": "query",
                           "type": "string"
                         },
@@ -2186,31 +2267,6 @@
             },
             "goldengateConnectionTypes": {
               "methods": {
-                "get": {
-                  "description": "Gets details of a single GoldengateConnectionType.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateConnectionTypes/{goldengateConnectionTypesId}",
-                  "httpMethod": "GET",
-                  "id": "oracledatabase.projects.locations.goldengateConnectionTypes.get",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. Name of the resource in the format: projects/{project}/locations/{location}/goldengateConnectionTypes/{goldengate_connection_type}",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateConnectionTypes/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+name}",
-                  "response": {
-                    "$ref": "GoldengateConnectionType"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "list": {
                   "description": "Lists GoldengateConnectionTypes in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateConnectionTypes",
@@ -2399,31 +2455,6 @@
             },
             "goldengateDeploymentEnvironments": {
               "methods": {
-                "get": {
-                  "description": "Gets details of a single GoldengateDeploymentEnvironment.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeploymentEnvironments/{goldengateDeploymentEnvironmentsId}",
-                  "httpMethod": "GET",
-                  "id": "oracledatabase.projects.locations.goldengateDeploymentEnvironments.get",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. Name of the resource with the format: projects/{project}/locations/{location}/goldengateDeploymentEnvironments/{goldengate_deployment_environment}",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateDeploymentEnvironments/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+name}",
-                  "response": {
-                    "$ref": "GoldengateDeploymentEnvironment"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "list": {
                   "description": "Lists GoldengateDeploymentEnvironments in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeploymentEnvironments",
@@ -2464,31 +2495,6 @@
             },
             "goldengateDeploymentTypes": {
               "methods": {
-                "get": {
-                  "description": "Gets details of a single GoldenGateDeploymentType.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeploymentTypes/{goldengateDeploymentTypesId}",
-                  "httpMethod": "GET",
-                  "id": "oracledatabase.projects.locations.goldengateDeploymentTypes.get",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the GoldengateDeploymentType to retrieve. Format: projects/{project}/locations/{location}/goldengateDeploymentTypes/{goldengate_deployment_type}",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateDeploymentTypes/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+name}",
-                  "response": {
-                    "$ref": "GoldengateDeploymentType"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "list": {
                   "description": "Lists GoldenGateDeploymentTypes in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeploymentTypes",
@@ -2539,31 +2545,6 @@
             },
             "goldengateDeploymentVersions": {
               "methods": {
-                "get": {
-                  "description": "Gets details of a single GoldengateDeploymentVersion.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeploymentVersions/{goldengateDeploymentVersionsId}",
-                  "httpMethod": "GET",
-                  "id": "oracledatabase.projects.locations.goldengateDeploymentVersions.get",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the GoldengateDeploymentVersion to retrieve. Format: projects/{project}/locations/{location}/goldengateDeploymentVersions/{goldengate_deployment_version}",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/goldengateDeploymentVersions/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+name}",
-                  "response": {
-                    "$ref": "GoldengateDeploymentVersion"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "list": {
                   "description": "Lists GoldengateDeploymentVersions in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/goldengateDeploymentVersions",
@@ -3297,7 +3278,7 @@
       }
     }
   },
-  "revision": "20260526",
+  "revision": "20260721",
   "rootUrl": "https://oracledatabase.googleapis.com/",
   "schemas": {
     "AllConnectionStrings": {
@@ -4159,6 +4140,10 @@
           "description": "Optional. Immutable. The private endpoint label for the Autonomous Database.",
           "type": "string"
         },
+        "refreshableClone": {
+          "description": "Optional. Indicates if the Autonomous Database is a refreshable clone. This field is used in update flow to connect / disconnect a refreshable clone from its source database.",
+          "type": "boolean"
+        },
         "refreshableMode": {
           "description": "Output only. The refresh mode of the cloned Autonomous Database.",
           "enum": [
@@ -4308,6 +4293,37 @@
         "vaultId": {
           "description": "Optional. Immutable. The ID of the Oracle Cloud Infrastructure vault.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AutonomousDatabaseRefreshableClone": {
+      "description": "An Autonomous Database refreshable clone",
+      "id": "AutonomousDatabaseRefreshableClone",
+      "properties": {
+        "name": {
+          "description": "Output only. The GCP resource name of the Autonomous Database.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "region": {
+          "description": "Output only. The Google Cloud region where the refreshable clone exists.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AutonomousDatabaseRefreshableClones": {
+      "description": "Response message for getting the Autonomous Database refreshable clones.",
+      "id": "AutonomousDatabaseRefreshableClones",
+      "properties": {
+        "autonomousDatabaseRefreshableClones": {
+          "description": "The list of Autonomous Database refreshable clones.",
+          "items": {
+            "$ref": "AutonomousDatabaseRefreshableClone"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4621,8 +4637,7 @@
           "type": "number"
         },
         "databaseServerType": {
-          "description": "Output only. The database server type of the Exadata Infrastructure.",
-          "readOnly": true,
+          "description": "Optional. The database server type of the Exadata Infrastructure.",
           "type": "string"
         },
         "dbNodeStorageSizeGb": {
@@ -4635,6 +4650,11 @@
           "description": "Output only. The software version of the database servers (dom0) in the Exadata Infrastructure.",
           "readOnly": true,
           "type": "string"
+        },
+        "exascaleConfig": {
+          "$ref": "ExascaleConfig",
+          "description": "Output only. The Exascale configuration for the Exadata Infrastructure.",
+          "readOnly": true
         },
         "maintenanceWindow": {
           "$ref": "MaintenanceWindow",
@@ -4742,8 +4762,7 @@
           "type": "integer"
         },
         "storageServerType": {
-          "description": "Output only. The storage server type of the Exadata Infrastructure.",
-          "readOnly": true,
+          "description": "Optional. The storage server type of the Exadata Infrastructure.",
           "type": "string"
         },
         "storageServerVersion": {
@@ -4787,6 +4806,10 @@
         },
         "exadataInfrastructure": {
           "description": "Required. The name of the Exadata Infrastructure resource on which VM cluster resource is created, in the following format: projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}",
+          "type": "string"
+        },
+        "exascaleDbStorageVault": {
+          "description": "Optional. The name of ExascaleDbStorageVault associated with the VM Cluster. Format: projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}",
           "type": "string"
         },
         "gcpOracleZone": {
@@ -5032,6 +5055,21 @@
           "readOnly": true,
           "type": "string"
         },
+        "storageManagementType": {
+          "description": "Output only. The storage management type of the VM Cluster.",
+          "enum": [
+            "STORAGE_MANAGEMENT_TYPE_UNSPECIFIED",
+            "ASM",
+            "EXASCALE"
+          ],
+          "enumDescriptions": [
+            "Unspecified storage management type.",
+            "Automatic Storage Management.",
+            "Exascale storage management."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "storageSizeGb": {
           "description": "Output only. The storage allocation for the disk group, in gigabytes (GB).",
           "format": "int32",
@@ -5045,6 +5083,22 @@
         "timeZone": {
           "$ref": "TimeZone",
           "description": "Optional. Time zone of VM Cluster to set. Defaults to UTC if not specified."
+        }
+      },
+      "type": "object"
+    },
+    "ConfigureExascaleCloudExadataInfrastructureRequest": {
+      "description": "The request for `CloudExadataInfrastructure.ConfigureExascale`.",
+      "id": "ConfigureExascaleCloudExadataInfrastructureRequest",
+      "properties": {
+        "requestId": {
+          "description": "Optional. An optional ID to identify the request.",
+          "type": "string"
+        },
+        "totalStorageSizeGb": {
+          "description": "Required. The total storage to be allocated to Exascale in GBs.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -5962,10 +6016,15 @@
             "ECPU",
             "OCPU"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "The compute model is unspecified.",
             "The compute model is virtual.",
-            "The compute model is physical."
+            "Deprecated: This option is not supported. Please use ECPU instead. The compute model is physical."
           ],
           "type": "string"
         },
@@ -5974,7 +6033,7 @@
           "description": "Optional. Data collection options for diagnostics."
         },
         "dataStorageSizeGb": {
-          "description": "Optional. The data storage size in GB that is currently available to DbSystems.",
+          "description": "Optional. The data storage size in GB that is currently available to DbSystems. The value is same as initial_data_storage_size_gb. This can be modified from OCI console.",
           "format": "int32",
           "type": "integer"
         },
@@ -6066,12 +6125,12 @@
           "type": "string"
         },
         "memorySizeGb": {
-          "description": "Optional. The memory size in GB.",
+          "description": "Optional. The memory size in GB. This value can not be set and is automatically calculated based on the number of ECPUs allocated to the DbSystem.",
           "format": "int32",
           "type": "integer"
         },
         "nodeCount": {
-          "description": "Optional. The number of nodes in the DbSystem.",
+          "description": "Optional. The number of nodes to launch for a virtual machine DbSystem. By default this will be set to 1.",
           "format": "int32",
           "type": "integer"
         },
@@ -6085,7 +6144,7 @@
           "type": "string"
         },
         "recoStorageSizeGb": {
-          "description": "Optional. The reco/redo storage size in GB.",
+          "description": "Optional. The reco/redo storage size in GB. The value for recovery storage size is based on the available data storage size.",
           "format": "int32",
           "type": "integer"
         },
@@ -6111,6 +6170,11 @@
       "description": "Details of the Database System Shapes resource. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/DbSystemShapeSummary/",
       "id": "DbSystemShape",
       "properties": {
+        "availableCoreCount": {
+          "description": "Optional. Available core count.",
+          "format": "int32",
+          "type": "integer"
+        },
         "availableCoreCountPerNode": {
           "description": "Optional. Number of cores per node.",
           "format": "int32",
@@ -6123,6 +6187,11 @@
         },
         "availableMemoryPerNodeGb": {
           "description": "Optional. Memory per database server node in gigabytes.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "coreCountIncrement": {
+          "description": "Optional. Core count increment.",
           "format": "int32",
           "type": "integer"
         },
@@ -6158,6 +6227,11 @@
         },
         "minStorageCount": {
           "description": "Optional. Minimum number of storage servers.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minimumCoreCount": {
+          "description": "Optional. Minimum core count per node.",
           "format": "int32",
           "type": "integer"
         },
@@ -6404,6 +6478,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "identityConnector": {
+          "$ref": "IdentityConnector",
+          "description": "Output only. The identity connector details which will allow OCI to securely access the resources in the customer project.",
+          "readOnly": true
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -6578,6 +6657,25 @@
       },
       "type": "object"
     },
+    "ExascaleConfig": {
+      "description": "Details of the Exascale configuration for the Exadata Infrastructure.",
+      "id": "ExascaleConfig",
+      "properties": {
+        "availableStorageSizeGb": {
+          "description": "Output only. Available storage size for Exascale in GBs.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "totalStorageSizeGb": {
+          "description": "Output only. Total storage size needed for Exascale in GBs.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "ExascaleDbStorageDetails": {
       "description": "The storage details of the ExascaleDbStorageVault.",
       "id": "ExascaleDbStorageDetails",
@@ -6613,6 +6711,10 @@
         "entitlementId": {
           "description": "Output only. The ID of the subscription entitlement associated with the ExascaleDbStorageVault.",
           "readOnly": true,
+          "type": "string"
+        },
+        "exadataInfrastructure": {
+          "description": "Optional. The Exadata Infrastructure resource on which ExascaleDbStorageVault resource is created, in the following format: projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}",
           "type": "string"
         },
         "gcpOracleZone": {
@@ -9346,7 +9448,7 @@
           "type": "string"
         },
         "gcpOracleDatabaseId": {
-          "description": "Optional. Database instance id of database in Oracle Database @ Google Cloud. If gcp_oracle_database_id is provided, connection_string must be empty.",
+          "description": "Optional. Autonomous AI Database instance id of database in Oracle Database @ Google Cloud. If gcp_oracle_database_id is provided, connection_string must be empty. Format: projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}",
           "type": "string"
         },
         "password": {
@@ -11163,6 +11265,18 @@
       },
       "type": "object"
     },
+    "RefreshAutonomousDatabaseRequest": {
+      "description": "Request message for RefreshAutonomousDatabase method.",
+      "id": "RefreshAutonomousDatabaseRequest",
+      "properties": {
+        "refreshCutoffTime": {
+          "description": "Required. The timestamp to which the Autonomous Database refreshable clone will be refreshed. Changes made in the primary database after this timestamp are not part of the data refresh.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RemoveVirtualMachineExadbVmClusterRequest": {
       "description": "The request for `ExadbVmCluster.RemoveVirtualMachine`.",
       "id": "RemoveVirtualMachineExadbVmClusterRequest",
@@ -11260,6 +11374,21 @@
       "description": "The source configuration for the standby Autonomous Database.",
       "id": "SourceConfig",
       "properties": {
+        "autoRefreshFrequencySeconds": {
+          "description": "Optional. The frequency in seconds a refreshable clone is refreshed after auto-refresh is enabled.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "autoRefreshPointLagSeconds": {
+          "description": "Optional. The time, in seconds, the data of the automatic refreshable clone lags the primary database at the point of refresh.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "autoRefreshStartTime": {
+          "description": "Optional. The date and time that auto-refreshing will begin for an Autonomous Database refreshable clone. This value controls only the start time for the first refresh operation.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "automaticBackupsReplicationEnabled": {
           "description": "Optional. This field specifies if the replication of automatic backups is enabled when creating a Data Guard.",
           "type": "boolean"
@@ -11267,6 +11396,67 @@
         "autonomousDatabase": {
           "description": "Optional. The name of the primary Autonomous Database that is used to create a Peer Autonomous Database from a source.",
           "type": "string"
+        },
+        "autonomousDatabaseBackup": {
+          "description": "Optional. The name of the Autonomous Database Backup resource with the format: projects/{project}/locations/{region}/autonomousDatabaseBackups/{autonomous_database_backup} Required when source_type is BACKUP_FROM_ID.",
+          "type": "string"
+        },
+        "backupTime": {
+          "description": "Optional. The timestamp specified for the point-in-time clone of the source Autonomous Database. This field is only applicable in case of BACKUP_FROM_TIMESTAMP source type and when use_latest_available_backup is false.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "cloneType": {
+          "description": "Optional. The clone type of the Autonomous Database. This field is only applicable in case of cloning",
+          "enum": [
+            "CLONE_TYPE_UNSPECIFIED",
+            "FULL",
+            "METADATA"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Creates a new database with the source database's data and metadata.",
+            "Creates a new database that includes all the source database schema metadata, but none of the source database data."
+          ],
+          "type": "string"
+        },
+        "refreshableMode": {
+          "description": "Optional. The refresh mode of the clone.",
+          "enum": [
+            "REFRESHABLE_MODE_UNSPECIFIED",
+            "AUTOMATIC",
+            "MANUAL"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Automatic refresh.",
+            "Manual refresh."
+          ],
+          "type": "string"
+        },
+        "sourceType": {
+          "description": "Optional. The source type of the Autonomous Database.",
+          "enum": [
+            "SOURCE_TYPE_UNSPECIFIED",
+            "CLONE_DATABASE",
+            "CROSS_REGION_DISASTER_RECOVERY",
+            "CLONE_TO_REFRESHABLE",
+            "BACKUP_FROM_ID",
+            "BACKUP_FROM_TIMESTAMP"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Clone database from an existing database specified in autonomous_database field.",
+            "Create a cross-region disaster recovery peer adb from an existing adb.",
+            "Create a refreshable clone from an existing database specified in autonomous_database field.",
+            "Create clone from the backup resource.",
+            "Create clone from backup specified by backup_time field, or use latest available backup if use_latest_available_backup is true. The autonomous_database field must specify the source database to clone from."
+          ],
+          "type": "string"
+        },
+        "useLatestAvailableBackup": {
+          "description": "Optional. Clone from latest available backup timestamp. This field is only applicable in case of BACKUP_FROM_TIMESTAMP source type.",
+          "type": "boolean"
         }
       },
       "type": "object"

@@ -249,6 +249,10 @@ export namespace developerconnect_v1 {
      */
     id?: string | null;
     /**
+     * Output only. The URIs of the source code, if available. For Cloud Run source deploy for example: `gs://my-bucket/my-folder/1234567890.abcde-fdbe.zip#1234567890`
+     */
+    sourceCodeUris?: string[] | null;
+    /**
      * Output only. The source commits at which this artifact was built. Extracted from provenance.
      */
     sourceCommitUris?: string[] | null;
@@ -1609,8 +1613,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -1735,8 +1738,7 @@ export namespace developerconnect_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -1962,8 +1964,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2114,8 +2115,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2737,8 +2737,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3010,8 +3009,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3153,8 +3151,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3287,8 +3284,7 @@ export namespace developerconnect_v1 {
     fetchAccessToken(
       params: Params$Resource$Projects$Locations$Accountconnectors$Users$Fetchaccesstoken,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FetchAccessTokenResponse>,
+        MethodOptions | BodyResponseCallback<Schema$FetchAccessTokenResponse>,
       callback: BodyResponseCallback<Schema$FetchAccessTokenResponse>
     ): void;
     fetchAccessToken(
@@ -3453,8 +3449,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -4193,8 +4188,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4341,8 +4335,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4805,8 +4798,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Connection>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Connection>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Connection> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Connection>>
@@ -4932,8 +4924,7 @@ export namespace developerconnect_v1 {
     list(
       params: Params$Resource$Projects$Locations$Connections$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListConnectionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListConnectionsResponse>,
       callback: BodyResponseCallback<Schema$ListConnectionsResponse>
     ): void;
     list(
@@ -5130,8 +5121,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5276,8 +5266,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -5583,8 +5572,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5735,8 +5723,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5864,8 +5851,7 @@ export namespace developerconnect_v1 {
     fetchGitRefs(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchgitrefs,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FetchGitRefsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$FetchGitRefsResponse>,
       callback: BodyResponseCallback<Schema$FetchGitRefsResponse>
     ): void;
     fetchGitRefs(
@@ -6019,8 +6005,7 @@ export namespace developerconnect_v1 {
     fetchReadToken(
       params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Fetchreadtoken,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$FetchReadTokenResponse>,
+        MethodOptions | BodyResponseCallback<Schema$FetchReadTokenResponse>,
       callback: BodyResponseCallback<Schema$FetchReadTokenResponse>
     ): void;
     fetchReadToken(
@@ -6654,8 +6639,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6804,8 +6788,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -6953,8 +6936,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7100,8 +7082,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7432,8 +7413,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7581,8 +7561,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8044,8 +8023,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8369,6 +8347,8 @@ export namespace developerconnect_v1 {
      *       {
      *         // Optional. Filter expression that matches a subset of the DeploymentEvents. https://google.aip.dev/160.
      *         filter: 'placeholder-value',
+     *         // Optional. Field to use to order the list of DeploymentEvents. Expects AIP-132 format "field_name asc" or "field_name desc", e.g. "deploy_time desc" Supported fields for ordering are: deploy_time, update_time. Currently, only sorting by a single field is supported. If this field is not provided, the list will be sorted by "deploy_time desc". For more details on the ordering syntax, see https://google.aip.dev/132#ordering.
+     *         orderBy: 'placeholder-value',
      *         // Optional. The maximum number of deployment events to return. The service may return fewer than this value. If unspecified, at most 50 deployment events will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *         pageSize: 'placeholder-value',
      *         // Optional. A page token, received from a previous `ListDeploymentEvents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDeploymentEvents` must match the call that provided the page token.
@@ -8503,6 +8483,10 @@ export namespace developerconnect_v1 {
      */
     filter?: string;
     /**
+     * Optional. Field to use to order the list of DeploymentEvents. Expects AIP-132 format "field_name asc" or "field_name desc", e.g. "deploy_time desc" Supported fields for ordering are: deploy_time, update_time. Currently, only sorting by a single field is supported. If this field is not provided, the list will be sorted by "deploy_time desc". For more details on the ordering syntax, see https://google.aip.dev/132#ordering.
+     */
+    orderBy?: string;
+    /**
      * Optional. The maximum number of deployment events to return. The service may return fewer than this value. If unspecified, at most 50 deployment events will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
@@ -8614,8 +8598,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8747,8 +8730,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8886,8 +8868,7 @@ export namespace developerconnect_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9013,8 +8994,7 @@ export namespace developerconnect_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(

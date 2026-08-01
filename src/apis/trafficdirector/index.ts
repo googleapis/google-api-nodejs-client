@@ -39,10 +39,7 @@ export function trafficdirector<
 >(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v2'
-    | trafficdirector_v2.Options
-    | 'v3'
-    | trafficdirector_v3.Options
+    'v2' | trafficdirector_v2.Options | 'v3' | trafficdirector_v3.Options
 ) {
   return getAPI<T>('trafficdirector', versionOrOptions, VERSIONS, this);
 }

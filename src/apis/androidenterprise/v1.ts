@@ -554,7 +554,7 @@ export namespace androidenterprise_v1 {
    */
   export interface Schema$EnrollmentToken {
     /**
-     * [Optional] The length of time the enrollment token is valid, ranging from 1 minute to [`Durations.MAX_VALUE`](https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/util/Durations.html#MAX_VALUE), approximately 10,000 years. If not specified, the default duration is 1 hour.
+     * [Optional] The length of time the enrollment token is valid, ranging from 1 minute to [`Durations.MAX_VALUE`](https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/util/Durations.html#MAX_VALUE), approximately 10,000 years. If not specified, the default duration is 1 hour. In the JSON REST API, this is represented as a string (e.g., `3600s`).
      */
     duration?: string | null;
     /**
@@ -1856,8 +1856,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$Device>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Device>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Device> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Device>>
@@ -2456,8 +2455,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$Device>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Device>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Device> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Device>>
@@ -3005,8 +3003,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$Enterprise>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Enterprise>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Enterprise> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Enterprise>>
@@ -3139,8 +3136,7 @@ export namespace androidenterprise_v1 {
     createWebToken(
       params: Params$Resource$Enterprises$Createwebtoken,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AdministratorWebToken>,
+        MethodOptions | BodyResponseCallback<Schema$AdministratorWebToken>,
       callback: BodyResponseCallback<Schema$AdministratorWebToken>
     ): void;
     createWebToken(
@@ -3319,8 +3315,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$Enterprise>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Enterprise>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Enterprise> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Enterprise>>
@@ -3615,8 +3610,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$SignupInfo>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SignupInfo>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$SignupInfo> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$SignupInfo>>
@@ -3758,8 +3752,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$Enterprise>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Enterprise>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Enterprise> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Enterprise>>
@@ -4158,8 +4151,7 @@ export namespace androidenterprise_v1 {
     list(
       params: Params$Resource$Enterprises$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$EnterprisesListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$EnterprisesListResponse>,
       callback: BodyResponseCallback<Schema$EnterprisesListResponse>
     ): void;
     list(
@@ -5432,8 +5424,7 @@ export namespace androidenterprise_v1 {
     list(
       params: Params$Resource$Entitlements$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$EntitlementsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$EntitlementsListResponse>,
       callback: BodyResponseCallback<Schema$EntitlementsListResponse>
     ): void;
     list(
@@ -5940,8 +5931,7 @@ export namespace androidenterprise_v1 {
     list(
       params: Params$Resource$Grouplicenses$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GroupLicensesListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$GroupLicensesListResponse>,
       callback: BodyResponseCallback<Schema$GroupLicensesListResponse>
     ): void;
     list(
@@ -6432,8 +6422,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$Install>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Install>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Install> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Install>>
@@ -6555,8 +6544,7 @@ export namespace androidenterprise_v1 {
     list(
       params: Params$Resource$Installs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InstallsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$InstallsListResponse>,
       callback: BodyResponseCallback<Schema$InstallsListResponse>
     ): void;
     list(
@@ -6730,8 +6718,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$Install>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Install>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Install> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Install>>
@@ -7086,8 +7073,7 @@ export namespace androidenterprise_v1 {
     get(
       params: Params$Resource$Managedconfigurationsfordevice$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ManagedConfiguration>,
+        MethodOptions | BodyResponseCallback<Schema$ManagedConfiguration>,
       callback: BodyResponseCallback<Schema$ManagedConfiguration>
     ): void;
     get(
@@ -7408,8 +7394,7 @@ export namespace androidenterprise_v1 {
     update(
       params: Params$Resource$Managedconfigurationsfordevice$Update,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ManagedConfiguration>,
+        MethodOptions | BodyResponseCallback<Schema$ManagedConfiguration>,
       callback: BodyResponseCallback<Schema$ManagedConfiguration>
     ): void;
     update(
@@ -7785,8 +7770,7 @@ export namespace androidenterprise_v1 {
     get(
       params: Params$Resource$Managedconfigurationsforuser$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ManagedConfiguration>,
+        MethodOptions | BodyResponseCallback<Schema$ManagedConfiguration>,
       callback: BodyResponseCallback<Schema$ManagedConfiguration>
     ): void;
     get(
@@ -8097,8 +8081,7 @@ export namespace androidenterprise_v1 {
     update(
       params: Params$Resource$Managedconfigurationsforuser$Update,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ManagedConfiguration>,
+        MethodOptions | BodyResponseCallback<Schema$ManagedConfiguration>,
       callback: BodyResponseCallback<Schema$ManagedConfiguration>
     ): void;
     update(
@@ -8496,8 +8479,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$Permission>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Permission>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Permission> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Permission>>
@@ -8972,8 +8954,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$Product>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Product>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Product> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Product>>
@@ -9096,8 +9077,7 @@ export namespace androidenterprise_v1 {
     getAppRestrictionsSchema(
       params: Params$Resource$Products$Getapprestrictionsschema,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AppRestrictionsSchema>,
+        MethodOptions | BodyResponseCallback<Schema$AppRestrictionsSchema>,
       callback: BodyResponseCallback<Schema$AppRestrictionsSchema>
     ): void;
     getAppRestrictionsSchema(
@@ -9393,8 +9373,7 @@ export namespace androidenterprise_v1 {
     list(
       params: Params$Resource$Products$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ProductsListResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ProductsListResponse>,
       callback: BodyResponseCallback<Schema$ProductsListResponse>
     ): void;
     list(
@@ -11211,8 +11190,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$StorePage>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$StorePage>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$StorePage> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$StorePage>>
@@ -11361,8 +11339,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$StorePage>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$StorePage>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$StorePage> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$StorePage>>
@@ -11657,8 +11634,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$StorePage>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$StorePage>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$StorePage> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$StorePage>>
@@ -12136,8 +12112,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -12279,8 +12254,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$ProductSet>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ProductSet>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ProductSet> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ProductSet>>
@@ -12435,8 +12409,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -12858,8 +12831,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$ProductSet>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ProductSet>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ProductSet> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ProductSet>>
@@ -13016,8 +12988,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$User>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$User>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$User> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$User>>
@@ -13402,8 +13373,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$WebApp>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$WebApp>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$WebApp> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$WebApp>>
@@ -13559,8 +13529,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$WebApp>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$WebApp>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$WebApp> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$WebApp>>
@@ -13855,8 +13824,7 @@ export namespace androidenterprise_v1 {
         | BodyResponseCallback<Schema$WebApp>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$WebApp>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$WebApp> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$WebApp>>

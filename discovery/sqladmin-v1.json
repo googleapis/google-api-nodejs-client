@@ -15,7 +15,7 @@
   "baseUrl": "https://sqladmin.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "SQL Admin",
-  "description": "API for Cloud SQL database instance management",
+  "description": "Cloud SQL Admin API",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/sql/docs",
   "endpoints": [
@@ -243,6 +243,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://sqladmin.europe-west10.rep.googleapis.com/",
       "location": "europe-west10"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sqladmin.us-south1.rep.googleapis.com/",
+      "location": "us-south1"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -726,6 +731,38 @@
             }
           },
           "path": "v1/projects/{project}/instances/{instance}/connectSettings",
+          "response": {
+            "$ref": "ConnectSettings"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "resolve": {
+          "description": "Retrieves connect settings about a Cloud SQL instance using the instance DNS name.",
+          "flatPath": "v1/locations/{location}/dns/{dnsName}:resolveConnectSettings",
+          "httpMethod": "GET",
+          "id": "sql.connect.resolve",
+          "parameterOrder": [
+            "location",
+            "dnsName"
+          ],
+          "parameters": {
+            "dnsName": {
+              "description": "Required. Cloud SQL instance ID. This does not include the project ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "Required. The region of the instance.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/locations/{location}/dns/{dnsName}:resolveConnectSettings",
           "response": {
             "$ref": "ConnectSettings"
           },
@@ -1728,6 +1765,16 @@
               "location": "path",
               "required": true,
               "type": "string"
+            },
+            "reconcilePscNetworking": {
+              "description": "Optional. Set PSC config to the same value as the existing config to reconcile the PSC networking.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "reconcilePscNetworkingForce": {
+              "description": "Optional. Set PSC config to the same value as the existing config and force reconcile the PSC networking.",
+              "location": "query",
+              "type": "boolean"
             }
           },
           "path": "v1/projects/{project}/instances/{instance}",
@@ -3022,7 +3069,7 @@
       }
     }
   },
-  "revision": "20260510",
+  "revision": "20260703",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -3213,6 +3260,7 @@
             "POSTGRES_17",
             "POSTGRES_18",
             "POSTGRES_19",
+            "POSTGRES_20",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -3237,6 +3285,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -3327,6 +3376,7 @@
             "The database version is PostgreSQL 17.",
             "The database version is PostgreSQL 18.",
             "The database version is PostgreSQL 19.",
+            "The database version is PostgreSQL 20.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -3521,7 +3571,8 @@
           "type": "boolean"
         },
         "replicationLogArchivingEnabled": {
-          "description": "Reserved for future use.",
+          "deprecated": true,
+          "description": "Optional. Deprecated: replication_log_archiving_enabled is deprecated and will be removed from a future version of the API. Use point_in_time_recovery_enabled instead.",
           "type": "boolean"
         },
         "startTime": {
@@ -3690,6 +3741,7 @@
             "POSTGRES_17",
             "POSTGRES_18",
             "POSTGRES_19",
+            "POSTGRES_20",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -3714,6 +3766,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -3804,6 +3857,7 @@
             "The database version is PostgreSQL 17.",
             "The database version is PostgreSQL 18.",
             "The database version is PostgreSQL 19.",
+            "The database version is PostgreSQL 20.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -3997,7 +4051,7 @@
           "type": "string"
         },
         "destinationNetwork": {
-          "description": "Optional. The fully qualified URI of the VPC network to which the cloned instance will be connected via Private Services Access for private IP. For example:`projects/my-network-project/global/networks/my-network`. This field is only required for cross-project cloning.",
+          "description": "Optional. The fully qualified URI of the VPC network to which the cloned instance will be connected via private services access for private IP. For example:`projects/my-network-project/global/networks/my-network`. This field is only required for cross-project cloning.",
           "type": "string"
         },
         "destinationProject": {
@@ -4108,6 +4162,11 @@
           ],
           "type": "string"
         },
+        "connectionName": {
+          "description": "Optional. Output only. Connection name of the Cloud SQL instance used in connection strings, in the format project:region:instance.",
+          "readOnly": true,
+          "type": "string"
+        },
         "customSubjectAlternativeNames": {
           "description": "Custom subject alternative names for the server certificate.",
           "items": {
@@ -4162,6 +4221,7 @@
             "POSTGRES_17",
             "POSTGRES_18",
             "POSTGRES_19",
+            "POSTGRES_20",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -4186,6 +4246,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -4276,6 +4337,7 @@
             "The database version is PostgreSQL 17.",
             "The database version is PostgreSQL 18.",
             "The database version is PostgreSQL 19.",
+            "The database version is PostgreSQL 20.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -4582,6 +4644,7 @@
             "POSTGRES_17",
             "POSTGRES_18",
             "POSTGRES_19",
+            "POSTGRES_20",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -4606,6 +4669,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -4696,6 +4760,7 @@
             "The database version is PostgreSQL 17.",
             "The database version is PostgreSQL 18.",
             "The database version is PostgreSQL 19.",
+            "The database version is PostgreSQL 20.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -5255,6 +5320,10 @@
           ],
           "type": "string"
         },
+        "passwordSecretVersion": {
+          "description": "Optional. The resource name of the Secret Manager secret holding the password for the user to log into the database. The secret should be created using the regional endpoint (for API) or from the Regional Secrets page (for UI), and stored in the same region as the Cloud SQL instance. The expected resource name format is `projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}`. Used together with the `user` field. The secret resource name will not be stored.",
+          "type": "string"
+        },
         "rowLimit": {
           "description": "Optional. The maximum number of rows returned per SQL statement.",
           "format": "int64",
@@ -5574,6 +5643,7 @@
               "POSTGRES_17",
               "POSTGRES_18",
               "POSTGRES_19",
+              "POSTGRES_20",
               "SQLSERVER_2019_STANDARD",
               "SQLSERVER_2019_ENTERPRISE",
               "SQLSERVER_2019_EXPRESS",
@@ -5598,6 +5668,7 @@
               false,
               false,
               true,
+              false,
               false,
               false,
               false,
@@ -5688,6 +5759,7 @@
               "The database version is PostgreSQL 17.",
               "The database version is PostgreSQL 18.",
               "The database version is PostgreSQL 19.",
+              "The database version is PostgreSQL 20.",
               "The database version is SQL Server 2019 Standard.",
               "The database version is SQL Server 2019 Enterprise.",
               "The database version is SQL Server 2019 Express.",
@@ -6879,7 +6951,8 @@
             "ENHANCED_BACKUP",
             "REPAIR_READ_POOL",
             "CREATE_READ_POOL",
-            "PRE_CHECK_MAJOR_VERSION_UPGRADE"
+            "PRE_CHECK_MAJOR_VERSION_UPGRADE",
+            "SETUP_MIGRATION"
           ],
           "enumDeprecated": [
             false,
@@ -6930,6 +7003,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -6989,7 +7063,8 @@
             "Creates a backup for an Enhanced BackupTier Cloud SQL instance.",
             "Repairs entire read pool or specified read pool nodes in the read pool.",
             "Creates a Cloud SQL read pool instance.",
-            "Pre-checks the major version upgrade operation."
+            "Pre-checks the major version upgrade operation.",
+            "This operation type represents individual steps in a multi-step setup migration workflow: including configuration, replication, switchover/back, and data reseeding, as defined by operation's intent."
           ],
           "type": "string"
         },
@@ -7226,9 +7301,24 @@
       "description": "Performance capture configuration.",
       "id": "PerformanceCaptureConfig",
       "properties": {
+        "cpuUtilizationThresholdPercent": {
+          "description": "Optional. Specifies the minimum percentage of CPU utilization to trigger the performance capture. Valid integers range from `10` to `99`. Enter `0` to disable the check.",
+          "format": "int32",
+          "type": "integer"
+        },
         "enabled": {
           "description": "Optional. Enables or disables the performance capture feature.",
           "type": "boolean"
+        },
+        "historyListLengthThresholdCount": {
+          "description": "Optional. Specifies the minimum number of undo log entries in the history list length to trigger the performance capture. Valid integers range from `10000` to `10000000`. Enter `0` to disable the check.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "memoryUsageThresholdPercent": {
+          "description": "Optional. Specifies the minimum percentage of memory usage to trigger the performance capture. Valid integers range from `10` to `99`. Enter `0` to disable the check.",
+          "format": "int32",
+          "type": "integer"
         },
         "probeThreshold": {
           "description": "Optional. Specifies the minimum number of consecutive probe threshold that triggers performance capture.",
@@ -7250,8 +7340,44 @@
           "format": "int32",
           "type": "integer"
         },
+        "semaphoreWaitThresholdCount": {
+          "description": "Optional. Specifies the minimum allowed number of semaphore waits to trigger the performance capture. Valid integers range from `10` to `10000`. Enter `0` to disable the check.",
+          "format": "int32",
+          "type": "integer"
+        },
         "transactionDurationThreshold": {
           "description": "Optional. Specifies the amount of time in seconds that a transaction needs to have been open before the watcher starts recording it.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "transactionKillExcludedUserHosts": {
+          "description": "Optional. Specifies a customer-defined list of users to exclude from transaction termination. Entries can be in the format 'user@host' or just 'user'. A standalone 'user' implies 'user@%', excluding the user from any host. Wildcard '%' is allowed in the host part of the 'user@host' format. Example: `[\"app_user\", \"db_admin@10.1.2.3\", \"report_user@%\"]`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "transactionKillThresholdSeconds": {
+          "description": "Optional. Specifies the amount of time in seconds that a transaction needs to have been open before the watcher starts terminating it. Valid integers range from `60` to `604800` (7 days). Enter `0` to disable. If enabled (i.e., > 0), this value must be greater than or equal to `transaction_duration_threshold`. Configurations where `0 < transaction_kill_threshold_seconds < transaction_duration_threshold` will be rejected.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "transactionKillType": {
+          "description": "Optional. Determines which transactions are allowed to be terminated when they exceed `transaction_kill_threshold_seconds`. This allows protecting write-heavy transactions from auto-termination if desired. Defaults to `READ_ONLY_TRANSACTIONS` if unspecified.",
+          "enum": [
+            "TRANSACTION_KILL_TYPE_UNSPECIFIED",
+            "READ_ONLY_TRANSACTIONS",
+            "ALL_TRANSACTIONS"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Only read-only transactions are eligible for termination.",
+            "All transactions are eligible for termination, including those with write operations (such as INSERT, UPDATE, DELETE, or DDL)."
+          ],
+          "type": "string"
+        },
+        "transactionLockWaitThresholdCount": {
+          "description": "Optional. Specifies the minimum allowed number of transactions in lock wait state to trigger the performance capture. Valid integers range from `10` to `10000`. Enter `0` to disable the check.",
           "format": "int32",
           "type": "integer"
         }
@@ -7461,6 +7587,7 @@
             "POSTGRES_17",
             "POSTGRES_18",
             "POSTGRES_19",
+            "POSTGRES_20",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -7485,6 +7612,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -7575,6 +7703,7 @@
             "The database version is PostgreSQL 17.",
             "The database version is PostgreSQL 18.",
             "The database version is PostgreSQL 19.",
+            "The database version is PostgreSQL 20.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -7642,12 +7771,56 @@
           "description": "Optional. This is the project ID of consumer service project of this consumer endpoint. This is only applicable if `consumer_network` is a shared VPC network.",
           "type": "string"
         },
+        "instanceAutoDnsStatus": {
+          "description": "Output only. The status of automated DNS provisioning.",
+          "enum": [
+            "AUTO_DNS_STATUS_UNSPECIFIED",
+            "AUTO_DNS_OK",
+            "AUTO_DNS_FAILED",
+            "AUTO_DNS_UNKNOWN"
+          ],
+          "enumDescriptions": [
+            "Unspecified status. This means status is missing from dependency service.",
+            "DNS provisioning is OK.",
+            "DNS provisioning failed.",
+            "DNS provisioning status is not recognized by Cloud SQL."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "ipAddress": {
           "description": "The IP address of the consumer endpoint.",
           "type": "string"
         },
+        "serviceConnectionPolicy": {
+          "description": "Output only. The service connection policy created automatically for the consumer network when `psc_auto_connection_policy_enabled` is true. It is in the format of: `projects/{project}/regions/{region}/serviceConnectionPolicies/{policy_id}` The `policy_id` is in format of `$NETWORK-$RANDOM`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceConnectionPolicyCreationResult": {
+          "description": "Output only. The status of service connection policy creation.",
+          "readOnly": true,
+          "type": "string"
+        },
         "status": {
           "description": "The connection status of the consumer endpoint.",
+          "type": "string"
+        },
+        "writeEndpointAutoDnsStatus": {
+          "description": "Output only. The status of automated DNS provisioning for the write endpoint.",
+          "enum": [
+            "AUTO_DNS_STATUS_UNSPECIFIED",
+            "AUTO_DNS_OK",
+            "AUTO_DNS_FAILED",
+            "AUTO_DNS_UNKNOWN"
+          ],
+          "enumDescriptions": [
+            "Unspecified status. This means status is missing from dependency service.",
+            "DNS provisioning is OK.",
+            "DNS provisioning failed.",
+            "DNS provisioning status is not recognized by Cloud SQL."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -7668,6 +7841,10 @@
           "description": "Optional. The network attachment of the consumer network that the Private Service Connect enabled Cloud SQL instance is authorized to connect via PSC interface. format: projects/PROJECT/regions/REGION/networkAttachments/ID",
           "type": "string"
         },
+        "pscAutoConnectionPolicyEnabled": {
+          "description": "Optional. Whether to set up the PSC service connection policy automatically.",
+          "type": "boolean"
+        },
         "pscAutoConnections": {
           "description": "Optional. The list of settings for requested Private Service Connect consumer endpoints that can be used to connect to this Cloud SQL instance.",
           "items": {
@@ -7676,7 +7853,7 @@
           "type": "array"
         },
         "pscAutoDnsEnabled": {
-          "description": "Optional. Indicates whether PSC DNS automation is enabled for this instance. When enabled, Cloud SQL provisions a universal DNS record across all networks configured with Private Service Connect (PSC) auto-connections. This will default to true for new instances when Private Service Connect is enabled.",
+          "description": "Optional. Indicates whether Private Service Connect DNS automation is enabled for this instance. When enabled, Cloud SQL provisions a universal DNS record across all networks configured with Private Service Connect auto-connections. This will default to true for new instances when Private Service Connect is enabled.",
           "type": "boolean"
         },
         "pscEnabled": {
@@ -7684,7 +7861,7 @@
           "type": "boolean"
         },
         "pscWriteEndpointDnsEnabled": {
-          "description": "Optional. Indicates whether PSC write endpoint DNS automation is enabled for this instance. When enabled, Cloud SQL provisions a universal global DNS record across all networks configured with Private Service Connect (PSC) auto-connections that always points to the cluster primary instance. This feature is only supported for Enterprise Plus edition. This will default to true for new Enterprise Plus instances when `psc_auto_dns_enabled` is enabled.",
+          "description": "Optional. Indicates whether Private Service Connect write endpoint DNS automation is enabled for this instance. When enabled, Cloud SQL provisions a universal global DNS record across all networks configured with Private Service Connect auto-connections that points to the cluster primary instance. This feature is only supported for Enterprise Plus edition. This will default to true for new Enterprise Plus instances when `psc_auto_dns_enabled` is enabled.",
           "type": "boolean"
         }
       },
@@ -9197,6 +9374,7 @@
             "CLOUD_IAM_GROUP",
             "CLOUD_IAM_GROUP_USER",
             "CLOUD_IAM_GROUP_SERVICE_ACCOUNT",
+            "CLOUD_IAM_WORKFORCE_IDENTITY",
             "ENTRAID_USER"
           ],
           "enumDescriptions": [
@@ -9206,6 +9384,7 @@
             "Cloud IAM group. Not used for login.",
             "Read-only. Login for a user that belongs to the Cloud IAM group.",
             "Read-only. Login for a service account that belongs to the Cloud IAM group.",
+            "Cloud IAM workforce identity user managed via workforce identity federation.",
             "Microsoft Entra ID user."
           ],
           "type": "string"

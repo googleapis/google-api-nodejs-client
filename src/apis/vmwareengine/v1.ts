@@ -488,6 +488,19 @@ export namespace vmwareengine_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Encryption configuration for a private cloud.
+   */
+  export interface Schema$EncryptionConfig {
+    /**
+     * Optional. The resource name of the Cloud KMS key to be used for CMEK encryption. The format of this field is `projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{crypto_key\}`. The key must be in the same region as the private cloud. This key is used for wrapping the key-encrypting key of vSAN clusters. This field must be provided when `type` is `CMEK` or `LEGACY_CMEK`, and must not be set when `type` is `OTHER`.
+     */
+    cryptoKeyName?: string | null;
+    /**
+     * Required. The encryption type of the private cloud.
+     */
+    type?: string | null;
+  }
+  /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
@@ -1661,6 +1674,10 @@ export namespace vmwareengine_v1 {
      */
     description?: string | null;
     /**
+     * Optional. Encryption configuration for the private cloud. If this field is left unspecified, Google default encryption is used.
+     */
+    encryptionConfig?: Schema$EncryptionConfig;
+    /**
      * Output only. Time when the resource will be irreversibly deleted.
      */
     expireTime?: string | null;
@@ -2332,8 +2349,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -2594,8 +2610,7 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -2929,8 +2944,7 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Announcements$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAnnouncementsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListAnnouncementsResponse>,
       callback: BodyResponseCallback<Schema$ListAnnouncementsResponse>
     ): void;
     list(
@@ -3148,8 +3162,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3293,8 +3306,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3435,8 +3447,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Datastore>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Datastore>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Datastore> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Datastore>>
@@ -3563,8 +3574,7 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Datastores$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListDatastoresResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListDatastoresResponse>,
       callback: BodyResponseCallback<Schema$ListDatastoresResponse>
     ): void;
     list(
@@ -3744,8 +3754,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3983,8 +3992,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4131,8 +4139,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4334,8 +4341,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4478,8 +4484,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4946,8 +4951,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5163,8 +5167,7 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Networkpeerings$Peeringroutes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPeeringRoutesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPeeringRoutesResponse>,
       callback: BodyResponseCallback<Schema$ListPeeringRoutesResponse>
     ): void;
     list(
@@ -5381,8 +5384,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -5525,8 +5527,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6137,8 +6138,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6411,8 +6411,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -6558,8 +6557,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7034,8 +7032,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7271,8 +7268,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$NodeType>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$NodeType>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$NodeType> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$NodeType>>
@@ -7395,8 +7391,7 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Nodetypes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListNodeTypesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListNodeTypesResponse>,
       callback: BodyResponseCallback<Schema$ListNodeTypesResponse>
     ): void;
     list(
@@ -7582,8 +7577,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -7720,8 +7714,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -7846,8 +7839,7 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -8036,6 +8028,7 @@ export namespace vmwareengine_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "description": "my_description",
+     *       //   "encryptionConfig": {},
      *       //   "expireTime": "my_expireTime",
      *       //   "hcx": {},
      *       //   "managementCluster": {},
@@ -8108,8 +8101,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8255,8 +8247,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -8342,6 +8333,7 @@ export namespace vmwareengine_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "description": "my_description",
+     *   //   "encryptionConfig": {},
      *   //   "expireTime": "my_expireTime",
      *   //   "hcx": {},
      *   //   "managementCluster": {},
@@ -8683,8 +8675,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -8813,8 +8804,7 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPrivateCloudsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPrivateCloudsResponse>,
       callback: BodyResponseCallback<Schema$ListPrivateCloudsResponse>
     ): void;
     list(
@@ -8989,8 +8979,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9086,6 +9075,7 @@ export namespace vmwareengine_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "description": "my_description",
+     *       //   "encryptionConfig": {},
      *       //   "expireTime": "my_expireTime",
      *       //   "hcx": {},
      *       //   "managementCluster": {},
@@ -9158,8 +9148,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9310,8 +9299,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9462,8 +9450,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9619,8 +9606,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -9769,8 +9755,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -10186,8 +10171,7 @@ export namespace vmwareengine_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Privateclouds$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -10358,8 +10342,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10516,8 +10499,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -10912,8 +10894,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11057,8 +11038,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11201,8 +11181,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Cluster>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Cluster>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Cluster> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Cluster>>
@@ -11343,8 +11322,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -11476,8 +11454,7 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListClustersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListClustersResponse>,
       callback: BodyResponseCallback<Schema$ListClustersResponse>
     ): void;
     list(
@@ -11652,8 +11629,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11818,8 +11794,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -11967,8 +11942,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -12099,8 +12073,7 @@ export namespace vmwareengine_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Privateclouds$Clusters$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -12276,8 +12249,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -12567,8 +12539,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Node>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Node>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Node> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Node>>
@@ -12904,8 +12875,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13051,8 +13021,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13513,8 +13482,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -13764,8 +13732,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14051,8 +14018,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -14357,8 +14323,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -14489,8 +14454,7 @@ export namespace vmwareengine_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Privateclouds$Hcxactivationkeys$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -14753,8 +14717,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -14898,8 +14861,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15170,8 +15132,7 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Loggingservers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLoggingServersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLoggingServersResponse>,
       callback: BodyResponseCallback<Schema$ListLoggingServersResponse>
     ): void;
     list(
@@ -15354,8 +15315,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15600,8 +15560,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15747,8 +15706,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -15874,8 +15832,7 @@ export namespace vmwareengine_v1 {
     get(
       params: Params$Resource$Projects$Locations$Privateclouds$Managementdnszonebindings$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ManagementDnsZoneBinding>,
+        MethodOptions | BodyResponseCallback<Schema$ManagementDnsZoneBinding>,
       callback: BodyResponseCallback<Schema$ManagementDnsZoneBinding>
     ): void;
     get(
@@ -16217,8 +16174,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -16367,8 +16323,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -16602,8 +16557,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Subnet>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Subnet>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Subnet> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Subnet>>
@@ -16903,8 +16857,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -17095,8 +17048,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Upgrade>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Upgrade>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Upgrade> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Upgrade>>
@@ -17225,8 +17177,7 @@ export namespace vmwareengine_v1 {
     list(
       params: Params$Resource$Projects$Locations$Privateclouds$Upgrades$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListUpgradesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListUpgradesResponse>,
       callback: BodyResponseCallback<Schema$ListUpgradesResponse>
     ): void;
     list(
@@ -17414,8 +17365,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -17639,8 +17589,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -17783,8 +17732,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -18249,8 +18197,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -18683,8 +18630,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -18831,8 +18777,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -19293,8 +19238,7 @@ export namespace vmwareengine_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>

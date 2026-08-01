@@ -31,10 +31,7 @@ export function memcache(
 export function memcache<T = memcache_v1.Memcache | memcache_v1beta2.Memcache>(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | memcache_v1.Options
-    | 'v1beta2'
-    | memcache_v1beta2.Options
+    'v1' | memcache_v1.Options | 'v1beta2' | memcache_v1beta2.Options
 ) {
   return getAPI<T>('memcache', versionOrOptions, VERSIONS, this);
 }

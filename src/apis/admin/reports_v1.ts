@@ -163,6 +163,7 @@ export namespace admin_reports_v1 {
      * User doing the action.
      */
     actor?: {
+      agentAttributionInfo?: Schema$AgentAttributionInfo;
       applicationInfo?: {
         applicationName?: string;
         impersonation?: boolean;
@@ -220,6 +221,10 @@ export namespace admin_reports_v1 {
      */
     ipAddress?: string | null;
     /**
+     * Whether the activity was performed by an agent.
+     */
+    isAgenticAction?: boolean | null;
+    /**
      * The type of API resource. For an activity report, the value is `audit#activity`.
      */
     kind?: string | null;
@@ -235,6 +240,10 @@ export namespace admin_reports_v1 {
      * Details of the resource on which the action was performed.
      */
     resourceDetails?: Schema$ResourceDetails[];
+    /**
+     * Device details of the user doing the action.
+     */
+    userDeviceInfo?: Schema$ActivityUserDeviceInfo;
   }
   /**
    * Status of the event. Note: Not all events have status.
@@ -273,6 +282,53 @@ export namespace admin_reports_v1 {
      * ISO 3166-2 region code (states and provinces) for countries of the user doing the action.
      */
     subdivisionCode?: string | null;
+  }
+  /**
+   * Device details of the user doing the action.
+   */
+  export interface Schema$ActivityUserDeviceInfo {
+    /**
+     * Output only. Device ID of the user's device.
+     */
+    deviceId?: string | null;
+    /**
+     * Output only. Device OS version of the user's device.
+     */
+    deviceOsVersion?: string | null;
+    /**
+     * Output only. The type of the user's device.
+     */
+    deviceType?: string | null;
+  }
+  /**
+   * Details of the AI agent that was the actor for the activity.
+   */
+  export interface Schema$AgentAttributionInfo {
+    /**
+     * The ID of the agent.
+     */
+    agentId?: string | null;
+    /**
+     * The user visible name of the agent.
+     */
+    agentName?: string | null;
+    /**
+     * The owner of the agent.
+     */
+    agentOwner?: Schema$AgentAttributionInfoAgentOwner;
+    /**
+     * Type of the agent.
+     */
+    agentType?: string | null;
+  }
+  /**
+   * Details of the owner of the AI agent.
+   */
+  export interface Schema$AgentAttributionInfoAgentOwner {
+    /**
+     * The email of the agent owner.
+     */
+    email?: string | null;
   }
   /**
    * Details of the label applied on the resource.
@@ -711,6 +767,8 @@ export namespace admin_reports_v1 {
      *   const res = await reports.activities.list({
      *     // The Internet Protocol (IP) Address of host where the event was performed. This is an additional way to filter a report's summary using the IP address of the user whose activity is being reported. This IP address may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. This parameter supports both IPv4 and IPv6 address versions.
      *     actorIpAddress: 'placeholder-value',
+     *     // Optional. Filters on agent info fields in the activity. This filter gets applied in conjunction(AND) with other filters. Example: "agentInfoFilter=agentId=\"agent-id\" AND agentName=\"agent-name\" AND agentOwnerEmail=\"agent-owner-email\""
+     *     agentInfoFilter: 'placeholder-value',
      *     // Optional. Used to filter on the `oAuthClientId` field present in [`ApplicationInfo`](#applicationinfo) message. **Usage** ``` GET...&applicationInfoFilter=oAuthClientId="clientId" GET...&applicationInfoFilter=oAuthClientId=%22clientId%22 ```
      *     applicationInfoFilter: 'placeholder-value',
      *     // Application name for which the events are to be retrieved.
@@ -805,8 +863,7 @@ export namespace admin_reports_v1 {
         | BodyResponseCallback<Schema$Activities>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Activities>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Activities> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Activities>>
@@ -993,8 +1050,7 @@ export namespace admin_reports_v1 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -1047,6 +1103,10 @@ export namespace admin_reports_v1 {
      * The Internet Protocol (IP) Address of host where the event was performed. This is an additional way to filter a report's summary using the IP address of the user whose activity is being reported. This IP address may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. This parameter supports both IPv4 and IPv6 address versions.
      */
     actorIpAddress?: string;
+    /**
+     * Optional. Filters on agent info fields in the activity. This filter gets applied in conjunction(AND) with other filters. Example: "agentInfoFilter=agentId=\"agent-id\" AND agentName=\"agent-name\" AND agentOwnerEmail=\"agent-owner-email\""
+     */
+    agentInfoFilter?: string;
     /**
      * Optional. Used to filter on the `oAuthClientId` field present in [`ApplicationInfo`](#applicationinfo) message. **Usage** ``` GET...&applicationInfoFilter=oAuthClientId="clientId" GET...&applicationInfoFilter=oAuthClientId=%22clientId%22 ```
      */

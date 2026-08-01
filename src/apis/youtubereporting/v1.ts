@@ -723,8 +723,7 @@ export namespace youtubereporting_v1 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -860,8 +859,7 @@ export namespace youtubereporting_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1004,8 +1002,7 @@ export namespace youtubereporting_v1 {
         | BodyResponseCallback<Schema$Job>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Job>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Job> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Job>>
@@ -1352,8 +1349,7 @@ export namespace youtubereporting_v1 {
         | BodyResponseCallback<Schema$Report>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Report>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Report> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
@@ -1728,8 +1724,7 @@ export namespace youtubereporting_v1 {
         | BodyResponseCallback<Schema$GdataMedia>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GdataMedia>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$GdataMedia> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$GdataMedia>>
@@ -1871,8 +1866,7 @@ export namespace youtubereporting_v1 {
     list(
       params: Params$Resource$Reporttypes$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListReportTypesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListReportTypesResponse>,
       callback: BodyResponseCallback<Schema$ListReportTypesResponse>
     ): void;
     list(
