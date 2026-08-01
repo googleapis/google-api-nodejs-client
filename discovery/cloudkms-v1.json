@@ -21,51 +21,6 @@
   "endpoints": [
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudkms.europe-west8.rep.googleapis.com/",
-      "location": "europe-west8"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudkms.us-central1.rep.googleapis.com/",
-      "location": "us-central1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudkms.us-west3.rep.googleapis.com/",
-      "location": "us-west3"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudkms.us-central2.rep.googleapis.com/",
-      "location": "us-central2"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudkms.us-west4.rep.googleapis.com/",
-      "location": "us-west4"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudkms.us-east5.rep.googleapis.com/",
-      "location": "us-east5"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudkms.us-south1.rep.googleapis.com/",
-      "location": "us-south1"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudkms.us-east4.rep.googleapis.com/",
-      "location": "us-east4"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://cloudkms.us-west2.rep.googleapis.com/",
-      "location": "us-west2"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.us-east7.rep.googleapis.com/",
       "location": "us-east7"
     },
@@ -98,6 +53,51 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.us-west1.rep.googleapis.com/",
       "location": "us-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-west3.rep.googleapis.com/",
+      "location": "us-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-central2.rep.googleapis.com/",
+      "location": "us-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-east4.rep.googleapis.com/",
+      "location": "us-east4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-west2.rep.googleapis.com/",
+      "location": "us-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.europe-west8.rep.googleapis.com/",
+      "location": "europe-west8"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-central1.rep.googleapis.com/",
+      "location": "us-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-west4.rep.googleapis.com/",
+      "location": "us-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-east5.rep.googleapis.com/",
+      "location": "us-east5"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-south1.rep.googleapis.com/",
+      "location": "us-south1"
     },
     {
       "description": "Regional Endpoint",
@@ -227,7 +227,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or `projects/{PROJECT_NUMBER}/autokeyConfig`.",
+              "description": "Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`, `projects/{PROJECT_NUMBER}/autokeyConfig`, or `projects/{PROJECT_ID}/autokeyConfig`.",
               "location": "path",
               "pattern": "^folders/[^/]+/autokeyConfig$",
               "required": true,
@@ -269,6 +269,32 @@
             "https://www.googleapis.com/auth/cloudkms"
           ]
         },
+        "showEffectiveAutokeyConfig": {
+          "description": "Returns the effective Cloud KMS Autokey configuration for a given project or folder.",
+          "flatPath": "v1/folders/{foldersId}:showEffectiveAutokeyConfig",
+          "httpMethod": "GET",
+          "id": "cloudkms.folders.showEffectiveAutokeyConfig",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project. Format: * projects/{project} * folders/{folder}",
+              "location": "path",
+              "pattern": "^folders/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+parent}:showEffectiveAutokeyConfig",
+          "response": {
+            "$ref": "ShowEffectiveAutokeyConfigResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloudkms"
+          ]
+        },
         "updateAutokeyConfig": {
           "description": "Updates the AutokeyConfig for a folder or a project. The caller must have both `cloudkms.autokeyConfigs.update` permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy` permission on the provided key project. A KeyHandle creation in the folder's descendant projects will use this configuration to determine where to create the resulting CryptoKey.",
           "flatPath": "v1/folders/{foldersId}/autokeyConfig",
@@ -279,7 +305,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or `projects/{PROJECT_NUMBER}/autokeyConfig`.",
+              "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`, `projects/{PROJECT_NUMBER}/autokeyConfig`, or `projects/{PROJECT_ID}/autokeyConfig`.",
               "location": "path",
               "pattern": "^folders/[^/]+/autokeyConfig$",
               "required": true,
@@ -418,7 +444,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or `projects/{PROJECT_NUMBER}/autokeyConfig`.",
+              "description": "Required. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`, `projects/{PROJECT_NUMBER}/autokeyConfig`, or `projects/{PROJECT_ID}/autokeyConfig`.",
               "location": "path",
               "pattern": "^projects/[^/]+/autokeyConfig$",
               "required": true,
@@ -461,7 +487,7 @@
           ]
         },
         "showEffectiveAutokeyConfig": {
-          "description": "Returns the effective Cloud KMS Autokey configuration for a given project.",
+          "description": "Returns the effective Cloud KMS Autokey configuration for a given project or folder.",
           "flatPath": "v1/projects/{projectsId}:showEffectiveAutokeyConfig",
           "httpMethod": "GET",
           "id": "cloudkms.projects.showEffectiveAutokeyConfig",
@@ -470,7 +496,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "Required. Name of the resource project to the show effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project.",
+              "description": "Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for. This may be helpful for interrogating the effect of nested folder configurations on a given resource project. Format: * projects/{project} * folders/{folder}",
               "location": "path",
               "pattern": "^projects/[^/]+$",
               "required": true,
@@ -548,7 +574,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or `projects/{PROJECT_NUMBER}/autokeyConfig`.",
+              "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`, `projects/{PROJECT_NUMBER}/autokeyConfig`, or `projects/{PROJECT_ID}/autokeyConfig`.",
               "location": "path",
               "pattern": "^projects/[^/]+/autokeyConfig$",
               "required": true,
@@ -1468,6 +1494,11 @@
                           "description": "If set to true, the request will create a CryptoKey without any CryptoKeyVersions. You must manually call CreateCryptoKeyVersion or ImportCryptoKeyVersion before you can use this CryptoKey.",
                           "location": "query",
                           "type": "boolean"
+                        },
+                        "trustedWrappingEnabled": {
+                          "description": "Optional. Whether trusted wrapping will be enabled on the first CryptoKeyVersions created for this CryptoKey. This field is only supported for keys with CryptoKeyVersionTemplate.protection_level HSM_SINGLE_TENANT. This field is supported for all CryptoKeyPurposes except ENCRYPT_DECRYPT.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+parent}/cryptoKeys",
@@ -1981,6 +2012,37 @@
                             "https://www.googleapis.com/auth/cloudkms"
                           ]
                         },
+                        "exportTrustedKeyWrappedCryptoKeyVersion": {
+                          "description": "Exports a CryptoKeyVersion with a trusted key. The CryptoKeyVersion must have trusted_wrapping_enabled set to true. The CryptoKeyVersion of the [wrapping_key] must have the AES_WRAPPING purpose. The [wrapping_key] must have the AES_256_KWP algorithm.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions/{cryptoKeyVersionsId}:exportTrustedKeyWrappedCryptoKeyVersion",
+                          "httpMethod": "GET",
+                          "id": "cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.exportTrustedKeyWrappedCryptoKeyVersion",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the CryptoKeyVersion to export. The CryptoKeyVersion must have trusted_wrapping_enabled set to true.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+/cryptoKeyVersions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "wrappingKey": {
+                              "description": "Required. The name of the CryptoKeyVersion to use as a wrapping key. The CryptoKeyVersion must have hsm_trusted set to true.",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}:exportTrustedKeyWrappedCryptoKeyVersion",
+                          "response": {
+                            "$ref": "ExportTrustedKeyWrappedCryptoKeyVersionResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/cloudkms"
+                          ]
+                        },
                         "get": {
                           "description": "Returns metadata for a given CryptoKeyVersion.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions/{cryptoKeyVersionsId}",
@@ -2072,6 +2134,35 @@
                           "path": "v1/{+parent}/cryptoKeyVersions:import",
                           "request": {
                             "$ref": "ImportCryptoKeyVersionRequest"
+                          },
+                          "response": {
+                            "$ref": "CryptoKeyVersion"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/cloudkms"
+                          ]
+                        },
+                        "importTrustedKeyWrappedCryptoKeyVersion": {
+                          "description": "Import wrapped key material into a CryptoKeyVersion with a trusted key. All requests must specify a CryptoKey. If a CryptoKeyVersion is additionally specified in the request, key material will be reimported into that version. Otherwise, a new version will be created, and will be assigned the next sequential id within the CryptoKey. The CryptoKeyVersion will have trusted_wrapping_enabled set to true.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions:importTrustedKeyWrappedCryptoKeyVersion",
+                          "httpMethod": "POST",
+                          "id": "cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.importTrustedKeyWrappedCryptoKeyVersion",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The name of the CryptoKey to be imported into.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/cryptoKeyVersions:importTrustedKeyWrappedCryptoKeyVersion",
+                          "request": {
+                            "$ref": "ImportTrustedKeyWrappedCryptoKeyVersionRequest"
                           },
                           "response": {
                             "$ref": "CryptoKeyVersion"
@@ -2967,7 +3058,7 @@
       }
     }
   },
-  "revision": "20260514",
+  "revision": "20260709",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AddQuorumMember": {
@@ -3204,7 +3295,7 @@
             "DISABLED"
           ],
           "enumDescriptions": [
-            "Default value. KeyProjectResolutionMode when not specified will act as `DEDICATED_KEY_PROJECT`.",
+            "Default value. When KeyProjectResolutionMode is set to KEY_PROJECT_RESOLUTION_MODE_UNSPECIFIED for a folder and that folder has a key_project set, the folder acts like its KeyProjectResolutionMode is DEDICATED_KEY_PROJECT.",
             "Keys are created in a dedicated project specified by `key_project`.",
             "Keys are created in the same project as the resource requesting the key. The `key_project` must not be set when this mode is used.",
             "Disables the AutokeyConfig. When this mode is set, any AutokeyConfig from higher levels in the resource hierarchy are ignored for this resource and its descendants. This setting can be overridden by a more specific configuration at a lower level. For example, if Autokey is disabled on a folder, it can be re-enabled on a sub-folder or project within that folder by setting a different mode (e.g., DEDICATED_KEY_PROJECT or RESOURCE_PROJECT)."
@@ -3212,7 +3303,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or `projects/{PROJECT_NUMBER}/autokeyConfig`.",
+          "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`, `projects/{PROJECT_NUMBER}/autokeyConfig`, or `projects/{PROJECT_ID}/autokeyConfig`.",
           "type": "string"
         },
         "state": {
@@ -3221,13 +3312,22 @@
             "STATE_UNSPECIFIED",
             "ACTIVE",
             "KEY_PROJECT_DELETED",
-            "UNINITIALIZED"
+            "UNINITIALIZED",
+            "KEY_PROJECT_PERMISSION_DENIED"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            true
           ],
           "enumDescriptions": [
             "The state of the AutokeyConfig is unspecified.",
             "The AutokeyConfig is currently active.",
             "A previously configured key project has been deleted and the current AutokeyConfig is unusable.",
-            "The AutokeyConfig is not yet initialized or has been reset to its default uninitialized state."
+            "The AutokeyConfig is not yet initialized or has been reset to its default uninitialized state.",
+            "Deprecated: This state is not returned by the backend."
           ],
           "readOnly": true,
           "type": "string"
@@ -3451,7 +3551,8 @@
             "ASYMMETRIC_DECRYPT",
             "RAW_ENCRYPT_DECRYPT",
             "MAC",
-            "KEY_ENCAPSULATION"
+            "KEY_ENCAPSULATION",
+            "AES_WRAPPING"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -3460,7 +3561,8 @@
             "CryptoKeys with this purpose may be used with AsymmetricDecrypt and GetPublicKey.",
             "CryptoKeys with this purpose may be used with RawEncrypt and RawDecrypt. This purpose is meant to be used for interoperable symmetric encryption and does not support automatic CryptoKey rotation.",
             "CryptoKeys with this purpose may be used with MacSign.",
-            "CryptoKeys with this purpose may be used with GetPublicKey and Decapsulate."
+            "CryptoKeys with this purpose may be used with GetPublicKey and Decapsulate.",
+            "CryptoKeys with this purpose may be used for AES key"
           ],
           "type": "string"
         },
@@ -3529,7 +3631,8 @@
             "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
             "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
             "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
-            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU"
+            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+            "AES_256_KWP"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -3578,7 +3681,8 @@
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 1. Randomized version supporting externally-computed message representatives.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version supporting externally-computed message representatives.",
-            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version supporting externally-computed message representatives."
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version supporting externally-computed message representatives.",
+            "AES key wrap with zero padding algorithm (RFC 5649). Can only be used by keys with purpose AES_WRAPPING."
           ],
           "readOnly": true,
           "type": "string"
@@ -3625,6 +3729,11 @@
           "description": "Output only. The root cause of the most recent generation failure. Only present if state is GENERATION_FAILED.",
           "readOnly": true,
           "type": "string"
+        },
+        "hsmTrusted": {
+          "description": "Output only. Field indicating that the key wrapping key is trusted. This field is only valid for key purpose AES_256_WRAPPING, and protection level HSM_SINGLE_TENANT.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "importFailureReason": {
           "description": "Output only. The root cause of the most recent import failure. Only present if state is IMPORT_FAILED.",
@@ -3702,6 +3811,10 @@
             "This version was destroyed, and it may not be used or enabled again. However, Cloud KMS could not confirm that the corresponding key material residing in an external key manager was destroyed. Additional details can be found in CryptoKeyVersion.external_destruction_failure_reason."
           ],
           "type": "string"
+        },
+        "trustedWrappingEnabled": {
+          "description": "Immutable. Field indicating that the key may be wrapped by a trusted key. This field can be set for all key purposes except ENCRYPT_DECRYPT, and is only valid for keys with protection level HSM_SINGLE_TENANT. This field can only be set at creation or import time via CreateCryptoKeyVersion, or ImportCryptoKeyVersion.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3759,7 +3872,8 @@
             "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
             "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
             "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
-            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU"
+            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+            "AES_256_KWP"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -3808,7 +3922,8 @@
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 1. Randomized version supporting externally-computed message representatives.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version supporting externally-computed message representatives.",
-            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version supporting externally-computed message representatives."
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version supporting externally-computed message representatives.",
+            "AES key wrap with zero padding algorithm (RFC 5649). Can only be used by keys with purpose AES_WRAPPING."
           ],
           "type": "string"
         },
@@ -4167,6 +4282,23 @@
       "properties": {},
       "type": "object"
     },
+    "ExportTrustedKeyWrappedCryptoKeyVersionResponse": {
+      "description": "Response message for KeyManagementService.ExportTrustedKeyWrappedCryptoKeyVersion.",
+      "id": "ExportTrustedKeyWrappedCryptoKeyVersionResponse",
+      "properties": {
+        "wrappedKey": {
+          "description": "The wrapped key material.",
+          "format": "byte",
+          "type": "string"
+        },
+        "wrappedKeyCrc32c": {
+          "description": "Integrity verification field. A CRC32C checksum of the returned ExportTrustedKeyWrappedCryptoKeyVersionResponse.wrapped_key. An integrity check of ExportTrustedKeyWrappedCryptoKeyVersionResponse.wrapped_key can be performed by computing the CRC32C checksum of ExportTrustedKeyWrappedCryptoKeyVersionResponse.wrapped_key and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Expr": {
       "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
@@ -4194,12 +4326,16 @@
       "description": "ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level and EXTERNAL_VPC protection levels.",
       "id": "ExternalProtectionLevelOptions",
       "properties": {
+        "ekmConnectionBackendOverride": {
+          "description": "Optional. The resource name of the backend environment where the key material of CryptoKeyVersions is associated with. Setting this field overrides the CryptoKeyBackend. This field may be set when CryptoKeyVersions is set to EXTERNAL_VPC. Format: `projects/*/locations/*/ekmConnections/*`.",
+          "type": "string"
+        },
         "ekmConnectionKeyPath": {
-          "description": "The path to the external key material on the EKM when using EkmConnection e.g., \"v0/my/key\". Set this field instead of external_key_uri when using an EkmConnection.",
+          "description": "Optional. The path to the external key material on the EKM when using EkmConnection e.g., \"v0/my/key\". Set this field instead of external_key_uri when using an EkmConnection.",
           "type": "string"
         },
         "externalKeyUri": {
-          "description": "The URI for an external resource that this CryptoKeyVersion represents.",
+          "description": "Optional. The URI for an external resource that this CryptoKeyVersion represents.",
           "type": "string"
         }
       },
@@ -4307,7 +4443,8 @@
             "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
             "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
             "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
-            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU"
+            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+            "AES_256_KWP"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -4356,7 +4493,8 @@
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 1. Randomized version supporting externally-computed message representatives.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version supporting externally-computed message representatives.",
-            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version supporting externally-computed message representatives."
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version supporting externally-computed message representatives.",
+            "AES key wrap with zero padding algorithm (RFC 5649). Can only be used by keys with purpose AES_WRAPPING."
           ],
           "type": "string"
         },
@@ -4372,6 +4510,10 @@
           "description": "Optional. This field has the same meaning as wrapped_key. Prefer to use that field in new work. Either that field or this field (but not both) must be specified.",
           "format": "byte",
           "type": "string"
+        },
+        "trustedWrappingEnabled": {
+          "description": "Optional. Whether trusted wrapping will be enabled on the imported [CryptoKeyVersion]. This field is only supported for keys with CryptoKeyVersionTemplate.protection_level HSM_SINGLE_TENANT. This field is supported for all CryptoKeyPurposes besides ENCRYPT_DECRYPT.",
+          "type": "boolean"
         },
         "wrappedKey": {
           "description": "Optional. The wrapped key material to import. Before wrapping, key material must be formatted. If importing symmetric key material, the expected key material format is plain bytes. If importing asymmetric key material, the expected key material format is PKCS#8-encoded DER (the PrivateKeyInfo structure from RFC 5208). When wrapping with import methods (RSA_OAEP_3072_SHA1_AES_256 or RSA_OAEP_4096_SHA1_AES_256 or RSA_OAEP_3072_SHA256_AES_256 or RSA_OAEP_4096_SHA256_AES_256), this field must contain the concatenation of: 1. An ephemeral AES-256 wrapping key wrapped with the public_key using RSAES-OAEP with SHA-1/SHA-256, MGF1 with SHA-1/SHA-256, and an empty label. 2. The formatted key to be imported, wrapped with the ephemeral AES-256 key using AES-KWP (RFC 5649). This format is the same as the format produced by PKCS#11 mechanism CKM_RSA_AES_KEY_WRAP. When wrapping with import methods (RSA_OAEP_3072_SHA256 or RSA_OAEP_4096_SHA256), this field must contain the formatted key to be imported, wrapped with the public_key using RSAES-OAEP with SHA-256, MGF1 with SHA-256, and an empty label.",
@@ -4510,6 +4652,130 @@
             "This job can no longer be used and may not leave this state once entered."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ImportTrustedKeyWrappedCryptoKeyVersionRequest": {
+      "description": "Request message for KeyManagementService.ImportTrustedKeyWrappedCryptoKeyVersion.",
+      "id": "ImportTrustedKeyWrappedCryptoKeyVersionRequest",
+      "properties": {
+        "algorithm": {
+          "description": "Required. Required - The algorithm of the key being imported. This does not need to match the version_template of the CryptoKey this version imports into.",
+          "enum": [
+            "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
+            "GOOGLE_SYMMETRIC_ENCRYPTION",
+            "AES_128_GCM",
+            "AES_256_GCM",
+            "AES_128_CBC",
+            "AES_256_CBC",
+            "AES_128_CTR",
+            "AES_256_CTR",
+            "RSA_SIGN_PSS_2048_SHA256",
+            "RSA_SIGN_PSS_3072_SHA256",
+            "RSA_SIGN_PSS_4096_SHA256",
+            "RSA_SIGN_PSS_4096_SHA512",
+            "RSA_SIGN_PKCS1_2048_SHA256",
+            "RSA_SIGN_PKCS1_3072_SHA256",
+            "RSA_SIGN_PKCS1_4096_SHA256",
+            "RSA_SIGN_PKCS1_4096_SHA512",
+            "RSA_SIGN_RAW_PKCS1_2048",
+            "RSA_SIGN_RAW_PKCS1_3072",
+            "RSA_SIGN_RAW_PKCS1_4096",
+            "RSA_DECRYPT_OAEP_2048_SHA256",
+            "RSA_DECRYPT_OAEP_3072_SHA256",
+            "RSA_DECRYPT_OAEP_4096_SHA256",
+            "RSA_DECRYPT_OAEP_4096_SHA512",
+            "RSA_DECRYPT_OAEP_2048_SHA1",
+            "RSA_DECRYPT_OAEP_3072_SHA1",
+            "RSA_DECRYPT_OAEP_4096_SHA1",
+            "EC_SIGN_P256_SHA256",
+            "EC_SIGN_P384_SHA384",
+            "EC_SIGN_SECP256K1_SHA256",
+            "EC_SIGN_ED25519",
+            "HMAC_SHA256",
+            "HMAC_SHA1",
+            "HMAC_SHA384",
+            "HMAC_SHA512",
+            "HMAC_SHA224",
+            "EXTERNAL_SYMMETRIC_ENCRYPTION",
+            "ML_KEM_768",
+            "ML_KEM_1024",
+            "KEM_XWING",
+            "PQ_SIGN_ML_DSA_44",
+            "PQ_SIGN_ML_DSA_65",
+            "PQ_SIGN_ML_DSA_87",
+            "PQ_SIGN_SLH_DSA_SHA2_128S",
+            "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
+            "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
+            "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
+            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+            "AES_256_KWP"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Creates symmetric encryption keys.",
+            "AES-GCM (Galois Counter Mode) using 128-bit keys.",
+            "AES-GCM (Galois Counter Mode) using 256-bit keys.",
+            "AES-CBC (Cipher Block Chaining Mode) using 128-bit keys.",
+            "AES-CBC (Cipher Block Chaining Mode) using 256-bit keys.",
+            "AES-CTR (Counter Mode) using 128-bit keys.",
+            "AES-CTR (Counter Mode) using 256-bit keys.",
+            "RSASSA-PSS 2048 bit key with a SHA256 digest.",
+            "RSASSA-PSS 3072 bit key with a SHA256 digest.",
+            "RSASSA-PSS 4096 bit key with a SHA256 digest.",
+            "RSASSA-PSS 4096 bit key with a SHA512 digest.",
+            "RSASSA-PKCS1-v1_5 with a 2048 bit key and a SHA256 digest.",
+            "RSASSA-PKCS1-v1_5 with a 3072 bit key and a SHA256 digest.",
+            "RSASSA-PKCS1-v1_5 with a 4096 bit key and a SHA256 digest.",
+            "RSASSA-PKCS1-v1_5 with a 4096 bit key and a SHA512 digest.",
+            "RSASSA-PKCS1-v1_5 signing without encoding, with a 2048 bit key.",
+            "RSASSA-PKCS1-v1_5 signing without encoding, with a 3072 bit key.",
+            "RSASSA-PKCS1-v1_5 signing without encoding, with a 4096 bit key.",
+            "RSAES-OAEP 2048 bit key with a SHA256 digest.",
+            "RSAES-OAEP 3072 bit key with a SHA256 digest.",
+            "RSAES-OAEP 4096 bit key with a SHA256 digest.",
+            "RSAES-OAEP 4096 bit key with a SHA512 digest.",
+            "RSAES-OAEP 2048 bit key with a SHA1 digest.",
+            "RSAES-OAEP 3072 bit key with a SHA1 digest.",
+            "RSAES-OAEP 4096 bit key with a SHA1 digest.",
+            "ECDSA on the NIST P-256 curve with a SHA256 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "ECDSA on the NIST P-384 curve with a SHA384 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "EdDSA on the Curve25519 in pure mode (taking data as input).",
+            "HMAC-SHA256 signing with a 256 bit key.",
+            "HMAC-SHA1 signing with a 160 bit key.",
+            "HMAC-SHA384 signing with a 384 bit key.",
+            "HMAC-SHA512 signing with a 512 bit key.",
+            "HMAC-SHA224 signing with a 224 bit key.",
+            "Algorithm representing symmetric encryption by an external key manager.",
+            "ML-KEM-768 (FIPS 203)",
+            "ML-KEM-1024 (FIPS 203)",
+            "X-Wing hybrid KEM combining ML-KEM-768 with X25519 following datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem/.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 1. Randomized version.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version.",
+            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
+            "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 1. Randomized version supporting externally-computed message representatives.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version supporting externally-computed message representatives.",
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version supporting externally-computed message representatives.",
+            "AES key wrap with zero padding algorithm (RFC 5649). Can only be used by keys with purpose AES_WRAPPING."
+          ],
+          "type": "string"
+        },
+        "cryptoKeyVersion": {
+          "description": "Optional. The optional name of an existing CryptoKeyVersion to target for an import operation. If this field is not present, a new CryptoKeyVersion containing the supplied key material is created. If this field is present, the supplied key material is imported into the existing CryptoKeyVersion. To import into an existing CryptoKeyVersion, the CryptoKeyVersion must be a child of ImportTrustedKeyWrappedCryptoKeyVersionRequest.parent, have been previously created via ImportTrustedKeyWrappedCryptoKeyVersion, and be in DESTROYED or IMPORT_FAILED state. The key material and algorithm must match the previous CryptoKeyVersion exactly if the CryptoKeyVersion has ever contained key material",
+          "type": "string"
+        },
+        "importingKey": {
+          "description": "Required. Required - the CKV of the trusted key used to import. This can be the name of a CryptoKeyVersion or a CryptoKey.",
+          "type": "string"
+        },
+        "wrappedKey": {
+          "description": "Required. The target key pre-wrapped on premises.",
+          "format": "byte",
           "type": "string"
         }
       },
@@ -5205,7 +5471,8 @@
             "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
             "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
             "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
-            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU"
+            "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+            "AES_256_KWP"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -5254,7 +5521,8 @@
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 1. Randomized version supporting externally-computed message representatives.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version supporting externally-computed message representatives.",
-            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version supporting externally-computed message representatives."
+            "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 5. Randomized version supporting externally-computed message representatives.",
+            "AES key wrap with zero padding algorithm (RFC 5649). Can only be used by keys with purpose AES_WRAPPING."
           ],
           "type": "string"
         },
@@ -5756,8 +6024,28 @@
       "id": "ShowEffectiveAutokeyConfigResponse",
       "properties": {
         "keyProject": {
-          "description": "Name of the key project configured in the resource project's folder ancestry.",
+          "description": "Name of the key project configured in the ancestry of the project or folder.",
           "type": "string"
+        },
+        "keyProjectResolutionMode": {
+          "description": "The KeyProjectResolutionMode for the AutokeyConfig.",
+          "enum": [
+            "KEY_PROJECT_RESOLUTION_MODE_UNSPECIFIED",
+            "DEDICATED_KEY_PROJECT",
+            "RESOURCE_PROJECT",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Default value. When KeyProjectResolutionMode is set to KEY_PROJECT_RESOLUTION_MODE_UNSPECIFIED for a folder and that folder has a key_project set, the folder acts like its KeyProjectResolutionMode is DEDICATED_KEY_PROJECT.",
+            "Keys are created in a dedicated project specified by `key_project`.",
+            "Keys are created in the same project as the resource requesting the key. The `key_project` must not be set when this mode is used.",
+            "Disables the AutokeyConfig. When this mode is set, any AutokeyConfig from higher levels in the resource hierarchy are ignored for this resource and its descendants. This setting can be overridden by a more specific configuration at a lower level. For example, if Autokey is disabled on a folder, it can be re-enabled on a sub-folder or project within that folder by setting a different mode (e.g., DEDICATED_KEY_PROJECT or RESOURCE_PROJECT)."
+          ],
+          "type": "string"
+        },
+        "source": {
+          "$ref": "Source",
+          "description": "Source of the effective AutokeyConfig."
         }
       },
       "type": "object"
@@ -5815,7 +6103,7 @@
           "type": "string"
         },
         "keyPortabilityEnabled": {
-          "description": "Optional. Immutable. Indicates whether key portability is enabled for the SingleTenantHsmInstance. This can only be set at creation time. Key portability features are disabled by default and not yet available in GA.",
+          "description": "Optional. Immutable. Indicates whether key portability is enabled for the SingleTenantHsmInstance. This can only be set at creation time. Key portability features are disabled by default.",
           "type": "boolean"
         },
         "name": {
@@ -5965,6 +6253,21 @@
           "description": "Input only. The TTL for the SingleTenantHsmInstanceProposal. Proposals will expire after this duration.",
           "format": "google-duration",
           "type": "string"
+        },
+        "upgradeKeyTrust": {
+          "$ref": "UpgradeKeyTrust",
+          "description": "Promotes a key with the AES_WRAPPING purpose to a trusted wrapping key. The key must be in the ACTIVE state to perform this operation."
+        }
+      },
+      "type": "object"
+    },
+    "Source": {
+      "description": "Source of the effective AutokeyConfig.",
+      "id": "Source",
+      "properties": {
+        "name": {
+          "description": "Contains the resource name of the AutokeyConfig that is effective, for example, `folders/{FOLDER_NUMBER}` or `projects/{PROJECT_NUMBER}` or `organizations/{ORGANIZATION_NUMBER}`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6030,6 +6333,21 @@
       "properties": {
         "cryptoKeyVersionId": {
           "description": "Required. The id of the child CryptoKeyVersion to use as primary.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpgradeKeyTrust": {
+      "description": "Promotes a key with the AES_WRAPPING purpose to a trusted wrapping key. The key must be in the ACTIVE state to perform this operation.",
+      "id": "UpgradeKeyTrust",
+      "properties": {
+        "name": {
+          "description": "Required. The name of the CryptoKeyVersion to promote.",
+          "type": "string"
+        },
+        "twoFactorPublicKeyPem": {
+          "description": "Required. The public key associated with the 2FA key that will sign the login nonce for this operation.",
           "type": "string"
         }
       },
