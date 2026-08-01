@@ -2294,7 +2294,7 @@
       }
     }
   },
-  "revision": "20251202",
+  "revision": "20260627",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -2872,7 +2872,7 @@
           "type": "string"
         },
         "customerAttestationState": {
-          "description": "Optional. Indicate if a customer is attesting about the correctness of provided information. Only required if creating a GCP Entitlement.",
+          "description": "Optional. Indicate if a customer is attesting about the correctness of provided information. Only required if creating a GCP Entitlement. NOTE: This field will be mandatory for all new GCP customers starting Aug 31st, 2026 and this field will also be required for all existing customers purchasing new GCP Entitlements.",
           "enum": [
             "CUSTOMER_ATTESTATION_STATE_UNSPECIFIED",
             "EXEMPT",
@@ -4245,7 +4245,8 @@
             "LICENSED_USER",
             "MINUTES",
             "IAAS_USAGE",
-            "SUBSCRIPTION"
+            "SUBSCRIPTION",
+            "AI_CREDITS"
           ],
           "enumDescriptions": [
             "Not used.",
@@ -4255,7 +4256,8 @@
             "Active licensed users(for Voice SKUs).",
             "Voice usage.",
             "For IaaS SKUs like Google Cloud, monetization is based on usage accrued on your billing account irrespective of the type of monetizable resource. This enum represents an aggregated resource/container for all usage SKUs on a billing account. Currently, only applicable to Google Cloud.",
-            "For Google Cloud subscriptions like Anthos or SAP."
+            "For Google Cloud subscriptions like Anthos or SAP.",
+            "As of June 2026, this field is mapped to WS Credits on commerce side."
           ],
           "type": "string"
         }
