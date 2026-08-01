@@ -530,8 +530,7 @@ export namespace rapidmigrationassessment_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -656,8 +655,7 @@ export namespace rapidmigrationassessment_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -869,8 +867,7 @@ export namespace rapidmigrationassessment_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1013,8 +1010,7 @@ export namespace rapidmigrationassessment_v1 {
         | BodyResponseCallback<Schema$Annotation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Annotation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Annotation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Annotation>>
@@ -1208,8 +1204,7 @@ export namespace rapidmigrationassessment_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1353,8 +1348,7 @@ export namespace rapidmigrationassessment_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1502,8 +1496,7 @@ export namespace rapidmigrationassessment_v1 {
         | BodyResponseCallback<Schema$Collector>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Collector>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Collector> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Collector>>
@@ -1631,8 +1624,7 @@ export namespace rapidmigrationassessment_v1 {
     list(
       params: Params$Resource$Projects$Locations$Collectors$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCollectorsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCollectorsResponse>,
       callback: BodyResponseCallback<Schema$ListCollectorsResponse>
     ): void;
     list(
@@ -1820,8 +1812,7 @@ export namespace rapidmigrationassessment_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1968,8 +1959,7 @@ export namespace rapidmigrationassessment_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2116,8 +2106,7 @@ export namespace rapidmigrationassessment_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2267,8 +2256,7 @@ export namespace rapidmigrationassessment_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2524,8 +2512,7 @@ export namespace rapidmigrationassessment_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2658,8 +2645,7 @@ export namespace rapidmigrationassessment_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2797,8 +2783,7 @@ export namespace rapidmigrationassessment_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -2923,8 +2908,7 @@ export namespace rapidmigrationassessment_v1 {
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
