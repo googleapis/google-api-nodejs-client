@@ -31,10 +31,7 @@ export function storage(
 export function storage<T = storage_v1.Storage | storage_v1beta2.Storage>(
   this: GoogleConfigurable,
   versionOrOptions:
-    | 'v1'
-    | storage_v1.Options
-    | 'v1beta2'
-    | storage_v1beta2.Options
+    'v1' | storage_v1.Options | 'v1beta2' | storage_v1beta2.Options
 ) {
   return getAPI<T>('storage', versionOrOptions, VERSIONS, this);
 }

@@ -354,6 +354,8 @@ export namespace storage_v1 {
           matchesSuffix?: string[];
           noncurrentTimeBefore?: string;
           numNewerVersions?: number;
+          sizeAboveBytes?: string;
+          sizeBelowBytes?: string;
         };
       }>;
     } | null;
@@ -1386,26 +1388,26 @@ export namespace storage_v1 {
      */
     kind?: string | null;
     /**
-     * The permissions held by the caller. Permissions are always of the format storage.resource.capability, where resource is one of buckets, objects, or managedFolders. The supported permissions are as follows:
-     * - storage.buckets.delete - Delete bucket.
-     * - storage.buckets.get - Read bucket metadata.
-     * - storage.buckets.getIamPolicy - Read bucket IAM policy.
-     * - storage.buckets.create - Create bucket.
-     * - storage.buckets.list - List buckets.
-     * - storage.buckets.setIamPolicy - Update bucket IAM policy.
-     * - storage.buckets.update - Update bucket metadata.
-     * - storage.objects.delete - Delete object.
-     * - storage.objects.get - Read object data and metadata.
-     * - storage.objects.getIamPolicy - Read object IAM policy.
-     * - storage.objects.create - Create object.
-     * - storage.objects.list - List objects.
-     * - storage.objects.setIamPolicy - Update object IAM policy.
+     * The permissions held by the caller. Permissions are always of the format storage.resource.capability, where resource is one of buckets, objects, or managedFolders. The supported permissions are as follows:  
+     * - storage.buckets.delete - Delete bucket.  
+     * - storage.buckets.get - Read bucket metadata.  
+     * - storage.buckets.getIamPolicy - Read bucket IAM policy.  
+     * - storage.buckets.create - Create bucket.  
+     * - storage.buckets.list - List buckets.  
+     * - storage.buckets.setIamPolicy - Update bucket IAM policy.  
+     * - storage.buckets.update - Update bucket metadata.  
+     * - storage.objects.delete - Delete object.  
+     * - storage.objects.get - Read object data and metadata.  
+     * - storage.objects.getIamPolicy - Read object IAM policy.  
+     * - storage.objects.create - Create object.  
+     * - storage.objects.list - List objects.  
+     * - storage.objects.setIamPolicy - Update object IAM policy.  
      * - storage.objects.update - Update object metadata.
-     * - storage.managedFolders.delete - Delete managed folder.
-     * - storage.managedFolders.get - Read managed folder metadata.
-     * - storage.managedFolders.getIamPolicy - Read managed folder IAM policy.
-     * - storage.managedFolders.create - Create managed folder.
-     * - storage.managedFolders.list - List managed folders.
+     * - storage.managedFolders.delete - Delete managed folder.  
+     * - storage.managedFolders.get - Read managed folder metadata.  
+     * - storage.managedFolders.getIamPolicy - Read managed folder IAM policy.  
+     * - storage.managedFolders.create - Create managed folder.  
+     * - storage.managedFolders.list - List managed folders.  
      * - storage.managedFolders.setIamPolicy - Update managed folder IAM policy.
      */
     permissions?: string[] | null;
@@ -1829,8 +1831,7 @@ export namespace storage_v1 {
     insert(
       params: Params$Resource$Anywherecaches$Insert,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     insert(
@@ -2461,8 +2462,7 @@ export namespace storage_v1 {
     update(
       params: Params$Resource$Anywherecaches$Update,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     update(
@@ -3157,8 +3157,7 @@ export namespace storage_v1 {
     list(
       params: Params$Resource$Bucketaccesscontrols$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BucketAccessControls>,
+        MethodOptions | BodyResponseCallback<Schema$BucketAccessControls>,
       callback: BodyResponseCallback<Schema$BucketAccessControls>
     ): void;
     list(
@@ -3951,8 +3950,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Bucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Bucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
@@ -4098,8 +4096,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4483,8 +4480,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Bucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Bucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
@@ -4639,8 +4635,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Buckets>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Buckets>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Buckets> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Buckets>>
@@ -4817,8 +4812,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Bucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Bucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
@@ -5050,8 +5044,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Bucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Bucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
@@ -5189,8 +5182,7 @@ export namespace storage_v1 {
     relocate(
       params: Params$Resource$Buckets$Relocate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     relocate(
@@ -5394,8 +5386,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Bucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Bucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
@@ -5551,8 +5542,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5681,8 +5671,7 @@ export namespace storage_v1 {
     testIamPermissions(
       params: Params$Resource$Buckets$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -5936,8 +5925,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Bucket>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Bucket> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Bucket>>
@@ -6979,8 +6967,7 @@ export namespace storage_v1 {
     list(
       params: Params$Resource$Defaultobjectaccesscontrols$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ObjectAccessControls>,
+        MethodOptions | BodyResponseCallback<Schema$ObjectAccessControls>,
       callback: BodyResponseCallback<Schema$ObjectAccessControls>
     ): void;
     list(
@@ -7730,8 +7717,7 @@ export namespace storage_v1 {
     deleteRecursive(
       params: Params$Resource$Folders$Deleterecursive,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     deleteRecursive(
@@ -7909,8 +7895,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Folder>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Folder>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Folder> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Folder>>
@@ -8075,8 +8060,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Folder>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Folder>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Folder> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Folder>>
@@ -8231,8 +8215,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Folders>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Folders>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Folders> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Folders>>
@@ -8367,8 +8350,7 @@ export namespace storage_v1 {
     rename(
       params: Params$Resource$Folders$Rename,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     rename(
@@ -8966,8 +8948,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -9440,8 +9421,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -9572,8 +9552,7 @@ export namespace storage_v1 {
     testIamPermissions(
       params: Params$Resource$Managedfolders$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -10997,8 +10976,7 @@ export namespace storage_v1 {
     list(
       params: Params$Resource$Objectaccesscontrols$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ObjectAccessControls>,
+        MethodOptions | BodyResponseCallback<Schema$ObjectAccessControls>,
       callback: BodyResponseCallback<Schema$ObjectAccessControls>
     ): void;
     list(
@@ -11665,8 +11643,7 @@ export namespace storage_v1 {
     bulkRestore(
       params: Params$Resource$Objects$Bulkrestore,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     bulkRestore(
@@ -11890,8 +11867,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Object>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Object> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Object>>
@@ -12144,8 +12120,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Object>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Object> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Object>>
@@ -12500,8 +12475,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Object>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Object> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Object>>
@@ -12652,8 +12626,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -12899,8 +12872,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Object>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Object> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Object>>
@@ -13076,8 +13048,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Objects>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Objects>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Objects> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Objects>>
@@ -13277,8 +13248,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Object>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Object> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Object>>
@@ -13518,8 +13488,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Object>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Object> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Object>>
@@ -13714,8 +13683,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Object>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Object> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Object>>
@@ -14113,8 +14081,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -14247,8 +14214,7 @@ export namespace storage_v1 {
     testIamPermissions(
       params: Params$Resource$Objects$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -14510,8 +14476,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$Object>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Object>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Object> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Object>>
@@ -14555,194 +14520,6 @@ export namespace storage_v1 {
         );
       } else {
         return createAPIRequest<Schema$Object>(parameters);
-      }
-    }
-
-    /**
-     * Watch for changes on all objects in a bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_only',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objects.watchAll({
-     *     // Name of the bucket in which to look for objects.
-     *     bucket: 'placeholder-value',
-     *     // Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
-     *     delimiter: 'placeholder-value',
-     *     // Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
-     *     endOffset: 'placeholder-value',
-     *     // If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
-     *     includeTrailingDelimiter: 'placeholder-value',
-     *     // Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
-     *     maxResults: 'placeholder-value',
-     *     // A previously-returned page token representing part of the larger set of results to view.
-     *     pageToken: 'placeholder-value',
-     *     // Filter results to objects whose names begin with this prefix.
-     *     prefix: 'placeholder-value',
-     *     // Set of properties to return. Defaults to noAcl.
-     *     projection: 'placeholder-value',
-     *     // Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
-     *     startOffset: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *     // If true, lists all versions of an object as distinct results. The default is false. For more information, see [Object Versioning](https://cloud.google.com/storage/docs/object-versioning).
-     *     versions: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "address": "my_address",
-     *       //   "expiration": "my_expiration",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "params": {},
-     *       //   "payload": false,
-     *       //   "resourceId": "my_resourceId",
-     *       //   "resourceUri": "my_resourceUri",
-     *       //   "token": "my_token",
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "address": "my_address",
-     *   //   "expiration": "my_expiration",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "params": {},
-     *   //   "payload": false,
-     *   //   "resourceId": "my_resourceId",
-     *   //   "resourceUri": "my_resourceUri",
-     *   //   "token": "my_token",
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    watchAll(
-      params: Params$Resource$Objects$Watchall,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    watchAll(
-      params?: Params$Resource$Objects$Watchall,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Channel>>;
-    watchAll(
-      params: Params$Resource$Objects$Watchall,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    watchAll(
-      params: Params$Resource$Objects$Watchall,
-      options: MethodOptions | BodyResponseCallback<Schema$Channel>,
-      callback: BodyResponseCallback<Schema$Channel>
-    ): void;
-    watchAll(
-      params: Params$Resource$Objects$Watchall,
-      callback: BodyResponseCallback<Schema$Channel>
-    ): void;
-    watchAll(callback: BodyResponseCallback<Schema$Channel>): void;
-    watchAll(
-      paramsOrCallback?:
-        | Params$Resource$Objects$Watchall
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Objects$Watchall;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Objects$Watchall;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/storage/v1/b/{bucket}/o/watch').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['bucket'],
-        pathParams: ['bucket'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Channel>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Channel>(parameters);
       }
     }
   }
@@ -15432,57 +15209,6 @@ export namespace storage_v1 {
      */
     requestBody?: Schema$Object;
   }
-  export interface Params$Resource$Objects$Watchall extends StandardParameters {
-    /**
-     * Name of the bucket in which to look for objects.
-     */
-    bucket?: string;
-    /**
-     * Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
-     */
-    delimiter?: string;
-    /**
-     * Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
-     */
-    endOffset?: string;
-    /**
-     * If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
-     */
-    includeTrailingDelimiter?: boolean;
-    /**
-     * Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
-     */
-    maxResults?: number;
-    /**
-     * A previously-returned page token representing part of the larger set of results to view.
-     */
-    pageToken?: string;
-    /**
-     * Filter results to objects whose names begin with this prefix.
-     */
-    prefix?: string;
-    /**
-     * Set of properties to return. Defaults to noAcl.
-     */
-    projection?: string;
-    /**
-     * Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
-     */
-    startOffset?: string;
-    /**
-     * The project to be billed for this request. Required for Requester Pays buckets.
-     */
-    userProject?: string;
-    /**
-     * If true, lists all versions of an object as distinct results. The default is false. For more information, see [Object Versioning](https://cloud.google.com/storage/docs/object-versioning).
-     */
-    versions?: boolean;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Channel;
-  }
 
   export class Resource$Operations {
     context: APIRequestContext;
@@ -15854,8 +15580,7 @@ export namespace storage_v1 {
     get(
       params: Params$Resource$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -16252,8 +15977,7 @@ export namespace storage_v1 {
         | BodyResponseCallback<Schema$HmacKey>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$HmacKey>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$HmacKey> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$HmacKey>>
