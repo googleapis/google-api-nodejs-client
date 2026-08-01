@@ -1729,8 +1729,7 @@ export namespace osconfig_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1992,8 +1991,7 @@ export namespace osconfig_v1beta {
     list(
       params: Params$Resource$Projects$Guestpolicies$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListGuestPoliciesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListGuestPoliciesResponse>,
       callback: BodyResponseCallback<Schema$ListGuestPoliciesResponse>
     ): void;
     list(
@@ -2542,8 +2540,7 @@ export namespace osconfig_v1beta {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -3553,8 +3550,7 @@ export namespace osconfig_v1beta {
         | BodyResponseCallback<Schema$PatchJob>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$PatchJob>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$PatchJob> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$PatchJob>>
@@ -3718,8 +3714,7 @@ export namespace osconfig_v1beta {
         | BodyResponseCallback<Schema$PatchJob>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$PatchJob>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$PatchJob> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$PatchJob>>
@@ -3869,8 +3864,7 @@ export namespace osconfig_v1beta {
         | BodyResponseCallback<Schema$PatchJob>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$PatchJob>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$PatchJob> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$PatchJob>>
@@ -3992,8 +3986,7 @@ export namespace osconfig_v1beta {
     list(
       params: Params$Resource$Projects$Patchjobs$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPatchJobsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPatchJobsResponse>,
       callback: BodyResponseCallback<Schema$ListPatchJobsResponse>
     ): void;
     list(
@@ -4387,8 +4380,7 @@ export namespace osconfig_v1beta {
     lookupEffectiveGuestPolicy(
       params: Params$Resource$Projects$Zones$Instances$Lookupeffectiveguestpolicy,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$EffectiveGuestPolicy>,
+        MethodOptions | BodyResponseCallback<Schema$EffectiveGuestPolicy>,
       callback: BodyResponseCallback<Schema$EffectiveGuestPolicy>
     ): void;
     lookupEffectiveGuestPolicy(

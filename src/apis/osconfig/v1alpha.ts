@@ -2081,8 +2081,7 @@ export namespace osconfig_v1alpha {
         | BodyResponseCallback<Schema$Inventory>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Inventory>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Inventory> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Inventory>>
@@ -2207,8 +2206,7 @@ export namespace osconfig_v1alpha {
     list(
       params: Params$Resource$Projects$Locations$Instances$Inventories$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListInventoriesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListInventoriesResponse>,
       callback: BodyResponseCallback<Schema$ListInventoriesResponse>
     ): void;
     list(
@@ -2407,8 +2405,7 @@ export namespace osconfig_v1alpha {
     get(
       params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$OSPolicyAssignmentReport>,
+        MethodOptions | BodyResponseCallback<Schema$OSPolicyAssignmentReport>,
       callback: BodyResponseCallback<Schema$OSPolicyAssignmentReport>
     ): void;
     get(
@@ -3113,8 +3110,7 @@ export namespace osconfig_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3257,8 +3253,7 @@ export namespace osconfig_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -3872,8 +3867,7 @@ export namespace osconfig_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -4106,8 +4100,7 @@ export namespace osconfig_v1alpha {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -4249,8 +4242,7 @@ export namespace osconfig_v1alpha {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
