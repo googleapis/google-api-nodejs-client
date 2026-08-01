@@ -23,10 +23,20 @@ describe(__filename, () => {
   afterEach(() => sandbox.restore());
 
   it('should generate docs', async () => {
+    sandbox.stub(docs.gfs, 'exists').returns(true);
     const writeStub = sandbox.stub(docs.gfs, 'writeFile').resolves();
     const execStub = sandbox.stub(docs.gfs, 'execa').resolves();
     await docs.main();
     assert.ok(writeStub.called);
-    assert.ok(execStub);
+    assert.strictEqual(execStub.callCount, 1);
+    assert.deepStrictEqual(execStub.firstCall.args, [
+      process.execPath,
+      [
+        '--max-old-space-size=4096',
+        './node_modules/.bin/jsdoc',
+        '-c',
+        '.jsdoc.js',
+      ],
+    ]);
   });
 });
