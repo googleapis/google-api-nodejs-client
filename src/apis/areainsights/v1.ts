@@ -376,8 +376,7 @@ export namespace areainsights_v1 {
     computeInsights(
       params: Params$Resource$V1$Computeinsights,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ComputeInsightsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ComputeInsightsResponse>,
       callback: BodyResponseCallback<Schema$ComputeInsightsResponse>
     ): void;
     computeInsights(
