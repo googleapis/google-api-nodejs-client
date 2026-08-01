@@ -168,7 +168,7 @@ export namespace eventarc_v1 {
     role?: string | null;
   }
   /**
-   * A representation of the Channel resource. A Channel is a resource on which event providers publish their events. The published events are delivered through the transport associated with the channel. Note that a channel is associated with exactly one event provider.
+   * Represents a subscriber's intent to receive events from an event provider. Published events are delivered using the transport associated with the Channel resource. A channel is associated with exactly one event provider.
    */
   export interface Schema$Channel {
     /**
@@ -454,7 +454,7 @@ export namespace eventarc_v1 {
     service?: string | null;
   }
   /**
-   * A GoogleApiSource represents a subscription of 1P events from a MessageBus.
+   * Represents a subscription to first-party events for a MessageBus resource. A GoogleApiSource resource lets you configure the delivery of events from Google API sources to a designated bus.
    */
   export interface Schema$GoogleApiSource {
     /**
@@ -511,7 +511,7 @@ export namespace eventarc_v1 {
     updateTime?: string | null;
   }
   /**
-   * A GoogleChannelConfig is a resource that stores the custom settings respected by Eventarc first-party triggers in the matching region. Once configured, first-party event data will be protected using the specified custom managed encryption key instead of Google-managed encryption keys.
+   * Can be used to customize security settings for Eventarc first-party triggers in a specific region. Once the GoogleChannelConfig resource is configured, first-party event data is protected using the specified customer-managed encryption key instead of a Google-managed encryption key.
    */
   export interface Schema$GoogleChannelConfig {
     /**
@@ -1454,8 +1454,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Location>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Location>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Location> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
@@ -1719,8 +1718,7 @@ export namespace eventarc_v1 {
     list(
       params: Params$Resource$Projects$Locations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListLocationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListLocationsResponse>,
       callback: BodyResponseCallback<Schema$ListLocationsResponse>
     ): void;
     list(
@@ -2088,8 +2086,7 @@ export namespace eventarc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Channelconnections$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -2234,8 +2231,7 @@ export namespace eventarc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Channelconnections$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -2540,8 +2536,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2843,8 +2838,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -2973,8 +2967,7 @@ export namespace eventarc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Channelconnections$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -3222,8 +3215,7 @@ export namespace eventarc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Channels$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -3369,8 +3361,7 @@ export namespace eventarc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Channels$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -3535,8 +3526,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Channel>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Channel>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Channel> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Channel>>
@@ -3674,8 +3664,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -3801,8 +3790,7 @@ export namespace eventarc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Channels$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListChannelsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListChannelsResponse>,
       callback: BodyResponseCallback<Schema$ListChannelsResponse>
     ): void;
     list(
@@ -3966,8 +3954,7 @@ export namespace eventarc_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Channels$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -4134,8 +4121,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -4261,8 +4247,7 @@ export namespace eventarc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Channels$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -4541,8 +4526,7 @@ export namespace eventarc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Enrollments$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -4692,8 +4676,7 @@ export namespace eventarc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Enrollments$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -4858,8 +4841,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Enrollment>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Enrollment>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Enrollment> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Enrollment>>
@@ -4998,8 +4980,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5128,8 +5109,7 @@ export namespace eventarc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Enrollments$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListEnrollmentsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListEnrollmentsResponse>,
       callback: BodyResponseCallback<Schema$ListEnrollmentsResponse>
     ): void;
     list(
@@ -5295,8 +5275,7 @@ export namespace eventarc_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Enrollments$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -5464,8 +5443,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -5593,8 +5571,7 @@ export namespace eventarc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Enrollments$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -5891,8 +5868,7 @@ export namespace eventarc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Googleapisources$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -6043,8 +6019,7 @@ export namespace eventarc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Googleapisources$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -6352,8 +6327,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6655,8 +6629,7 @@ export namespace eventarc_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Googleapisources$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -6825,8 +6798,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -6955,8 +6927,7 @@ export namespace eventarc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Googleapisources$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -7250,8 +7221,7 @@ export namespace eventarc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Messagebuses$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -7401,8 +7371,7 @@ export namespace eventarc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Messagebuses$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -7566,8 +7535,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$MessageBus>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$MessageBus>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$MessageBus> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$MessageBus>>
@@ -7706,8 +7674,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -7836,8 +7803,7 @@ export namespace eventarc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Messagebuses$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListMessageBusesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListMessageBusesResponse>,
       callback: BodyResponseCallback<Schema$ListMessageBusesResponse>
     ): void;
     list(
@@ -8157,8 +8123,7 @@ export namespace eventarc_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Messagebuses$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -8326,8 +8291,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -8457,8 +8421,7 @@ export namespace eventarc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Messagebuses$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -8763,8 +8726,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -8895,8 +8857,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -9015,8 +8976,7 @@ export namespace eventarc_v1 {
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -9393,8 +9353,7 @@ export namespace eventarc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Pipelines$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -9544,8 +9503,7 @@ export namespace eventarc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Pipelines$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -9714,8 +9672,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Pipeline>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Pipeline>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Pipeline> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Pipeline>>
@@ -9853,8 +9810,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -9983,8 +9939,7 @@ export namespace eventarc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Pipelines$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPipelinesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPipelinesResponse>,
       callback: BodyResponseCallback<Schema$ListPipelinesResponse>
     ): void;
     list(
@@ -10154,8 +10109,7 @@ export namespace eventarc_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Pipelines$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -10322,8 +10276,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -10450,8 +10403,7 @@ export namespace eventarc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Pipelines$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -10740,8 +10692,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Provider>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Provider>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Provider> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Provider>>
@@ -10866,8 +10817,7 @@ export namespace eventarc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Providers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListProvidersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListProvidersResponse>,
       callback: BodyResponseCallback<Schema$ListProvidersResponse>
     ): void;
     list(
@@ -11071,8 +11021,7 @@ export namespace eventarc_v1 {
     create(
       params: Params$Resource$Projects$Locations$Triggers$Create,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
@@ -11222,8 +11171,7 @@ export namespace eventarc_v1 {
     delete(
       params: Params$Resource$Projects$Locations$Triggers$Delete,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
@@ -11392,8 +11340,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Trigger>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Trigger>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Trigger> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Trigger>>
@@ -11531,8 +11478,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -11660,8 +11606,7 @@ export namespace eventarc_v1 {
     list(
       params: Params$Resource$Projects$Locations$Triggers$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTriggersResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListTriggersResponse>,
       callback: BodyResponseCallback<Schema$ListTriggersResponse>
     ): void;
     list(
@@ -11831,8 +11776,7 @@ export namespace eventarc_v1 {
     patch(
       params: Params$Resource$Projects$Locations$Triggers$Patch,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        MethodOptions | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
@@ -11999,8 +11943,7 @@ export namespace eventarc_v1 {
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Policy> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Policy>>
@@ -12126,8 +12069,7 @@ export namespace eventarc_v1 {
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Triggers$Testiampermissions,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
