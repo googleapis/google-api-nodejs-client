@@ -535,8 +535,7 @@ export namespace area120tables_v1alpha1 {
         | BodyResponseCallback<Schema$Table>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Table>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Table> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Table>>
@@ -838,8 +837,7 @@ export namespace area120tables_v1alpha1 {
     batchCreate(
       params: Params$Resource$Tables$Rows$Batchcreate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchCreateRowsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchCreateRowsResponse>,
       callback: BodyResponseCallback<Schema$BatchCreateRowsResponse>
     ): void;
     batchCreate(
@@ -1009,8 +1007,7 @@ export namespace area120tables_v1alpha1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1142,8 +1139,7 @@ export namespace area120tables_v1alpha1 {
     batchUpdate(
       params: Params$Resource$Tables$Rows$Batchupdate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchUpdateRowsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchUpdateRowsResponse>,
       callback: BodyResponseCallback<Schema$BatchUpdateRowsResponse>
     ): void;
     batchUpdate(
@@ -1323,8 +1319,7 @@ export namespace area120tables_v1alpha1 {
         | BodyResponseCallback<Schema$Row>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Row>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Row> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Row>>
@@ -1464,8 +1459,7 @@ export namespace area120tables_v1alpha1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1611,8 +1605,7 @@ export namespace area120tables_v1alpha1 {
         | BodyResponseCallback<Schema$Row>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Row>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Row> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Row>>
@@ -1923,8 +1916,7 @@ export namespace area120tables_v1alpha1 {
         | BodyResponseCallback<Schema$Row>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Row>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Row> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Row>>
@@ -2186,8 +2178,7 @@ export namespace area120tables_v1alpha1 {
         | BodyResponseCallback<Schema$Workspace>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Workspace>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Workspace> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Workspace>>
@@ -2312,8 +2303,7 @@ export namespace area120tables_v1alpha1 {
     list(
       params: Params$Resource$Workspaces$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListWorkspacesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListWorkspacesResponse>,
       callback: BodyResponseCallback<Schema$ListWorkspacesResponse>
     ): void;
     list(
