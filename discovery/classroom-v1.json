@@ -343,7 +343,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `courseState` * `description` * `descriptionHeading` * `name` * `ownerId` * `room` * `section` * `subject` * `levels` Note: patches to ownerId are treated as being effective immediately, but in practice it may take some time for the ownership transfer of all affected resources to complete. When set in a query parameter, this field should be specified as `updateMask=,,...`",
+              "description": "Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `courseState` * `description` * `descriptionHeading` * `name` * `ownerId` * `room` * `section` * `subject` * `learningStandardSettings` * `levels` Note: patches to ownerId are treated as being effective immediately, but in practice it may take some time for the ownership transfer of all affected resources to complete. When set in a query parameter, this field should be specified as `updateMask=,,...`",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -4376,7 +4376,7 @@
       }
     }
   },
-  "revision": "20260511",
+  "revision": "20260708",
   "rootUrl": "https://classroom.googleapis.com/",
   "schemas": {
     "AddOnAttachment": {
@@ -4427,7 +4427,7 @@
         },
         "studentWorkReviewUri": {
           "$ref": "EmbedUri",
-          "description": "URI for the teacher to see student work on the attachment, if applicable. The URI will be opened in an iframe with the `courseId`, `itemId`, `itemType`, `attachmentId`, and `submissionId` query parameters set. This is the same `submissionId` returned in the [`AddOnContext.studentContext`](//devsite.google.com/classroom/reference/rest/v1/AddOnContext#StudentContext) field when a student views the attachment. If the URI is omitted or removed, `max_points` will also be discarded."
+          "description": "URI for the teacher to see student work on the attachment, if applicable. The URI will be opened in an iframe with the `courseId`, `itemId`, `itemType`, `attachmentId`, and `submissionId` query parameters set. This is the same `submissionId` returned in the [`AddOnContext.studentContext`](/workspace/classroom/reference/rest/v1/AddOnContext#StudentContext) field when a student views the attachment. If the URI is omitted or removed, `max_points` will also be discarded."
         },
         "teacherViewUri": {
           "$ref": "EmbedUri",
@@ -4480,7 +4480,7 @@
           "type": "string"
         },
         "userId": {
-          "description": "Identifier for the student that owns this submission. Requires the user to be a teacher in the course and have permission to read student submissions. Read-only.",
+          "description": "Identifier for the student that owns this submission. Requires the user to be a teacher in the course and have permission to read student submissions. See [`courseWork.studentSubmissions.get`](/workspace/classroom/reference/rest/v1/courses.courseWork.studentSubmissions/get#authorization-scopes) for the list of acceptable OAuth scopes for this field. Read-only.",
           "type": "string"
         }
       },
