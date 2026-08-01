@@ -58,6 +58,14 @@ import {
   advisorynotifications,
 } from './advisorynotifications';
 import {
+  VERSIONS as agentidentityVersions,
+  agentidentity,
+} from './agentidentity';
+import {
+  VERSIONS as agentidentitycredentialsVersions,
+  agentidentitycredentials,
+} from './agentidentitycredentials';
+import {
   VERSIONS as agentregistryVersions,
   agentregistry,
 } from './agentregistry';
@@ -234,6 +242,10 @@ import {
   cloudnumberregistry,
 } from './cloudnumberregistry';
 import {
+  VERSIONS as cloudproductregistryVersions,
+  cloudproductregistry,
+} from './cloudproductregistry';
+import {
   VERSIONS as cloudprofilerVersions,
   cloudprofiler,
 } from './cloudprofiler';
@@ -274,6 +286,10 @@ import {
 } from './contentwarehouse';
 import {VERSIONS as cssVersions, css} from './css';
 import {VERSIONS as customsearchVersions, customsearch} from './customsearch';
+import {
+  VERSIONS as databasecenterVersions,
+  databasecenter,
+} from './databasecenter';
 import {VERSIONS as datacatalogVersions, datacatalog} from './datacatalog';
 import {VERSIONS as dataflowVersions, dataflow} from './dataflow';
 import {VERSIONS as dataformVersions, dataform} from './dataform';
@@ -366,6 +382,10 @@ import {
   VERSIONS as firebaseapphostingVersions,
   firebaseapphosting,
 } from './firebaseapphosting';
+import {
+  VERSIONS as firebasecrashlyticsVersions,
+  firebasecrashlytics,
+} from './firebasecrashlytics';
 import {
   VERSIONS as firebasedatabaseVersions,
   firebasedatabase,
@@ -816,6 +836,8 @@ export const APIS: APIList = {
   adsensehost: adsensehostVersions,
   adsenseplatform: adsenseplatformVersions,
   advisorynotifications: advisorynotificationsVersions,
+  agentidentity: agentidentityVersions,
+  agentidentitycredentials: agentidentitycredentialsVersions,
   agentregistry: agentregistryVersions,
   aiplatform: aiplatformVersions,
   airquality: airqualityVersions,
@@ -887,6 +909,7 @@ export const APIS: APIList = {
   cloudkms: cloudkmsVersions,
   cloudlocationfinder: cloudlocationfinderVersions,
   cloudnumberregistry: cloudnumberregistryVersions,
+  cloudproductregistry: cloudproductregistryVersions,
   cloudprofiler: cloudprofilerVersions,
   cloudresourcemanager: cloudresourcemanagerVersions,
   cloudscheduler: cloudschedulerVersions,
@@ -907,6 +930,7 @@ export const APIS: APIList = {
   contentwarehouse: contentwarehouseVersions,
   css: cssVersions,
   customsearch: customsearchVersions,
+  databasecenter: databasecenterVersions,
   datacatalog: datacatalogVersions,
   dataflow: dataflowVersions,
   dataform: dataformVersions,
@@ -951,6 +975,7 @@ export const APIS: APIList = {
   firebaseappcheck: firebaseappcheckVersions,
   firebaseappdistribution: firebaseappdistributionVersions,
   firebaseapphosting: firebaseapphostingVersions,
+  firebasecrashlytics: firebasecrashlyticsVersions,
   firebasedatabase: firebasedatabaseVersions,
   firebasedataconnect: firebasedataconnectVersions,
   firebasedynamiclinks: firebasedynamiclinksVersions,
@@ -1145,6 +1170,8 @@ export class GeneratedAPIs {
   adsensehost = adsensehost;
   adsenseplatform = adsenseplatform;
   advisorynotifications = advisorynotifications;
+  agentidentity = agentidentity;
+  agentidentitycredentials = agentidentitycredentials;
   agentregistry = agentregistry;
   aiplatform = aiplatform;
   airquality = airquality;
@@ -1216,6 +1243,7 @@ export class GeneratedAPIs {
   cloudkms = cloudkms;
   cloudlocationfinder = cloudlocationfinder;
   cloudnumberregistry = cloudnumberregistry;
+  cloudproductregistry = cloudproductregistry;
   cloudprofiler = cloudprofiler;
   cloudresourcemanager = cloudresourcemanager;
   cloudscheduler = cloudscheduler;
@@ -1236,6 +1264,7 @@ export class GeneratedAPIs {
   contentwarehouse = contentwarehouse;
   css = css;
   customsearch = customsearch;
+  databasecenter = databasecenter;
   datacatalog = datacatalog;
   dataflow = dataflow;
   dataform = dataform;
@@ -1280,6 +1309,7 @@ export class GeneratedAPIs {
   firebaseappcheck = firebaseappcheck;
   firebaseappdistribution = firebaseappdistribution;
   firebaseapphosting = firebaseapphosting;
+  firebasecrashlytics = firebasecrashlytics;
   firebasedatabase = firebasedatabase;
   firebasedataconnect = firebasedataconnect;
   firebasedynamiclinks = firebasedynamiclinks;

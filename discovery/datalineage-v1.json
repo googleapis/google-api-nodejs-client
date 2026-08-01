@@ -1283,7 +1283,7 @@
       }
     }
   },
-  "revision": "20260515",
+  "revision": "20260620",
   "rootUrl": "https://datalineage.googleapis.com/",
   "schemas": {
     "GoogleCloudDatacatalogLineageConfigmanagementV1Config": {
@@ -1342,13 +1342,17 @@
           "description": "Required. Integration to which the rule applies. This field can be used to specify the integration against which the ingestion rule should be applied.",
           "enum": [
             "INTEGRATION_UNSPECIFIED",
+            "BIGQUERY",
             "DATAPROC",
-            "LOOKER_CORE"
+            "LOOKER_CORE",
+            "MANAGED_AIRFLOW"
           ],
           "enumDescriptions": [
             "Integration is Unspecified",
+            "BigQuery",
             "Dataproc",
-            "Looker Core"
+            "Looker Core",
+            "Managed Service for Apache Airflow (formerly known as Cloud Composer)"
           ],
           "type": "string"
         }
@@ -1955,7 +1959,7 @@
           "description": "Optional. Limits for the search."
         },
         "locations": {
-          "description": "Required. The locations to search in.",
+          "description": "Required. The locations to search in. This list should contain the location from the `parent` field.",
           "items": {
             "type": "string"
           },
