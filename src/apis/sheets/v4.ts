@@ -6538,8 +6538,7 @@ export namespace sheets_v4 {
     append(
       params: Params$Resource$Spreadsheets$Values$Append,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AppendValuesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$AppendValuesResponse>,
       callback: BodyResponseCallback<Schema$AppendValuesResponse>
     ): void;
     append(
@@ -6689,8 +6688,7 @@ export namespace sheets_v4 {
     batchClear(
       params: Params$Resource$Spreadsheets$Values$Batchclear,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchClearValuesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchClearValuesResponse>,
       callback: BodyResponseCallback<Schema$BatchClearValuesResponse>
     ): void;
     batchClear(
@@ -7005,8 +7003,7 @@ export namespace sheets_v4 {
     batchGet(
       params: Params$Resource$Spreadsheets$Values$Batchget,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchGetValuesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchGetValuesResponse>,
       callback: BodyResponseCallback<Schema$BatchGetValuesResponse>
     ): void;
     batchGet(
@@ -7329,8 +7326,7 @@ export namespace sheets_v4 {
     batchUpdate(
       params: Params$Resource$Spreadsheets$Values$Batchupdate,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$BatchUpdateValuesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$BatchUpdateValuesResponse>,
       callback: BodyResponseCallback<Schema$BatchUpdateValuesResponse>
     ): void;
     batchUpdate(
@@ -7821,8 +7817,7 @@ export namespace sheets_v4 {
         | BodyResponseCallback<Schema$ValueRange>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ValueRange>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$ValueRange> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$ValueRange>>
@@ -7968,8 +7963,7 @@ export namespace sheets_v4 {
     update(
       params: Params$Resource$Spreadsheets$Values$Update,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$UpdateValuesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$UpdateValuesResponse>,
       callback: BodyResponseCallback<Schema$UpdateValuesResponse>
     ): void;
     update(
