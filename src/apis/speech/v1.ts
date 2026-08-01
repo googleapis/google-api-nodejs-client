@@ -894,8 +894,7 @@ export namespace speech_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
@@ -1022,8 +1021,7 @@ export namespace speech_v1 {
     list(
       params: Params$Resource$Operations$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListOperationsResponse>,
       callback: BodyResponseCallback<Schema$ListOperationsResponse>
     ): void;
     list(
@@ -1391,8 +1389,7 @@ export namespace speech_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -1658,8 +1655,7 @@ export namespace speech_v1 {
     list(
       params: Params$Resource$Projects$Locations$Customclasses$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListCustomClassesResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListCustomClassesResponse>,
       callback: BodyResponseCallback<Schema$ListCustomClassesResponse>
     ): void;
     list(
@@ -2066,8 +2062,7 @@ export namespace speech_v1 {
         | BodyResponseCallback<Schema$PhraseSet>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$PhraseSet>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$PhraseSet> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$PhraseSet>>
@@ -2201,8 +2196,7 @@ export namespace speech_v1 {
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Empty> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
@@ -2347,8 +2341,7 @@ export namespace speech_v1 {
         | BodyResponseCallback<Schema$PhraseSet>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$PhraseSet>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$PhraseSet> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$PhraseSet>>
@@ -2468,8 +2461,7 @@ export namespace speech_v1 {
     list(
       params: Params$Resource$Projects$Locations$Phrasesets$List,
       options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListPhraseSetResponse>,
+        MethodOptions | BodyResponseCallback<Schema$ListPhraseSetResponse>,
       callback: BodyResponseCallback<Schema$ListPhraseSetResponse>
     ): void;
     list(
@@ -2659,8 +2651,7 @@ export namespace speech_v1 {
         | BodyResponseCallback<Schema$PhraseSet>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$PhraseSet>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$PhraseSet> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$PhraseSet>>
@@ -2866,8 +2857,7 @@ export namespace speech_v1 {
         | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
+        BodyResponseCallback<Schema$Operation> | BodyResponseCallback<Readable>
     ):
       | void
       | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
