@@ -1241,6 +1241,19 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * External identifier used to link and identify this group across external directory systems.
+   */
+  export interface Schema$ExternalId {
+    /**
+     * The unique identifier string assigned by the external provider.
+     */
+    id?: string | null;
+    /**
+     * The system or identity provider managing this ID.
+     */
+    namespace?: string | null;
+  }
+  /**
    * Info about failures
    */
   export interface Schema$FailureInfo {
@@ -1351,6 +1364,10 @@ export namespace admin_directory_v1 {
      * ETag of the resource.
      */
     etag?: string | null;
+    /**
+     * Optional. The list of external IDs for the group, such as an immutable identifier from an external identity provider or directory sync client. Each entry contains a namespace and an ID value.
+     */
+    externalIds?: Schema$ExternalId[];
     /**
      * Read-only. The unique ID of a group. A group `id` can be used as a group request URI's `groupKey`.
      */
@@ -9999,6 +10016,7 @@ export namespace admin_directory_v1 {
      *   //   "directMembersCount": "my_directMembersCount",
      *   //   "email": "my_email",
      *   //   "etag": "my_etag",
+     *   //   "externalIds": [],
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
@@ -10140,6 +10158,7 @@ export namespace admin_directory_v1 {
      *       //   "directMembersCount": "my_directMembersCount",
      *       //   "email": "my_email",
      *       //   "etag": "my_etag",
+     *       //   "externalIds": [],
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
@@ -10157,6 +10176,7 @@ export namespace admin_directory_v1 {
      *   //   "directMembersCount": "my_directMembersCount",
      *   //   "email": "my_email",
      *   //   "etag": "my_etag",
+     *   //   "externalIds": [],
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
@@ -10456,6 +10476,7 @@ export namespace admin_directory_v1 {
      *       //   "directMembersCount": "my_directMembersCount",
      *       //   "email": "my_email",
      *       //   "etag": "my_etag",
+     *       //   "externalIds": [],
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
@@ -10473,6 +10494,7 @@ export namespace admin_directory_v1 {
      *   //   "directMembersCount": "my_directMembersCount",
      *   //   "email": "my_email",
      *   //   "etag": "my_etag",
+     *   //   "externalIds": [],
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
@@ -10617,6 +10639,7 @@ export namespace admin_directory_v1 {
      *       //   "directMembersCount": "my_directMembersCount",
      *       //   "email": "my_email",
      *       //   "etag": "my_etag",
+     *       //   "externalIds": [],
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
@@ -10634,6 +10657,7 @@ export namespace admin_directory_v1 {
      *   //   "directMembersCount": "my_directMembersCount",
      *   //   "email": "my_email",
      *   //   "etag": "my_etag",
+     *   //   "externalIds": [],
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",

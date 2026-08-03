@@ -178,7 +178,8 @@
                 "takeout",
                 "graduation",
                 "voice",
-                "chrome_sync"
+                "chrome_sync",
+                "workspace_studio"
               ],
               "enumDescriptions": [
                 "The Google Workspace Access Transparency activity reports return information about different types of Access Transparency activity events.",
@@ -220,10 +221,11 @@
                 "The Takeout application's activity reports return information about various types of Takeout activity events.",
                 "The Graduation application's activity reports return information about various types of Graduation activity events.",
                 "The Voice application's activity reports return information about various types of Voice activity events.",
-                "The Chrome Sync application's activity reports return information about various types of Chrome Sync activity events."
+                "The Chrome Sync application's activity reports return information about various types of Chrome Sync activity events.",
+                "The Workspace Studio application's activity reports return information about various types of Workspace Studio activity events."
               ],
               "location": "path",
-              "pattern": "(access_evaluation)|(access_transparency)|(admin)|(admin_data_action)|(assignments)|(calendar)|(chat)|(chrome)|(classroom)|(cloud_search)|(contacts)|(context_aware_access)|(data_studio)|(data_migration)|(directory_sync)|(drive)|(gcp)|(gmail)|(gplus)|(graduation)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(ldap)|(login)|(meet)|(meet_hardware)|(mobile)|(profile)|(rules)|(saml)|(token)|(user_accounts)|(vault)|(gemini_in_workspace_apps)|(tasks)|(takeout)|(voice)|(chrome_sync)",
+              "pattern": "(access_evaluation)|(access_transparency)|(admin)|(admin_data_action)|(assignments)|(calendar)|(chat)|(chrome)|(classroom)|(cloud_search)|(contacts)|(context_aware_access)|(data_studio)|(data_migration)|(directory_sync)|(drive)|(gcp)|(gmail)|(gplus)|(graduation)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(ldap)|(login)|(meet)|(meet_hardware)|(mobile)|(profile)|(rules)|(saml)|(token)|(user_accounts)|(vault)|(gemini_in_workspace_apps)|(tasks)|(takeout)|(voice)|(chrome_sync)|(workspace_studio)",
               "required": true,
               "type": "string"
             },
@@ -231,6 +233,11 @@
               "description": "The unique ID of the customer to retrieve data for.",
               "location": "query",
               "pattern": "C.+|my_customer",
+              "type": "string"
+            },
+            "deviceFilter": {
+              "description": "Optional. Used to filter on the fields present in [`UserDeviceInfo`](#userdeviceinfo) message like `deviceId`, `deviceType`, and `deviceOsVersion`. **Usage** ``` GET...&deviceFilter=deviceId=\"123\" GET...&deviceFilter=deviceType=\"ANDROID\" GET...&deviceFilter=deviceOsVersion=\"14.0\" ```",
+              "location": "query",
               "type": "string"
             },
             "endTime": {
@@ -695,7 +702,7 @@
       }
     }
   },
-  "revision": "20260724",
+  "revision": "20260729",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {
