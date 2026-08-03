@@ -190,7 +190,7 @@ export namespace bigquerydatapolicy_v2 {
     dataPolicyId?: string | null;
   }
   /**
-   * Data Governance tag This is a namespaced name specifying the key and the value. For example: `project-id/pii/sensitive`.
+   * This is a namespaced name specifying the key and the value. For example: `project-id/pii/sensitive`.
    */
   export interface Schema$DataGovernanceTag {
     /**

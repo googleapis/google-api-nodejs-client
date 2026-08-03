@@ -791,6 +791,24 @@
           "scopes": [
             "https://www.googleapis.com/auth/datamanager"
           ]
+        },
+        "removeAll": {
+          "description": "Removes all audience members from the provided destinations.",
+          "flatPath": "v1/audienceMembers:removeAll",
+          "httpMethod": "POST",
+          "id": "datamanager.audienceMembers.removeAll",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/audienceMembers:removeAll",
+          "request": {
+            "$ref": "RemoveAllAudienceMembersRequest"
+          },
+          "response": {
+            "$ref": "RemoveAllAudienceMembersResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/datamanager"
+          ]
         }
       }
     },
@@ -842,7 +860,7 @@
       }
     }
   },
-  "revision": "20260708",
+  "revision": "20260729",
   "rootUrl": "https://datamanager.googleapis.com/",
   "schemas": {
     "AdEvent": {
@@ -1005,7 +1023,7 @@
         },
         "deviceInfo": {
           "$ref": "DeviceInfo",
-          "description": "Optional. Information gathered about the device being used when the ad event happened."
+          "description": "Required. Information gathered about the device being used when the ad event happened."
         },
         "eventId": {
           "description": "Optional. An ID created and managed by the caller that uniquely identifies this event. Required if you want to deduplicate ad events that are included in multiple requests. Otherwise, this field is optional.",
@@ -1104,7 +1122,7 @@
           "type": "string"
         },
         "regionCode": {
-          "description": "Required. The ISO 3166-2 country plus subdivision.",
+          "description": "Optional. The ISO 3166-2 country plus subdivision.",
           "type": "string"
         },
         "source": {
@@ -1211,6 +1229,18 @@
       "description": "Address information for the user.",
       "id": "AddressInfo",
       "properties": {
+        "addressLine": {
+          "description": "Optional. The street and number of the user's address. Used only for Google Analytics. This field is hashed and possibly encrypted. Normalize the value before hashing: - Remove symbol characters - Convert to lowercase - Remove leading and trailing whitespace",
+          "type": "string"
+        },
+        "administrativeArea": {
+          "description": "Optional. The administrative area (state/province) of the user's address. Used only for Google Analytics. The value should be normalized as such: - Remove symbol characters - Convert to lowercase - Remove leading and trailing whitespace",
+          "type": "string"
+        },
+        "city": {
+          "description": "Optional. The city of the user's address. Used only for Google Analytics. The value should be normalized as such: - Remove symbol characters - Convert to lowercase - Remove leading and trailing whitespace",
+          "type": "string"
+        },
         "familyName": {
           "description": "Required. Family (last) name of the user, all lowercase, with no punctuation, no leading or trailing whitespace, and hashed as SHA-256.",
           "type": "string"
@@ -1249,6 +1279,10 @@
           },
           "type": "array"
         },
+        "googleUserIdData": {
+          "$ref": "GoogleUserIdData",
+          "description": "Encrypted Google User IDs."
+        },
         "mobileData": {
           "$ref": "MobileData",
           "description": "Data identifying the user's mobile devices."
@@ -1256,6 +1290,10 @@
         "pairData": {
           "$ref": "PairData",
           "description": "[Publisher Advertiser Identity Reconciliation (PAIR) IDs](//support.google.com/admanager/answer/15067908). This feature is only available to data partners."
+        },
+        "partnerProvidedIdData": {
+          "$ref": "PartnerProvidedIdData",
+          "description": "Partner-provided identifiers."
         },
         "ppidData": {
           "$ref": "PpidData",
@@ -1551,7 +1589,7 @@
           "type": "string"
         },
         "ipAddress": {
-          "description": "Optional. The IP address of the device for the given context. **Note:** Google Ads does not support IP address matching for end users in the European Economic Area (EEA), United Kingdom (UK), or Switzerland (CH). Add logic to conditionally exclude sharing IP addresses from users from these regions and ensure that you provide users with clear and comprehensive information about the data you collect on your sites, apps, and other properties and get consent where required by law or any applicable Google policies. See the [About offline conversion imports](https://support.google.com/google-ads/answer/2998031) page for more details.",
+          "description": "Optional. The IP address of the device for the given context. Required when used in an AdEvent. **Note:** Google Ads does not support IP address matching for end users in the European Economic Area (EEA), United Kingdom (UK), or Switzerland (CH). Add logic to conditionally exclude sharing IP addresses from users from these regions and ensure that you provide users with clear and comprehensive information about the data you collect on your sites, apps, and other properties and get consent where required by law or any applicable Google policies. See the [About offline conversion imports](https://support.google.com/google-ads/answer/2998031) page for more details.",
           "type": "string"
         },
         "languageCode": {
@@ -1982,6 +2020,59 @@
       },
       "type": "object"
     },
+    "FieldWarning": {
+      "description": "Detailed row-level warning with field paths.",
+      "id": "FieldWarning",
+      "properties": {
+        "description": {
+          "description": "The detailed warning message describing the issue.",
+          "type": "string"
+        },
+        "field": {
+          "description": "The field path that triggered the warning. Uses the same format as google.rpc.BadRequest.FieldViolation.field.",
+          "type": "string"
+        },
+        "reason": {
+          "description": "The warning reason.",
+          "enum": [
+            "WARNING_REASON_UNSPECIFIED",
+            "WARNING_REASON_CUSTOM_VARIABLE_NOT_ENABLED",
+            "WARNING_REASON_CUSTOM_VARIABLE_NOT_PREDEFINED",
+            "WARNING_REASON_CART_DATA_NOT_SUPPORTED_WITH_GBRAID_OR_WBRAID",
+            "WARNING_REASON_CART_DATA_ITEM_MERCHANT_PRODUCT_ID_MISSING",
+            "WARNING_REASON_CART_DATA_ITEM_UNIT_PRICE_MISSING",
+            "WARNING_REASON_GENERIC",
+            "WARNING_REASON_INVALID_CLIENT_ID",
+            "WARNING_REASON_INVALID_SUBDIVISION_CODE",
+            "WARNING_REASON_INVALID_REGION_CODE",
+            "WARNING_REASON_INVALID_SUBCONTINENT_CODE",
+            "WARNING_REASON_INVALID_CONTINENT_CODE",
+            "WARNING_REASON_INVALID_DEVICE_CATEGORY",
+            "WARNING_REASON_INVALID_DEVICE_SCREEN_RESOLUTION",
+            "WARNING_REASON_INVALID_MERCHANT_ID"
+          ],
+          "enumDescriptions": [
+            "Unspecified warning reason.",
+            "A custom variable in `custom_variables` is not enabled in the account.",
+            "A custom variable value in `custom_variables` is not among the predefined allowed values configured for the custom variable on the destination account.",
+            "The `cart_data` is not supported with `gbraid` or `wbraid`.",
+            "The `merchant_product_id` is missing in the cart item.",
+            "The `unit_price` is missing in the cart item.",
+            "Generic warning reason for issues that do not fit into other specific categories.",
+            "The `client_id` is invalid.",
+            "The `subdivision_code` is invalid.",
+            "The `region_code` is invalid.",
+            "The `subcontinent_code` is invalid.",
+            "The `continent_code` is invalid.",
+            "The device `category` is invalid.",
+            "The device `screen_height` or `screen_width` is invalid.",
+            "The `merchant_id` is invalid."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GcpWrappedKeyInfo": {
       "description": "Information about the Google Cloud Platform wrapped key.",
       "id": "GcpWrappedKeyInfo",
@@ -2013,6 +2104,20 @@
       },
       "type": "object"
     },
+    "GoogleUserIdData": {
+      "description": "Google user id data holding encrypted google user IDs. At least one google user ID is required.",
+      "id": "GoogleUserIdData",
+      "properties": {
+        "googleUserIds": {
+          "description": "Required. The list of encrypted google user IDs.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "IngestAdEventsRequest": {
       "description": "Request to upload ad events.",
       "id": "IngestAdEventsRequest",
@@ -2026,9 +2131,10 @@
         },
         "encryptionInfo": {
           "$ref": "EncryptionInfo",
-          "description": "Optional. Information about encryption keys which are used to encrypt the data."
+          "description": "Required. Information about encryption keys which are used to encrypt the data."
         },
         "validateOnly": {
+          "deprecated": true,
           "description": "Optional. If true, the request is validated, but not executed.",
           "type": "boolean"
         }
@@ -2096,6 +2202,13 @@
       "description": "Response from the IngestAudienceMembersRequest.",
       "id": "IngestAudienceMembersResponse",
       "properties": {
+        "fieldWarnings": {
+          "description": "Detailed row-level warnings with field paths.",
+          "items": {
+            "$ref": "FieldWarning"
+          },
+          "type": "array"
+        },
         "requestId": {
           "description": "The auto-generated ID of the request.",
           "type": "string"
@@ -2111,6 +2224,10 @@
           "$ref": "IngestCompositeDataStatus",
           "description": "The status of the composite data ingestion to the destination."
         },
+        "googleUserIdDataIngestionStatus": {
+          "$ref": "IngestGoogleUserIdDataStatus",
+          "description": "The status of the google user id data ingestion to the destination."
+        },
         "mobileDataIngestionStatus": {
           "$ref": "IngestMobileDataStatus",
           "description": "The status of the mobile data ingestion to the destination."
@@ -2118,6 +2235,10 @@
         "pairDataIngestionStatus": {
           "$ref": "IngestPairDataStatus",
           "description": "The status of the pair data ingestion to the destination."
+        },
+        "partnerProvidedIdDataIngestionStatus": {
+          "$ref": "IngestPartnerProvidedIdDataStatus",
+          "description": "The status of the partner provided id data ingestion to the destination."
         },
         "ppidDataIngestionStatus": {
           "$ref": "IngestPpidDataStatus",
@@ -2234,6 +2355,13 @@
       "description": "Response from the IngestEventsRequest.",
       "id": "IngestEventsResponse",
       "properties": {
+        "fieldWarnings": {
+          "description": "Detailed row-level warnings with field paths.",
+          "items": {
+            "$ref": "FieldWarning"
+          },
+          "type": "array"
+        },
         "requestId": {
           "description": "The auto-generated ID of the request.",
           "type": "string"
@@ -2247,6 +2375,23 @@
       "properties": {
         "recordCount": {
           "description": "The total count of events sent in the upload request. Includes all events in the request, regardless of whether they were successfully ingested or not.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IngestGoogleUserIdDataStatus": {
+      "description": "The status of the google user id data ingestion to the destination containing stats related to the ingestion.",
+      "id": "IngestGoogleUserIdDataStatus",
+      "properties": {
+        "googleUserIdCount": {
+          "description": "The total count of google user ids sent in the upload request for the destination. Includes all google user ids in the request, regardless of whether they were successfully ingested or not.",
+          "format": "int64",
+          "type": "string"
+        },
+        "recordCount": {
+          "description": "The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.",
           "format": "int64",
           "type": "string"
         }
@@ -2276,6 +2421,23 @@
       "properties": {
         "pairIdCount": {
           "description": "The total count of pair ids sent in the upload request for the destination. Includes all pair ids in the request, regardless of whether they were successfully ingested or not.",
+          "format": "int64",
+          "type": "string"
+        },
+        "recordCount": {
+          "description": "The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IngestPartnerProvidedIdDataStatus": {
+      "description": "The status of the partner provided id data ingestion to the destination containing stats related to the ingestion.",
+      "id": "IngestPartnerProvidedIdDataStatus",
+      "properties": {
+        "partnerProvidedIdCount": {
+          "description": "The total count of partner provided ids sent in the upload request for the destination. Includes all partner provided ids in the request, regardless of whether they were successfully ingested or not.",
           "format": "int64",
           "type": "string"
         },
@@ -2409,7 +2571,7 @@
               "Mobile advertising ids.",
               "Third party provided user ids.",
               "Publisher advertiser identity reconciliation ids.",
-              "Data Management Platform IDs: - Google User ID - Partner Provided ID - Publisher Provided ID - iOS IDFA - Android advertising ID - Roku ID - Amazon Fire TV ID - Xbox or Microsoft ID"
+              "Data Management Platform IDs: - Google User ID - Partner Provided ID - Publisher Provided ID - iOS IDFA - Android advertising ID - Roku ID - Amazon Fire TV ID - Xbox or Microsoft ID - Generic Device ID"
             ],
             "type": "string"
           },
@@ -2718,7 +2880,7 @@
       "id": "MobileData",
       "properties": {
         "mobileIds": {
-          "description": "Required. The list of mobile device IDs (advertising ID/IDFA). At most 10 `mobileIds` can be provided in a single AudienceMember.",
+          "description": "Required. The list of mobile device IDs (Android advertising ID, iOS IDFA for Customer Match user lists and Android advertising ID, iOS IDFA, Xbox or Microsoft ID, Amazon Fire TV ID, Roku ID, Generic Device ID for basic user lists). At most 10 `mobileIds` can be provided in a single AudienceMember.",
           "items": {
             "type": "string"
           },
@@ -2920,6 +3082,20 @@
       },
       "type": "object"
     },
+    "PartnerProvidedIdData": {
+      "description": "Partner-provided data holding the partner-provided identifiers. At least one partner-provided identifier is required.",
+      "id": "PartnerProvidedIdData",
+      "properties": {
+        "partnerProvidedIds": {
+          "description": "Required. The list of partner-provided identifiers.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "PpidData": {
       "description": "Publisher provided identifiers data holding the ppids. At least one ppid is required. This feature is only available to data partners.",
       "id": "PpidData",
@@ -3017,6 +3193,46 @@
       },
       "type": "object"
     },
+    "RemoveAllAudienceMembersRequest": {
+      "description": "Request to remove all users from an audience in the provided destinations. Returns a RemoveAllAudienceMembersResponse.",
+      "id": "RemoveAllAudienceMembersRequest",
+      "properties": {
+        "destinations": {
+          "description": "Required. The list of destinations to remove the users from.",
+          "items": {
+            "$ref": "Destination"
+          },
+          "type": "array"
+        },
+        "removeAsOfTime": {
+          "description": "Optional. The remove as of time. If set, only audience members last added before this time will be removed. If not set, it defaults to current time. The remove as of time must not be in the future.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "Optional. For testing purposes. If `true`, the request is validated but not executed. Only errors are returned, not results.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "RemoveAllAudienceMembersResponse": {
+      "description": "Response from the RemoveAllAudienceMembersRequest.",
+      "id": "RemoveAllAudienceMembersResponse",
+      "properties": {
+        "requestId": {
+          "description": "The auto-generated ID of the request.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RemoveAllAudienceMembersStatus": {
+      "description": "The status of the remove all audience members request.",
+      "id": "RemoveAllAudienceMembersStatus",
+      "properties": {},
+      "type": "object"
+    },
     "RemoveAudienceMembersRequest": {
       "description": "Request to remove users from an audience in the provided destinations. Returns a RemoveAudienceMembersResponse.",
       "id": "RemoveAudienceMembersRequest",
@@ -3079,6 +3295,10 @@
           "$ref": "RemoveCompositeDataStatus",
           "description": "The status of the composite data removal from the destination."
         },
+        "googleUserIdDataRemovalStatus": {
+          "$ref": "RemoveGoogleUserIdDataStatus",
+          "description": "The status of the google user id data removal from the destination."
+        },
         "mobileDataRemovalStatus": {
           "$ref": "RemoveMobileDataStatus",
           "description": "The status of the mobile data removal from the destination."
@@ -3086,6 +3306,10 @@
         "pairDataRemovalStatus": {
           "$ref": "RemovePairDataStatus",
           "description": "The status of the pair data removal from the destination."
+        },
+        "partnerProvidedIdDataRemovalStatus": {
+          "$ref": "RemovePartnerProvidedIdDataStatus",
+          "description": "The status of the partner provided id data removal from the destination."
         },
         "ppidDataRemovalStatus": {
           "$ref": "RemovePpidDataStatus",
@@ -3121,6 +3345,23 @@
       },
       "type": "object"
     },
+    "RemoveGoogleUserIdDataStatus": {
+      "description": "The status of the google user id data removal from the destination.",
+      "id": "RemoveGoogleUserIdDataStatus",
+      "properties": {
+        "googleUserIdCount": {
+          "description": "The total count of google user ids sent in the removal request. Includes all google user ids in the request, regardless of whether they were successfully removed or not.",
+          "format": "int64",
+          "type": "string"
+        },
+        "recordCount": {
+          "description": "The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RemoveMobileDataStatus": {
       "description": "The status of the mobile data removal from the destination.",
       "id": "RemoveMobileDataStatus",
@@ -3144,6 +3385,23 @@
       "properties": {
         "pairIdCount": {
           "description": "The total count of pair ids sent in the removal request. Includes all pair ids in the request, regardless of whether they were successfully removed or not.",
+          "format": "int64",
+          "type": "string"
+        },
+        "recordCount": {
+          "description": "The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RemovePartnerProvidedIdDataStatus": {
+      "description": "The status of the partner provided id data removal from the destination.",
+      "id": "RemovePartnerProvidedIdDataStatus",
+      "properties": {
+        "partnerProvidedIdCount": {
+          "description": "The total count of partner provided ids sent in the removal request. Includes all partner provided ids in the request, regardless of whether they were successfully removed or not.",
           "format": "int64",
           "type": "string"
         },
@@ -3229,6 +3487,10 @@
         "eventsIngestionStatus": {
           "$ref": "IngestEventsStatus",
           "description": "The status of the ingest events request."
+        },
+        "removeAllAudienceMembersStatus": {
+          "$ref": "RemoveAllAudienceMembersStatus",
+          "description": "The status of the remove all audience members request."
         },
         "requestStatus": {
           "description": "The request status of the destination.",

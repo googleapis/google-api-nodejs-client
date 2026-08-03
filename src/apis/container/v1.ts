@@ -4293,6 +4293,10 @@ export namespace container_v1 {
      */
     channel?: string | null;
     /**
+     * Output only. List of custom versions for the channel.
+     */
+    customVersions?: string[] | null;
+    /**
      * The default version for newly created clusters on the channel.
      */
     defaultVersion?: string | null;

@@ -481,7 +481,7 @@
       }
     }
   },
-  "revision": "20260709",
+  "revision": "20260722",
   "rootUrl": "https://sts.googleapis.com/",
   "schemas": {
     "GoogleIamV1Binding": {
@@ -631,7 +631,7 @@
           "type": "string"
         },
         "use": {
-          "description": "Public key use. Currently \"jwt-svid\".",
+          "description": "Public key use. Currently \"sig\".",
           "type": "string"
         }
       },

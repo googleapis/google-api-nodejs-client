@@ -260,7 +260,7 @@
       }
     }
   },
-  "revision": "20260413",
+  "revision": "20260729",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
     "GoogleAdsSearchads360V0Common__AdScheduleInfo": {
@@ -981,7 +981,7 @@
           "type": "number"
         },
         "allConversionsByConversionDate": {
-          "description": "The total number of conversions. This includes all conversions regardless of the value of include_in_conversions_metric. When this column is selected with date, the values in date column means the conversion date. Details for the by_conversion_date columns are available at https://support.google.com/sa360/answer/9250611.",
+          "description": "The total number of conversions. This includes all conversions regardless of the value of include_in_conversions_metric. When this column is selected with date, the values in date column means the conversion date. Details for the `by_conversion_date` columns are available at [About the \"All conversions\" column](https://support.google.com/sa360/answer/9250611).",
           "format": "double",
           "type": "number"
         },
@@ -1036,7 +1036,7 @@
           "type": "number"
         },
         "allConversionsValueByConversionDate": {
-          "description": "The value of all conversions. When this column is selected with date, the values in date column means the conversion date. Details for the by_conversion_date columns are available at https://support.google.com/sa360/answer/9250611.",
+          "description": "The value of all conversions. When this column is selected with date, the values in date column means the conversion date. Details for the `by_conversion_date` columns are available at [About the \"All conversions\" column](https://support.google.com/sa360/answer/9250611).",
           "format": "double",
           "type": "number"
         },
@@ -1056,12 +1056,12 @@
           "type": "number"
         },
         "averageCpc": {
-          "description": "The total cost of all clicks divided by the total number of clicks received. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "The total cost of all clicks divided by the total number of clicks received. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "double",
           "type": "number"
         },
         "averageCpm": {
-          "description": "Average cost-per-thousand impressions (CPM). This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Average cost-per-thousand impressions (CPM). This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "double",
           "type": "number"
         },
@@ -1086,27 +1086,27 @@
           "type": "string"
         },
         "clientAccountConversions": {
-          "description": "The number of client account conversions. This only includes conversion actions which include_in_client_account_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
+          "description": "The number of client account conversions. This only includes conversion actions which `include_in_client_account_conversions_metric` attribute is set to `true`. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
           "format": "double",
           "type": "number"
         },
         "clientAccountConversionsValue": {
-          "description": "The value of client account conversions. This only includes conversion actions which include_in_client_account_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
+          "description": "The value of client account conversions. This only includes conversion actions which `include_in_client_account_conversions_metric` attribute is set to `true`. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
           "format": "double",
           "type": "number"
         },
         "clientAccountCrossSellCostOfGoodsSoldMicros": {
-          "description": "Client account cross-sell cost of goods sold (COGS) is the total cost of products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell cost of goods sold is the total cost of the products sold that weren't advertised. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The cross-sell cost of goods sold for this order is $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Client account cross-sell cost of goods sold (COGS) is the total cost of products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell cost of goods sold is the total cost of the products sold that weren't advertised. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The cross-sell cost of goods sold for this order is $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
         "clientAccountCrossSellGrossProfitMicros": {
-          "description": "Client account cross-sell gross profit is the profit you made from products sold as a result of advertising a different product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the purchase is a sold product. If these products don't match then this is considered cross-sell. Cross-sell gross profit is the revenue you made from cross-sell attributed to your ads minus the cost of the goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The shirt is priced $20 and has a cost of goods sold value of $5. The cross-sell gross profit of this order is $15 = $20 - $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Client account cross-sell gross profit is the profit you made from products sold as a result of advertising a different product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the purchase is a sold product. If these products don't match then this is considered cross-sell. Cross-sell gross profit is the revenue you made from cross-sell attributed to your ads minus the cost of the goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The shirt is priced $20 and has a cost of goods sold value of $5. The cross-sell gross profit of this order is $15 = $20 - $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
         "clientAccountCrossSellRevenueMicros": {
-          "description": "Client account cross-sell revenue is the total amount you made from products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell revenue is the total value you made from cross-sell attributed to your ads. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The cross-sell revenue of this order is $20. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Client account cross-sell revenue is the total amount you made from products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell revenue is the total value you made from cross-sell attributed to your ads. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The cross-sell revenue of this order is $20. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
@@ -1116,17 +1116,17 @@
           "type": "number"
         },
         "clientAccountLeadCostOfGoodsSoldMicros": {
-          "description": "Client account lead cost of goods sold (COGS) is the total cost of products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the cost of these goods is counted under lead cost of goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The lead cost of goods sold for this order is $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Client account lead cost of goods sold (COGS) is the total cost of products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the cost of these goods is counted under lead cost of goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The lead cost of goods sold for this order is $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
         "clientAccountLeadGrossProfitMicros": {
-          "description": "Client account lead gross profit is the profit you made from products sold as a result of advertising the same product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the revenue you made from these sales minus the cost of goods sold is your lead gross profit. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and has a cost of goods sold value of $3. The lead gross profit of this order is $7 = $10 - $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Client account lead gross profit is the profit you made from products sold as a result of advertising the same product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the revenue you made from these sales minus the cost of goods sold is your lead gross profit. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and has a cost of goods sold value of $3. The lead gross profit of this order is $7 = $10 - $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
         "clientAccountLeadRevenueMicros": {
-          "description": "Client account lead revenue is the total amount you made from products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the total value you made from the sales of these products is shown under lead revenue. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The lead revenue of this order is $10. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Client account lead revenue is the total amount you made from products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the total value you made from the sales of these products is shown under lead revenue. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The lead revenue of this order is $10. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
@@ -1168,7 +1168,7 @@
           "type": "number"
         },
         "conversionsByConversionDate": {
-          "description": "The sum of conversions by conversion date for biddable conversion types. Can be fractional due to attribution modeling. When this column is selected with date, the values in date column means the conversion date.",
+          "description": "The sum of conversions by conversion date for biddable conversion types. Can be fractional due to attribution modeling. When this column is selected with date, the values in the date column mean the conversion date.",
           "format": "double",
           "type": "number"
         },
@@ -1178,7 +1178,7 @@
           "type": "number"
         },
         "conversionsFromInteractionsValuePerInteraction": {
-          "description": "The value of conversions from interactions divided by the number of ad interactions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
+          "description": "The value of conversions from interactions divided by the number of ad interactions. This only includes conversion actions which `include_in_conversions_metric` attribute is set to `true`. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
           "format": "double",
           "type": "number"
         },
@@ -1198,7 +1198,7 @@
           "type": "number"
         },
         "costMicros": {
-          "description": "The sum of your cost-per-click (CPC) and cost-per-thousand impressions (CPM) costs during this period. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "The sum of your cost-per-click (CPC) and cost-per-thousand impressions (CPM) costs during this period. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause) for more details.",
           "format": "int64",
           "type": "string"
         },
@@ -1218,17 +1218,17 @@
           "type": "number"
         },
         "costPerCurrentModelAttributedConversion": {
-          "description": "The cost of ad interactions divided by current model attributed conversions. This only includes conversion actions which include_in_conversions_metric attribute is set to true. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
+          "description": "The cost of ad interactions divided by current model attributed conversions. This only includes conversion actions which `include_in_conversions_metric` attribute is set to `true`. If you use conversion-based bidding, your bid strategies will optimize for these conversions.",
           "format": "double",
           "type": "number"
         },
         "crossDeviceConversions": {
-          "description": "Conversions from when a customer clicks on an ad on one device, then converts on a different device or browser. Cross-device conversions are already included in all_conversions.",
+          "description": "Conversions from when a customer clicks on an ad on one device, then converts on a different device or browser. Cross-device conversions are already included in `all_conversions`.",
           "format": "double",
           "type": "number"
         },
         "crossDeviceConversionsByConversionDate": {
-          "description": "The number of cross-device conversions by conversion date. Details for the by_conversion_date columns are available at https://support.google.com/sa360/answer/9250611.",
+          "description": "The number of cross-device conversions by conversion date. Details for the `by_conversion_date` columns are available at [About the \"All conversions\" column](https://support.google.com/sa360/answer/9250611)",
           "format": "double",
           "type": "number"
         },
@@ -1238,22 +1238,22 @@
           "type": "number"
         },
         "crossDeviceConversionsValueByConversionDate": {
-          "description": "The sum of cross-device conversions value by conversion date. Details for the by_conversion_date columns are available at https://support.google.com/sa360/answer/9250611.",
+          "description": "The sum of cross-device conversions value by conversion date. Details for the `by_conversion_date` columns are available at [About the \"All conversions\" column](https://support.google.com/sa360/answer/9250611)",
           "format": "double",
           "type": "number"
         },
         "crossSellCostOfGoodsSoldMicros": {
-          "description": "Cross-sell cost of goods sold (COGS) is the total cost of products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell cost of goods sold is the total cost of the products sold that weren't advertised. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The cross-sell cost of goods sold for this order is $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Cross-sell cost of goods sold (COGS) is the total cost of products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell cost of goods sold is the total cost of the products sold that weren't advertised. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The cross-sell cost of goods sold for this order is $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
         "crossSellGrossProfitMicros": {
-          "description": "Cross-sell gross profit is the profit you made from products sold as a result of advertising a different product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the purchase is a sold product. If these products don't match then this is considered cross-sell. Cross-sell gross profit is the revenue you made from cross-sell attributed to your ads minus the cost of the goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The shirt is priced $20 and has a cost of goods sold value of $5. The cross-sell gross profit of this order is $15 = $20 - $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Cross-sell gross profit is the profit you made from products sold as a result of advertising a different product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the purchase is a sold product. If these products don't match then this is considered cross-sell. Cross-sell gross profit is the revenue you made from cross-sell attributed to your ads minus the cost of the goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The shirt is priced $20 and has a cost of goods sold value of $5. The cross-sell gross profit of this order is $15 = $20 - $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
         "crossSellRevenueMicros": {
-          "description": "Cross-sell revenue is the total amount you made from products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell revenue is the total value you made from cross-sell attributed to your ads. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The cross-sell revenue of this order is $20. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Cross-sell revenue is the total amount you made from products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell revenue is the total value you made from cross-sell attributed to your ads. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The cross-sell revenue of this order is $20. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
@@ -1268,12 +1268,12 @@
           "type": "number"
         },
         "generalInvalidClickRate": {
-          "description": "The percentage of clicks that have been filtered out of your total number of clicks (filtered + non-filtered clicks) due to being general invalid clicks. These are clicks Google considers illegitimate that are detected through routine means of filtration (that is, known invalid data-center traffic, bots and spiders or other crawlers, irregular patterns, etc). You're not charged for them, and they don't affect your account statistics. See the help page at https://support.google.com/campaignmanager/answer/6076504 for details.",
+          "description": "The percentage of clicks that have been filtered out of your total number of clicks (filtered + non-filtered clicks) due to being general invalid clicks. These are clicks Google considers illegitimate that are detected through routine means of filtration (that is, known invalid data-center traffic, bots and spiders or other crawlers, irregular patterns, etc). You're not charged for them, and they don't affect your account statistics. See [Filtering invalid traffic to ensure quality](https://support.google.com/campaignmanager/answer/6076504).",
           "format": "double",
           "type": "number"
         },
         "generalInvalidClicks": {
-          "description": "Number of general invalid clicks. These are a subset of your invalid clicks that are detected through routine means of filtration (such as known invalid data-center traffic, bots and spiders or other crawlers, irregular patterns, etc.). You're not charged for them, and they don't affect your account statistics. See the help page at https://support.google.com/campaignmanager/answer/6076504 for details.",
+          "description": "Number of general invalid clicks. These are a subset of your invalid clicks that are detected through routine means of filtration (such as known invalid data-center traffic, bots and spiders or other crawlers, irregular patterns, etc.). You're not charged for them, and they don't affect your account statistics. See [Filtering invalid traffic to ensure quality](https://support.google.com/campaignmanager/answer/6076504).",
           "format": "int64",
           "type": "string"
         },
@@ -1395,17 +1395,17 @@
           "type": "string"
         },
         "leadCostOfGoodsSoldMicros": {
-          "description": "Lead cost of goods sold (COGS) is the total cost of products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the cost of these goods is counted under lead cost of goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The lead cost of goods sold for this order is $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Lead cost of goods sold (COGS) is the total cost of products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the cost of these goods is counted under lead cost of goods sold. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The lead cost of goods sold for this order is $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
         "leadGrossProfitMicros": {
-          "description": "Lead gross profit is the profit you made from products sold as a result of advertising the same product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the revenue you made from these sales minus the cost of goods sold is your lead gross profit. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and has a cost of goods sold value of $3. The lead gross profit of this order is $7 = $10 - $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Lead gross profit is the profit you made from products sold as a result of advertising the same product, minus cost of goods sold (COGS). How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the revenue you made from these sales minus the cost of goods sold is your lead gross profit. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and has a cost of goods sold value of $3. The lead gross profit of this order is $7 = $10 - $3. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
         "leadRevenueMicros": {
-          "description": "Lead revenue is the total amount you made from products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the total value you made from the sales of these products is shown under lead revenue. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The lead revenue of this order is $10. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
+          "description": "Lead revenue is the total amount you made from products sold as a result of advertising the same product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If the advertised and sold products match, then the total value you made from the sales of these products is shown under lead revenue. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat is priced $10 and the shirt is priced $20. The lead revenue of this order is $10. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the `metrics_currency` parameter at [PARAMETERS clause](https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause).",
           "format": "int64",
           "type": "string"
         },
@@ -1437,7 +1437,7 @@
           "type": "string"
         },
         "searchAbsoluteTopImpressionShare": {
-          "description": "The percentage of the customer's Shopping or Search ad impressions that are shown in the most prominent Shopping position. See https://support.google.com/sa360/answer/9566729 for details. Any value below 0.1 is reported as 0.0999.",
+          "description": "The percentage of the customer's Shopping or Search ad impressions that are shown in the most prominent Shopping position. See [About top and absolute top metrics](https://support.google.com/sa360/answer/9566729) for details. Any value below 0.1 is reported as 0.0999.",
           "format": "double",
           "type": "number"
         },
@@ -1452,7 +1452,7 @@
           "type": "number"
         },
         "searchBudgetLostTopImpressionShare": {
-          "description": "The number estimating how often your ad didn't show adjacent to the top organic search results due to a low budget. Note: Search budget lost top impression share is reported in the range of 0 to 0.9. Any value above 0.9 is reported as 0.9001.",
+          "description": "The estimated percent of times that your ad didn't show adjacent to the top organic search results due to a low budget. Note: Search budget lost top impression share is reported in the range of 0 to 0.9. Any value above 0.9 is reported as 0.9001.",
           "format": "double",
           "type": "number"
         },
@@ -1512,7 +1512,7 @@
           "type": "number"
         },
         "valuePerAllConversionsByConversionDate": {
-          "description": "The value of all conversions divided by the number of all conversions. When this column is selected with date, the values in date column means the conversion date. Details for the by_conversion_date columns are available at https://support.google.com/sa360/answer/9250611.",
+          "description": "The value of all conversions divided by the number of all conversions. When this column is selected with date, the values in date column means the conversion date. Details for the `by_conversion_date` columns are available at [About the \"All conversions\" column](https://support.google.com/sa360/answer/9250611).",
           "format": "double",
           "type": "number"
         },
@@ -1609,7 +1609,7 @@
       "type": "object"
     },
     "GoogleAdsSearchads360V0Common__SearchAds360ExpandedTextAdInfo": {
-      "description": "A Search Ads 360 expanded text ad.",
+      "description": "A Search Ads 360 expanded text ad. Expanded text ads are deprecated. Use SearchAds360ResponsiveSearchAd instead.",
       "id": "GoogleAdsSearchads360V0Common__SearchAds360ExpandedTextAdInfo",
       "properties": {
         "adTrackingId": {
@@ -2231,6 +2231,63 @@
           "description": "Year, formatted as yyyy.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__SyntheticContentAttestation": {
+      "description": "Represents an attestation about synthetic content from a single source.",
+      "id": "GoogleAdsSearchads360V0Common__SyntheticContentAttestation",
+      "properties": {
+        "source": {
+          "description": "The source of the synthetic content attestation.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ADVERTISER_ATTESTED",
+            "GOOGLE_GENERATED_ADVERTISER_REVIEWED",
+            "GOOGLE_GENERATED_FULLY_AUTOMATED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return values only. Represents value unknown in this version.",
+            "Attestation provided by the advertiser.",
+            "Google-generated content with advertiser review or input.",
+            "Google-autogenerated content without advertiser review."
+          ],
+          "type": "string"
+        },
+        "status": {
+          "description": "Indicates whether the content is considered synthetic by this source.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "NOT_SYNTHETIC",
+            "IS_SYNTHETIC"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return values only. Represents value unknown in this version.",
+            "The content is attested as not synthetic.",
+            "The content is attested as synthetic."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__SyntheticContentInfo": {
+      "description": "Container for synthetic content attestations from different sources, such as the advertiser and Google systems.",
+      "id": "GoogleAdsSearchads360V0Common__SyntheticContentInfo",
+      "properties": {
+        "advertiserAttestation": {
+          "$ref": "GoogleAdsSearchads360V0Common__SyntheticContentAttestation",
+          "description": "Input provided by the advertiser."
+        },
+        "systemAttestation": {
+          "$ref": "GoogleAdsSearchads360V0Common__SyntheticContentAttestation",
+          "description": "Output only. Information about synthetic content generated by Google's systems.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -2942,7 +2999,8 @@
             "START_DATE_AFTER_END_DATE",
             "CANNOT_SET_DATE_TO_PAST",
             "AFTER_MAXIMUM_ALLOWABLE_DATE",
-            "CANNOT_MODIFY_START_DATE_IF_ALREADY_STARTED"
+            "CANNOT_MODIFY_START_DATE_IF_ALREADY_STARTED",
+            "REQUESTED_DATE_GRANULARITY_NOT_SUPPORTED"
           ],
           "enumDescriptions": [
             "Enum unspecified.",
@@ -2951,7 +3009,8 @@
             "The start date was after the end date.",
             "Cannot set date to past time",
             "A date was used that is past the system \"last\" date.",
-            "Trying to change start date on a resource that has started."
+            "Trying to change start date on a resource that has started.",
+            "The requested time granularity is not supported for the date range in the query. Metrics with daily, hourly, or weekly segmentation are only available for the last 37 months."
           ],
           "type": "string"
         },
@@ -4094,7 +4153,7 @@
         },
         "expandedTextAd": {
           "$ref": "GoogleAdsSearchads360V0Common__SearchAds360ExpandedTextAdInfo",
-          "description": "Immutable. Details pertaining to an expanded text ad."
+          "description": "Immutable. Details pertaining to an expanded text ad. Expanded text ads are deprecated. Use `SearchAds360ResponsiveSearchAd` instead."
         },
         "finalAppUrls": {
           "description": "A list of final app URLs that will be used on mobile if the user has the specific app installed.",
@@ -4142,6 +4201,10 @@
         "responsiveSearchAd": {
           "$ref": "GoogleAdsSearchads360V0Common__SearchAds360ResponsiveSearchAdInfo",
           "description": "Immutable. Details pertaining to a responsive search ad."
+        },
+        "syntheticContentInfo": {
+          "$ref": "GoogleAdsSearchads360V0Common__SyntheticContentInfo",
+          "description": "Synthetic content info for the ad. Only ads with specific ad types are eligible for updates using the `synthetic_content_info` field. Allowed `AdType` values: * `HTML5_UPLOAD_AD` * `DYNAMIC_HTML5_AD` * `IMAGE_AD`"
         },
         "textAd": {
           "$ref": "GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo",
@@ -4191,7 +4254,7 @@
             "No value has been specified.",
             "The received value is not known in this version. This is a response-only value.",
             "The ad is a text ad.",
-            "The ad is an expanded text ad.",
+            "The ad is an expanded text ad. Expanded text ads are deprecated.",
             "The ad is a call only ad.",
             "The ad is an expanded dynamic search ad.",
             "The ad is a hotel ad.",
@@ -5143,7 +5206,7 @@
       "type": "object"
     },
     "GoogleAdsSearchads360V0Resources__AgeRangeView": {
-      "description": "An age range view.",
+      "description": "An age range view. Represents the view of a customer's performance metrics (like impressions and clicks) aggregated by age range. All statistics are aggregated at the ad group level. Note: While you can segment metrics by age range using `age_range_view` or by gender using `gender_view`, the Search Ads 360 API does not support segmenting metrics by both age range and gender simultaneously in a single query. Analyzing performance across both dimensions combined is not supported in the Search Ads 360 API.",
       "id": "GoogleAdsSearchads360V0Resources__AgeRangeView",
       "properties": {
         "resourceName": {
@@ -5281,6 +5344,10 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "syntheticContentInfo": {
+          "$ref": "GoogleAdsSearchads360V0Common__SyntheticContentInfo",
+          "description": "Synthetic content info for the asset. Only assets with specific asset types are eligible for updates using the `synthetic_content_info` field. Allowed `AssetType` values: * `IMAGE` * `MEDIA_BUNDLE` * `YOUTUBE_VIDEO`"
         },
         "textAsset": {
           "$ref": "GoogleAdsSearchads360V0Common__TextAsset",
@@ -7345,7 +7412,7 @@
             "Floodlight activity that tracks the number of sales made or the number of items purchased. Can also capture the total value of each sale. Read only.",
             "Conversions that track local actions from Google's products and services after interacting with an ad. Read only.",
             "Conversions reported when a user submits a lead form. Read only.",
-            "Deprecated: The Salesforce integration will be going away and replaced with an improved way to import your conversions from Salesforce. - see https://support.google.com/google-ads/answer/14728349",
+            "Deprecated: The Salesforce integration ended on May 31, 2025. See [Legacy Salesforce integration for conversions upgrade FAQ](//support.google.com/google-ads/answer/14728349).",
             "Conversions imported from Search Ads 360 Floodlight data. Read only.",
             "Call conversions that occur on Smart campaign Ads without call tracking setup, using Smart campaign custom criteria. Read only.",
             "The user clicks on a call element within Google Maps. Smart campaign only. Read only.",
@@ -8080,7 +8147,7 @@
       "type": "object"
     },
     "GoogleAdsSearchads360V0Resources__GenderView": {
-      "description": "A gender view. The gender_view resource reflects the effective serving state, rather than what criteria were added. An ad group without gender criteria by default shows to all genders, so all genders appear in gender_view with stats.",
+      "description": "A gender view resource. Represents the view of a customer's performance metrics aggregated by gender. All statistics are aggregated at the ad group level. Note: While you can segment metrics by age range using `age_range_view` or by gender using `gender_view`, the Search Ads 360 API does not support segmenting metrics by both age range and gender simultaneously in a single query. Analyzing performance across both dimensions combined is not supported in the Search Ads 360 API.",
       "id": "GoogleAdsSearchads360V0Resources__GenderView",
       "properties": {
         "resourceName": {
@@ -10975,7 +11042,10 @@
             "ACCESS_DENIED_FOR_ACCOUNT_TYPE",
             "METRIC_ACCESS_DENIED",
             "CLOUD_PROJECT_NOT_UNDER_ORGANIZATION",
-            "ACTION_NOT_PERMITTED_FOR_SUSPENDED_ACCOUNT"
+            "ACTION_NOT_PERMITTED_FOR_SUSPENDED_ACCOUNT",
+            "SEARCH_ADS360_OTHER_ENGINE_MUTATE_DENIED",
+            "SEARCH_ADS360_MUTATE_ALLOWLIST_DENIED",
+            "SEARCH_ADS360_MUTATE_FIELD_DENIED"
           ],
           "enumDescriptions": [
             "Enum unspecified.",
@@ -10995,7 +11065,10 @@
             "The customer (or login customer) isn't allowed in Search Ads 360 API. It belongs to another ads system.",
             "The developer does not have access to the metrics queried.",
             "The Google Cloud project is not under the required organization.",
-            "The user does not have permission to perform this action on the resource or method because the Google Ads account is suspended."
+            "The user does not have permission to perform this action on the resource or method because the Google Ads account is suspended.",
+            "The user does not have permission to perform mutates on accounts that are not owned by Search Ads 360.",
+            "This account does not have permission to perform mutates using the Search Ads 360 API.",
+            "This field is not allowed for mutates."
           ],
           "type": "string"
         },
@@ -12926,7 +12999,8 @@
             "START_DATE_AFTER_END_DATE",
             "CANNOT_SET_DATE_TO_PAST",
             "AFTER_MAXIMUM_ALLOWABLE_DATE",
-            "CANNOT_MODIFY_START_DATE_IF_ALREADY_STARTED"
+            "CANNOT_MODIFY_START_DATE_IF_ALREADY_STARTED",
+            "REQUESTED_DATE_GRANULARITY_NOT_SUPPORTED"
           ],
           "enumDescriptions": [
             "Enum unspecified.",
@@ -12935,7 +13009,8 @@
             "The start date was after the end date.",
             "Cannot set date to past time",
             "A date was used that is past the system \"last\" date.",
-            "Trying to change start date on a resource that has started."
+            "Trying to change start date on a resource that has started.",
+            "The requested time granularity is not supported for the date range in the query. Metrics with daily, hourly, or weekly segmentation are only available for the last 37 months."
           ],
           "type": "string"
         },

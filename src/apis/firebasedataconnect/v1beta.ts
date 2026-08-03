@@ -805,6 +805,10 @@ export namespace firebasedataconnect_v1beta {
      */
     annotations?: {[key: string]: string} | null;
     /**
+     * Output only. The list of connectors in this service.
+     */
+    connectors?: Schema$Connector[];
+    /**
      * Output only. [Output only] Create time stamp.
      */
     createTime?: string | null;
@@ -828,6 +832,14 @@ export namespace firebasedataconnect_v1beta {
      * Output only. A field that if true, indicates that the system is working update the service.
      */
     reconciling?: boolean | null;
+    /**
+     * Output only. The list of schemas in this service.
+     */
+    schemas?: Schema$Schema[];
+    /**
+     * Optional. Input only. The source files for service, schemas, and connectors.
+     */
+    source?: Schema$Source;
     /**
      * Output only. System-assigned, unique identifier.
      */
@@ -1912,12 +1924,15 @@ export namespace firebasedataconnect_v1beta {
      *       // request body parameters
      *       // {
      *       //   "annotations": {},
+     *       //   "connectors": [],
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "reconciling": false,
+     *       //   "schemas": [],
+     *       //   "source": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -2832,12 +2847,15 @@ export namespace firebasedataconnect_v1beta {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "connectors": [],
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "reconciling": false,
+     *   //   "schemas": [],
+     *   //   "source": {},
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -3286,12 +3304,15 @@ export namespace firebasedataconnect_v1beta {
      *       // request body parameters
      *       // {
      *       //   "annotations": {},
+     *       //   "connectors": [],
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "reconciling": false,
+     *       //   "schemas": [],
+     *       //   "source": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
