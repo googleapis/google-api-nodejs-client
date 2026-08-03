@@ -137,6 +137,18 @@ export namespace datamanager_v1 {
    */
   export interface Schema$AddressInfo {
     /**
+     * Optional. The street and number of the user's address. Used only for Google Analytics. This field is hashed and possibly encrypted. Normalize the value before hashing: - Remove symbol characters - Convert to lowercase - Remove leading and trailing whitespace
+     */
+    addressLine?: string | null;
+    /**
+     * Optional. The administrative area (state/province) of the user's address. Used only for Google Analytics. The value should be normalized as such: - Remove symbol characters - Convert to lowercase - Remove leading and trailing whitespace
+     */
+    administrativeArea?: string | null;
+    /**
+     * Optional. The city of the user's address. Used only for Google Analytics. The value should be normalized as such: - Remove symbol characters - Convert to lowercase - Remove leading and trailing whitespace
+     */
+    city?: string | null;
+    /**
      * Required. Family (last) name of the user, all lowercase, with no punctuation, no leading or trailing whitespace, and hashed as SHA-256.
      */
     familyName?: string | null;
@@ -214,7 +226,7 @@ export namespace datamanager_v1 {
      */
     campaignName?: string | null;
     /**
-     * Optional. Information gathered about the device being used when the ad event happened.
+     * Required. Information gathered about the device being used when the ad event happened.
      */
     deviceInfo?: Schema$DeviceInfo;
     /**
@@ -262,7 +274,7 @@ export namespace datamanager_v1 {
      */
     platformTypeString?: string | null;
     /**
-     * Required. The ISO 3166-2 country plus subdivision.
+     * Optional. The ISO 3166-2 country plus subdivision.
      */
     regionCode?: string | null;
     /**
@@ -352,6 +364,10 @@ export namespace datamanager_v1 {
      */
     destinationReferences?: string[] | null;
     /**
+     * Encrypted Google User IDs.
+     */
+    googleUserIdData?: Schema$GoogleUserIdData;
+    /**
      * Data identifying the user's mobile devices.
      */
     mobileData?: Schema$MobileData;
@@ -359,6 +375,10 @@ export namespace datamanager_v1 {
      * [Publisher Advertiser Identity Reconciliation (PAIR) IDs](//support.google.com/admanager/answer/15067908). This feature is only available to data partners.
      */
     pairData?: Schema$PairData;
+    /**
+     * Partner-provided identifiers.
+     */
+    partnerProvidedIdData?: Schema$PartnerProvidedIdData;
     /**
      * Data related to publisher provided identifiers. This feature is only available to data partners.
      */
@@ -559,7 +579,7 @@ export namespace datamanager_v1 {
      */
     category?: string | null;
     /**
-     * Optional. The IP address of the device for the given context. **Note:** Google Ads does not support IP address matching for end users in the European Economic Area (EEA), United Kingdom (UK), or Switzerland (CH). Add logic to conditionally exclude sharing IP addresses from users from these regions and ensure that you provide users with clear and comprehensive information about the data you collect on your sites, apps, and other properties and get consent where required by law or any applicable Google policies. See the [About offline conversion imports](https://support.google.com/google-ads/answer/2998031) page for more details.
+     * Optional. The IP address of the device for the given context. Required when used in an AdEvent. **Note:** Google Ads does not support IP address matching for end users in the European Economic Area (EEA), United Kingdom (UK), or Switzerland (CH). Add logic to conditionally exclude sharing IP addresses from users from these regions and ensure that you provide users with clear and comprehensive information about the data you collect on your sites, apps, and other properties and get consent where required by law or any applicable Google policies. See the [About offline conversion imports](https://support.google.com/google-ads/answer/2998031) page for more details.
      */
     ipAddress?: string | null;
     /**
@@ -808,6 +828,23 @@ export namespace datamanager_v1 {
     value?: string | null;
   }
   /**
+   * Detailed row-level warning with field paths.
+   */
+  export interface Schema$FieldWarning {
+    /**
+     * The detailed warning message describing the issue.
+     */
+    description?: string | null;
+    /**
+     * The field path that triggered the warning. Uses the same format as google.rpc.BadRequest.FieldViolation.field.
+     */
+    field?: string | null;
+    /**
+     * The warning reason.
+     */
+    reason?: string | null;
+  }
+  /**
    * Information about the Google Cloud Platform wrapped key.
    */
   export interface Schema$GcpWrappedKeyInfo {
@@ -829,6 +866,15 @@ export namespace datamanager_v1 {
     wipProvider?: string | null;
   }
   /**
+   * Google user id data holding encrypted google user IDs. At least one google user ID is required.
+   */
+  export interface Schema$GoogleUserIdData {
+    /**
+     * Required. The list of encrypted google user IDs.
+     */
+    googleUserIds?: string[] | null;
+  }
+  /**
    * Request to upload ad events.
    */
   export interface Schema$IngestAdEventsRequest {
@@ -837,7 +883,7 @@ export namespace datamanager_v1 {
      */
     adEvents?: Schema$AdEvent[];
     /**
-     * Optional. Information about encryption keys which are used to encrypt the data.
+     * Required. Information about encryption keys which are used to encrypt the data.
      */
     encryptionInfo?: Schema$EncryptionInfo;
     /**
@@ -887,6 +933,10 @@ export namespace datamanager_v1 {
    */
   export interface Schema$IngestAudienceMembersResponse {
     /**
+     * Detailed row-level warnings with field paths.
+     */
+    fieldWarnings?: Schema$FieldWarning[];
+    /**
      * The auto-generated ID of the request.
      */
     requestId?: string | null;
@@ -900,6 +950,10 @@ export namespace datamanager_v1 {
      */
     compositeDataIngestionStatus?: Schema$IngestCompositeDataStatus;
     /**
+     * The status of the google user id data ingestion to the destination.
+     */
+    googleUserIdDataIngestionStatus?: Schema$IngestGoogleUserIdDataStatus;
+    /**
      * The status of the mobile data ingestion to the destination.
      */
     mobileDataIngestionStatus?: Schema$IngestMobileDataStatus;
@@ -907,6 +961,10 @@ export namespace datamanager_v1 {
      * The status of the pair data ingestion to the destination.
      */
     pairDataIngestionStatus?: Schema$IngestPairDataStatus;
+    /**
+     * The status of the partner provided id data ingestion to the destination.
+     */
+    partnerProvidedIdDataIngestionStatus?: Schema$IngestPartnerProvidedIdDataStatus;
     /**
      * The status of the ppid data ingestion to the destination.
      */
@@ -1004,6 +1062,10 @@ export namespace datamanager_v1 {
    */
   export interface Schema$IngestEventsResponse {
     /**
+     * Detailed row-level warnings with field paths.
+     */
+    fieldWarnings?: Schema$FieldWarning[];
+    /**
      * The auto-generated ID of the request.
      */
     requestId?: string | null;
@@ -1014,6 +1076,19 @@ export namespace datamanager_v1 {
   export interface Schema$IngestEventsStatus {
     /**
      * The total count of events sent in the upload request. Includes all events in the request, regardless of whether they were successfully ingested or not.
+     */
+    recordCount?: string | null;
+  }
+  /**
+   * The status of the google user id data ingestion to the destination containing stats related to the ingestion.
+   */
+  export interface Schema$IngestGoogleUserIdDataStatus {
+    /**
+     * The total count of google user ids sent in the upload request for the destination. Includes all google user ids in the request, regardless of whether they were successfully ingested or not.
+     */
+    googleUserIdCount?: string | null;
+    /**
+     * The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.
      */
     recordCount?: string | null;
   }
@@ -1038,6 +1113,19 @@ export namespace datamanager_v1 {
      * The total count of pair ids sent in the upload request for the destination. Includes all pair ids in the request, regardless of whether they were successfully ingested or not.
      */
     pairIdCount?: string | null;
+    /**
+     * The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.
+     */
+    recordCount?: string | null;
+  }
+  /**
+   * The status of the partner provided id data ingestion to the destination containing stats related to the ingestion.
+   */
+  export interface Schema$IngestPartnerProvidedIdDataStatus {
+    /**
+     * The total count of partner provided ids sent in the upload request for the destination. Includes all partner provided ids in the request, regardless of whether they were successfully ingested or not.
+     */
+    partnerProvidedIdCount?: string | null;
     /**
      * The total count of audience members sent in the upload request for the destination. Includes all audience members in the request, regardless of whether they were successfully ingested or not.
      */
@@ -1278,7 +1366,7 @@ export namespace datamanager_v1 {
    */
   export interface Schema$MobileData {
     /**
-     * Required. The list of mobile device IDs (advertising ID/IDFA). At most 10 `mobileIds` can be provided in a single AudienceMember.
+     * Required. The list of mobile device IDs (Android advertising ID, iOS IDFA for Customer Match user lists and Android advertising ID, iOS IDFA, Xbox or Microsoft ID, Amazon Fire TV ID, Roku ID, Generic Device ID for basic user lists). At most 10 `mobileIds` can be provided in a single AudienceMember.
      */
     mobileIds?: string[] | null;
   }
@@ -1406,6 +1494,15 @@ export namespace datamanager_v1 {
     implicitAccounts?: Schema$PartnerCustomerAccount[];
   }
   /**
+   * Partner-provided data holding the partner-provided identifiers. At least one partner-provided identifier is required.
+   */
+  export interface Schema$PartnerProvidedIdData {
+    /**
+     * Required. The list of partner-provided identifiers.
+     */
+    partnerProvidedIds?: string[] | null;
+  }
+  /**
    * Publisher provided identifiers data holding the ppids. At least one ppid is required. This feature is only available to data partners.
    */
   export interface Schema$PpidData {
@@ -1444,6 +1541,36 @@ export namespace datamanager_v1 {
      */
     syncStatus?: string | null;
   }
+  /**
+   * Request to remove all users from an audience in the provided destinations. Returns a RemoveAllAudienceMembersResponse.
+   */
+  export interface Schema$RemoveAllAudienceMembersRequest {
+    /**
+     * Required. The list of destinations to remove the users from.
+     */
+    destinations?: Schema$Destination[];
+    /**
+     * Optional. The remove as of time. If set, only audience members last added before this time will be removed. If not set, it defaults to current time. The remove as of time must not be in the future.
+     */
+    removeAsOfTime?: string | null;
+    /**
+     * Optional. For testing purposes. If `true`, the request is validated but not executed. Only errors are returned, not results.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
+   * Response from the RemoveAllAudienceMembersRequest.
+   */
+  export interface Schema$RemoveAllAudienceMembersResponse {
+    /**
+     * The auto-generated ID of the request.
+     */
+    requestId?: string | null;
+  }
+  /**
+   * The status of the remove all audience members request.
+   */
+  export interface Schema$RemoveAllAudienceMembersStatus {}
   /**
    * Request to remove users from an audience in the provided destinations. Returns a RemoveAudienceMembersResponse.
    */
@@ -1487,6 +1614,10 @@ export namespace datamanager_v1 {
      */
     compositeDataRemovalStatus?: Schema$RemoveCompositeDataStatus;
     /**
+     * The status of the google user id data removal from the destination.
+     */
+    googleUserIdDataRemovalStatus?: Schema$RemoveGoogleUserIdDataStatus;
+    /**
      * The status of the mobile data removal from the destination.
      */
     mobileDataRemovalStatus?: Schema$RemoveMobileDataStatus;
@@ -1494,6 +1625,10 @@ export namespace datamanager_v1 {
      * The status of the pair data removal from the destination.
      */
     pairDataRemovalStatus?: Schema$RemovePairDataStatus;
+    /**
+     * The status of the partner provided id data removal from the destination.
+     */
+    partnerProvidedIdDataRemovalStatus?: Schema$RemovePartnerProvidedIdDataStatus;
     /**
      * The status of the ppid data removal from the destination.
      */
@@ -1521,6 +1656,19 @@ export namespace datamanager_v1 {
     recordCount?: string | null;
   }
   /**
+   * The status of the google user id data removal from the destination.
+   */
+  export interface Schema$RemoveGoogleUserIdDataStatus {
+    /**
+     * The total count of google user ids sent in the removal request. Includes all google user ids in the request, regardless of whether they were successfully removed or not.
+     */
+    googleUserIdCount?: string | null;
+    /**
+     * The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.
+     */
+    recordCount?: string | null;
+  }
+  /**
    * The status of the mobile data removal from the destination.
    */
   export interface Schema$RemoveMobileDataStatus {
@@ -1541,6 +1689,19 @@ export namespace datamanager_v1 {
      * The total count of pair ids sent in the removal request. Includes all pair ids in the request, regardless of whether they were successfully removed or not.
      */
     pairIdCount?: string | null;
+    /**
+     * The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.
+     */
+    recordCount?: string | null;
+  }
+  /**
+   * The status of the partner provided id data removal from the destination.
+   */
+  export interface Schema$RemovePartnerProvidedIdDataStatus {
+    /**
+     * The total count of partner provided ids sent in the removal request. Includes all partner provided ids in the request, regardless of whether they were successfully removed or not.
+     */
+    partnerProvidedIdCount?: string | null;
     /**
      * The total count of audience members sent in the removal request. Includes all audience members in the request, regardless of whether they were successfully removed or not.
      */
@@ -1609,6 +1770,10 @@ export namespace datamanager_v1 {
      * The status of the ingest events request.
      */
     eventsIngestionStatus?: Schema$IngestEventsStatus;
+    /**
+     * The status of the remove all audience members request.
+     */
+    removeAllAudienceMembersStatus?: Schema$RemoveAllAudienceMembersStatus;
     /**
      * The request status of the destination.
      */
@@ -5419,6 +5584,7 @@ export namespace datamanager_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "fieldWarnings": [],
      *   //   "requestId": "my_requestId"
      *   // }
      * }
@@ -5675,6 +5841,160 @@ export namespace datamanager_v1 {
         );
       }
     }
+
+    /**
+     * Removes all audience members from the provided destinations.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datamanager.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const datamanager = google.datamanager('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/datamanager'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datamanager.audienceMembers.removeAll({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destinations": [],
+     *       //   "removeAsOfTime": "my_removeAsOfTime",
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "requestId": "my_requestId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removeAll(
+      params: Params$Resource$Audiencemembers$Removeall,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    removeAll(
+      params?: Params$Resource$Audiencemembers$Removeall,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$RemoveAllAudienceMembersResponse>
+    >;
+    removeAll(
+      params: Params$Resource$Audiencemembers$Removeall,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removeAll(
+      params: Params$Resource$Audiencemembers$Removeall,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemoveAllAudienceMembersResponse>,
+      callback: BodyResponseCallback<Schema$RemoveAllAudienceMembersResponse>
+    ): void;
+    removeAll(
+      params: Params$Resource$Audiencemembers$Removeall,
+      callback: BodyResponseCallback<Schema$RemoveAllAudienceMembersResponse>
+    ): void;
+    removeAll(
+      callback: BodyResponseCallback<Schema$RemoveAllAudienceMembersResponse>
+    ): void;
+    removeAll(
+      paramsOrCallback?:
+        | Params$Resource$Audiencemembers$Removeall
+        | BodyResponseCallback<Schema$RemoveAllAudienceMembersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RemoveAllAudienceMembersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RemoveAllAudienceMembersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$RemoveAllAudienceMembersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Audiencemembers$Removeall;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Audiencemembers$Removeall;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datamanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/audienceMembers:removeAll').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RemoveAllAudienceMembersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RemoveAllAudienceMembersResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Audiencemembers$Ingest extends StandardParameters {
@@ -5688,6 +6008,12 @@ export namespace datamanager_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RemoveAudienceMembersRequest;
+  }
+  export interface Params$Resource$Audiencemembers$Removeall extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemoveAllAudienceMembersRequest;
   }
 
   export class Resource$Events {
@@ -5744,6 +6070,7 @@ export namespace datamanager_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "fieldWarnings": [],
      *   //   "requestId": "my_requestId"
      *   // }
      * }
